@@ -1,0 +1,36 @@
+{
+  "ConnectionStrings": {
+    "MasterDb": "Data Source=.;Initial Catalog=XGGMaster;Integrated Security=True",
+    "TenantDb": "Data Source=.;Initial Catalog=ImagineDev;Integrated Security=True",
+    "IntelligenceDb": "Data Source=.;Initial Catalog=ImagineDev;Integrated Security=True"
+  },
+  "TimeoutSettings": {
+    "MasterMigrationDbContext": "900",
+    "TenantMigrationDbContext": "900",
+    "IntelligenceMigrationDbContext": "900",
+    "SynchronizationMigrationDbContext": "900"
+  },
+  "Serilog": {
+    "Using": [ "Serilog.Sinks.Console", "Serilog.Sinks.File" ],
+    "MinimumLevel": "Debug",
+    "WriteTo": [
+      {
+        "Name": "Console",
+        "Args": {
+          "restrictedToMinimumLevel": "Information",
+          "outputTemplate": "{Timestamp:HH:mm:ss} [{Level}] {Message}{NewLine}",
+          "theme": "Serilog.Sinks.SystemConsole.Themes.AnsiConsoleTheme::Code, Serilog.Sinks.Console"
+        }
+      },
+      {
+        "Name": "File",
+        "Args": {
+          "path": "logs/db-migrations-.log",
+          "rollingInterval": "Day",
+          "shared": true,
+          "outputTemplate": "{UtcTime} [{Level}] {Message}{NewLine}{Exception}"
+        }
+      }
+    ]
+  }
+}
