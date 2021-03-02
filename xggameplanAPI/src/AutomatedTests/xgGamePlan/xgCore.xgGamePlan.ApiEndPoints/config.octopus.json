@@ -1,0 +1,4 @@
+{
+  "BaseAddress": "#{xGGamePlan.API.Url}",
+  "AccessToken": "#{xGGamePlan.API.ApiAccessToken}"
+}

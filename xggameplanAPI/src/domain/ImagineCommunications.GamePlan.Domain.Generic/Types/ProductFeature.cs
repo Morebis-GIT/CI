@@ -1,0 +1,41 @@
+﻿namespace ImagineCommunications.GamePlan.Domain.Generic.Types
+{
+    public enum ProductFeature
+    {
+        None = 0,
+        CampaignDeliveryType,
+        DayPartGroup,
+        DeliveryCappingGroup,
+        EfficiencyFactor,
+        IntegrationSynchronization,
+        LandmarkBooking,
+        NominalPrice,
+        PositionInBreak,
+        SalesAreaZeroRevenueSplit,
+        TargetSalesArea,
+        TotalRating,
+        ZeroRatedBreaksMapping,
+        InventoryStatus,
+        SkipLockedBreaks,
+        RunCampaignListOnCreation,
+        SpotBookingRule,
+        LengthFactor,
+        StrikeWeightDayPartsMerge,
+        ExactBreaksRatingsTimeMatching,
+        NineValidationMinSpot,
+        IncludeChannelGroupFileForOptimiser,
+        NineValidationRatingPredictions,
+        PrePostCampaignResults,
+        Smooth,
+        RunType,
+        ScenarioPerformanceMeasurementKPIs,
+        UseBreakPositionInProgram,
+        LandmarkProductRelatedCollections,
+        PaginatedCampaignView,
+        AnalysisGroups,
+        SAPPTargetAreaName,
+        UseSystemLogicalDate,
+        ScenarioCampaignResultsProcessing,
+        DefaultCentreBreakRatio
+    }
+}

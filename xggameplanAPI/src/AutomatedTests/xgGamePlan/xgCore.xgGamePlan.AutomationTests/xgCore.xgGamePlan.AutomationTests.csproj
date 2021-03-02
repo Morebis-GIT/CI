@@ -1,0 +1,213 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net472</TargetFramework>
+
+    <IsPackable>false</IsPackable>
+
+    <Company>Imagine Communications</Company>
+
+    <Product>xgGamePlan</Product>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <SpecFlowFeatureFiles Remove="Features\AnalysisGroups\AnalysisGroups.feature" />
+    <SpecFlowFeatureFiles Remove="Features\AutopilotSettings\AutopilotSettings.feature" />
+    <SpecFlowFeatureFiles Remove="Features\Campaigns\Campaigns.feature" />
+    <SpecFlowFeatureFiles Remove="Features\AccessToken\AccessToken.feature" />
+    <SpecFlowFeatureFiles Remove="Features\ApiConnectivity\ApiConnectivity.feature" />
+    <SpecFlowFeatureFiles Remove="Features\AutoBook\AutoBook.feature" />
+    <SpecFlowFeatureFiles Remove="Features\Breaks\Breaks.feature" />
+    <SpecFlowFeatureFiles Remove="Features\ClashExceptions\ClashExceptions.feature" />
+    <SpecFlowFeatureFiles Remove="Features\Clashes\Clashes.feature" />
+    <SpecFlowFeatureFiles Remove="Features\ClearanceCodes\ClearanceCode.feature" />
+    <SpecFlowFeatureFiles Remove="Features\Channels\Channels.feature" />
+    <SpecFlowFeatureFiles Remove="Features\FeatureFlags\FeatureFlags.feature" />
+    <SpecFlowFeatureFiles Remove="Features\FlexibilityLevels\FlexibilityLevels.feature" />
+    <SpecFlowFeatureFiles Remove="Features\Clashes\Clashes.feature" />
+    <SpecFlowFeatureFiles Remove="Features\ClashExceptions\ClashExceptions.feature" />
+    <SpecFlowFeatureFiles Remove="Features\ClearanceCodes\ClearanceCodes.feature" />
+    <SpecFlowFeatureFiles Remove="Features\Demographics\GameplanDemographics.feature" />
+    <SpecFlowFeatureFiles Remove="Features\FunctionalAreas\FunctionalAreas.feature" />
+    <SpecFlowFeatureFiles Remove="Features\ISRSettings\ISRSettings.feature" />
+    <SpecFlowFeatureFiles Remove="Features\Languages\Languages.feature" />
+    <SpecFlowFeatureFiles Remove="Features\LibrarySalesAreaPassPriorities\LibrarySalesAreaPassPriorities.feature" />
+    <SpecFlowFeatureFiles Remove="Features\Metadata\Metadata.feature" />
+    <SpecFlowFeatureFiles Remove="Features\OutputFiles\OutputFiles.feature" />
+    <SpecFlowFeatureFiles Remove="Features\Products\Products.feature" />
+    <SpecFlowFeatureFiles Remove="Features\ProgrammeClassifications\ProgrammeClassifications.feature" />
+    <SpecFlowFeatureFiles Remove="Features\Programmes\Programmes.feature" />
+    <SpecFlowFeatureFiles Remove="Features\RatingsPredictionSchedules\RatingsPredictionSchedules.feature" />
+    <SpecFlowFeatureFiles Remove="Features\RSSettings\RSSettings.feature" />
+    <SpecFlowFeatureFiles Remove="Features\Runs\Runs.feature" />
+    <SpecFlowFeatureFiles Remove="Features\Scenarios\Scenarios.feature" />
+    <SpecFlowFeatureFiles Remove="Features\ScenarioResults\ScenarioResults.feature" />
+    <SpecFlowFeatureFiles Remove="Features\Smooth\Smooth.feature" />
+    <SpecFlowFeatureFiles Remove="Features\Sponsorships\Sponsorships.feature" />
+    <SpecFlowFeatureFiles Remove="Features\Spots\Spots.feature" />
+    <SpecFlowFeatureFiles Remove="Features\Tenants\Tenants.feature" />
+    <SpecFlowFeatureFiles Remove="Features\Users\Users.feature" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="AutoFixture" Version="4.8.0" />
+    <PackageReference Include="AutoMapper" Version="9.0.0" />
+    <PackageReference Include="Microsoft.CodeAnalysis.FxCopAnalyzers" Version="2.9.1">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Newtonsoft.Json" Version="12.0.1" />
+    <PackageReference Include="NodaTime" Version="2.4.4" />
+    <PackageReference Include="NodaTime.Serialization.JsonNet" Version="2.1.0" />
+    <PackageReference Include="NUnit" Version="3.11.0" />
+    <PackageReference Include="NUnit.ConsoleRunner" Version="3.9.0" />
+    <PackageReference Include="NUnit3TestAdapter" Version="3.13.0" />
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="15.9.0" />
+    <PackageReference Include="Refit" Version="4.6.99" />
+    <PackageReference Include="SpecFlow" Version="2.4.1" />
+    <PackageReference Include="SpecFlow.NUnit" Version="2.4.1" />
+    <PackageReference Include="SpecFlow.Tools.MsBuild.Generation" Version="2.4.1" />
+    <PackageReference Include="System.Net.Http" Version="4.3.4" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="Features\AccessToken\AccessToken.feature">
+      <Generator></Generator>
+    </None>
+    <None Update="Features\ApiConnectivity\ApiConnectivity.feature">
+      <Generator></Generator>
+    </None>
+    <None Update="Features\AutopilotSettings\AutopilotSettings.feature">
+      <Generator></Generator>
+    </None>
+    <None Update="Features\AutoBook\AutoBook.feature">
+      <Generator></Generator>
+    </None>
+    <None Update="Features\Breaks\Breaks.feature">
+      <Generator></Generator>
+    </None>
+    <None Update="Features\Campaigns\Campaigns.feature">
+      <Generator></Generator>
+    </None>
+    <None Update="Features\Channels\Channels.feature">
+      <Generator></Generator>
+    </None>
+    <None Update="Features\Clashes\Clashes.feature">
+      <Generator></Generator>
+    </None>
+    <None Update="Features\ClashExceptions\ClashExceptions.feature">
+      <Generator></Generator>
+    </None>
+    <None Update="Features\ClearanceCodes\ClearanceCodes.feature">
+      <Generator></Generator>
+    </None>
+    <None Update="Features\Demographics\GameplanDemographics.feature">
+      <Generator></Generator>
+    </None>
+    <None Update="Features\FlexibilityLevels\FlexibilityLevels.feature">
+      <Generator></Generator>
+    </None>
+    <None Update="Features\FunctionalAreas\FunctionalAreas.feature">
+      <Generator></Generator>
+    </None>
+    <None Update="Features\ISRSettings\ISRSettings.feature">
+      <Generator></Generator>
+    </None>
+    <None Update="Features\Languages\Languages.feature">
+      <Generator></Generator>
+    </None>
+    <None Update="Features\LibrarySalesAreaPassPriorities\LibrarySalesAreaPassPriorities.feature">
+      <Generator></Generator>
+    </None>
+    <None Update="Features\Metadata\Metadata.feature">
+      <Generator></Generator>
+    </None>
+    <None Update="Features\OutputFiles\OutputFiles.feature">
+      <Generator></Generator>
+    </None>
+    <None Update="Features\Products\Products.feature">
+      <Generator></Generator>
+    </None>
+    <None Update="Features\ProgrammeClassifications\ProgrammeClassifications.feature">
+      <Generator></Generator>
+    </None>
+    <None Update="Features\Programmes\Programmes.feature">
+      <Generator></Generator>
+    </None>
+    <None Update="Features\RatingsPredictionSchedules\RatingsPredictionSchedules.feature">
+      <Generator></Generator>
+    </None>
+    <None Update="Features\RSSettings\RSSettings.feature">
+      <Generator></Generator>
+    </None>
+    <None Update="Features\Runs\Runs.feature">
+      <Generator></Generator>
+    </None>
+    <None Update="Features\ScenarioResults\ScenarioResults.feature">
+      <Generator></Generator>
+    </None>
+    <None Update="Features\Scenarios\Scenarios.feature">
+      <Generator></Generator>
+    </None>
+    <None Update="Features\Schedules\Schedules.feature">
+      <Generator></Generator>
+    </None>
+    <None Update="Features\Smooth\Smooth.feature">
+      <Generator></Generator>
+    </None>
+    <None Update="Features\Sponsorships\Sponsorships.feature">
+      <Generator></Generator>
+    </None>
+    <None Update="Features\Spots\Spots.feature">
+      <Generator></Generator>
+    </None>
+    <None Update="JmeterScenarios\xG GamePlan Smoke Load Test.jmx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="JmeterScenarios\xGGamePlan_Migration_global_endpoits_load_test.jmx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="JmeterScenarios\xGGamePlan_Migration_global_endpoits_load_test_structured.jmx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	</None>
+    <None Update="Features\Tenants\Tenants.feature">
+      <Generator></Generator>
+    </None>
+    <None Update="Features\Users\Users.feature">
+      <Generator></Generator>
+    </None>
+    <None Update="JmeterScenarios\xGGamePlan_Migration_multithread_ready_load_test.jmx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="xgCore.xgGamePlan.AutomationTests.csproj">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\xgCore.xgGamePlan.ApiEndPoints\xgCore.xgGamePlan.ApiEndPoints.csproj" />
+  </ItemGroup>
+
+  <PropertyGroup>
+    <ShowTrace>true</ShowTrace>
+    <VerboseOutput>true</VerboseOutput>
+    <ForceGeneration>true</ForceGeneration>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <WarningsAsErrors />
+    <NoWarn>1701;1702</NoWarn>
+  </PropertyGroup>
+
+  <Target Name="AfterUpdateFeatureFilesInProject">
+    <!-- include any generated SpecFlow files in the compilation of the project if not included yet -->
+    <ItemGroup>
+      <Compile Include="**\*.feature.cs" Exclude="@(Compile)" />
+    </ItemGroup>
+  </Target>
+
+</Project>

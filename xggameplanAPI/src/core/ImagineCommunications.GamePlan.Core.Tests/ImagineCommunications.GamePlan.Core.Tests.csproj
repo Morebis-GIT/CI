@@ -1,0 +1,158 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{D26A006F-2854-4B52-A8A0-E8358E775589}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>ImagineCommunications.GamePlan.Core.Tests</RootNamespace>
+    <AssemblyName>ImagineCommunications.GamePlan.Core.Tests</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <Deterministic>true</Deterministic>
+    <LangVersion>8.0</LangVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="BreakAvailabilityCalculatorTests\ParallelExecutionVersionTests.cs" />
+    <Compile Include="DataPopulationTests\CampaignPriorityRoundsDataPopulationTests.cs" />
+    <Compile Include="DataPopulationTests\ClashExposureDataPopulationTests.cs" />
+    <Compile Include="DataPopulationTests\DataPopulationTestBase.cs" />
+    <Compile Include="DataPopulationTests\DefaultDataPopulationTests.cs" />
+    <Compile Include="DataPopulationTests\RatingPointsDataPopulationTests.cs" />
+    <Compile Include="DataPopulationTests\SalesAreaPassPriorityDataPopulationTests.cs" />
+    <Compile Include="DataPopulationTests\ScenarioCampaignPassDataPopulationTests.cs" />
+    <Compile Include="ExtensionMethodTests\EnumerableExtensionsTests\GivenAListOfExternalBreakReferences.WhenGivenAListOfStrings.cs" />
+    <Compile Include="ExtensionMethodTests\EnumerableExtensionsTests\GivenAListOfExternalBreakReferences.WhenGivenAListOfBreaks.cs" />
+    <Compile Include="FactoryTests\RepositoryFactoryTests.cs" />
+    <Compile Include="HelpersTests\OptimiserInputFilesHelperTests.cs" />
+    <Compile Include="Helpers\FolderHelpers.cs" />
+    <Compile Include="OutputFileProcessingTests\ScenarioCampaignResultsFileProcessorTest.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="GherkinTests\Steps\BusinessRules\CalculateClashExceptionCountSteps.cs" />
+    <Compile Include="GherkinTests\Steps\ValueRetrievers\TimeAndDowValueRetriever.cs" />
+    <Compile Include="Helpers\StubLogger.cs" />
+    <Compile Include="ServicesTests\PassInspectorServiceTests.cs" />
+    <Compile Include="RunInstanceTests.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="AutoFixture">
+      <Version>4.11.0</Version>
+    </PackageReference>
+    <PackageReference Include="FluentAssertions">
+      <Version>5.10.3</Version>
+    </PackageReference>
+    <PackageReference Include="Microsoft.CodeAnalysis.FxCopAnalyzers">
+      <Version>3.0.0</Version>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+      <PrivateAssets>all</PrivateAssets>
+    </PackageReference>
+    <PackageReference Include="Moq">
+      <Version>4.14.1</Version>
+    </PackageReference>
+    <PackageReference Include="SpecFlow">
+      <Version>3.0.225</Version>
+    </PackageReference>
+    <PackageReference Include="SpecFlow.Tools.MsBuild.Generation">
+      <Version>3.0.225</Version>
+    </PackageReference>
+    <PackageReference Include="SpecFlow.xUnit">
+      <Version>3.0.225</Version>
+    </PackageReference>
+    <PackageReference Include="xunit">
+      <Version>2.4.1</Version>
+    </PackageReference>
+    <PackageReference Include="xunit.runner.visualstudio">
+      <Version>2.4.1</Version>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+      <PrivateAssets>all</PrivateAssets>
+    </PackageReference>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\test\ImagineCommunications.GamePlan.CommonTestsHelpers\ImagineCommunications.GamePlan.CommonTestsHelpers.csproj">
+      <Project>{0C9C1259-6948-4621-A532-FBCCC56AEC5D}</Project>
+      <Name>ImagineCommunications.GamePlan.CommonTestsHelpers</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\xgcore.auditevents\xgcore.auditevents.csproj">
+      <Project>{ea7d70f9-a8d0-4fbb-a3b9-a00c177f6904}</Project>
+      <Name>xgcore.auditevents</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\xggameplan.common\xggameplan.common.csproj">
+      <Project>{efc37031-75bd-4c4b-b760-e1d3aba0a734}</Project>
+      <Name>xggameplan.common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\xggameplan.core\xggameplan.core.csproj">
+      <Project>{24373E36-C0E4-4550-B1E9-B59EF7094C1F}</Project>
+      <Name>xggameplan.core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\xggameplan.model\xggameplan.model.csproj">
+      <Project>{219A7AA0-38B0-44C5-B6C0-E77374EE9BBC}</Project>
+      <Name>xggameplan.model</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\domain\ImagineCommunications.GamePlan.Domain.Generic\ImagineCommunications.GamePlan.Domain.Generic.csproj">
+      <Project>{E4E13375-E595-4DF3-81D4-C14314BACDFB}</Project>
+      <Name>ImagineCommunications.GamePlan.Domain.Generic</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\domain\ImagineCommunications.GamePlan.Domain\ImagineCommunications.GamePlan.Domain.csproj">
+      <Project>{3099D7DC-BC6E-4D9F-9668-C5798BD7F37C}</Project>
+      <Name>ImagineCommunications.GamePlan.Domain</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\integration\ImagineCommunications.Gameplan.Synchronization\ImagineCommunications.Gameplan.Synchronization.csproj">
+      <Project>{92BC7817-AF28-423B-BBA0-A305DBC4133B}</Project>
+      <Name>ImagineCommunications.Gameplan.Synchronization</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Data\OutputFileProcessing\base_rtgs.csv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Data\OutputFileProcessing\base_rtgs.out">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Data\OutputFileProcessing\kpi.csv" />
+    <None Include="Data\OutputFileProcessing\kpi.out" />
+    <None Include="Data\OutputFileProcessing\lmkii_camp_reqm.csv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Data\OutputFileProcessing\lmkii_camp_reqm.out">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Data\OutputFileProcessing\lmkii_scen_camp_reqm_summ.csv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Data\OutputFileProcessing\lmkii_scen_camp_reqm_summ.out">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="GherkinTests\BusinessRuleTests\CalculatePeakOffPeakClashExposureCount.feature" />
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

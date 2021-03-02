@@ -1,0 +1,31 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>netstandard2.0</TargetFramework>
+        <Copyright>Copyright © Imagine Communications</Copyright>
+        <Product>xG GamePlan</Product>
+        <Company>Imagine Communications</Company>
+        <Authors>Imagine Communications</Authors>
+    </PropertyGroup>
+    <ItemGroup>
+        <PackageReference Include="Microsoft.CodeAnalysis.FxCopAnalyzers" Version="2.9.8">
+            <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+            <PrivateAssets>all</PrivateAssets>
+        </PackageReference>
+    </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\domain\ImagineCommunications.GamePlan.Domain.Generic\ImagineCommunications.GamePlan.Domain.Generic.csproj" />
+    <ProjectReference Include="..\..\domain\ImagineCommunications.GamePlan.Domain\ImagineCommunications.GamePlan.Domain.csproj" />
+    <ProjectReference Include="..\..\infrastructure\ImagineCommunications.GamePlan.Persistence.SqlServer.Core\ImagineCommunications.GamePlan.Persistence.SqlServer.Core.csproj" />
+    <ProjectReference Include="..\..\infrastructure\ImagineCommunications.GamePlan.Persistence.SqlServer\ImagineCommunications.GamePlan.Persistence.SqlServer.csproj" />
+    <ProjectReference Include="..\ImagineCommunications.BusClient.Abstraction\ImagineCommunications.BusClient.Abstraction.csproj" />
+    <ProjectReference Include="..\ImagineCommunications.BusClient.MassTransit\ImagineCommunications.BusClient.Implementation.csproj" />
+    <ProjectReference Include="..\ImagineCommunications.Intelligence.Contracts\ImagineCommunications.Gameplan.Integration.Contracts.csproj" />
+    <ProjectReference Include="..\..\..\xgcore.auditevents\xgcore.auditevents.csproj" />
+    <ProjectReference Include="..\..\..\xggameplan.common\xggameplan.common.csproj" />
+    <ProjectReference Include="..\..\..\xggameplan.core\xggameplan.core.csproj" />
+    <ProjectReference Include="..\..\domain\ImagineCommunications.GamePlan.Domain\ImagineCommunications.GamePlan.Domain.csproj" />
+    <ProjectReference Include="..\ImagineCommunications.BusClient.Abstraction\ImagineCommunications.BusClient.Abstraction.csproj" />
+    <ProjectReference Include="..\ImagineCommunications.Intelligence.Contracts\ImagineCommunications.Gameplan.Integration.Contracts.csproj" />
+  </ItemGroup>
+</Project>

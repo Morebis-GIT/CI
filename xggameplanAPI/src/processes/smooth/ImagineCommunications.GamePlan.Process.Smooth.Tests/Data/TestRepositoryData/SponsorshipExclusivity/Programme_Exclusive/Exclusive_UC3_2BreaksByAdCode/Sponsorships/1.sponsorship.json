@@ -1,0 +1,50 @@
+{
+  "ExternalReferenceId": "Exclusive_UC3_2BreaksByAdCode",
+  "RestrictionLevel": "Programme",
+  "SponsoredItems": [
+    {
+      "Products": [
+        "Product_1"
+      ],
+      "CalculationType": "Exclusive",
+      "AdvertiserExclusivities": [
+        {
+          "AdvertiserIdentifier": "Advertiser_1"
+        }
+      ],
+      "ClashExclusivities": [],
+      "SponsorshipItems": [
+        {
+          "DayParts": [
+            {
+              "DaysOfWeek": [ "Monday" ],
+              "StartTime": "21:00:00",
+              "EndTime": "21:59:59"
+            }
+          ],
+          "ProgrammeName": "Programme 1",
+          "SalesAreas": [
+            "NWS91"
+          ],
+          "StartDate": "2018-07-30",
+          "EndDate": "2018-07-30"
+        },
+        {
+          "DayParts": [
+            {
+              "DaysOfWeek": [ "Monday" ],
+              "StartTime": "21:00:00",
+              "EndTime": "21:59:59"
+            }
+          ],
+          "ProgrammeName": "Some other programme that does not match",
+          "SalesAreas": [
+            "NWS91"
+          ],
+          "StartDate": "2018-07-30",
+          "EndDate": "2018-07-30"
+        }
+      ]
+    }
+  ]
+}
