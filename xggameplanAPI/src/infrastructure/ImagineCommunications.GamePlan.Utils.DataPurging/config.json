@@ -1,0 +1,74 @@
+{
+  "purging": {
+    "runs": {
+      "daysAfter": 30,
+      "runsAfter": 30,
+      "concurrency": {
+        "itemsPerTask": 25
+      } 
+    },
+    "scheduleData": {
+      "daysAfter": 30
+    },
+    "products": {
+      "daysAfter": 30,
+      "campaignDaysAfter": 30
+    },
+    "clashExceptions": {
+      "daysAfter": 30
+    },
+    "predictionSchedules": {
+      "daysAfter": 30
+    },
+    "spots": {
+      "daysAfter": 30
+    },
+    "campaigns": {
+      "daysAfter": 30,
+      "concurrency": {
+        "itemsPerTask": 50
+      }
+    },
+    "restrictions": {
+      "daysAfter": 30
+    }
+  },
+  "cloudAccessType": {
+    "type": "S3"
+  },
+  "aws": {
+    "profile": "default",
+    "profilesLocation": "C:\\inetpub\\wwwroot\\App_Data\\.aws\\credentials.ini",
+    "region": "eu-west-2"
+  },
+  "autoBooks": {
+    "awsSettings": {
+      "s3Bucket": "xggameplan"
+    }
+  },
+  "serilog": {
+      "using": [ "Serilog.Sinks.Console", "Serilog.Sinks.File" ],
+      "minimumLevel": "Information",
+      "writeTo": [
+        {
+          "name": "Async",
+          "args": {
+            "configure": [
+              {
+                "name": "Console"
+              },
+              {
+                "name": "File",
+                "args": {
+                  "path": "logs/datapurging-.log",
+                  "rollingInterval": "Day",
+                  "shared": true,
+                  "outputTemplate": "{UtcTime} [{Level:u3}] {Message}{NewLine}{Exception}"
+                }
+              }
+            ]
+          }
+        }
+      ]
+    }
+  }

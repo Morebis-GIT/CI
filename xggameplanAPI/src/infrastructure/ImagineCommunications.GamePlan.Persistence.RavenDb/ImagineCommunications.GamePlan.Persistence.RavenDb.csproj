@@ -1,0 +1,32 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+    <PropertyGroup>
+        <TargetFramework>netstandard2.0</TargetFramework>
+        <Copyright>Copyright © Imagine Communications</Copyright>
+        <LangVersion>latest</LangVersion>
+        <Product>xG GamePlan</Product>
+        <Company>Imagine Communications</Company>
+        <Authors>Imagine Communications</Authors>
+    </PropertyGroup>
+    <ItemGroup>
+        <PackageReference Include="Autofac" Version="5.2.0" />
+        <PackageReference Include="AutoMapper" Version="9.0.0" />
+        <PackageReference Include="Microsoft.CodeAnalysis.FxCopAnalyzers" Version="2.9.8">
+            <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+            <PrivateAssets>all</PrivateAssets>
+        </PackageReference>
+        <PackageReference Include="NodaTime" Version="2.4.7" />
+        <PackageReference Include="NodaTime.Serialization.JsonNet" Version="2.2.0" />
+        <PackageReference Include="RavenDB.Client" Version="3.5.7" />
+        <PackageReference Include="RavenDB.Client.UniqueConstraints" Version="3.5.7" />
+    </ItemGroup>
+    <ItemGroup>
+        <ProjectReference Include="..\..\..\xgcore.auditevents\xgcore.auditevents.csproj" />
+        <ProjectReference Include="..\..\..\xggameplan.common\xggameplan.common.csproj" />
+        <ProjectReference Include="..\..\..\xggameplan.core\xggameplan.core.csproj" />
+        <ProjectReference Include="..\..\..\xggameplan.model\xggameplan.model.csproj" />
+        <ProjectReference Include="..\..\domain\ImagineCommunications.GamePlan.Domain.Generic\ImagineCommunications.GamePlan.Domain.Generic.csproj" />
+        <ProjectReference Include="..\..\domain\ImagineCommunications.GamePlan.Domain\ImagineCommunications.GamePlan.Domain.csproj" />
+        <ProjectReference Include="..\ImagineCommunications.GamePlan.Infrastructure.Json.Core\ImagineCommunications.GamePlan.Infrastructure.Json.Core.csproj" />
+        <ProjectReference Include="..\ImagineCommunications.GamePlan.Persistence.RavenDb.Core\ImagineCommunications.GamePlan.Persistence.RavenDb.Core.csproj" />
+    </ItemGroup>
+</Project>

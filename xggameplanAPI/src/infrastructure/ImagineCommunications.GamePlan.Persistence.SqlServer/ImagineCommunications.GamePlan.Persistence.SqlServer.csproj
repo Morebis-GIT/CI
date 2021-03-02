@@ -1,0 +1,36 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+    <PropertyGroup>
+        <TargetFramework>netstandard2.0</TargetFramework>
+        <Copyright>Copyright © Imagine Communications</Copyright>
+        <Company>Imagine Communications</Company>
+        <LangVersion>latest</LangVersion>
+        <Product>xG GamePlan</Product>
+        <Authors>Imagine Communications</Authors>
+    </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="9.0.0" />
+    <PackageReference Include="Autofac" Version="5.2.0" />
+    <PackageReference Include="Microsoft.Bcl.HashCode" Version="1.1.0" />
+    <PackageReference Include="Microsoft.CodeAnalysis.FxCopAnalyzers" Version="2.9.8">
+        <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+        <PrivateAssets>all</PrivateAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="2.2.6" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Analyzers" Version="2.2.6" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="2.2.6" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="3.1.10" />
+    <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="3.1.10" />
+    <PackageReference Include="NodaTime" Version="2.4.7" />
+    <PackageReference Include="System.Threading.Tasks.Dataflow" Version="4.11.0" />
+    <PackageReference Include="System.Threading.Tasks.Extensions" Version="4.5.4" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\xgcore.auditevents\xgcore.auditevents.csproj" />
+    <ProjectReference Include="..\..\..\xggameplan.common\xggameplan.common.csproj" />
+    <ProjectReference Include="..\..\..\xggameplan.core\xggameplan.core.csproj" />
+    <ProjectReference Include="..\..\..\xggameplan.model\xggameplan.model.csproj" />
+    <ProjectReference Include="..\..\domain\ImagineCommunications.GamePlan.Domain.Generic\ImagineCommunications.GamePlan.Domain.Generic.csproj" />
+    <ProjectReference Include="..\..\domain\ImagineCommunications.GamePlan.Domain\ImagineCommunications.GamePlan.Domain.csproj" />
+    <ProjectReference Include="..\ImagineCommunications.GamePlan.Persistence.SqlServer.Core\ImagineCommunications.GamePlan.Persistence.SqlServer.Core.csproj" />
+  </ItemGroup>
+</Project>

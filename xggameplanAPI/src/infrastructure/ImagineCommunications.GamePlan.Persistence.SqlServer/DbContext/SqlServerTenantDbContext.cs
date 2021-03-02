@@ -1,0 +1,291 @@
+﻿using ImagineCommunications.GamePlan.Persistence.SqlServer.Core.DbContext;
+using ImagineCommunications.GamePlan.Persistence.SqlServer.Core.Extensions;
+using ImagineCommunications.GamePlan.Persistence.SqlServer.Core.Interfaces;
+using ImagineCommunications.GamePlan.Persistence.SqlServer.EntityConfigurations;
+using ImagineCommunications.GamePlan.Persistence.SqlServer.EntityConfigurations.AnalysisGroups;
+using ImagineCommunications.GamePlan.Persistence.SqlServer.EntityConfigurations.AutoBookApi;
+using ImagineCommunications.GamePlan.Persistence.SqlServer.EntityConfigurations.AutoBookApi.DefaultParameters;
+using ImagineCommunications.GamePlan.Persistence.SqlServer.EntityConfigurations.BookingPositionGroups;
+using ImagineCommunications.GamePlan.Persistence.SqlServer.EntityConfigurations.Breaks;
+using ImagineCommunications.GamePlan.Persistence.SqlServer.EntityConfigurations.BRS;
+using ImagineCommunications.GamePlan.Persistence.SqlServer.EntityConfigurations.BusinessTypes;
+using ImagineCommunications.GamePlan.Persistence.SqlServer.EntityConfigurations.Campaigns;
+using ImagineCommunications.GamePlan.Persistence.SqlServer.EntityConfigurations.ClashExceptions;
+using ImagineCommunications.GamePlan.Persistence.SqlServer.EntityConfigurations.DayPartGroups;
+using ImagineCommunications.GamePlan.Persistence.SqlServer.EntityConfigurations.DayParts;
+using ImagineCommunications.GamePlan.Persistence.SqlServer.EntityConfigurations.Failures;
+using ImagineCommunications.GamePlan.Persistence.SqlServer.EntityConfigurations.FunctionalAreas;
+using ImagineCommunications.GamePlan.Persistence.SqlServer.EntityConfigurations.InventoryStatuses;
+using ImagineCommunications.GamePlan.Persistence.SqlServer.EntityConfigurations.ISRSettings;
+using ImagineCommunications.GamePlan.Persistence.SqlServer.EntityConfigurations.Metadatas;
+using ImagineCommunications.GamePlan.Persistence.SqlServer.EntityConfigurations.OutputFiles;
+using ImagineCommunications.GamePlan.Persistence.SqlServer.EntityConfigurations.Passes;
+using ImagineCommunications.GamePlan.Persistence.SqlServer.EntityConfigurations.PipelineAuditEvents;
+using ImagineCommunications.GamePlan.Persistence.SqlServer.EntityConfigurations.PredictionSchedules;
+using ImagineCommunications.GamePlan.Persistence.SqlServer.EntityConfigurations.Products;
+using ImagineCommunications.GamePlan.Persistence.SqlServer.EntityConfigurations.Programmes;
+using ImagineCommunications.GamePlan.Persistence.SqlServer.EntityConfigurations.Restrictions;
+using ImagineCommunications.GamePlan.Persistence.SqlServer.EntityConfigurations.RSSettings;
+using ImagineCommunications.GamePlan.Persistence.SqlServer.EntityConfigurations.Runs;
+using ImagineCommunications.GamePlan.Persistence.SqlServer.EntityConfigurations.SalesAreas;
+using ImagineCommunications.GamePlan.Persistence.SqlServer.EntityConfigurations.ScenarioResults;
+using ImagineCommunications.GamePlan.Persistence.SqlServer.EntityConfigurations.Scenarios;
+using ImagineCommunications.GamePlan.Persistence.SqlServer.EntityConfigurations.Schedules;
+using ImagineCommunications.GamePlan.Persistence.SqlServer.EntityConfigurations.Smooth;
+using ImagineCommunications.GamePlan.Persistence.SqlServer.EntityConfigurations.Smooth.Configuration;
+using ImagineCommunications.GamePlan.Persistence.SqlServer.EntityConfigurations.Sponsorships;
+using ImagineCommunications.GamePlan.Persistence.SqlServer.EntityConfigurations.SpotBookingRules;
+using ImagineCommunications.GamePlan.Persistence.SqlServer.EntityConfigurations.TenantSettings;
+using ImagineCommunications.GamePlan.Persistence.SqlServer.Views.Tenant;
+using Microsoft.EntityFrameworkCore;
+
+namespace ImagineCommunications.GamePlan.Persistence.SqlServer.DbContext
+{
+    public class SqlServerTenantDbContext : SqlServerDbContext, ISqlServerTenantDbContext
+    {
+        public SqlServerTenantDbContext(DbContextOptions dbContextOptions)
+            : base(dbContextOptions)
+        {
+        }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            _ = modelBuilder.ApplyConfiguration(new AdvertiserEntityConfiguration())
+                .ApplyConfiguration(new AgencyEntityConfiguration())
+                .ApplyConfiguration(new AgencyGroupEntityConfiguration())
+                .ApplyConfiguration(new AnalysisGroupEntityConfiguration())
+                .ApplyConfiguration(new AutoBookDefaultParametersEntityConfiguration())
+                .ApplyConfiguration(new AgAvalEntityConfiguration())
+                .ApplyConfiguration(new AgCampaignProgrammeEntityConfiguration())
+                .ApplyConfiguration(new AgCampaignProgrammeProgrammeCategoryEntityConfiguration())
+                .ApplyConfiguration(new AgCampaignSalesAreaEntityConfiguration())
+                .ApplyConfiguration(new AgDayPartEntityConfiguration())
+                .ApplyConfiguration(new AgDayPartLengthEntityConfiguration())
+                .ApplyConfiguration(new AgHfssDemoEntityConfiguration())
+                .ApplyConfiguration(new AgLengthEntityConfiguration())
+                .ApplyConfiguration(new AgMultiPartEntityConfiguration())
+                .ApplyConfiguration(new AgPartEntityConfiguration())
+                .ApplyConfiguration(new AgPartLengthEntityConfiguration())
+                .ApplyConfiguration(new AgPredictionEntityConfiguration())
+                .ApplyConfiguration(new AgRegionalBreakEntityConfiguration())
+                .ApplyConfiguration(new AgStrikeWeightEntityConfiguration())
+                .ApplyConfiguration(new AgStrikeWeightLengthEntityConfiguration())
+                .ApplyConfiguration(new AgTimeBandEntityConfiguration())
+                .ApplyConfiguration(new AgTimeSliceEntityConfiguration())
+                .ApplyConfiguration(new AnalysisGroupTargetMetricEntityConfiguration())
+                .ApplyConfiguration(new AutoBookInstanceConfigurationEntityConfiguration())
+                .ApplyConfiguration(new AutoBookInstanceConfigurationCriteriaEntityConfiguration())
+                .ApplyConfiguration(new AutoBookSettingsEntityConfiguration())
+                .ApplyConfiguration(new AutoBookEntityConfiguration())
+                .ApplyConfiguration(new AutoBookTaskEntityConfiguration())
+                .ApplyConfiguration(new AWSInstanceConfigurationEntityConfiguration())
+                .ApplyConfiguration(new BRSConfigurationForKPIEntityConfiguration())
+                .ApplyConfiguration(new BRSConfigurationTemplateEntityConfiguration())
+                .ApplyConfiguration(new ClashEntityTypeConfiguration())
+                .ApplyConfiguration(new BusinessTypeEntityConfiguration())
+                .ApplyConfiguration(new ClashDifferenceEntityTypeConfiguration())
+                .ApplyConfiguration(new ClashDifferenceTimeAndDowEntityTypeConfiguration())
+                .ApplyConfiguration(new ClearanceCodeEntityConfiguration())
+                .ApplyConfiguration(new DemographicEntityConfiguration())
+                .ApplyConfiguration(new EfficiencySettingsEntityConfiguration())
+                .ApplyConfiguration(new EmailAuditEventSettingsEntityConfiguration())
+                .ApplyConfiguration(new ExternalRunInfoEntityConfiguration())
+                .ApplyConfiguration(new ChannelEntityConfiguration())
+                .ApplyConfiguration(new BreakEntityConfiguration())
+                .ApplyConfiguration(new BreakEfficiencyConfiguration())
+                .ApplyConfiguration(new IndexTypeEntityConfiguration())
+                .ApplyConfiguration(new SalesAreaEntityConfiguration())
+                .ApplyConfiguration(new SalesAreasChannelGroupEntityConfiguration())
+                .ApplyConfiguration(new SalesAreasHolidayEntityConfiguration())
+                .ApplyConfiguration(new KPIComparisonConfigEntityConfiguration())
+                .ApplyConfiguration(new KPIPriorityEntityConfiguration())
+                .ApplyConfiguration(new PersonEntityConfiguration())
+                .ApplyConfiguration(new ProductEntityConfiguration())
+                .ApplyConfiguration(new ProductAdvertiserEntityConfiguration())
+                .ApplyConfiguration(new ProductAgencyEntityConfiguration())
+                .ApplyConfiguration(new ProductPersonEntityConfiguration())
+                .ApplyConfiguration(new ProgrammesClassificationEntityConfiguration())
+                .ApplyConfiguration(new ProgrammesDictionaryEntityConfiguration())
+                .ApplyConfiguration(new MetadataCategoryEntityConfiguration())
+                .ApplyConfiguration(new MetadataValueEntityConfiguration())
+                .ApplyConfiguration(new MSTeamsAuditEventSettingsEntityConfiguration())
+                .ApplyConfiguration(new ClashExceptionEntityConfiguration())
+                .ApplyConfiguration(new ClashExceptionsTimeAndDowEntityConfiguration())
+                .ApplyConfiguration(new LanguageEntityConfiguration())
+                .ApplyConfiguration(new LibrarySalesAreaPassPriorityEntityConfiguration())
+                .ApplyConfiguration(new LengthFactorEntityConfiguration())
+                .ApplyConfiguration(new SalesAreaPriorityEntityConfiguration())
+                .ApplyConfiguration(new ScenarioCampaignFailureEntityConfiguration())
+                .ApplyConfiguration(new RestrictionEntityConfiguration())
+                .ApplyConfiguration(new RestrictionSalesAreaEntityConfiguration())
+                .ApplyConfiguration(new RecommendationEntityConfiguration())
+                .ApplyConfiguration(new CampaignEntityConfiguration())
+                .ApplyConfiguration(new CampaignSettingsEntityConfiguration())
+                .ApplyConfiguration(new CampaignBookingPositionGroupEntityConfiguration())
+                .ApplyConfiguration(new CampaignBookingPositionGroupSalesAreaEntityConfiguration())
+                .ApplyConfiguration(new CampaignBreakTypeEntityConfiguration())
+                .ApplyConfiguration(new CampaignBreakRequirementEntityConfiguration())
+                .ApplyConfiguration(new CampaignBreakRequirementItemEntityConfiguration())
+                .ApplyConfiguration(new CampaignProgrammeRestrictionEntityConfiguration())
+                .ApplyConfiguration(new CampaignProgrammeRestrictionCategoryOrProgrammeEntityConfiguration())
+                .ApplyConfiguration(new CampaignProgrammeRestrictionSalesAreaEntityConfiguration())
+                .ApplyConfiguration(new CampaignTimeRestrictionEntityConfiguration())
+                .ApplyConfiguration(new CampaignTimeRestrictionSalesAreaEntityConfiguration())
+                .ApplyConfiguration(new CampaignSalesAreaTargetEntityConfiguration())
+                .ApplyConfiguration(new CampaignSalesAreaTargetGroupEntityConfiguration())
+                .ApplyConfiguration(new CampaignSalesAreaTargetGroupSalesAreaEntityConfiguration())
+                .ApplyConfiguration(new CampaignSalesAreaTargetMultipartEntityConfiguration())
+                .ApplyConfiguration(new CampaignSalesAreaTargetMultipartLengthEntityConfiguration())
+                .ApplyConfiguration(new CampaignTargetEntityConfiguration())
+                .ApplyConfiguration(new CampaignTargetStrikeWeightEntityConfiguration())
+                .ApplyConfiguration(new CampaignTargetStrikeWeightLengthEntityConfiguration())
+                .ApplyConfiguration(new CampaignTargetStrikeWeightDayPartEntityConfiguration())
+                .ApplyConfiguration(new CampaignTargetStrikeWeightDayPartLengthEntityConfiguration())
+                .ApplyConfiguration(new CampaignTargetStrikeWeightDayPartTimeSliceEntityConfiguration())
+                .ApplyConfiguration(new ISRSettingsEntityConfiguration())
+                .ApplyConfiguration(new ISRDemographicSettingsEntityConfiguration())
+                .ApplyConfiguration(new ProgrammeEntityConfiguration())
+                .ApplyConfiguration(new ProgrammeEpisodeEntityConfiguration())
+                .ApplyConfiguration(new ProgrammeCategoryEntityConfiguration())
+                .ApplyConfiguration(new TenantSettingsEntityConfiguration())
+                .ApplyConfiguration(new TenantRunEventSettingsEntityConfiguration())
+                .ApplyConfiguration(new TenantFeatureSettingsEntityConfiguration())
+                .ApplyConfiguration(new TenantWebhookSettingsEntityConfiguration())
+                .ApplyConfiguration(new SpotPlacementEntityConfiguration())
+                .ApplyConfiguration(new SpotEntityConfiguration())
+                .ApplyConfiguration(new ScenarioEntityConfiguration())
+                .ApplyConfiguration(new ScenarioPassReferenceEntityConfiguration())
+                .ApplyConfiguration(new ScenarioPassPriorityEntityConfiguration())
+                .ApplyConfiguration(new ScenarioCampaignPassPriorityEntityConfiguration())
+                .ApplyConfiguration(new ScenarioCompactCampaignEntityConfiguration())
+                .ApplyConfiguration(new ScenarioCompactCampaignPaybackEntityConfiguration())
+                .ApplyConfiguration(new ScenarioCampaignPriorityRoundCollectionEntityConfiguration())
+                .ApplyConfiguration(new ScenarioCampaignPriorityRoundEntityConfiguration())
+                .ApplyConfiguration(new UniverseEntityConfiguration())
+                .ApplyConfiguration(new FacilityEntityConfiguration())
+                .ApplyConfiguration(new FunctionalAreaEntityTypeConfiguration())
+                .ApplyConfiguration(new FunctionalAreaFaultTypeEntityConfiguration())
+                .ApplyConfiguration(new FunctionalAreaDescriptionEntityTypeConfiguration())
+                .ApplyConfiguration(new FaultTypeEntityConfiguration())
+                .ApplyConfiguration(new FaultTypeDescriptionEntityTypeConfiguration())
+                .ApplyConfiguration(new DeliveryCappingGroupConfiguration())
+                .ApplyConfiguration(new BookingPositionEntityConfiguration())
+                .ApplyConfiguration(new BookingPositionGroupEntityConfiguration())
+                .ApplyConfiguration(new PositionGroupAssociationEntityConfiguration())
+                .ApplyConfiguration(new SalesAreaDemographicEntityConfiguration())
+                .ApplyConfiguration(new ProgrammeCategoryHierarchyEntityConfiguration())
+                .ApplyConfiguration(new LockTypeItemEntityConfiguration())
+                .ApplyConfiguration(new InventoryTypeEntityConfiguration())
+                .ApplyConfiguration(new InventoryTypeLockTypeEntityConfiguration())
+                .ApplyConfiguration(new InventoryLockEntityConfiguration())
+                .ApplyConfiguration(new RunInventoryStatusEntityConfiguration())
+                .ApplyConfiguration(new PredictionScheduleEntityConfiguration())
+                .ApplyConfiguration(new PredictionScheduleRatingEntityConfiguration())
+                .ApplyConfiguration(new FailureItemEntityConfiguration())
+                .ApplyConfiguration(new FailureEntityConfiguration())
+                .ApplyConfiguration(new RSSettingsEntityConfiguration())
+                .ApplyConfiguration(new RSDemographicSettingsEntityConfiguration())
+                .ApplyConfiguration(new RSSettingsDefaultDeliverySettingsEntityConfiguration())
+                .ApplyConfiguration(new RSSettingsDemographicsDeliverySettingsEntityConfiguration())
+                .ApplyConfiguration(new SmoothFailureEntityTypeConfiguration())
+                .ApplyConfiguration(new SmoothFailuresSmoothFailureMessagesEntityTypeConfiguration())
+                .ApplyConfiguration(new SmoothFailureMessageEntityTypeConfiguration())
+                .ApplyConfiguration(new SmoothFailureMessageDescriptionEntityTypeConfiguration())
+                .ApplyConfiguration(new SponsoredDayPartEntityConfiguration())
+                .ApplyConfiguration(new SponsoredItemEntityConfiguration())
+                .ApplyConfiguration(new SponsorshipAdvertiserExclusivityEntityConfiguration())
+                .ApplyConfiguration(new SponsorshipClashExclusivityEntityConfiguration())
+                .ApplyConfiguration(new SponsorshipEntityConfiguration())
+                .ApplyConfiguration(new SponsorshipItemEntityConfiguration())
+                .ApplyConfiguration(new ResultsFileEntityConfiguration())
+                .ApplyConfiguration(new OutputFileEntityConfiguration())
+                .ApplyConfiguration(new OutputFileColumnEntityConfiguration())
+                .ApplyConfiguration(new PassEntityConfiguration())
+                .ApplyConfiguration(new PassBreakExclusionEntityConfiguration())
+                .ApplyConfiguration(new PassProgrammeRepetitionEntityConfiguration())
+                .ApplyConfiguration(new PassRatingPointEntityConfiguration())
+                .ApplyConfiguration(new PassRatingPointSalesAreaRefEntityConfiguration())
+                .ApplyConfiguration(new PassRuleBaseEntityConfiguration())
+                .ApplyConfiguration(new PassRuleEntityConfiguration())
+                .ApplyConfiguration(new PassSalesAreaPriorityCollectionEntityConfiguration())
+                .ApplyConfiguration(new PassSalesAreaPriorityEntityConfiguration())
+                .ApplyConfiguration(new PassSlottingLimitEntityConfiguration())
+                .ApplyConfiguration(new PassToleranceEntityConfiguration())
+                .ApplyConfiguration(new RunEntityConfiguration())
+                .ApplyConfiguration(new RunAnalysisGroupTargetEntityConfiguration())
+                .ApplyConfiguration(new RunAuthorEntityConfiguration())
+                .ApplyConfiguration(new RunInventoryLockEntityConfiguration())
+                .ApplyConfiguration(new RunCampaignReferenceEntityConfiguration())
+                .ApplyConfiguration(new RunCampaignProcessesSettingsEntityConfiguration())
+                .ApplyConfiguration(new RunSalesAreaPriorityEntityConfiguration())
+                .ApplyConfiguration(new RunScenarioEntityConfiguration())
+                .ApplyConfiguration(new ScenarioResultEntityConfiguration())
+                .ApplyConfiguration(new ScenarioResultMetricEntityConfiguration())
+                .ApplyConfiguration(new ScenarioCampaignResultEntityConfiguration())
+                .ApplyConfiguration(new ScenarioCampaignMetricEntityConfiguration())
+                .ApplyConfiguration(new SmoothConfigurationEntityTypeConfiguration())
+                .ApplyConfiguration(new SmoothDiagnosticConfigurationEntityTypeConfiguration())
+                .ApplyConfiguration(new SmoothDiagnosticConfigurationSalesAreaEntityTypeConfiguration())
+                .ApplyConfiguration(new SponsorshipItemSalesAreaEntityConfiguration())
+                .ApplyConfiguration(new SmoothPassEntityTypeConfiguration())
+                .ApplyConfiguration(new SmoothPassDefaultEntityTypeConfiguration())
+                .ApplyConfiguration(new SmoothPassDefaultIterationEntityTypeConfiguration())
+                .ApplyConfiguration(new SmoothPassBookedEntityTypeConfiguration())
+                .ApplyConfiguration(new SmoothPassUnplacedEntityTypeConfiguration())
+                .ApplyConfiguration(new SmoothPassUnplacedIterationEntityTypeConfiguration())
+                .ApplyConfiguration(new SmoothPassIterationRecordEntityTypeConfiguration())
+                .ApplyConfiguration(new SmoothPassIterationRecordPassSequenceItemEntityTypeConfiguration())
+                .ApplyConfiguration(new BestBreakDefaultFactorEntityTypeConfiguration())
+                .ApplyConfiguration(new BestBreakFactorGroupEntityTypeConfiguration())
+                .ApplyConfiguration(new BestBreakFactorGroupItemEntityTypeConfiguration())
+                .ApplyConfiguration(new BestBreakFactorGroupRecordEntityTypeConfiguration())
+                .ApplyConfiguration(new BestBreakFactorGroupRecordPassSequenceItemEntityTypeConfiguration())
+                .ApplyConfiguration(new BestBreakFilterFactorEntityTypeConfiguration())
+                .ApplyConfiguration(new SameBreakGroupScoreFactorEntityTypeConfiguration())
+                .ApplyConfiguration(new TotalRatingEntityConfiguration())
+                .ApplyConfiguration(new ScenarioResultEntityConfiguration())
+                .ApplyConfiguration(new ScenarioResultMetricEntityConfiguration())
+                .ApplyConfiguration(new ScheduleEntityConfiguration())
+                .ApplyConfiguration(new ScheduleBreakEntityConfiguration())
+                .ApplyConfiguration(new ScheduleBreakEfficiencyEntityConfiguration())
+                .ApplyConfiguration(new ScheduleProgrammeEntityConfiguration())
+                .ApplyConfiguration(new ISRGlobalSettingsEntityTypeConfiguration())
+                .ApplyConfiguration(new RSGlobalSettingsEntityTypeConfiguration())
+                .ApplyConfiguration(new AutopilotSettingsEntityConfiguration())
+                .ApplyConfiguration(new AutopilotRuleEntityConfiguration())
+                .ApplyConfiguration(new RuleEntityConfiguration())
+                .ApplyConfiguration(new RuleTypeEntityConfiguration())
+                .ApplyConfiguration(new FlexibilityLevelEntityConfiguration())
+                .ApplyConfiguration(new StandardDayPartEntityConfiguration())
+                .ApplyConfiguration(new StandardDayPartTimesliceEntityConfiguration())
+                .ApplyConfiguration(new StandardDayPartGroupEntityConfiguration())
+                .ApplyConfiguration(new StandardDayPartSplitEntityConfiguration())
+                .ApplyConfiguration(new ProgrammeEntityConfiguration())
+                .ApplyConfiguration(new ProgrammeCategoryLinkEntityConfiguration())
+                .ApplyConfiguration(new PipelineAuditEventEntityConfiguration())
+                .ApplyConfiguration(new AutoBookTaskReportEntityConfiguration())
+                .ApplyConfiguration(new RunTypeEntityConfiguration())
+                .ApplyConfiguration(new SpotBookingRuleEntityConfiguration())
+                .ApplyConfiguration(new SpotBookingRuleSalesAreaEntityConfiguration())
+                .ApplyConfiguration(new CampaignPaybackEntityConfiguration())
+                .ApplyConfiguration(new RunTypeAnalysisGroupEntityConfiguration())
+                .ApplyConfiguration(new RunLandmarkScheduleSettingsEntityConfiguration())
+                .ApplyConfiguration(new RunScheduleSettingsEntityConfiguration())
+                .ApplyConfiguration(new LandmarkRunQueueEntityConfiguration());
+
+            // views
+            _ = modelBuilder.Query<CampaignWithProductRelations>().ToView("CampaignWithProductRelations");
+            _ = modelBuilder.Query<ClashExceptionDescriptions>().ToView("ClashExceptionDescriptions");
+            _ = modelBuilder.Query<ClashRoot>().ToView("ClashRoots");
+            _ = modelBuilder.Query<SpotWithCampaignAndProductRelations>().ToView("SpotWithCampaignAndProductRelations");
+
+            // stored procedures
+            modelBuilder.Entity<ClashExceptionProductLinkForOptimizer>().ToStoredProcedure("spClashExceptionProductLinkForOptimizer");
+            _ = modelBuilder.Entity<RecommendationAggregate>(b =>
+            {
+                _ = b.HasKey(x => x.ExternalCampaignNumber);
+                b.ToStoredProcedure("spGetRecommendationAggregate");
+            });
+        }
+    }
+}
