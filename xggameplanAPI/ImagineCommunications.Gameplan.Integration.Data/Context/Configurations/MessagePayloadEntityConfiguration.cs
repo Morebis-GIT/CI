@@ -10,7 +10,7 @@ namespace ImagineCommunications.GamePlan.Integration.Data.Context.Configurations
         {
             builder.ToTable("MessagePayloads");
             builder.HasKey(x => x.Id);
-            builder.Property(x => x.Payload).HasColumnType("VARBINARY(MAX)").IsRequired();
+            builder.Property(x => x.Payload).HasColumnType($"LongBlob").IsRequired();
         }
     }
 }

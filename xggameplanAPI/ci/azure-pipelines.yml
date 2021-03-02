@@ -56,8 +56,8 @@ stages:
         **\$(BuildConfiguration)\*.tests.dll
         !**\$(BuildConfiguration)\xggameplan.tests.dll
         !**\$(BuildConfiguration)\xggameplan.core.tests.dll
+        !**\$(BuildConfiguration)\*.domain.tests.dll
         !**\$(BuildConfiguration)\xggameplan.specification.tests.dll
-        !**\$(BuildConfiguration)\ImagineCommunications.GamePlan.Intelligence.Tests.dll
         !**\$(BuildConfiguration)\*.smooth.tests.dll
       # NOTE: This filter has a catch all in it to catch new test suites that are not explicitly called in here.
 
@@ -68,22 +68,15 @@ stages:
       filters: |
         **\$(BuildConfiguration)\xggameplan.tests.dll
         **\$(BuildConfiguration)\xggameplan.core.tests.dll
-
-  - template: azure-pipeline-templates/job-gameplan-unittest.yml
-    parameters:
-      jobName: 'TestIntelligence'
-      displayName: 'Test GamePlan (Intelligence)'
-      parallelJobs: 2
-      filters: |
-        **\$(BuildConfiguration)\ImagineCommunications.GamePlan.Intelligence.Tests.dll
+        **\$(BuildConfiguration)\*.domain.tests.dll
 
   - template: azure-pipeline-templates/job-gameplan-unittest.yml
     parameters:
       jobName: 'TestSmooth'
       displayName: 'Test GamePlan (Smooth)'
-      parallelJobs: 3
+      parallelJobs: 2
       filters: |
-        **\$(BuildConfiguration)\**\*.smooth.tests.dll
+        **\$(BuildConfiguration)\*.smooth.tests.dll
 
   - template: azure-pipeline-templates/job-gameplan-unittest.yml
     parameters:

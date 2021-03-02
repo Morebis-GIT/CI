@@ -11,7 +11,7 @@ namespace ImagineCommunications.Gameplan.Integration.Data.Installers
         public static IServiceCollection AddIntegrationPersistance(this IServiceCollection services, string connectionString)
         {
             var dbContextOptionsBuilder = new DbContextOptionsBuilder<IntelligenceDbContext>()
-                .UseSqlServer(connectionString)
+                .UseMySql(connectionString)
                 .UseQueryTrackingBehavior(QueryTrackingBehavior.NoTracking);
 
             services.AddSingleton(dbContextOptionsBuilder.Options);

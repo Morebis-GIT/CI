@@ -18,7 +18,7 @@ namespace ImagineCommunications.Gameplan.Integration.Data.Installers
         protected override void Load(ContainerBuilder builder)
         {
             var dbContextOptionsBuilder = new DbContextOptionsBuilder<IntelligenceDbContext>()
-                .UseSqlServer(_connectionString)
+                .UseMySql(_connectionString)
                 .UseQueryTrackingBehavior(QueryTrackingBehavior.NoTracking);
 
             _ = builder.RegisterInstance(dbContextOptionsBuilder.Options);

@@ -35,7 +35,7 @@
       "TimeRestrictions": [
         {
           "SalesAreas": [
-            "GTV93"
+            "NWS94"
           ],
           "DowPattern": [
             "Sun"
@@ -62,7 +62,7 @@
           "SalesAreaGroup": {
             "GroupName": "groupName1",
             "SalesAreas": [
-              "GTV93"
+              "salesArea11"
             ]
           },
           "Multiparts": [
