@@ -7,6 +7,7 @@ namespace ImagineCommunications.GamePlan.Persistence.SqlServer.Entities.Tenant
     public class Clash : IUniqueIdentifierPrimaryKey
     {
         public const string SearchField = "TokenizedName";
+        public static readonly IReadOnlyList<string> SearchFieldSources = new List<string>() { nameof(Externalref), nameof(Description) }.AsReadOnly();
 
         Guid ISinglePrimaryKey<Guid>.Id
         {

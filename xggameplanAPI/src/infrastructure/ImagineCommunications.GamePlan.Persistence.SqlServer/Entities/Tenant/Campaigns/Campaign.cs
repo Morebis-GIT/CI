@@ -7,6 +7,7 @@ namespace ImagineCommunications.GamePlan.Persistence.SqlServer.Entities.Tenant.C
     public class Campaign : IUniqueIdentifierPrimaryKey
     {
         public const string SearchTokensFieldName = "SearchTokens";
+        public static readonly IReadOnlyList<string> SearchFieldSources = new List<string>() { nameof(Name), nameof(CampaignGroup), nameof(ExternalId), nameof(BusinessType) }.AsReadOnly();
 
         public Guid Id { get; set; }
         public int CustomId { get; set; }

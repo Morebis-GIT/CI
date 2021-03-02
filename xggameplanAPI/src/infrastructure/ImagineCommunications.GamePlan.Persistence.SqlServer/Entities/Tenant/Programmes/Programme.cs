@@ -5,7 +5,7 @@ using ImagineCommunications.GamePlan.Domain.Shared.Programmes.Counters;
 using ImagineCommunications.GamePlan.Persistence.SqlServer.Core.Interfaces;
 using ImagineCommunications.GamePlan.Persistence.SqlServer.Entities.Tenant.SalesAreas;
 using ImagineCommunications.GamePlan.Persistence.SqlServer.Entities.Tenant.Schedules;
-
+using ImagineCommunications.GamePlan.Persistence.SqlServer;
 namespace ImagineCommunications.GamePlan.Persistence.SqlServer.Entities.Tenant.Programmes
 {
     public class Programme : IUniqueIdentifierPrimaryKey, IProgrammePrgtNoCounter
@@ -61,9 +61,13 @@ namespace ImagineCommunications.GamePlan.Persistence.SqlServer.Entities.Tenant.P
             get => PrgtNo;
             set => PrgtNo = value;
         }
-
+        public const string SearchField = "TokenizedName";
         public int ScheduleUniqueKey =>
             (_uniqueKey ?? (_uniqueKey = HashCode.Combine(SalesAreaId, StartDateTime.Date)))
             .Value;
+        public static readonly IReadOnlyList<string> SearchFieldSources = new List<string>() {
+            nameof(Entities.Tenant.ProgrammeDictionary.ExternalReference),
+            nameof(Entities.Tenant.ProgrammeDictionary.Name)
+        }.AsReadOnly();
     }
 }

@@ -15,7 +15,6 @@ using ImagineCommunications.GamePlan.Persistence.SqlServer.Core.Extensions;
 using ImagineCommunications.GamePlan.Persistence.SqlServer.Core.Interfaces;
 using ImagineCommunications.GamePlan.Persistence.SqlServer.Core.PostProcessing.Builders;
 using ImagineCommunications.GamePlan.Persistence.SqlServer.Entities.Tenant.Programmes;
-using ImagineCommunications.GamePlan.Persistence.SqlServer.Extensions;
 using ImagineCommunications.GamePlan.Persistence.SqlServer.Interfaces;
 using Microsoft.EntityFrameworkCore;
 using xggameplan.core.Extensions;
@@ -87,6 +86,9 @@ namespace ImagineCommunications.GamePlan.Persistence.SqlServer.Repositories
 
             var query = _dbContext.Query<Entities.Tenant.Programmes.Programme>();
 
+
+
+
             if (searchQuery.SalesArea != null && searchQuery.SalesArea.Any())
             {
                 query = query.Where(e => searchQuery.SalesArea.Contains(e.SalesArea.Name));
@@ -104,6 +106,7 @@ namespace ImagineCommunications.GamePlan.Persistence.SqlServer.Repositories
 
             if (!String.IsNullOrWhiteSpace(searchQuery.NameOrRef))
             {
+                //this piece of code will be replaced with the Match functionality
                query = query
                     .Where(p =>
                             p.ProgrammeDictionary.Name.Contains(searchQuery.NameOrRef)

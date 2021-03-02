@@ -235,6 +235,7 @@ namespace ImagineCommunications.GamePlan.Persistence.SqlServer.Repositories
 
             if (!string.IsNullOrEmpty(queryModel.Description))
             {
+                //This piece of code will be replaced via Match functionality 
                 query = query.Where(q =>
                     q.run.Id.ToString().Contains(queryModel.Description)
                     || q.run.Description.Contains(queryModel.Description)
@@ -255,6 +256,8 @@ namespace ImagineCommunications.GamePlan.Persistence.SqlServer.Repositories
                 {
                     query = query.MakeCaseInsensitive();
                 }
+
+                //
             }
 
 

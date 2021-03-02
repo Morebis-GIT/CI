@@ -1,4 +1,5 @@
 ﻿using ImagineCommunications.GamePlan.Persistence.SqlServer.Entities.Tenant.Scenarios;
+using ImagineCommunications.GamePlan.Persistence.SqlServer.Extensions;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
@@ -13,7 +14,9 @@ namespace ImagineCommunications.GamePlan.Persistence.SqlServer.EntityConfigurati
             builder.HasKey(e => e.Id);
             builder.Property(e => e.Id);
             builder.Property(e => e.Name).HasMaxLength(256);
-            builder.Property<string>(Scenario.SearchField).HasMaxLength(TextColumnLenght.SearchField);
+
+            _ = builder.HasFtsField(Scenario.SearchField, Scenario.SearchFieldSources);
+                
 
             builder.HasIndex(e => e.IsLibraried);
 

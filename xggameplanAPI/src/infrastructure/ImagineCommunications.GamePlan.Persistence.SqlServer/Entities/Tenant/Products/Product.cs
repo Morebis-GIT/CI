@@ -7,6 +7,7 @@ namespace ImagineCommunications.GamePlan.Persistence.SqlServer.Entities.Tenant.P
     public class Product : IUniqueIdentifierPrimaryKey
     {
         public const string SearchFieldName = "TokenizedName";
+        public static readonly IReadOnlyList<string> SearchFieldSources = new List<string>() { nameof(Externalidentifier), nameof(Name) }.AsReadOnly();
         public Guid Id { get; set; }
         public string Externalidentifier { get; set; }
         public string ParentExternalidentifier { get; set; }

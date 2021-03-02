@@ -12,7 +12,6 @@ using ImagineCommunications.GamePlan.Domain.Generic.Queries;
 using ImagineCommunications.GamePlan.Persistence.SqlServer.Core.BulkInsert;
 using ImagineCommunications.GamePlan.Persistence.SqlServer.Core.Extensions;
 using ImagineCommunications.GamePlan.Persistence.SqlServer.Core.Interfaces;
-using ImagineCommunications.GamePlan.Persistence.SqlServer.Extensions;
 using ImagineCommunications.GamePlan.Persistence.SqlServer.Interfaces;
 using Microsoft.EntityFrameworkCore;
 using xggameplan.core.Extensions;
@@ -186,9 +185,11 @@ namespace ImagineCommunications.GamePlan.Persistence.SqlServer.Repositories
             var query = _dbContext.Query<Entities.Tenant.Clash>();
             if (!String.IsNullOrWhiteSpace(queryModel.NameOrRef))
             {
+                //
                 query = query.Where(p =>
                         p.Description.StartsWith(queryModel.NameOrRef)
                         || p.Externalref.StartsWith(queryModel.NameOrRef)).MakeCaseInsensitive();
+                //
             }
 
             return new PagedQueryResult<ClashNameModel>(query.Count(),

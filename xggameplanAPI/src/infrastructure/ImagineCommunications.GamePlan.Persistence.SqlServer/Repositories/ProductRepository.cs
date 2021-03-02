@@ -742,6 +742,7 @@ namespace ImagineCommunications.GamePlan.Persistence.SqlServer.Repositories
 
             if (!String.IsNullOrWhiteSpace(searchQuery.NameOrRef))
             {
+                //This piece of code will be replaced with the Match functionality
                 where.Add(p => p.Name.StartsWith(searchQuery.NameOrRef) || p.Externalidentifier.StartsWith(searchQuery.NameOrRef));
             }
 
@@ -796,7 +797,7 @@ namespace ImagineCommunications.GamePlan.Persistence.SqlServer.Repositories
                  join a in _dbContext.Query<Advertiser>() on pa.AdvertiserId equals a.Id
                  where pa.StartDate <= onDate && pa.EndDate > onDate
                  select a).AsQueryable();
-
+            //This piece of code will be replaced with the Match functionality
                 dbQuery = String.IsNullOrWhiteSpace(searchQuery.AdvertiserNameorRef)
                     ? dbQuery
                     : dbQuery

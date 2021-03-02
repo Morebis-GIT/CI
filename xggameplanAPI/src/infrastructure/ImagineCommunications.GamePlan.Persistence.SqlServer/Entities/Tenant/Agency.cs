@@ -1,10 +1,12 @@
-﻿using ImagineCommunications.GamePlan.Persistence.SqlServer.Core.Interfaces;
+﻿using System.Collections.Generic;
+using ImagineCommunications.GamePlan.Persistence.SqlServer.Core.Interfaces;
 
 namespace ImagineCommunications.GamePlan.Persistence.SqlServer.Entities.Tenant
 {
     public class Agency : IIdentityPrimaryKey
     {
         public const string SearchFieldName = "TokenizedName";
+        public static readonly IReadOnlyList<string> SearchFieldSources = new[] { nameof(Name), nameof(ShortName), nameof(ExternalIdentifier) };
 
         public int Id { get; set; }
         public string Name { get; set; }

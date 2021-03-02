@@ -6,14 +6,16 @@ using ImagineCommunications.GamePlan.Persistence.SqlServer.Migrations.DbContext;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace ImagineCommunications.GamePlan.Persistence.SqlServer.Migrations.TenantDbMigrations
 {
     [DbContext(typeof(TenantMigrationDbContext))]
-    partial class TenantMigrationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20210302112146_Run_Fts_Added")]
+    partial class Run_Fts_Added
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

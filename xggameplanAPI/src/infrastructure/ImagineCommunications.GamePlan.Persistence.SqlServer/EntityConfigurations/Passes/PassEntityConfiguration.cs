@@ -17,7 +17,8 @@ namespace ImagineCommunications.GamePlan.Persistence.SqlServer.EntityConfigurati
             builder.Property(e => e.DateCreated).AsUtc();
             builder.Property(e => e.DateModified).AsUtc();
 
-            builder.Property<string>(Pass.SearchField).HasMaxLength(300);
+            builder.HasFtsField(Pass.SearchField,Pass.SearchFieldSources);
+
             builder.HasOne(x => x.PassSalesAreaPriorities).WithOne()
                 .HasForeignKey<PassSalesAreaPriorityCollection>(x => x.PassId)
                 .OnDelete(DeleteBehavior.Cascade);

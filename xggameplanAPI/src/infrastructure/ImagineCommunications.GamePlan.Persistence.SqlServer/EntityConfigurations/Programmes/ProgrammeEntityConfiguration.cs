@@ -17,6 +17,9 @@ namespace ImagineCommunications.GamePlan.Persistence.SqlServer.EntityConfigurati
             _ = builder.Property(e => e.Duration).AsTicks();
             _ = builder.Ignore(e => e.ScheduleUniqueKey);
 
+            //TODO: create a fts field using HasFts
+
+
             _ = builder.HasMany(x => x.ProgrammeCategoryLinks).WithOne(x => x.Programme)
                 .OnDelete(DeleteBehavior.Cascade);
             _ = builder.HasOne(e => e.ProgrammeDictionary).WithMany().HasForeignKey(e => e.ProgrammeDictionaryId);

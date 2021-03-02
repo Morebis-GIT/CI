@@ -1,4 +1,5 @@
 ﻿using ImagineCommunications.GamePlan.Persistence.SqlServer.Entities.Tenant;
+using ImagineCommunications.GamePlan.Persistence.SqlServer.Extensions;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
@@ -17,6 +18,8 @@ namespace ImagineCommunications.GamePlan.Persistence.SqlServer.EntityConfigurati
             builder.Property(p => p.ExternalIdentifier).HasMaxLength(64).IsRequired();
             builder.Property<string>(Agency.SearchFieldName).HasMaxLength(TextColumnLenght.SearchField);
             builder.HasIndex(p => p.ExternalIdentifier).IsUnique();
+
+            builder.HasFtsField(Agency.SearchFieldName, Agency.SearchFieldSources);
         }
     }
 }

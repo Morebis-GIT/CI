@@ -138,10 +138,12 @@ namespace ImagineCommunications.GamePlan.Persistence.SqlServer.Repositories
                         query = query.Where(p => p.Name.Contains(queryModel.Name)).MakeContainsAny();
                         break;
                 }
+                //This piece will be replaced with the Match functionality
                 if (!freeTextMatchRules.CaseSensitive)
                 {
                     query = query.MakeCaseInsensitive();
                 }
+                //
             }
 
             query = (queryModel.OrderBy?.Any() ?? false)

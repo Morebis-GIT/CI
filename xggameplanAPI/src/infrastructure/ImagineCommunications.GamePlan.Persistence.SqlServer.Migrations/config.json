@@ -1,7 +1,7 @@
 {
   "ConnectionStrings": {
     "MasterDb": "server=localhost;port=3306;user=xxxxx;password=xxxxx;database=xggpmaster",
-    "TenantDb": "server=localhost;port=3306;user=xxxxx;password=xxxxx;database=xggptenant",
+    "TenantDb": "server=tf-xggp-imag-dev11-auroradb-1.caya22dhgzot.eu-west-2.rds.amazonaws.com;uid=orikKZfWpO;pwd=NLZqZrAc3sOhICSZUFHR8HJw769TjLgtVNQWNUIn;database=TenantDB_T1_fts",
     "IntelligenceDb": "server=localhost;port=3306;user=xxxxx;password=xxxxx;database=xggptenant"
   },
   "TimeoutSettings": {

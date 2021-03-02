@@ -35,6 +35,22 @@
     <Compile Remove="TenantDbMigrations\20201020181125_InitTenantSchema.Designer.cs" />
     <Compile Remove="TenantDbMigrations\20201020185936_InitSchemaSql.cs" />
     <Compile Remove="TenantDbMigrations\20201020185936_InitSchemaSql.Designer.cs" />
+    <Compile Remove="TenantDbMigrations\20201223152301_XGGT-10553-ef31_fts.cs" />
+    <Compile Remove="TenantDbMigrations\20201223152301_XGGT-10553-ef31_fts.Designer.cs" />
+    <Compile Remove="TenantDbMigrations\20210222104757_Fts.cs" />
+    <Compile Remove="TenantDbMigrations\20210222104757_Fts.Designer.cs" />
+    <Compile Remove="TenantDbMigrations\20210224084904_Campaign_FtsField_Added.cs" />
+    <Compile Remove="TenantDbMigrations\20210224084904_Campaign_FtsField_Added.Designer.cs" />
+    <Compile Remove="TenantDbMigrations\20210224102757_Fts_final.cs" />
+    <Compile Remove="TenantDbMigrations\20210224102757_Fts_final.Designer.cs" />
+    <Compile Remove="TenantDbMigrations\20210224103606_Fts_final.cs" />
+    <Compile Remove="TenantDbMigrations\20210224103606_Fts_final.Designer.cs" />
+    <Compile Remove="TenantDbMigrations\20210225130841_Fts_Annotations.cs" />
+    <Compile Remove="TenantDbMigrations\20210225130841_Fts_Annotations.Designer.cs" />
+    <Compile Remove="TenantDbMigrations\20210225161419_fts_final.cs" />
+    <Compile Remove="TenantDbMigrations\20210225161419_fts_final.Designer.cs" />
+    <Compile Remove="TenantDbMigrations\20210226092302_Fts_final.cs" />
+    <Compile Remove="TenantDbMigrations\20210226092302_Fts_final.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>
@@ -73,10 +89,6 @@
     <None Update="config.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="TenantDbMigrations\" />
   </ItemGroup>
 
 </Project>

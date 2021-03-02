@@ -11,7 +11,7 @@ namespace ImagineCommunications.GamePlan.Persistence.SqlServer.EntityConfigurati
     {
         public void Configure(EntityTypeBuilder<Campaign> builder)
         {
-            builder.ToTable("Campaigns");
+            _ = builder.ToTable("Campaigns");
 
             builder.HasKey(e => e.Id);
             builder.Property(e => e.Id);
@@ -30,6 +30,8 @@ namespace ImagineCommunications.GamePlan.Persistence.SqlServer.EntityConfigurati
             builder.Property(e => e.RatingsDifferenceExcludingPayback).HasColumnType("DECIMAL(28,18)");
             builder.Property(e => e.ValueDifferenceExcludingPayback).HasColumnType("DECIMAL(28,18)");
             builder.Property(e => e.ValueDifference).HasColumnType("DECIMAL(28,18)");
+
+            builder.HasFtsField(Campaign.SearchTokensFieldName,Campaign.SearchFieldSources);
 
             builder.Property(e => e.CampaignGroup).HasMaxLength(32);
             builder.Property(e => e.BusinessType).HasMaxLength(32);

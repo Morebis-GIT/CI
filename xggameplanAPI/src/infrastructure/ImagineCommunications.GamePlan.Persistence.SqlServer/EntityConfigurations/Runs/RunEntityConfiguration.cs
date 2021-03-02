@@ -33,6 +33,8 @@ namespace ImagineCommunications.GamePlan.Persistence.SqlServer.EntityConfigurati
             builder.Property(p => p.CreatedOrExecuteDateTime).AsUtc();
             builder.Property<string>(Run.SearchField).HasMaxLength(TextColumnLenght.MAX);
 
+            //TODO: create a fts field using HasFts
+
             builder.HasOne(e => e.Author).WithOne().HasForeignKey<RunAuthor>(p => p.RunId)
                 .OnDelete(DeleteBehavior.Cascade);
             builder.HasMany(e => e.SalesAreaPriorities).WithOne().HasForeignKey(p => p.RunId)

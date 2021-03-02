@@ -18,7 +18,6 @@ using ImagineCommunications.GamePlan.Persistence.SqlServer.Entities.Tenant.Campa
 using ImagineCommunications.GamePlan.Persistence.SqlServer.Entities.Tenant.Products;
 using ImagineCommunications.GamePlan.Persistence.SqlServer.Extensions;
 using ImagineCommunications.GamePlan.Persistence.SqlServer.Mapping;
-using Microsoft.EntityFrameworkCore;
 using xggameplan.core.Extensions;
 using Campaign = ImagineCommunications.GamePlan.Domain.Campaigns.Objects.Campaign;
 using CampaignStatus = ImagineCommunications.GamePlan.Persistence.SqlServer.Entities.CampaignStatus;
@@ -425,7 +424,7 @@ namespace ImagineCommunications.GamePlan.Persistence.SqlServer.Repositories
             if (!string.IsNullOrWhiteSpace(queryModel.Description))
             {
                 var ftsQueryText = _searchConditionBuilder.StartWith(queryModel.Description).Build();
-
+                //This piece of code will be replaced with the Match functionality
                 query = query.Where(q =>
                 q.Campaign.Name.Contains(queryModel.Description)
              || q.Campaign.ExternalId.Contains(queryModel.Description)
@@ -441,6 +440,7 @@ namespace ImagineCommunications.GamePlan.Persistence.SqlServer.Repositories
              || q.Clash.Externalref.Contains(queryModel.Description)
              || q.Clash.Description.Contains(queryModel.Description)
          ).MakeCaseInsensitive();
+                //
             }
 
             if (queryModel.BusinessTypes != null && queryModel.BusinessTypes.Any())

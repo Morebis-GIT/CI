@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using ImagineCommunications.GamePlan.Persistence.SqlServer.ValueConverters;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
@@ -84,5 +85,21 @@ namespace ImagineCommunications.GamePlan.Persistence.SqlServer.Extensions
             return propertyBuilder?.HasConversion(
                 new StringDictionaryValueConverter<Dictionary<TKey, TValue>, TKey, TValue>());
         }
+        /// <summary>
+        /// Annotation key for marshalling field names to migration 
+        /// </summary>
+        public const string SearchFieldAnnotationName = "MySql:SearchSourceFields";
+
+        /// <summary>
+        /// Creates a property for full text search
+        /// </summary>
+        /// <param name="propertyBuilder"></param>
+        /// <param name="fieldsList">List of fields which will be cumputed for full-text search</param>
+        /// <returns>The same instance of PropertyBuilder for further configurations</returns>
+        public static PropertyBuilder<string> AsFts(this PropertyBuilder<string> propertyBuilder, IReadOnlyList<string> fieldsList)
+        {
+            return propertyBuilder.HasAnnotation(SearchFieldAnnotationName,string.Join(",",fieldsList.ToArray()));
+        }
+
     }
 }
