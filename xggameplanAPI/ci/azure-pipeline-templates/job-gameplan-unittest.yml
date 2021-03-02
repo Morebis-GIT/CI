@@ -1,0 +1,55 @@
+# GamePlan API pipeline test job
+
+parameters:
+  - name: jobName
+    type: string
+  - name: displayName
+    type: string
+  - name: dbType  # 'Raven' or 'SQL'
+    type: string
+    default: 'SQL'
+  - name: parallelJobs
+    type: number
+    default: 1
+  - name: filters  # multi-line string list of filters
+    type: string
+    default: '*.tests.dll'
+
+jobs:
+  - job: ${{ parameters.jobName }}
+    displayName: ${{ parameters.displayName }}
+    timeoutInMinutes: 45
+    cancelTimeoutInMinutes: 1
+
+    variables:
+      specflowTestsForRavenDb: ${{ eq(parameters.dbType, 'Raven') }}
+      specflowTestsForSQLServer: ${{ eq(parameters.dbType, 'SQL') }}
+
+    strategy:
+      parallel: ${{ parameters.parallelJobs }}
+
+    steps:
+      - task: DownloadPipelineArtifact@2
+        displayName: 'Download Artifact: api-built-source'
+        timeoutInMinutes: 5
+        inputs:
+          artifactName: 'api-built-source'
+          targetPath: '$(Build.ArtifactStagingDirectory)'
+
+      - task: VSTest@2
+        displayName: 'Run unit tests'
+        timeoutInMinutes: 45
+        inputs:
+          testAssemblyVer2: |
+            ${{ parameters.filters }}
+            !**\obj\**
+          searchFolder: '$(Build.ArtifactStagingDirectory)'
+          vsTestVersion: 16.0
+          runInParallel: false
+          codeCoverageEnabled: false
+          testRunTitle: ${{ parameters.displayName }}
+          platform: '$(BuildPlatform)'
+          configuration: '$(BuildConfiguration)'
+          rerunFailedTests: true
+          rerunFailedThreshold: 1
+          rerunMaxAttempts: 1

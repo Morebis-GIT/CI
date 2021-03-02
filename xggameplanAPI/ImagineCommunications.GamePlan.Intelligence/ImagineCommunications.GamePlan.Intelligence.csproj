@@ -1,0 +1,224 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{7CD09424-C9E5-4404-8896-D443D37775A3}</ProjectGuid>
+    <OutputType>Exe</OutputType>
+    <RootNamespace>ImagineCommunications.GamePlan.Intelligence</RootNamespace>
+    <AssemblyName>ImagineCommunications.GamePlan.Intelligence</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>3</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.CSharp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Common\ConfigurationService.cs" />
+    <Compile Include="Common\IDependencyModule.cs" />
+    <Compile Include="Common\IntelligenceExtensions.cs" />
+    <Compile Include="Common\LoggerService.cs" />
+    <Compile Include="Configurations\Bootstrapper.cs" />
+    <Compile Include="Configurations\Converters\TimeSpanToNodaDurationConverter.cs" />
+    <Compile Include="Configurations\Dependencies\DatabaseDependencyModule.cs" />
+    <Compile Include="Configurations\Dependencies\HandlersDependencyModule.cs" />
+    <Compile Include="Configurations\Dependencies\SqlDatabaseDependencyModule.cs" />
+    <Compile Include="Configurations\Extensions\NamedDependencyExtension.cs" />
+    <Compile Include="Configurations\Mappings\CampaignProfile.cs" />
+    <Compile Include="Configurations\Mappings\MappingProfile.cs" />
+    <Compile Include="Configurations\Mappings\ProductProfile.cs" />
+    <Compile Include="Configurations\SchedulerExtensions.cs" />
+    <Compile Include="Configurations\ServiceBusConfigurator.cs" />
+    <Compile Include="Decorators\ModelValidatorEventDecorator.cs" />
+    <Compile Include="HostServices\Controllers\HealthCheckController.cs" />
+    <Compile Include="HostServices\JobFactory.cs" />
+    <Compile Include="HostServices\Jobs\TransactionRunner.cs" />
+    <Compile Include="HostServices\QuartzJobRunner.cs" />
+    <Compile Include="HostServices\IntelligenceService.cs" />
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+    <None Include="appsettings.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="appsettings.octopus.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="credentials.ini">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ImagineCommunications.Gameplan.Integration.Data\ImagineCommunications.Gameplan.Integration.Data.csproj">
+      <Project>{8a263084-4933-4cb3-91af-9a8645eeee35}</Project>
+      <Name>ImagineCommunications.Gameplan.Integration.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\src\domain\ImagineCommunications.GamePlan.Domain.Generic\ImagineCommunications.GamePlan.Domain.Generic.csproj">
+      <Project>{E4E13375-E595-4DF3-81D4-C14314BACDFB}</Project>
+      <Name>ImagineCommunications.GamePlan.Domain.Generic</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\src\domain\ImagineCommunications.GamePlan.Domain\ImagineCommunications.GamePlan.Domain.csproj">
+      <Project>{3099D7DC-BC6E-4D9F-9668-C5798BD7F37C}</Project>
+      <Name>ImagineCommunications.GamePlan.Domain</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\src\infrastructure\ImagineCommunications.GamePlan.Persistence.RavenDb.Core\ImagineCommunications.GamePlan.Persistence.RavenDb.Core.csproj">
+      <Project>{75E54B40-26AA-4A07-9E6F-4CE9BA0AB753}</Project>
+      <Name>ImagineCommunications.GamePlan.Persistence.RavenDb.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\src\infrastructure\ImagineCommunications.GamePlan.Persistence.RavenDb\ImagineCommunications.GamePlan.Persistence.RavenDb.csproj">
+      <Project>{196AEB89-0078-4F0D-9A86-354B0AE02625}</Project>
+      <Name>ImagineCommunications.GamePlan.Persistence.RavenDb</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\src\infrastructure\ImagineCommunications.GamePlan.Persistence.SqlServer.Core\ImagineCommunications.GamePlan.Persistence.SqlServer.Core.csproj">
+      <Project>{dde95361-0663-41b3-bfbe-85f91a8769f3}</Project>
+      <Name>ImagineCommunications.GamePlan.Persistence.SqlServer.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\src\infrastructure\ImagineCommunications.GamePlan.Persistence.SqlServer\ImagineCommunications.GamePlan.Persistence.SqlServer.csproj">
+      <Project>{D11F0978-3E0E-4739-AB1F-5EAB7BC83DF2}</Project>
+      <Name>ImagineCommunications.GamePlan.Persistence.SqlServer</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\src\integration\ImagineCommunications.BusClient.Abstraction\ImagineCommunications.BusClient.Abstraction.csproj">
+      <Project>{3DDFAC06-C86B-43D4-B982-506192B20331}</Project>
+      <Name>ImagineCommunications.BusClient.Abstraction</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\src\domain\ImagineCommunications.GamePlan.Domain\ImagineCommunications.GamePlan.Domain.csproj">
+      <Project>{3099D7DC-BC6E-4D9F-9668-C5798BD7F37C}</Project>
+      <Name>ImagineCommunications.GamePlan.Domain</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\src\integration\ImagineCommunications.BusClient.Domain\ImagineCommunications.BusClient.Domain.csproj">
+      <Project>{429c5248-cd64-4d3e-8a3d-8819ba2c5e3d}</Project>
+      <Name>ImagineCommunications.BusClient.Domain</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\src\integration\ImagineCommunications.BusClient.MassTransit\ImagineCommunications.BusClient.Implementation.csproj">
+      <Project>{f965b36c-5388-4403-98e2-e37f62c4efd7}</Project>
+      <Name>ImagineCommunications.BusClient.Implementation</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\src\integration\ImagineCommunications.Gameplan.Integration.Handlers\ImagineCommunications.Gameplan.Integration.Handlers.csproj">
+      <Project>{8fe59411-8f31-4292-9e84-61e40700f872}</Project>
+      <Name>ImagineCommunications.Gameplan.Integration.Handlers</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\src\integration\ImagineCommunications.Gameplan.Synchronization.SqlServer\ImagineCommunications.Gameplan.Synchronization.SqlServer.csproj">
+      <Project>{6ac8ed8a-4e31-47c9-ba57-5abdda169f44}</Project>
+      <Name>ImagineCommunications.Gameplan.Synchronization.SqlServer</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\src\integration\ImagineCommunications.Gameplan.Synchronization\ImagineCommunications.Gameplan.Synchronization.csproj">
+      <Project>{92bc7817-af28-423b-bba0-a305dbc4133b}</Project>
+      <Name>ImagineCommunications.Gameplan.Synchronization</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\src\integration\ImagineCommunications.Intelligence.Contracts\ImagineCommunications.Gameplan.Integration.Contracts.csproj">
+      <Project>{8fccd18b-e829-4ce8-b79e-7ee13bd61851}</Project>
+      <Name>ImagineCommunications.Gameplan.Integration.Contracts</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\xggameplan.common\xggameplan.common.csproj">
+      <Project>{efc37031-75bd-4c4b-b760-e1d3aba0a734}</Project>
+      <Name>xggameplan.common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\xggameplan.core\xggameplan.core.csproj">
+      <Project>{24373e36-c0e4-4550-b1e9-b59ef7094c1f}</Project>
+      <Name>xggameplan.core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\xgcore.auditevents\xgcore.auditevents.csproj">
+      <Project>{EA7D70F9-A8D0-4FBB-A3B9-A00C177F6904}</Project>
+      <Name>xgcore.auditevents</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\xggameplan.model\xggameplan.model.csproj">
+      <Project>{219a7aa0-38b0-44c5-b6c0-e77374ee9bbc}</Project>
+      <Name>xggameplan.model</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="AutoMapper">
+      <Version>9.0.0</Version>
+    </PackageReference>
+    <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection">
+      <Version>7.0.0</Version>
+    </PackageReference>
+    <PackageReference Include="FluentValidation">
+      <Version>8.4.0</Version>
+    </PackageReference>
+    <PackageReference Include="Microsoft.Bcl.HashCode">
+      <Version>1.1.0</Version>
+    </PackageReference>
+    <PackageReference Include="Microsoft.CodeAnalysis.FxCopAnalyzers">
+      <Version>2.9.8</Version>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+      <PrivateAssets>all</PrivateAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer">
+      <Version>2.2.6</Version>
+    </PackageReference>
+    <PackageReference Include="Microsoft.Extensions.Configuration">
+      <Version>3.1.10</Version>
+    </PackageReference>
+    <PackageReference Include="Microsoft.Extensions.Configuration.Binder">
+      <Version>3.1.10</Version>
+    </PackageReference>
+    <PackageReference Include="Microsoft.Extensions.Configuration.CommandLine">
+      <Version>3.1.10</Version>
+    </PackageReference>
+    <PackageReference Include="Microsoft.Extensions.Configuration.EnvironmentVariables">
+      <Version>3.1.10</Version>
+    </PackageReference>
+    <PackageReference Include="Microsoft.Extensions.Configuration.FileExtensions">
+      <Version>3.1.10</Version>
+    </PackageReference>
+    <PackageReference Include="Microsoft.Extensions.Configuration.Json">
+      <Version>3.1.10</Version>
+    </PackageReference>
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection">
+      <Version>3.1.10</Version>
+    </PackageReference>
+    <PackageReference Include="Microsoft.Extensions.Options">
+      <Version>3.1.10</Version>
+    </PackageReference>
+    <PackageReference Include="NodaTime">
+      <Version>2.4.7</Version>
+    </PackageReference>
+    <PackageReference Include="Quartz">
+      <Version>3.0.7</Version>
+    </PackageReference>
+    <PackageReference Include="Scrutor">
+      <Version>3.1.0</Version>
+    </PackageReference>
+    <PackageReference Include="Serilog">
+      <Version>2.9.0</Version>
+    </PackageReference>
+    <PackageReference Include="Serilog.Sinks.File">
+      <Version>4.1.0</Version>
+    </PackageReference>
+    <PackageReference Include="Topshelf">
+      <Version>4.2.1</Version>
+    </PackageReference>
+    <PackageReference Include="Topshelf.Owin">
+      <Version>1.4.39</Version>
+    </PackageReference>
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

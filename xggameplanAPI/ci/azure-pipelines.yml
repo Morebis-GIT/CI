@@ -1,0 +1,168 @@
+# GamePlan API pipeline
+
+trigger:
+  batch: true
+  branches:
+    include:
+    - master
+    - develop
+    - feature/*
+    - release/*
+    - bugfix/*
+    - hotfix/*
+  tags:
+    include:
+    - v*
+
+# no PR triggers
+pr: none
+
+pool:
+  vmImage: 'windows-2019'
+  demands: vstest
+
+variables:
+# Variables bought in from Azure Variable Group
+- group: gameplan-api-variables
+    # Required variables:
+    # - BuildConfiguration
+    # - BuildPlatform
+    # - enableDeploy
+    # - OctopusConnectedSvcName
+    # - OctopusSpace
+# Internal pipeline variables
+- name: BuildVersion  # Set by gitversion in the Build stage
+  value: 'If you see this the variable isn''t being correctly set.'
+- name: packageExists  # Generic variable used by package-and-publish.yml template
+  value: false
+
+stages:
+- stage: Build
+  jobs:
+  - template: azure-pipeline-templates/job-gameplan-build.yml
+    parameters:
+      jobName: 'BuildGamePlan'
+      displayName: 'Build GamePlan'
+
+
+- stage: Test
+  dependsOn: Build
+  jobs:
+  - template: azure-pipeline-templates/job-gameplan-unittest.yml
+    parameters:
+      jobName: 'TestAll'
+      displayName: 'Test GamePlan (xUnit)'
+      filters: |
+        **\$(BuildConfiguration)\*.tests.dll
+        !**\$(BuildConfiguration)\xggameplan.tests.dll
+        !**\$(BuildConfiguration)\xggameplan.core.tests.dll
+        !**\$(BuildConfiguration)\xggameplan.specification.tests.dll
+        !**\$(BuildConfiguration)\ImagineCommunications.GamePlan.Intelligence.Tests.dll
+        !**\$(BuildConfiguration)\*.smooth.tests.dll
+      # NOTE: This filter has a catch all in it to catch new test suites that are not explicitly called in here.
+
+  - template: azure-pipeline-templates/job-gameplan-unittest.yml
+    parameters:
+      jobName: 'TestNUnit'
+      displayName: 'Test GamePlan (Legacy NUnit)'
+      filters: |
+        **\$(BuildConfiguration)\xggameplan.tests.dll
+        **\$(BuildConfiguration)\xggameplan.core.tests.dll
+
+  - template: azure-pipeline-templates/job-gameplan-unittest.yml
+    parameters:
+      jobName: 'TestIntelligence'
+      displayName: 'Test GamePlan (Intelligence)'
+      parallelJobs: 2
+      filters: |
+        **\$(BuildConfiguration)\ImagineCommunications.GamePlan.Intelligence.Tests.dll
+
+  - template: azure-pipeline-templates/job-gameplan-unittest.yml
+    parameters:
+      jobName: 'TestSmooth'
+      displayName: 'Test GamePlan (Smooth)'
+      parallelJobs: 3
+      filters: |
+        **\$(BuildConfiguration)\**\*.smooth.tests.dll
+
+  - template: azure-pipeline-templates/job-gameplan-unittest.yml
+    parameters:
+      jobName: 'TestDbFeaturesWithRaven'
+      displayName: 'Test GamePlan (DbFeatures for RavenDB, Legacy NUnit)'
+      parallelJobs: 2  # Setting to 2 cuts ~40% off the run time, going any higher has no effect
+      dbType: 'Raven'
+      filters: |
+        **\$(BuildConfiguration)\xggameplan.specification.tests.dll
+
+  - template: azure-pipeline-templates/job-gameplan-unittest.yml
+    parameters:
+      jobName: 'TestDbFeaturesWithSQLServer'
+      displayName: 'Test GamePlan (DbFeatures for SQLServer, Legacy NUnit)'
+      filters: |
+        **\$(BuildConfiguration)\xggameplan.specification.tests.dll
+
+
+- stage: Deploy
+  dependsOn: Test
+
+  # Variable 'enableDeploy' allows us to disable deployments to test parallel running.
+  condition: and(succeeded(), eq(variables.enableDeploy, 'true'))
+
+  # TODO: Do we need some limits on parallel jobs here?
+  jobs:
+  - template: azure-pipeline-templates/job-deploy-to-octopus.yml
+    parameters:
+      jobName: 'DeployGamePlanAPI'
+      displayName: 'Deploy To Octopus: GamePlan API'
+      artifactName: 'xg-gameplan-api'
+
+  - template: azure-pipeline-templates/job-deploy-to-octopus.yml
+    parameters:
+      jobName: 'DeployGamePlanAPIAutomationTests'
+      displayName: 'Deploy To Octopus: GamePlan API Automation Tests'
+      artifactName: 'xg-gameplan-api-automation-tests'
+
+  - template: azure-pipeline-templates/job-deploy-to-octopus.yml
+    parameters:
+      jobName: 'DeployGamePlanIntelligence'
+      displayName: 'Deploy To Octopus: GamePlan Intelligence'
+      artifactName: 'xg-gameplan-intelligence'
+
+  - template: azure-pipeline-templates/job-deploy-to-octopus.yml
+    parameters:
+      jobName: 'DeployGamePlanIntelligenceTestsAPI'
+      displayName: 'Deploy To Octopus: GamePlan Intelligence Tests API'
+      artifactName: 'xg-gameplan-intelligence-tests-api'
+
+  - template: azure-pipeline-templates/job-deploy-to-octopus.yml
+    parameters:
+      jobName: 'DeployGamePlanSQLSchemaMigrationUtility'
+      displayName: 'Deploy To Octopus: GamePlan SQL Schema Migration Utility'
+      artifactName: 'xg-gameplan-sql-schema-migration-utility'
+
+  - template: azure-pipeline-templates/job-deploy-to-octopus.yml
+    parameters:
+      jobName: 'DeployGamePlanSeedDataUtility'
+      displayName: 'Deploy To Octopus: GamePlan Seed Data Utility'
+      artifactName: 'xg-gameplan-seeddata-utility'
+
+  - template: azure-pipeline-templates/job-deploy-to-octopus.yml
+    parameters:
+      jobName: 'DeployGamePlanSeedDataCore'
+      displayName: 'Deploy To Octopus: GamePlan Seed Data - Core'
+      artifactName: 'xg-gameplan-seeddata-data-core'
+      artifactExt: 'zip'
+
+  - template: azure-pipeline-templates/job-deploy-to-octopus.yml
+    parameters:
+      jobName: 'DeployGamePlanSeedDataNine'
+      displayName: 'Deploy To Octopus: GamePlan Seed Data - Nine'
+      artifactName: 'xg-gameplan-seeddata-data-client-nine'
+      artifactExt: 'zip'
+
+  - template: azure-pipeline-templates/job-deploy-to-octopus.yml
+    parameters:
+      jobName: 'DeployGamePlanSeedDataSky'
+      displayName: 'Deploy To Octopus: GamePlan Seed Data - Sky'
+      artifactName: 'xg-gameplan-seeddata-data-client-sky'
+      artifactExt: 'zip'

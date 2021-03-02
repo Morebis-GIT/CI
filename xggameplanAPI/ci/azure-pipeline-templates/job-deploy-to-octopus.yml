@@ -1,0 +1,35 @@
+# GamePlan API pipeline test job
+
+parameters:
+- name: jobName
+  type: string
+- name: displayName
+  type: string
+- name: artifactName
+  type: string
+- name: artifactExt
+  type: string
+  default: 'nupkg'
+
+jobs:
+# TODO: Should we use a deployment job here?
+  - job: ${{ parameters.jobName }}
+    displayName: ${{ parameters.displayName }}
+    timeoutInMinutes: 20
+
+    steps:
+    - task: DownloadPipelineArtifact@2
+      displayName: 'Download Artifact: ${{ parameters.artifactName }}'
+      inputs:
+        artifactName: ${{ parameters.artifactName }}
+        targetPath: '$(Build.ArtifactStagingDirectory)/${{ parameters.artifactName }}'
+      timeoutInMinutes: 5
+
+    - task: OctopusPush@4
+      displayName: 'Push Artifact to Octopus Deploy: ${{ parameters.artifactName }}'
+      inputs:
+        OctoConnectedServiceName: '$(OctopusConnectedSvcName)'
+        Space: '$(OctopusSpace)'
+        Package: '$(Build.ArtifactStagingDirectory)/${{ parameters.artifactName }}/*.${{ parameters.artifactExt }}'
+        Replace: true
+      timeoutInMinutes: 5

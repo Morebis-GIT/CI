@@ -1,0 +1,42 @@
+# Package for Octopus & Publish artifact
+
+parameters:
+- name: packageId
+  type: string
+- name: packageBuildPath
+  type: string
+- name: packageFormat
+  type: string  # 'Zip' or 'NuPkg'
+  default: 'NuPkg'
+
+steps:
+- task: PowerShell@2
+  displayName: 'Check build exists: ${{ parameters.packageId }}'
+  timeoutInMinutes: 1
+  inputs:
+    targetType: 'filePath'
+    filePath: ci/scripts/check-exists.ps1
+    arguments: -FilePath ${{ parameters.packageBuildPath }} -VariableName 'packageExists'
+
+- task: OctopusPack@4
+  displayName: 'Package for Octopus: ${{ parameters.packageId }}'
+  timeoutInMinutes: 5
+  condition: and(succeeded(), eq(variables['packageExists'], 'true'))
+  inputs:
+    PackageId: '${{ parameters.packageId }}'
+    PackageFormat: '${{ parameters.packageFormat }}'
+    PackageVersion: '$(BuildVersion)'
+    SourcePath: '${{ parameters.packageBuildPath }}'
+    OutputPath: '$(Build.SourcesDirectory)/.packagedArtifacts/${{ parameters.packageId }}'
+    NuGetAuthor: 'Imagine Communications'
+    NuGetTitle: '${{ parameters.packageId }}'
+    NuGetDescription: '${{ parameters.packageId }}'
+    Overwrite: true
+    ListFiles: true
+
+- task: PublishPipelineArtifact@1
+  displayName: 'Publish Artifact: ${{ parameters.packageId }}'
+  timeoutInMinutes: 5
+  inputs:
+    targetPath: '$(Build.SourcesDirectory)/.packagedArtifacts/${{ parameters.packageId }}'
+    artifact: '${{ parameters.packageId }}'

@@ -1,0 +1,123 @@
+# GamePlan API - Build
+
+parameters:
+  - name: jobName
+    type: string
+  - name: displayName
+    type: string
+
+jobs:
+  - job: ${{ parameters.jobName }}
+    displayName: ${{ parameters.displayName }}
+    timeoutInMinutes: 20
+    steps:
+      # Calculate build version with GitVersion
+      - template: steps-gitversion.yml
+
+      # Copy files
+      # Copy files from a source folder to a target folder using patterns matching file paths (not folder paths)
+      - task: CopyFiles@2
+        displayName: 'Copy calculated version.txt'
+        inputs:
+          contents: 'version.txt'
+          targetFolder: '$(Build.SourcesDirectory)/xggameplan/'
+          overWrite: true
+          preserveTimestamp: true
+
+      # Install dependencies
+      - task: NuGetToolInstaller@1
+        displayName: 'Install NuGet 5.x'
+        timeoutInMinutes: 5
+        inputs:
+          versionSpec: 5.x
+
+      - task: NuGetCommand@2
+        displayName: 'Install NuGet dependencies'
+        timeoutInMinutes: 10
+        inputs:
+          command: 'restore'
+          restoreSolution: '**/*.sln'
+          feedsToUse: 'select'
+          verbosityRestore: 'Normal'
+
+      # Build GamePlan packages
+      - task: VSBuild@1
+        displayName: 'Build Solution'
+        timeoutInMinutes: 5
+        inputs:
+          solution: '**/*.sln'
+          vsVersion: 16.0
+          msbuildArgs: /p:DeployDefaultTarget=WebPublish /p:DeployOnBuild=true /p:WebPublishMethod=FileSystem /p:SkipInvalidConfigurations=true /p:publishUrl=dist
+          platform: '$(BuildPlatform)'
+          configuration: '$(BuildConfiguration)'
+          clean: true
+          maximumCpuCount: true
+
+      # Package GamePlan UnitTests
+      - task: PublishPipelineArtifact@1
+        displayName: 'Publish Artifact: api-built-source for running tests'
+        timeoutInMinutes: 5
+        inputs:
+          targetPath: '$(Build.SourcesDirectory)'
+          artifact: 'api-built-source'
+
+      # Package GamePlan packages
+      - template: steps-package-and-publish.yml
+        parameters:
+          packageId: 'xg-gameplan-api'
+          packageBuildPath: '$(Build.SourcesDirectory)/xggameplan/dist'
+
+      - template: steps-package-and-publish.yml
+        parameters:
+          packageId: 'xg-gameplan-intelligence'
+          packageBuildPath: '$(Build.SourcesDirectory)/ImagineCommunications.GamePlan.Intelligence/bin/$(BuildConfiguration)'
+
+      - template: steps-package-and-publish.yml
+        parameters:
+          packageId: 'xg-gameplan-intelligence-tests-api'
+          packageBuildPath: '$(Build.SourcesDirectory)/src/integration/ImagineCommunications.Intelligence.Test.Api/dist'
+
+      - template: steps-package-and-publish.yml
+        parameters:
+          packageId: 'xg-gameplan-seeddata-utility'
+          packageBuildPath: '$(Build.SourcesDirectory)/xggameplan.utils.seeddata/bin/$(BuildConfiguration)'
+
+      - template: steps-package-and-publish.yml
+        parameters:
+          packageId: 'xg-gameplan-seeddata-data-core'
+          packageBuildPath: '$(Build.SourcesDirectory)/seeddata/core'
+          packageFormat: 'Zip'
+
+      - template: steps-package-and-publish.yml
+        parameters:
+          packageId: 'xg-gameplan-seeddata-data-client-nine'
+          packageBuildPath: '$(Build.SourcesDirectory)/seeddata/client/nine'
+          packageFormat: 'Zip'
+
+      - template: steps-package-and-publish.yml
+        parameters:
+          packageId: 'xg-gameplan-seeddata-data-client-sky'
+          packageBuildPath: '$(Build.SourcesDirectory)/seeddata/client/sky'
+          packageFormat: 'Zip'
+
+      - template: steps-package-and-publish.yml
+        parameters:
+          packageId: 'xg-gameplan-sql-schema-migration-utility'
+          packageBuildPath: '$(Build.SourcesDirectory)/src/infrastructure/ImagineCommunications.GamePlan.Persistence.SqlServer.Migrations/bin/$(BuildConfiguration)'
+
+      # Build and Package GamePlan API Automation Tests
+      - task: DotNetCoreCLI@2
+        displayName: 'Build Gameplan API Automation Tests'
+        timeoutInMinutes: 5
+        inputs:
+          command: publish
+          publishWebProjects: false
+          projects: '$(Build.SourcesDirectory)/src/AutomatedTests/XgCore.AutomationTests.sln'
+          arguments: '--configuration $(BuildConfiguration) --output $(Build.SourcesDirectory)/autotests_out --self-contained'
+          zipAfterPublish: false
+          modifyOutputPath: false
+
+      - template: steps-package-and-publish.yml
+        parameters:
+          packageId: 'xg-gameplan-api-automation-tests'
+          packageBuildPath: '$(Build.SourcesDirectory)/autotests_out'

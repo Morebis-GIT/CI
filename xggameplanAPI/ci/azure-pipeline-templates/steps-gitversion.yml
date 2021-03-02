@@ -1,0 +1,21 @@
+# Calculate GitVersion
+
+steps:
+- task: gittools.usegitversion.gitversion-task.UseGitVersion@5
+  displayName: 'Run GitVersion'
+  inputs:
+    versionSpec: 5.5.1
+    useConfigFile: true
+    configFilePath: ci/GitVersion.yml
+
+- task: PowerShell@2
+  displayName: 'Calculate build version'
+  timeoutInMinutes: 3
+  inputs:
+    targetType: 'filePath'
+    filePath: ci/scripts/calculate-version.ps1
+    arguments: -BuildId "$(Build.BuildId)" -MajorMinorPatch "$(GitVersion.MajorMinorPatch)" -ShortSha "$(GitVersion.ShortSha)" -EscapedBranchName "$(GitVersion.EscapedBranchName)" -PreReleaseLabel "$(GitVersion.PreReleaseLabel)"
+
+- powershell: 'Write-Host("Build version is: $(BuildVersion)")'
+  displayName: 'Log build version'
+  timeoutInMinutes: 1

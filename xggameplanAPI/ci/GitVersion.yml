@@ -1,0 +1,33 @@
+mode: ContinuousDeployment
+branches:
+  develop:
+    tag: develop
+  master:
+    tag: master
+  release:
+    tag: rc
+    regex: ^((\brelease\bs?)|(\btags\b))[/-]
+  feature:
+    tag: feature
+  hotfix:
+    tag: hotfix
+    is-release-branch: true
+  bugfix:
+    mode: ContinuousDeployment
+    tag: bugfix
+    increment: Inherit
+    prevent-increment-of-merged-branch-version: false
+    track-merge-target: false
+    regex: ^bugfix(es)?[/-]
+    source-branches:
+    - develop
+    - release
+    tracks-release-branches: false
+    is-release-branch: false
+    is-mainline: false
+    pre-release-weight: 30000
+  support:
+    tag: support
+ignore:
+  sha: []
+merge-message-formats: {}
