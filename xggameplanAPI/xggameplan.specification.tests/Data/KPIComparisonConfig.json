@@ -1,0 +1,28 @@
+{
+  "KPIComparisonConfigs": [
+    {
+      "KPIName": "standardAverageCompletion",
+      "DiscernibleDifference": 1,
+      "HigherIsBest": true,
+      "Ranked": true
+    },
+    {
+      "KPIName": "remainingAvailability",
+      "DiscernibleDifference": 1000,
+      "HigherIsBest": true,
+      "Ranked": true
+    },
+    {
+      "KPIName": "averagecancelEfficiency",
+      "DiscernibleDifference": 1,
+      "HigherIsBest": true,
+      "Ranked": true
+    },
+    {
+      "KPIName": "remainaudience",
+      "DiscernibleDifference": 10000,
+      "HigherIsBest": true,
+      "Ranked": true
+    }
+  ]
+}

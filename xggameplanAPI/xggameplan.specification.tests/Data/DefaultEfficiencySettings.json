@@ -1,0 +1,9 @@
+{
+  "EfficiencySettings": [
+    {
+      "Id": "7b884910-9e66-4a18-a902-a4e658d7b98d",
+      "EfficiencyCalculationPeriod": "RunPeriod",
+      "PersistEfficiency": "AllRun"
+    }
+  ]
+}

@@ -1,0 +1,868 @@
+{
+  "Programmes": [
+    {
+      "Id": "17583314-66b9-45fe-892d-a5a59fa46dcf",
+      "PrgtNo": 1,
+      "SalesArea": "QTQ91",
+      "StartDateTime": "2019-03-09T10:15:00",
+      "Duration": "00:30:00",
+      "ExternalReference": "TOSH",
+      "ProgrammeName": "Programme 1",
+      "Description": "Programme 1 Desc",
+      "ProgrammeCategories": [
+        "SPORTS",
+        " CHILDREN",
+        " NEWS",
+        " OTHER"
+      ],
+      "Classification": "SPORTS",
+      "LiveBroadcast": false
+    },
+    {
+      "Id": "77f3d6d6-1e24-41ea-aae9-aeed2cc853f4",
+      "PrgtNo": 2,
+      "SalesArea": "QTQ91",
+      "StartDateTime": "2019-03-09T10:45:00",
+      "Duration": "01:00:00",
+      "ExternalReference": "PAWPA",
+      "ProgrammeName": "Programme 2",
+      "Description": "Programme 2 Desc",
+      "ProgrammeCategories": [
+        "SPORTS",
+        " CHILDREN",
+        " NEWS",
+        " OTHER"
+      ],
+      "Classification": "OTHER",
+      "LiveBroadcast": true
+    },
+    {
+      "Id": "ae22d961-073a-4c1b-9200-8ea178056b85",
+      "PrgtNo": 3,
+      "SalesArea": "QTQ91",
+      "StartDateTime": "2019-03-09T11:45:00",
+      "Duration": "00:15:00",
+      "ExternalReference": "AUOPTD",
+      "ProgrammeName": "Programme 3",
+      "Description": "Programme 3 Desc",
+      "ProgrammeCategories": [
+        "SPORTS",
+        " CHILDREN",
+        " NEWS",
+        " OTHER"
+      ],
+      "Classification": "NEWS",
+      "LiveBroadcast": false
+    },
+    {
+      "Id": "ec6962f6-ad01-4dd7-892d-f8dc5b30bd89",
+      "PrgtNo": 4,
+      "SalesArea": "QTQ91",
+      "StartDateTime": "2019-03-09T12:00:00",
+      "Duration": "01:35:00",
+      "ExternalReference": "AUOPTD",
+      "ProgrammeName": "Programme 4",
+      "Description": "Programme 4 Desc",
+      "ProgrammeCategories": [
+        "SPORTS",
+        " CHILDREN",
+        " NEWS",
+        " OTHER"
+      ],
+      "Classification": "CHILDREN",
+      "LiveBroadcast": false
+    },
+    {
+      "Id": "4b5dc78a-c801-4b02-8a7f-94e7e02f0893",
+      "PrgtNo": 5,
+      "SalesArea": "STW92",
+      "StartDateTime": "2019-03-09T13:35:00",
+      "Duration": "00:30:00",
+      "ExternalReference": "TOSH",
+      "ProgrammeName": "Programme 5",
+      "Description": "Programme 5 Desc",
+      "ProgrammeCategories": [
+        "SPORTS",
+        " CHILDREN",
+        " NEWS",
+        " OTHER"
+      ],
+      "Classification": "SPORTS",
+      "LiveBroadcast": true
+    },
+    {
+      "Id": "e7215d43-fc7e-40e3-a9d8-35481391bde5",
+      "PrgtNo": 6,
+      "SalesArea": "GTV93",
+      "StartDateTime": "2019-03-09T14:05:00",
+      "Duration": "02:05:00",
+      "ExternalReference": "PAWPA",
+      "ProgrammeName": "Programme 6",
+      "Description": "Programme 6 Desc",
+      "ProgrammeCategories": [
+        "SPORTS",
+        " CHILDREN",
+        " NEWS",
+        " OTHER"
+      ],
+      "Classification": "OTHER",
+      "LiveBroadcast": false
+    },
+    {
+      "Id": "973493a4-5971-47e1-adb8-d6e609f182c1",
+      "PrgtNo": 7,
+      "SalesArea": "STW92",
+      "StartDateTime": "2019-03-09T16:10:00",
+      "Duration": "00:55:00",
+      "ExternalReference": "AUOPTD",
+      "ProgrammeName": "Programme 7",
+      "Description": "Programme 7 Desc",
+      "ProgrammeCategories": [
+        "SPORTS",
+        " CHILDREN",
+        " NEWS",
+        " OTHER"
+      ],
+      "Classification": "CHILDREN",
+      "LiveBroadcast": false
+    },
+    {
+      "Id": "bb8fb3f4-9f88-41fb-8434-8e7da525053f",
+      "PrgtNo": 8,
+      "SalesArea": "QTQ91",
+      "StartDateTime": "2019-03-09T17:05:00",
+      "Duration": "01:20:00",
+      "ExternalReference": "PAWPA",
+      "ProgrammeName": "Programme 8",
+      "Description": "Programme 8 Desc",
+      "ProgrammeCategories": [
+        "SPORTS",
+        " CHILDREN",
+        " NEWS",
+        " OTHER"
+      ],
+      "Classification": "SPORTS",
+      "LiveBroadcast": true
+    },
+    {
+      "Id": "0c35b22b-be75-4833-8d66-816e43a4bc1b",
+      "PrgtNo": 9,
+      "SalesArea": "QTQ91",
+      "StartDateTime": "2019-03-09T18:25:00",
+      "Duration": "02:00:00",
+      "ExternalReference": "TOSH",
+      "ProgrammeName": "Programme 9",
+      "Description": "Programme 9 Desc",
+      "ProgrammeCategories": [
+        "SPORTS",
+        " CHILDREN",
+        " NEWS",
+        " OTHER"
+      ],
+      "Classification": "SPORTS",
+      "LiveBroadcast": false
+    },
+    {
+      "Id": "65bda038-252d-451f-89de-e3a3f68e2e96",
+      "PrgtNo": 10,
+      "SalesArea": "STW92",
+      "StartDateTime": "2019-03-09T20:25:00",
+      "Duration": "00:45:00",
+      "ExternalReference": "PAWPA",
+      "ProgrammeName": "Programme 10",
+      "Description": "Programme 10 desc",
+      "ProgrammeCategories": [
+        "SPORTS",
+        " CHILDREN",
+        " NEWS",
+        " OTHER"
+      ],
+      "Classification": "NEWS",
+      "LiveBroadcast": true
+    },
+    {
+      "Id": "2406FD94-E9AB-473F-B8A4-1DFDC058147C",
+      "PrgtNo": 1,
+      "SalesArea": "STW92",
+      "StartDateTime": "2019-03-15T09:00:00",
+      "Duration": "00:30:00",
+      "ExternalReference": "TOSH",
+      "ProgrammeName": "Programme 1",
+      "Description": "Programme 1 Desc",
+      "ProgrammeCategories": [
+        "SPORTS",
+        " CHILDREN",
+        " NEWS",
+        " OTHER"
+      ],
+      "Classification": "SPORTS",
+      "LiveBroadcast": false
+    },
+    {
+      "Id": "DFC1647B-4164-408D-95F8-AD6EFE48D3F9",
+      "PrgtNo": 2,
+      "SalesArea": "STW92",
+      "StartDateTime": "2019-03-15T09:30:00",
+      "Duration": "01:00:00",
+      "ExternalReference": "PAWPA",
+      "ProgrammeName": "Programme 2",
+      "Description": "Programme 2 Desc",
+      "ProgrammeCategories": [
+        "SPORTS",
+        " CHILDREN",
+        " NEWS",
+        " OTHER"
+      ],
+      "Classification": "OTHER",
+      "LiveBroadcast": true
+    },
+    {
+      "Id": "236CB096-10CD-454A-879F-30C84C82E4A2",
+      "PrgtNo": 3,
+      "SalesArea": "STW92",
+      "StartDateTime": "2019-03-15T10:30:00",
+      "Duration": "00:15:00",
+      "ExternalReference": "AUOPTD",
+      "ProgrammeName": "Programme 3",
+      "Description": "Programme 3 Desc",
+      "ProgrammeCategories": [
+        "SPORTS",
+        " CHILDREN",
+        " NEWS",
+        " OTHER"
+      ],
+      "Classification": "NEWS",
+      "LiveBroadcast": false
+    },
+    {
+      "Id": "E27239C1-77CB-4D95-8A36-AAC2DB900E4B",
+      "PrgtNo": 4,
+      "SalesArea": "STW92",
+      "StartDateTime": "2019-03-15T10:45:00",
+      "Duration": "01:35:00",
+      "ExternalReference": "AUOPTD",
+      "ProgrammeName": "Programme 4",
+      "Description": "Programme 4 Desc",
+      "ProgrammeCategories": [
+        "SPORTS",
+        " CHILDREN",
+        " NEWS",
+        " OTHER"
+      ],
+      "Classification": "CHILDREN",
+      "LiveBroadcast": false
+    },
+    {
+      "Id": "BC1C53B7-A5AC-442E-A0F1-C8FCC1882F6D",
+      "PrgtNo": 5,
+      "SalesArea": "QTQ91",
+      "StartDateTime": "2019-03-15T12:20:00",
+      "Duration": "00:30:00",
+      "ExternalReference": "TOSH",
+      "ProgrammeName": "Programme 5",
+      "Description": "Programme 5 Desc",
+      "ProgrammeCategories": [
+        "SPORTS",
+        " CHILDREN",
+        " NEWS",
+        " OTHER"
+      ],
+      "Classification": "SPORTS",
+      "LiveBroadcast": true
+    },
+    {
+      "Id": "66CF59B0-0718-4820-8B6D-07EA19FD3A21",
+      "PrgtNo": 6,
+      "SalesArea": "GTV93",
+      "StartDateTime": "2019-03-15T12:50:00",
+      "Duration": "02:05:00",
+      "ExternalReference": "PAWPA",
+      "ProgrammeName": "Programme 6",
+      "Description": "Programme 6 Desc",
+      "ProgrammeCategories": [
+        "SPORTS",
+        " CHILDREN",
+        " NEWS",
+        " OTHER"
+      ],
+      "Classification": "OTHER",
+      "LiveBroadcast": false
+    },
+    {
+      "Id": "0DF0D724-DD4D-4D9C-9915-CF6D04AD806E",
+      "PrgtNo": 7,
+      "SalesArea": "QTQ91",
+      "StartDateTime": "2019-03-15T14:55:00",
+      "Duration": "00:55:00",
+      "ExternalReference": "AUOPTD",
+      "ProgrammeName": "Programme 7",
+      "Description": "Programme 7 Desc",
+      "ProgrammeCategories": [
+        "SPORTS",
+        " CHILDREN",
+        " NEWS",
+        " OTHER"
+      ],
+      "Classification": "CHILDREN",
+      "LiveBroadcast": false
+    },
+    {
+      "Id": "DD9DCE64-8766-44D1-9C02-DDA562EE9816",
+      "PrgtNo": 8,
+      "SalesArea": "QTQ91",
+      "StartDateTime": "2019-03-15T15:50:00",
+      "Duration": "01:40:00",
+      "ExternalReference": "PAWPA",
+      "ProgrammeName": "Programme 8",
+      "Description": "Programme 8 Desc",
+      "ProgrammeCategories": [
+        "SPORTS",
+        " CHILDREN",
+        " NEWS",
+        " OTHER"
+      ],
+      "Classification": "SPORTS",
+      "LiveBroadcast": true
+    },
+    {
+      "Id": "2D1CDFA6-622D-455D-B02A-6550DE52629E",
+      "PrgtNo": 9,
+      "SalesArea": "STW92",
+      "StartDateTime": "2019-03-15T17:30:00",
+      "Duration": "02:00:00",
+      "ExternalReference": "TOSH",
+      "ProgrammeName": "Programme 9",
+      "Description": "Programme 9 Desc",
+      "ProgrammeCategories": [
+        "SPORTS",
+        " CHILDREN",
+        " NEWS",
+        " OTHER"
+      ],
+      "Classification": "SPORTS",
+      "LiveBroadcast": false
+    },
+    {
+      "Id": "444B3806-35F8-4A3F-9F90-AD1FDF7E5315",
+      "PrgtNo": 10,
+      "SalesArea": "STW92",
+      "StartDateTime": "2019-03-15T19:30:00",
+      "Duration": "00:45:00",
+      "ExternalReference": "PAWPA",
+      "ProgrammeName": "Programme 10",
+      "Description": "Programme 10 desc",
+      "ProgrammeCategories": [
+        "SPORTS",
+        " CHILDREN",
+        " NEWS",
+        " OTHER"
+      ],
+      "Classification": "NEWS",
+      "LiveBroadcast": true
+    }
+  ],
+  "Schedules": [
+    {
+      "Date": "2019-03-09",
+      "SalesArea": "QTQ91",
+      "Programmes": [
+        {
+          "Id": "17583314-66b9-45fe-892d-a5a59fa46dcf",
+          "PrgtNo": 1,
+          "SalesArea": "QTQ91",
+          "StartDateTime": "2019-03-09T10:15:00",
+          "Duration": "00:30:00",
+          "ExternalReference": "TOSH",
+          "ProgrammeName": "Programme 1",
+          "Description": "Programme 1 Desc",
+          "ProgrammeCategories": [
+            "SPORTS",
+            " CHILDREN",
+            " NEWS",
+            " OTHER"
+          ],
+          "Classification": "SPORTS",
+          "LiveBroadcast": false
+        },
+        {
+          "Id": "77f3d6d6-1e24-41ea-aae9-aeed2cc853f4",
+          "PrgtNo": 2,
+          "SalesArea": "QTQ91",
+          "StartDateTime": "2019-03-09T10:45:00",
+          "Duration": "01:00:00",
+          "ExternalReference": "PAWPA",
+          "ProgrammeName": "Programme 2",
+          "Description": "Programme 2 Desc",
+          "ProgrammeCategories": [
+            "SPORTS",
+            " CHILDREN",
+            " NEWS",
+            " OTHER"
+          ],
+          "Classification": "OTHER",
+          "LiveBroadcast": true
+        },
+        {
+          "Id": "ae22d961-073a-4c1b-9200-8ea178056b85",
+          "PrgtNo": 3,
+          "SalesArea": "QTQ91",
+          "StartDateTime": "2019-03-09T11:45:00",
+          "Duration": "00:15:00",
+          "ExternalReference": "AUOPTD",
+          "ProgrammeName": "Programme 3",
+          "Description": "Programme 3 Desc",
+          "ProgrammeCategories": [
+            "SPORTS",
+            " CHILDREN",
+            " NEWS",
+            " OTHER"
+          ],
+          "Classification": "NEWS",
+          "LiveBroadcast": false
+        },
+        {
+          "Id": "ec6962f6-ad01-4dd7-892d-f8dc5b30bd89",
+          "PrgtNo": 4,
+          "SalesArea": "QTQ91",
+          "StartDateTime": "2019-03-09T12:00:00",
+          "Duration": "01:35:00",
+          "ExternalReference": "AUOPTD",
+          "ProgrammeName": "Programme 4",
+          "Description": "Programme 4 Desc",
+          "ProgrammeCategories": [
+            "SPORTS",
+            " CHILDREN",
+            " NEWS",
+            " OTHER"
+          ],
+          "Classification": "CHILDREN",
+          "LiveBroadcast": false
+        },
+        {
+          "Id": "4b5dc78a-c801-4b02-8a7f-94e7e02f0893",
+          "PrgtNo": 5,
+          "SalesArea": "STW92",
+          "StartDateTime": "2019-03-09T13:35:00",
+          "Duration": "00:30:00",
+          "ExternalReference": "TOSH",
+          "ProgrammeName": "Programme 5",
+          "Description": "Programme 5 Desc",
+          "ProgrammeCategories": [
+            "SPORTS",
+            " CHILDREN",
+            " NEWS",
+            " OTHER"
+          ],
+          "Classification": "SPORTS",
+          "LiveBroadcast": true
+        },
+        {
+          "Id": "e7215d43-fc7e-40e3-a9d8-35481391bde5",
+          "PrgtNo": 6,
+          "SalesArea": "GTV93",
+          "StartDateTime": "2019-03-09T14:05:00",
+          "Duration": "02:05:00",
+          "ExternalReference": "PAWPA",
+          "ProgrammeName": "Programme 6",
+          "Description": "Programme 6 Desc",
+          "ProgrammeCategories": [
+            "SPORTS",
+            " CHILDREN",
+            " NEWS",
+            " OTHER"
+          ],
+          "Classification": "OTHER",
+          "LiveBroadcast": false
+        },
+        {
+          "Id": "973493a4-5971-47e1-adb8-d6e609f182c1",
+          "PrgtNo": 7,
+          "SalesArea": "STW92",
+          "StartDateTime": "2019-03-09T16:10:00",
+          "Duration": "00:55:00",
+          "ExternalReference": "AUOPTD",
+          "ProgrammeName": "Programme 7",
+          "Description": "Programme 7 Desc",
+          "ProgrammeCategories": [
+            "SPORTS",
+            " CHILDREN",
+            " NEWS",
+            " OTHER"
+          ],
+          "Classification": "CHILDREN",
+          "LiveBroadcast": false
+        },
+        {
+          "Id": "bb8fb3f4-9f88-41fb-8434-8e7da525053f",
+          "PrgtNo": 8,
+          "SalesArea": "QTQ91",
+          "StartDateTime": "2019-03-09T17:05:00",
+          "Duration": "01:20:00",
+          "ExternalReference": "PAWPA",
+          "ProgrammeName": "Programme 8",
+          "Description": "Programme 8 Desc",
+          "ProgrammeCategories": [
+            "SPORTS",
+            " CHILDREN",
+            " NEWS",
+            " OTHER"
+          ],
+          "Classification": "SPORTS",
+          "LiveBroadcast": true
+        },
+        {
+          "Id": "0c35b22b-be75-4833-8d66-816e43a4bc1b",
+          "PrgtNo": 9,
+          "SalesArea": "QTQ91",
+          "StartDateTime": "2019-03-09T18:25:00",
+          "Duration": "02:00:00",
+          "ExternalReference": "TOSH",
+          "ProgrammeName": "Programme 9",
+          "Description": "Programme 9 Desc",
+          "ProgrammeCategories": [
+            "SPORTS",
+            " CHILDREN",
+            " NEWS",
+            " OTHER"
+          ],
+          "Classification": "SPORTS",
+          "LiveBroadcast": false
+        },
+        {
+          "Id": "65bda038-252d-451f-89de-e3a3f68e2e96",
+          "PrgtNo": 10,
+          "SalesArea": "STW92",
+          "StartDateTime": "2019-03-09T20:25:00",
+          "Duration": "00:45:00",
+          "ExternalReference": "PAWPA",
+          "ProgrammeName": "Programme 10",
+          "Description": "Programme 10 desc",
+          "ProgrammeCategories": [
+            "SPORTS",
+            " CHILDREN",
+            " NEWS",
+            " OTHER"
+          ],
+          "Classification": "NEWS",
+          "LiveBroadcast": true
+        }
+      ],
+      "Breaks": [
+        {
+          "Id": "ae2b3c5f-728f-41f5-b3da-36e2d73ea0bf",
+          "scheduledDate": "2019-03-09T10:27:24",
+          "salesArea": "QTQ91",
+          "breakType": "PREMIUM",
+          "duration": "00:03:30",
+          "optimize": true,
+          "externalBreakRef": "2484604-1"
+        },
+        {
+          "Id": "bf4606c9-11f2-4ca2-b541-62db2101d23b",
+          "scheduledDate": "2019-03-09T11:04:43",
+          "salesArea": "QTQ91",
+          "breakType": "BASE",
+          "duration": "00:02:17",
+          "optimize": true,
+          "externalBreakRef": "2484604-2"
+        },
+        {
+          "Id": "b8d470fc-90de-41f9-abee-fe0f2ea329b5",
+          "scheduledDate": "2019-03-09T11:30:07",
+          "salesArea": "QTQ91",
+          "breakType": "PREMIUM",
+          "duration": "00:04:19",
+          "optimize": true,
+          "externalBreakRef": "2484604-3"
+        },
+        {
+          "Id": "af376db5-1fdd-40ad-84d0-cf7d337f7478",
+          "scheduledDate": "2019-03-09T13:42:17",
+          "salesArea": "STW92",
+          "breakType": "PREMIUM",
+          "duration": "00:03:05",
+          "optimize": true,
+          "externalBreakRef": "2484604-4"
+        },
+        {
+          "Id": "b45d63d0-d4cc-4315-9caf-02cf9179bfde",
+          "scheduledDate": "2019-03-09T14:33:31",
+          "salesArea": "GTV93",
+          "breakType": "PREMIUM",
+          "duration": "00:02:44",
+          "optimize": true,
+          "externalBreakRef": "2484604-5"
+        },
+        {
+          "Id": "6ec3ab75-4eb2-44e9-8cf6-91119b36c2dd",
+          "scheduledDate": "2019-03-09T15:07:00",
+          "salesArea": "STW92",
+          "breakType": "BASE",
+          "duration": "00:04:11",
+          "optimize": true,
+          "externalBreakRef": "2484604-6"
+        },
+        {
+          "Id": "dc6ee56e-a80a-4b0f-a8c2-3a95d62ec626",
+          "scheduledDate": "2019-03-09T15:48:00",
+          "salesArea": "GTV93",
+          "breakType": "PREMIUM",
+          "duration": "00:03:22",
+          "optimize": true,
+          "externalBreakRef": "2484604-7"
+        }
+      ]
+    },
+    {
+      "Date": "2019-03-15",
+      "SalesArea": "STW92",
+      "Programmes": [
+        {
+          "Id": "2406FD94-E9AB-473F-B8A4-1DFDC058147C",
+          "PrgtNo": 1,
+          "SalesArea": "STW92",
+          "StartDateTime": "2019-03-15T09:00:00",
+          "Duration": "00:30:00",
+          "ExternalReference": "TOSH",
+          "ProgrammeName": "Programme 1",
+          "Description": "Programme 1 Desc",
+          "ProgrammeCategories": [
+            "SPORTS",
+            " CHILDREN",
+            " NEWS",
+            " OTHER"
+          ],
+          "Classification": "SPORTS",
+          "LiveBroadcast": false
+        },
+        {
+          "Id": "DFC1647B-4164-408D-95F8-AD6EFE48D3F9",
+          "PrgtNo": 2,
+          "SalesArea": "STW92",
+          "StartDateTime": "2019-03-15T09:30:00",
+          "Duration": "01:00:00",
+          "ExternalReference": "PAWPA",
+          "ProgrammeName": "Programme 2",
+          "Description": "Programme 2 Desc",
+          "ProgrammeCategories": [
+            "SPORTS",
+            " CHILDREN",
+            " NEWS",
+            " OTHER"
+          ],
+          "Classification": "OTHER",
+          "LiveBroadcast": true
+        },
+        {
+          "Id": "236CB096-10CD-454A-879F-30C84C82E4A2",
+          "PrgtNo": 3,
+          "SalesArea": "STW92",
+          "StartDateTime": "2019-03-15T10:30:00",
+          "Duration": "00:15:00",
+          "ExternalReference": "AUOPTD",
+          "ProgrammeName": "Programme 3",
+          "Description": "Programme 3 Desc",
+          "ProgrammeCategories": [
+            "SPORTS",
+            " CHILDREN",
+            " NEWS",
+            " OTHER"
+          ],
+          "Classification": "NEWS",
+          "LiveBroadcast": false
+        },
+        {
+          "Id": "E27239C1-77CB-4D95-8A36-AAC2DB900E4B",
+          "PrgtNo": 4,
+          "SalesArea": "STW92",
+          "StartDateTime": "2019-03-15T10:45:00",
+          "Duration": "01:35:00",
+          "ExternalReference": "AUOPTD",
+          "ProgrammeName": "Programme 4",
+          "Description": "Programme 4 Desc",
+          "ProgrammeCategories": [
+            "SPORTS",
+            " CHILDREN",
+            " NEWS",
+            " OTHER"
+          ],
+          "Classification": "CHILDREN",
+          "LiveBroadcast": false
+        },
+        {
+          "Id": "BC1C53B7-A5AC-442E-A0F1-C8FCC1882F6D",
+          "PrgtNo": 5,
+          "SalesArea": "QTQ91",
+          "StartDateTime": "2019-03-15T12:20:00",
+          "Duration": "00:30:00",
+          "ExternalReference": "TOSH",
+          "ProgrammeName": "Programme 5",
+          "Description": "Programme 5 Desc",
+          "ProgrammeCategories": [
+            "SPORTS",
+            " CHILDREN",
+            " NEWS",
+            " OTHER"
+          ],
+          "Classification": "SPORTS",
+          "LiveBroadcast": true
+        },
+        {
+          "Id": "66CF59B0-0718-4820-8B6D-07EA19FD3A21",
+          "PrgtNo": 6,
+          "SalesArea": "GTV93",
+          "StartDateTime": "2019-03-15T12:50:00",
+          "Duration": "02:05:00",
+          "ExternalReference": "PAWPA",
+          "ProgrammeName": "Programme 6",
+          "Description": "Programme 6 Desc",
+          "ProgrammeCategories": [
+            "SPORTS",
+            " CHILDREN",
+            " NEWS",
+            " OTHER"
+          ],
+          "Classification": "OTHER",
+          "LiveBroadcast": false
+        },
+        {
+          "Id": "0DF0D724-DD4D-4D9C-9915-CF6D04AD806E",
+          "PrgtNo": 7,
+          "SalesArea": "QTQ91",
+          "StartDateTime": "2019-03-15T14:55:00",
+          "Duration": "00:55:00",
+          "ExternalReference": "AUOPTD",
+          "ProgrammeName": "Programme 7",
+          "Description": "Programme 7 Desc",
+          "ProgrammeCategories": [
+            "SPORTS",
+            " CHILDREN",
+            " NEWS",
+            " OTHER"
+          ],
+          "Classification": "CHILDREN",
+          "LiveBroadcast": false
+        },
+        {
+          "Id": "DD9DCE64-8766-44D1-9C02-DDA562EE9816",
+          "PrgtNo": 8,
+          "SalesArea": "QTQ91",
+          "StartDateTime": "2019-03-15T15:50:00",
+          "Duration": "01:40:00",
+          "ExternalReference": "PAWPA",
+          "ProgrammeName": "Programme 8",
+          "Description": "Programme 8 Desc",
+          "ProgrammeCategories": [
+            "SPORTS",
+            " CHILDREN",
+            " NEWS",
+            " OTHER"
+          ],
+          "Classification": "SPORTS",
+          "LiveBroadcast": true
+        },
+        {
+          "Id": "2D1CDFA6-622D-455D-B02A-6550DE52629E",
+          "PrgtNo": 9,
+          "SalesArea": "STW92",
+          "StartDateTime": "2019-03-15T17:30:00",
+          "Duration": "02:00:00",
+          "ExternalReference": "TOSH",
+          "ProgrammeName": "Programme 9",
+          "Description": "Programme 9 Desc",
+          "ProgrammeCategories": [
+            "SPORTS",
+            " CHILDREN",
+            " NEWS",
+            " OTHER"
+          ],
+          "Classification": "SPORTS",
+          "LiveBroadcast": false
+        },
+        {
+          "Id": "444B3806-35F8-4A3F-9F90-AD1FDF7E5315",
+          "PrgtNo": 10,
+          "SalesArea": "STW92",
+          "StartDateTime": "2019-03-15T19:30:00",
+          "Duration": "00:45:00",
+          "ExternalReference": "PAWPA",
+          "ProgrammeName": "Programme 10",
+          "Description": "Programme 10 desc",
+          "ProgrammeCategories": [
+            "SPORTS",
+            " CHILDREN",
+            " NEWS",
+            " OTHER"
+          ],
+          "Classification": "NEWS",
+          "LiveBroadcast": true
+        }
+      ],
+      "Breaks": [
+        {
+          "Id": "04391997-aff5-40dd-a8d2-8b44cc33f881",
+          "scheduledDate": "2019-03-15T09:17:24",
+          "salesArea": "STW92",
+          "breakType": "PREMIUM",
+          "duration": "00:03:30",
+          "optimize": true,
+          "externalBreakRef": "2389876-1"
+        },
+        {
+          "Id": "5363f99b-0a98-4c2d-8da7-a4a5bfeeadd3",
+          "scheduledDate": "2019-03-15T11:04:43",
+          "salesArea": "STW92",
+          "breakType": "BASE",
+          "duration": "00:02:17",
+          "optimize": true,
+          "externalBreakRef": "2389876-2"
+        },
+        {
+          "Id": "812ce306-0045-4763-852d-23f00664e28f",
+          "scheduledDate": "2019-03-15T11:30:07",
+          "salesArea": "STW92",
+          "breakType": "PREMIUM",
+          "duration": "00:04:19",
+          "optimize": true,
+          "externalBreakRef": "2389876-3"
+        },
+        {
+          "Id": "7c86ad95-8b7e-4d75-9970-0f5edcb9cabb",
+          "scheduledDate": "2019-03-15T13:42:17",
+          "salesArea": "QTQ91",
+          "breakType": "PREMIUM",
+          "duration": "00:03:05",
+          "optimize": true,
+          "externalBreakRef": "2389876-4"
+        },
+        {
+          "Id": "456898d3-ac55-47b4-89a1-a1760c04e3b0",
+          "scheduledDate": "2019-03-15T14:33:31",
+          "salesArea": "GTV93",
+          "breakType": "PREMIUM",
+          "duration": "00:02:44",
+          "optimize": true,
+          "externalBreakRef": "2389876-5"
+        },
+        {
+          "Id": "4334716f-85cf-4ee9-beb3-9fa34d88197b",
+          "scheduledDate": "2019-03-15T16:04:00",
+          "salesArea": "QTQ91",
+          "breakType": "BASE",
+          "duration": "00:04:11",
+          "optimize": true,
+          "externalBreakRef": "2389876-6"
+        },
+        {
+          "Id": "34810350-9963-430f-a111-98fc325ea07f",
+          "scheduledDate": "2019-03-15T18:02:13",
+          "salesArea": "GTV93",
+          "breakType": "PREMIUM",
+          "duration": "00:03:22",
+          "optimize": true,
+          "externalBreakRef": "2389876-7"
+        }
+      ]
+    }
+  ]
+}

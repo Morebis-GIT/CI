@@ -1,0 +1,153 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{008E0B69-F3F6-4EDF-8664-C4B029F3D1BA}</ProjectGuid>
+    <OutputType>Exe</OutputType>
+    <RootNamespace>xggameplan.taskexecutor</RootNamespace>
+    <AssemblyName>xggameplan.taskexecutor</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+    <CodeAnalysisRuleSet>
+    </CodeAnalysisRuleSet>
+    <RunCodeAnalysis>false</RunCodeAnalysis>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+    <CodeAnalysisRuleSet>
+    </CodeAnalysisRuleSet>
+    <RunCodeAnalysis>false</RunCodeAnalysis>
+  </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject>xggameplan.taskexecutor.Program</StartupObject>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>Resources\favicon.ico</ApplicationIcon>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="DependencyInjection\OutputFilesProcessingModule.cs" />
+    <Compile Include="HubNotificationStub.cs" />
+    <Compile Include="DependencyInjection\MasterModule.cs" />
+    <Compile Include="DependencyInjection\TenantModule.cs" />
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\src\domain\ImagineCommunications.GamePlan.Domain.Generic\ImagineCommunications.GamePlan.Domain.Generic.csproj">
+      <Project>{E4E13375-E595-4DF3-81D4-C14314BACDFB}</Project>
+      <Name>ImagineCommunications.GamePlan.Domain.Generic</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\src\domain\ImagineCommunications.GamePlan.Domain\ImagineCommunications.GamePlan.Domain.csproj">
+      <Project>{3099d7dc-bc6e-4d9f-9668-c5798bd7f37c}</Project>
+      <Name>ImagineCommunications.GamePlan.Domain</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\src\infrastructure\ImagineCommunications.GamePlan.Persistence.RavenDb\ImagineCommunications.GamePlan.Persistence.RavenDb.csproj">
+      <Project>{196aeb89-0078-4f0d-9a86-354b0ae02625}</Project>
+      <Name>ImagineCommunications.GamePlan.Persistence.RavenDb</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\src\infrastructure\ImagineCommunications.GamePlan.Persistence.SqlServer\ImagineCommunications.GamePlan.Persistence.SqlServer.csproj">
+      <Project>{D11F0978-3E0E-4739-AB1F-5EAB7BC83DF2}</Project>
+      <Name>ImagineCommunications.GamePlan.Persistence.SqlServer</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\src\integration\ImagineCommunications.Gameplan.Synchronization.SqlServer\ImagineCommunications.Gameplan.Synchronization.SqlServer.csproj">
+      <Project>{6ac8ed8a-4e31-47c9-ba57-5abdda169f44}</Project>
+      <Name>ImagineCommunications.Gameplan.Synchronization.SqlServer</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\src\integration\ImagineCommunications.Gameplan.Synchronization\ImagineCommunications.Gameplan.Synchronization.csproj">
+      <Project>{92bc7817-af28-423b-bba0-a305dbc4133b}</Project>
+      <Name>ImagineCommunications.Gameplan.Synchronization</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\xgcore.auditevents\xgcore.auditevents.csproj">
+      <Project>{EA7D70F9-A8D0-4FBB-A3B9-A00C177F6904}</Project>
+      <Name>xgcore.auditevents</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\xggameplan.common\xggameplan.common.csproj">
+      <Project>{EFC37031-75BD-4C4B-B760-E1D3ABA0A734}</Project>
+      <Name>xggameplan.common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\xggameplan.core\xggameplan.core.csproj">
+      <Project>{24373e36-c0e4-4550-b1e9-b59ef7094c1f}</Project>
+      <Name>xggameplan.core</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\favicon.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Autofac">
+      <Version>5.2.0</Version>
+    </PackageReference>
+    <PackageReference Include="Autofac.WebApi2">
+      <Version>5.0.0</Version>
+    </PackageReference>
+    <PackageReference Include="AutoMapper">
+      <Version>9.0.0</Version>
+    </PackageReference>
+    <PackageReference Include="Microsoft.CodeAnalysis.FxCopAnalyzers">
+      <Version>2.9.8</Version>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+      <PrivateAssets>all</PrivateAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.Extensions.Configuration.Json">
+      <Version>3.1.10</Version>
+    </PackageReference>
+    <PackageReference Include="Microsoft.Extensions.Options">
+      <Version>3.1.10</Version>
+    </PackageReference>
+    <PackageReference Include="Newtonsoft.Json">
+      <Version>12.0.3</Version>
+    </PackageReference>
+    <PackageReference Include="NodaTime">
+      <Version>2.4.7</Version>
+    </PackageReference>
+    <PackageReference Include="RavenDB.Client">
+      <Version>3.5.7</Version>
+    </PackageReference>
+    <PackageReference Include="RavenDB.Client.NodaTime">
+      <Version>3.5.0</Version>
+    </PackageReference>
+    <PackageReference Include="System.Threading.Tasks.Extensions">
+      <Version>4.5.4</Version>
+    </PackageReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="System.Drawing" />
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

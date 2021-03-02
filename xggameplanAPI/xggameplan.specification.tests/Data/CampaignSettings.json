@@ -1,0 +1,64 @@
+{
+	"CampaignSettings": [
+		{
+			"Id": 1,
+			"CampaignExternalId": "Campaign1",
+			"InefficientSpotRemoval": true,
+			"IncludeRightSizer": "CampaignLevel",
+			"PassPriorities": [
+				{
+					"PassId": 2179,
+					"Priority": 1
+				},
+				{
+					"PassId": 2180,
+					"Priority": 20
+				},
+				{
+					"PassId": 2181,
+					"Priority": 300
+				}
+			]
+		},
+		{
+			"Id": 2,
+			"CampaignExternalId": "Campaign2",
+			"InefficientSpotRemoval": true,
+			"IncludeRightSizer": "DetailLevel",
+			"PassPriorities": [
+				{
+					"PassId": 2179,
+					"Priority": 10
+				},
+				{
+					"PassId": 2180,
+					"Priority": 200
+				},
+				{
+					"PassId": 2181,
+					"Priority": 30
+				}
+			]
+		},
+		{
+			"Id": 3,
+			"CampaignExternalId": "Campaign3",
+			"InefficientSpotRemoval": false,
+			"IncludeRightSizer": "DetailLevel",
+			"PassPriorities": [
+				{
+					"PassId": 2179,
+					"Priority": 3
+				},
+				{
+					"PassId": 2180,
+					"Priority": 400
+				},
+				{
+					"PassId": 2181,
+					"Priority": 50
+				}
+			]
+		}
+	]
+}

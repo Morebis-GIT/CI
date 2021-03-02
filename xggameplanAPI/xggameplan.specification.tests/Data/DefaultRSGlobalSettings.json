@@ -1,0 +1,8 @@
+﻿{
+  "RSGlobalSettings": [
+    {
+      "Id": 1,
+      "ExcludeSpotsBookedByProgrammeRequirements": "false"
+    }
+  ]
+}

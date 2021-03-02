@@ -1,0 +1,283 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{679FD5F4-A607-4842-BE54-99268207E95D}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>xggameplan.tests</RootNamespace>
+    <AssemblyName>xggameplan.tests</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <LangVersion>latest</LangVersion>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <RunCodeAnalysis>false</RunCodeAnalysis>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <LangVersion>latest</LangVersion>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <RunCodeAnalysis>false</RunCodeAnalysis>
+  </PropertyGroup>
+  <PropertyGroup>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="ControllerTests\AnalysisGroupsControllerTests.cs" />
+    <Compile Include="ControllerTests\BreakController\BreaksControllerTests.DeleteByDateRange.cs" />
+    <Compile Include="ControllerTests\BreakController\BreaksControllerTests.BreakTypeTests.cs" />
+    <Compile Include="ControllerTests\BreakController\DeleteByRangeTestData.cs" />
+    <Compile Include="ControllerTests\FeatureFlagsControllerTests.cs" />
+    <Compile Include="ControllerTests\BRSTemplateControllerTests.cs" />
+    <Compile Include="ControllerTests\AutopilotSettingsControllerTests.cs" />
+    <Compile Include="ControllerTests\CampaignsController\CampaignsControllerTests.cs" />
+    <Compile Include="ControllerTests\CampaignsController\CampaignControllerGetFlattenTests.cs" />
+    <Compile Include="ControllerTests\CampaignsController\CampaignsControllerDeleteByExternalRefsShould.cs" />
+    <Compile Include="ControllerTests\CampaignsController\CampaignsControllerDeleteByIdShould.cs" />
+    <Compile Include="ControllerTests\CampaignsController\CampaignsControllerTestBase.cs" />
+    <Compile Include="ControllerTests\BreakController\BreaksControllerTests.cs" />
+    <Compile Include="ControllerTests\CampaignsController\CampaignsControllerUpdateTests.cs" />
+    <Compile Include="ControllerTests\FlexibilityLevelsControllerTests.cs" />
+    <Compile Include="ControllerTests\FunctionalAreaControllerTests.cs" />
+    <Compile Include="ControllerTests\LibrarySalesAreaPassPrioritiesController\LibrarySalesAreaPassPrioritiesControllerBaseTests.cs" />
+    <Compile Include="ControllerTests\LibrarySalesAreaPassPrioritiesController\LibrarySalesAreaPassPrioritiesControllerDefaultTests.cs" />
+    <Compile Include="ControllerTests\LibrarySalesAreaPassPrioritiesController\LibrarySalesAreaPassPrioritiesControllerDeleteTests.cs" />
+    <Compile Include="ControllerTests\LibrarySalesAreaPassPrioritiesController\LibrarySalesAreaPassPrioritiesControllerTests.cs" />
+    <Compile Include="ControllerTests\DeliveryCappingGroupControllerTests.cs" />
+    <Compile Include="ControllerTests\RuleTypesControllerTests.cs" />
+    <Compile Include="ControllerTests\PassesControllerTests.cs" />
+    <Compile Include="ControllerTests\ProductsControllerTests.cs" />
+    <Compile Include="ControllerTests\RestrictionsControllerTests.cs" />
+    <Compile Include="ControllerTests\ScenarioControllerTests.cs" />
+    <Compile Include="ControllerTests\ScenarioResultsController\ScenarioResultsControllerTests.cs" />
+    <Compile Include="ControllerTests\SponsorshipController\SponsorshipControllerDeleteTests.cs" />
+    <Compile Include="ControllerTests\SponsorshipController\SponsorshipControllerPostTests.cs" />
+    <Compile Include="ControllerTests\SponsorshipController\SponsorshipControllerTestBase.cs" />
+    <Compile Include="ControllerTests\SponsorshipController\SponsorshipControllerUpdateTests.cs" />
+    <Compile Include="ControllerTests\SpotsControllerTests.cs" />
+    <Compile Include="HubTests\CompletedRunNotificationTest.cs" />
+    <Compile Include="HubTests\ScenarioNotificationTest.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ControllerTests\RunsControllerTests.cs" />
+    <Compile Include="ReportTests\Excel\ExcelReportCellTests.cs" />
+    <Compile Include="ReportTests\Excel\ExcelReportGridTests.cs" />
+    <Compile Include="ReportTests\Excel\ExcelReportRowTests.cs" />
+    <Compile Include="ReportTests\Excel\ExcelReportRunModelTests.cs" />
+    <Compile Include="ReportTests\Excel\GamePlanReportStylesTests.cs" />
+    <Compile Include="ReportTests\Excel\RunReportDataAdapterTests.cs" />
+    <Compile Include="ControllerTests\RunTypeControllerTests.cs" />
+    <Compile Include="ValidationTests\Autopilot\AutopilotSettingsModelValidationShould.cs" />
+    <Compile Include="ValidationTests\Autopilot\AutopilotEngageModelValidationShould.cs" />
+    <Compile Include="ValidationTests\DeliveryCappingGroup\DeliveryCappingGroupValidationShould.cs" />
+    <Compile Include="ValidationTests\LibrarySalesAreaPassPriorities\CreateLibrarySalesAreaPassPriorityModelValidationShould.cs" />
+    <Compile Include="ValidationTests\LibrarySalesAreaPassPriorities\CreateLibrarySalesAreaPassPriorityModelValidatorShould.cs" />
+    <Compile Include="ValidationTests\LibrarySalesAreaPassPriorities\LibrarySalesAreaPassPriorityModelValidationTestBase.cs" />
+    <Compile Include="ValidationTests\LibrarySalesAreaPassPriorities\LibrarySalesAreaPassPriorityModelValidatorTestBase.cs" />
+    <Compile Include="ValidationTests\Passes\BreakExclusionsValidationsTests.cs" />
+    <Compile Include="ValidationTests\Products\CreateProductValidationShould.cs" />
+    <Compile Include="ValidationTests\Products\CreateProductValidatorShould.cs" />
+    <Compile Include="ValidationTests\LibrarySalesAreaPassPriorities\UpdateLibrarySalesAreaPassPriorityModelValidationShould.cs" />
+    <Compile Include="ValidationTests\LibrarySalesAreaPassPriorities\UpdateLibrarySalesAreaPassPriorityModelValidatorShould.cs" />
+    <Compile Include="ValidationTests\Runs\Data\RunsValidationsDummyData.cs" />
+    <Compile Include="ValidationTests\Runs\Data\RunsValidationsTestData.cs" />
+    <Compile Include="ValidationTests\Runs\RunsValidationsTests.cs" />
+    <Compile Include="ValidationTests\Runs\RunsValidatorTests.cs" />
+    <Compile Include="ValidationTests\RunTypes\Data\RunTypesValidationsTestData.cs" />
+    <Compile Include="ValidationTests\RunTypes\RunTypesValidationsTests.cs" />
+    <Compile Include="ValidationTests\Sponsorships\AdvertiserExclusivityModelBaseValidationShould.cs" />
+    <Compile Include="ValidationTests\Sponsorships\ClashExclusivityModelBaseValidationShould.cs" />
+    <Compile Include="ValidationTests\Sponsorships\CreateSponsoredItemModelValidationShould.cs" />
+    <Compile Include="ValidationTests\Sponsorships\CreateSponsorshipsModelValidationShould.cs" />
+    <Compile Include="ValidationTests\Sponsorships\CreateSponsorshipsModelValidatorShould.cs" />
+    <Compile Include="ValidationTests\Sponsorships\SponsoredItemModelBaseValidationShould.cs" />
+    <Compile Include="ValidationTests\Sponsorships\CreateSponsorshipItemModelValidationShould.cs" />
+    <Compile Include="ValidationTests\Sponsorships\SponsorshipItemModelBaseValidationShould.cs" />
+    <Compile Include="ValidationTests\Sponsorships\CreateAdvertiserExclusivityModelValidationShould.cs" />
+    <Compile Include="ValidationTests\Sponsorships\CreateClashExclusivityModelValidationShould.cs" />
+    <Compile Include="ValidationTests\Sponsorships\CreateSponsorshipModelValidationShould.cs" />
+    <Compile Include="ValidationTests\Sponsorships\CreateSponsorshipModelValidatorShould.cs" />
+    <Compile Include="ValidationTests\Sponsorships\ExclusivityModelBaseValidationShould.cs" />
+    <Compile Include="ValidationTests\Sponsorships\SponsoredDayPartModelValidationShould.cs" />
+    <Compile Include="ValidationTests\Sponsorships\SponsorshipModelBaseValidationShould.cs" />
+    <Compile Include="ValidationTests\Sponsorships\SponsorshipModelValidationTestBase.cs" />
+    <Compile Include="ValidationTests\Sponsorships\UpdateSponsorshipModelValidationShould.cs" />
+    <Compile Include="ValidationTests\Sponsorships\UpdateSponsorshipsModelValidatorShould.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ImagineCommunications.GamePlan.ReportSystem\ImagineCommunications.GamePlan.ReportSystem.csproj">
+      <Project>{370238fb-d8b4-498e-aaa3-a2e5a7864761}</Project>
+      <Name>ImagineCommunications.GamePlan.ReportSystem</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\src\domain\ImagineCommunications.GamePlan.Domain.Generic\ImagineCommunications.GamePlan.Domain.Generic.csproj">
+      <Project>{e4e13375-e595-4df3-81d4-c14314bacdfb}</Project>
+      <Name>ImagineCommunications.GamePlan.Domain.Generic</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\src\domain\ImagineCommunications.GamePlan.Domain\ImagineCommunications.GamePlan.Domain.csproj">
+      <Project>{3099d7dc-bc6e-4d9f-9668-c5798bd7f37c}</Project>
+      <Name>ImagineCommunications.GamePlan.Domain</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\src\infrastructure\ImagineCommunications.GamePlan.Persistence.RavenDb.Core\ImagineCommunications.GamePlan.Persistence.RavenDb.Core.csproj">
+      <Project>{75E54B40-26AA-4A07-9E6F-4CE9BA0AB753}</Project>
+      <Name>ImagineCommunications.GamePlan.Persistence.RavenDb.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\src\integration\ImagineCommunications.Gameplan.Synchronization\ImagineCommunications.Gameplan.Synchronization.csproj">
+      <Project>{92bc7817-af28-423b-bba0-a305dbc4133b}</Project>
+      <Name>ImagineCommunications.Gameplan.Synchronization</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\test\ImagineCommunications.GamePlan.CommonTestsHelpers\ImagineCommunications.GamePlan.CommonTestsHelpers.csproj">
+      <Project>{0C9C1259-6948-4621-A532-FBCCC56AEC5D}</Project>
+      <Name>ImagineCommunications.GamePlan.CommonTestsHelpers</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\xgcore.auditevents\xgcore.auditevents.csproj">
+      <Project>{EA7D70F9-A8D0-4FBB-A3B9-A00C177F6904}</Project>
+      <Name>xgcore.auditevents</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\xggameplan.cloudaccess\xggameplan.cloudaccess.csproj">
+      <Project>{1A6ED508-D9A1-42F8-8479-573DE3809266}</Project>
+      <Name>xggameplan.cloudaccess</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\xggameplan.common\xggameplan.common.csproj">
+      <Project>{EFC37031-75BD-4C4B-B760-E1D3ABA0A734}</Project>
+      <Name>xggameplan.common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\xggameplan.core\xggameplan.core.csproj">
+      <Project>{24373E36-C0E4-4550-B1E9-B59EF7094C1F}</Project>
+      <Name>xggameplan.core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\xggameplan.model\xggameplan.model.csproj">
+      <Project>{219A7AA0-38B0-44C5-B6C0-E77374EE9BBC}</Project>
+      <Name>xggameplan.model</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\xggameplan\xggameplan.csproj">
+      <Project>{60A6A3D4-CB6D-40AC-A14F-D28F82B0DE64}</Project>
+      <Name>xggameplan</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+    <None Include="ReportTests\Excel\Data\demographics.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="ReportTests\Excel\Data\expectedReport.xlsx" />
+    <None Include="ReportTests\Excel\Data\runModel.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="ReportTests\Excel\Data\Scenario1_BreakExclusions.csv">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="ReportTests\Excel\Data\Scenario1_General.csv">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="ReportTests\Excel\Data\Scenario1_ProgrammeRepetitions.csv">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="ReportTests\Excel\Data\Scenario1_Rules.csv">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="ReportTests\Excel\Data\Scenario1_SalesAreaPassPriorities.csv">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="ReportTests\Excel\Data\Scenario1_ScenarioDetails.csv">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="ReportTests\Excel\Data\Scenario1_SlottingLimits.csv">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="ReportTests\Excel\Data\Scenario1_Tolerance.csv">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="ReportTests\Excel\Data\Scenario1_Weighting.csv">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{82A7F48D-3B50-4B1E-B82E-3ADA8210C358}" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="AutoFixture">
+      <Version>4.11.0</Version>
+    </PackageReference>
+    <PackageReference Include="AutoMapper">
+      <Version>9.0.0</Version>
+    </PackageReference>
+    <PackageReference Include="Castle.Core">
+      <Version>4.3.1</Version>
+    </PackageReference>
+    <PackageReference Include="Fare">
+      <Version>2.1.1</Version>
+    </PackageReference>
+    <PackageReference Include="FluentAssertions">
+      <Version>5.10.3</Version>
+    </PackageReference>
+    <PackageReference Include="FluentValidation">
+      <Version>7.2.1</Version>
+    </PackageReference>
+    <PackageReference Include="Microsoft.AspNet.SignalR.Core">
+      <Version>2.4.1</Version>
+    </PackageReference>
+    <PackageReference Include="Microsoft.AspNet.WebApi.Client">
+      <Version>5.2.7</Version>
+    </PackageReference>
+    <PackageReference Include="Microsoft.AspNet.WebApi.Core">
+      <Version>5.2.3</Version>
+    </PackageReference>
+    <PackageReference Include="Microsoft.CodeAnalysis.FxCopAnalyzers">
+      <Version>2.9.8</Version>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+      <PrivateAssets>all</PrivateAssets>
+    </PackageReference>
+    <PackageReference Include="Moq">
+      <Version>4.10.1</Version>
+    </PackageReference>
+    <PackageReference Include="Newtonsoft.Json">
+      <Version>12.0.3</Version>
+    </PackageReference>
+    <PackageReference Include="NodaTime">
+      <Version>2.4.7</Version>
+    </PackageReference>
+    <PackageReference Include="NUnit">
+      <Version>3.12.0</Version>
+    </PackageReference>
+    <PackageReference Include="NUnit3TestAdapter">
+      <Version>3.16.1</Version>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+      <PrivateAssets>all</PrivateAssets>
+    </PackageReference>
+    <PackageReference Include="System.Drawing.Common">
+      <Version>4.6.1</Version>
+    </PackageReference>
+    <PackageReference Include="System.Memory">
+      <Version>4.5.4</Version>
+    </PackageReference>
+    <PackageReference Include="System.Numerics.Vectors">
+      <Version>4.5.0</Version>
+    </PackageReference>
+    <PackageReference Include="System.Runtime.CompilerServices.Unsafe">
+      <Version>4.7.1</Version>
+    </PackageReference>
+    <PackageReference Include="System.Threading.Tasks.Extensions">
+      <Version>4.5.4</Version>
+    </PackageReference>
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

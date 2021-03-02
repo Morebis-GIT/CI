@@ -1,0 +1,22 @@
+{
+	"RuleTypes": [
+			{
+				"Id": 1,
+				"Name": "RT 1-1",
+				"IsCustom": "True",
+				"AllowedForAutopilot": "True"
+			},
+			{
+				"Id": 2,
+				"Name": "RT 2-1",
+				"IsCustom": "False",
+				"AllowedForAutopilot": "False"
+			},
+			{
+				"Id": 3,
+				"Name": "RT 3-1",
+				"IsCustom": "True",
+				"AllowedForAutopilot": "True"
+			}
+	]
+}

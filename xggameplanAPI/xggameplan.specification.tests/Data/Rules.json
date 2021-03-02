@@ -1,0 +1,25 @@
+{
+	"Rules": [
+			{
+				"Id": 1,
+				"RuleTypeId": 1,
+				"InternalType": "internal",
+				"Description": "R 1-1",
+				"Type": "rules"
+			},
+			{
+				"Id": 2,
+				"RuleTypeId": 1,
+				"InternalType": "internal",
+				"Description": "R 2-1",
+				"Type": "rules"
+			},
+			{
+				"Id": 3,
+				"RuleTypeId": 1,
+				"InternalType": "internal",
+				"Description": "R 3-1",
+				"Type": "rules"
+			}
+	]
+}

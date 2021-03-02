@@ -1,0 +1,26 @@
+Sales Area Pass Priorities,Value
+Pass#,1,2,3
+Pass Name,s5-p1,s5-p2,s5-p3
+Days Of The Week,M      ,SMHFA  ,SMTWHFA
+Start Date,October 01, 2019 - 12:00:00,October 09, 2019,October 01, 2019 - 12:00:00
+End Date,October 10, 2019 - 12:00:00,October 24, 2019,October 31, 2019 - 12:00:00
+GTV91,Priority2,Priority1,Priority1
+GTV92,Priority3,Priority2,Priority2
+GTV93,Exclude,Priority2,Priority3
+GTV94,Priority1,Priority3,Priority3
+NWS91,Priority1,Priority3,Priority1
+NWS92,Priority1,Exclude,Priority3
+NWS94,Priority3,Priority3,Priority3
+QTQ92,Priority3,Priority1,Priority3
+QTQ93,Priority3,Priority1,Priority3
+QTQ94,Priority3,Priority3,Priority3
+STW91,Priority3,Priority2,Priority3
+STW92,Priority3,Exclude,Priority3
+STW93,Priority3,Priority3,Priority3
+STW94,Priority3,Priority2,Priority2
+TCN91,Priority3,Priority3,Priority3
+TCN92,Priority3,Priority3,Priority3
+TCN93,Priority3,Priority2,Priority3
+TCN94,Priority3,Priority1,Priority3
+QTQ91,Priority3,Priority2,Priority3
+NWS93,Priority3,Priority2,Priority3

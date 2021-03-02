@@ -1,0 +1,111 @@
+{
+  "ScenarioCampaignResults": [
+    {
+      "Id": "5A9C3130-A885-4F7B-AA27-E4DD6EDC0AA9",
+      "Items": [
+        {
+          "CampaignExternalId": "Campaign1",
+          "CampaignTargetRatings": 1,
+          "CampaignStartRatings": 1,
+          "CampaignFinalRatings": 1,
+          "SalesAreaName": "SA-1",
+          "SalesAreaGroupTargetRatings": 1,
+          "SalesAreaGroupStartRatings": 1,
+          "SalesAreaGroupFinalRatings": 1,
+          "SpotLength": 1,
+          "SpotLengthTargetRatings": 1,
+          "SpotLengthStartRatings": 1,
+          "SpotLengthFinalRatings": 1,
+          "StrikeWeightStartDate": 1,
+          "StrikeWeightEndDate": 1,
+          "StrikeWeightTargetRatings": 1,
+          "StrikeWeightStartRatings": 1,
+          "StrikeWeightFinalRatings": 1,
+          "DaypartTimeAndDays": "1110011",
+          "DaypartTargetRatings": 1,
+          "DaypartStartRatings": 1,
+          "DaypartFinalRatings": 1
+        }        
+      ]
+    },
+    {
+      "Id": "9F6A7794-30B1-4325-879F-B774B61EA8FA",
+      "Items": [
+        {
+          "CampaignExternalId": "Campaign2",
+          "CampaignTargetRatings": 2,
+          "CampaignStartRatings": 2,
+          "CampaignFinalRatings": 2,
+          "SalesAreaName": "SA-2",
+          "SalesAreaGroupTargetRatings": 2,
+          "SalesAreaGroupStartRatings": 2,
+          "SalesAreaGroupFinalRatings": 2,
+          "SpotLength": 2,
+          "SpotLengthTargetRatings": 2,
+          "SpotLengthStartRatings": 2,
+          "SpotLengthFinalRatings": 2,
+          "StrikeWeightStartDate": 2,
+          "StrikeWeightEndDate": 2,
+          "StrikeWeightTargetRatings": 2,
+          "StrikeWeightStartRatings": 2,
+          "StrikeWeightFinalRatings": 2,
+          "DaypartTimeAndDays": "1111100",
+          "DaypartTargetRatings": 2,
+          "DaypartStartRatings": 2,
+          "DaypartFinalRatings": 2
+        },
+        {
+          "CampaignExternalId": "Campaign3",
+          "CampaignTargetRatings": 3,
+          "CampaignStartRatings": 3,
+          "CampaignFinalRatings": 3,
+          "SalesAreaName": "SA-3",
+          "SalesAreaGroupTargetRatings": 3,
+          "SalesAreaGroupStartRatings": 3,
+          "SalesAreaGroupFinalRatings": 3,
+          "SpotLength": 3,
+          "SpotLengthTargetRatings": 3,
+          "SpotLengthStartRatings": 3,
+          "SpotLengthFinalRatings": 3,
+          "StrikeWeightStartDate": 3,
+          "StrikeWeightEndDate": 3,
+          "StrikeWeightTargetRatings": 3,
+          "StrikeWeightStartRatings": 3,
+          "StrikeWeightFinalRatings": 3,
+          "DaypartTimeAndDays": "0000011",
+          "DaypartTargetRatings": 3,
+          "DaypartStartRatings": 3,
+          "DaypartFinalRatings": 3
+        }
+      ]
+    },
+    {
+      "Id": "6D5304D7-5848-4577-8F31-65305E8DA0BD",
+      "Items": [
+        {
+          "CampaignExternalId": "Campaign4",
+          "CampaignTargetRatings": 4,
+          "CampaignStartRatings": 4,
+          "CampaignFinalRatings": 4,
+          "SalesAreaName": "SA-4",
+          "SalesAreaGroupTargetRatings": 4,
+          "SalesAreaGroupStartRatings": 4,
+          "SalesAreaGroupFinalRatings": 4,
+          "SpotLength": 4,
+          "SpotLengthTargetRatings": 4,
+          "SpotLengthStartRatings": 4,
+          "SpotLengthFinalRatings": 4,
+          "StrikeWeightStartDate": 4,
+          "StrikeWeightEndDate": 4,
+          "StrikeWeightTargetRatings": 4,
+          "StrikeWeightStartRatings": 4,
+          "StrikeWeightFinalRatings": 4,
+          "DaypartTimeAndDays": "1010101",
+          "DaypartTargetRatings": 4,
+          "DaypartStartRatings": 4,
+          "DaypartFinalRatings": 4
+        }
+      ]
+    }
+  ]
+}

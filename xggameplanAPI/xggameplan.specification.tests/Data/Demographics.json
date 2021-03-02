@@ -1,0 +1,36 @@
+{
+  "Demographics": [
+    {
+      "Id": 1,
+      "ExternalRef": "656",
+      "Name": "GS 25-54",
+      "ShortName": "S25-54",
+      "DisplayOrder": 197,
+      "Gameplan": "True"
+    },
+    {
+      "Id": 2,
+      "ExternalRef": "657",
+      "Name": "GS WITH CH 0-12",
+      "ShortName": "SC0-12",
+      "DisplayOrder": 198,
+      "Gameplan": "True"
+    },
+    {
+      "Id": 3,
+      "ExternalRef": "637",
+      "Name": "GS 18+",
+      "ShortName": "GS 18+",
+      "DisplayOrder": 180,
+      "Gameplan": "False"
+    },
+    {
+      "Id": 4,
+      "ExternalRef": "638",
+      "Name": "GS FEMALE 25-49",
+      "ShortName": "SF2549",
+      "DisplayOrder": 181,
+      "Gameplan": "False"
+    }
+  ]
+}

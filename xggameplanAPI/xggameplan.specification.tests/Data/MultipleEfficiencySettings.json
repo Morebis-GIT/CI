@@ -1,0 +1,15 @@
+{
+  "EfficiencySettings": [
+    {
+      "Id": "f3f121a2-b479-4994-acd0-70356d3799a4",
+      "EfficiencyCalculationPeriod": "RunPeriod",
+      "PersistEfficiency": "AllRun"
+    },
+    {
+      "Id": "8148280c-dd21-4ca7-8a9f-43ca374c4a4f",
+      "EfficiencyCalculationPeriod": "NumberOfWeeks",
+      "DefaultNumberOfWeeks": 1,
+      "PersistEfficiency": "NightRun"
+    }
+  ]
+}

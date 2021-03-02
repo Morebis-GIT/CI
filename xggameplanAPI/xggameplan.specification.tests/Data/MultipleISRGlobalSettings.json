@@ -1,0 +1,12 @@
+﻿{
+  "ISRGlobalSettings": [
+    {
+      "Id": 1,
+      "ExcludeSpotsBookedByProgrammeRequirements": "false"
+    },
+    {
+      "Id": 2,
+      "ExcludeSpotsBookedByProgrammeRequirements": "true"
+    }
+  ]
+}

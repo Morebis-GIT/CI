@@ -1,0 +1,55 @@
+{
+  "SalesAreas": [
+    {
+      "Id": "4E46009C-82DF-4E2A-98BE-3FADB9163245",
+      "ChannelGroup": [
+        "string"
+      ],
+      "PublicHolidays": [],
+      "SchoolHolidays": [],
+      "CustomId": 21,
+      "Name": "SA1",
+      "ShortName": "SA1",
+      "CurrencyCode": "string",
+      "BaseDemographic1": "5",
+      "BaseDemographic2": "12",
+      "UniverseId": 0,
+      "StartOffset": "02:00:00",
+      "DayDuration": "02:00:00"
+    },
+    {
+      "Id": "47D8B9EA-95D2-4310-9212-0F88755CA89D",
+      "ChannelGroup": [
+        "string"
+      ],
+      "PublicHolidays": [],
+      "SchoolHolidays": [],
+      "CustomId": 22,
+      "Name": "SA2",
+      "ShortName": "SA2",
+      "CurrencyCode": "string",
+      "BaseDemographic1": "5",
+      "BaseDemographic2": "12",
+      "UniverseId": 0,
+      "StartOffset": "02:00:00",
+      "DayDuration": "02:00:00"
+    },
+    {
+      "Id": "1FA2BFAD-2706-4BF9-9B97-82AF907E96A6",
+      "ChannelGroup": [
+        "string"
+      ],
+      "PublicHolidays": [],
+      "SchoolHolidays": [],
+      "CustomId": 23,
+      "Name": "SA3",
+      "ShortName": "SA3",
+      "CurrencyCode": "string",
+      "BaseDemographic1": "5",
+      "BaseDemographic2": "12",
+      "UniverseId": 0,
+      "StartOffset": "02:00:00",
+      "DayDuration": "02:00:00"
+    }
+  ]
+}

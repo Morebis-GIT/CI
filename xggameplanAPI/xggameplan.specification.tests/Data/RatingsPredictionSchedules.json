@@ -1,0 +1,130 @@
+{
+  "RatingsPredictionSchedules": [
+    {
+      "SalesArea": "GTV93",
+      "ScheduleDay": "2019-10-23T00:00:00.0000000Z",
+      "Ratings": [
+        {
+          "Time": "2019-10-23T06:45:00.0000000Z",
+          "Demographic": "2",
+          "NoOfRatings": 495
+        },
+        {
+          "Time": "2019-10-23T06:45:00.0000000Z",
+          "Demographic": "3",
+          "NoOfRatings": 300
+        },
+        {
+          "Time": "2019-10-23T06:45:00.0000000Z",
+          "Demographic": "4",
+          "NoOfRatings": 58
+        },
+        {
+          "Time": "2019-10-23T07:45:00.0000000Z",
+          "Demographic": "2",
+          "NoOfRatings": 154
+        },
+        {
+          "Time": "2019-10-23T07:45:00.0000000Z",
+          "Demographic": "3",
+          "NoOfRatings": 58
+        },
+        {
+          "Time": "2019-10-23T07:45:00.0000000Z",
+          "Demographic": "4",
+          "NoOfRatings": 4
+        },
+        {
+          "Time": "2019-10-23T08:45:00.0000000Z",
+          "Demographic": "2",
+          "NoOfRatings": 91
+        },
+        {
+          "Time": "2019-10-23T08:45:00.0000000Z",
+          "Demographic": "3",
+          "NoOfRatings": 266
+        },
+        {
+          "Time": "2019-10-23T08:45:00.0000000Z",
+          "Demographic": "4",
+          "NoOfRatings": 483
+        },
+        {
+          "Time": "2019-10-23T09:45:00.0000000Z",
+          "Demographic": "2",
+          "NoOfRatings": 195
+        },
+        {
+          "Time": "2019-10-23T09:45:00.0000000Z",
+          "Demographic": "3",
+          "NoOfRatings": 58
+        },
+        {
+          "Time": "2019-10-23T09:45:00.0000000Z",
+          "Demographic": "4",
+          "NoOfRatings": 483
+        },
+        {
+          "Time": "2019-10-23T10:45:00.0000000Z",
+          "Demographic": "2",
+          "NoOfRatings": 704
+        },
+        {
+          "Time": "2019-10-23T10:45:00.0000000Z",
+          "Demographic": "3",
+          "NoOfRatings": 358
+        },
+        {
+          "Time": "2019-10-23T10:45:00.0000000Z",
+          "Demographic": "4",
+          "NoOfRatings": 62
+        },
+        {
+          "Time": "2019-10-23T11:45:00.0000000Z",
+          "Demographic": "2",
+          "NoOfRatings": 108
+        },
+        {
+          "Time": "2019-10-23T11:45:00.0000000Z",
+          "Demographic": "3",
+          "NoOfRatings": 0
+        },
+        {
+          "Time": "2019-10-23T11:45:00.0000000Z",
+          "Demographic": "4",
+          "NoOfRatings": 0
+        },
+        {
+          "Time": "2019-10-23T12:45:00.0000000Z",
+          "Demographic": "2",
+          "NoOfRatings": 0
+        },
+        {
+          "Time": "2019-10-23T12:45:00.0000000Z",
+          "Demographic": "3",
+          "NoOfRatings": 0
+        },
+        {
+          "Time": "2019-10-23T12:45:00.0000000Z",
+          "Demographic": "4",
+          "NoOfRatings": 29
+        },
+        {
+          "Time": "2019-10-23T13:45:00.0000000Z",
+          "Demographic": "2",
+          "NoOfRatings": 425
+        },
+        {
+          "Time": "2019-10-23T13:45:00.0000000Z",
+          "Demographic": "3",
+          "NoOfRatings": 483
+        },
+        {
+          "Time": "2019-10-23T13:45:00.0000000Z",
+          "Demographic": "4",
+          "NoOfRatings": 358
+        }
+      ]
+    }
+  ]
+}

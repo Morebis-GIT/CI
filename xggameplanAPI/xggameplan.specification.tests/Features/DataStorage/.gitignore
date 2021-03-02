@@ -1,0 +1,2 @@
+# Ignore SpecFlow code behind classes in this project only
+*.feature.cs

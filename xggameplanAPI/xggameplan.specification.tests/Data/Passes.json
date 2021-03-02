@@ -1,0 +1,54 @@
+{
+  "Scenarios": [
+    {
+      "Id": "92D76218-FA28-4B0A-A466-06C5E570033F",
+      "Name": "Scenario 1",
+      "CustomId": 7,
+      "DateCreated": "2019-01-15T10:31:17",
+      "DateModified": null,
+      "Passes": [
+        {
+          "Id": 1
+        },
+        {
+          "Id": 2
+        }
+      ]
+    },
+    {
+      "Id": "C8A125AD-0467-4F08-A53B-9EAD28BA529B",
+      "Name": "Scenario 2",
+      "CustomId": 9,
+      "DateCreated": "2019-01-18T14:47:23",
+      "DateModified": "2019-03-15T10:19:56",
+      "Passes": [
+        {
+          "Id": 3
+        }
+      ]
+    }
+  ],
+  "Passes": [
+    {
+      "Id": 1,
+      "Name": "Pass 1",
+      "DateCreated": "2019-01-20T08:00:00",
+      "DateModified": null,
+      "IsLibraried": true
+    },
+    {
+      "Id": 2,
+      "Name": "Pass 2",
+      "DateCreated": "2019-02-08T16:22:13",
+      "DateModified": "2019-02-12T11:43:37",
+      "IsLibraried": false
+    },
+    {
+      "Id": 3,
+      "Name": "Pass 3",
+      "DateCreated": "2019-03-14 09:17:51",
+      "DateModified": null,
+      "IsLibraried": true
+    }
+  ] 
+}

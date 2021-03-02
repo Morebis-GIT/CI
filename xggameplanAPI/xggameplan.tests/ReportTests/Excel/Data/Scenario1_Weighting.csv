@@ -1,0 +1,12 @@
+Weightings,Value
+Pass#,1,2,3
+Pass Name,s5-p1,s5-p2,s5-p3
+Campaign,1,31,31
+Campaign Sales Area,0,230,30
+Spot Length,10,132,310
+Daypart,10,240,410
+Strike Weight,0,10,50
+Fit to Requirement,0,14,60
+Fit to Spot Lengt,0,54,70
+Centre/End,0,40,80
+Booking Position,0,20,90

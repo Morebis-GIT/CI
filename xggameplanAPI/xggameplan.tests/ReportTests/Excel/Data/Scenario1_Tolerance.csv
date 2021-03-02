@@ -1,0 +1,18 @@
+Tolerance,Value
+Pass#,1,2,3
+Pass Name,s5-p1,s5-p2,s5-p3
+Under/Over/Force/Ignore,U,O,F,I,U,O,F,I,U,O,F,I
+Campaign,0,10,Over,YES,9,8,Over,YES,1,2,Over,YES
+Booking Position,0,10,Over,,7,6,Over,,3,4,Over,
+Centre/End,0,0,None,,5,4,None,,5,6,None,
+Sales Area,0,10,Under,,3,2,Over,,7,8,Over,
+Spot Length,0,10,Over,,1,0,Over,,9,10,Over,
+Daypart,0,10,Over,,0,10,Over,,11,12,Over,
+Strike Weight,0,10,Over,,60,50,Over,,13,14,Over,
+Strike Wgt/Daypart,0,10,Over,,40,50,Over,,15,16,Over,
+Peak Daypart,0,0,None,,0,0,None,,17,18,None,
+Daypart/Length,0,5,None,,0,5,None,,19,20,None,
+Strike Weight/Length,0,0,None,YES,0,0,None,YES,21,22,None,YES
+Strike Weight/Daypart/Length,0,0,None,YES,0,0,None,YES,23,24,None,YES
+Campaign (Budget),0,0,None,YES,0,0,None,YES,25,26,None,YES
+Sales Area (Budget),0,0,None,YES,0,0,None,YES,27,28,None,YES

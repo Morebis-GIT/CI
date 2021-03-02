@@ -1,0 +1,504 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{8656148D-E882-479F-9409-80AF84273A03}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>xggameplan.specification.tests</RootNamespace>
+    <AssemblyName>xggameplan.specification.tests</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <Deterministic>true</Deterministic>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <LangVersion>latest</LangVersion>
+    <RunCodeAnalysis>false</RunCodeAnalysis>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <LangVersion>latest</LangVersion>
+    <RunCodeAnalysis>false</RunCodeAnalysis>
+  </PropertyGroup>
+  <PropertyGroup>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <RestoreProjectStyle>PackageReference</RestoreProjectStyle>
+  </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject />
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="Coordinators\ResultsFileCoordinator.cs" />
+    <Compile Include="Exceptions\RepositoryAdapterException.cs" />
+    <Compile Include="Extensions\AssemblyExtensions.cs" />
+    <Compile Include="Extensions\FeatureContextExtension.cs" />
+    <Compile Include="Extensions\DataImporterExtensions.cs" />
+    <Compile Include="Extensions\ConvertExtensions.cs" />
+    <Compile Include="Extensions\ObjectContainerExtensions.cs" />
+    <Compile Include="Extensions\TableExtensions.cs" />
+    <Compile Include="Infrastructure\Assist\TimeAndDowValueRetriever.cs" />
+    <Compile Include="Infrastructure\SqlServer\DomainModelHandlers\BreakDomainModelHandler.cs" />
+    <Compile Include="Infrastructure\SqlServer\DomainModelHandlers\LibrarySalesAreaPassPriorityDomainModelHandler.cs" />
+    <Compile Include="Infrastructure\SqlServer\DomainModelHandlers\LengthFactorDomainModelHandler.cs" />
+    <Compile Include="Infrastructure\SqlServer\DomainModelHandlers\ISRSettingsDomainModelHandler.cs" />
+    <Compile Include="Infrastructure\SqlServer\DomainModelHandlers\BreakDomainModelHandler.cs" />
+    <Compile Include="Infrastructure\SqlServer\DomainModelHandlers\BusinessTypeDomainModelHandler.cs" />
+    <Compile Include="Infrastructure\SqlServer\DomainModelHandlers\CampaignDomainModelHandler.cs" />
+    <Compile Include="Infrastructure\SqlServer\DomainModelHandlers\ClashDomainModelHandler.cs" />
+    <Compile Include="Infrastructure\SqlServer\DomainModelHandlers\IndexTypeDomainModelHandler.cs" />
+    <Compile Include="Infrastructure\SqlServer\DomainModelHandlers\InventoryLockDomainModelHandler.cs" />
+    <Compile Include="Infrastructure\SqlServer\DomainModelHandlers\PassDomainModelHandler.cs" />
+    <Compile Include="Infrastructure\SqlServer\DomainModelHandlers\ProgrammeEpisodeDomainModelHandler.cs" />
+    <Compile Include="Infrastructure\SqlServer\DomainModelHandlers\ProgrammeDomainModelHandler.cs" />
+    <Compile Include="Infrastructure\SqlServer\DomainModelHandlers\RatingsPredictionScheduleDomainModelHandler.cs" />
+    <Compile Include="Infrastructure\SqlServer\DomainModelHandlers\RSSettingsDomainModelHandler.cs" />
+    <Compile Include="Infrastructure\SqlServer\DomainModelHandlers\SalesAreaDemographicDomainModelHandler.cs" />
+    <Compile Include="Infrastructure\SqlServer\DomainModelHandlers\RestrictionDomainModelHandler.cs" />
+    <Compile Include="Infrastructure\SqlServer\DomainModelHandlers\ScenarioCampaignFailureDomainModelHandler.cs" />
+    <Compile Include="Infrastructure\SqlServer\DomainModelHandlers\ScenarioCampaignMetricDomainModelHandler.cs" />
+    <Compile Include="Infrastructure\SqlServer\DomainModelHandlers\TotalRatingDomainModelHandler.cs" />
+    <Compile Include="Infrastructure\SqlServer\DomainModelHandlers\SpotDomainModelHandler.cs" />
+    <Compile Include="Infrastructure\SqlServer\DomainModelHandlers\StandardDayPartDomainModelHandler.cs" />
+    <Compile Include="Infrastructure\SqlServer\DomainModelHandlers\StandardDayPartGroupDomainModelHandler.cs" />
+    <Compile Include="Infrastructure\SqlServer\DomainModelHandlers\SmoothConfigurationDomainModelHandler.cs" />
+    <Compile Include="Infrastructure\SqlServer\DomainModelHandlers\SponsorshipItemDomainModelHandler.cs" />
+    <Compile Include="Infrastructure\SqlServer\DomainModelHandlers\SpotBookingRuleDomainModelHandler.cs" />
+    <Compile Include="Infrastructure\SqlServer\DomainModelHandlers\UniverseDomainModelHandler.cs" />
+    <Compile Include="Infrastructure\SqlServer\SqlServerTestDbContextFactory.cs" />
+    <Compile Include="Infrastructure\SqlServer\SqlServerTestIdentityGenerator.cs" />
+    <Compile Include="Infrastructure\SqlServer\DomainModelHandlers\ProductDomainModelHandler.cs" />
+    <Compile Include="Infrastructure\TestClock.cs" />
+    <Compile Include="Infrastructure\TestProgress.cs" />
+    <Compile Include="Infrastructure\EnvironmentSettings\EnvironmentSettings.cs" />
+    <Compile Include="Infrastructure\EnvironmentSettings\EnvironmentSettingsHook.cs" />
+    <Compile Include="Infrastructure\EnvironmentSettings\IEnvironmentSettings.cs" />
+    <Compile Include="Infrastructure\SqlServer\DomainModelHandlers\AutoBookDefaultParametersDomainModelHandler.cs" />
+    <Compile Include="Infrastructure\SqlServer\DomainModelHandlers\FunctionalAreaDomainModelHandler.cs" />
+    <Compile Include="Infrastructure\Assist\BufferValueComparer.cs" />
+    <Compile Include="Infrastructure\Assist\BufferValueRetriever.cs" />
+    <Compile Include="Infrastructure\SqlServer\DomainModelHandlers\MetadataCategoryDomainModelHandler.cs" />
+    <Compile Include="Infrastructure\SqlServer\DomainModelHandlers\ScenarioCampaignResultDomainModelHandler.cs" />
+    <Compile Include="Infrastructure\SqlServer\DomainModelHandlers\ScheduleDomainModelHandler.cs" />
+    <Compile Include="Infrastructure\SqlServer\Fts\RegexSearchBlockItem.cs" />
+    <Compile Include="Infrastructure\SqlServer\Fts\RegexSearchConditionBuilder.cs" />
+    <Compile Include="Infrastructure\SqlServer\Fts\RegexSearchConditionBuilderContext.cs" />
+    <Compile Include="Infrastructure\SqlServer\Fts\RegexSearchContainsItem.cs" />
+    <Compile Include="Infrastructure\SqlServer\Fts\RegexSearchItemBase.cs" />
+    <Compile Include="Infrastructure\SqlServer\Fts\RegexSearchStartWithItem.cs" />
+    <Compile Include="Infrastructure\SqlServer\Interception\DbInterceptedFunctions.cs" />
+    <Compile Include="Infrastructure\SqlServer\Interception\FtsExpressionVisitors.cs" />
+    <Compile Include="Infrastructure\SqlServer\Interception\FtsInterceptionFactory.cs" />
+    <Compile Include="Infrastructure\SqlServer\Interception\FtsInterceptionHelpers.cs" />
+    <Compile Include="Infrastructure\SqlServer\Interception\IFtsInterceptionProvider.cs" />
+    <Compile Include="Infrastructure\SqlServer\Interception\QueryExpressionVisitor.cs" />
+    <Compile Include="Infrastructure\SqlServer\Interception\TestQueryModelGenerator.cs" />
+    <Compile Include="Infrastructure\SqlServer\SqlServerFeatureDependency.cs" />
+    <Compile Include="Infrastructure\SqlServer\SqlServerTestBulkInsertEngine.cs" />
+    <Compile Include="Infrastructure\SqlServer\SqlServerTestSpecificDbAdapter.cs" />
+    <Compile Include="Infrastructure\TestAdapters\NoCrudRepositoryTestAdapter.cs" />
+    <Compile Include="Infrastructure\Assist\DateRangeValueComparer.cs" />
+    <Compile Include="Infrastructure\Assist\DateRangeValueRetriever.cs" />
+    <Compile Include="Infrastructure\TestAdapters\ConvertibleRepositoryTestAdapter.cs" />
+    <Compile Include="Infrastructure\Assist\DurationValueComparer.cs" />
+    <Compile Include="Infrastructure\RavenDb\RavenTestDbContext.cs" />
+    <Compile Include="Infrastructure\RepositoryMethod\CallMethodResult.cs" />
+    <Compile Include="Infrastructure\DataProvider.cs" />
+    <Compile Include="Infrastructure\Dependencies\ImportModelFeatureDependency.cs" />
+    <Compile Include="Infrastructure\RavenDb\RavenDbScenarioDependency.cs" />
+    <Compile Include="Infrastructure\TestAdapters\RepositoryExecuteResult.cs" />
+    <Compile Include="Infrastructure\ImportedModel.cs" />
+    <Compile Include="Infrastructure\Json\JsonTestDataImporter.cs" />
+    <Compile Include="Infrastructure\LocalFileCache.cs" />
+    <Compile Include="Infrastructure\RepositoryMethod\DefaultRepositoryMethodExecutor.cs" />
+    <Compile Include="Infrastructure\RepositoryMethod\RepositoryAdapterMethodResolveStrategy.cs" />
+    <Compile Include="Infrastructure\RepositoryMethod\GenericTypeRepositoryMethodResolveStrategy.cs" />
+    <Compile Include="Infrastructure\RepositoryMethod\MethodParameterNamesEqualityComparer.cs" />
+    <Compile Include="Infrastructure\RepositoryMethod\RepositoryMethodParameters.cs" />
+    <Compile Include="Infrastructure\RepositoryMethod\RepositoryMethodResolveInfo.cs" />
+    <Compile Include="Infrastructure\SqlServer\DomainModelHandlers\SimpleDomainModelMappingHandler.cs" />
+    <Compile Include="Infrastructure\SqlServer\SqlServerScenarioDependency.cs" />
+    <Compile Include="Infrastructure\SqlServer\SqlServerScenarioDbContext.cs" />
+    <Compile Include="Infrastructure\SqlServer\SqlServerJsonTestDataImporter.cs" />
+    <Compile Include="Infrastructure\SqlServer\SqlServerTestDbContext.cs" />
+    <Compile Include="Infrastructure\SqlServer\SqlServerTestDomainModelHandlerResolver.cs" />
+    <Compile Include="Infrastructure\TestModelConverters\ReferenceTestModelConverter.cs" />
+    <Compile Include="Infrastructure\TestModelConverters\TenantTestModelConverter.cs" />
+    <Compile Include="Infrastructure\RavenDb\RavenDbJsonTestDataImporter.cs" />
+    <Compile Include="Infrastructure\RavenDb\RavenDbFeatureDependency.cs" />
+    <Compile Include="Infrastructure\Dependencies\RepositoryAdapterScenarioDependency.cs" />
+    <Compile Include="Infrastructure\TestAdapters\RepositoryMethodAttribute.cs" />
+    <Compile Include="Infrastructure\RepositoryTestDependencyRegistration.cs" />
+    <Compile Include="Infrastructure\Assist\DurationValueRetriever.cs" />
+    <Compile Include="Infrastructure\TestModels\TenantTestModel.cs" />
+    <Compile Include="Interfaces\IFeatureDependency.cs" />
+    <Compile Include="Interfaces\IImportedModel.cs" />
+    <Compile Include="Interfaces\ILocalFileCache.cs" />
+    <Compile Include="Interfaces\ISqlServerTestDbContext.cs" />
+    <Compile Include="Interfaces\IRepositoryMethodExecutor.cs" />
+    <Compile Include="Interfaces\IRepositoryMethodParameters.cs" />
+    <Compile Include="Interfaces\IRepositoryMethodResolveStrategy.cs" />
+    <Compile Include="Interfaces\ITestClock.cs" />
+    <Compile Include="Interfaces\ITestModelConverter.cs" />
+    <Compile Include="Interfaces\IRepositoryTestContextContainer.cs" />
+    <Compile Include="Interfaces\ITestDataImporter.cs" />
+    <Compile Include="Interfaces\IScenarioDependency.cs" />
+    <Compile Include="Interfaces\IRavenTestDbContext.cs" />
+    <Compile Include="RepositoryAdapters\AccessTokenRepositoryAdapter.cs" />
+    <Compile Include="RepositoryAdapters\AnalysisGroupRepositoryAdapter.cs" />
+    <Compile Include="RepositoryAdapters\AutoBookDefaultParametersRepositoryAdapter.cs" />
+    <Compile Include="RepositoryAdapters\AutoBookInstanceConfigurationRepositoryAdapter.cs" />
+    <Compile Include="RepositoryAdapters\AutoBookRepositoryAdapter.cs" />
+    <Compile Include="RepositoryAdapters\AutoBookSettingsRepositoryAdapter.cs" />
+    <Compile Include="RepositoryAdapters\AWsInstanceConfigurationRepositoryAdapter.cs" />
+    <Compile Include="RepositoryAdapters\AutopilotRuleRepositoryAdapter.cs" />
+    <Compile Include="RepositoryAdapters\AutopilotSettingsRepositoryAdapter.cs" />
+    <Compile Include="RepositoryAdapters\BookingPositionRepositoryAdapter.cs" />
+    <Compile Include="RepositoryAdapters\BookingPositionGroupRepositoryAdapter.cs" />
+    <Compile Include="RepositoryAdapters\BreakRepositoryAdapter.cs" />
+    <Compile Include="RepositoryAdapters\BusinessTypeRepositoryAdapter.cs" />
+    <Compile Include="RepositoryAdapters\CampaignRepositoryAdapter.cs" />
+    <Compile Include="RepositoryAdapters\CampaignSettingsRepositoryAdapter.cs" />
+    <Compile Include="RepositoryAdapters\ChannelsRepositoryAdapter.cs" />
+    <Compile Include="RepositoryAdapters\ClashExceptionRepositoryAdapter.cs" />
+    <Compile Include="RepositoryAdapters\ClashRepositoryAdapter.cs" />
+    <Compile Include="RepositoryAdapters\ClearanceRepositoryAdapter.cs" />
+    <Compile Include="RepositoryAdapters\LegnthFactorRepositoryAdapter.cs" />
+    <Compile Include="RepositoryAdapters\DeliveryCappingGroupRepositoryAdapter.cs" />
+    <Compile Include="RepositoryAdapters\BRSConfigurationTemplateRepositoryAdapter.cs" />
+    <Compile Include="RepositoryAdapters\EmailAuditEventSettingsRepositoryAdapter.cs" />
+    <Compile Include="RepositoryAdapters\FacilityRepositoryAdapter.cs" />
+    <Compile Include="RepositoryAdapters\RunTypeRepositoryAdapter.cs" />
+    <Compile Include="RepositoryAdapters\ScenarioCampaignFailureRepositoryAdapter.cs" />
+    <Compile Include="RepositoryAdapters\FailuresRepositoryAdapter.cs" />
+    <Compile Include="RepositoryAdapters\FlexibilityLevelRepositoryAdapter.cs" />
+    <Compile Include="RepositoryAdapters\FunctionalAreaRepositoryAdapter.cs" />
+    <Compile Include="RepositoryAdapters\IndexTypeRepositoryAdapter.cs" />
+    <Compile Include="RepositoryAdapters\InventoryLockRepositoryAdapter.cs" />
+    <Compile Include="RepositoryAdapters\InventoryTypeRepositoryAdapter.cs" />
+    <Compile Include="RepositoryAdapters\ISRGlobalSettingsRepositoryAdapter.cs" />
+    <Compile Include="RepositoryAdapters\ISRSettingsRepositoryAdapter.cs" />
+    <Compile Include="RepositoryAdapters\KPIComparisonConfigRepositoryAdapter.cs" />
+    <Compile Include="RepositoryAdapters\LibrarySalesAreaPassPrioritiesRepositoryAdapter.cs" />
+    <Compile Include="RepositoryAdapters\LockTypeRepositoryAdapter.cs" />
+    <Compile Include="RepositoryAdapters\MetadataRepositoryAdapter.cs" />
+    <Compile Include="RepositoryAdapters\MSTeamsAuditEventSettingsAdapter.cs" />
+    <Compile Include="RepositoryAdapters\OutputFilesRepositoryAdapter.cs" />
+    <Compile Include="RepositoryAdapters\PassRepositoryAdapter.cs" />
+    <Compile Include="RepositoryAdapters\ProgrammeEpisodeRepositoryAdapter.cs" />
+    <Compile Include="RepositoryAdapters\ProductRepositoryAdapter.cs" />
+    <Compile Include="RepositoryAdapters\ProgrammeCategoryRepositoryAdapter.cs" />
+    <Compile Include="RepositoryAdapters\ProgrammeClassificationRepositoryAdapter.cs" />
+    <Compile Include="RepositoryAdapters\ProgrammeDictionaryAdapter.cs" />
+    <Compile Include="RepositoryAdapters\ProgrammeRepositoryAdapter.cs" />
+    <Compile Include="RepositoryAdapters\RatingsScheduleRepositoryAdapter.cs" />
+    <Compile Include="RepositoryAdapters\RecommendationsRepositoryAdapter.cs" />
+    <Compile Include="RepositoryAdapters\RestrictionsRepositoryAdapter.cs" />
+    <Compile Include="RepositoryAdapters\ResultsFileRepositoryAdapter.cs" />
+    <Compile Include="RepositoryAdapters\RSGlobalSettingsRepositoryAdapter.cs" />
+    <Compile Include="RepositoryAdapters\RSSettingsRepositoryAdapter.cs" />
+    <Compile Include="RepositoryAdapters\RuleRepositoryAdapter.cs" />
+    <Compile Include="RepositoryAdapters\RunRepositoryAdapter.cs" />
+    <Compile Include="RepositoryAdapters\SalesAreaDemographicRepositoryAdapter.cs" />
+    <Compile Include="RepositoryAdapters\SalesAreaRepositoryAdapter.cs" />
+    <Compile Include="RepositoryAdapters\RuleTypeRepositoryAdapter.cs" />
+    <Compile Include="RepositoryAdapters\ScenarioCampaignMetricRepositoryAdapter.cs" />
+    <Compile Include="RepositoryAdapters\ScenarioCampaignResultRepositoryAdapter.cs" />
+    <Compile Include="RepositoryAdapters\ScenariosRepositoryAdapter.cs" />
+    <Compile Include="RepositoryAdapters\ScenarioResultsRepositoryAdapter.cs" />
+    <Compile Include="RepositoryAdapters\ScheduleRepositoryAdapter.cs" />
+    <Compile Include="RepositoryAdapters\SmoothConfigurationRepositoryAdapter.cs" />
+    <Compile Include="RepositoryAdapters\SmoothFailuresRepositoryAdapter.cs" />
+    <Compile Include="RepositoryAdapters\SponsorshipsRepositoryAdapter.cs" />
+    <Compile Include="RepositoryAdapters\SpotBookingRuleRepositoryAdapter.cs" />
+    <Compile Include="RepositoryAdapters\SpotPlacementRepositoryAdapter.cs" />
+    <Compile Include="RepositoryAdapters\SpotRepositoryAdapter.cs" />
+    <Compile Include="RepositoryAdapters\StandardDayPartGroupRepositoryAdapter.cs" />
+    <Compile Include="RepositoryAdapters\StandardDayPartRepositoryAdapter.cs" />
+    <Compile Include="RepositoryAdapters\TaskInstanceRepositoryAdapter.cs" />
+    <Compile Include="RepositoryAdapters\TenantSettingsRepositoryAdapter.cs" />
+    <Compile Include="RepositoryAdapters\TenantsRepositoryAdapter.cs" />
+    <Compile Include="RepositoryAdapters\TotalRatingRepositoryAdapter.cs" />
+    <Compile Include="RepositoryAdapters\UniverseRepositoryAdapter.cs" />
+    <Compile Include="RepositoryAdapters\DemographicRepositoryAdapter.cs" />
+    <Compile Include="Infrastructure\RavenDb\RavenScenarioDbContext.cs" />
+    <Compile Include="Infrastructure\TestAdapters\RepositoryTestAdapter.cs" />
+    <Compile Include="Infrastructure\TestAdapters\RepositoryTestContext.cs" />
+    <Compile Include="Infrastructure\ManageDataStorageHook.cs" />
+    <Compile Include="Interfaces\IScenarioDbContext.cs" />
+    <Compile Include="Interfaces\IRepositoryAdapter.cs" />
+    <Compile Include="RepositoryAdapters\LanguageRepositoryAdapter.cs" />
+    <Compile Include="RepositoryAdapters\EfficiencySettingsRepositoryAdapter.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RepositoryAdapters\UpdateDetailsRepositoryAdapter.cs" />
+    <Compile Include="RepositoryAdapters\UsersRepositoryAdapter.cs" />
+    <Compile Include="Steps\DataStorage\GeneralSteps.cs" />
+    <Compile Include="Steps\DataStorage\LocalFileCacheSteps.cs" />
+    <Compile Include="Infrastructure\RavenDb\EmbeddableDocumentStoreIndexes.cs" />
+    <Compile Include="Infrastructure\RavenDb\EmbeddableDocumentTransformers.cs" />
+    <Compile Include="Infrastructure\RavenDb\RavenDbDataStore.cs" />
+    <Compile Include="Steps\DataStorage\RepositoryDefinitionSteps.cs" />
+    <Compile Include="Steps\DataStorage\RepositoryManageSteps.cs" />
+    <Compile Include="Steps\DataStorage\ResultsFileRepositorySteps.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Features\DataStorage\.gitignore" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="AutoFixture">
+      <Version>4.11.0</Version>
+    </PackageReference>
+    <PackageReference Include="AutoMapper">
+      <Version>9.0.0</Version>
+    </PackageReference>
+    <PackageReference Include="Microsoft.CodeAnalysis.FxCopAnalyzers">
+      <Version>2.9.8</Version>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+      <PrivateAssets>all</PrivateAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.EntityFrameworkCore">
+      <Version>2.2.6</Version>
+    </PackageReference>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.InMemory">
+      <Version>2.2.6</Version>
+    </PackageReference>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite">
+      <Version>2.2.6</Version>
+    </PackageReference>
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection">
+      <Version>3.1.10</Version>
+    </PackageReference>
+    <PackageReference Include="Microsoft.Extensions.Logging">
+      <Version>3.1.10</Version>
+    </PackageReference>
+    <PackageReference Include="Newtonsoft.Json">
+      <Version>12.0.3</Version>
+    </PackageReference>
+    <PackageReference Include="NodaTime">
+      <Version>2.4.7</Version>
+    </PackageReference>
+    <PackageReference Include="NUnit">
+      <Version>3.12.0</Version>
+    </PackageReference>
+    <PackageReference Include="NUnit3TestAdapter">
+      <Version>3.16.1</Version>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+      <PrivateAssets>all</PrivateAssets>
+    </PackageReference>
+    <PackageReference Include="RavenDB.Client">
+      <Version>3.5.7</Version>
+    </PackageReference>
+    <PackageReference Include="RavenDB.Client.UniqueConstraints">
+      <Version>3.5.7</Version>
+    </PackageReference>
+    <PackageReference Include="RavenDB.Embedded">
+      <Version>3.5.7</Version>
+    </PackageReference>
+    <PackageReference Include="SpecFlow">
+      <Version>3.0.225</Version>
+    </PackageReference>
+    <PackageReference Include="SpecFlow.NUnit">
+      <Version>3.0.225</Version>
+    </PackageReference>
+    <PackageReference Include="SpecFlow.Tools.MsBuild.Generation">
+      <Version>3.0.225</Version>
+    </PackageReference>
+    <PackageReference Include="System.Runtime.CompilerServices.Unsafe">
+      <Version>4.7.1</Version>
+    </PackageReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Data\Campaigns.json" />
+    <EmbeddedResource Include="Data\Metadata.json" />
+    <EmbeddedResource Include="Data\KPIComparisonConfig.json" />
+    <EmbeddedResource Include="Data\Schedules.json" />
+    <EmbeddedResource Include="Data\Restrictions.json" />
+    <EmbeddedResource Include="Data\DefaultEfficiencySettings.json" />
+    <EmbeddedResource Include="Data\MultipleEfficiencySettings.json" />
+    <EmbeddedResource Include="Data\Passes.json" />
+    <EmbeddedResource Include="Data\Scenarios.json" />
+    <EmbeddedResource Include="Data\RatingsPredictionSchedules.json" />
+    <EmbeddedResource Include="Data\Rules.json" />
+    <EmbeddedResource Include="Data\RuleTypes.json" />
+    <EmbeddedResource Include="Data\Runs.json" />
+    <EmbeddedResource Include="Data\ResultFiles\xg_rs_spot.out" />
+    <None Include="app.config">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <EmbeddedResource Include="Data\DefaultRSGlobalSettings.json" />
+    <EmbeddedResource Include="Data\ISRGlobalSettings.json" />
+    <EmbeddedResource Include="Data\MultipleISRGlobalSettings.json" />
+    <EmbeddedResource Include="Data\MultipleRSGlobalSettings.json" />
+    <EmbeddedResource Include="Data\Failures.json" />
+    <EmbeddedResource Include="Data\AutoBookDefaultParameters.json" />
+    <EmbeddedResource Include="Data\ScenarioCampaignResults.json" />
+    <EmbeddedResource Include="Data\BusinessTypes.json" />
+    <EmbeddedResource Include="Data\CampaignSettings.json" />
+    <EmbeddedResource Include="Data\Breaks\SalesAreas.json" />
+    <EmbeddedResource Include="Data\StandardDayParts\SalesAreas.json" />
+    <EmbeddedResource Include="Data\StandardDayPartGroups\SalesAreas.json" />
+    <EmbeddedResource Include="Data\ISRSettings\SalesAreas.json" />
+    <EmbeddedResource Include="Data\LengthFactor\SalesAreas.json" />
+    <EmbeddedResource Include="Data\RSSettings\SalesAreas.json" />
+    <EmbeddedResource Include="Data\SalesAreaDemographic\SalesAreas.json" />
+    <EmbeddedResource Include="Data\TotalRatings\SalesAreas.json" />
+    <EmbeddedResource Include="Data\SalesAreas.json" />
+    <EmbeddedResource Include="Data\Campaigns\SalesAreas.json" />
+    <EmbeddedResource Include="Data\Spots\SalesAreas.json" />
+    <EmbeddedResource Include="Data\Universe\SalesAreas.json" />
+    <None Include="Features\DataStorage\ManageAnalysisGroupsDataStorage.feature" />
+    <None Include="Features\DataStorage\ManageAutoBookDefaultParametersDataStorage.feature">
+      <LastGenOutput>ManageAutoBookDefaultParametersDataStorage.feature.cs</LastGenOutput>
+    </None>
+    <None Include="Features\DataStorage\ManageAutoBookInstanceConfigurationDataStorage.feature" />
+    <None Include="Features\DataStorage\ManageAccessTokenDataStorage.feature" />
+    <None Include="Features\DataStorage\ManageAutoBookDataStorage.feature" />
+    <None Include="Features\DataStorage\ManageAutoBookSettingsDataStorage.feature" />
+    <None Include="Features\DataStorage\ManageAutopilotRuleDataStorage.feature" />
+    <None Include="Features\DataStorage\ManageAutopilotSettingsDataStorage.feature" />
+    <None Include="Features\DataStorage\ManageBookingPositionDataStorage.feature" />
+    <None Include="Features\DataStorage\ManageBookingPositionGroupDataStorage.feature" />
+    <None Include="Features\DataStorage\ManageBreakDataStorage.feature" />
+    <None Include="Features\DataStorage\ManageBusinessTypeDataStorage.feature" />
+    <None Include="Features\DataStorage\ManageCampaignDataStorage.feature" />
+    <None Include="Features\DataStorage\ManageCampaignSettingsDataStorage.feature" />
+    <None Include="Features\DataStorage\ManageChannelsDataStorage.feature" />
+    <None Include="Features\DataStorage\ManageClashDataStorage.feature" />
+    <None Include="Features\DataStorage\ManageClashExceptionDataStorage.feature" />
+    <None Include="Features\DataStorage\ManageClearanceDataStorage.feature" />
+    <None Include="Features\DataStorage\ManageDeliveryCappingGroupDataStorage.feature" />
+    <None Include="Features\DataStorage\ManageBRSConfigurationTemplateDataStorage.feature" />
+    <None Include="Features\DataStorage\ManageEfficiencySettingsDataStorage.feature" />
+    <None Include="Features\DataStorage\ManageEmailAuditEventSettingsDataStorage.feature" />
+    <None Include="Features\DataStorage\ManageFacilityDataStorage.feature" />
+    <None Include="Features\DataStorage\ManageFailuresDataStorage.feature" />
+    <None Include="Features\DataStorage\ManageFlexibilityLevelDataStorage.feature" />
+    <None Include="Features\DataStorage\ManageFunctionalAreaDataStorage.feature" />
+    <None Include="Features\DataStorage\ManageIndexTypesDataStorage.feature" />
+    <None Include="Features\DataStorage\ManageInventoryLockDataStorageFeature.feature" />
+    <None Include="Features\DataStorage\ManageInventoryTypeDataStorageFeature.feature" />
+    <None Include="Features\DataStorage\ManageISRGlobalSettingsDataStorage.feature" />
+    <None Include="Features\DataStorage\ManageISRSettingsDataStorage.feature" />
+    <None Include="Features\DataStorage\ManageKPIComparisonConfigDataStorage.feature" />
+    <None Include="Features\DataStorage\ManageLanguagesDataStorage.feature" />
+    <None Include="Features\DataStorage\ManageLengthFactorDataStorage.feature" />
+    <None Include="Features\DataStorage\ManageLibrarySalesAreaPassPrioritiesDataStorage.feature" />
+    <None Include="Features\DataStorage\ManageLockTypeDataStorage.feature" />
+    <None Include="Features\DataStorage\ManageMetadataDataStorage.feature" />
+    <None Include="Features\DataStorage\ManageMSTeamsAuditEventSettingsDataStorage.feature" />
+    <None Include="Features\DataStorage\ManageOutputFilesDataStorage.feature" />
+    <None Include="Features\DataStorage\ManagePassDataStorage.feature" />
+    <None Include="Features\DataStorage\ManageProductDataStorage.feature" />
+    <None Include="Features\DataStorage\ManageProgrammeCategoryDataStorage.feature" />
+    <None Include="Features\DataStorage\ManageProgrammeClassificationStorage.feature" />
+    <None Include="Features\DataStorage\ManageProgrammeDataStorage.feature" />
+    <None Include="Features\DataStorage\ManageProgrammeDictionaryDataStorage.feature" />
+    <None Include="Features\DataStorage\ManageProgrammeEpisodeDataStorage.feature" />
+    <None Include="Features\DataStorage\ManageRatingsScheduleDataStorage.feature" />
+    <None Include="Features\DataStorage\ManageRecommendationsDataStorage.feature" />
+    <None Include="Features\DataStorage\ManageRestrictionsDataStorage.feature" />
+    <None Include="Features\DataStorage\ManageResultsFileDataStorage.feature" />
+    <None Include="Features\DataStorage\ManageRSGlobalSettingsRepository.feature" />
+    <None Include="Features\DataStorage\ManageRSSettingsDataStorage.feature" />
+    <None Include="Features\DataStorage\ManageRuleDataStorage.feature" />
+    <None Include="Features\DataStorage\ManageRunTypeDataStorage.feature" />
+    <None Include="Features\DataStorage\ManageRuleTypeDataStorage.feature" />
+    <None Include="Features\DataStorage\ManageRunDataStorage.feature" />
+    <None Include="Features\DataStorage\ManageSalesAreaDemographicDataStorage.feature" />
+    <None Include="Features\DataStorage\ManageSalesAreaStorage.feature" />
+    <None Include="Features\DataStorage\ManageScenarioCampaignFailureDataStorage.feature" />
+    <None Include="Features\DataStorage\ManageScenarioCampaignMetricDataStorage.feature" />
+    <None Include="Features\DataStorage\ManageScenarioResultsDataStorage.feature" />
+    <None Include="Features\DataStorage\ManageScenariosDataStorage.feature" />
+    <None Include="Features\DataStorage\ManageScheduleDataStorage.feature" />
+    <None Include="Features\DataStorage\ManageSmoothConfigurationDataStorage.feature" />
+    <None Include="Features\DataStorage\ManageSmoothFailureDataStorage.feature" />
+    <None Include="Features\DataStorage\ManageSpotBookingRuleDataStorage.feature" />
+    <None Include="Features\DataStorage\ManageSpotDataStorage.feature" />
+    <None Include="Features\DataStorage\ManageDemographicDataStorage.feature" />
+    <EmbeddedResource Include="Data\Demographics.json" />
+    <None Include="Features\DataStorage\ManageSpotPlacementDataStorage.feature" />
+    <None Include="Features\DataStorage\ManageStandardDayPartDataStorage.feature" />
+    <None Include="Features\DataStorage\ManageStandardDayPartGroupDataStorage.feature" />
+    <None Include="Features\DataStorage\ManageTaskInstanceDataStorage.feature" />
+    <None Include="Features\DataStorage\ManageTenantsDataStorage.feature" />
+    <None Include="Features\DataStorage\ManageTenantSettingsStorage.feature" />
+    <None Include="Features\DataStorage\ManageTotalRatingDataStorage.feature" />
+    <None Include="Features\DataStorage\ManageUniverseDataStorage.feature" />
+    <None Include="Features\DataStorage\ManageUpdateDetailsDataStorage.feature" />
+    <None Include="Features\DataStorage\ManageScenarioCampaignResultDataStorage.feature" />
+    <None Include="Features\DataStorage\ManageUsersDataStorage.feature" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\src\domain\ImagineCommunications.GamePlan.Domain.Generic\ImagineCommunications.GamePlan.Domain.Generic.csproj">
+      <Project>{e4e13375-e595-4df3-81d4-c14314bacdfb}</Project>
+      <Name>ImagineCommunications.GamePlan.Domain.Generic</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\src\domain\ImagineCommunications.GamePlan.Domain\ImagineCommunications.GamePlan.Domain.csproj">
+      <Project>{3099d7dc-bc6e-4d9f-9668-c5798bd7f37c}</Project>
+      <Name>ImagineCommunications.GamePlan.Domain</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\src\infrastructure\ImagineCommunications.GamePlan.Infrastructure.Json.Core\ImagineCommunications.GamePlan.Infrastructure.Json.Core.csproj">
+      <Project>{05EC5153-1DCC-4B7A-A46D-0781F6CAC94F}</Project>
+      <Name>ImagineCommunications.GamePlan.Infrastructure.Json.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\src\infrastructure\ImagineCommunications.GamePlan.Persistence.RavenDb.Core\ImagineCommunications.GamePlan.Persistence.RavenDb.Core.csproj">
+      <Project>{75E54B40-26AA-4A07-9E6F-4CE9BA0AB753}</Project>
+      <Name>ImagineCommunications.GamePlan.Persistence.RavenDb.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\src\infrastructure\ImagineCommunications.GamePlan.Persistence.RavenDb\ImagineCommunications.GamePlan.Persistence.RavenDb.csproj">
+      <Project>{196aeb89-0078-4f0d-9a86-354b0ae02625}</Project>
+      <Name>ImagineCommunications.GamePlan.Persistence.RavenDb</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\src\infrastructure\ImagineCommunications.GamePlan.Persistence.SqlServer.Core\ImagineCommunications.GamePlan.Persistence.SqlServer.Core.csproj">
+      <Project>{dde95361-0663-41b3-bfbe-85f91a8769f3}</Project>
+      <Name>ImagineCommunications.GamePlan.Persistence.SqlServer.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\src\infrastructure\ImagineCommunications.GamePlan.Persistence.SqlServer\ImagineCommunications.GamePlan.Persistence.SqlServer.csproj">
+      <Project>{d11f0978-3e0e-4739-ab1f-5eab7bc83df2}</Project>
+      <Name>ImagineCommunications.GamePlan.Persistence.SqlServer</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\src\integration\ImagineCommunications.BusClient.Domain\ImagineCommunications.BusClient.Domain.csproj">
+      <Project>{429C5248-CD64-4D3E-8A3D-8819BA2C5E3D}</Project>
+      <Name>ImagineCommunications.BusClient.Domain</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\test\ImagineCommunications.GamePlan.CommonTestsHelpers\ImagineCommunications.GamePlan.CommonTestsHelpers.csproj">
+      <Project>{0C9C1259-6948-4621-A532-FBCCC56AEC5D}</Project>
+      <Name>ImagineCommunications.GamePlan.CommonTestsHelpers</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\xgcore.auditevents\xgcore.auditevents.csproj">
+      <Project>{EA7D70F9-A8D0-4FBB-A3B9-A00C177F6904}</Project>
+      <Name>xgcore.auditevents</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\xggameplan.common\xggameplan.common.csproj">
+      <Project>{efc37031-75bd-4c4b-b760-e1d3aba0a734}</Project>
+      <Name>xggameplan.common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\xggameplan.core\xggameplan.core.csproj">
+      <Project>{24373E36-C0E4-4550-B1E9-B59EF7094C1F}</Project>
+      <Name>xggameplan.core</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{82A7F48D-3B50-4B1E-B82E-3ADA8210C358}" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

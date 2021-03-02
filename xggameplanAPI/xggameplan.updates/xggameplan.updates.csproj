@@ -1,0 +1,306 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{7550F493-756C-4F53-9412-10AC3A7A4A49}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>xggameplan.updates</RootNamespace>
+    <AssemblyName>xggameplan.updates</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <CodeAnalysisRuleSet>
+    </CodeAnalysisRuleSet>
+    <RunCodeAnalysis>false</RunCodeAnalysis>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <CodeAnalysisRuleSet>
+    </CodeAnalysisRuleSet>
+    <RunCodeAnalysis>false</RunCodeAnalysis>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="CodeUpdateStepBase.cs" />
+    <Compile Include="IUpdate.cs" />
+    <Compile Include="IUpdateManager.cs" />
+    <Compile Include="IUpdateStep.cs" />
+    <Compile Include="PatchUpdateStepBase.cs" />
+    <Compile Include="PowerShellUpdateStepBase.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="UpdateBase.cs" />
+    <Compile Include="UpdateConfiguration.cs" />
+    <Compile Include="UpdateManager.cs" />
+    <Compile Include="UpdateValidator.cs" />
+    <Compile Include="UpdateXGGP10302\UpdateXGGP10302.cs" />
+    <Compile Include="UpdateXGGP10302\UpdateXGGP10302_UpdateProgrammeDictionaryDocument.cs" />
+    <Compile Include="UpdateXGGP1253\UpdateXGGP1253.cs" />
+    <Compile Include="UpdateXGGP1253\UpdateXGGP1253_EfficiencyCalculationPeriodRunDefaults.cs" />
+    <Compile Include="UpdateXGGP8673\UpdateXGGP8673.cs" />
+    <Compile Include="UpdateXGGP8673\UpdateXGGP8673_AddOutputFile.cs" />
+    <Compile Include="UpdateXGGT-17476\UpdateStepXGGT17476_AddSystemLogicalDateFeatureFlag.cs" />
+    <Compile Include="UpdateXGGT-17476\UpdateXGGT17476.cs" />
+    <Compile Include="UpdateXGGT-13218\UpdateStepXGGT13218_AddDataLoadFeatureFlag.cs" />
+    <Compile Include="UpdateXGGT-13218\UpdateXGGT13218.cs" />
+    <Compile Include="UpdateXGGT-14140\UpdateStepXGGT14140_UpdateAutoBookInstanceConfigurations.cs" />
+    <Compile Include="UpdateXGGT-14140\UpdateXGGT14140.cs" />
+    <Compile Include="UpdateXGGT10095\UpdateStepXGGT10095_AddSortIndexField.cs" />
+    <Compile Include="UpdateXGGT10095\UpdateXGGT10095.cs" />
+    <Compile Include="UpdateXGGT10214\Models.cs" />
+    <Compile Include="UpdateXGGT10214\UpdateStepXGGT10214_UpdatePassTarpsEmptyCollection.cs" />
+    <Compile Include="UpdateXGGT10214\UpdateXGGT10214.cs" />
+    <Compile Include="UpdateXGGT10224\UpdateStepXGGT10244_AddMidnightStartAndEndTimeToTenantSettings.cs" />
+    <Compile Include="UpdateXGGT10224\UpdateXGGT10224.cs" />
+    <Compile Include="UpdateXGGT10421\UpdateStepXGGT10421_MigrateProgrammeCategories.cs" />
+    <Compile Include="UpdateXGGT10421\UpdateXGGT10421.cs" />
+    <Compile Include="UpdateXGGT10713\UpdateStepXGGT10713_AddSkipLockedBreaks.cs" />
+    <Compile Include="UpdateXGGT10713\UpdateXGGT10713.cs" />
+    <Compile Include="UpdateXGGT10786\UpdateStepXGGT10786_FunctionalAreaTarpsFaultTypeInsert.cs" />
+    <Compile Include="UpdateXGGT10786\UpdateXGGT10786.cs" />
+    <Compile Include="UpdateXGGT12198\UpdateStepXGGT12198_AddKPIComparisonConfigurationsForNewKPIs.cs" />
+    <Compile Include="UpdateXGGT12198\UpdateStepXGGT12198_AddNewKPIsToBRSTemplates.cs" />
+    <Compile Include="UpdateXGGT12198\UpdateXGGT12198.cs" />
+    <Compile Include="UpdateXGGT12505\UpdateStepXGGT12505_AddNewCampaignColumns.cs" />
+    <Compile Include="UpdateXGGT12505\UpdateXGGT12505.cs" />
+    <Compile Include="UpdateXGGT13656\UpdateStepXGGT13656_AddNewCampaignKPIColumns.cs" />
+    <Compile Include="UpdateXGGT13656\UpdateXGGT13656.cs" />
+    <Compile Include="UpdateXGGT13931\UpdateStepXGGT13931_AddKPIComparisonConfigurationsForNewKPIs.cs" />
+    <Compile Include="UpdateXGGT13931\UpdateStepXGGT13931_AddNewKPIsToBRSTemplates.cs" />
+    <Compile Include="UpdateXGGT13931\UpdateXGGT13931.cs" />
+    <Compile Include="UpdateXGGT13949\UpdateStepXGGT13949_UpdareIntegrationSyncFeature.cs" />
+    <Compile Include="UpdateXGGT13949\UpdateXGGT13949.cs" />
+    <Compile Include="UpdateXGGT14199\UpdateStepXGGT14199_AddNewCampaignFields.cs" />
+    <Compile Include="UpdateXGGT14199\UpdateXGGT14199.cs" />
+    <Compile Include="UpdateXGGT14208\UpdateStepXGGT14208_AddScenarioPerformanceMeasurementKPIsProductFeature.cs" />
+    <Compile Include="UpdateXGGT14208\UpdateXGGT14208.cs" />
+    <Compile Include="UpdateXGGT13649\ProductPrev.cs" />
+    <Compile Include="UpdateXGGT13649\UpdateStepXGGT13649_ProductChanges.cs" />
+    <Compile Include="UpdateXGGT13649\UpdateXGGT13649.cs" />
+    <Compile Include="UpdateXGGT12473\UpdateStepXGGT12473_AddShortNameForFaultTypes.cs" />
+    <Compile Include="UpdateXGGT12473\UpdateXGGT12473.cs" />
+    <Compile Include="UpdateXGGT14246\UpdateStepXGGT14246_AddLandmarkBookingProductFeature.cs" />
+    <Compile Include="UpdateXGGT14246\UpdateXGGT14246.cs" />
+    <Compile Include="UpdateXGGT12303\UpdateStepXGGT12303_AddRunCampaignListOnCreationProductFeature.cs" />
+    <Compile Include="UpdateXGGT12303\UpdateXGGT12303.cs" />
+    <Compile Include="UpdateXGGT12501\UpdateXGGT12501.cs" />
+    <Compile Include="UpdateXGGT12501\UpdateXGGT12501_AddOutputFile.cs" />
+    <Compile Include="UpdateXGGT10357\UpdateStepXGGT10357_AddKPIPrioritiesAndDefaultBRSConfigurationTemplate.cs" />
+    <Compile Include="UpdateXGGT10357\UpdateXGGT10357.cs" />
+    <Compile Include="UpdateXGGT12543\UpdateXGGT12543.cs" />
+    <Compile Include="UpdateXGGT12543\UpdateXGGT12543_AddRunTypeFeatureFlag.cs" />
+    <Compile Include="UpdateXGGT12646\UpdateStepXGGT12646_RenameMaxRatingsRules.cs" />
+    <Compile Include="UpdateXGGT12646\UpdateXGGT12646.cs" />
+    <Compile Include="UpdateXGGT12670\UpdateStepXGGT12670_AddSkySpecificFeatureFlags.cs" />
+    <Compile Include="UpdateXGGT12670\UpdateXGGT12670.cs" />
+    <Compile Include="UpdateXGGT12807\UpdateStepXGGT12708_RatingsPredictionsLogicChanges.cs" />
+    <Compile Include="UpdateXGGT12807\UpdateXGGT12708.cs" />
+    <Compile Include="UpdateXGGT13062\Models.cs" />
+    <Compile Include="UpdateXGGT13154\UpdateStepXGGT13154_AddTimestampOfLastUserModificationToScenario.cs" />
+    <Compile Include="UpdateXGGT13154\UpdateXGGT13154.cs" />
+    <Compile Include="UpdateXGGT13063\UpdateStepXGGT13063_RenameTarpsFaultType.cs" />
+    <Compile Include="UpdateXGGT13063\UpdateXGGT13063.cs" />
+    <Compile Include="UpdateXGGT13351\UpdateStepXGGT13351_AddSmoothFeatureFlag.cs" />
+    <Compile Include="UpdateXGGT13351\UpdateXGGT13351.cs" />
+    <Compile Include="UpdateXGGT13801\UpdateStepXGGT13801_AddTargetZeroRatedBreaksColumn.cs" />
+    <Compile Include="UpdateXGGT13801\UpdateXGGT13801.cs" />
+    <Compile Include="UpdateXGGT13062\UpdateStepXGGT13062_RenamePassTarpsCollectionToRatingPoints.cs" />
+    <Compile Include="UpdateXGGT13062\UpdateXGGT13062.cs" />
+    <Compile Include="UpdateXGGT13203\UpdateStepXGGT13203_Delivery_Currency.cs" />
+    <Compile Include="UpdateXGGT13203\UpdateXGGT13203.cs" />
+    <Compile Include="UpdateXGGT13239\UpdateStepXGGT13239_Change_Multipart_length.cs" />
+    <Compile Include="UpdateXGGT13239\UpdateXGGT13239.cs" />
+    <Compile Include="UpdateXGGT14618\UpdateStepXGGT14618_AgHfssDemos.cs" />
+    <Compile Include="UpdateXGGT14618\UpdateXGGT14618.cs" />
+    <Compile Include="UpdateXGGT14618\Version1ToVersion2Converter.cs" />
+    <Compile Include="UpdateXGGT14638\UpdateStepXGGT14638_AddFiveNewWeightingRules.cs" />
+    <Compile Include="UpdateXGGT14638\UpdateXGGT14638.cs" />
+    <Compile Include="UpdateXGGT14867\UpdateStepXGGT14867_AddPaginatedCampaignViewProductFeature.cs" />
+    <Compile Include="UpdateXGGT14867\UpdateXGGT14867.cs" />
+    <Compile Include="UpdateXGGT15118\UpdateStepXGGT15118_AddNewCampaignColumns.cs" />
+    <Compile Include="UpdateXGGT15118\UpdateXGGT15118.cs" />
+    <Compile Include="UpdateXGGT15328\UpdateStepXGGT15328_AddSAPPTargetAreaNameFeatureFlag.cs" />
+    <Compile Include="UpdateXGGT15328\UpdateXGGT15328.cs" />
+    <Compile Include="UpdateXGGT15507\UpdateStepXGGT15507_AddBreakPosInProgFeatureFlag.cs" />
+    <Compile Include="UpdateXGGT15507\UpdateXGGT15507.cs" />
+    <Compile Include="UpdateXGGT14974\UpdateStepXGGT14974_AddBusinessTypes.cs" />
+    <Compile Include="UpdateXGGT14974\UpdateXGGT14974.cs" />
+    <Compile Include="UpdateXGGT15915\UpdateXGGT15915.cs" />
+    <Compile Include="UpdateXGGT16136\UpdateStepXGGT16136_RemoveKPIsFromBRSTemplates.cs" />
+    <Compile Include="UpdateXGGT16136\UpdateStepXGGT16136_UpdateKPIComparisonConfigurations.cs" />
+    <Compile Include="UpdateXGGT16136\UpdateXGGT16136.cs" />
+    <Compile Include="UpdateXGGT15514\UpdateStepXGGT15514_FixFitToSpotLengthRuleTypo.cs" />
+    <Compile Include="UpdateXGGT15514\UpdateXGGT15514.cs" />
+    <Compile Include="UpdateXGGT16422\UpdateStepXGGT16422_AddMapBreakWithProgrammesByExternalRefFeatureFlag.cs" />
+    <Compile Include="UpdateXGGT16623\UpdateStepXGGT16623_AddToleranceSpotsProgrammeRule.cs" />
+    <Compile Include="UpdateXGGT16623\UpdateXGGT16623.cs" />
+    <Compile Include="UpdateXGGT15915\UpdateStepXGGT15915_RemoveMapBreakWithProgrammesByExternalRefFeatureFlag.cs" />
+    <Compile Include="UpdateXGGT16422\UpdateXGGT16422.cs" />
+    <Compile Include="UpdateXGGT16881\UpdateStepXGGT16881_AddAnalysisGroupsFeatureFlag.cs" />
+    <Compile Include="UpdateXGGT16881\UpdateXGGT16881.cs" />
+    <Compile Include="UpdateXGGT17122\UpdateStepXGGT17122_NullPassStartEndTime.cs" />
+    <Compile Include="UpdateXGGT17122\UpdateXGGT-17122.cs" />
+    <Compile Include="UpdateXGGT18062\UpdateStepXGGT18062_TypoInFailureDescription.cs" />
+    <Compile Include="UpdateXGGT18062\UpdateXGGT18062.cs" />
+    <Compile Include="UpdateXGGT16882\UpdateStepXGGT16882_AddDefaultCentreBreakRatioFeatureFlag.cs" />
+    <Compile Include="UpdateXGGT16882\UpdateXGGT16882.cs" />
+    <Compile Include="UpdateXGGT17536\UpdateStepXGGT17536_AddCampaignResultsProcessingFeatureFlag.cs" />
+    <Compile Include="UpdateXGGT17536\UpdateXGGT17536.cs" />
+    <Compile Include="UpdateXGGT17665\UpdateStepXGGT17665_ProgrammeOptimization.cs" />
+    <Compile Include="UpdateXGGT17665\UpdateXGGT17665.cs" />
+    <Compile Include="UpdateXGGT1785\UpdateXGGT1785.cs" />
+    <Compile Include="UpdateXGGT1785\UpdateStepXGGT1785_AddFuncationalAreaCampaignFaultTypes.cs" />
+    <Compile Include="UpdateXGGT18176\UpdateStepXGGT18176_AddCampaignLevelScenarioCampaignResultsFacility.cs" />
+    <Compile Include="UpdateXGGT18176\UpdateXGGT18176.cs" />
+    <Compile Include="UpdateXGGT18424\UpdateStepXGGT18424_FailuresAreShownWithoutNames.cs" />
+    <Compile Include="UpdateXGGT18424\UpdateXGGT18424.cs" />
+    <Compile Include="UpdateXGGT1888\UpdateStepXGGT1888_AddingDefaultAutopilotSettings.cs" />
+    <Compile Include="UpdateXGGT1888\UpdateXGGT1888.cs" />
+    <Compile Include="UpdateXGGT1753\UpdateStepXGGT1753_AddingRulesRepositories.cs" />
+    <Compile Include="UpdateXGGT1753\UpdateXGGT1753.cs" />
+    <Compile Include="UpdateXGGP2022\UpdateStepXGGP2022_MapStartAndEnd.cs" />
+    <Compile Include="UpdateXGGP2022\UpdateXGGP2022.cs" />
+    <Compile Include="UpdateXGGP1576\UpdateStepXGGP1576_RunProcessRanges.cs" />
+    <Compile Include="UpdateXGGP1576\UpdateXGGP1576.cs" />
+    <Compile Include="UpdateXGGP1418\UpdateStepXGGP1418_RightSizerLevelPropertyPatch.cs" />
+    <Compile Include="UpdateXGGP1418\UpdateXGGP1418.cs" />
+    <Compile Include="UpdateXGGP2119\UpdateXGGP2119.cs" />
+    <Compile Include="UpdateXGGP2119\UpdateXGGP2119_XGGP2119.cs" />
+    <Compile Include="UpdateXGGP1252\UpdateXGGP1252_AddDefaultEfficiencySettings.cs" />
+    <Compile Include="UpdateXGGP1252\UpdateXGGP1252.cs" />
+    <Compile Include="UpdateXGGP282\UpdateStepXGGP282_ExistingTokensUpdate.cs" />
+    <Compile Include="UpdateXGGP282\UpdateXGGP282.cs" />
+    <Compile Include="UpdateXGGP1116\UpdateXGGP1116.cs" />
+    <Compile Include="UpdateXGGP1116\UpdateXGGP1116_XGGP1116.cs" />
+    <Compile Include="UpdateXGGP337\RunV1.cs" />
+    <Compile Include="UpdateXGGP337\ScenarioV1.cs" />
+    <Compile Include="UpdateXGGP337\UpdateXGGP337.cs" />
+    <Compile Include="UpdateXGGP337\UpdateXGGP337_XGGP357.cs" />
+    <Compile Include="UpdateXGGP509.cs" />
+    <Compile Include="UpdateXGGP509_XGGP791.cs" />
+    <Compile Include="UpdateXGGP752\RunV2.cs" />
+    <Compile Include="UpdateXGGP752\UpdateXGGP752.cs" />
+    <Compile Include="UpdateXGGP752\UpdateXGGP752_XGGP752.cs" />
+    <Compile Include="UpdateXGGP885.cs" />
+    <Compile Include="UpdateXGGP885_XGGP885.cs" />
+    <Compile Include="UpdateXGGP886.cs" />
+    <Compile Include="UpdateXGGP886_XGGP886.cs" />
+    <Compile Include="UpdateXGGT1519\UpdateStepXGGT1519_AddDefaultPeakExposureCountAndDefaultOffPeakExposureCount.cs" />
+    <Compile Include="UpdateXGGT1519\UpdateXGGT1519.cs" />
+    <Compile Include="UpdateXGGT11538\UpdateStepXGGT11538_FeatureFlag_StrikeWeightDayPartsMerge.cs" />
+    <Compile Include="UpdateXGGT11538\UpdateXGGT11538.cs" />
+    <Compile Include="UpdateXGGT3810\UpdateStepXGGT3810_AddPassNewTolerance.cs" />
+    <Compile Include="UpdateXGGT3810\UpdateXGGT3810.cs" />
+    <Compile Include="UpdateXGGT1778\UpdateStepXGGT1778_AddPassNewGeneralRule.cs" />
+    <Compile Include="UpdateXGGT1778\UpdateXGGT1778.cs" />
+    <Compile Include="UpdateXGGT3727\UpdateStep3727_ScenarioCampaignDemographicNamePatch.cs" />
+    <Compile Include="UpdateXGGT3727\UpdateXGGT3727.cs" />
+    <Compile Include="UpdateXGGT4293\UpdateStepXGGT4293_SetAutoBookDefaultParameters.cs" />
+    <Compile Include="UpdateXGGT4293\UpdateStepXGGT4293_SetAutoBookDefaultParameters.Metadata.cs">
+      <DependentUpon>UpdateStepXGGT4293_SetAutoBookDefaultParameters.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UpdateXGGT4293\UpdateXGGT4293.cs" />
+    <Compile Include="UpdateXGGT7590\UpdateStepXGGT7590_RemoveExternalIdentifierValue.cs" />
+    <Compile Include="UpdateXGGT7590\UpdateXGGT7590.cs" />
+    <Compile Include="UpdateXGGT2035\UpdateStepXGGT2035_AddDefaultFacilities.cs" />
+    <Compile Include="UpdateXGGT2035\UpdateXGGT2035.cs" />
+    <Compile Include="UpdateXGGT4219\UpdateStepXGGT4219_Add_ABTZRB_Parameter.cs" />
+    <Compile Include="UpdateXGGT4219\UpdateXGGT4219.cs" />
+    <Compile Include="UpdateXGGT4255\UpdateStepXGGT4255_AddPassNewGeneralRules.cs" />
+    <Compile Include="UpdateXGGT4255\UpdateXGGT4255.cs" />
+    <Compile Include="UpdateXGGT4159\UpdateStepXGGT4159_DefaultTargetAreaName.cs" />
+    <Compile Include="UpdateXGGT4159\UpdateXGGT4159.cs" />
+    <Compile Include="UpdateXGGT7600\UpdateStepXGGT7600_MapCampaignPassPriority.cs" />
+    <Compile Include="UpdateXGGT7600\UpdateXGGT7600.cs" />
+    <Compile Include="UpdateXGGT7762\UpdateStepXGGT7762_AddDefaultPiBEntities.cs" />
+    <Compile Include="UpdateXGGT7762\UpdateXGGT7762.cs" />
+    <Compile Include="UpdateXGGT16602\UpdateStepXGGT16602_AddSpotBasedAutopilotRules.cs" />
+    <Compile Include="UpdateXGGT16602\UpdateXGGT16602.cs" />
+    <Compile Include="UpdateXGGT8872\UpdateStepXGGT8872_AddSpotBasedDeliveryRules.cs" />
+    <Compile Include="UpdateXGGT8872\UpdateXGGT8872.cs" />
+    <Compile Include="UpdateXGGT8737\UpdateXGGT8737.cs" />
+    <Compile Include="UpdateXGGT8737\UpdateXGGT8737_CreateRule.cs" />
+    <Compile Include="UpdateXGGT8737\UpdateXGGT8737_UpdatePasses.cs" />
+    <Compile Include="UpdateXGGT9163\UpdateStepXGGT9163_NullCampaignPassPrioritiesPatch.cs" />
+    <Compile Include="UpdateXGGT9163\UpdateXGGT9163.cs" />
+    <Compile Include="UpdateXGGT9170\UpdateStepXGGT9170_SyncScenarioCampaignsWihActualCampaigns.cs" />
+    <Compile Include="UpdateXGGT9170\UpdateXGGT9170.cs" />
+    <Compile Include="UpdateXGGT1838\UpdateStepXGGT1838_FunctionalAreaAndFaultTypeInsert.cs" />
+    <Compile Include="UpdateXGGT1838\UpdateXGGT1838.cs" />
+    <Compile Include="UpdateXGGT9221\UpdateStepXGGT9221_AddProgrammeRule.cs" />
+    <Compile Include="UpdateXGGT9221\UpdateXGGT9221.cs" />
+    <Compile Include="UpdateXGGT9571\UpdateStepXGGT9571_UpdateMaxRatingsRulesValues.cs" />
+    <Compile Include="UpdateXGGT9571\UpdateXGGT9571.cs" />
+    <Compile Include="UpdateXGGT9241\UpdateStepXGGT9241_AddSpotBookingRuleFeature.cs" />
+    <Compile Include="UpdateXGGT9241\UpdateXGGT9241.cs" />
+    <Compile Include="UpdateXGGT9240\UpdateStepXGGT9240_AddLengthFactors.cs" />
+    <Compile Include="UpdateXGGT9240\UpdateXGGT9240.cs" />
+    <Compile Include="UpdateXGGT9644\UpdateXGGT9644_RemoveClashDifferences.cs" />
+    <Compile Include="UpdateXGGT9644\UpdateXGGT9644.cs" />
+    <Compile Include="UpdateXGGT9876\UpdateXGGT9876.cs" />
+    <Compile Include="UpdateXGGT9876\UpdateXGGT9876_AddDefaultFeatures.cs" />
+    <Compile Include="VersionUtilities.cs" />
+    <Compile Include="XG10-11\UpdateXGGT11304\UpdateXGGT11304.cs" />
+    <Compile Include="XG10-11\UpdateXGGT11304\UpdateXGGT11304_AddSponsorshipSmoothFailures.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\src\domain\ImagineCommunications.GamePlan.Domain.Generic\ImagineCommunications.GamePlan.Domain.Generic.csproj">
+      <Project>{e4e13375-e595-4df3-81d4-c14314bacdfb}</Project>
+      <Name>ImagineCommunications.GamePlan.Domain.Generic</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\src\domain\ImagineCommunications.GamePlan.Domain\ImagineCommunications.GamePlan.Domain.csproj">
+      <Project>{3099d7dc-bc6e-4d9f-9668-c5798bd7f37c}</Project>
+      <Name>ImagineCommunications.GamePlan.Domain</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\src\infrastructure\ImagineCommunications.GamePlan.Persistence.RavenDb.Core\ImagineCommunications.GamePlan.Persistence.RavenDb.Core.csproj">
+      <Project>{75E54B40-26AA-4A07-9E6F-4CE9BA0AB753}</Project>
+      <Name>ImagineCommunications.GamePlan.Persistence.RavenDb.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\src\infrastructure\ImagineCommunications.GamePlan.Persistence.RavenDb\ImagineCommunications.GamePlan.Persistence.RavenDb.csproj">
+      <Project>{196aeb89-0078-4f0d-9a86-354b0ae02625}</Project>
+      <Name>ImagineCommunications.GamePlan.Persistence.RavenDb</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\src\processes\smooth\ImagineCommunications.GamePlan.Process.Smooth\ImagineCommunications.GamePlan.Process.Smooth.csproj">
+      <Project>{FBB5923B-27AA-4A77-B3C6-9FE8A9BBDDDE}</Project>
+      <Name>ImagineCommunications.GamePlan.Process.Smooth</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\xggameplan.common\xggameplan.common.csproj">
+      <Project>{efc37031-75bd-4c4b-b760-e1d3aba0a734}</Project>
+      <Name>xggameplan.common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\xggameplan.core\xggameplan.core.csproj">
+      <Project>{24373e36-c0e4-4550-b1e9-b59ef7094c1f}</Project>
+      <Name>xggameplan.core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\xggameplan.model\xggameplan.model.csproj">
+      <Project>{219a7aa0-38b0-44c5-b6c0-e77374ee9bbc}</Project>
+      <Name>xggameplan.model</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Microsoft.CodeAnalysis.FxCopAnalyzers">
+      <Version>2.9.8</Version>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+      <PrivateAssets>all</PrivateAssets>
+    </PackageReference>
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

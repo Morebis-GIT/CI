@@ -1,0 +1,209 @@
+{
+  "Restrictions": [
+    {
+      "Uid": "75dcd652-fd1f-4da4-92c9-4d96501b193a",
+      "SalesAreas": [
+        "QTQ91",
+        "GTV93"
+      ],
+      "StartDate": "2019-05-08T00:00:00.0000000Z",
+      "EndDate": null,
+      "StartTime": null,
+      "EndTime": null,
+      "RestrictionDays": "1111111",
+      "SchoolHolidayIndicator": "X",
+      "PublicHolidayIndicator": "X",
+      "LiveProgrammeIndicator": "I",
+      "RestrictionType": "ProgrammeCategory",
+      "RestrictionBasis": "Clash",
+      "ExternalProgRef": null,
+      "ProgrammeCategory": "CHILDREN",
+      "ProgrammeClassification": null,
+      "ProgrammeClassificationIndicator": "I",
+      "TimeToleranceMinsBefore": 0,
+      "TimeToleranceMinsAfter": 0,
+      "IndexType": 0,
+      "IndexThreshold": 0,
+      "ProductCode": 0,
+      "ClashCode": "P576",
+      "ClearanceCode": null,
+      "ClockNumber": "",
+      "ExternalIdentifier": "YH000000001"
+    },
+    {
+      "Uid": "985bbe70-e35c-42e3-ad9d-7fdd81500033",
+      "SalesAreas": [
+        "QTQ91",
+        "GTV93"
+      ],
+      "StartDate": "2019-08-13T00:00:00.0000000Z",
+      "EndDate": null,
+      "StartTime": null,
+      "EndTime": null,
+      "RestrictionDays": "1111111",
+      "SchoolHolidayIndicator": "X",
+      "PublicHolidayIndicator": "X",
+      "LiveProgrammeIndicator": "I",
+      "RestrictionType": "Time",
+      "RestrictionBasis": "Product",
+      "ExternalProgRef": null,
+      "ProgrammeCategory": null,
+      "ProgrammeClassification": null,
+      "ProgrammeClassificationIndicator": "I",
+      "TimeToleranceMinsBefore": 0,
+      "TimeToleranceMinsAfter": 0,
+      "IndexType": 0,
+      "IndexThreshold": 0,
+      "ProductCode": 140011,
+      "ClashCode": null,
+      "ClearanceCode": null,
+      "ClockNumber": "",
+      "ExternalIdentifier" :  "TP000000002"
+    },
+    {
+      "Uid": "2af826f2-a222-4a9a-ad1b-73a137940412",
+      "SalesAreas": [
+        "QTQ91",
+        "GTV93"
+      ],
+      "StartDate": "2019-03-28T00:00:00.0000000Z",
+      "EndDate": null,
+      "StartTime": null,
+      "EndTime": null,
+      "RestrictionDays": "0100000",
+      "SchoolHolidayIndicator": "X",
+      "PublicHolidayIndicator": "X",
+      "LiveProgrammeIndicator": "I",
+      "RestrictionType": "Programme",
+      "RestrictionBasis": "ClearanceCode",
+      "ExternalProgRef": "HOHUIN",
+      "ProgrammeCategory": null,
+      "ProgrammeClassification": "R",
+      "ProgrammeClassificationIndicator": "I",
+      "TimeToleranceMinsBefore": 0,
+      "TimeToleranceMinsAfter": 0,
+      "IndexType": 0,
+      "IndexThreshold": 0,
+      "ProductCode": 0,
+      "ClashCode": null,
+      "ClearanceCode": "G",
+      "ClockNumber": "",
+      "ExternalIdentifier": "PC000000003"
+    },
+    {
+      "Uid": "df0eca6d-6b76-4cb3-8fef-1b7f5763f930",
+      "SalesAreas": [
+        "QTQ91",
+        "GTV93"
+      ],
+      "StartDate": "2019-03-28T00:00:00.0000000Z",
+      "EndDate": null,
+      "StartTime": null,
+      "EndTime": null,
+      "RestrictionDays": "1111111",
+      "SchoolHolidayIndicator": "X",
+      "PublicHolidayIndicator": "X",
+      "LiveProgrammeIndicator": "I",
+      "RestrictionType": "ProgrammeClassification",
+      "RestrictionBasis": "Product",
+      "ExternalProgRef": "VARU",
+      "ProgrammeCategory": null,
+      "ProgrammeClassification": "MA",
+      "ProgrammeClassificationIndicator": "I",
+      "TimeToleranceMinsBefore": 0,
+      "TimeToleranceMinsAfter": 0,
+      "IndexType": 0,
+      "IndexThreshold": 0,
+      "ProductCode": 122740,
+      "ClashCode": null,
+      "ClearanceCode": null,
+      "ClockNumber": "",
+      "ExternalIdentifier": "CP000000004"
+    }
+  ],
+  "Products": [
+    {
+      "externalIdentifier": 122740,
+      "name": "ProductForRestriction1",
+      "effectiveStartDate": "2000-01-01T00:01:00Z",
+      "effectiveEndDate": "2099-12-31T23:59:00Z",
+      "clashCode": "P113",
+      "advertiserIdentifier": "41197",
+      "advertiserName": "Advertiser 1",
+      "advertiserLinkStartDate": "2019-01-01T00:00:00Z",
+      "advertiserLinkEndDate": "2020-01-01T00:00:00Z"
+    },
+    {
+      "externalIdentifier": 140011,
+      "name": "ProductForRestriction2",
+      "effectiveStartDate": "2000-01-01T00:01:00Z",
+      "effectiveEndDate": "2099-12-31T23:59:00Z",
+      "clashCode": "P115",
+      "advertiserIdentifier": "42511",
+      "advertiserName": "Advertiser 2",
+      "advertiserLinkStartDate": "2019-01-01T00:00:00Z",
+      "advertiserLinkEndDate": "2020-01-01T00:00:00Z"
+    }
+  ],
+  "Clashes": [
+    {
+      "Uid": "1917608d-de1c-4ee7-84ca-14ccebebd1e2",
+      "Externalref": "P576",
+      "ParentExternalidentifier": "I45",
+      "Description": "Recycling Products",
+      "DefaultOffPeakExposureCount": 2
+    },
+    {
+      "Uid": "70dce622-7972-4fa4-a274-e839c9ffe581",
+      "Externalref": "P577",
+      "ParentExternalidentifier": "I45",
+      "Description": "Photographic Studios",
+      "DefaultOffPeakExposureCount": 2
+    },
+    {
+      "Uid": "21621c65-99fe-44bd-bbfd-6d4add76c5b3",
+      "Externalref": "P578",
+      "ParentExternalidentifier": "I45",
+      "Description": "Printing Service",
+      "DefaultOffPeakExposureCount": 2
+    }
+  ],
+  "Programmes": [
+    {
+      "PrgtNo": 1,
+      "SalesArea": "STW94",
+      "StartDateTime": "2019-09-18T00:00:00.0000000Z",
+      "Duration": "00:30:00",
+      "ExternalReference": "OPHO",
+      "ProgrammeName": "ProgrammeName1",
+      "Description": null,
+      "ProgrammeCategories": [],
+      "Classification": "G",
+      "LiveBroadcast": false
+    },
+    {
+      "PrgtNo": 2,
+      "SalesArea": "STW94",
+      "StartDateTime": "2019-09-18T00:30:00.0000000Z",
+      "Duration": "00:30:00",
+      "ExternalReference": "HOHUIN",
+      "ProgrammeName": "ProgrammeName2",
+      "Description": null,
+      "ProgrammeCategories": [],
+      "Classification": "G",
+      "LiveBroadcast": false
+    },
+    {
+      "PrgtNo": 3,
+      "SalesArea": "STW94",
+      "StartDateTime": "2019-09-18T01:00:00.0000000Z",
+      "Duration": "00:30:00",
+      "ExternalReference": "VARU",
+      "ProgrammeName": "ProgrammeName3",
+      "Description": null,
+      "ProgrammeCategories": [],
+      "Classification": "M",
+      "LiveBroadcast": false
+    }
+  ]
+}

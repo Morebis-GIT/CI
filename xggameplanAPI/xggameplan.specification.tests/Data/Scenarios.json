@@ -1,0 +1,69 @@
+{
+  "Scenarios": [
+    {
+      "Id": "36a6b642-96eb-480a-9155-ac8182b9c5db",
+      "CampaignPassPriorities": [],
+      "Passes": [
+        {
+          "Id": 2179
+        },
+        {
+          "Id": 2180
+        },
+        {
+          "Id": 2181
+        }
+      ],
+      "Name": "IH Retest of XGGP503 copy 002",
+      "CustomId": 2049,
+      "DateCreated": "2019-04-10T15:02:49.7082403Z",
+      "DateModified": "2019-04-10T15:02:49.7082403Z",
+      "IsLibraried": true
+    },
+    {
+      "Id": "41210db5-d545-4785-8da4-811ab0954b7f",
+      "CampaignPassPriorities": [],
+      "Passes": [
+        {
+          "Id": 4897
+        }
+      ],
+      "Name": "IHTestScenario001",
+      "CustomId": 4705,
+      "DateCreated": "2019-01-25T14:32:10.2508410Z",
+      "DateModified": "2019-04-10T15:02:49.7082403Z",
+      "IsLibraried": false
+    },
+    {
+      "Id": "cceaedfd-361e-402e-b9dd-2ce6c835fc53",
+      "CampaignPassPriorities": [],
+      "Passes": [
+        {
+          "Id": 5412
+        }
+      ],
+      "Name": "IH - E2E run 2 days, Scenario 001",
+      "CustomId": 5219,
+      "DateCreated": "2019-02-28T16:00:49.7458764Z",
+      "DateModified": "2019-04-10T15:02:49.7082403Z",
+      "IsLibraried": false
+    },
+    {
+      "Id": "3863be84-eb80-4a4b-8a86-c2fba069243a",
+      "CampaignPassPriorities": [],
+      "Passes": [
+        {
+          "Id": 5412
+        },
+        {
+          "Id": 5411
+        }
+      ],
+      "Name": "IH - E2E run 2 days, all steps",
+      "CustomId": 5218,
+      "DateCreated": "2019-02-28T14:49:55.7728010Z",
+      "DateModified": "2019-04-10T15:02:49.7082403Z",
+      "IsLibraried": false
+    }
+  ]
+}

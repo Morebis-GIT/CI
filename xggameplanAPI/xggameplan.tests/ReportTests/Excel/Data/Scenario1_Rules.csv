@@ -1,0 +1,21 @@
+Rules,Value
+Pass#,1,2,3
+Pass Name,s5-p1,s5-p2,s5-p3
+Daypart (Non-Peak / Peak),NP,P,NP,P,NP,P
+Max Spots Per Day,15,1,195,21,157,
+Max Spots Per Hour,3,3,93,22,73,
+Max Spots Per 2 Hours,6,4,69,23,76,
+Min Breaks Between Spots,1,5,91,24,17,
+Min Hours Between Spots,0,6,9,25,70,
+Max Spots Per Programme/Day,1,7,91,26,16,
+Max Spots Per Programme/Week,10,8,190,27,107,
+Max Spots per Prog/100 rtgs,0,9,97,28,80,
+Max Zero Ratings,150,10,195,29,139,
+Min Weeks Between Programmes,0,11,79,30,13,
+Max Ratings for Spot Campaigns,50,12,95,,54,
+Max Sub Area Slotting %,0,13,10,,1,
+Miniumum Break Availability,5,14,5,,59,
+Max Spots Per Prog/Time,0,15,0,,43,
+Min Days Between Prog/Time,0,,20,,17,
+Min Weeks Between Prog/Time,0,,40,,90,
+Max Ratings for Rating Campaigns,9999999,,9999999,,9999999,

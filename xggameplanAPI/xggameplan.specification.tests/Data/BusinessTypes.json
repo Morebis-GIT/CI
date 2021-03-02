@@ -1,0 +1,22 @@
+{
+  "BusinessTypes": [
+    {
+      "Id": 1,
+      "Code": "STD",
+      "Name": "SK-CS-UK - STANDARD AIRTIME",
+      "IncludeConversionIndex": true
+    },
+    {
+      "Id": 2,
+      "Code": "BAR",
+      "Name": "SK-CS-UK - BARTER TRADE",
+      "IncludeConversionIndex": true
+    },
+    {
+      "Id": 3,
+      "Code": "BAT",
+      "Name": "SK-CS-UK - BARTER TRADE DISC",
+      "IncludeConversionIndex": true
+    }
+  ]
+}

@@ -1,0 +1,51 @@
+{
+  "Failures": [
+    {
+      "Id": "720906C7-EB98-4057-9175-962AF459EA55",
+      "Items": [
+        {
+          "Campaign": 1,
+          "CampaignName": "Campaign1",
+          "ExternalId": "Failure1",
+          "Type": 1,
+          "Failures": 1,
+          "SalesAreaName": "SA-1"
+        },
+        {
+          "Campaign": 2,
+          "CampaignName": "Campaign2",
+          "ExternalId": "Failure2",
+          "Type": 2,
+          "Failures": 2,
+          "SalesAreaName": "SA-2"
+        }
+      ]
+    },
+    {
+      "Id": "2259294C-24E6-45B7-B1EF-2BAA53CF4278",
+      "Items": [
+        {
+          "Campaign": 3,
+          "CampaignName": "Campaign3",
+          "ExternalId": "Failure3",
+          "Type": 3,
+          "Failures": 3,
+          "SalesAreaName": "SA-3"
+        }
+      ]
+    },
+    {
+      "Id": "6D5304D7-5848-4577-8F31-65305E8DA0BD",
+      "Items": [
+        {
+          "Campaign": 4,
+          "CampaignName": "Campaign4",
+          "ExternalId": "Failure4",
+          "Type": 4,
+          "Failures": 4,
+          "SalesAreaName": "SA-4"
+        }
+      ]
+    }
+  ]
+}
