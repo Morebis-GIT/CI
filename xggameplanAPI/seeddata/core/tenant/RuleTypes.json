@@ -1,0 +1,32 @@
+﻿[
+  {
+    "Id": 1, 
+    "Name": "General",
+    "AllowedForAutopilot": true,
+    "IsCustom": false
+  },
+  {
+    "Id": 2,
+    "Name": "Weighting",
+    "AllowedForAutopilot": false,
+    "IsCustom": false
+  },
+  {
+    "Id": 3,
+    "Name": "Tolerances",
+    "AllowedForAutopilot": true,
+    "IsCustom": false
+  },
+  {
+    "Id": 4,
+    "Name": "Rules",
+    "AllowedForAutopilot": true,
+    "IsCustom": false
+  },
+  {
+    "Id": 5,
+    "Name": "Slotting Limits",
+    "AllowedForAutopilot": true,
+    "IsCustom": true
+  }
+]

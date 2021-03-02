@@ -10,10 +10,12 @@ namespace ImagineCommunications.GamePlan.Persistence.File.Repositories
     {
         public FileSpotPlacementRepository(string folder) : base(folder, "spot_placement")
         {
+
         }
 
         public void Dispose()
         {
+
         }
 
         public void Insert(IEnumerable<SpotPlacement> spotPlacements)
@@ -38,7 +40,7 @@ namespace ImagineCommunications.GamePlan.Persistence.File.Repositories
 
         public void Delete(int id)
         {
-            DeleteItem(_folder, _type, id.ToString());
+            DeleteItem<SpotPlacement>(_folder, _type, id.ToString());
         }
 
         public void Delete(string externalSpotRef)
@@ -53,11 +55,10 @@ namespace ImagineCommunications.GamePlan.Persistence.File.Repositories
 
         public void SaveChanges()
         {
+
         }
 
-        public void Add(SpotPlacement item)
-        {
+        public void Add(SpotPlacement item) =>
             UpdateOrInsertItem(_folder, _type, item, item.Id.ToString());
-        }
     }
 }

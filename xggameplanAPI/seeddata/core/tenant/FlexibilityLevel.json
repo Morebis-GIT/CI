@@ -1,0 +1,22 @@
+[
+  {
+    "Id": 1,
+    "Name": "Low",
+    "SortIndex": 0
+  },
+  {
+    "Id": 2,
+    "Name": "Medium",
+    "SortIndex": 1
+  },
+  {
+    "Id": 3,
+    "Name": "High",
+    "SortIndex": 2
+  },
+  {
+    "Id": 4,
+    "Name": "Extreme",
+    "SortIndex": 3
+  }
+]

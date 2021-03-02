@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Globalization;
-using System.Linq;
 using AutoFixture;
 using AutoFixture.Dsl;
 using ImagineCommunications.GamePlan.Domain.Campaigns;
@@ -19,7 +18,6 @@ namespace xggameplan.specification.tests.RepositoryAdapters
         private static readonly string[] CampaignStatuses = { "A", "C", "N" };
         private static readonly string[] CategoryOrProgrammeValues = { "C", "P" };
         private static readonly string[] IncludeOrExcludeValues = { "I", "E" };
-        private static readonly string[] SalesAreaNames = { "NWS91", "QTQ93", "QTQ91", "STW92", "GTV93" };
 
         private readonly Random _randomizer = new Random((int)DateTime.UtcNow.Ticks);
 
@@ -87,41 +85,11 @@ namespace xggameplan.specification.tests.RepositoryAdapters
             return Repository.CountAll;
         }
 
-        protected override IPostprocessComposer<Campaign> GetAutoModelComposer() => base.GetAutoModelComposer()
-                .With(p => p.Status, CampaignStatuses[_randomizer.Next(0, 2)])
-                .With(p => p.BreakRequirement,
-                    Fixture.Build<CampaignBreakRequirement>()
-                        .With(o => o.SalesArea, SalesAreaNames[_randomizer.Next(0, 4)])
-                        .Create())
-                .With(p => p.SalesAreaCampaignTarget,
-                    Fixture.Build<SalesAreaCampaignTarget>()
-                        .With(o => o.SalesArea, SalesAreaNames[_randomizer.Next(0, 4)])
-                .With(o => o.SalesAreaGroup,
-                    Fixture.Build<SalesAreaGroup>()
-                        .With(x => x.SalesAreas, SalesAreaNames.Take(3).ToList())
-                        .Create())
-                    .CreateMany(2).ToList())
-                .With(p => p.TimeRestrictions,
-                    Fixture.Build<TimeRestriction>()
-                        .With(o => o.IsIncludeOrExclude, IncludeOrExcludeValues[_randomizer.Next(0, 2)])
-                        .With(o => o.SalesAreas, SalesAreaNames.Take(3).ToList())
-                        .With(p => p.DowPattern, new List<string> { "Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat" })
-                        .CreateMany(3).ToList())
-                .With(p => p.ProgrammeRestrictions,
-                    Fixture.Build<ProgrammeRestriction>()
-                        .With(o => o.IsCategoryOrProgramme, CategoryOrProgrammeValues[_randomizer.Next(0, 2)])
-                        .With(o => o.IsIncludeOrExclude, IncludeOrExcludeValues[_randomizer.Next(0, 2)])
-                        .With(o => o.SalesAreas, SalesAreaNames.Take(3).ToList())
-                        .CreateMany(3).ToList())
-                .With(p => p.ProgrammesList,
-                    Fixture.Build<CampaignProgramme>()
-                        .With(p => p.CategoryOrProgramme, Fixture.CreateMany<string>(3))
-                        .With(o => o.SalesAreas, SalesAreaNames.Take(3).ToList())
-                        .CreateMany(3).ToList())
-                .With(p => p.BookingPositionGroups,
-                    Fixture.Build<CampaignBookingPositionGroup>()
-                        .With(o => o.SalesAreas, SalesAreaNames.Take(3).ToList())
-                        .CreateMany(3).ToList());
+        protected override IPostprocessComposer<Campaign> GetAutoModelComposer()
+        {
+            return base.GetAutoModelComposer()
+                .With(p => p.Status, CampaignStatuses[_randomizer.Next(0, 2)]);
+        }
 
         [RepositoryMethod]
         protected CallMethodResult GetWithProduct(CampaignStatus status, DateTime? startDate, DateTime? endDate, string description)

@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using ImagineCommunications.GamePlan.Domain.Sponsorships;
 using ImagineCommunications.GamePlan.Domain.Sponsorships.Objects;
@@ -21,35 +22,29 @@ namespace ImagineCommunications.GamePlan.Persistence.File.Repositories
         public void Add(Sponsorship item)
         {
             var items = new List<Sponsorship>() { item };
-            InsertItems(_folder, _type, items, items.ConvertAll(i => i.ExternalReferenceId));
+            InsertItems(_folder, _type, items, items.Select(i => i.ExternalReferenceId).ToList());
         }
 
-        public void Update(Sponsorship item)
-        {
+        public void Update(Sponsorship item) =>
             UpdateOrInsertItem(_folder, _type, item, item.ExternalReferenceId);
-        }
 
-        public void Delete(string externalReferenceId)
-        {
-            DeleteItem(_folder, _type, externalReferenceId);
-        }
+        public void Delete(string externalReferenceId) =>
+            DeleteItem<Sponsorship>(_folder, _type, externalReferenceId);
 
-        public void SaveChanges()
-        {
-        }
+        public void SaveChanges() { }
 
         public bool Exists(string externalReferenceId) =>
             GetItemByID<Sponsorship>(_folder, _type, externalReferenceId) != null;
 
         public void Truncate()
         {
-            DeleteAllItems(_folder, _type);
+            DeleteAllItems<Sponsorship>(_folder, _type);
         }
 
         public Task TruncateAsync()
         {
             Truncate();
-            return Task.CompletedTask;
+            return Task.FromResult(true);
         }
     }
 }

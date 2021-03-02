@@ -4,7 +4,7 @@ using System.Linq;
 using System.Linq.Expressions;
 using System.Reflection;
 using ImagineCommunications.GamePlan.Intelligence.Tests.Infrastructure.Extensions;
-using Microsoft.EntityFrameworkCore;
+using ImagineCommunications.GamePlan.Persistence.SqlServer.Core.Extensions;
 
 namespace ImagineCommunications.GamePlan.Intelligence.Tests.DataExchange.Infrastructure.SqlServer.Interception
 {
@@ -49,64 +49,64 @@ namespace ImagineCommunications.GamePlan.Intelligence.Tests.DataExchange.Infrast
 
         protected override Expression VisitMethodCall(MethodCallExpression node)
         {
-            if (node.Method.Name == nameof(SqlServerDbFunctionsExtensions.Contains) &&
-                node.Method.DeclaringType == typeof(SqlServerDbFunctionsExtensions))
+            if (node.Method.Name == nameof(DbFunctionsExtensions.Contains) &&
+            node.Method.DeclaringType == typeof(DbFunctionsExtensions))
             {
-                MethodInfo methodInfo = null;
-                if (node.Arguments.Count == 3)
-                {
-                    methodInfo = Contains3Args;
-                }
-                else if (node.Arguments.Count == 4)
-                {
-                    methodInfo = Contains4Args;
-                }
+                    MethodInfo methodInfo = null;
+                    if (node.Arguments.Count == 3)
+                    {
+                        methodInfo = Contains3Args;
+                    }
+                    else if (node.Arguments.Count == 4)
+                    {
+                        methodInfo = Contains4Args;
+                    }
 
                 if (methodInfo != null)
                 {
                     var descriptor = new FtsContainsMethodDescriptor();
                     _ = new FtsPropertyReferenceVisitor(descriptor).Visit(node.Arguments[1]);
 
-                    var methodParams = new List<Expression>
+                        var methodParams = new List<Expression>
                     {
                         Expression.Constant(_ftsInterceptionProvider),
                         descriptor.EntityReference,
                         descriptor.PropertyReference,
                     };
-                    methodParams.AddRange(node.Arguments.Skip(2));
+                        methodParams.AddRange(node.Arguments.Skip(2));
 
-                    return Expression.Call(methodInfo, methodParams.ToArray());
+                        return Expression.Call(methodInfo, methodParams.ToArray());
+                    }
                 }
-            }
-            else
-            if (node.Method.Name == nameof(List<string>.Contains) &&
-                node.Method.DeclaringType == typeof(List<string>) && node.Object != null)
-            {
-                //replaces to Enumerable.Contains(List<string>, arg1, StringComparer.OrdinalIgnoreCase)
-                return Expression.Call(InvariantEnumerableContains,
-                    node.Object,
-                    node.Arguments.First(),
-                    Expression.Constant(StringComparer.OrdinalIgnoreCase));
-            }
-            else
-            if (node.Method.Name == nameof(Enumerable.Contains) &&
-                node.Method.DeclaringType == typeof(Enumerable) && node.Arguments.Count == 2 &&
-                typeof(IEnumerable<string>).IsAssignableFrom(node.Arguments[0].Type))
-            {
-                //replaces to Enumerable.Contains(IEnumerable<string>, arg1, StringComparer.OrdinalIgnoreCase)
-                var args = new List<Expression>(node.Arguments) {Expression.Constant(StringComparer.OrdinalIgnoreCase)};
-                return Expression.Call(InvariantEnumerableContains, args);
-            }
-            else
-            if (node.Method.Name == nameof(string.Contains) && node.Method.DeclaringType == typeof(string) &&
-                node.Object != null)
-            {
-                //replaces to string.IndexOf(arg1, StringComparison.OrdinalIgnoreCase) >= 0
-                return Expression.GreaterThanOrEqual(
-                    Expression.Call(node.Object, StringIndexOf, node.Arguments[0],
-                        Expression.Constant(StringComparison.OrdinalIgnoreCase)),
-                    Expression.Constant(0));
-            }
+                else
+                if (node.Method.Name == nameof(List<string>.Contains) &&
+                    node.Method.DeclaringType == typeof(List<string>) && node.Object != null)
+                {
+                    //replaces to Enumerable.Contains(List<string>, arg1, StringComparer.OrdinalIgnoreCase)
+                    return Expression.Call(InvariantEnumerableContains,
+                        node.Object,
+                        node.Arguments.First(),
+                        Expression.Constant(StringComparer.OrdinalIgnoreCase));
+                }
+                else
+                if (node.Method.Name == nameof(Enumerable.Contains) &&
+                    node.Method.DeclaringType == typeof(Enumerable) && node.Arguments.Count == 2 &&
+                    typeof(IEnumerable<string>).IsAssignableFrom(node.Arguments[0].Type))
+                {
+                    //replaces to Enumerable.Contains(IEnumerable<string>, arg1, StringComparer.OrdinalIgnoreCase)
+                    var args = new List<Expression>(node.Arguments) {Expression.Constant(StringComparer.OrdinalIgnoreCase)};
+                    return Expression.Call(InvariantEnumerableContains, args);
+                }
+                else
+                if (node.Method.Name == nameof(string.Contains) && node.Method.DeclaringType == typeof(string) &&
+                    node.Object != null)
+                {
+                    //replaces to string.IndexOf(arg1, StringComparison.OrdinalIgnoreCase) >= 0
+                    return Expression.GreaterThanOrEqual(
+                        Expression.Call(node.Object, StringIndexOf, node.Arguments[0],
+                            Expression.Constant(StringComparison.OrdinalIgnoreCase)),
+                        Expression.Constant(0));
+                }
 
             return base.VisitMethodCall(node);
         }

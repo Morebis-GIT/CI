@@ -23,51 +23,42 @@ namespace ImagineCommunications.GamePlan.Persistence.Memory.Repositories
 
         public void Add(ClashException item)
         {
-            InsertOrReplaceItem(item, item.Id.ToString());
+            var items = new List<ClashException>() { item };
+            InsertItems(items, items.Select(i => i.Id.ToString()).ToList<string>());
         }
 
         public void Add(IEnumerable<ClashException> items)
         {
-            foreach (var item in items)
-            {
-                Add(item);
-            }
+            InsertItems(items.ToList(), items.Select(i => i.Id.ToString()).ToList<string>());
         }
 
         public IEnumerable<ClashException> GetAll() => GetAllItems();
 
         public int CountAll => GetCount();
 
-        public int Count(Expression<Func<ClashException, bool>> query) => GetCount(query);
-
         public ClashException Find(Guid uid)
         {
             throw new NotImplementedException();
         }
-
-        public ClashException Find(int id) => GetItemById(id.ToString());
 
         public void Remove(Guid uid)
         {
             throw new NotImplementedException();
         }
 
-        public void Remove(int id)
-        {
-            DeleteItem(id.ToString());
-        }
-
-        public void Delete(ClashExceptionType fromType, ClashExceptionType toType, string fromValue, string toValue)
-        {
-            throw new NotImplementedException();
-        }
-
         public PagedQueryResult<ClashExceptionModel> SearchWithDescriptions(ClashExceptionSearchQueryModel searchQuery) =>
-                            throw new NotImplementedException();
+            throw new NotImplementedException();
+
+        public ClashException Find(int id) => GetItemById(id.ToString());
 
         public ClashExceptionModel GetWithDescriptions(int id) => throw new NotImplementedException();
 
         public List<ClashExceptionModel> GetWithDescriptions(IEnumerable<int> ids) => throw new NotImplementedException();
+
+        public void Remove(int id)
+        {
+            DeleteItem(id.ToString());
+        }
 
         public IEnumerable<ClashException> FindByExternal(string externalRef)
         {
@@ -107,8 +98,15 @@ namespace ImagineCommunications.GamePlan.Persistence.Memory.Repositories
             throw new NotImplementedException();
         }
 
+        public int Count(Expression<Func<ClashException, bool>> query) => GetCount(query);
+
         public void SaveChanges()
         {
+        }
+
+        public void Delete(ClashExceptionType fromType, ClashExceptionType toType, string fromValue, string toValue)
+        {
+            throw new NotImplementedException();
         }
 
         public IEnumerable<ClashException> GetActive()

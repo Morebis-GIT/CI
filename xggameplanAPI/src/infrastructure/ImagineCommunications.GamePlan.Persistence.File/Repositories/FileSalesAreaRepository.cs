@@ -12,10 +12,12 @@ namespace ImagineCommunications.GamePlan.Persistence.File.Repositories
         public FileSalesAreaRepository(string folder)
             : base(folder, "sales_area")
         {
+
         }
 
         public void Dispose()
         {
+
         }
 
         public SalesArea Find(Guid id)
@@ -31,7 +33,7 @@ namespace ImagineCommunications.GamePlan.Persistence.File.Repositories
         public void Add(SalesArea salesArea)
         {
             List<SalesArea> items = new List<SalesArea>() { salesArea };
-            InsertItems(_folder, _type, items, items.ConvertAll(i => i.Id.ToString()));
+            InsertItems(_folder, _type, items, items.Select(i => i.Id.ToString()).ToList());
         }
 
         public void Update(SalesArea salesArea)
@@ -46,7 +48,7 @@ namespace ImagineCommunications.GamePlan.Persistence.File.Repositories
 
         public void Remove(Guid id)
         {
-            DeleteItem(_folder, _type, id.ToString());
+            DeleteItem<SalesArea>(_folder, _type, id.ToString());
         }
 
         /// <summary>
@@ -59,15 +61,12 @@ namespace ImagineCommunications.GamePlan.Persistence.File.Repositories
             return GetAllByType<SalesArea>(_folder, _type, sa => names.Contains(sa.Name));
         }
 
-        public SalesArea FindByCustomId(int id) =>
-            GetAllByType<SalesArea>(_folder, _type, s => s.CustomId == id).FirstOrDefault();
-
         public SalesArea FindByName(string name)
         {
             var allSalesAreas = GetAllByType<SalesArea>(_folder, _type).ToList();
-            var result = allSalesAreas.Find(sa => sa.Name.ToUpper() == name.ToUpper());
+            var result = allSalesAreas.FirstOrDefault(sa => sa.Name.ToUpper() == name.ToUpper());
 
-            return GetAllByType<SalesArea>(_folder, _type, _ => true).FirstOrDefault();
+            return GetAllByType<SalesArea>(_folder, _type, sa => true).FirstOrDefault();
         }
 
         public List<SalesArea> FindByIds(List<int> Ids)
@@ -82,7 +81,13 @@ namespace ImagineCommunications.GamePlan.Persistence.File.Repositories
             throw new NotImplementedException();
         }
 
-        public int CountAll => GetAllByType<SalesArea>(_folder, _type).Count;
+        public int CountAll
+        {
+            get
+            {
+                return GetAllByType<SalesArea>(_folder, _type).Count;
+            }
+        }
 
         public void SaveChanges()
         {

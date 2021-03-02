@@ -112,9 +112,9 @@ namespace ImagineCommunications.GamePlan.Persistence.SqlServer.Repositories
             {
                 _dbContext.AddRange(demographicsToAdd);
                 _dbContext.UpdateRange(demographicsToUpdate);
-                _dbContext.Specific.IdentityInsertOn<Entities.Tenant.Demographic>();
+                // _dbContext.Specific.IdentityInsertOn<Entities.Tenant.Demographic>();
                 _dbContext.SaveChanges();
-                _dbContext.Specific.IdentityInsertOff<Entities.Tenant.Demographic>();
+                // _dbContext.Specific.IdentityInsertOff<Entities.Tenant.Demographic>();
                 transaction.Commit();
             }
         }

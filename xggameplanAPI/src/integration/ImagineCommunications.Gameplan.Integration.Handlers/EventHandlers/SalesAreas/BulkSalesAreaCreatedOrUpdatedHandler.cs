@@ -33,9 +33,8 @@ namespace ImagineCommunications.Gameplan.Integration.Handlers.EventHandlers.Sale
         {
             ValidateSalesAreaDemographics(command);
 
-            var customIds = command.Data.Select(x => x.CustomId).ToList();
-            var existingSalesAreas = _salesAreaRepository.FindByIds(customIds)
-                .ToDictionary(x => x.CustomId);
+            var shortNames = command.Data.Select(x => x.ShortName).ToList();
+            var dbSalesAreas = _salesAreaRepository.FindByShortNames(shortNames);
 
             var salesAreasWithDemographics = new Dictionary<SalesArea, List<SalesAreaDemographic>>();
             var resultSalesAreas = new List<SalesArea>();
@@ -45,14 +44,16 @@ namespace ImagineCommunications.Gameplan.Integration.Handlers.EventHandlers.Sale
                 var demographics = _mapper.Map<List<SalesAreaDemographic>>(item.Demographics);
                 var newSalesArea = _mapper.Map<SalesArea>(item);
 
-                if (existingSalesAreas.TryGetValue(item.CustomId, out SalesArea salesArea))
-                {
-                    UpdateSalesAreaModel(salesArea, newSalesArea);
-                }
-                else
+                var salesArea = dbSalesAreas.FirstOrDefault(x => x.ShortName == item.ShortName);
+
+                if (salesArea == null)
                 {
                     salesArea = newSalesArea;
                     salesArea.Id = System.Guid.NewGuid();
+                }
+                else
+                {
+                    UpdateSalesAreaModel(salesArea, newSalesArea);
                 }
 
                 resultSalesAreas.Add(salesArea);
@@ -108,8 +109,6 @@ namespace ImagineCommunications.Gameplan.Integration.Handlers.EventHandlers.Sale
             salesArea.StartOffset = newSalesArea.StartOffset;
             salesArea.DayDuration = newSalesArea.DayDuration;
             salesArea.CustomId = newSalesArea.CustomId;
-            salesArea.Name = newSalesArea.Name;
-            salesArea.ShortName = newSalesArea.ShortName;
         }
     }
 }

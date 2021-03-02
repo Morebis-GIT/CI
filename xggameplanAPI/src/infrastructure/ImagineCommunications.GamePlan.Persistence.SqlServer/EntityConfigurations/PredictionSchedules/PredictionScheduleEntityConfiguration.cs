@@ -9,22 +9,20 @@ namespace ImagineCommunications.GamePlan.Persistence.SqlServer.EntityConfigurati
     {
         public void Configure(EntityTypeBuilder<PredictionSchedule> builder)
         {
-            _ = builder.ToTable("PredictionSchedules");
+            builder.ToTable("PredictionSchedules");
 
-            _ = builder.HasKey(e => e.Id);
-            _ = builder.Property(e => e.Id).UseSqlServerIdentityColumn();
+            builder.HasKey(e => e.Id);
+            builder.Property(e => e.Id).UseMySqlIdentityColumn();
 
-            _ = builder.Property(e => e.ScheduleDay).AsUtc();
+            builder.Property(e => e.ScheduleDay).AsUtc();
+            builder.Property(e => e.SalesArea).HasMaxLength(64).IsRequired();
 
-            _ = builder.HasMany(e => e.Ratings).WithOne(e => e.PredictionSchedule)
+            builder.HasMany(e => e.Ratings).WithOne(e => e.PredictionSchedule)
                 .HasForeignKey(e => e.PredictionScheduleId)
                 .OnDelete(DeleteBehavior.Cascade);
 
-            _ = builder.HasIndex(x => x.SalesAreaId);
-            _ = builder.HasIndex(nameof(PredictionSchedule.SalesAreaId), nameof(PredictionSchedule.ScheduleDay));
-            _ = builder.HasOne(x => x.SalesArea).WithMany()
-                .HasForeignKey(x => x.SalesAreaId)
-                .OnDelete(DeleteBehavior.Restrict);
+            builder.HasIndex(x => x.SalesArea);
+            builder.HasIndex(nameof(PredictionSchedule.SalesArea), nameof(PredictionSchedule.ScheduleDay));
         }
     }
 }

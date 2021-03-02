@@ -1,0 +1,702 @@
+[
+  {
+    "Id": 1,
+    "RuleId": 1,
+    "RuleTypeId": 1,
+    "InternalType": "Defaults",
+    "Description": "Minimum Efficiency",
+    "Type": "general"
+  },
+  {
+    "Id": 2,
+    "RuleId": 2,
+    "RuleTypeId": 1,
+    "InternalType": "Defaults",
+    "Description": "Maximum Rank",
+    "Type": "general"
+  },
+  {
+    "Id": 3,
+    "RuleId": 3,
+    "RuleTypeId": 1,
+    "InternalType": "Defaults",
+    "Description": "Demograph Banding Tolerance",
+    "Type": "general"
+  },
+  {
+    "Id": 4,
+    "RuleId": 4,
+    "RuleTypeId": 1,
+    "InternalType": "Defaults",
+    "Description": "Default Centre Break Ratio",
+    "Type": "general"
+  },
+  {
+    "Id": 5,
+    "RuleId": 5,
+    "RuleTypeId": 1,
+    "InternalType": "Defaults",
+    "Description": "Use Max Spot Ratings Set By Campaigns",
+    "Type": "general"
+  },
+  {
+    "Id": 6,
+    "RuleId": 6,
+    "RuleTypeId": 1,
+    "InternalType": "Defaults",
+    "Description": "Sponsorship Exclusivity",
+    "Type": "general"
+  },
+  {
+    "Id": 7,
+    "RuleId": 1,
+    "RuleTypeId": 2,
+    "InternalType": "Weightings",
+    "Description": "Campaign",
+    "Type": "weightings"
+  },
+  {
+    "Id": 8,
+    "RuleId": 2,
+    "RuleTypeId": 2,
+    "InternalType": "Weightings",
+    "Description": "Campaign Sales Area",
+    "Type": "weightings"
+  },
+  {
+    "Id": 9,
+    "RuleId": 3,
+    "RuleTypeId": 2,
+    "InternalType": "Weightings",
+    "Description": "Spot Length",
+    "Type": "weightings"
+  },
+  {
+    "Id": 10,
+    "RuleId": 4,
+    "RuleTypeId": 2,
+    "InternalType": "Weightings",
+    "Description": "Daypart",
+    "Type": "weightings"
+  },
+  {
+    "Id": 11,
+    "RuleId": 5,
+    "RuleTypeId": 2,
+    "InternalType": "Weightings",
+    "Description": "Strike Weight",
+    "Type": "weightings"
+  },
+  {
+    "Id": 12,
+    "RuleId": 6,
+    "RuleTypeId": 2,
+    "InternalType": "Weightings",
+    "Description": "Fit to Requirement",
+    "Type": "weightings"
+  },
+  {
+    "Id": 13,
+    "RuleId": 7,
+    "RuleTypeId": 2,
+    "InternalType": "Weightings",
+    "Description": "Fit to Spot Length",
+    "Type": "weightings"
+  },
+  {
+    "Id": 14,
+    "RuleId": 8,
+    "RuleTypeId": 2,
+    "InternalType": "Weightings",
+    "Description": "Centre/End",
+    "Type": "weightings"
+  },
+  {
+    "Id": 15,
+    "RuleId": 9,
+    "RuleTypeId": 2,
+    "InternalType": "Weightings",
+    "Description": "Booking Position",
+    "Type": "weightings"
+  },
+  {
+    "Id": 16,
+    "RuleId": 1,
+    "RuleTypeId": 3,
+    "InternalType": "Campaign",
+    "Description": "Campaign",
+    "Type": "tolerances",
+    "CampaignType": "Rating"
+  },
+  {
+    "Id": 17,
+    "RuleId": 8,
+    "RuleTypeId": 3,
+    "InternalType": "Campaign",
+    "Description": "Booking Position",
+    "Type": "tolerances",
+    "CampaignType": "Rating"
+  },
+  {
+    "Id": 18,
+    "RuleId": 9,
+    "RuleTypeId": 3,
+    "InternalType": "Campaign",
+    "Description": "Centre/End",
+    "Type": "tolerances",
+    "CampaignType": "Rating"
+  },
+  {
+    "Id": 19,
+    "RuleId": 2,
+    "RuleTypeId": 3,
+    "InternalType": "Sales Area",
+    "Description": "Sales Area",
+    "Type": "tolerances",
+    "CampaignType": "Rating"
+  },
+  {
+    "Id": 20,
+    "RuleId": 3,
+    "RuleTypeId": 3,
+    "InternalType": "Sales Area",
+    "Description": "Spot Length",
+    "Type": "tolerances",
+    "CampaignType": "Rating"
+  },
+  {
+    "Id": 21,
+    "RuleId": 4,
+    "RuleTypeId": 3,
+    "InternalType": "Sales Area",
+    "Description": "Daypart",
+    "Type": "tolerances",
+    "CampaignType": "Rating"
+  },
+  {
+    "Id": 22,
+    "RuleId": 5,
+    "RuleTypeId": 3,
+    "InternalType": "Sales Area",
+    "Description": "Strike Weight",
+    "Type": "tolerances",
+    "CampaignType": "Rating"
+  },
+  {
+    "Id": 23,
+    "RuleId": 6,
+    "RuleTypeId": 3,
+    "InternalType": "Sales Area",
+    "Description": "Strike Wgt/Daypart",
+    "Type": "tolerances",
+    "CampaignType": "Rating"
+  },
+  {
+    "Id": 24,
+    "RuleId": 7,
+    "RuleTypeId": 3,
+    "InternalType": "Sales Area",
+    "Description": "Peak Daypart",
+    "Type": "tolerances",
+    "CampaignType": "Rating"
+  },
+  {
+    "Id": 25,
+    "RuleId": 12,
+    "RuleTypeId": 3,
+    "InternalType": "Sales Area",
+    "Description": "Daypart/Length",
+    "Type": "tolerances",
+    "CampaignType": "Rating"
+  },
+  {
+    "Id": 26,
+    "RuleId": 13,
+    "RuleTypeId": 3,
+    "InternalType": "Sales Area",
+    "Description": "Strike Weight/Length",
+    "Type": "tolerances",
+    "CampaignType": "Rating"
+  },
+  {
+    "Id": 27,
+    "RuleId": 14,
+    "RuleTypeId": 3,
+    "InternalType": "Sales Area",
+    "Description": "Strike Weight/Daypart/Length",
+    "Type": "tolerances",
+    "CampaignType": "Rating"
+  },
+  {
+    "Id": 28,
+    "RuleId": 10,
+    "RuleTypeId": 3,
+    "InternalType": "Budget",
+    "Description": "Campaign (Budget)",
+    "Type": "tolerances",
+    "CampaignType": "Rating"
+  },
+  {
+    "Id": 29,
+    "RuleId": 11,
+    "RuleTypeId": 3,
+    "InternalType": "Budget",
+    "Description": "Sales Area (Budget)",
+    "Type": "tolerances",
+    "CampaignType": "Rating"
+  },
+  {
+    "Id": 30,
+    "RuleId": 37,
+    "RuleTypeId": 3,
+    "InternalType": "Campaign",
+    "Description": "Programme",
+    "Type": "tolerances",
+    "CampaignType": "Rating"
+  },
+  {
+    "Id": 31,
+    "RuleId": 1,
+    "RuleTypeId": 4,
+    "InternalType": "Slotting Controls",
+    "Description": "Max Spots Per Day",
+    "Type": "rules",
+    "CampaignType": "Spot"
+  },
+  {
+    "Id": 32,
+    "RuleId": 2,
+    "RuleTypeId": 4,
+    "InternalType": "Slotting Controls",
+    "Description": "Max Spots Per Hour",
+    "Type": "rules",
+    "CampaignType": "Spot"
+  },
+  {
+    "Id": 33,
+    "RuleId": 3,
+    "RuleTypeId": 4,
+    "InternalType": "Slotting Controls",
+    "Description": "Max Spots Per 2 Hours",
+    "Type": "rules",
+    "CampaignType": "Spot"
+  },
+  {
+    "Id": 34,
+    "RuleId": 4,
+    "RuleTypeId": 4,
+    "InternalType": "Slotting Controls",
+    "Description": "Min Breaks Between Spots",
+    "Type": "rules",
+    "CampaignType": "Spot"
+  },
+  {
+    "Id": 35,
+    "RuleId": 5,
+    "RuleTypeId": 4,
+    "InternalType": "Slotting Controls",
+    "Description": "Min Hours Between Spots",
+    "Type": "rules",
+    "CampaignType": "Spot"
+  },
+  {
+    "Id": 36,
+    "RuleId": 6,
+    "RuleTypeId": 4,
+    "InternalType": "Slotting Controls",
+    "Description": "Max Spots Per Programme/Day",
+    "Type": "rules",
+    "CampaignType": "Spot"
+  },
+  {
+    "Id": 37,
+    "RuleId": 7,
+    "RuleTypeId": 4,
+    "InternalType": "Slotting Controls",
+    "Description": "Max Spots Per Programme/Week",
+    "Type": "rules",
+    "CampaignType": "Spot"
+  },
+  {
+    "Id": 38,
+    "RuleId": 17,
+    "RuleTypeId": 4,
+    "InternalType": "Slotting Controls",
+    "Description": "Max Spots per Prog/100 rtgs",
+    "Type": "rules",
+    "CampaignType": "Spot"
+  },
+  {
+    "Id": 39,
+    "RuleId": 18,
+    "RuleTypeId": 4,
+    "InternalType": "Slotting Controls",
+    "Description": "Max Zero Ratings",
+    "Type": "rules",
+    "CampaignType": "Spot"
+  },
+  {
+    "Id": 40,
+    "RuleId": 20,
+    "RuleTypeId": 4,
+    "InternalType": "Slotting Controls",
+    "Description": "Min Weeks Between Programmes",
+    "Type": "rules",
+    "CampaignType": "Spot"
+  },
+  {
+    "Id": 41,
+    "RuleId": 21,
+    "RuleTypeId": 4,
+    "InternalType": "Slotting Controls",
+    "Description": "Max Rating Points for Spot Campaigns",
+    "Type": "rules",
+    "CampaignType": "Spot"
+  },
+  {
+    "Id": 42,
+    "RuleId": 22,
+    "RuleTypeId": 4,
+    "InternalType": "Slotting Controls",
+    "Description": "Max Sub Area Slotting %",
+    "Type": "rules",
+    "CampaignType": "Spot"
+  },
+  {
+    "Id": 43,
+    "RuleId": 23,
+    "RuleTypeId": 4,
+    "InternalType": "Slotting Controls",
+    "Description": "Minimum Break Availability",
+    "Type": "rules",
+    "CampaignType": "Spot"
+  },
+  {
+    "Id": 44,
+    "RuleId": 24,
+    "RuleTypeId": 4,
+    "InternalType": "Slotting Controls",
+    "Description": "Max Spots Per Prog/Time",
+    "Type": "rules",
+    "CampaignType": "Spot"
+  },
+  {
+    "Id": 45,
+    "RuleId": 25,
+    "RuleTypeId": 4,
+    "InternalType": "Slotting Controls",
+    "Description": "Min Days Between Prog/Time",
+    "Type": "rules",
+    "CampaignType": "Spot"
+  },
+  {
+    "Id": 46,
+    "RuleId": 26,
+    "RuleTypeId": 4,
+    "InternalType": "Slotting Controls",
+    "Description": "Min Weeks Between Prog/Time",
+    "Type": "rules",
+    "CampaignType": "Spot"
+  },
+  {
+    "Id": 47,
+    "RuleId": 27,
+    "RuleTypeId": 4,
+    "InternalType": "Slotting Controls",
+    "Description": "Max Rating Points for Rating Campaigns",
+    "Type": "rules",
+    "CampaignType": "Rating"
+  },
+  {
+    "Id": 48,
+    "RuleId": 10,
+    "RuleTypeId": 2,
+    "InternalType": "Weightings",
+    "Description": "Strike Weight/Daypart",
+    "Type": "weightings"
+  },
+  {
+    "Id": 49,
+    "RuleId": 11,
+    "RuleTypeId": 2,
+    "InternalType": "Weightings",
+    "Description": "Strike Weight/Length",
+    "Type": "weightings"
+  },
+  {
+    "Id": 50,
+    "RuleId": 12,
+    "RuleTypeId": 2,
+    "InternalType": "Weightings",
+    "Description": "Strike Weight/Daypart/Length",
+    "Type": "weightings"
+  },
+  {
+    "Id": 51,
+    "RuleId": 13,
+    "RuleTypeId": 2,
+    "InternalType": "Weightings",
+    "Description": "Campaign Price",
+    "Type": "weightings"
+  },
+  {
+    "Id": 52,
+    "RuleId": 14,
+    "RuleTypeId": 2,
+    "InternalType": "Weightings",
+    "Description": "Programme",
+    "Type": "weightings"
+  },
+  {
+    "id": 53,
+    "RuleId": 19,
+    "RuleTypeId": 3,
+    "InternalType": "Campaign",
+    "Description": "Campaign",
+    "Type": "tolerances",
+    "CampaignType": "Spot"
+  },
+  {
+    "id": 54,
+    "RuleId": 38,
+    "RuleTypeId": 3,
+    "InternalType": "Campaign",
+    "Description": "Programme",
+    "Type": "tolerances",
+    "CampaignType": "Spot"
+  },
+  {
+    "id": 55,
+    "RuleId": 33,
+    "RuleTypeId": 4,
+    "InternalType": "Slotting Controls",
+    "Description": "Max Spots Per Programme/Day",
+    "Type": "rules",
+    "CampaignType": "Rating"
+  },
+  {
+    "id": 56,
+    "RuleId": 34,
+    "RuleTypeId": 4,
+    "InternalType": "Slotting Controls",
+    "Description": "Max Spots Per Programme/Week",
+    "Type": "rules",
+    "CampaignType": "Rating"
+  },
+  {
+    "id": 57,
+    "RuleId": 44,
+    "RuleTypeId": 4,
+    "InternalType": "Slotting Controls",
+    "Description": "Max Spots per Prog/100 rtgs",
+    "Type": "rules",
+    "CampaignType": "Rating"
+  },
+  {
+    "id": 58,
+    "RuleId": 47,
+    "RuleTypeId": 4,
+    "InternalType": "Slotting Controls",
+    "Description": "Min Weeks Between Programmes",
+    "Type": "rules",
+    "CampaignType": "Rating"
+  },
+  {
+    "id": 59,
+    "RuleId": 50,
+    "RuleTypeId": 4,
+    "InternalType": "Slotting Controls",
+    "Description": "Minimum Break Availability",
+    "Type": "rules",
+    "CampaignType": "Rating"
+  },
+  {
+    "id": 60,
+    "RuleId": 51,
+    "RuleTypeId": 4,
+    "InternalType": "Slotting Controls",
+    "Description": "Max Spots Per Prog/Time",
+    "Type": "rules",
+    "CampaignType": "Rating"
+  },
+  {
+    "id": 61,
+    "RuleId": 52,
+    "RuleTypeId": 4,
+    "InternalType": "Slotting Controls",
+    "Description": "Min Days Between Prog/Time",
+    "Type": "rules",
+    "CampaignType": "Rating"
+  },
+  {
+    "id": 62,
+    "RuleId": 53,
+    "RuleTypeId": 4,
+    "InternalType": "Slotting Controls",
+    "Description": "Min Weeks Between Prog/Time",
+    "Type": "rules",
+    "CampaignType": "Rating"
+  },
+  {
+    "id": 63,
+    "RuleId": 26,
+    "RuleTypeId": 3,
+    "InternalType": "Campaign",
+    "Description": "Booking Position",
+    "Type": "tolerances",
+    "CampaignType": "Spot"
+  },
+  {
+    "id": 64,
+    "RuleId": 27,
+    "RuleTypeId": 3,
+    "InternalType": "Campaign",
+    "Description": "Centre/End",
+    "Type": "tolerances",
+    "CampaignType": "Spot"
+  },
+  {
+    "id": 65,
+    "RuleId": 20,
+    "RuleTypeId": 3,
+    "InternalType": "Sales Area",
+    "Description": "Sales Area",
+    "Type": "tolerances",
+    "CampaignType": "Spot"
+  },
+  {
+    "id": 66,
+    "RuleId": 21,
+    "RuleTypeId": 3,
+    "InternalType": "Sales Area",
+    "Description": "Spot Length",
+    "Type": "tolerances",
+    "CampaignType": "Spot"
+  },
+  {
+    "id": 67,
+    "RuleId": 22,
+    "RuleTypeId": 3,
+    "InternalType": "Sales Area",
+    "Description": "Daypart",
+    "Type": "tolerances",
+    "CampaignType": "Spot"
+  },
+  {
+    "id": 68,
+    "RuleId": 23,
+    "RuleTypeId": 3,
+    "InternalType": "Sales Area",
+    "Description": "Strike Weight",
+    "Type": "tolerances",
+    "CampaignType": "Spot"
+  },
+  {
+    "id": 69,
+    "RuleId": 24,
+    "RuleTypeId": 3,
+    "InternalType": "Sales Area",
+    "Description": "Strike Wgt/Daypart",
+    "Type": "tolerances",
+    "CampaignType": "Spot"
+  },
+  {
+    "id": 70,
+    "RuleId": 25,
+    "RuleTypeId": 3,
+    "InternalType": "Sales Area",
+    "Description": "Peak Daypart",
+    "Type": "tolerances",
+    "CampaignType": "Spot"
+  },
+  {
+    "id": 71,
+    "RuleId": 30,
+    "RuleTypeId": 3,
+    "InternalType": "Sales Area",
+    "Description": "Daypart/Length",
+    "Type": "tolerances",
+    "CampaignType": "Spot"
+  },
+  {
+    "id": 72,
+    "RuleId": 31,
+    "RuleTypeId": 3,
+    "InternalType": "Sales Area",
+    "Description": "Strike Weight/Length",
+    "Type": "tolerances",
+    "CampaignType": "Spot"
+  },
+  {
+    "id": 73,
+    "RuleId": 32,
+    "RuleTypeId": 3,
+    "InternalType": "Sales Area",
+    "Description": "Strike Weight/Daypart/Length",
+    "Type": "tolerances",
+    "CampaignType": "Spot"
+  },
+  {
+    "id": 74,
+    "RuleId": 28,
+    "RuleTypeId": 3,
+    "InternalType": "Budget",
+    "Description": "Campaign (Budget)",
+    "Type": "tolerances",
+    "CampaignType": "Spot"
+  },
+  {
+    "id": 75,
+    "RuleId": 29,
+    "RuleTypeId": 3,
+    "InternalType": "Budget",
+    "Description": "Sales Area (Budget)",
+    "Type": "tolerances",
+    "CampaignType": "Spot"
+  },
+  {
+    "id": 76,
+    "RuleId": 28,
+    "RuleTypeId": 4,
+    "InternalType": "Slotting Controls",
+    "Description": "Max Spots Per Day",
+    "Type": "rules",
+    "CampaignType": "Rating"
+  },
+  {
+    "id": 77,
+    "RuleId": 29,
+    "RuleTypeId": 4,
+    "InternalType": "Slotting Controls",
+    "Description": "Max Spots Per Hour",
+    "Type": "rules",
+    "CampaignType": "Rating"
+  },
+  {
+    "id": 78,
+    "RuleId": 30,
+    "RuleTypeId": 4,
+    "InternalType": "Slotting Controls",
+    "Description": "Max Spots Per 2 Hours",
+    "Type": "rules",
+    "CampaignType": "Rating"
+  },
+  {
+    "id": 79,
+    "RuleId": 31,
+    "RuleTypeId": 4,
+    "InternalType": "Slotting Controls",
+    "Description": "Min Breaks Between Spots",
+    "Type": "rules",
+    "CampaignType": "Rating"
+  },
+  {
+    "id": 80,
+    "RuleId": 32,
+    "RuleTypeId": 4,
+    "InternalType": "Slotting Controls",
+    "Description": "Min Hours Between Spots",
+    "Type": "rules",
+    "CampaignType": "Rating"
+  }
+]

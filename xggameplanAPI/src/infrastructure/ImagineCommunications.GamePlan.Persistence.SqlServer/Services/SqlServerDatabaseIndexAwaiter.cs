@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Data;
-using System.Data.SqlClient;
 using System.IO;
 using System.Reflection;
 using System.Threading;
@@ -8,6 +7,7 @@ using System.Threading.Tasks;
 using ImagineCommunications.GamePlan.Domain.Generic.Interfaces;
 using ImagineCommunications.GamePlan.Persistence.SqlServer.Core.Interfaces;
 using Microsoft.EntityFrameworkCore;
+using MySql.Data.MySqlClient;
 
 namespace ImagineCommunications.GamePlan.Persistence.SqlServer.Services
 {
@@ -26,7 +26,7 @@ namespace ImagineCommunications.GamePlan.Persistence.SqlServer.Services
 
         protected async Task ExecuteDbCommandAsync(string indexName = null)
         {
-            var p = new SqlParameter("@IndexName", SqlDbType.NVarChar)
+            var p = new MySqlParameter("@IndexName", SqlDbType.NVarChar)
             {
                 Value = string.IsNullOrWhiteSpace(indexName) ? DBNull.Value : (object)indexName
             };

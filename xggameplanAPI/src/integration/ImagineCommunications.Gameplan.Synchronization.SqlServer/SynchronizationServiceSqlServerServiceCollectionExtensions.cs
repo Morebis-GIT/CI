@@ -10,7 +10,7 @@ namespace ImagineCommunications.Gameplan.Synchronization.SqlServer
         public static IServiceCollection UseSqlServerForSynchronizationService(this IServiceCollection services, string connectionString)
         {
             var dbContextOptionsBuilder = new DbContextOptionsBuilder<SynchronizationDbContext>()
-                .UseSqlServer(connectionString);
+                .UseMySql(connectionString);
 
             services.AddSingleton(dbContextOptionsBuilder.Options);
             services.AddScoped<SynchronizationDbContext>();

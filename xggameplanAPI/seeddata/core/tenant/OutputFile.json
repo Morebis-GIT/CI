@@ -1,0 +1,2776 @@
+[
+  {
+    "Columns": [
+      {
+        "Name": "aper_no                  ",
+        "Description": "Unique identifier of the submission.",
+        "DataType": "long"
+      },
+      {
+        "Name": "camp_no",
+        "Description": "Campaign Number",
+        "DataType": "int"
+      },
+      {
+        "Name": "sare_no",
+        "Description": "Campaign Sales Area Number",
+        "DataType": "int"
+      },
+      {
+        "Name": "bkpo_posn_reqm",
+        "Description": "",
+        "DataType": "int"
+      },
+      {
+        "Name": "2 - Second",
+        "Description": "",
+        "DataType": ""
+      },
+      {
+        "Name": "3 - Third",
+        "Description": "",
+        "DataType": ""
+      },
+      {
+        "Name": "97 - Antepenultimate",
+        "Description": "",
+        "DataType": ""
+      },
+      {
+        "Name": "98 - Penultimate",
+        "Description": "",
+        "DataType": ""
+      },
+      {
+        "Name": "99 - Last\"",
+        "Description": "",
+        "DataType": "Booking position"
+      },
+      {
+        "Name": "min_requirement",
+        "Description": "Minimum requirement for booking to be considered successful.",
+        "DataType": "double"
+      },
+      {
+        "Name": "requirement",
+        "Description": "Requirement, as defined by the campaign parameters",
+        "DataType": "double"
+      },
+      {
+        "Name": "max_requirement",
+        "Description": "Maximum requirement, limit for which the booking is to be considered successful",
+        "DataType": "double"
+      },
+      {
+        "Name": "total_supplied",
+        "Description": "Total Supplied spots/ratings, including existing bookings",
+        "DataType": "double"
+      },
+      {
+        "Name": "total_impacts",
+        "Description": "Total Supplied Impacts",
+        "DataType": "double"
+      },
+      {
+        "Name": "existing_supplied",
+        "Description": "Existing Supplied spots/ratings, priort the booking run",
+        "DataType": "double"
+      },
+      {
+        "Name": "total_supplied30",
+        "Description": "Base Length Total Supplied spots/ratings, including existing bookings",
+        "DataType": "double"
+      },
+      {
+        "Name": "existing_supplied30",
+        "Description": "Base Length Existing Supplied spots/ratings, priort the booking run",
+        "DataType": "double"
+      },
+      {
+        "Name": "total_nominal_price",
+        "Description": "Total Nominal Price, including existing bookings",
+        "DataType": "double"
+      },
+      {
+        "Name": "existing_nominal_price",
+        "Description": "Existing Nominal Price",
+        "DataType": "double"
+      },
+      {
+        "Name": "base_requirement",
+        "Description": "Base Demograph Requirement, as defined by the campaign parameters",
+        "DataType": "double"
+      },
+      {
+        "Name": "base_total_supplied",
+        "Description": "Base Demograph Total Supplied spots/ratings, including existing bookings",
+        "DataType": "double"
+      },
+      {
+        "Name": "base_existing_supplied",
+        "Description": "Base Demograph Existing Supplied spots/ratings, priort the booking run",
+        "DataType": "double"
+      },
+      {
+        "Name": "base_total_supplied30",
+        "Description": "Base Length, Base Demograph Total Supplied spots/ratings, including existing bookings",
+        "DataType": "double"
+      },
+      {
+        "Name": "base_existing_supplied30",
+        "Description": "Base Length, Base Demograph Existing Supplied spots/ratings, priort the booking run",
+        "DataType": "double"
+      },
+      {
+        "Name": "no_of_spots",
+        "Description": "Number of spots booked",
+        "DataType": "long"
+      },
+      {
+        "Name": "ignore_yn",
+        "Description": "Ignore Requirements, flag to override requirements",
+        "DataType": "string"
+      },
+      {
+        "Name": "book_until_max_yn",
+        "Description": "Book until maximum requirement. Override default logic of stopping as soon as booking reaches minimum level",
+        "DataType": "string"
+      },
+      {
+        "Name": "book_target_area_req_yn",
+        "Description": "Book to target area requirement. Uses for clients with sales area target groups to enable booking across multiple sales areas.",
+        "DataType": "string"
+      },
+      {
+        "Name": "rtgs_before_isr",
+        "Description": "Ratings Before Inefficient Spot Removal (ISR)",
+        "DataType": "double"
+      },
+      {
+        "Name": "base_rtgs_before_isr",
+        "Description": "Base Length Ratings Before Inefficient Spot Removal (ISR)",
+        "DataType": "double"
+      },
+      {
+        "Name": "rtgs_removed_isr",
+        "Description": "Rating Removed by ISR",
+        "DataType": "double"
+      },
+      {
+        "Name": "base_rtgs_removed_isr",
+        "Description": "Base Length Rating Removed by ISR",
+        "DataType": "double"
+      },
+      {
+        "Name": "tgt_rtgs_before_isr",
+        "Description": "Target Ratings Before ISR",
+        "DataType": "double"
+      },
+      {
+        "Name": "base_tgt_rtgs_before_isr",
+        "Description": "Base Length Target Ratings Before ISR",
+        "DataType": "double"
+      },
+      {
+        "Name": "tgt_rtgs_removed_isr",
+        "Description": "Target Ratings Removed in ISR",
+        "DataType": "double"
+      },
+      {
+        "Name": "base_tgt_rtgs_removed_isr",
+        "Description": "Base Length Target Ratings Removed in ISR",
+        "DataType": "double"
+      },
+      {
+        "Name": "nominal_price_before_isr",
+        "Description": "Nominal Price Before ISR",
+        "DataType": "double"
+      },
+      {
+        "Name": "nominal_price_reduced_isr",
+        "Description": "Nominal Price Removed by ISR",
+        "DataType": "double"
+      }
+    ],
+    "FileId": "LMKII_BKPO_REQM.out",
+    "Description": "Campaign, Booking Position",
+    "AutoBookFileName": "LMKII_BKPO_REQM.out",
+    "QueryFileName": "LMKII_BKPO_REQM.txt"
+  },
+  {
+    "Columns": [],
+    "FileId": "LMKII_CAMP_REQM.out",
+    "Description": "Campaign level",
+    "AutoBookFileName": "LMKII_CAMP_REQM.out",
+    "QueryFileName": "LMKII_CAMP_REQM.txt"
+  },
+  {
+    "Columns": [
+      {
+        "Name": "aper_no                  ",
+        "Description": "Unique identifier of the submission.",
+        "DataType": "long"
+      },
+      {
+        "Name": "camp_no",
+        "Description": "Campaign Number",
+        "DataType": "int"
+      },
+      {
+        "Name": "sare_no",
+        "Description": "Campaign Sales Area Number",
+        "DataType": "int"
+      },
+      {
+        "Name": "posin_in_prog",
+        "Description": "",
+        "DataType": "string"
+      },
+      {
+        "Name": "E - End\"",
+        "Description": "",
+        "DataType": "Position in programme, defines requirement for Centre/End breaks"
+      },
+      {
+        "Name": "min_requirement",
+        "Description": "Minimum requirement for booking to be considered successful.",
+        "DataType": "double"
+      },
+      {
+        "Name": "requirement",
+        "Description": "Requirement, as defined by the campaign parameters",
+        "DataType": "double"
+      },
+      {
+        "Name": "max_requirement",
+        "Description": "Maximum requirement, limit for which the booking is to be considered successful",
+        "DataType": "double"
+      },
+      {
+        "Name": "total_supplied",
+        "Description": "Total Supplied spots/ratings, including existing bookings",
+        "DataType": "double"
+      },
+      {
+        "Name": "total_impacts",
+        "Description": "Total Supplied Impacts",
+        "DataType": "double"
+      },
+      {
+        "Name": "existing_supplied",
+        "Description": "Existing Supplied spots/ratings, priort the booking run",
+        "DataType": "double"
+      },
+      {
+        "Name": "total_supplied30",
+        "Description": "Base Length Total Supplied spots/ratings, including existing bookings",
+        "DataType": "double"
+      },
+      {
+        "Name": "existing_supplied30",
+        "Description": "Base Length Existing Supplied spots/ratings, priort the booking run",
+        "DataType": "double"
+      },
+      {
+        "Name": "total_nominal_price",
+        "Description": "Total Nominal Price, including existing bookings",
+        "DataType": "double"
+      },
+      {
+        "Name": "existing_nominal_price",
+        "Description": "Existing Nominal Price",
+        "DataType": "double"
+      },
+      {
+        "Name": "base_requirement",
+        "Description": "Base Demograph Requirement, as defined by the campaign parameters",
+        "DataType": "double"
+      },
+      {
+        "Name": "base_total_supplied",
+        "Description": "Base Demograph Total Supplied spots/ratings, including existing bookings",
+        "DataType": "double"
+      },
+      {
+        "Name": "base_existing_supplied",
+        "Description": "Base Demograph Existing Supplied spots/ratings, priort the booking run",
+        "DataType": "double"
+      },
+      {
+        "Name": "base_total_supplied30",
+        "Description": "Base Length, Base Demograph Total Supplied spots/ratings, including existing bookings",
+        "DataType": "double"
+      },
+      {
+        "Name": "base_existing_supplied30",
+        "Description": "Base Length, Base Demograph Existing Supplied spots/ratings, priort the booking run",
+        "DataType": "double"
+      },
+      {
+        "Name": "no_of_spots",
+        "Description": "Number of spots booked",
+        "DataType": "long"
+      },
+      {
+        "Name": "ignore_yn",
+        "Description": "Ignore Requirements, flag to override requirements",
+        "DataType": "string"
+      },
+      {
+        "Name": "book_until_max_yn",
+        "Description": "Book until maximum requirement. Override default logic of stopping as soon as booking reaches minimum level",
+        "DataType": "string"
+      },
+      {
+        "Name": "book_target_area_req_yn",
+        "Description": "Book to target area requirement. Uses for clients with sales area target groups to enable booking across multiple sales areas.",
+        "DataType": "string"
+      },
+      {
+        "Name": "rtgs_before_isr",
+        "Description": "Ratings Before Inefficient Spot Removal (ISR)",
+        "DataType": "double"
+      },
+      {
+        "Name": "base_rtgs_before_isr",
+        "Description": "Base Length Ratings Before Inefficient Spot Removal (ISR)",
+        "DataType": "double"
+      },
+      {
+        "Name": "rtgs_removed_isr",
+        "Description": "Rating Removed by ISR",
+        "DataType": "double"
+      },
+      {
+        "Name": "base_rtgs_removed_isr",
+        "Description": "Base Length Rating Removed by ISR",
+        "DataType": "double"
+      },
+      {
+        "Name": "tgt_rtgs_before_isr",
+        "Description": "Target Ratings Before ISR",
+        "DataType": "double"
+      },
+      {
+        "Name": "base_tgt_rtgs_before_isr",
+        "Description": "Base Length Target Ratings Before ISR",
+        "DataType": "double"
+      },
+      {
+        "Name": "tgt_rtgs_removed_isr",
+        "Description": "Target Ratings Removed in ISR",
+        "DataType": "double"
+      },
+      {
+        "Name": "base_tgt_rtgs_removed_isr",
+        "Description": "Base Length Target Ratings Removed in ISR",
+        "DataType": "double"
+      },
+      {
+        "Name": "nominal_price_before_isr",
+        "Description": "Nominal Price Before ISR",
+        "DataType": "double"
+      },
+      {
+        "Name": "nominal_price_reduced_isr",
+        "Description": "Nominal Price Removed by ISR",
+        "DataType": "double"
+      }
+    ],
+    "FileId": "LMKII_CEND_REQM.out",
+    "Description": "Campaign, Position in Programme",
+    "AutoBookFileName": "LMKII_CEND_REQM.out",
+    "QueryFileName": "LMKII_CEND_REQM.txt"
+  },
+  {
+    "Columns": [
+      {
+        "Name": "aper_no                  ",
+        "Description": "Unique identifier of the submission.",
+        "DataType": "long"
+      },
+      {
+        "Name": "camp_no",
+        "Description": "Campaign Number",
+        "DataType": "int"
+      },
+      {
+        "Name": "sare_no",
+        "Description": "Campaign Sales Area Number",
+        "DataType": "int"
+      },
+      {
+        "Name": "tgt_sare_no",
+        "Description": "Campaign Target Sales Area Number",
+        "DataType": "long"
+      },
+      {
+        "Name": "dcdp_no",
+        "Description": "Unique identifier of daypart within campaign.",
+        "DataType": "long"
+      },
+      {
+        "Name": "stt_date",
+        "Description": "Start date of strike weight/campaign the spot was booked into.",
+        "DataType": "long"
+      },
+      {
+        "Name": "end_date",
+        "Description": "End date of strike weight/campaign the spot was booked into.",
+        "DataType": "long"
+      },
+      {
+        "Name": "day_string",
+        "Description": "",
+        "DataType": "string"
+      },
+      {
+        "Name": "YYYYYYY\"",
+        "Description": "",
+        "DataType": "Days of week for the daypart."
+      },
+      {
+        "Name": "stt_time",
+        "Description": "Start time of daypart the spot was booked into.",
+        "DataType": "long"
+      },
+      {
+        "Name": "end_time",
+        "Description": "End time of daypart the spot was booked into.",
+        "DataType": "long"
+      },
+      {
+        "Name": "min_requirement",
+        "Description": "Minimum requirement for booking to be considered successful.",
+        "DataType": "double"
+      },
+      {
+        "Name": "requirement",
+        "Description": "Requirement, as defined by the campaign parameters",
+        "DataType": "double"
+      },
+      {
+        "Name": "max_requirement",
+        "Description": "Maximum requirement, limit for which the booking is to be considered successful",
+        "DataType": "double"
+      },
+      {
+        "Name": "total_supplied",
+        "Description": "Total Supplied spots/ratings, including existing bookings",
+        "DataType": "double"
+      },
+      {
+        "Name": "total_impacts",
+        "Description": "Total Supplied Impacts",
+        "DataType": "double"
+      },
+      {
+        "Name": "existing_supplied",
+        "Description": "Existing Supplied spots/ratings, priort the booking run",
+        "DataType": "double"
+      },
+      {
+        "Name": "total_supplied30",
+        "Description": "Base Length Total Supplied spots/ratings, including existing bookings",
+        "DataType": "double"
+      },
+      {
+        "Name": "existing_supplied30",
+        "Description": "Base Length Existing Supplied spots/ratings, priort the booking run",
+        "DataType": "double"
+      },
+      {
+        "Name": "total_nominal_price",
+        "Description": "Total Nominal Price, including existing bookings",
+        "DataType": "double"
+      },
+      {
+        "Name": "existing_nominal_price",
+        "Description": "Existing Nominal Price",
+        "DataType": "double"
+      },
+      {
+        "Name": "base_requirement",
+        "Description": "Base Demograph Requirement, as defined by the campaign parameters",
+        "DataType": "double"
+      },
+      {
+        "Name": "base_total_supplied",
+        "Description": "Base Demograph Total Supplied spots/ratings, including existing bookings",
+        "DataType": "double"
+      },
+      {
+        "Name": "base_existing_supplied",
+        "Description": "Base Demograph Existing Supplied spots/ratings, priort the booking run",
+        "DataType": "double"
+      },
+      {
+        "Name": "base_total_supplied30",
+        "Description": "Base Length, Base Demograph Total Supplied spots/ratings, including existing bookings",
+        "DataType": "double"
+      },
+      {
+        "Name": "base_existing_supplied30",
+        "Description": "Base Length, Base Demograph Existing Supplied spots/ratings, priort the booking run",
+        "DataType": "double"
+      },
+      {
+        "Name": "no_of_spots",
+        "Description": "Number of spots booked",
+        "DataType": "long"
+      },
+      {
+        "Name": "ignore_yn",
+        "Description": "Ignore Requirements, flag to override requirements",
+        "DataType": "string"
+      },
+      {
+        "Name": "book_until_max_yn",
+        "Description": "Book until maximum requirement. Override default logic of stopping as soon as booking reaches minimum level",
+        "DataType": "string"
+      },
+      {
+        "Name": "book_target_area_req_yn",
+        "Description": "Book to target area requirement. Uses for clients with sales area target groups to enable booking across multiple sales areas.",
+        "DataType": "string"
+      },
+      {
+        "Name": "rtgs_before_isr",
+        "Description": "Ratings Before Inefficient Spot Removal (ISR)",
+        "DataType": "double"
+      },
+      {
+        "Name": "base_rtgs_before_isr",
+        "Description": "Base Length Ratings Before Inefficient Spot Removal (ISR)",
+        "DataType": "double"
+      },
+      {
+        "Name": "rtgs_removed_isr",
+        "Description": "Rating Removed by ISR",
+        "DataType": "double"
+      },
+      {
+        "Name": "base_rtgs_removed_isr",
+        "Description": "Base Length Rating Removed by ISR",
+        "DataType": "double"
+      },
+      {
+        "Name": "tgt_rtgs_before_isr",
+        "Description": "Target Ratings Before ISR",
+        "DataType": "double"
+      },
+      {
+        "Name": "base_tgt_rtgs_before_isr",
+        "Description": "Base Length Target Ratings Before ISR",
+        "DataType": "double"
+      },
+      {
+        "Name": "tgt_rtgs_removed_isr",
+        "Description": "Target Ratings Removed in ISR",
+        "DataType": "double"
+      },
+      {
+        "Name": "base_tgt_rtgs_removed_isr",
+        "Description": "Base Length Target Ratings Removed in ISR",
+        "DataType": "double"
+      },
+      {
+        "Name": "nominal_price_before_isr",
+        "Description": "Nominal Price Before ISR",
+        "DataType": "double"
+      },
+      {
+        "Name": "nominal_price_reduced_isr",
+        "Description": "Nominal Price Removed by ISR",
+        "DataType": "double"
+      }
+    ],
+    "FileId": "LMKII_DCDP_REQM.out",
+    "Description": "Campaign, Sales Area, Daypart",
+    "AutoBookFileName": "LMKII_DCDP_REQM.out",
+    "QueryFileName": "LMKII_DCDP_REQM.txt"
+  },
+  {
+    "Columns": [
+      {
+        "Name": "aper_no                  ",
+        "Description": "Unique identifier of the submission.",
+        "DataType": "long"
+      },
+      {
+        "Name": "camp_no",
+        "Description": "Campaign Number",
+        "DataType": "int"
+      },
+      {
+        "Name": "sare_no",
+        "Description": "Campaign Sales Area Number",
+        "DataType": "int"
+      },
+      {
+        "Name": "tgt_sare_no",
+        "Description": "Campaign Target Sales Area Number",
+        "DataType": "long"
+      },
+      {
+        "Name": "sslg_length",
+        "Description": "Spot Length of booking",
+        "DataType": "int"
+      },
+      {
+        "Name": "multipart_no",
+        "Description": "",
+        "DataType": "int"
+      },
+      {
+        "Name": ">0 Multipart booking\"",
+        "Description": "",
+        "DataType": "Multipart requirement"
+      },
+      {
+        "Name": "dcdp_no",
+        "Description": "Unique identifier of daypart within campaign.",
+        "DataType": "long"
+      },
+      {
+        "Name": "stt_date",
+        "Description": "Start date of strike weight/campaign the spot was booked into.",
+        "DataType": "long"
+      },
+      {
+        "Name": "end_date",
+        "Description": "End date of strike weight/campaign the spot was booked into.",
+        "DataType": "long"
+      },
+      {
+        "Name": "day_string",
+        "Description": "",
+        "DataType": "string"
+      },
+      {
+        "Name": "YYYYYYY\"",
+        "Description": "",
+        "DataType": "Days of week for the daypart."
+      },
+      {
+        "Name": "stt_time",
+        "Description": "Start time of daypart the spot was booked into.",
+        "DataType": "long"
+      },
+      {
+        "Name": "end_time",
+        "Description": "End time of daypart the spot was booked into.",
+        "DataType": "long"
+      },
+      {
+        "Name": "min_requirement",
+        "Description": "Minimum requirement for booking to be considered successful.",
+        "DataType": "double"
+      },
+      {
+        "Name": "requirement",
+        "Description": "Requirement, as defined by the campaign parameters",
+        "DataType": "double"
+      },
+      {
+        "Name": "max_requirement",
+        "Description": "Maximum requirement, limit for which the booking is to be considered successful",
+        "DataType": "double"
+      },
+      {
+        "Name": "total_supplied",
+        "Description": "Total Supplied spots/ratings, including existing bookings",
+        "DataType": "double"
+      },
+      {
+        "Name": "total_impacts",
+        "Description": "Total Supplied Impacts",
+        "DataType": "double"
+      },
+      {
+        "Name": "existing_supplied",
+        "Description": "Existing Supplied spots/ratings, priort the booking run",
+        "DataType": "double"
+      },
+      {
+        "Name": "total_supplied30",
+        "Description": "Base Length Total Supplied spots/ratings, including existing bookings",
+        "DataType": "double"
+      },
+      {
+        "Name": "existing_supplied30",
+        "Description": "Base Length Existing Supplied spots/ratings, priort the booking run",
+        "DataType": "double"
+      },
+      {
+        "Name": "total_nominal_price",
+        "Description": "Total Nominal Price, including existing bookings",
+        "DataType": "double"
+      },
+      {
+        "Name": "existing_nominal_price",
+        "Description": "Existing Nominal Price",
+        "DataType": "double"
+      },
+      {
+        "Name": "base_requirement",
+        "Description": "Base Demograph Requirement, as defined by the campaign parameters",
+        "DataType": "double"
+      },
+      {
+        "Name": "base_total_supplied",
+        "Description": "Base Demograph Total Supplied spots/ratings, including existing bookings",
+        "DataType": "double"
+      },
+      {
+        "Name": "base_existing_supplied",
+        "Description": "Base Demograph Existing Supplied spots/ratings, priort the booking run",
+        "DataType": "double"
+      },
+      {
+        "Name": "base_total_supplied30",
+        "Description": "Base Length, Base Demograph Total Supplied spots/ratings, including existing bookings",
+        "DataType": "double"
+      },
+      {
+        "Name": "base_existing_supplied30",
+        "Description": "Base Length, Base Demograph Existing Supplied spots/ratings, priort the booking run",
+        "DataType": "double"
+      },
+      {
+        "Name": "no_of_spots",
+        "Description": "Number of spots booked",
+        "DataType": "long"
+      },
+      {
+        "Name": "ignore_yn",
+        "Description": "Ignore Requirements, flag to override requirements",
+        "DataType": "string"
+      },
+      {
+        "Name": "book_until_max_yn",
+        "Description": "Book until maximum requirement. Override default logic of stopping as soon as booking reaches minimum level",
+        "DataType": "string"
+      },
+      {
+        "Name": "book_target_area_req_yn",
+        "Description": "Book to target area requirement. Uses for clients with sales area target groups to enable booking across multiple sales areas.",
+        "DataType": "string"
+      },
+      {
+        "Name": "rtgs_before_isr",
+        "Description": "Ratings Before Inefficient Spot Removal (ISR)",
+        "DataType": "double"
+      },
+      {
+        "Name": "base_rtgs_before_isr",
+        "Description": "Base Length Ratings Before Inefficient Spot Removal (ISR)",
+        "DataType": "double"
+      },
+      {
+        "Name": "rtgs_removed_isr",
+        "Description": "Rating Removed by ISR",
+        "DataType": "double"
+      },
+      {
+        "Name": "base_rtgs_removed_isr",
+        "Description": "Base Length Rating Removed by ISR",
+        "DataType": "double"
+      },
+      {
+        "Name": "tgt_rtgs_before_isr",
+        "Description": "Target Ratings Before ISR",
+        "DataType": "double"
+      },
+      {
+        "Name": "base_tgt_rtgs_before_isr",
+        "Description": "Base Length Target Ratings Before ISR",
+        "DataType": "double"
+      },
+      {
+        "Name": "tgt_rtgs_removed_isr",
+        "Description": "Target Ratings Removed in ISR",
+        "DataType": "double"
+      },
+      {
+        "Name": "base_tgt_rtgs_removed_isr",
+        "Description": "Base Length Target Ratings Removed in ISR",
+        "DataType": "double"
+      },
+      {
+        "Name": "nominal_price_before_isr",
+        "Description": "Nominal Price Before ISR",
+        "DataType": "double"
+      },
+      {
+        "Name": "nominal_price_reduced_isr",
+        "Description": "Nominal Price Removed by ISR",
+        "DataType": "double"
+      }
+    ],
+    "FileId": "LMKII_DCDP_SSLG_REQM.out",
+    "Description": "Campaign, Sales Area, Daypart, Spot Length",
+    "AutoBookFileName": "LMKII_DCDP_SSLG_REQM.out",
+    "QueryFileName": "LMKII_DCDP_SSLG_REQM.txt"
+  },
+  {
+    "Columns": [
+      {
+        "Name": "aper_no                  ",
+        "Description": "Unique identifier of the submission.",
+        "DataType": "long"
+      },
+      {
+        "Name": "camp_no",
+        "Description": "Campaign Number",
+        "DataType": "int"
+      },
+      {
+        "Name": "sare_no",
+        "Description": "Campaign Sales Area Number",
+        "DataType": "int"
+      },
+      {
+        "Name": "tgt_sare_no",
+        "Description": "Campaign Target Sales Area Number",
+        "DataType": "long"
+      },
+      {
+        "Name": "stt_date",
+        "Description": "Start date of strike weight the spot was booked into.",
+        "DataType": "long"
+      },
+      {
+        "Name": "end_date",
+        "Description": "End date of strike weight the spot was booked into.",
+        "DataType": "long"
+      },
+      {
+        "Name": "min_requirement",
+        "Description": "Minimum requirement for booking to be considered successful.",
+        "DataType": "double"
+      },
+      {
+        "Name": "requirement",
+        "Description": "Requirement, as defined by the campaign parameters",
+        "DataType": "double"
+      },
+      {
+        "Name": "max_requirement",
+        "Description": "Maximum requirement, limit for which the booking is to be considered successful",
+        "DataType": "double"
+      },
+      {
+        "Name": "total_supplied",
+        "Description": "Total Supplied spots/ratings, including existing bookings",
+        "DataType": "double"
+      },
+      {
+        "Name": "total_impacts",
+        "Description": "Total Supplied Impacts",
+        "DataType": "double"
+      },
+      {
+        "Name": "existing_supplied",
+        "Description": "Existing Supplied spots/ratings, priort the booking run",
+        "DataType": "double"
+      },
+      {
+        "Name": "total_supplied30",
+        "Description": "Base Length Total Supplied spots/ratings, including existing bookings",
+        "DataType": "double"
+      },
+      {
+        "Name": "existing_supplied30",
+        "Description": "Base Length Existing Supplied spots/ratings, priort the booking run",
+        "DataType": "double"
+      },
+      {
+        "Name": "total_nominal_price",
+        "Description": "Total Nominal Price, including existing bookings",
+        "DataType": "double"
+      },
+      {
+        "Name": "existing_nominal_price",
+        "Description": "Existing Nominal Price",
+        "DataType": "double"
+      },
+      {
+        "Name": "base_requirement",
+        "Description": "Base Demograph Requirement, as defined by the campaign parameters",
+        "DataType": "double"
+      },
+      {
+        "Name": "base_total_supplied",
+        "Description": "Base Demograph Total Supplied spots/ratings, including existing bookings",
+        "DataType": "double"
+      },
+      {
+        "Name": "base_existing_supplied",
+        "Description": "Base Demograph Existing Supplied spots/ratings, priort the booking run",
+        "DataType": "double"
+      },
+      {
+        "Name": "base_total_supplied30",
+        "Description": "Base Length, Base Demograph Total Supplied spots/ratings, including existing bookings",
+        "DataType": "double"
+      },
+      {
+        "Name": "base_existing_supplied30",
+        "Description": "Base Length, Base Demograph Existing Supplied spots/ratings, priort the booking run",
+        "DataType": "double"
+      },
+      {
+        "Name": "no_of_spots",
+        "Description": "Number of spots booked",
+        "DataType": "long"
+      },
+      {
+        "Name": "ignore_yn",
+        "Description": "Ignore Requirements, flag to override requirements",
+        "DataType": "string"
+      },
+      {
+        "Name": "book_until_max_yn",
+        "Description": "Book until maximum requirement. Override default logic of stopping as soon as booking reaches minimum level",
+        "DataType": "string"
+      },
+      {
+        "Name": "book_target_area_req_yn",
+        "Description": "Book to target area requirement. Uses for clients with sales area target groups to enable booking across multiple sales areas.",
+        "DataType": "string"
+      },
+      {
+        "Name": "rtgs_before_isr",
+        "Description": "Ratings Before Inefficient Spot Removal (ISR)",
+        "DataType": "double"
+      },
+      {
+        "Name": "base_rtgs_before_isr",
+        "Description": "Base Length Ratings Before Inefficient Spot Removal (ISR)",
+        "DataType": "double"
+      },
+      {
+        "Name": "rtgs_removed_isr",
+        "Description": "Rating Removed by ISR",
+        "DataType": "double"
+      },
+      {
+        "Name": "base_rtgs_removed_isr",
+        "Description": "Base Length Rating Removed by ISR",
+        "DataType": "double"
+      },
+      {
+        "Name": "tgt_rtgs_before_isr",
+        "Description": "Target Ratings Before ISR",
+        "DataType": "double"
+      },
+      {
+        "Name": "base_tgt_rtgs_before_isr",
+        "Description": "Base Length Target Ratings Before ISR",
+        "DataType": "double"
+      },
+      {
+        "Name": "tgt_rtgs_removed_isr",
+        "Description": "Target Ratings Removed in ISR",
+        "DataType": "double"
+      },
+      {
+        "Name": "base_tgt_rtgs_removed_isr",
+        "Description": "Base Length Target Ratings Removed in ISR",
+        "DataType": "double"
+      },
+      {
+        "Name": "nominal_price_before_isr",
+        "Description": "Nominal Price Before ISR",
+        "DataType": "double"
+      },
+      {
+        "Name": "nominal_price_reduced_isr",
+        "Description": "Nominal Price Removed by ISR",
+        "DataType": "double"
+      }
+    ],
+    "FileId": "LMKII_DDPD_REQM.out",
+    "Description": "Campaign, Sales Area, Strike Weight",
+    "AutoBookFileName": "LMKII_DDPD_REQM.out",
+    "QueryFileName": "LMKII_DDPD_REQM.txt"
+  },
+  {
+    "Columns": [
+      {
+        "Name": "aper_no                  ",
+        "Description": "Unique identifier of the submission.",
+        "DataType": "long"
+      },
+      {
+        "Name": "camp_no",
+        "Description": "Campaign Number",
+        "DataType": "int"
+      },
+      {
+        "Name": "sare_no",
+        "Description": "Campaign Sales Area Number",
+        "DataType": "int"
+      },
+      {
+        "Name": "tgt_sare_no",
+        "Description": "Campaign Target Sales Area Number",
+        "DataType": "long"
+      },
+      {
+        "Name": "sslg_length",
+        "Description": "Spot Length of booking",
+        "DataType": "int"
+      },
+      {
+        "Name": "multipart_no",
+        "Description": "",
+        "DataType": "int"
+      },
+      {
+        "Name": ">0 Multipart booking\"",
+        "Description": "",
+        "DataType": "Multipart requirement"
+      },
+      {
+        "Name": "stt_date",
+        "Description": "Start date of strike weight the spot was booked into.",
+        "DataType": "long"
+      },
+      {
+        "Name": "end_date",
+        "Description": "End date of strike weight the spot was booked into.",
+        "DataType": "long"
+      },
+      {
+        "Name": "min_requirement",
+        "Description": "Minimum requirement for booking to be considered successful.",
+        "DataType": "double"
+      },
+      {
+        "Name": "requirement",
+        "Description": "Requirement, as defined by the campaign parameters",
+        "DataType": "double"
+      },
+      {
+        "Name": "max_requirement",
+        "Description": "Maximum requirement, limit for which the booking is to be considered successful",
+        "DataType": "double"
+      },
+      {
+        "Name": "total_supplied",
+        "Description": "Total Supplied spots/ratings, including existing bookings",
+        "DataType": "double"
+      },
+      {
+        "Name": "total_impacts",
+        "Description": "Total Supplied Impacts",
+        "DataType": "double"
+      },
+      {
+        "Name": "existing_supplied",
+        "Description": "Existing Supplied spots/ratings, priort the booking run",
+        "DataType": "double"
+      },
+      {
+        "Name": "total_supplied30",
+        "Description": "Base Length Total Supplied spots/ratings, including existing bookings",
+        "DataType": "double"
+      },
+      {
+        "Name": "existing_supplied30",
+        "Description": "Base Length Existing Supplied spots/ratings, priort the booking run",
+        "DataType": "double"
+      },
+      {
+        "Name": "total_nominal_price",
+        "Description": "Total Nominal Price, including existing bookings",
+        "DataType": "double"
+      },
+      {
+        "Name": "existing_nominal_price",
+        "Description": "Existing Nominal Price",
+        "DataType": "double"
+      },
+      {
+        "Name": "base_requirement",
+        "Description": "Base Demograph Requirement, as defined by the campaign parameters",
+        "DataType": "double"
+      },
+      {
+        "Name": "base_total_supplied",
+        "Description": "Base Demograph Total Supplied spots/ratings, including existing bookings",
+        "DataType": "double"
+      },
+      {
+        "Name": "base_existing_supplied",
+        "Description": "Base Demograph Existing Supplied spots/ratings, priort the booking run",
+        "DataType": "double"
+      },
+      {
+        "Name": "base_total_supplied30",
+        "Description": "Base Length, Base Demograph Total Supplied spots/ratings, including existing bookings",
+        "DataType": "double"
+      },
+      {
+        "Name": "base_existing_supplied30",
+        "Description": "Base Length, Base Demograph Existing Supplied spots/ratings, priort the booking run",
+        "DataType": "double"
+      },
+      {
+        "Name": "no_of_spots",
+        "Description": "Number of spots booked",
+        "DataType": "long"
+      },
+      {
+        "Name": "ignore_yn",
+        "Description": "Ignore Requirements, flag to override requirements",
+        "DataType": "string"
+      },
+      {
+        "Name": "book_until_max_yn",
+        "Description": "Book until maximum requirement. Override default logic of stopping as soon as booking reaches minimum level",
+        "DataType": "string"
+      },
+      {
+        "Name": "book_target_area_req_yn",
+        "Description": "Book to target area requirement. Uses for clients with sales area target groups to enable booking across multiple sales areas.",
+        "DataType": "string"
+      },
+      {
+        "Name": "rtgs_before_isr",
+        "Description": "Ratings Before Inefficient Spot Removal (ISR)",
+        "DataType": "double"
+      },
+      {
+        "Name": "base_rtgs_before_isr",
+        "Description": "Base Length Ratings Before Inefficient Spot Removal (ISR)",
+        "DataType": "double"
+      },
+      {
+        "Name": "rtgs_removed_isr",
+        "Description": "Rating Removed by ISR",
+        "DataType": "double"
+      },
+      {
+        "Name": "base_rtgs_removed_isr",
+        "Description": "Base Length Rating Removed by ISR",
+        "DataType": "double"
+      },
+      {
+        "Name": "tgt_rtgs_before_isr",
+        "Description": "Target Ratings Before ISR",
+        "DataType": "double"
+      },
+      {
+        "Name": "base_tgt_rtgs_before_isr",
+        "Description": "Base Length Target Ratings Before ISR",
+        "DataType": "double"
+      },
+      {
+        "Name": "tgt_rtgs_removed_isr",
+        "Description": "Target Ratings Removed in ISR",
+        "DataType": "double"
+      },
+      {
+        "Name": "base_tgt_rtgs_removed_isr",
+        "Description": "Base Length Target Ratings Removed in ISR",
+        "DataType": "double"
+      },
+      {
+        "Name": "nominal_price_before_isr",
+        "Description": "Nominal Price Before ISR",
+        "DataType": "double"
+      },
+      {
+        "Name": "nominal_price_reduced_isr",
+        "Description": "Nominal Price Removed by ISR",
+        "DataType": "double"
+      }
+    ],
+    "FileId": "LMKII_DDPD_SSLG_REQM.out",
+    "Description": "Campaign, Sales Area, Strike Weight, Spot Length",
+    "AutoBookFileName": "LMKII_DDPD_SSLG_REQM.out",
+    "QueryFileName": "LMKII_DDPD_SSLG_REQM.txt"
+  },
+  {
+    "Columns": [
+      {
+        "Name": "aper_no                  ",
+        "Description": "Unique identifier of the submission.",
+        "DataType": "long"
+      },
+      {
+        "Name": "camp_no",
+        "Description": "Campaign number of booking",
+        "DataType": "long"
+      },
+      {
+        "Name": "sare_no",
+        "Description": "Sales Area Number of booking",
+        "DataType": "int"
+      },
+      {
+        "Name": "sslg_length",
+        "Description": "Spot Length of booking",
+        "DataType": "int"
+      },
+      {
+        "Name": "multipart_no",
+        "Description": "",
+        "DataType": "int"
+      },
+      {
+        "Name": ">0 Multipart booking\"",
+        "Description": "",
+        "DataType": "Multipart requirement"
+      },
+      {
+        "Name": "brek_sare_no",
+        "Description": "Sales Area Number of break",
+        "DataType": "int"
+      },
+      {
+        "Name": "brek_sched_date",
+        "Description": "Date of Break",
+        "DataType": "long"
+      },
+      {
+        "Name": "brek_nom_time",
+        "Description": "Scheduled time of break, generally runs 06:00:00 - 29:59:59, where any times past 24:00:00 are in fact am times for the following day",
+        "DataType": "long"
+      },
+      {
+        "Name": "fail_type",
+        "Description": "Failure type preventing booking",
+        "DataType": "int"
+      },
+      {
+        "Name": "nbr_failures",
+        "Description": "Count of the failures encounterd for type.",
+        "DataType": "long"
+      }
+    ],
+    "FileId": "LMKII_FAIL_REPT.out",
+    "Description": "Failures",
+    "AutoBookFileName": "LMKII_FAIL_REPT.out",
+    "QueryFileName": "LMKII_FAIL_REPT.txt"
+  },
+  {
+    "Columns": [
+      {
+        "Name": "aper_no                  ",
+        "Description": "Unique identifier of the submission.",
+        "DataType": "long"
+      },
+      {
+        "Name": "camp_no",
+        "Description": "Campaign Number",
+        "DataType": "int"
+      },
+      {
+        "Name": "sare_no",
+        "Description": "Campaign Sales Area Number",
+        "DataType": "int"
+      },
+      {
+        "Name": "tgt_sare_no",
+        "Description": "Campaign Target Sales Area Number",
+        "DataType": "long"
+      },
+      {
+        "Name": "dcdp_no",
+        "Description": "Unique identifier of daypart within campaign.",
+        "DataType": "long"
+      },
+      {
+        "Name": "stt_date",
+        "Description": "Start date of strike weight/campaign the spot was booked into.",
+        "DataType": "long"
+      },
+      {
+        "Name": "end_date",
+        "Description": "End date of strike weight/campaign the spot was booked into.",
+        "DataType": "long"
+      },
+      {
+        "Name": "day_string",
+        "Description": "",
+        "DataType": "string"
+      },
+      {
+        "Name": "YYYYYYY\"",
+        "Description": "",
+        "DataType": "Days of week for the daypart."
+      },
+      {
+        "Name": "stt_time",
+        "Description": "Start time of daypart the spot was booked into.",
+        "DataType": "long"
+      },
+      {
+        "Name": "end_time",
+        "Description": "End time of daypart the spot was booked into.",
+        "DataType": "long"
+      },
+      {
+        "Name": "min_requirement",
+        "Description": "Minimum requirement for booking to be considered successful.",
+        "DataType": "double"
+      },
+      {
+        "Name": "requirement",
+        "Description": "Requirement, as defined by the campaign parameters",
+        "DataType": "double"
+      },
+      {
+        "Name": "max_requirement",
+        "Description": "Maximum requirement, limit for which the booking is to be considered successful",
+        "DataType": "double"
+      },
+      {
+        "Name": "total_supplied",
+        "Description": "Total Supplied spots/ratings, including existing bookings",
+        "DataType": "double"
+      },
+      {
+        "Name": "total_impacts",
+        "Description": "Total Supplied Impacts",
+        "DataType": "double"
+      },
+      {
+        "Name": "existing_supplied",
+        "Description": "Existing Supplied spots/ratings, priort the booking run",
+        "DataType": "double"
+      },
+      {
+        "Name": "total_supplied30",
+        "Description": "Base Length Total Supplied spots/ratings, including existing bookings",
+        "DataType": "double"
+      },
+      {
+        "Name": "existing_supplied30",
+        "Description": "Base Length Existing Supplied spots/ratings, priort the booking run",
+        "DataType": "double"
+      },
+      {
+        "Name": "total_nominal_price",
+        "Description": "Total Nominal Price, including existing bookings",
+        "DataType": "double"
+      },
+      {
+        "Name": "existing_nominal_price",
+        "Description": "Existing Nominal Price",
+        "DataType": "double"
+      },
+      {
+        "Name": "base_requirement",
+        "Description": "Base Demograph Requirement, as defined by the campaign parameters",
+        "DataType": "double"
+      },
+      {
+        "Name": "base_total_supplied",
+        "Description": "Base Demograph Total Supplied spots/ratings, including existing bookings",
+        "DataType": "double"
+      },
+      {
+        "Name": "base_existing_supplied",
+        "Description": "Base Demograph Existing Supplied spots/ratings, priort the booking run",
+        "DataType": "double"
+      },
+      {
+        "Name": "base_total_supplied30",
+        "Description": "Base Length, Base Demograph Total Supplied spots/ratings, including existing bookings",
+        "DataType": "double"
+      },
+      {
+        "Name": "base_existing_supplied30",
+        "Description": "Base Length, Base Demograph Existing Supplied spots/ratings, priort the booking run",
+        "DataType": "double"
+      },
+      {
+        "Name": "no_of_spots",
+        "Description": "Number of spots booked",
+        "DataType": "long"
+      },
+      {
+        "Name": "ignore_yn",
+        "Description": "Ignore Requirements, flag to override requirements",
+        "DataType": "string"
+      },
+      {
+        "Name": "book_until_max_yn",
+        "Description": "Book until maximum requirement. Override default logic of stopping as soon as booking reaches minimum level",
+        "DataType": "string"
+      },
+      {
+        "Name": "book_target_area_req_yn",
+        "Description": "Book to target area requirement. Uses for clients with sales area target groups to enable booking across multiple sales areas.",
+        "DataType": "string"
+      },
+      {
+        "Name": "rtgs_before_isr",
+        "Description": "Ratings Before Inefficient Spot Removal (ISR)",
+        "DataType": "double"
+      },
+      {
+        "Name": "base_rtgs_before_isr",
+        "Description": "Base Length Ratings Before Inefficient Spot Removal (ISR)",
+        "DataType": "double"
+      },
+      {
+        "Name": "rtgs_removed_isr",
+        "Description": "Rating Removed by ISR",
+        "DataType": "double"
+      },
+      {
+        "Name": "base_rtgs_removed_isr",
+        "Description": "Base Length Rating Removed by ISR",
+        "DataType": "double"
+      },
+      {
+        "Name": "tgt_rtgs_before_isr",
+        "Description": "Target Ratings Before ISR",
+        "DataType": "double"
+      },
+      {
+        "Name": "base_tgt_rtgs_before_isr",
+        "Description": "Base Length Target Ratings Before ISR",
+        "DataType": "double"
+      },
+      {
+        "Name": "tgt_rtgs_removed_isr",
+        "Description": "Target Ratings Removed in ISR",
+        "DataType": "double"
+      },
+      {
+        "Name": "base_tgt_rtgs_removed_isr",
+        "Description": "Base Length Target Ratings Removed in ISR",
+        "DataType": "double"
+      },
+      {
+        "Name": "nominal_price_before_isr",
+        "Description": "Nominal Price Before ISR",
+        "DataType": "double"
+      },
+      {
+        "Name": "nominal_price_reduced_isr",
+        "Description": "Nominal Price Removed by ISR",
+        "DataType": "double"
+      }
+    ],
+    "FileId": "LMKII_PART_REQM.out",
+    "Description": "Campaign, Sales Area, Strike Weight, Daypart",
+    "AutoBookFileName": "LMKII_PART_REQM.out",
+    "QueryFileName": "LMKII_PART_REQM.txt"
+  },
+  {
+    "Columns": [
+      {
+        "Name": "aper_no                  ",
+        "Description": "Unique identifier of the submission.",
+        "DataType": "long"
+      },
+      {
+        "Name": "camp_no",
+        "Description": "Campaign Number",
+        "DataType": "int"
+      },
+      {
+        "Name": "sare_no",
+        "Description": "Campaign Sales Area Number",
+        "DataType": "int"
+      },
+      {
+        "Name": "tgt_sare_no",
+        "Description": "Campaign Target Sales Area Number",
+        "DataType": "long"
+      },
+      {
+        "Name": "sslg_length",
+        "Description": "Spot Length of booking",
+        "DataType": "int"
+      },
+      {
+        "Name": "multipart_no",
+        "Description": "",
+        "DataType": "int"
+      },
+      {
+        "Name": ">0 Multipart booking\"",
+        "Description": "",
+        "DataType": "Multipart requirement"
+      },
+      {
+        "Name": "dcdp_no",
+        "Description": "Unique identifier of daypart within campaign.",
+        "DataType": "long"
+      },
+      {
+        "Name": "stt_date",
+        "Description": "Start date of strike weight/campaign the spot was booked into.",
+        "DataType": "long"
+      },
+      {
+        "Name": "end_date",
+        "Description": "End date of strike weight/campaign the spot was booked into.",
+        "DataType": "long"
+      },
+      {
+        "Name": "day_string",
+        "Description": "",
+        "DataType": "string"
+      },
+      {
+        "Name": "YYYYYYY\"",
+        "Description": "",
+        "DataType": "Days of week for the daypart."
+      },
+      {
+        "Name": "stt_time",
+        "Description": "Start time of daypart the spot was booked into.",
+        "DataType": "long"
+      },
+      {
+        "Name": "end_time",
+        "Description": "End time of daypart the spot was booked into.",
+        "DataType": "long"
+      },
+      {
+        "Name": "min_requirement",
+        "Description": "Minimum requirement for booking to be considered successful.",
+        "DataType": "double"
+      },
+      {
+        "Name": "requirement",
+        "Description": "Requirement, as defined by the campaign parameters",
+        "DataType": "double"
+      },
+      {
+        "Name": "max_requirement",
+        "Description": "Maximum requirement, limit for which the booking is to be considered successful",
+        "DataType": "double"
+      },
+      {
+        "Name": "total_supplied",
+        "Description": "Total Supplied spots/ratings, including existing bookings",
+        "DataType": "double"
+      },
+      {
+        "Name": "total_impacts",
+        "Description": "Total Supplied Impacts",
+        "DataType": "double"
+      },
+      {
+        "Name": "existing_supplied",
+        "Description": "Existing Supplied spots/ratings, priort the booking run",
+        "DataType": "double"
+      },
+      {
+        "Name": "total_supplied30",
+        "Description": "Base Length Total Supplied spots/ratings, including existing bookings",
+        "DataType": "double"
+      },
+      {
+        "Name": "existing_supplied30",
+        "Description": "Base Length Existing Supplied spots/ratings, priort the booking run",
+        "DataType": "double"
+      },
+      {
+        "Name": "total_nominal_price",
+        "Description": "Total Nominal Price, including existing bookings",
+        "DataType": "double"
+      },
+      {
+        "Name": "existing_nominal_price",
+        "Description": "Existing Nominal Price",
+        "DataType": "double"
+      },
+      {
+        "Name": "base_requirement",
+        "Description": "Base Demograph Requirement, as defined by the campaign parameters",
+        "DataType": "double"
+      },
+      {
+        "Name": "base_total_supplied",
+        "Description": "Base Demograph Total Supplied spots/ratings, including existing bookings",
+        "DataType": "double"
+      },
+      {
+        "Name": "base_existing_supplied",
+        "Description": "Base Demograph Existing Supplied spots/ratings, priort the booking run",
+        "DataType": "double"
+      },
+      {
+        "Name": "base_total_supplied30",
+        "Description": "Base Length, Base Demograph Total Supplied spots/ratings, including existing bookings",
+        "DataType": "double"
+      },
+      {
+        "Name": "base_existing_supplied30",
+        "Description": "Base Length, Base Demograph Existing Supplied spots/ratings, priort the booking run",
+        "DataType": "double"
+      },
+      {
+        "Name": "no_of_spots",
+        "Description": "Number of spots booked",
+        "DataType": "long"
+      },
+      {
+        "Name": "ignore_yn",
+        "Description": "Ignore Requirements, flag to override requirements",
+        "DataType": "string"
+      },
+      {
+        "Name": "book_until_max_yn",
+        "Description": "Book until maximum requirement. Override default logic of stopping as soon as booking reaches minimum level",
+        "DataType": "string"
+      },
+      {
+        "Name": "book_target_area_req_yn",
+        "Description": "Book to target area requirement. Uses for clients with sales area target groups to enable booking across multiple sales areas.",
+        "DataType": "string"
+      },
+      {
+        "Name": "rtgs_before_isr",
+        "Description": "Ratings Before Inefficient Spot Removal (ISR)",
+        "DataType": "double"
+      },
+      {
+        "Name": "base_rtgs_before_isr",
+        "Description": "Base Length Ratings Before Inefficient Spot Removal (ISR)",
+        "DataType": "double"
+      },
+      {
+        "Name": "rtgs_removed_isr",
+        "Description": "Rating Removed by ISR",
+        "DataType": "double"
+      },
+      {
+        "Name": "base_rtgs_removed_isr",
+        "Description": "Base Length Rating Removed by ISR",
+        "DataType": "double"
+      },
+      {
+        "Name": "tgt_rtgs_before_isr",
+        "Description": "Target Ratings Before ISR",
+        "DataType": "double"
+      },
+      {
+        "Name": "base_tgt_rtgs_before_isr",
+        "Description": "Base Length Target Ratings Before ISR",
+        "DataType": "double"
+      },
+      {
+        "Name": "tgt_rtgs_removed_isr",
+        "Description": "Target Ratings Removed in ISR",
+        "DataType": "double"
+      },
+      {
+        "Name": "base_tgt_rtgs_removed_isr",
+        "Description": "Base Length Target Ratings Removed in ISR",
+        "DataType": "double"
+      },
+      {
+        "Name": "nominal_price_before_isr",
+        "Description": "Nominal Price Before ISR",
+        "DataType": "double"
+      },
+      {
+        "Name": "nominal_price_reduced_isr",
+        "Description": "Nominal Price Removed by ISR",
+        "DataType": "double"
+      }
+    ],
+    "FileId": "LMKII_PART_SSLG_REQM.out",
+    "Description": "Campaign, Sales Area, Strike Weight, Daypart, Spot Length",
+    "AutoBookFileName": "LMKII_PART_SSLG_REQM.out",
+    "QueryFileName": "LMKII_PART_SSLG_REQM.txt"
+  },
+  {
+    "Columns": [
+      {
+        "Name": "aper_no                  ",
+        "Description": "Unique identifier of the submission.",
+        "DataType": "long"
+      },
+      {
+        "Name": "camp_no",
+        "Description": "Campaign Number",
+        "DataType": "int"
+      },
+      {
+        "Name": "sare_no",
+        "Description": "Campaign Sales Area Number",
+        "DataType": "int"
+      },
+      {
+        "Name": "tgt_sare_no",
+        "Description": "Campaign Target Sales Area Number",
+        "DataType": "int"
+      },
+      {
+        "Name": "min_requirement",
+        "Description": "Minimum requirement for booking to be considered successful.",
+        "DataType": "double"
+      },
+      {
+        "Name": "requirement",
+        "Description": "Requirement, as defined by the campaign parameters",
+        "DataType": "double"
+      },
+      {
+        "Name": "max_requirement",
+        "Description": "Maximum requirement, limit for which the booking is to be considered successful",
+        "DataType": "double"
+      },
+      {
+        "Name": "total_supplied",
+        "Description": "Total Supplied spots/ratings, including existing bookings",
+        "DataType": "double"
+      },
+      {
+        "Name": "total_impacts",
+        "Description": "Total Supplied Impacts",
+        "DataType": "double"
+      },
+      {
+        "Name": "existing_supplied",
+        "Description": "Existing Supplied spots/ratings, priort the booking run",
+        "DataType": "double"
+      },
+      {
+        "Name": "total_supplied30",
+        "Description": "Base Length Total Supplied spots/ratings, including existing bookings",
+        "DataType": "double"
+      },
+      {
+        "Name": "existing_supplied30",
+        "Description": "Base Length Existing Supplied spots/ratings, priort the booking run",
+        "DataType": "double"
+      },
+      {
+        "Name": "total_nominal_price",
+        "Description": "Total Nominal Price, including existing bookings",
+        "DataType": "double"
+      },
+      {
+        "Name": "existing_nominal_price",
+        "Description": "Existing Nominal Price",
+        "DataType": "double"
+      },
+      {
+        "Name": "base_requirement",
+        "Description": "Base Demograph Requirement, as defined by the campaign parameters",
+        "DataType": "double"
+      },
+      {
+        "Name": "base_total_supplied",
+        "Description": "Base Demograph Total Supplied spots/ratings, including existing bookings",
+        "DataType": "double"
+      },
+      {
+        "Name": "base_existing_supplied",
+        "Description": "Base Demograph Existing Supplied spots/ratings, priort the booking run",
+        "DataType": "double"
+      },
+      {
+        "Name": "base_total_supplied30",
+        "Description": "Base Length, Base Demograph Total Supplied spots/ratings, including existing bookings",
+        "DataType": "double"
+      },
+      {
+        "Name": "base_existing_supplied30",
+        "Description": "Base Length, Base Demograph Existing Supplied spots/ratings, priort the booking run",
+        "DataType": "double"
+      },
+      {
+        "Name": "no_of_spots",
+        "Description": "Number of spots booked",
+        "DataType": "long"
+      },
+      {
+        "Name": "ignore_yn",
+        "Description": "Ignore Requirements, flag to override requirements",
+        "DataType": "string"
+      },
+      {
+        "Name": "book_until_max_yn",
+        "Description": "Book until maximum requirement. Override default logic of stopping as soon as booking reaches minimum level",
+        "DataType": "string"
+      },
+      {
+        "Name": "book_target_area_req_yn",
+        "Description": "Book to target area requirement. Uses for clients with sales area target groups to enable booking across multiple sales areas.",
+        "DataType": "string"
+      },
+      {
+        "Name": "rtgs_before_isr",
+        "Description": "Ratings Before Inefficient Spot Removal (ISR)",
+        "DataType": "double"
+      },
+      {
+        "Name": "base_rtgs_before_isr",
+        "Description": "Base Length Ratings Before Inefficient Spot Removal (ISR)",
+        "DataType": "double"
+      },
+      {
+        "Name": "rtgs_removed_isr",
+        "Description": "Rating Removed by ISR",
+        "DataType": "double"
+      },
+      {
+        "Name": "base_rtgs_removed_isr",
+        "Description": "Base Length Rating Removed by ISR",
+        "DataType": "double"
+      },
+      {
+        "Name": "tgt_rtgs_before_isr",
+        "Description": "Target Ratings Before ISR",
+        "DataType": "double"
+      },
+      {
+        "Name": "base_tgt_rtgs_before_isr",
+        "Description": "Base Length Target Ratings Before ISR",
+        "DataType": "double"
+      },
+      {
+        "Name": "tgt_rtgs_removed_isr",
+        "Description": "Target Ratings Removed in ISR",
+        "DataType": "double"
+      },
+      {
+        "Name": "base_tgt_rtgs_removed_isr",
+        "Description": "Base Length Target Ratings Removed in ISR",
+        "DataType": "double"
+      },
+      {
+        "Name": "nominal_price_before_isr",
+        "Description": "Nominal Price Before ISR",
+        "DataType": "double"
+      },
+      {
+        "Name": "nominal_price_reduced_isr",
+        "Description": "Nominal Price Removed by ISR",
+        "DataType": "double"
+      }
+    ],
+    "FileId": "LMKII_SARE_REQM.out",
+    "Description": "Campaign, Sales Area",
+    "AutoBookFileName": "LMKII_SARE_REQM.out",
+    "QueryFileName": "LMKII_SARE_REQM.txt"
+  },
+  {
+    "Columns": [
+      {
+        "Name": "aper_no                  ",
+        "Description": "Unique identifier of the submission.",
+        "DataType": "long"
+      },
+      {
+        "Name": "spot_no",
+        "Description": "Unique Spot Number",
+        "DataType": "long"
+      },
+      {
+        "Name": "camp_no",
+        "Description": "Campaign number of booking",
+        "DataType": "long"
+      },
+      {
+        "Name": "sare_no",
+        "Description": "Sales Area Number of booking",
+        "DataType": "int"
+      },
+      {
+        "Name": "sslg_length",
+        "Description": "Spot Length of booking",
+        "DataType": "int"
+      },
+      {
+        "Name": "status",
+        "Description": "",
+        "DataType": "string"
+      },
+      {
+        "Name": "X - Proposed",
+        "Description": "",
+        "DataType": ""
+      },
+      {
+        "Name": "O - Option\"",
+        "Description": "",
+        "DataType": "Status of the spot booked."
+      },
+      {
+        "Name": "prod_code",
+        "Description": "Product code of the campaign which the spot is booked against.",
+        "DataType": "long"
+      },
+      {
+        "Name": "demo_no",
+        "Description": "Campaign demograph spot is booked against.",
+        "DataType": "int"
+      },
+      {
+        "Name": "mpart_spot_ind",
+        "Description": "",
+        "DataType": "string"
+      },
+      {
+        "Name": "T - Top Spot",
+        "Description": "",
+        "DataType": ""
+      },
+      {
+        "Name": "M - Member Spot\"",
+        "Description": "",
+        "DataType": "Mutipart indicator. Linked bookings for a sequenced spot."
+      },
+      {
+        "Name": "bkpo_posn_reqm",
+        "Description": "",
+        "DataType": "int"
+      },
+      {
+        "Name": "2 - Second",
+        "Description": "",
+        "DataType": ""
+      },
+      {
+        "Name": "3 - Third",
+        "Description": "",
+        "DataType": ""
+      },
+      {
+        "Name": "97 - Antepenultimate",
+        "Description": "",
+        "DataType": ""
+      },
+      {
+        "Name": "98 - Penultimate",
+        "Description": "",
+        "DataType": ""
+      },
+      {
+        "Name": "99 - Last\"",
+        "Description": "",
+        "DataType": "Special booking position, if required by campaign definition"
+      },
+      {
+        "Name": "brek_sare_no",
+        "Description": "Sales Area Number of break",
+        "DataType": "int"
+      },
+      {
+        "Name": "brek_sched_date",
+        "Description": "Date of Break",
+        "DataType": "long"
+      },
+      {
+        "Name": "brek_nom_time",
+        "Description": "Scheduled time of break",
+        "DataType": "long"
+      },
+      {
+        "Name": "spot_sare_no",
+        "Description": "Spot Sales Area, used for regional booking",
+        "DataType": "int"
+      },
+      {
+        "Name": "prog_no",
+        "Description": "Programme Number of break.",
+        "DataType": "long"
+      },
+      {
+        "Name": "epis_no",
+        "Description": "Programme Episode number of break",
+        "DataType": "int"
+      },
+      {
+        "Name": "epis.prog_no",
+        "Description": "",
+        "DataType": ""
+      },
+      {
+        "Name": "epis.epis_no\"",
+        "Description": "",
+        "DataType": ""
+      },
+      {
+        "Name": "prgc_no",
+        "Description": "Programme Category number of break",
+        "DataType": "int"
+      },
+      {
+        "Name": "posn_in_prog",
+        "Description": "",
+        "DataType": "string"
+      },
+      {
+        "Name": "E - End\"",
+        "Description": "",
+        "DataType": "Position in Programme"
+      },
+      {
+        "Name": "btyp_code",
+        "Description": "Break type code",
+        "DataType": "string"
+      },
+      {
+        "Name": "price_factor",
+        "Description": "Base Length Price Factor. Conversion rate to base length",
+        "DataType": "double"
+      },
+      {
+        "Name": "rating",
+        "Description": "Rating of the spot booked",
+        "DataType": "double"
+      },
+      {
+        "Name": "base_rating",
+        "Description": "Base Length Rating of the spot booked",
+        "DataType": "double"
+      },
+      {
+        "Name": "efficiency",
+        "Description": "Spot Efficiency",
+        "DataType": "double"
+      },
+      {
+        "Name": "eff_level",
+        "Description": "Efficiency Level",
+        "DataType": "int"
+      },
+      {
+        "Name": "optimisation_index",
+        "Description": "Optimisation Index",
+        "DataType": "long"
+      },
+      {
+        "Name": "optimisation_limit",
+        "Description": "Optimisation Limit",
+        "DataType": "long"
+      },
+      {
+        "Name": "abdn_no",
+        "Description": "Booking parameter number",
+        "DataType": "int"
+      }
+    ],
+    "FileId": "LMKII_SPOT_REQM.out",
+    "Description": "Spot",
+    "AutoBookFileName": "LMKII_SPOT_REQM.out",
+    "QueryFileName": "LMKII_SPOT_REQM.txt"
+  },
+  {
+    "Columns": [
+      {
+        "Name": "aper_no                  ",
+        "Description": "Unique identifier of the submission.",
+        "DataType": "long"
+      },
+      {
+        "Name": "camp_no",
+        "Description": "Campaign Number",
+        "DataType": "int"
+      },
+      {
+        "Name": "sare_no",
+        "Description": "Campaign Sales Area Number",
+        "DataType": "int"
+      },
+      {
+        "Name": "tgt_sare_no",
+        "Description": "Campaign Target Sales Area Number",
+        "DataType": "int"
+      },
+      {
+        "Name": "sslg_length",
+        "Description": "Spot Length of booking",
+        "DataType": "int"
+      },
+      {
+        "Name": "multipart_no",
+        "Description": "",
+        "DataType": "int"
+      },
+      {
+        "Name": ">0 Multipart booking\"",
+        "Description": "",
+        "DataType": "Multipart requirement"
+      },
+      {
+        "Name": "min_requirement",
+        "Description": "Minimum requirement for booking to be considered successful.",
+        "DataType": "double"
+      },
+      {
+        "Name": "requirement",
+        "Description": "Requirement, as defined by the campaign parameters",
+        "DataType": "double"
+      },
+      {
+        "Name": "max_requirement",
+        "Description": "Maximum requirement, limit for which the booking is to be considered successful",
+        "DataType": "double"
+      },
+      {
+        "Name": "total_supplied",
+        "Description": "Total Supplied spots/ratings, including existing bookings",
+        "DataType": "double"
+      },
+      {
+        "Name": "total_impacts",
+        "Description": "Total Supplied Impacts",
+        "DataType": "double"
+      },
+      {
+        "Name": "existing_supplied",
+        "Description": "Existing Supplied spots/ratings, priort the booking run",
+        "DataType": "double"
+      },
+      {
+        "Name": "total_supplied30",
+        "Description": "Base Length Total Supplied spots/ratings, including existing bookings",
+        "DataType": "double"
+      },
+      {
+        "Name": "existing_supplied30",
+        "Description": "Base Length Existing Supplied spots/ratings, priort the booking run",
+        "DataType": "double"
+      },
+      {
+        "Name": "total_nominal_price",
+        "Description": "Total Nominal Price, including existing bookings",
+        "DataType": "double"
+      },
+      {
+        "Name": "existing_nominal_price",
+        "Description": "Existing Nominal Price",
+        "DataType": "double"
+      },
+      {
+        "Name": "base_requirement",
+        "Description": "Base Demograph Requirement, as defined by the campaign parameters",
+        "DataType": "double"
+      },
+      {
+        "Name": "base_total_supplied",
+        "Description": "Base Demograph Total Supplied spots/ratings, including existing bookings",
+        "DataType": "double"
+      },
+      {
+        "Name": "base_existing_supplied",
+        "Description": "Base Demograph Existing Supplied spots/ratings, priort the booking run",
+        "DataType": "double"
+      },
+      {
+        "Name": "base_total_supplied30",
+        "Description": "Base Length, Base Demograph Total Supplied spots/ratings, including existing bookings",
+        "DataType": "double"
+      },
+      {
+        "Name": "base_existing_supplied30",
+        "Description": "Base Length, Base Demograph Existing Supplied spots/ratings, priort the booking run",
+        "DataType": "double"
+      },
+      {
+        "Name": "no_of_spots",
+        "Description": "Number of spots booked",
+        "DataType": "long"
+      },
+      {
+        "Name": "ignore_yn",
+        "Description": "Ignore Requirements, flag to override requirements",
+        "DataType": "string"
+      },
+      {
+        "Name": "book_until_max_yn",
+        "Description": "Book until maximum requirement. Override default logic of stopping as soon as booking reaches minimum level",
+        "DataType": "string"
+      },
+      {
+        "Name": "book_target_area_req_yn",
+        "Description": "Book to target area requirement. Uses for clients with sales area target groups to enable booking across multiple sales areas.",
+        "DataType": "string"
+      },
+      {
+        "Name": "rtgs_before_isr",
+        "Description": "Ratings Before Inefficient Spot Removal (ISR)",
+        "DataType": "double"
+      },
+      {
+        "Name": "base_rtgs_before_isr",
+        "Description": "Base Length Ratings Before Inefficient Spot Removal (ISR)",
+        "DataType": "double"
+      },
+      {
+        "Name": "rtgs_removed_isr",
+        "Description": "Rating Removed by ISR",
+        "DataType": "double"
+      },
+      {
+        "Name": "base_rtgs_removed_isr",
+        "Description": "Base Length Rating Removed by ISR",
+        "DataType": "double"
+      },
+      {
+        "Name": "tgt_rtgs_before_isr",
+        "Description": "Target Ratings Before ISR",
+        "DataType": "double"
+      },
+      {
+        "Name": "base_tgt_rtgs_before_isr",
+        "Description": "Base Length Target Ratings Before ISR",
+        "DataType": "double"
+      },
+      {
+        "Name": "tgt_rtgs_removed_isr",
+        "Description": "Target Ratings Removed in ISR",
+        "DataType": "double"
+      },
+      {
+        "Name": "base_tgt_rtgs_removed_isr",
+        "Description": "Base Length Target Ratings Removed in ISR",
+        "DataType": "double"
+      },
+      {
+        "Name": "nominal_price_before_isr",
+        "Description": "Nominal Price Before ISR",
+        "DataType": "double"
+      },
+      {
+        "Name": "nominal_price_reduced_isr",
+        "Description": "Nominal Price Removed by ISR",
+        "DataType": "double"
+      }
+    ],
+    "FileId": "LMKII_SSLG_REQM.out",
+    "Description": "Campaign, Sales Area, Spot Length",
+    "AutoBookFileName": "LMKII_SSLG_REQM.out",
+    "QueryFileName": "LMKII_SSLG_REQM.txt"
+  },
+  {
+    "Columns": [
+      {
+        "Name": "sare_no",
+        "Description": "Sales Area which the discont applies to",
+        "DataType": "long"
+      },
+      {
+        "Name": "dist_code",
+        "Description": "Discount Code",
+        "DataType": "string"
+      },
+      {
+        "Name": "dist.sare_no",
+        "Description": "",
+        "DataType": ""
+      },
+      {
+        "Name": "dist.dist_code\"",
+        "Description": "",
+        "DataType": ""
+      },
+      {
+        "Name": "spot_no",
+        "Description": "Spot Number",
+        "DataType": "long"
+      },
+      {
+        "Name": "amnt",
+        "Description": "Discount Amount, mutually exclusive to Discount Percentage",
+        "DataType": "double"
+      },
+      {
+        "Name": "perc",
+        "Description": "Discount Percentage, mutually exclusive to Discount Amount",
+        "DataType": "double"
+      },
+      {
+        "Name": "prmt_lvl_chg",
+        "Description": "Preemption Level. Not Used",
+        "DataType": "int"
+      }
+    ],
+    "FileId": "SDIS.out",
+    "Description": "One row per discount applied to Spot, optional data, generally omitted for most clients/bookings",
+    "AutoBookFileName": "SDIS.out",
+    "QueryFileName": "SDIS.txt"
+  },
+  {
+    "Columns": [
+      {
+        "Name": "sare_no",
+        "Description": "Sales Area Number of break",
+        "DataType": "int"
+      },
+      {
+        "Name": "brek_sched_date",
+        "Description": "Date of Break",
+        "DataType": "long"
+      },
+      {
+        "Name": "brek_nom_time",
+        "Description": "Scheduled time of break",
+        "DataType": "long"
+      },
+      {
+        "Name": "spot_no",
+        "Description": "Unique Spot Number",
+        "DataType": "long"
+      },
+      {
+        "Name": "break_no",
+        "Description": "Break Idendifier, Unique within sales area/date",
+        "DataType": "int"
+      },
+      {
+        "Name": "demo_no",
+        "Description": "Campaign demograph spot is booked against.",
+        "DataType": "int"
+      },
+      {
+        "Name": "prdp_no",
+        "Description": "Price daypart, linked to the break spot type and ratecard",
+        "DataType": "int"
+      },
+      {
+        "Name": "prdp.sare_no",
+        "Description": "",
+        "DataType": ""
+      },
+      {
+        "Name": "prdp.rcrd_ratecard_no",
+        "Description": "",
+        "DataType": ""
+      },
+      {
+        "Name": "prdp.rcdp_no",
+        "Description": "",
+        "DataType": ""
+      },
+      {
+        "Name": "prdp.prdp_no\"",
+        "Description": "",
+        "DataType": ""
+      },
+      {
+        "Name": "rcdp_no",
+        "Description": "Ratecard daypart, linked to the break spot type",
+        "DataType": "int"
+      },
+      {
+        "Name": "rcdp.sare_no",
+        "Description": "",
+        "DataType": ""
+      },
+      {
+        "Name": "rcdp.rcrd_ratecard_no",
+        "Description": "",
+        "DataType": ""
+      },
+      {
+        "Name": "rcdp.rcdp_no\"",
+        "Description": "",
+        "DataType": ""
+      },
+      {
+        "Name": "schd_no",
+        "Description": "Campaign payment linked to the spot booking",
+        "DataType": "long"
+      },
+      {
+        "Name": "option_expiry_date",
+        "Description": "Date on which the Option will expire",
+        "DataType": "long"
+      },
+      {
+        "Name": "status",
+        "Description": "",
+        "DataType": "string"
+      },
+      {
+        "Name": "X - Proposed",
+        "Description": "",
+        "DataType": ""
+      },
+      {
+        "Name": "O - Option\"",
+        "Description": "",
+        "DataType": "Status of the spot booked."
+      },
+      {
+        "Name": "prod_code",
+        "Description": "Product code of the campaign which the spot is booked against.",
+        "DataType": "long"
+      },
+      {
+        "Name": "root_clsh_code",
+        "Description": "Root Clash Code for product booked",
+        "DataType": "string"
+      },
+      {
+        "Name": "clsh_code",
+        "Description": "Clash Code for product booked",
+        "DataType": "string"
+      },
+      {
+        "Name": "mpart_spot_ind",
+        "Description": "",
+        "DataType": "string"
+      },
+      {
+        "Name": "T - Top Spot",
+        "Description": "",
+        "DataType": ""
+      },
+      {
+        "Name": "M - Member Spot\"",
+        "Description": "",
+        "DataType": "Mutipart indicator. Linked bookings for a sequenced spot."
+      },
+      {
+        "Name": "pree_tor_status",
+        "Description": "Pre-emptor Status",
+        "DataType": "int"
+      },
+      {
+        "Name": "pree_status",
+        "Description": "Pre-emptee Status",
+        "DataType": "int"
+      },
+      {
+        "Name": "mbru_code",
+        "Description": "Mobility Rule of deal, campaign. Default to standard",
+        "DataType": "string"
+      },
+      {
+        "Name": "sptt_code",
+        "Description": "Pricing code, default to standard.",
+        "DataType": "string"
+      },
+      {
+        "Name": "sptt.sare_no",
+        "Description": "",
+        "DataType": ""
+      },
+      {
+        "Name": "sptt.rcrd_ratecard_no",
+        "Description": "",
+        "DataType": ""
+      },
+      {
+        "Name": "sptt.sptt_code\"",
+        "Description": "",
+        "DataType": ""
+      },
+      {
+        "Name": "bkpo_posn_reqm",
+        "Description": "",
+        "DataType": "int"
+      },
+      {
+        "Name": "2 - Second",
+        "Description": "",
+        "DataType": ""
+      },
+      {
+        "Name": "3 - Third",
+        "Description": "",
+        "DataType": ""
+      },
+      {
+        "Name": "97 - Antepenultimate",
+        "Description": "",
+        "DataType": ""
+      },
+      {
+        "Name": "98 - Penultimate",
+        "Description": "",
+        "DataType": ""
+      },
+      {
+        "Name": "99 - Last\"",
+        "Description": "",
+        "DataType": "Special booking position, if required by campaign definition"
+      },
+      {
+        "Name": "deal_no",
+        "Description": "Deal Number of campaign booked",
+        "DataType": "long"
+      },
+      {
+        "Name": "camp_no",
+        "Description": "Campaign number of booking",
+        "DataType": "long"
+      },
+      {
+        "Name": "sslg_length",
+        "Description": "Spot Length of booking",
+        "DataType": "int"
+      },
+      {
+        "Name": "rcrd_ratecard_no",
+        "Description": "Ratecard number",
+        "DataType": "int"
+      },
+      {
+        "Name": "rcrd.sare_no",
+        "Description": "",
+        "DataType": ""
+      },
+      {
+        "Name": "rcrd.rcrd_ratecard_no\"",
+        "Description": "",
+        "DataType": ""
+      },
+      {
+        "Name": "bsar_no",
+        "Description": "Business Area of booking",
+        "DataType": "int"
+      },
+      {
+        "Name": "spot_sare_no",
+        "Description": "Spot Sales Area, used for regional booking",
+        "DataType": "int"
+      },
+      {
+        "Name": "price_factor",
+        "Description": "Base Length Price Factor. Conversion rate to base length",
+        "DataType": "double"
+      },
+      {
+        "Name": "rcrd_sare_no",
+        "Description": "Campaign Sales Area",
+        "DataType": "int"
+      },
+      {
+        "Name": "added_value_yn",
+        "Description": "Bonus Spot Booking indicator",
+        "DataType": "string"
+      },
+      {
+        "Name": "posn_surch_yn",
+        "Description": "Position Surcharge Indicator",
+        "DataType": "string"
+      },
+      {
+        "Name": "starting_price",
+        "Description": "Price of Spot",
+        "DataType": "double"
+      },
+      {
+        "Name": "psd_price",
+        "Description": "Discounted Price of Spot",
+        "DataType": "double"
+      },
+      {
+        "Name": "base_leng_stt_price",
+        "Description": "Base Length Price of Spot, derived using Price Factor",
+        "DataType": "double"
+      },
+      {
+        "Name": "base_leng_psd_price",
+        "Description": "Base Length Discounted Price of Spot, derived using Price Factor",
+        "DataType": "double"
+      },
+      {
+        "Name": "break_price",
+        "Description": "Break Price",
+        "DataType": "double"
+      },
+      {
+        "Name": "entered_price_yn",
+        "Description": "Manually Priced Spot",
+        "DataType": "string"
+      },
+      {
+        "Name": "price_locked_yn",
+        "Description": "Locked Price Spot",
+        "DataType": "string"
+      },
+      {
+        "Name": "client_picked",
+        "Description": "Client Picked Spot",
+        "DataType": "string"
+      },
+      {
+        "Name": "efficiency",
+        "Description": "Spot Efficiency",
+        "DataType": "double"
+      },
+      {
+        "Name": "optimisation_index",
+        "Description": "Optimisation Index",
+        "DataType": "long"
+      },
+      {
+        "Name": "optimisation_limit",
+        "Description": "Optimisation Limit",
+        "DataType": "long"
+      },
+      {
+        "Name": "eff_level",
+        "Description": "Efficiency Level",
+        "DataType": "int"
+      },
+      {
+        "Name": "pass_no",
+        "Description": "Booking Pass Number. For multi-pass iterations, defines the pass the spot was booked on",
+        "DataType": "int"
+      }
+    ],
+    "FileId": "SPOT.out",
+    "Description": "Main Spot table, one row per spot in the system",
+    "AutoBookFileName": "SPOT.out",
+    "QueryFileName": "SPOT.txt"
+  },
+  {
+    "Columns": [
+      {
+        "Name": "spot_no",
+        "Description": "Spot Number",
+        "DataType": "long"
+      },
+      {
+        "Name": "treg_no",
+        "Description": "Transmission Region of the Spot",
+        "DataType": "int"
+      },
+      {
+        "Name": "",
+        "Description": "",
+        "DataType": ""
+      },
+      {
+        "Name": "",
+        "Description": "",
+        "DataType": ""
+      },
+      {
+        "Name": "",
+        "Description": "",
+        "DataType": ""
+      }
+    ],
+    "FileId": "SPRG.out",
+    "Description": "Regional Booking. For non-regional systems is a one to one match with the SPOT data.",
+    "AutoBookFileName": "SPRG.out",
+    "QueryFileName": "SPRG.txt"
+  },
+  {
+    "Columns": [
+      {
+        "Name": "spot_no",
+        "Description": "Spot Number",
+        "DataType": "long"
+      },
+      {
+        "Name": "spsp_spot_no",
+        "Description": "Spot Number of the Top Spot linked to this member",
+        "DataType": "long"
+      },
+      {
+        "Name": "type",
+        "Description": "Type of booking",
+        "DataType": "string"
+      },
+      {
+        "Name": "sequence_no",
+        "Description": "Sequence of the spot within the multipart",
+        "DataType": "int"
+      },
+      {
+        "Name": "",
+        "Description": "",
+        "DataType": ""
+      }
+    ],
+    "FileId": "SPSP.out",
+    "Description": "\"Link between Top and Member spots within a multipart",
+    "AutoBookFileName": "SPSP.out",
+    "QueryFileName": "SPSP.txt"
+  },
+  {
+    "Columns": [
+      {
+        "Name": "sare_no",
+        "Description": "",
+        "DataType": "int"
+      },
+      {
+        "Name": "brek_sched_date",
+        "Description": "",
+        "DataType": "long"
+      },
+      {
+        "Name": "brek_nom_time",
+        "Description": "",
+        "DataType": "long"
+      },
+      {
+        "Name": "break_no",
+        "Description": "",
+        "DataType": "int"
+      },
+      {
+        "Name": "demo_no",
+        "Description": "",
+        "DataType": "int"
+      },
+      {
+        "Name": "eff",
+        "Description": "",
+        "DataType": "double"
+      },
+      {
+        "Name": "eff_level",
+        "Description": "",
+        "DataType": "int"
+      },
+      {
+        "Name": "zero_rank",
+        "Description": "",
+        "DataType": "int"
+      },
+      {
+        "Name": "no_of_rtgs",
+        "Description": "",
+        "DataType": "double"
+      },
+      {
+        "Name": "reqd_demo",
+        "Description": "",
+        "DataType": "int"
+      }
+    ],
+    "FileId": "EFFE.out",
+    "Description": "Break Efficiency",
+    "AutoBookFileName": "EFFE.out",
+    "QueryFileName": "EFFE.txt"
+  },
+  {
+    "Columns": [],
+    "FileId": "BASE_RTGS.out",
+    "Description": "Base Ratings",
+    "AutoBookFileName": "BASE_RTGS.out",
+    "QueryFileName": "BASE_RTGS.txt"
+  },
+  {
+    "Columns": [],
+    "FileId": "LMKII_SCEN_CAMP_REQM_SUMM.out",
+    "Description": "Scenario Campaign Results",
+    "AutoBookFileName": "LMKII_SCEN_CAMP_REQM_SUMM.out",
+    "QueryFileName": "LMKII_SCEN_CAMP_REQM_SUMM.txt"
+  },
+  {
+    "Columns": [],
+    "FileId": "XG_CAMP_FAIL_REPT.out",
+    "Description": "Scenario Campaign Failures",
+    "AutoBookFileName": "XG_CAMP_FAIL_REPT.out",
+    "QueryFileName": "XG_CAMP_FAIL_REPT.txt"
+  }
+]

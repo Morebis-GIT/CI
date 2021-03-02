@@ -357,19 +357,13 @@ namespace xggameplan.Profile
             return strikeWeights.Select(strikeWeight =>
             {
                 var agStrikeWeightLengths = new AgStrikeWeightLengths();
-
-                if (strikeWeight.Lengths?.Count > 0)
+                var agStrikeWeightLengthList = strikeWeight.Lengths != null && strikeWeight.Lengths.Any()
+                    ? mapper.Map<List<AgStrikeWeightLength>>(Tuple.Create(strikeWeight.Lengths,
+                        campaignNo, channelGroupNo, strikeWeight.StartDate, strikeWeight.EndDate))
+                    : null;
+                if (agStrikeWeightLengthList != null && agStrikeWeightLengthList.Any())
                 {
-                    var nonMultipartLengths = mapper.Map<List<AgStrikeWeightLength>>(Tuple.Create(
-                        strikeWeight.Lengths.Where(x => x.MultipartNumber == 0).ToList(), campaignNo, channelGroupNo,
-                        strikeWeight.StartDate, strikeWeight.EndDate));
-
-                    var multipartLengths = mapper.Map<List<AgStrikeWeightLength>>(Tuple.Create(
-                        strikeWeight.Lengths.Where(x => x.MultipartNumber > 0).ToList(), campaignNo, channelGroupNo,
-                        strikeWeight.StartDate, strikeWeight.EndDate));
-
-                    agStrikeWeightLengths.AddRange(nonMultipartLengths);
-                    agStrikeWeightLengths.AddRange(MergeMultipartStrikeWeightLengths(multipartLengths, mapper));
+                    agStrikeWeightLengths.AddRange(agStrikeWeightLengthList);
                 }
 
                 return new AgStrikeWeight
@@ -386,39 +380,6 @@ namespace xggameplan.Profile
                     SpotMaxRatings = strikeWeight.SpotMaxRatings
                 };
             }).ToList();
-        }
-
-        /// <summary>
-        /// Merges the MultiPart strike weight lengths by MultiPartNo.
-        /// </summary>
-        /// <param name="originalItems">Original lengths.</param>
-        /// <param name="mapper">Mapper.</param>
-        /// <returns></returns>
-        private static IEnumerable<AgStrikeWeightLength> MergeMultipartStrikeWeightLengths(IEnumerable<AgStrikeWeightLength> originalItems, IMapper mapper)
-        {
-            return originalItems.GroupBy(x => new
-            {
-                x.CampaignNo,
-                x.SalesAreaNo,
-                x.MultiPartNo,
-                x.StartDate,
-                x.EndDate
-            }).Select(group =>
-            {
-                var strikeWeightLength = group.First();
-                decimal desiredPercentageSplit = 0, currentPercentageSplit = 0;
-
-                foreach (var item in group)
-                {
-                    desiredPercentageSplit += item.AgStrikeWeightLengthRequirement.Required;
-                    currentPercentageSplit += item.AgStrikeWeightLengthRequirement.Supplied;
-                }
-
-                strikeWeightLength.SpotLength = 0;
-                strikeWeightLength.AgStrikeWeightLengthRequirement = mapper.Map<AgRequirement>(Tuple.Create(desiredPercentageSplit, currentPercentageSplit));
-
-                return strikeWeightLength;
-            });
         }
 
         private static List<AgMultiPart> LoadAgMultiParts(Multipart multiPart, int campaignNo, int channelGroupNo)

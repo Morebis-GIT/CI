@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+
 using AutoMapper;
+
 using ImagineCommunications.GamePlan.Domain.BusinessRules.Clashes.Objects;
 using ImagineCommunications.GamePlan.Domain.Generic.Interfaces;
 using ImagineCommunications.GamePlan.Domain.ScenarioCampaignResults.Objects;
@@ -11,10 +13,13 @@ using ImagineCommunications.GamePlan.Persistence.SqlServer.Core.Interfaces;
 using ImagineCommunications.GamePlan.Persistence.SqlServer.Entities.Tenant.Campaigns;
 using ImagineCommunications.GamePlan.Persistence.SqlServer.Interfaces;
 using ImagineCommunications.GamePlan.Persistence.SqlServer.Views.Tenant;
+
 using Microsoft.EntityFrameworkCore;
+
 using xggameplan.core.Extensions;
 using xggameplan.core.Extensions.AutoMapper;
 using xggameplan.core.ReportGenerators.ScenarioCampaignResults;
+
 using AdvertiserEntity = ImagineCommunications.GamePlan.Persistence.SqlServer.Entities.Tenant.Advertiser;
 using AgencyEntity = ImagineCommunications.GamePlan.Persistence.SqlServer.Entities.Tenant.Agency;
 using Campaign = ImagineCommunications.GamePlan.Domain.Campaigns.Objects.Campaign;
@@ -44,8 +49,7 @@ namespace ImagineCommunications.GamePlan.Persistence.SqlServer.Landmark.Features
         };
 
         private readonly ISqlServerDbContextFactory<ISqlServerTenantDbContext> _dbContextFactory;
-        private readonly ISqlServerSalesAreaByNullableIdCacheAccessor _salesAreaByNullableIdCache;
-        private readonly ISqlServerSalesAreaByIdCacheAccessor _salesAreaByIdCache;
+        private readonly ISqlServerSalesAreaByNullableIdCacheAccessor _salesAreaByIdCache;
         private readonly IMapper _mapper;
 
         private IDictionary<string, ProductLinkDomain> _productLinks;
@@ -58,12 +62,10 @@ namespace ImagineCommunications.GamePlan.Persistence.SqlServer.Landmark.Features
         /// <param name="mapper">The mapper.</param>
         public ScenarioCampaignResultReportCreator(
             ISqlServerDbContextFactory<ISqlServerTenantDbContext> dbContextFactory,
-            ISqlServerSalesAreaByNullableIdCacheAccessor salesAreaByNullableIdCache,
-            ISqlServerSalesAreaByIdCacheAccessor salesAreaByIdCache,
+            ISqlServerSalesAreaByNullableIdCacheAccessor salesAreaByIdCache,
             IMapper mapper)
         {
             _dbContextFactory = dbContextFactory;
-            _salesAreaByNullableIdCache = salesAreaByNullableIdCache;
             _salesAreaByIdCache = salesAreaByIdCache;
             _mapper = mapper;
         }
@@ -91,7 +93,7 @@ namespace ImagineCommunications.GamePlan.Persistence.SqlServer.Landmark.Features
                      demographicJoin.ExternalRef into dJoin
                  from demographic in dJoin.DefaultIfEmpty()
                  join productJoin in dbContext.Query<ProductEntity>() on campaignWithProductRelations.ProductId equals
-                     productJoin.Uid into pJoin
+                     productJoin.Id into pJoin
                  from product in pJoin.DefaultIfEmpty()
                  join clashJoin in dbContext.Query<ClashEntity>() on product.ClashCode equals
                      clashJoin.Externalref into clJoin
@@ -116,28 +118,28 @@ namespace ImagineCommunications.GamePlan.Persistence.SqlServer.Landmark.Features
                      Advertiser = advertiser,
                      Agency = agency
                  })
-            .AsNoTracking()
-            .ToDictionary(x => x.Campaign.ExternalId, x => new ProductLinkDomain
-            {
-                Campaign = _mapper.Map<Campaign>(x.Campaign, opts => opts.UseEntityCache(_salesAreaByIdCache)),
-                Demographic = x.Demographic is null
-                    ? null
-                    : _mapper.Map<Demographic>(x.Demographic),
-                Product = x.Product is null
-                    ? null
-                    : new Product
-                    {
-                        Name = x.Product.Name,
-                        AdvertiserName = x.Advertiser?.Name,
-                        AgencyName = x.Agency?.Name
-                    },
-                Clash = x.Clash is null
-                    ? null
-                    : _mapper.Map<Clash>(x.Clash, opts => opts.UseEntityCache(_salesAreaByNullableIdCache)),
-                ParentClash = x.ParentClash is null
-                    ? null
-                    : _mapper.Map<Clash>(x.ParentClash, opts => opts.UseEntityCache(_salesAreaByNullableIdCache))
-            });
+                .AsNoTracking()
+                .ToDictionary(x => x.Campaign.ExternalId, x => new ProductLinkDomain
+                {
+                    Campaign = _mapper.Map<Campaign>(x.Campaign),
+                    Demographic = x.Demographic is null
+                        ? null
+                        : _mapper.Map<Demographic>(x.Demographic),
+                    Product = x.Product is null
+                        ? null
+                        : new Product
+                        {
+                            Name = x.Product.Name,
+                            AdvertiserName = x.Advertiser?.Name,
+                            AgencyName = x.Agency?.Name
+                        },
+                    Clash = x.Clash is null
+                        ? null
+                        : _mapper.Map<Clash>(x.Clash, opts => opts.UseEntityCache(_salesAreaByIdCache)),
+                    ParentClash = x.ParentClash is null
+                        ? null
+                        : _mapper.Map<Clash>(x.ParentClash, opts => opts.UseEntityCache(_salesAreaByIdCache))
+                });
 
             _dayPartKpiLinks = (from campaign in dbContext.Query<CampaignEntity>()
                                 join salesAreaTargetJoin in dbContext.Query<CampaignSalesAreaTarget>() on campaign.Id equals
@@ -159,7 +161,7 @@ namespace ImagineCommunications.GamePlan.Persistence.SqlServer.Landmark.Features
                                 select new CampaignDayPartKpi
                                 {
                                     CampaignExternalId = campaign.ExternalId,
-                                    CampaignSalesArea = campaignSalesArea.SalesArea.Name,
+                                    CampaignSalesArea = campaignSalesArea.SalesArea,
                                     StrikeWeightStartDate = strikeWeight.StartDate,
                                     StrikeWeightEndDate = strikeWeight.EndDate,
                                     NominalValue = dayPart.NominalValue,

@@ -7,8 +7,6 @@ Feature: ManageRSSettingsDataStorage
 
 Background: 
 	Given there is a RSSettings repository
-	And predefined RSSettings.SalesAreas.json data
-	And predefined data imported
 	
 Scenario: Add new RSSettings
 	When I create 3 documents

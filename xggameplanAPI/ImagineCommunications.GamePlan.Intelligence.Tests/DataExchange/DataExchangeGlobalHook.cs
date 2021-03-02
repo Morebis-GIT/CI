@@ -9,7 +9,6 @@ using ImagineCommunications.Gameplan.Integration.Data.Context;
 using ImagineCommunications.Gameplan.Integration.Data.Entities;
 using ImagineCommunications.Gameplan.Synchronization.SqlServer.Mappings;
 using ImagineCommunications.GamePlan.Intelligence.Configurations.Mappings;
-using ImagineCommunications.GamePlan.Intelligence.Tests.DataExchange.Infrastructure;
 using ImagineCommunications.GamePlan.Intelligence.Tests.DataExchange.Infrastructure.Dependencies;
 using ImagineCommunications.GamePlan.Intelligence.Tests.DataExchange.Infrastructure.RavenDB;
 using ImagineCommunications.GamePlan.Intelligence.Tests.DataExchange.Infrastructure.SqlServer;
@@ -42,8 +41,7 @@ namespace ImagineCommunications.GamePlan.Intelligence.Tests.DataExchange
                 typeof(MappingProfile).Assembly,
                 typeof(AccessTokenProfile).Assembly,
                 typeof(SynchronizationProfile).Assembly,
-                typeof(GroupTransactionInfoProfile).Assembly,
-                typeof(MappingOverride).Assembly);
+                typeof(GroupTransactionInfoProfile).Assembly);
 
             objectContainer.RegisterTypeAs<InMemoryCache, ICache>();
             objectContainer.RegisterTypeAs<ContractValidatorService, IContractValidatorService>();

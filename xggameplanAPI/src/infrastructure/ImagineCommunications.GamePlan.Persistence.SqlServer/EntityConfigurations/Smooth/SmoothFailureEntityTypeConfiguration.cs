@@ -13,7 +13,7 @@ namespace ImagineCommunications.GamePlan.Persistence.SqlServer.EntityConfigurati
             builder.ToTable("SmoothFailures");
 
             builder.HasKey(x => x.Id);
-            builder.Property(x => x.Id).UseSqlServerIdentityColumn();
+            builder.Property(x => x.Id).UseMySqlIdentityColumn();
 
             builder.Property(x => x.BreakDateTime).AsUtc();
             builder.Property(x => x.SpotLength).AsTicks();

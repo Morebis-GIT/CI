@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using ImagineCommunications.GamePlan.Domain.IndexTypes;
 
 namespace ImagineCommunications.GamePlan.Persistence.Memory.Repositories
@@ -13,15 +14,12 @@ namespace ImagineCommunications.GamePlan.Persistence.Memory.Repositories
 
         public void Add(IEnumerable<IndexType> items)
         {
-            foreach (var item in items)
-            {
-                InsertOrReplaceItem(item, item.Id.ToString());
-            }
+            InsertItems(items.ToList(), items.Select(i => i.Id.ToString()).ToList<string>());
         }
 
         public void Update(IndexType item)
         {
-            InsertOrReplaceItem(item, item.Id.ToString());
+            UpdateOrInsertItem(item, item.Id.ToString());
         }
 
         public void Remove(int id)

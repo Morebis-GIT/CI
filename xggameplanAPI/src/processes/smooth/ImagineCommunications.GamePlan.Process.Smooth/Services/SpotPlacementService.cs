@@ -6,12 +6,16 @@ using ImagineCommunications.GamePlan.Domain.Spots;
 using ImagineCommunications.GamePlan.Process.Smooth.Dtos;
 using ImagineCommunications.GamePlan.Process.Smooth.Models;
 using ImagineCommunications.GamePlan.Process.Smooth.Types;
+using xggameplan.common;
+using xggameplan.Common;
 using xggameplan.Extensions;
 
 namespace ImagineCommunications.GamePlan.Process.Smooth.Services
 {
     public static class SpotPlacementService
     {
+        private static readonly SpotPositioning _spotPositioning = new SpotPositioning();
+
         internal static void FlagSpotAsNotUsed(Spot spot, ICollection<Guid> spotUidList)
         {
             spotUidList.AddDistinct(spot.Uid);
@@ -30,7 +34,7 @@ namespace ImagineCommunications.GamePlan.Process.Smooth.Services
             IReadOnlyDictionary<Guid, SpotInfo> spotInfos
             )
         {
-            MarkSpotsNoPlaceAttemptAs(spots, spotInfos, true);
+            MarkSpotsPlaceAttemptAs(spots, spotInfos, true);
         }
 
         public static void MarkSpotsAsPlacementWasAttempted(
@@ -38,33 +42,18 @@ namespace ImagineCommunications.GamePlan.Process.Smooth.Services
             IReadOnlyDictionary<Guid, SpotInfo> spotInfos
             )
         {
-            MarkSpotsNoPlaceAttemptAs(spots, spotInfos, false);
+            MarkSpotsPlaceAttemptAs(spots, spotInfos, false);
         }
 
-        private static void MarkSpotsNoPlaceAttemptAs(
+        private static void MarkSpotsPlaceAttemptAs(
             IReadOnlyCollection<Spot> spots,
             IReadOnlyDictionary<Guid, SpotInfo> spotInfos,
-            bool noPlaceAttempt
+            bool value
             )
         {
-            if (spots is null)
-            {
-                return;
-            }
-
-            if (spotInfos is null)
-            {
-                return;
-            }
-
             foreach (Guid spotUid in spots.Select(s => s.Uid))
             {
-                if (!spotInfos.ContainsKey(spotUid))
-                {
-                    continue;
-                }
-
-                spotInfos[spotUid].NoPlaceAttempt = noPlaceAttempt;
+                spotInfos[spotUid].NoPlaceAttempt = value;
             }
         }
 
@@ -89,16 +78,12 @@ namespace ImagineCommunications.GamePlan.Process.Smooth.Services
                 );
         }
 
-        /// <summary>
-        /// <para> Adds spots to break. If multiple spots are being
-        /// added then they're typically related. E.g. TOP & TAIL.
-        /// </para>
+        /// <summary> <para> Adds spots to break. If multiple spots are being
+        /// added then they're typically related. E.g. TOP & TAIL. </para>
         /// <para> The break sequence will be updated later when the break has
         /// been filled, will be updated to start from 1. For specific positions
-        /// (FIB, SIB etc) then the break sequence is assigned as a large positive
-        /// or negative number and everything else is inserted between.
-        /// </para>
-        /// </summary>
+        /// (FIB, SIB etc) then the break sequence is assigned as a large +'ve
+        /// or -'ve number and everything else is inserted between. </para> </summary>
         public static List<SmoothSpot> AddSpotsToBreak(
             SmoothBreak smoothBreak,
             int smoothPassSequence,
@@ -116,18 +101,279 @@ namespace ImagineCommunications.GamePlan.Process.Smooth.Services
 
             foreach (Spot spot in spots)
             {
+                int breakSeq = 0;
+
                 IReadOnlyDictionary<string, bool> hasSpotPositions = smoothBreak.GetSpotPositions();
-                int breakSeq = SpotPositioning.GetBreakSequenceNumber(
-                    smoothBreak,
-                    passRequestedPositionInBreakRules,
-                    spot,
-                    hasSpotPositions
-                );
+
+                switch (passRequestedPositionInBreakRules)
+                {
+                    case SpotPositionRules.Exact:
+                        if (spot.IsMultipartSpot)
+                        {
+                            breakSeq = _spotPositioning.GetBreakSeqFromMultipartSpotPosition(spot.MultipartSpot, spot.MultipartSpotPosition);
+                        }
+                        else
+                        {
+                            breakSeq = String.IsNullOrEmpty(spot.RequestedPositioninBreak) ?
+                                _spotPositioning.GetBreakSeqForMiddleOfBreak(smoothBreak) :
+                                _spotPositioning.GetBreakSeqFromRequestedPositionInBreak(spot.RequestedPositioninBreak);
+                        }
+
+                        break;
+
+                    case SpotPositionRules.Near:
+                        if (String.IsNullOrEmpty(spot.MultipartSpot))
+                        {
+                            switch (spot.RequestedPositioninBreak)
+                            {
+                                case PositionInBreakRequests.TrueFirst:
+                                    // Check existing PIB requests in priority
+                                    // order from most to least desired
+                                    string[] spotPositions1 = hasSpotPositions["1ST_START"] || hasSpotPositions["TT|TOP"] || hasSpotPositions["SB|TOP"]
+                                        ? new[] { "2ND_START", "3RD_START" }
+                                        : new[] { "1ST_START", "2ND_START", "3RD_START" };
+
+                                    foreach (string spotPosition in spotPositions1)
+                                    {
+                                        if (!hasSpotPositions[spotPosition])
+                                        {
+                                            string requestedPositionInBreak = _spotPositioning.GetRequestedPositionInBreakFromSpotPosition(spotPosition, PositionInBreakRequests.TrueFirst, PositionInBreakRequests.TrueLast);
+                                            breakSeq = _spotPositioning.GetBreakSeqFromRequestedPositionInBreak(requestedPositionInBreak);
+
+                                            break;
+                                        }
+                                    }
+
+                                    break;
+
+                                case PositionInBreakRequests.First:
+                                    // Check existing PIB requests in priority
+                                    // order from most to least desired
+                                    string[] spotPositions2 = hasSpotPositions["1ST_START"] || hasSpotPositions["TT|TOP"] || hasSpotPositions["SB|TOP"]
+                                        ? new[] { "2ND_START", "3RD_START" }
+                                        : new[] { "1ST_START", "2ND_START", "3RD_START" };
+
+                                    foreach (string spotPosition in spotPositions2)
+                                    {
+                                        if (!hasSpotPositions[spotPosition])
+                                        {
+                                            string requestedPositionInBreak = _spotPositioning.GetRequestedPositionInBreakFromSpotPosition(spotPosition, PositionInBreakRequests.First, PositionInBreakRequests.Last);
+                                            breakSeq = _spotPositioning.GetBreakSeqFromRequestedPositionInBreak(requestedPositionInBreak);
+                                            break;
+                                        }
+                                    }
+
+                                    break;
+
+                                case PositionInBreakRequests.SecondFromStart:
+                                    // Check existing PIB requests in priority
+                                    // order from most to least desired
+                                    string[] spotPositions3 = hasSpotPositions["2ND_START"]
+                                        ? new[] { "3RD_START" }
+                                        : new[] { "2ND_START", "3RD_START" };
+
+                                    foreach (string spotPosition in spotPositions3)
+                                    {
+                                        if (!hasSpotPositions[spotPosition])
+                                        {
+                                            string requestedPositionInBreak = _spotPositioning.GetRequestedPositionInBreakFromSpotPosition(spotPosition, PositionInBreakRequests.First, PositionInBreakRequests.Last);
+                                            breakSeq = _spotPositioning.GetBreakSeqFromRequestedPositionInBreak(requestedPositionInBreak);
+                                            break;
+                                        }
+                                    }
+
+                                    break;
+
+                                case PositionInBreakRequests.SecondFromLast:
+                                    // Check existing PIB requests in priority
+                                    // order from most to least desired
+                                    foreach (string spotPosition in new[] { "2ND_LAST", "3RD_LAST" })
+                                    {
+                                        if (!hasSpotPositions[spotPosition])
+                                        {
+                                            string requestedPositionInBreak = _spotPositioning.GetRequestedPositionInBreakFromSpotPosition(spotPosition, PositionInBreakRequests.First, PositionInBreakRequests.Last);
+                                            breakSeq = _spotPositioning.GetBreakSeqFromRequestedPositionInBreak(requestedPositionInBreak);
+
+                                            break;
+                                        }
+                                    }
+
+                                    break;
+
+                                case PositionInBreakRequests.ThirdFromStart:
+                                    // Check existing PIB requests in priority
+                                    // order from most to least desired
+                                    string[] spotPositions5 = hasSpotPositions["3RD_START"]
+                                        ? new[] { "2ND_START" }
+                                        : new[] { "3RD_START", "2ND_START" };
+
+                                    foreach (string spotPosition in spotPositions5)
+                                    {
+                                        if (hasSpotPositions[spotPosition])
+                                        {
+                                            continue;
+                                        }
+
+                                        string requestedPositionInBreak = _spotPositioning.GetRequestedPositionInBreakFromSpotPosition(
+                                            spotPosition,
+                                            PositionInBreakRequests.First,
+                                            PositionInBreakRequests.Last);
+
+                                        breakSeq = _spotPositioning.GetBreakSeqFromRequestedPositionInBreak(requestedPositionInBreak);
+
+                                        break;
+                                    }
+
+                                    break;
+
+                                case PositionInBreakRequests.ThirdFromLast:
+                                    // Check existing PIB requests in priority
+                                    // order from most to least desired
+                                    foreach (string spotPosition in new[] { "3RD_LAST", "2ND_LAST" })
+                                    {
+                                        if (!hasSpotPositions[spotPosition])
+                                        {
+                                            string requestedPositionInBreak = _spotPositioning.GetRequestedPositionInBreakFromSpotPosition(spotPosition, PositionInBreakRequests.First, PositionInBreakRequests.Last);
+                                            breakSeq = _spotPositioning.GetBreakSeqFromRequestedPositionInBreak(requestedPositionInBreak);
+
+                                            break;
+                                        }
+                                    }
+
+                                    break;
+
+                                case PositionInBreakRequests.TrueLast:
+                                    // Check existing PIB requests in priority
+                                    // order from most to least desired
+                                    string[] spotPositions7 = hasSpotPositions["LAST"] || hasSpotPositions["TT|TAIL"] || hasSpotPositions["SB|TAIL"]
+                                        ? new[] { "2ND_LAST", "3RD_LAST" }
+                                        : new[] { "LAST", "2ND_LAST", "3RD_LAST" };
+
+                                    foreach (string spotPosition in spotPositions7)
+                                    {
+                                        if (!hasSpotPositions[spotPosition])
+                                        {
+                                            string requestedPositionInBreak = _spotPositioning.GetRequestedPositionInBreakFromSpotPosition(
+                                                spotPosition,
+                                                PositionInBreakRequests.TrueFirst,
+                                                PositionInBreakRequests.TrueLast);
+
+                                            breakSeq = _spotPositioning.GetBreakSeqFromRequestedPositionInBreak(requestedPositionInBreak);
+
+                                            break;
+                                        }
+                                    }
+
+                                    break;
+
+                                case PositionInBreakRequests.Last:
+                                    // Check existing PIB requests in priority
+                                    // order from most to least desired
+                                    string[] spotPositions8 = hasSpotPositions["LAST"] || hasSpotPositions["TT|TAIL"] || hasSpotPositions["SB|TAIL"]
+                                        ? new[] { "2ND_LAST", "3RD_LAST" }
+                                        : new[] { "LAST", "2ND_LAST", "3RD_LAST" };
+
+                                    foreach (string spotPosition in spotPositions8)
+                                    {
+                                        if (hasSpotPositions[spotPosition])
+                                        {
+                                            continue;
+                                        }
+
+                                        string requestedPositionInBreak = _spotPositioning.GetRequestedPositionInBreakFromSpotPosition(
+                                            spotPosition,
+                                            PositionInBreakRequests.First,
+                                            PositionInBreakRequests.Last);
+
+                                        breakSeq = _spotPositioning.GetBreakSeqFromRequestedPositionInBreak(requestedPositionInBreak);
+
+                                        break;
+                                    }
+
+                                    break;
+
+                                default:
+                                    // No PIB request
+                                    breakSeq = _spotPositioning.GetBreakSeqForMiddleOfBreak(smoothBreak);
+                                    break;
+                            }
+                        }
+                        else
+                        {
+                            switch (spot.MultipartSpot)
+                            {
+                                case MultipartSpotTypes.TopTail:
+                                    switch (spot.MultipartSpotPosition)
+                                    {
+                                        case MultipartSpotPositions.TopTail_Top:
+                                            if (!hasSpotPositions["1ST_START"])
+                                            {
+                                                breakSeq = _spotPositioning.GetBreakSeqFromMultipartSpotPosition(spot.MultipartSpot, spot.MultipartSpotPosition);
+                                            }
+
+                                            break;
+
+                                        case MultipartSpotPositions.TopTail_Tail:
+                                            if (!hasSpotPositions["LAST"])
+                                            {
+                                                breakSeq = _spotPositioning.GetBreakSeqFromMultipartSpotPosition(spot.MultipartSpot, spot.MultipartSpotPosition);
+                                            }
+
+                                            break;
+                                    }
+
+                                    break;
+
+                                case MultipartSpotTypes.SameBreak:
+                                    switch (spot.MultipartSpotPosition)
+                                    {
+                                        case MultipartSpotPositions.SameBreak_Top:
+                                            if (!hasSpotPositions["1ST_START"])
+                                            {
+                                                breakSeq = _spotPositioning.GetBreakSeqFromMultipartSpotPosition(spot.MultipartSpot, spot.MultipartSpotPosition);
+                                            }
+
+                                            break;
+
+                                        case MultipartSpotPositions.SameBreak_Mid:
+                                            breakSeq = _spotPositioning.GetBreakSeqFromMultipartSpotPosition(spot.MultipartSpot, spot.MultipartSpotPosition);
+
+                                            break;
+
+                                        case MultipartSpotPositions.SameBreak_Tail:
+                                            if (!hasSpotPositions["LAST"])
+                                            {
+                                                breakSeq = _spotPositioning.GetBreakSeqFromMultipartSpotPosition(spot.MultipartSpot, spot.MultipartSpotPosition);
+                                            }
+
+                                            break;
+
+                                        case MultipartSpotPositions.SameBreak_Any:
+                                            breakSeq = _spotPositioning.GetBreakSeqFromMultipartSpotPosition(spot.MultipartSpot, spot.MultipartSpotPosition);
+                                            break;
+                                    }
+
+                                    break;
+                            }
+
+                            // Default to middle of break
+                            if (breakSeq == 0)
+                            {
+                                breakSeq = _spotPositioning.GetBreakSeqForMiddleOfBreak(smoothBreak);
+                            }
+                        }
+
+                        break;
+
+                    case SpotPositionRules.Anywhere:
+                        breakSeq = _spotPositioning.GetBreakSeqForMiddleOfBreak(smoothBreak);
+                        break;
+                }
 
                 // Default break sequence to middle of break
                 if (breakSeq == 0)
                 {
-                    breakSeq = SpotPositioning.GetBreakSeqForMiddleOfBreak(smoothBreak);
+                    breakSeq = _spotPositioning.GetBreakSeqForMiddleOfBreak(smoothBreak);
                 }
 
                 smoothSpots.Add(
@@ -194,13 +440,13 @@ namespace ImagineCommunications.GamePlan.Process.Smooth.Services
 
                 if (spot.IsMultipartSpot)
                 {
-                    breakSeq = SpotPositioning.GetBreakSeqFromMultipartSpotPosition(
+                    breakSeq = _spotPositioning.GetBreakSeqFromMultipartSpotPosition(
                         spot.MultipartSpot,
                         spot.MultipartSpotPosition);
                 }
                 else
                 {
-                    breakSeq = SpotPositioning.GetBreakSeqFromRequestedPositionInBreakOrActualPositionInBreak(
+                    breakSeq = _spotPositioning.GetBreakSeqFromRequestedPositionInBreakOrActualPositionInBreak(
                         spot.RequestedPositioninBreak,
                         spot.ActualPositioninBreak);
                 }

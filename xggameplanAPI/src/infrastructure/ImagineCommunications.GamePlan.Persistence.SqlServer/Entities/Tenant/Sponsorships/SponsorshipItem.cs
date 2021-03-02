@@ -8,8 +8,7 @@ namespace ImagineCommunications.GamePlan.Persistence.SqlServer.Entities.Tenant.S
     {
         public int Id { get; set; }
         public int SponsoredItemId { get; set; }
-        
-        public ICollection<SponsorshipItemSalesArea> SalesAreas { get; set; }
+        public ICollection<string> SalesAreas { get; set; }
         public DateTime StartDate { get; set; }
         public DateTime EndDate { get; set; }
         public string ProgrammeName { get; set; }

@@ -18,10 +18,10 @@ Scenario: Add new Schedule
 Scenario: Update Schedule
 	Given predefined Breaks.SalesAreas.json data imported
 	And the following documents created:
-		| Id | Date       | SalesArea |
-		| 1  | 2019-01-16 | QTQ91     |
-		| 2  | 2019-02-25 | GTV93     |
-		| 3  | 2019-03-03 | STW92     |
+		| Date       | SalesArea |
+		| 2019-01-16 | QTQ91     |
+		| 2019-02-25 | GTV93     |
+		| 2019-03-03 | STW92     |
 	When I get document with id 2
 	Then there should be 1 documents returned
 	When I update received document by values:
@@ -58,8 +58,8 @@ Scenario: Get an existing Schedule by id
 	When I get document with id 2
 	Then there should be 1 documents returned
 	And the received document should contain the following values:
-		 | Property | Value |
-		 | Id       | 2     |
+         | Property | Value |
+         | Id       | 2     |
 
 Scenario: Get all Schedules
 	Given 3 documents created
@@ -213,9 +213,9 @@ Scenario Outline: Count Breaks and Programmes
 		| dateFrom  | <DateFrom> |
 		| dateTo    | <DateTo>   |
 	Then the received result should contain the following values:
-		| Property       | Value            |
-		| BreakCount     | <BreakCount>     |
-		| ProgrammeCount | <ProgrammeCount> |
+        | Property       | Value            |
+        | BreakCount     | <BreakCount>     |
+        | ProgrammeCount | <ProgrammeCount> |
 
 	Examples:
 	| DateFrom   | DateTo     | BreakCount | ProgrammeCount |

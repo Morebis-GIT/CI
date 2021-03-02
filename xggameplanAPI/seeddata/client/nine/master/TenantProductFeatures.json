@@ -1,0 +1,274 @@
+[
+  {
+    "Id": 1,
+    "TenantId": 1,
+    "Name": "CampaignDeliveryType",
+    "Enabled": false,
+    "IsShared": true,
+    "ParentIds": []
+  },
+  {
+    "Id": 2,
+    "TenantId": 1,
+    "Name": "DayPartGroup",
+    "Enabled": false,
+    "IsShared": false,
+    "ParentIds": []
+  },
+  {
+    "Id": 3,
+    "TenantId": 1,
+    "Name": "DeliveryCappingGroup",
+    "Enabled": false,
+    "IsShared": true,
+    "ParentIds": []
+  },
+  {
+    "Id": 4,
+    "TenantId": 1,
+    "Name": "EfficiencyFactor",
+    "Enabled": false,
+    "IsShared": false,
+    "ParentIds": []
+  },
+  {
+    "Id": 5,
+    "TenantId": 1,
+    "Name": "IntegrationSynchronization",
+    "Enabled": false,
+    "IsShared": true,
+    "ParentIds": []
+  },
+  {
+    "Id": 6,
+    "TenantId": 1,
+    "Name": "NominalPrice",
+    "Enabled": false,
+    "IsShared": false,
+    "ParentIds": []
+  },
+  {
+    "Id": 7,
+    "TenantId": 1,
+    "Name": "PositionInBreak",
+    "Enabled": false,
+    "IsShared": false,
+    "ParentIds": []
+  },
+  {
+    "Id": 8,
+    "TenantId": 1,
+    "Name": "SalesAreaZeroRevenueSplit",
+    "Enabled": false,
+    "IsShared": true,
+    "ParentIds": []
+  },
+  {
+    "Id": 9,
+    "TenantId": 1,
+    "Name": "TargetSalesArea",
+    "Enabled": false,
+    "IsShared": true,
+    "ParentIds": []
+  },
+  {
+    "Id": 10,
+    "TenantId": 1,
+    "Name": "TotalRating",
+    "Enabled": false,
+    "IsShared": false,
+    "ParentIds": []
+  },
+  {
+    "Id": 11,
+    "TenantId": 1,
+    "Name": "ZeroRatedBreaksMapping",
+    "Enabled": false,
+    "IsShared": true,
+    "ParentIds": []
+  },
+  {
+    "Id": 12,
+    "TenantId": 1,
+    "Name": "InventoryStatus",
+    "Enabled": false,
+    "IsShared": true,
+    "ParentIds": []
+  },
+  {
+    "Id": 13,
+    "TenantId": 1,
+    "Name": "SkipLockedBreaks",
+    "Enabled": false,
+    "IsShared": true,
+    "ParentIds": []
+  },
+  {
+    "Id": 14,
+    "TenantId": 1,
+    "Name": "RunCampaignListOnCreation",
+    "Enabled": false,
+    "IsShared": true,
+    "ParentIds": []
+  },
+  {
+    "Id": 15,
+    "TenantId": 1,
+    "Name": "SpotBookingRule",
+    "Enabled": false,
+    "IsShared": false,
+    "ParentIds": []
+  },
+  {
+    "Id": 16,
+    "TenantId": 1,
+    "Name": "LengthFactor",
+    "Enabled": false,
+    "IsShared": false,
+    "ParentIds": []
+  },
+  {
+    "Id": 17,
+    "TenantId": 1,
+    "Name": "StrikeWeightDayPartsMerge",
+    "Enabled": false,
+    "IsShared": false,
+    "ParentIds": []
+  },
+  {
+    "Id": 18,
+    "TenantId": 1,
+    "Name": "ExactBreaksRatingsTimeMatching",
+    "Enabled": false,
+    "IsShared": false,
+    "ParentIds": []
+  },
+  {
+    "Id": 19,
+    "TenantId": 1,
+    "Name": "NineValidationMinSpot",
+    "Enabled": true,
+    "IsShared": false,
+    "ParentIds": []
+  },
+  {
+    "Id": 20,
+    "TenantId": 1,
+    "Name": "NineValidationRatingPredictions",
+    "Enabled": true,
+    "IsShared": false,
+    "ParentIds": []
+  },
+  {
+    "Id": 21,
+    "TenantId": 1,
+    "Name": "IncludeChannelGroupFileForOptimiser",
+    "Enabled": true,
+    "IsShared": false,
+    "ParentIds": []
+  },
+  {
+    "Id": 22,
+    "TenantId": 1,
+    "Name": "PrePostCampaignResults",
+    "Enabled": true,
+    "IsShared": true,
+    "ParentIds": []
+  },
+  {
+    "Id": 23,
+    "TenantId": 1,
+    "Name": "Smooth",
+    "Enabled": true,
+    "IsShared": true,
+    "ParentIds": []
+  },
+  {
+    "Id": 24,
+    "TenantId": 1,
+    "Name": "RunType",
+    "Enabled": true,
+    "IsShared": true,
+    "ParentIds": []
+  },
+  {
+    "Id": 25,
+    "TenantId": 1,
+    "Name": "LandmarkBooking",
+    "Enabled": false,
+    "IsShared": true,
+    "ParentIds": []
+  },
+  {
+    "Id": 26,
+    "TenantId": 1,
+    "Name": "UseBreakPositionInProgram",
+    "Enabled": false,
+    "IsShared": false,
+    "ParentIds": []
+  },
+  {
+    "Id": 27,
+    "TenantId": 1,
+    "Name": "LandmarkProductRelatedCollections",
+    "Enabled": false,
+    "IsShared": false,
+    "ParentIds": []
+  },
+  {
+    "Id": 28,
+    "TenantId": 1,
+    "Name": "PaginatedCampaignView",
+    "Enabled": false,
+    "IsShared": false,
+    "ParentIds": []
+  },
+  {
+    "Id": 30,
+    "TenantId": 1,
+    "Name": "AnalysisGroups",
+    "Enabled": false,
+    "IsShared": false,
+    "ParentIds": []
+  },
+  {
+    "Id": 31,
+    "TenantId": 1,
+    "Name": "SAPPTargetAreaName",
+    "Enabled": false,
+    "IsShared": true,
+    "ParentIds": []
+  },
+  {
+    "Id": 32,
+    "TenantId": 1,
+    "Name": "UseSystemLogicalDate",
+    "Enabled": true,
+    "IsShared": true,
+    "ParentIds": []
+  },
+  {
+    "Id": 33,
+    "TenantId": 1,
+    "Name": "ScenarioCampaignResultsProcessing",
+    "Enabled": true,
+    "IsShared": false,
+    "ParentIds": []
+  },
+ {
+    "Id": 34,
+    "TenantId": 1,
+    "Name": "DefaultCentreBreakRatio",
+    "Enabled": false,
+    "IsShared": true,
+    "ParentIds": []
+  },
+  {
+    "Id": 33,
+    "TenantId": 1,
+    "Name": "ScenarioCampaignResultsProcessing",
+    "Enabled": true,
+    "IsShared": false,
+    "ParentIds": []
+  }
+]

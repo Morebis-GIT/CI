@@ -24,15 +24,13 @@ namespace ImagineCommunications.GamePlan.Persistence.Memory.Repositories
 
         public void Add(IEnumerable<Programme> items)
         {
-            foreach (var item in items)
-            {
-                Add(item);
-            }
+            InsertItems(items.ToList(), items.Select(i => i.Id.ToString()).ToList());
         }
 
         public void Add(Programme item)
         {
-            InsertOrReplaceItem(item, item.Id.ToString());
+            var items = new List<Programme>() { item };
+            InsertItems(items, items.Select(i => i.Id.ToString()).ToList());
         }
 
         [Obsolete("Use Get()")]
@@ -50,10 +48,8 @@ namespace ImagineCommunications.GamePlan.Persistence.Memory.Repositories
 
         public IEnumerable<Programme> Search(DateTime datefrom, DateTime dateto, string salesarea)
         {
-            return GetAllItems(currentItem =>
-                currentItem.SalesArea == salesarea &&
-                currentItem.StartDateTime >= datefrom &&
-                currentItem.StartDateTime <= dateto);
+            var items = GetAllItems(currentItem => currentItem.SalesArea == salesarea && currentItem.StartDateTime >= datefrom && currentItem.StartDateTime <= dateto);
+            return items.ToList();
         }
 
         public PagedQueryResult<ProgrammeNameModel> Search(ProgrammeSearchQueryModel searchQuery)
@@ -84,7 +80,7 @@ namespace ImagineCommunications.GamePlan.Persistence.Memory.Repositories
         public Task TruncateAsync()
         {
             Truncate();
-            return Task.CompletedTask;
+            return Task.FromResult(true);
         }
 
         public IEnumerable<Programme> FindByExternal(string externalRef)
@@ -99,9 +95,7 @@ namespace ImagineCommunications.GamePlan.Persistence.Memory.Repositories
 
         public int Count(Expression<Func<Programme, bool>> query) => GetCount(query);
 
-        public void SaveChanges()
-        {
-        }
+        public void SaveChanges() { }
 
         public bool Exists(Expression<Func<Programme, bool>> condition) => throw new NotImplementedException();
     }

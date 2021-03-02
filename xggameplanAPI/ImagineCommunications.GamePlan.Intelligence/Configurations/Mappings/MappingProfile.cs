@@ -46,7 +46,6 @@ using ImagineCommunications.GamePlan.Domain.SpotBookingRules;
 using ImagineCommunications.GamePlan.Intelligence.Configurations.Converters;
 using NodaTime;
 using xggameplan.common.Extensions;
-using xggameplan.core.Helpers;
 using Clash = ImagineCommunications.GamePlan.Domain.BusinessRules.Clashes.Objects.Clash;
 using ClashDifference = ImagineCommunications.GamePlan.Domain.BusinessRules.Clashes.Objects.ClashDifference;
 using Demographic = ImagineCommunications.GamePlan.Domain.Shared.Demographics.Demographic;
@@ -138,16 +137,7 @@ namespace ImagineCommunications.GamePlan.Intelligence.Configurations.Mappings
             _ = CreateMap<IntegrationDomain.Shared.MultipartLength, MultipartLength>().ReverseMap();
             _ = CreateMap<IntegrationDomain.Shared.RatingModel, Rating>().ReverseMap();
             _ = CreateMap<IntegrationDomain.Shared.TimeRestriction, TimeRestriction>().ReverseMap();
-            _ = CreateMap<IntegrationDomain.Shared.ProgrammeRestriction, ProgrammeRestriction>()
-                .ForMember(dest => dest.CategoryOrProgramme, opt =>
-                {
-                    opt.MapFrom(src =>
-                        src.CategoryOrProgramme == null
-                            ? null
-                            : (src.IsCategoryOrProgramme == "P"
-                                ? src.CategoryOrProgramme.Select(Lmks353InterimHelper.GetExternalRefIfExists).ToList()
-                                : src.CategoryOrProgramme));
-                });
+            _ = CreateMap<IntegrationDomain.Shared.ProgrammeRestriction, ProgrammeRestriction>().ReverseMap();
             _ = CreateMap<IntegrationDomain.Shared.SalesAreaGroup, SalesAreaGroup>().ReverseMap();
             _ = CreateMap<IntegrationDomain.Shared.Multipart, Multipart>().ReverseMap();
             _ = CreateMap<IntegrationDomain.Shared.StrikeWeight, StrikeWeight>().ReverseMap();

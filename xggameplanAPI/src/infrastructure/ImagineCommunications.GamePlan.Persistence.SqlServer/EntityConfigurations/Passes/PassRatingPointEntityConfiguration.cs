@@ -1,4 +1,5 @@
 ﻿using ImagineCommunications.GamePlan.Persistence.SqlServer.Entities.Tenant.Passes;
+using ImagineCommunications.GamePlan.Persistence.SqlServer.Extensions;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
@@ -8,17 +9,14 @@ namespace ImagineCommunications.GamePlan.Persistence.SqlServer.EntityConfigurati
     {
         public void Configure(EntityTypeBuilder<PassRatingPoint> builder)
         {
-            _ = builder.ToTable("PassRatingPoints");
+            builder.ToTable("PassRatingPoints");
 
-            _ = builder.HasKey(e => e.Id);
-            _ = builder.Property(e => e.Id).UseSqlServerIdentityColumn();
+            builder.HasKey(e => e.Id);
+            builder.Property(e => e.Id).UseMySqlIdentityColumn();
 
-            _ = builder.HasMany(e => e.SalesAreas)
-                .WithOne()
-                .HasForeignKey(e => e.PassRatingPointId)
-                .OnDelete(DeleteBehavior.Cascade);
+            builder.Property(e => e.SalesAreas).AsDelimitedString();
 
-            _ = builder.HasIndex(e => e.PassId);
+            builder.HasIndex(e => e.PassId);
         }
     }
 }

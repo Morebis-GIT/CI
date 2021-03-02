@@ -10,7 +10,7 @@ namespace ImagineCommunications.GamePlan.Persistence.SqlServer.EntityConfigurati
         {
             _ = builder.ToTable("ProgrammeEpisodes");
             _ = builder.HasKey(e => e.Id);
-            _ = builder.Property(e => e.Id).UseSqlServerIdentityColumn();
+            _ = builder.Property(e => e.Id).UseMySqlIdentityColumn();
             _ = builder.Property(x => x.Name).HasMaxLength(64).IsRequired();
 
             _ = builder.HasOne(x => x.ProgrammeDictionary).WithMany(x => x.ProgrammeEpisodes)

@@ -133,6 +133,7 @@ Scenario Outline: Find Clash with Description by external references
 	| P523, P777       | 1                   |
 	| P777, P888       | 0                   |
 
+
 Scenario Outline: Search Clashes
 	Given the following documents created:
 		| Uid                                  | Externalref | ParentExternalidentifier | Description             | DefaultPeakExposureCount | DefaultOffPeakExposureCount |

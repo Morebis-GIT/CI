@@ -115,6 +115,7 @@ using ImagineCommunications.GamePlan.Persistence.SqlServer.Caches;
 using ImagineCommunications.GamePlan.Persistence.SqlServer.Core.DomainModelContext;
 using ImagineCommunications.GamePlan.Persistence.SqlServer.Core.Extensions;
 using ImagineCommunications.GamePlan.Persistence.SqlServer.Core.Interfaces;
+using ImagineCommunications.GamePlan.Persistence.SqlServer.Entities.Tenant.PredictionSchedules;
 using ImagineCommunications.GamePlan.Persistence.SqlServer.Interfaces;
 using ImagineCommunications.GamePlan.Persistence.SqlServer.Repositories;
 using ImagineCommunications.GamePlan.Persistence.SqlServer.Services;
@@ -142,6 +143,7 @@ using BookingPositionEntity = ImagineCommunications.GamePlan.Persistence.SqlServ
 using BookingPositionGroupEntity = ImagineCommunications.GamePlan.Persistence.SqlServer.Entities.Tenant.BookingPositionGroups.BookingPositionGroup;
 using BRSConfigurationTemplateEntity = ImagineCommunications.GamePlan.Persistence.SqlServer.Entities.Tenant.BRS.BRSConfigurationTemplate;
 using BusinessTypeEntity = ImagineCommunications.GamePlan.Persistence.SqlServer.Entities.Tenant.BusinessTypes.BusinessType;
+using CampaignEntity = ImagineCommunications.GamePlan.Persistence.SqlServer.Entities.Tenant.Campaigns.Campaign;
 using CampaignSettingsEntity = ImagineCommunications.GamePlan.Persistence.SqlServer.Entities.Tenant.Campaigns.CampaignSettings;
 using ChannelEntity = ImagineCommunications.GamePlan.Persistence.SqlServer.Entities.Tenant.Channel;
 using ClashExceptionEntity = ImagineCommunications.GamePlan.Persistence.SqlServer.Entities.Tenant.ClashExceptions.ClashException;
@@ -160,15 +162,19 @@ using LanguageEntity = ImagineCommunications.GamePlan.Persistence.SqlServer.Enti
 using MasterEntities = ImagineCommunications.GamePlan.Persistence.SqlServer.Entities.Master;
 using MSTeamsAuditEventSettingsEntity = ImagineCommunications.GamePlan.Persistence.SqlServer.Entities.Tenant.MSTeamsAuditEventSettings.MSTeamsAuditEventSettings;
 using OutputFileEntity = ImagineCommunications.GamePlan.Persistence.SqlServer.Entities.Tenant.OutputFiles.OutputFile;
+using PassEntity = ImagineCommunications.GamePlan.Persistence.SqlServer.Entities.Tenant.Passes.Pass;
 using ProgrammeCategoryHierarchyEntity = ImagineCommunications.GamePlan.Persistence.SqlServer.Entities.Tenant.ProgrammeCategoryHierarchy;
 using ProgrammeClassificationEntity = ImagineCommunications.GamePlan.Persistence.SqlServer.Entities.Tenant.ProgrammeClassification;
 using ProgrammeDictionaryEntity = ImagineCommunications.GamePlan.Persistence.SqlServer.Entities.Tenant.ProgrammeDictionary;
 using RecommendationEntity = ImagineCommunications.GamePlan.Persistence.SqlServer.Entities.Tenant.Recommendation;
+using RestrictionEntity = ImagineCommunications.GamePlan.Persistence.SqlServer.Entities.Tenant.Restrictions.Restriction;
 using RSGlobalSettingsEntity = ImagineCommunications.GamePlan.Persistence.SqlServer.Entities.Tenant.RSGlobalSettings;
+using RSSettingsEntity = ImagineCommunications.GamePlan.Persistence.SqlServer.Entities.Tenant.RSSettings.RSSettings;
 using RuleEntity = ImagineCommunications.GamePlan.Persistence.SqlServer.Entities.Tenant.Rule;
 using RuleTypeEntity = ImagineCommunications.GamePlan.Persistence.SqlServer.Entities.Tenant.RuleType;
 using RunEntity = ImagineCommunications.GamePlan.Persistence.SqlServer.Entities.Tenant.Runs.Run;
 using RunTypeEntity = ImagineCommunications.GamePlan.Persistence.SqlServer.Entities.Tenant.RunType;
+using SalesAreaDemographicEntity = ImagineCommunications.GamePlan.Persistence.SqlServer.Entities.Tenant.SalesAreas.SalesAreaDemographic;
 using SalesAreaEntity = ImagineCommunications.GamePlan.Persistence.SqlServer.Entities.Tenant.SalesAreas.SalesArea;
 using ScenarioEntity = ImagineCommunications.GamePlan.Persistence.SqlServer.Entities.Tenant.Scenarios.Scenario;
 using ScenarioResultEntity = ImagineCommunications.GamePlan.Persistence.SqlServer.Entities.Tenant.ScenarioResults.ScenarioResult;
@@ -176,8 +182,13 @@ using SmoothConfigurationEntity = ImagineCommunications.GamePlan.Persistence.Sql
 using SmoothFailureEntity = ImagineCommunications.GamePlan.Persistence.SqlServer.Entities.Tenant.Smooth.SmoothFailure;
 using SmoothFailureMessageEntity = ImagineCommunications.GamePlan.Persistence.SqlServer.Entities.Tenant.Smooth.SmoothFailureMessage;
 using SpotBookingRuleEntity = ImagineCommunications.GamePlan.Persistence.SqlServer.Entities.Tenant.SpotBookingRules.SpotBookingRule;
+using SpotEntity = ImagineCommunications.GamePlan.Persistence.SqlServer.Entities.Tenant.Spot;
 using SpotPlacementEntity = ImagineCommunications.GamePlan.Persistence.SqlServer.Entities.Tenant.SpotPlacement;
+using StandardDayPartEntity = ImagineCommunications.GamePlan.Persistence.SqlServer.Entities.Tenant.DayParts.StandardDayPart;
+using StandardDayPartGroupEntity = ImagineCommunications.GamePlan.Persistence.SqlServer.Entities.Tenant.DayParts.StandardDayPartGroup;
 using TenantSettingsEntity = ImagineCommunications.GamePlan.Persistence.SqlServer.Entities.Tenant.TenantSettings.TenantSettings;
+using TotalRatingEntity = ImagineCommunications.GamePlan.Persistence.SqlServer.Entities.Tenant.TotalRating;
+using UniverseEntity = ImagineCommunications.GamePlan.Persistence.SqlServer.Entities.Tenant.Universe;
 
 namespace xggameplan.specification.tests.Infrastructure.SqlServer
 {
@@ -324,7 +335,6 @@ namespace xggameplan.specification.tests.Infrastructure.SqlServer
             objectContainer.RegisterTypeAs<ClashDomainModelHandler, IDomainModelHandler<Clash>>();
             objectContainer.RegisterTypeAs<IndexTypeDomainModelHandler, IDomainModelHandler<IndexType>>();
             objectContainer.RegisterTypeAs<InventoryLockDomainModelHandler, IDomainModelHandler<InventoryLock>>();
-            objectContainer.RegisterTypeAs<RestrictionDomainModelHandler, IDomainModelHandler<Restriction>>();
             objectContainer.RegisterTypeAs<ScenarioCampaignFailureDomainModelHandler, IDomainModelHandler<ScenarioCampaignFailure>>();
             objectContainer.RegisterTypeAs<ScenarioCampaignMetricDomainModelHandler, IDomainModelHandler<ScenarioCampaignMetric>>();
             objectContainer.RegisterTypeAs<SimpleDomainModelMappingHandler<AnalysisGroupEntity, AnalysisGroup>, IDomainModelHandler<AnalysisGroup>>();
@@ -336,7 +346,7 @@ namespace xggameplan.specification.tests.Infrastructure.SqlServer
             objectContainer.RegisterTypeAs<BreakDomainModelHandler, IDomainModelHandler<Break>>();
             objectContainer.RegisterTypeAs<SimpleDomainModelMappingHandler<BusinessTypeEntity, BusinessType>, IDomainModelHandler<BusinessType>>();
             objectContainer.RegisterTypeAs<SimpleDomainModelMappingHandler<BRSConfigurationTemplateEntity, BRSConfigurationTemplate>, IDomainModelHandler<BRSConfigurationTemplate>>();
-            objectContainer.RegisterTypeAs<CampaignDomainModelHandler, IDomainModelHandler<Campaign>>();
+            objectContainer.RegisterTypeAs<SimpleDomainModelMappingHandler<CampaignEntity, Campaign>, IDomainModelHandler<Campaign>>();
             objectContainer.RegisterTypeAs<SimpleDomainModelMappingHandler<CampaignSettingsEntity, CampaignSettings>, IDomainModelHandler<CampaignSettings>>();
             objectContainer.RegisterTypeAs<SimpleDomainModelMappingHandler<ChannelEntity, Channel>, IDomainModelHandler<Channel>>();
             objectContainer.RegisterTypeAs<SimpleDomainModelMappingHandler<ClashExceptionEntity, ClashException>, IDomainModelHandler<ClashException>>();
@@ -357,14 +367,15 @@ namespace xggameplan.specification.tests.Infrastructure.SqlServer
             objectContainer.RegisterTypeAs<ISRSettingsDomainModelHandler, IDomainModelHandler<ISRSettings>>();
             objectContainer.RegisterTypeAs<SimpleDomainModelMappingHandler<MSTeamsAuditEventSettingsEntity, MSTeamsAuditEventSettings>, IDomainModelHandler<MSTeamsAuditEventSettings>>();
             objectContainer.RegisterTypeAs<SimpleDomainModelMappingHandler<OutputFileEntity, OutputFile>, IDomainModelHandler<OutputFile>>();
-            objectContainer.RegisterTypeAs<PassDomainModelHandler, IDomainModelHandler<Pass>>();
+            objectContainer.RegisterTypeAs<SimpleDomainModelMappingHandler<PassEntity, Pass>, IDomainModelHandler<Pass>>();
             objectContainer.RegisterTypeAs<ProductDomainModelHandler, IDomainModelHandler<Product>>();
             objectContainer.RegisterTypeAs<SimpleDomainModelMappingHandler<ProgrammeClassificationEntity, ProgrammeClassification>, IDomainModelHandler<ProgrammeClassification>>();
             objectContainer.RegisterTypeAs<SimpleDomainModelMappingHandler<ProgrammeDictionaryEntity, ProgrammeDictionary>, IDomainModelHandler<ProgrammeDictionary>>();
             objectContainer.RegisterTypeAs<ProgrammeDomainModelHandler, IDomainModelHandler<Programme>>();
-            objectContainer.RegisterTypeAs<RatingsPredictionScheduleDomainModelHandler, IDomainModelHandler<RatingsPredictionSchedule>>();
+            objectContainer.RegisterTypeAs<SimpleDomainModelMappingHandler<PredictionSchedule, RatingsPredictionSchedule>, IDomainModelHandler<RatingsPredictionSchedule>>();
             objectContainer.RegisterTypeAs<SimpleDomainModelMappingHandler<RecommendationEntity, Recommendation>, IDomainModelHandler<Recommendation>>();
-            objectContainer.RegisterTypeAs<RSSettingsDomainModelHandler, IDomainModelHandler<RSSettings>>();
+            objectContainer.RegisterTypeAs<SimpleDomainModelMappingHandler<RestrictionEntity, Restriction>, IDomainModelHandler<Restriction>>();
+            objectContainer.RegisterTypeAs<SimpleDomainModelMappingHandler<RSSettingsEntity, RSSettings>, IDomainModelHandler<RSSettings>>();
             objectContainer.RegisterTypeAs<SimpleDomainModelMappingHandler<RunEntity, Run>, IDomainModelHandler<Run>>();
             objectContainer.RegisterTypeAs<SimpleDomainModelMappingHandler<ImagineCommunications.GamePlan.Persistence.SqlServer.Entities.Tenant.InventoryStatuses.InventoryLockType, InventoryLockType>, IDomainModelHandler<InventoryLockType>>();
             objectContainer.RegisterTypeAs<SimpleDomainModelMappingHandler<InventoryTypeEntity, InventoryType>, IDomainModelHandler<InventoryType>>();
@@ -373,10 +384,11 @@ namespace xggameplan.specification.tests.Infrastructure.SqlServer
             objectContainer.RegisterTypeAs<SimpleDomainModelMappingHandler<ScenarioResultEntity, ScenarioResult>, IDomainModelHandler<ScenarioResult>>();
             objectContainer.RegisterTypeAs<SimpleDomainModelMappingHandler<SmoothFailureMessageEntity, SmoothFailureMessage>, IDomainModelHandler<SmoothFailureMessage>>();
             objectContainer.RegisterTypeAs<SimpleDomainModelMappingHandler<SmoothFailureEntity, SmoothFailure>, IDomainModelHandler<SmoothFailure>>();
-            objectContainer.RegisterTypeAs<SpotDomainModelHandler, IDomainModelHandler<Spot>>();
+            objectContainer.RegisterTypeAs<SimpleDomainModelMappingHandler<SpotEntity, Spot>, IDomainModelHandler<Spot>>();
             objectContainer.RegisterTypeAs<SimpleDomainModelMappingHandler<SpotPlacementEntity, SpotPlacement>, IDomainModelHandler<SpotPlacement>>();
             objectContainer.RegisterTypeAs<SimpleDomainModelMappingHandler<ScenarioEntity, Scenario>, IDomainModelHandler<Scenario>>();
             objectContainer.RegisterTypeAs<SimpleDomainModelMappingHandler<TenantSettingsEntity, TenantSettings>, IDomainModelHandler<TenantSettings>>();
+            objectContainer.RegisterTypeAs<SimpleDomainModelMappingHandler<UniverseEntity, Universe>, IDomainModelHandler<Universe>>();
             objectContainer.RegisterTypeAs<SimpleDomainModelMappingHandler<ISRGlobalSettingsEntity, ISRGlobalSettings>, IDomainModelHandler<ISRGlobalSettings>>();
             objectContainer.RegisterTypeAs<SimpleDomainModelMappingHandler<RSGlobalSettingsEntity, RSGlobalSettings>, IDomainModelHandler<RSGlobalSettings>>();
             objectContainer.RegisterTypeAs<SimpleDomainModelMappingHandler<AutopilotSettingsEntity, AutopilotSettings>, IDomainModelHandler<AutopilotSettings>>();
@@ -384,15 +396,15 @@ namespace xggameplan.specification.tests.Infrastructure.SqlServer
             objectContainer.RegisterTypeAs<SimpleDomainModelMappingHandler<RuleEntity, Rule>, IDomainModelHandler<Rule>>();
             objectContainer.RegisterTypeAs<SimpleDomainModelMappingHandler<RuleTypeEntity, RuleType>, IDomainModelHandler<RuleType>>();
             objectContainer.RegisterTypeAs<SimpleDomainModelMappingHandler<FlexibilityLevelEntity, FlexibilityLevel>, IDomainModelHandler<FlexibilityLevel>>();
-            objectContainer.RegisterTypeAs<UniverseDomainModelHandler, IDomainModelHandler<Universe>>();
-            objectContainer.RegisterTypeAs<StandardDayPartDomainModelHandler, IDomainModelHandler<StandardDayPart>>();
-            objectContainer.RegisterTypeAs<StandardDayPartGroupDomainModelHandler, IDomainModelHandler<StandardDayPartGroup>>();
-            objectContainer.RegisterTypeAs<TotalRatingDomainModelHandler, IDomainModelHandler<TotalRating>>();
-            objectContainer.RegisterTypeAs<SalesAreaDemographicDomainModelHandler, IDomainModelHandler<SalesAreaDemographic>>();
+            objectContainer.RegisterTypeAs<SimpleDomainModelMappingHandler<UniverseEntity, Universe>, IDomainModelHandler<Universe>>();
+            objectContainer.RegisterTypeAs<SimpleDomainModelMappingHandler<TotalRatingEntity, TotalRating>, IDomainModelHandler<TotalRating>>();
+            objectContainer.RegisterTypeAs<SimpleDomainModelMappingHandler<SalesAreaDemographicEntity, SalesAreaDemographic>, IDomainModelHandler<SalesAreaDemographic>>();
+            objectContainer.RegisterTypeAs<SimpleDomainModelMappingHandler<StandardDayPartEntity, StandardDayPart>, IDomainModelHandler<StandardDayPart>>();
+            objectContainer.RegisterTypeAs<SimpleDomainModelMappingHandler<StandardDayPartGroupEntity, StandardDayPartGroup>, IDomainModelHandler<StandardDayPartGroup>>();
             objectContainer.RegisterTypeAs<ProgrammeEpisodeDomainModelHandler, IDomainModelHandler<ProgrammeEpisode>>();
             objectContainer.RegisterTypeAs<SimpleDomainModelMappingHandler<ProgrammeCategoryHierarchyEntity, ProgrammeCategoryHierarchy>, IDomainModelHandler<ProgrammeCategoryHierarchy>>();
             objectContainer.RegisterTypeAs<SimpleDomainModelMappingHandler<RunTypeEntity, RunType>, IDomainModelHandler<RunType>>();
-            objectContainer.RegisterTypeAs<SpotBookingRuleDomainModelHandler, IDomainModelHandler<SpotBookingRule>>();
+            objectContainer.RegisterTypeAs<SimpleDomainModelMappingHandler<SpotBookingRuleEntity, SpotBookingRule>, IDomainModelHandler<SpotBookingRule>>();
 
             objectContainer.RegisterTypeAs<SqlServerScenarioDbContext, IScenarioDbContext>();
             objectContainer.RegisterTypeAs<SqlServerJsonTestDataImporter, ITestDataImporter>();

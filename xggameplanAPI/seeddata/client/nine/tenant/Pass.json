@@ -1,0 +1,1052 @@
+[
+    {
+        "Id": 1,
+        "ProgrammeRepetitions": [],
+        "BreakExclusions": [],
+        "SlottingLimits": [],
+        "PassSalesAreaPriorities": {
+            "SalesAreaPriorities": [],
+            "StartDate": null,
+            "EndDate": null,
+            "StartTime": "06:00:00",
+            "EndTime": "05:59:59",
+            "IsPeakTime": false,
+            "IsOffPeakTime": false,
+            "IsMidnightTime": false,
+            "DaysOfWeek": "1111111"
+        },
+        "Name": "Default Pass",
+        "DateCreated": null,
+        "DateModified": null,
+        "IsLibraried": false,
+        "Tarps": [],
+        "General": [
+            {
+                "RuleId": 1,
+                "InternalType": "Defaults",
+                "Description": "Minimum Efficiency",
+                "Value": "0",
+                "Type": "general"
+            },
+            {
+                "RuleId": 2,
+                "InternalType": "Defaults",
+                "Description": "Maximum Rank",
+                "Value": "999999",
+                "Type": "general"
+            },
+            {
+                "RuleId": 3,
+                "InternalType": "Defaults",
+                "Description": "Demograph Banding Tolerance",
+                "Value": "0",
+                "Type": "general"
+            },
+            {
+                "RuleId": 4,
+                "InternalType": "Defaults",
+                "Description": "Default Centre Break Ratio",
+                "Value": "50",
+                "Type": "general"
+            },
+            {
+                "RuleId": 5,
+                "InternalType": "Defaults",
+                "Description": "Use Max Spot Ratings Set By Campaigns",
+                "Value": "0",
+                "Type": "general"
+            },
+            {
+                "RuleId": 6,
+                "InternalType": "Defaults",
+                "Description": "Sponsorship Exclusivity",
+                "Value": "1",
+                "Type": "general"
+            }
+        ],
+        "Weightings": [
+            {
+                "RuleId": 1,
+                "InternalType": "Weightings",
+                "Description": "Campaign",
+                "Value": "1",
+                "Type": "weightings"
+            },
+            {
+                "RuleId": 2,
+                "InternalType": "Weightings",
+                "Description": "Campaign Sales Area",
+                "Value": "1",
+                "Type": "weightings"
+            },
+            {
+                "RuleId": 3,
+                "InternalType": "Weightings",
+                "Description": "Spot Length",
+                "Value": "1",
+                "Type": "weightings"
+            },
+            {
+                "RuleId": 4,
+                "InternalType": "Weightings",
+                "Description": "Daypart",
+                "Value": "1",
+                "Type": "weightings"
+            },
+            {
+                "RuleId": 5,
+                "InternalType": "Weightings",
+                "Description": "Strike Weight",
+                "Value": "1",
+                "Type": "weightings"
+            },
+            {
+                "RuleId": 6,
+                "InternalType": "Weightings",
+                "Description": "Fit to Requirement",
+                "Value": "1",
+                "Type": "weightings"
+            },
+            {
+                "RuleId": 7,
+                "InternalType": "Weightings",
+                "Description": "Fit to Spot Length",
+                "Value": "1",
+                "Type": "weightings"
+            },
+            {
+                "RuleId": 8,
+                "InternalType": "Weightings",
+                "Description": "Centre/End",
+                "Value": "1",
+                "Type": "weightings"
+            },
+            {
+                "RuleId": 9,
+                "InternalType": "Weightings",
+                "Description": "Booking Position",
+                "Value": "1",
+                "Type": "weightings"
+            },
+            {
+                "RuleId": 10,
+                "InternalType": "Weightings",
+                "Description": "Strike Weight/Daypart",
+                "Value": "1",
+                "Type": "weightings"
+            },
+            {
+                "RuleId": 11,
+                "InternalType": "Weightings",
+                "Description": "Strike Weight/Length",
+                "Value": "1",
+                "Type": "weightings"
+            },
+            {
+                "RuleId": 12,
+                "InternalType": "Weightings",
+                "Description": "Strike Weight/Daypart/Length",
+                "Value": "1",
+                "Type": "weightings"
+            },
+            {
+                "RuleId": 13,
+                "InternalType": "Weightings",
+                "Description": "Campaign Price",
+                "Value": "1",
+                "Type": "weightings"
+            },
+            {
+                "RuleId": 14,
+                "InternalType": "Weightings",
+                "Description": "Programme",
+                "Value": "1",
+                "Type": "weightings"
+            }
+        ],
+        "Tolerances": [
+            {
+                "RuleId": 1,
+                "InternalType": "Campaign",
+                "Description": "Campaign",
+                "Value": null,
+                "Under": 0,
+                "Over": 10,
+                "Ignore": true,
+                "BookTargetArea": false,
+                "ForceOverUnder": "None",
+                "Type": "tolerances",
+                "CampaignType": "Rating"
+            },
+            {
+                "RuleId": 8,
+                "InternalType": "Campaign",
+                "Description": "Booking Position",
+                "Value": null,
+                "Under": 0,
+                "Over": 10,
+                "Ignore": true,
+                "BookTargetArea": false,
+                "ForceOverUnder": "None",
+                "Type": "tolerances",
+                "CampaignType": "Rating"
+            },
+            {
+                "RuleId": 9,
+                "InternalType": "Campaign",
+                "Description": "Centre/End",
+                "Value": null,
+                "Under": 0,
+                "Over": 10,
+                "Ignore": true,
+                "BookTargetArea": false,
+                "ForceOverUnder": "None",
+                "Type": "tolerances",
+                "CampaignType": "Rating"
+            },
+            {
+                "RuleId": 2,
+                "InternalType": "Sales Area",
+                "Description": "Sales Area",
+                "Value": null,
+                "Under": 0,
+                "Over": 10,
+                "Ignore": true,
+                "BookTargetArea": false,
+                "ForceOverUnder": "None",
+                "Type": "tolerances",
+                "CampaignType": "Rating"
+            },
+            {
+                "RuleId": 3,
+                "InternalType": "Sales Area",
+                "Description": "Spot Length",
+                "Value": null,
+                "Under": 0,
+                "Over": 10,
+                "Ignore": true,
+                "BookTargetArea": false,
+                "ForceOverUnder": "None",
+                "Type": "tolerances",
+                "CampaignType": "Rating"
+            },
+            {
+                "RuleId": 4,
+                "InternalType": "Sales Area",
+                "Description": "Daypart",
+                "Value": null,
+                "Under": 0,
+                "Over": 10,
+                "Ignore": true,
+                "BookTargetArea": false,
+                "ForceOverUnder": "None",
+                "Type": "tolerances",
+                "CampaignType": "Rating"
+            },
+            {
+                "RuleId": 5,
+                "InternalType": "Sales Area",
+                "Description": "Strike Weight",
+                "Value": null,
+                "Under": 0,
+                "Over": 10,
+                "Ignore": true,
+                "BookTargetArea": false,
+                "ForceOverUnder": "None",
+                "Type": "tolerances",
+                "CampaignType": "Rating"
+            },
+            {
+                "RuleId": 6,
+                "InternalType": "Sales Area",
+                "Description": "Strike Wgt/Daypart",
+                "Value": null,
+                "Under": 0,
+                "Over": 10,
+                "Ignore": true,
+                "BookTargetArea": false,
+                "ForceOverUnder": "None",
+                "Type": "tolerances",
+                "CampaignType": "Rating"
+            },
+            {
+                "RuleId": 7,
+                "InternalType": "Sales Area",
+                "Description": "Peak Daypart",
+                "Value": null,
+                "Under": 0,
+                "Over": 10,
+                "Ignore": true,
+                "BookTargetArea": false,
+                "ForceOverUnder": "None",
+                "Type": "tolerances",
+                "CampaignType": "Rating"
+            },
+            {
+                "RuleId": 12,
+                "InternalType": "Sales Area",
+                "Description": "Daypart/Length",
+                "Value": null,
+                "Under": 0,
+                "Over": 10,
+                "Ignore": true,
+                "BookTargetArea": false,
+                "ForceOverUnder": "None",
+                "Type": "tolerances",
+                "CampaignType": "Rating"
+            },
+            {
+                "RuleId": 13,
+                "InternalType": "Sales Area",
+                "Description": "Strike Weight/Length",
+                "Value": null,
+                "Under": 0,
+                "Over": 10,
+                "Ignore": true,
+                "BookTargetArea": false,
+                "ForceOverUnder": "None",
+                "Type": "tolerances",
+                "CampaignType": "Rating"
+            },
+            {
+                "RuleId": 14,
+                "InternalType": "Sales Area",
+                "Description": "Strike Weight/Daypart/Length",
+                "Value": null,
+                "Under": 0,
+                "Over": 10,
+                "Ignore": true,
+                "BookTargetArea": false,
+                "ForceOverUnder": "None",
+                "Type": "tolerances",
+                "CampaignType": "Rating"
+            },
+            {
+                "RuleId": 10,
+                "InternalType": "Budget",
+                "Description": "Campaign (Budget)",
+                "Value": null,
+                "Under": 0,
+                "Over": 10,
+                "Ignore": true,
+                "BookTargetArea": false,
+                "ForceOverUnder": "None",
+                "Type": "tolerances",
+                "CampaignType": "Rating"
+            },
+            {
+                "RuleId": 11,
+                "InternalType": "Budget",
+                "Description": "Sales Area (Budget)",
+                "Value": null,
+                "Under": 0,
+                "Over": 10,
+                "Ignore": true,
+                "BookTargetArea": false,
+                "ForceOverUnder": "None",
+                "Type": "tolerances",
+                "CampaignType": "Rating"
+            },
+            {
+                "RuleId": 37,
+                "InternalType": "Campaign",
+                "Description": "Programme",
+                "Value": null,
+                "Under": 0,
+                "Over": 10,
+                "Ignore": true,
+                "BookTargetArea": false,
+                "ForceOverUnder": "None",
+                "Type": "tolerances",
+                "CampaignType": "Rating"
+            }
+        ],
+        "Rules": [
+            {
+                "RuleId": 1,
+                "InternalType": "Slotting Controls",
+                "Description": "Max Spots Per Day",
+                "Ignore": true,
+                "Value": "0",
+                "PeakValue": "0",
+                "Type": "rules",
+                "CampaignType": "Rating"
+            },
+            {
+                "RuleId": 2,
+                "InternalType": "Slotting Controls",
+                "Description": "Max Spots Per Hour",
+                "Ignore": true,
+                "Value": "0",
+                "PeakValue": "0",
+                "Type": "rules",
+                "CampaignType": "Rating"
+            },
+            {
+                "RuleId": 3,
+                "InternalType": "Slotting Controls",
+                "Description": "Max Spots Per 2 Hours",
+                "Ignore": true,
+                "Value": "0",
+                "PeakValue": "0",
+                "Type": "rules",
+                "CampaignType": "Rating"
+            },
+            {
+                "RuleId": 4,
+                "InternalType": "Slotting Controls",
+                "Description": "Min Breaks Between Spots",
+                "Ignore": true,
+                "Value": "0",
+                "PeakValue": "0",
+                "Type": "rules",
+                "CampaignType": "Rating"
+            },
+            {
+                "RuleId": 5,
+                "InternalType": "Slotting Controls",
+                "Description": "Min Hours Between Spots",
+                "Ignore": true,
+                "Value": "0",
+                "PeakValue": "0",
+                "Type": "rules",
+                "CampaignType": "Rating"
+            },
+            {
+                "RuleId": 6,
+                "InternalType": "Slotting Controls",
+                "Description": "Max Spots Per Programme/Day",
+                "Ignore": true,
+                "Value": "0",
+                "PeakValue": "0",
+                "Type": "rules",
+                "CampaignType": "Rating"
+            },
+            {
+                "RuleId": 7,
+                "InternalType": "Slotting Controls",
+                "Description": "Max Spots Per Programme/Week",
+                "Ignore": true,
+                "Value": "0",
+                "PeakValue": "0",
+                "Type": "rules",
+                "CampaignType": "Rating"
+            },
+            {
+                "RuleId": 17,
+                "InternalType": "Slotting Controls",
+                "Description": "Max Spots per Prog/100 rtgs",
+                "Ignore": true,
+                "Value": "0",
+                "PeakValue": "0",
+                "Type": "rules",
+                "CampaignType": "Rating"
+            },
+            {
+                "RuleId": 18,
+                "InternalType": "Slotting Controls",
+                "Description": "Max Zero Ratings",
+                "Ignore": true,
+                "Value": "0",
+                "PeakValue": "0",
+                "Type": "rules",
+                "CampaignType": "Rating"
+            },
+            {
+                "RuleId": 20,
+                "InternalType": "Slotting Controls",
+                "Description": "Min Weeks Between Programmes",
+                "Ignore": true,
+                "Value": "0",
+                "PeakValue": "0",
+                "Type": "rules",
+                "CampaignType": "Rating"
+            },
+            {
+                "RuleId": 21,
+                "InternalType": "Slotting Controls",
+                "Description": "Max Rating Points for Spot Campaigns",
+                "Ignore": true,
+                "Value": "0",
+                "PeakValue": "0",
+                "Type": "rules",
+                "CampaignType": "Rating"
+            },
+            {
+                "RuleId": 23,
+                "InternalType": "Slotting Controls",
+                "Description": "Minimum Break Availability",
+                "Ignore": true,
+                "Value": "0",
+                "PeakValue": "0",
+                "Type": "rules",
+                "CampaignType": "Rating"
+            },
+            {
+                "RuleId": 24,
+                "InternalType": "Slotting Controls",
+                "Description": "Max Spots Per Prog/Time",
+                "Ignore": true,
+                "Value": "0",
+                "PeakValue": "0",
+                "Type": "rules",
+                "CampaignType": "Rating"
+            },
+            {
+                "RuleId": 25,
+                "InternalType": "Slotting Controls",
+                "Description": "Min Days Between Prog/Time",
+                "Ignore": true,
+                "Value": "0",
+                "PeakValue": "0",
+                "Type": "rules",
+                "CampaignType": "Rating"
+            },
+            {
+                "RuleId": 26,
+                "InternalType": "Slotting Controls",
+                "Description": "Min Weeks Between Prog/Time",
+                "Ignore": true,
+                "Value": "0",
+                "PeakValue": "0",
+                "Type": "rules",
+                "CampaignType": "Rating"
+            },
+            {
+                "RuleId": 27,
+                "InternalType": "Slotting Controls",
+                "Description": "Max Rating Points for Rating Campaigns",
+                "Ignore": true,
+                "Value": "0",
+                "PeakValue": "0",
+                "Type": "rules",
+                "CampaignType": "Rating"
+            }
+        ]
+    },
+    {
+        "Id": 2,
+        "ProgrammeRepetitions": [],
+        "BreakExclusions": [],
+        "SlottingLimits": [],
+        "PassSalesAreaPriorities": {
+            "SalesAreaPriorities": [],
+            "StartDate": null,
+            "EndDate": null,
+            "StartTime": "06:00:00",
+            "EndTime": "05:59:59",
+            "IsPeakTime": false,
+            "IsOffPeakTime": false,
+            "IsMidnightTime": false,
+            "DaysOfWeek": "1111111"
+        },
+        "Name": "Default Pass",
+        "DateCreated": null,
+        "DateModified": null,
+        "IsLibraried": true,
+        "Tarps": [],
+        "General": [
+            {
+                "RuleId": 1,
+                "InternalType": "Defaults",
+                "Description": "Minimum Efficiency",
+                "Value": "0",
+                "Type": "general"
+            },
+            {
+                "RuleId": 2,
+                "InternalType": "Defaults",
+                "Description": "Maximum Rank",
+                "Value": "999999",
+                "Type": "general"
+            },
+            {
+                "RuleId": 3,
+                "InternalType": "Defaults",
+                "Description": "Demograph Banding Tolerance",
+                "Value": "0",
+                "Type": "general"
+            },
+            {
+                "RuleId": 4,
+                "InternalType": "Defaults",
+                "Description": "Default Centre Break Ratio",
+                "Value": "50",
+                "Type": "general"
+            },
+            {
+                "RuleId": 5,
+                "InternalType": "Defaults",
+                "Description": "Use Max Spot Ratings Set By Campaigns",
+                "Value": "0",
+                "Type": "general"
+            },
+            {
+                "RuleId": 6,
+                "InternalType": "Defaults",
+                "Description": "Sponsorship Exclusivity",
+                "Value": "1",
+                "Type": "general"
+            }
+        ],
+        "Weightings": [
+            {
+                "RuleId": 1,
+                "InternalType": "Weightings",
+                "Description": "Campaign",
+                "Value": "1",
+                "Type": "weightings"
+            },
+            {
+                "RuleId": 2,
+                "InternalType": "Weightings",
+                "Description": "Campaign Sales Area",
+                "Value": "1",
+                "Type": "weightings"
+            },
+            {
+                "RuleId": 3,
+                "InternalType": "Weightings",
+                "Description": "Spot Length",
+                "Value": "1",
+                "Type": "weightings"
+            },
+            {
+                "RuleId": 4,
+                "InternalType": "Weightings",
+                "Description": "Daypart",
+                "Value": "1",
+                "Type": "weightings"
+            },
+            {
+                "RuleId": 5,
+                "InternalType": "Weightings",
+                "Description": "Strike Weight",
+                "Value": "1",
+                "Type": "weightings"
+            },
+            {
+                "RuleId": 6,
+                "InternalType": "Weightings",
+                "Description": "Fit to Requirement",
+                "Value": "1",
+                "Type": "weightings"
+            },
+            {
+                "RuleId": 7,
+                "InternalType": "Weightings",
+                "Description": "Fit to Spot Length",
+                "Value": "1",
+                "Type": "weightings"
+            },
+            {
+                "RuleId": 8,
+                "InternalType": "Weightings",
+                "Description": "Centre/End",
+                "Value": "1",
+                "Type": "weightings"
+            },
+            {
+                "RuleId": 9,
+                "InternalType": "Weightings",
+                "Description": "Booking Position",
+                "Value": "1",
+                "Type": "weightings"
+            },
+            {
+                "RuleId": 10,
+                "InternalType": "Weightings",
+                "Description": "Strike Weight/Daypart",
+                "Value": "1",
+                "Type": "weightings"
+            },
+            {
+                "RuleId": 11,
+                "InternalType": "Weightings",
+                "Description": "Strike Weight/Length",
+                "Value": "1",
+                "Type": "weightings"
+            },
+            {
+                "RuleId": 12,
+                "InternalType": "Weightings",
+                "Description": "Strike Weight/Daypart/Length",
+                "Value": "1",
+                "Type": "weightings"
+            },
+            {
+                "RuleId": 13,
+                "InternalType": "Weightings",
+                "Description": "Campaign Price",
+                "Value": "1",
+                "Type": "weightings"
+            },
+            {
+                "RuleId": 14,
+                "InternalType": "Weightings",
+                "Description": "Programme",
+                "Value": "1",
+                "Type": "weightings"
+            }
+        ],
+        "Tolerances": [
+            {
+                "RuleId": 1,
+                "InternalType": "Campaign",
+                "Description": "Campaign",
+                "Value": null,
+                "Under": 0,
+                "Over": 10,
+                "Ignore": true,
+                "BookTargetArea": false,
+                "ForceOverUnder": "None",
+                "Type": "tolerances",
+                "CampaignType": "Rating"
+            },
+            {
+                "RuleId": 8,
+                "InternalType": "Campaign",
+                "Description": "Booking Position",
+                "Value": null,
+                "Under": 0,
+                "Over": 10,
+                "Ignore": true,
+                "BookTargetArea": false,
+                "ForceOverUnder": "None",
+                "Type": "tolerances",
+                "CampaignType": "Rating"
+            },
+            {
+                "RuleId": 9,
+                "InternalType": "Campaign",
+                "Description": "Centre/End",
+                "Value": null,
+                "Under": 0,
+                "Over": 10,
+                "Ignore": true,
+                "BookTargetArea": false,
+                "ForceOverUnder": "None",
+                "Type": "tolerances",
+                "CampaignType": "Rating"
+            },
+            {
+                "RuleId": 2,
+                "InternalType": "Sales Area",
+                "Description": "Sales Area",
+                "Value": null,
+                "Under": 0,
+                "Over": 10,
+                "Ignore": true,
+                "BookTargetArea": false,
+                "ForceOverUnder": "None",
+                "Type": "tolerances",
+                "CampaignType": "Rating"
+            },
+            {
+                "RuleId": 3,
+                "InternalType": "Sales Area",
+                "Description": "Spot Length",
+                "Value": null,
+                "Under": 0,
+                "Over": 10,
+                "Ignore": true,
+                "BookTargetArea": false,
+                "ForceOverUnder": "None",
+                "Type": "tolerances",
+                "CampaignType": "Rating"
+            },
+            {
+                "RuleId": 4,
+                "InternalType": "Sales Area",
+                "Description": "Daypart",
+                "Value": null,
+                "Under": 0,
+                "Over": 10,
+                "Ignore": true,
+                "BookTargetArea": false,
+                "ForceOverUnder": "None",
+                "Type": "tolerances",
+                "CampaignType": "Rating"
+            },
+            {
+                "RuleId": 5,
+                "InternalType": "Sales Area",
+                "Description": "Strike Weight",
+                "Value": null,
+                "Under": 0,
+                "Over": 10,
+                "Ignore": true,
+                "BookTargetArea": false,
+                "ForceOverUnder": "None",
+                "Type": "tolerances",
+                "CampaignType": "Rating"
+            },
+            {
+                "RuleId": 6,
+                "InternalType": "Sales Area",
+                "Description": "Strike Wgt/Daypart",
+                "Value": null,
+                "Under": 0,
+                "Over": 10,
+                "Ignore": true,
+                "BookTargetArea": false,
+                "ForceOverUnder": "None",
+                "Type": "tolerances",
+                "CampaignType": "Rating"
+            },
+            {
+                "RuleId": 7,
+                "InternalType": "Sales Area",
+                "Description": "Peak Daypart",
+                "Value": null,
+                "Under": 0,
+                "Over": 10,
+                "Ignore": true,
+                "BookTargetArea": false,
+                "ForceOverUnder": "None",
+                "Type": "tolerances",
+                "CampaignType": "Rating"
+            },
+            {
+                "RuleId": 12,
+                "InternalType": "Sales Area",
+                "Description": "Daypart/Length",
+                "Value": null,
+                "Under": 0,
+                "Over": 10,
+                "Ignore": true,
+                "BookTargetArea": false,
+                "ForceOverUnder": "None",
+                "Type": "tolerances",
+                "CampaignType": "Rating"
+            },
+            {
+                "RuleId": 13,
+                "InternalType": "Sales Area",
+                "Description": "Strike Weight/Length",
+                "Value": null,
+                "Under": 0,
+                "Over": 10,
+                "Ignore": true,
+                "BookTargetArea": false,
+                "ForceOverUnder": "None",
+                "Type": "tolerances",
+                "CampaignType": "Rating"
+            },
+            {
+                "RuleId": 14,
+                "InternalType": "Sales Area",
+                "Description": "Strike Weight/Daypart/Length",
+                "Value": null,
+                "Under": 0,
+                "Over": 10,
+                "Ignore": true,
+                "BookTargetArea": false,
+                "ForceOverUnder": "None",
+                "Type": "tolerances",
+                "CampaignType": "Rating"
+            },
+            {
+                "RuleId": 10,
+                "InternalType": "Budget",
+                "Description": "Campaign (Budget)",
+                "Value": null,
+                "Under": 0,
+                "Over": 10,
+                "Ignore": true,
+                "BookTargetArea": false,
+                "ForceOverUnder": "None",
+                "Type": "tolerances",
+                "CampaignType": "Rating"
+            },
+            {
+                "RuleId": 11,
+                "InternalType": "Budget",
+                "Description": "Sales Area (Budget)",
+                "Value": null,
+                "Under": 0,
+                "Over": 10,
+                "Ignore": true,
+                "BookTargetArea": false,
+                "ForceOverUnder": "None",
+                "Type": "tolerances",
+                "CampaignType": "Rating"
+            },
+            {
+                "RuleId": 37,
+                "InternalType": "Campaign",
+                "Description": "Programme",
+                "Value": null,
+                "Under": 0,
+                "Over": 10,
+                "Ignore": true,
+                "BookTargetArea": false,
+                "ForceOverUnder": "None",
+                "Type": "tolerances",
+                "CampaignType": "Rating"
+            }
+        ],
+        "Rules": [
+            {
+                "RuleId": 1,
+                "InternalType": "Slotting Controls",
+                "Description": "Max Spots Per Day",
+                "Ignore": true,
+                "Value": "0",
+                "PeakValue": "0",
+                "Type": "rules",
+                "CampaignType": "Rating"
+            },
+            {
+                "RuleId": 2,
+                "InternalType": "Slotting Controls",
+                "Description": "Max Spots Per Hour",
+                "Ignore": true,
+                "Value": "0",
+                "PeakValue": "0",
+                "Type": "rules",
+                "CampaignType": "Rating"
+            },
+            {
+                "RuleId": 3,
+                "InternalType": "Slotting Controls",
+                "Description": "Max Spots Per 2 Hours",
+                "Ignore": true,
+                "Value": "0",
+                "PeakValue": "0",
+                "Type": "rules",
+                "CampaignType": "Rating"
+            },
+            {
+                "RuleId": 4,
+                "InternalType": "Slotting Controls",
+                "Description": "Min Breaks Between Spots",
+                "Ignore": true,
+                "Value": "0",
+                "PeakValue": "0",
+                "Type": "rules",
+                "CampaignType": "Rating"
+            },
+            {
+                "RuleId": 5,
+                "InternalType": "Slotting Controls",
+                "Description": "Min Hours Between Spots",
+                "Ignore": true,
+                "Value": "0",
+                "PeakValue": "0",
+                "Type": "rules",
+                "CampaignType": "Rating"
+            },
+            {
+                "RuleId": 6,
+                "InternalType": "Slotting Controls",
+                "Description": "Max Spots Per Programme/Day",
+                "Ignore": true,
+                "Value": "0",
+                "PeakValue": "0",
+                "Type": "rules",
+                "CampaignType": "Rating"
+            },
+            {
+                "RuleId": 7,
+                "InternalType": "Slotting Controls",
+                "Description": "Max Spots Per Programme/Week",
+                "Ignore": true,
+                "Value": "0",
+                "PeakValue": "0",
+                "Type": "rules",
+                "CampaignType": "Rating"
+            },
+            {
+                "RuleId": 17,
+                "InternalType": "Slotting Controls",
+                "Description": "Max Spots per Prog/100 rtgs",
+                "Ignore": true,
+                "Value": "0",
+                "PeakValue": "0",
+                "Type": "rules",
+                "CampaignType": "Rating"
+            },
+            {
+                "RuleId": 18,
+                "InternalType": "Slotting Controls",
+                "Description": "Max Zero Ratings",
+                "Ignore": true,
+                "Value": "0",
+                "PeakValue": "0",
+                "Type": "rules",
+                "CampaignType": "Rating"
+            },
+            {
+                "RuleId": 20,
+                "InternalType": "Slotting Controls",
+                "Description": "Min Weeks Between Programmes",
+                "Ignore": true,
+                "Value": "0",
+                "PeakValue": "0",
+                "Type": "rules",
+                "CampaignType": "Rating"
+            },
+            {
+                "RuleId": 21,
+                "InternalType": "Slotting Controls",
+                "Description": "Max Rating Points for Spot Campaigns",
+                "Ignore": true,
+                "Value": "0",
+                "PeakValue": "0",
+                "Type": "rules",
+                "CampaignType": "Rating"
+            },
+            {
+                "RuleId": 23,
+                "InternalType": "Slotting Controls",
+                "Description": "Minimum Break Availability",
+                "Ignore": true,
+                "Value": "0",
+                "PeakValue": "0",
+                "Type": "rules",
+                "CampaignType": "Rating"
+            },
+            {
+                "RuleId": 24,
+                "InternalType": "Slotting Controls",
+                "Description": "Max Spots Per Prog/Time",
+                "Ignore": true,
+                "Value": "0",
+                "PeakValue": "0",
+                "Type": "rules",
+                "CampaignType": "Rating"
+            },
+            {
+                "RuleId": 25,
+                "InternalType": "Slotting Controls",
+                "Description": "Min Days Between Prog/Time",
+                "Ignore": true,
+                "Value": "0",
+                "PeakValue": "0",
+                "Type": "rules",
+                "CampaignType": "Rating"
+            },
+            {
+                "RuleId": 26,
+                "InternalType": "Slotting Controls",
+                "Description": "Min Weeks Between Prog/Time",
+                "Ignore": true,
+                "Value": "0",
+                "PeakValue": "0",
+                "Type": "rules",
+                "CampaignType": "Rating"
+            },
+            {
+                "RuleId": 27,
+                "InternalType": "Slotting Controls",
+                "Description": "Max Rating Points for Rating Campaigns",
+                "Ignore": true,
+                "Value": "0",
+                "PeakValue": "0",
+                "Type": "rules",
+                "CampaignType": "Rating"
+            }
+        ]
+    }
+]

@@ -12,7 +12,7 @@ namespace ImagineCommunications.GamePlan.Persistence.SqlServer.EntityConfigurati
             builder.ToTable("SponsoredDayParts");
 
             builder.HasKey(e => e.Id);
-            builder.Property(e => e.Id).UseSqlServerIdentityColumn();
+            builder.Property(e => e.Id).UseMySqlIdentityColumn();
 
             builder.Property(e => e.SponsorshipItemId);
             builder.Property(e => e.StartTime).AsTicks();

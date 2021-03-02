@@ -13,13 +13,11 @@ namespace ImagineCommunications.GamePlan.Persistence.SqlServer.EntityConfigurati
 
             builder.HasKey(e => e.Id);
 
-            builder.Property(e => e.Name).HasMaxLength(256);
+            builder.Property(e => e.Name).HasMaxLength(TextColumnLenght.Normal);
             builder.Property(e => e.DateCreated).AsUtc();
             builder.Property(e => e.DateModified).AsUtc();
 
-            builder.Property<string>(Pass.SearchField)
-                .HasComputedColumnSql("CONCAT_WS(' ', Id, Name)");
-
+            builder.Property<string>(Pass.SearchField).HasMaxLength(300);
             builder.HasOne(x => x.PassSalesAreaPriorities).WithOne()
                 .HasForeignKey<PassSalesAreaPriorityCollection>(x => x.PassId)
                 .OnDelete(DeleteBehavior.Cascade);

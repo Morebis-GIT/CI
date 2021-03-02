@@ -1,0 +1,7 @@
+[
+	{
+		"EfficiencyCalculationPeriod": "RunPeriod",
+		"DefaultNumberOfWeeks": 1,
+		"PersistEfficiency": "NightRun"
+	}
+]

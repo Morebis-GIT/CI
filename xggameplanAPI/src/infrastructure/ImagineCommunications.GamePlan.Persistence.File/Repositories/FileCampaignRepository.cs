@@ -42,14 +42,14 @@ namespace ImagineCommunications.GamePlan.Persistence.File.Repositories
                 item.CustomId = FindCustomId();
             }
 
-            InsertItems(_folder, _type, items, items.ConvertAll(i => i.Id.ToString()));
+            InsertItems(_folder, _type, items, items.Select(i => i.Id.ToString()).ToList());
             return item;
         }
 
         private int FindCustomId()
         {
-            var idlist = GetAllByType<Campaign>(_folder, _type).Select(c => c.CustomId).ToArray();
-            return idlist?.Length > 0 ? idlist.Max() + 33 : 1;
+            var idlist = Enumerable.ToArray(GetAllByType<Campaign>(_folder, _type).Select(c => c.CustomId));
+            return idlist != null && idlist.Any() ? idlist.Max() + 33 : 1;
         }
 
         public Campaign Find(Guid id) => Get(id);
@@ -86,14 +86,20 @@ namespace ImagineCommunications.GamePlan.Persistence.File.Repositories
             throw new NotImplementedException();
         }
 
-        public int CountAll => CountAll(_folder, _type);
+        public int CountAll
+        {
+            get
+            {
+                return CountAll<Campaign>(_folder, _type);
+            }
+        }
 
         public int CountAllActive => GetAllActive().Count();
 
         public IEnumerable<Campaign> GetAllScenarioUI()
         {
             return GetAllByType<Campaign>(_folder, _type, c => c.SalesAreaCampaignTarget != null &&
-                                    c.SalesAreaCampaignTarget.Count > 0 &&
+                                    c.SalesAreaCampaignTarget.Any() &&
                                     !c.Status.Equals("C", StringComparison.OrdinalIgnoreCase)).Where(c => c.ActualRatings >= c.TargetRatings).ToList();
         }
 
@@ -102,7 +108,7 @@ namespace ImagineCommunications.GamePlan.Persistence.File.Repositories
             return GetAllByType<Campaign>(_folder, _type, c =>
                 (c.DeliveryType == CampaignDeliveryType.Spot ? c.TargetRatings >= default(decimal) : c.TargetZeroRatedBreaks || c.TargetRatings > default(decimal)) &&
                 c.SalesAreaCampaignTarget != null &&
-                c.SalesAreaCampaignTarget.Count > 0 &&
+                c.SalesAreaCampaignTarget.Any() &&
                 !c.Status.Equals("C", StringComparison.OrdinalIgnoreCase)).ToList();
         }
 
@@ -114,18 +120,18 @@ namespace ImagineCommunications.GamePlan.Persistence.File.Repositories
 
         public void Delete(Guid uid)
         {
-            DeleteItem(_folder, _type, uid.ToString());
+            DeleteItem<Campaign>(_folder, _type, uid.ToString());
         }
 
         public void Truncate()
         {
-            DeleteAllItems(_folder, _type);
+            DeleteAllItems<Campaign>(_folder, _type);
         }
 
         public Task TruncateAsync()
         {
             Truncate();
-            return Task.CompletedTask;
+            return Task.FromResult(true);
         }
 
         public void SetCustomIds() => throw new NotImplementedException();

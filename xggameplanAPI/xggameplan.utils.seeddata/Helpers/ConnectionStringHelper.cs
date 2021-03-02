@@ -14,7 +14,7 @@ namespace xggameplan.utils.seeddata.Helpers
             };
 
             var isRavenCs = csBuilder.ContainsKey("Url") && csBuilder.ContainsKey("Database");
-            var isSqlCs = (csBuilder.ContainsKey("Data Source") || csBuilder.ContainsKey("Server")) && csBuilder.ContainsKey("Initial Catalog");
+            var isSqlCs = (csBuilder.ContainsKey("uid") && csBuilder.ContainsKey("server")) && csBuilder.ContainsKey("database");
 
             if (isRavenCs && !isSqlCs)
             {

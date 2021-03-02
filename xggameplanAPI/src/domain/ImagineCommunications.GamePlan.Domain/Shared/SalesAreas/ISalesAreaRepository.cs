@@ -17,8 +17,6 @@ namespace ImagineCommunications.GamePlan.Domain.Shared.SalesAreas
 
         List<SalesArea> FindByNames(List<string> names);
 
-        SalesArea FindByCustomId(int id);
-
         List<SalesArea> FindByIds(List<int> Ids);
 
         List<string> GetListOfNames(List<SalesArea> salesAreas);

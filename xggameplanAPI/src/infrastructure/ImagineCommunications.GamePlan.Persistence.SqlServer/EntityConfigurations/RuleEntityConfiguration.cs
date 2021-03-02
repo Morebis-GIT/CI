@@ -11,7 +11,7 @@ namespace ImagineCommunications.GamePlan.Persistence.SqlServer.EntityConfigurati
             builder.ToTable("Rules");
 
             builder.HasKey(x => x.Id);
-            builder.Property(x => x.Id).UseSqlServerIdentityColumn();
+            builder.Property(x => x.Id).UseMySqlIdentityColumn();
 
             builder.Property(x => x.InternalType).HasMaxLength(64).IsRequired();
             builder.Property(x => x.Description).HasMaxLength(512).IsRequired();

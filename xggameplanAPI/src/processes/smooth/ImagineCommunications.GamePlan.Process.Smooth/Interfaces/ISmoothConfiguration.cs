@@ -1,11 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Collections.Immutable;
+using ImagineCommunications.GamePlan.Domain.Shared.Programmes.Objects;
 using ImagineCommunications.GamePlan.Domain.SmoothConfigurations.Objects;
 using ImagineCommunications.GamePlan.Domain.Spots;
 using ImagineCommunications.GamePlan.Process.Smooth.Dtos;
 using ImagineCommunications.GamePlan.Process.Smooth.Models;
-using NodaTime;
 
 namespace ImagineCommunications.GamePlan.Process.Smooth.Interfaces
 {
@@ -77,9 +76,8 @@ namespace ImagineCommunications.GamePlan.Process.Smooth.Interfaces
         /// <summary>
         /// Sorts spots to be placed
         /// </summary>
-        IEnumerable<Spot> SortSpotsToPlace(
-            IEnumerable<Spot> spots,
-            (DateTime programmeStartDateTime, Duration programmeDuration) programmeTxDetails);
+        /// <returns></returns>
+        IEnumerable<Spot> SortSpotsToPlace(IEnumerable<Spot> spots, Programme programme);
 
         /// <summary>
         /// Returns spots that can be moved from the break in order to make room for the spot

@@ -100,7 +100,7 @@ namespace ImagineCommunications.GamePlan.Persistence.SqlServer.Services
                 _dbContext.BulkInsertEngine.BulkDelete(rsSettingsToDelete);
                 _dbContext.BulkInsertEngine.BulkDelete(breakExclusionsToDelete);
                 _dbContext.BulkInsertEngine.BulkDelete(passSalesAreaPrioritiesToDelete);
-                _dbContext.RemoveRange(passRatingPointsToDelete.ToArray());
+                _dbContext.BulkInsertEngine.BulkDelete(passRatingPointsToDelete);
                 _dbContext.BulkInsertEngine.BulkDelete(ratingsPredictionSchedulesToDelete);
                 _dbContext.BulkInsertEngine.BulkDelete(runSalesAreaPrioritiesToDelete);
                 _dbContext.BulkInsertEngine.BulkDelete(programmesToDelete);
@@ -137,7 +137,9 @@ namespace ImagineCommunications.GamePlan.Persistence.SqlServer.Services
         {
             var breakIds = _dbContext.Query<Break>()
                 .AsNoTracking()
-                .Where(x => x.SalesAreaId == salesArea.Id)
+                .Where(x =>
+                    x.SalesArea.Name == salesArea.Name
+                    || x.SalesArea.Name == salesArea.ShortName)
                 .Select(x => x.Id)
                 .ToArray();
 
@@ -171,7 +173,8 @@ namespace ImagineCommunications.GamePlan.Persistence.SqlServer.Services
                 .AsNoTracking()
                 .Include(x => x.SalesAreas)
                 .Where(x => x.SalesAreas.Any(sa =>
-                    sa.SalesAreaId == salesArea.Id))
+                    sa.SalesArea == salesArea.Name
+                    || sa.SalesArea == salesArea.ShortName))
                 .ToArray();
 
             foreach (var restriction in restrictions)
@@ -185,7 +188,8 @@ namespace ImagineCommunications.GamePlan.Persistence.SqlServer.Services
 
                 restrictionSalesAreasToDelete.AddRange(restriction.SalesAreas
                     .Where(x =>
-                        x.SalesAreaId == salesArea.Id));
+                        x.SalesArea == salesArea.Name
+                        || x.SalesArea == salesArea.ShortName));
             }
 
             return (restrictionsToDelete, restrictionSalesAreasToDelete);
@@ -225,7 +229,9 @@ namespace ImagineCommunications.GamePlan.Persistence.SqlServer.Services
         {
             var isrSettingsIds = _dbContext.Query<ISRSettings>()
                 .AsNoTracking()
-                .Where(x => x.SalesAreaId == salesArea.Id)
+                .Where(x =>
+                    x.SalesArea.Name == salesArea.Name
+                    || x.SalesArea.ShortName == salesArea.ShortName)
                 .Select(x => x.Id)
                 .ToArray();
 
@@ -238,7 +244,9 @@ namespace ImagineCommunications.GamePlan.Persistence.SqlServer.Services
         {
             var rsSettingsIds = _dbContext.Query<RSSettings>()
                 .AsNoTracking()
-                .Where(x => x.SalesArea.Id == salesArea.Id)
+                .Where(x =>
+                    x.SalesArea == salesArea.Name
+                    || x.SalesArea == salesArea.ShortName)
                 .Select(x => x.Id)
                 .ToArray();
 
@@ -253,7 +261,8 @@ namespace ImagineCommunications.GamePlan.Persistence.SqlServer.Services
                 .AsNoTracking()
                 .Where(x =>
                     notStartedPassIds.Contains(x.PassId)
-                    && x.SalesArea.Id == salesArea.Id)
+                    && (x.SalesArea == salesArea.Name
+                        || x.SalesArea == salesArea.ShortName))
                 .Select(x => x.Id)
                 .ToArray();
 
@@ -273,7 +282,8 @@ namespace ImagineCommunications.GamePlan.Persistence.SqlServer.Services
                     on passSalesAreaPriorityCollection.PassId equals pass.Id
                 where (pass.IsLibraried == true
                        || notStartedPassIds.Contains(pass.Id))
-                    && passSalesAreaPriority.SalesArea.Id == salesArea.Id
+                      && (passSalesAreaPriority.SalesArea == salesArea.Name
+                          || passSalesAreaPriority.SalesArea == salesArea.ShortName)
                 select passSalesAreaPriority.Id;
 
             return passSalesAreaPriorityIds.Select(x =>
@@ -286,9 +296,10 @@ namespace ImagineCommunications.GamePlan.Persistence.SqlServer.Services
         {
             var passRatingPoints = _dbContext.Query<PassRatingPoint>()
                 .AsNoTracking()
-                .Include(x => x.SalesAreas)
-                .Where(x => notStartedPassIds.Contains(x.PassId) &&
-                    x.SalesAreas.Any(x => x.SalesAreaId.Equals(salesArea.Id)))
+                .Where(x =>
+                    notStartedPassIds.Contains(x.PassId)
+                    && (x.SalesAreas.Contains(salesArea.Name)
+                        || x.SalesAreas.Contains(salesArea.ShortName)))
                 .ToArray();
 
             var passRatingPointsToUpdate = new List<PassRatingPoint>();
@@ -303,11 +314,9 @@ namespace ImagineCommunications.GamePlan.Persistence.SqlServer.Services
                     continue;
                 }
 
-                var salesAreaToRemove = ratingPoint.SalesAreas.FirstOrDefault(s => s.SalesAreaId == salesArea.Id);
-                if (salesAreaToRemove != null)
+                if (!ratingPoint.SalesAreas.Remove(salesArea.Name))
                 {
-                    _ = ratingPoint.SalesAreas.Remove(salesAreaToRemove);
-                    _dbContext.Remove(salesAreaToRemove);
+                    _ = ratingPoint.SalesAreas.Remove(salesArea.ShortName);
                 }
 
                 passRatingPointsToUpdate.Add(ratingPoint);
@@ -320,7 +329,9 @@ namespace ImagineCommunications.GamePlan.Persistence.SqlServer.Services
         {
             var predictionScheduleIds = _dbContext.Query<PredictionSchedule>()
                 .AsNoTracking()
-                .Where(x => x.SalesAreaId == salesArea.Id)
+                .Where(x =>
+                    x.SalesArea == salesArea.Name
+                    || x.SalesArea == salesArea.ShortName)
                 .Select(x => x.Id)
                 .ToArray();
 
@@ -336,7 +347,8 @@ namespace ImagineCommunications.GamePlan.Persistence.SqlServer.Services
                 join run in _dbContext.Query<Run>()
                     on runSalesAreaPriority.RunId equals run.Id
                 where notStartedRunIds.Contains(run.Id)
-                      && runSalesAreaPriority.SalesAreaId == salesArea.Id
+                      && (runSalesAreaPriority.SalesArea == salesArea.Name
+                          || runSalesAreaPriority.SalesArea == salesArea.ShortName)
                 select runSalesAreaPriority.Id;
 
             return runSalesAreaPriorityIds.Select(x =>
@@ -348,7 +360,9 @@ namespace ImagineCommunications.GamePlan.Persistence.SqlServer.Services
         {
             var programmeIds = _dbContext.Query<Programme>()
                 .AsNoTracking()
-                .Where(x => x.SalesAreaId == salesArea.Id)
+                .Where(x =>
+                    x.SalesArea.Name == salesArea.Name
+                    || x.SalesArea.Name == salesArea.ShortName)
                 .Select(x => x.Id)
                 .ToArray();
 
@@ -361,7 +375,9 @@ namespace ImagineCommunications.GamePlan.Persistence.SqlServer.Services
         {
             var salesAreaDemographicIds = _dbContext.Query<SalesAreaDemographic>()
                 .AsNoTracking()
-                .Where(x => x.SalesArea.Id == salesArea.Id)
+                .Where(x =>
+                    x.SalesArea == salesArea.Name
+                    || x.SalesArea == salesArea.ShortName)
                 .Select(x => x.Id)
                 .ToArray();
 
@@ -374,7 +390,9 @@ namespace ImagineCommunications.GamePlan.Persistence.SqlServer.Services
         {
             var scheduleIds = _dbContext.Query<Schedule>()
                 .AsNoTracking()
-                .Where(x => x.SalesAreaId == salesArea.Id)
+                .Where(x =>
+                    x.SalesArea.Name == salesArea.Name
+                    || x.SalesArea.Name == salesArea.ShortName)
                 .Select(x => x.Id)
                 .ToArray();
 
@@ -387,7 +405,9 @@ namespace ImagineCommunications.GamePlan.Persistence.SqlServer.Services
         {
             var universeIds = _dbContext.Query<Universe>()
                 .AsNoTracking()
-                .Where(x => x.SalesAreaId == salesArea.Id)
+                .Where(x =>
+                    x.SalesArea == salesArea.Name
+                    || x.SalesArea == salesArea.ShortName)
                 .Select(x => x.Id)
                 .ToArray();
 
@@ -399,11 +419,11 @@ namespace ImagineCommunications.GamePlan.Persistence.SqlServer.Services
         private (List<SponsorshipItem> sponsorshipItemsToDelete, List<SponsorshipItem> sponsorshipItemsToUpdate)
             GatherSponsorshipItems(SalesArea salesArea)
         {
-
             var sponsorshipItems = _dbContext.Query<SponsorshipItem>()
                 .AsNoTracking()
-                .Include(x => x.SalesAreas)
-                .Where(x =>x.SalesAreas.Any(x=> x.SalesAreaId == salesArea.Id))
+                .Where(x =>
+                    x.SalesAreas.Contains(salesArea.Name)
+                    || x.SalesAreas.Contains(salesArea.ShortName))
                 .ToArray();
 
             var sponsorshipItemsToDelete = new List<SponsorshipItem>();
@@ -417,12 +437,13 @@ namespace ImagineCommunications.GamePlan.Persistence.SqlServer.Services
 
                     continue;
                 }
-                var salesAreaRef = sponsorshipItem.SalesAreas.FirstOrDefault(x => x.SalesAreaId == salesArea.Id);
-                if (salesAreaRef != null)
+
+                if (!sponsorshipItem.SalesAreas.Remove(salesArea.Name))
                 {
-                    _ = sponsorshipItem.SalesAreas.Remove(salesAreaRef);
-                    sponsorshipItemsToUpdate.Add(sponsorshipItem);
+                    _ = sponsorshipItem.SalesAreas.Remove(salesArea.ShortName);
                 }
+
+                sponsorshipItemsToUpdate.Add(sponsorshipItem);
             }
 
             return (sponsorshipItemsToDelete, sponsorshipItemsToUpdate);
@@ -435,7 +456,8 @@ namespace ImagineCommunications.GamePlan.Persistence.SqlServer.Services
                 .AsNoTracking()
                 .Include(x => x.SalesAreas)
                 .Where(x =>
-                    x.SalesAreas.Any(t => t.SalesAreaId == salesArea.Id))
+                    x.SalesAreas.Any(t => t.Name == salesArea.Name)
+                    || x.SalesAreas.Any(t => t.Name == salesArea.ShortName))
                 .ToArray();
 
             var spotBookingRulesToDelete = new List<SpotBookingRule>();
@@ -450,7 +472,10 @@ namespace ImagineCommunications.GamePlan.Persistence.SqlServer.Services
                     continue;
                 }
 
-                bookingRuleSalesAreasToDelete.AddRange(bookingRule.SalesAreas.Where(x => x.SalesAreaId == salesArea.Id));
+                bookingRuleSalesAreasToDelete.AddRange(bookingRule.SalesAreas
+                    .Where(x =>
+                        x.Name == salesArea.Name
+                        || x.Name == salesArea.ShortName));
             }
 
             return (spotBookingRulesToDelete, bookingRuleSalesAreasToDelete);
@@ -461,7 +486,8 @@ namespace ImagineCommunications.GamePlan.Persistence.SqlServer.Services
             var spotIds = _dbContext.Query<Spot>()
                 .AsNoTracking()
                 .Where(x =>
-                    x.SalesArea.Id == salesArea.Id)
+                    x.SalesArea == salesArea.Name
+                    || x.SalesArea == salesArea.ShortName)
                 .Select(x => x.Id)
                 .ToArray();
 
@@ -474,7 +500,9 @@ namespace ImagineCommunications.GamePlan.Persistence.SqlServer.Services
         {
             var totalRatingIds = _dbContext.Query<TotalRating>()
                 .AsNoTracking()
-                .Where(x => x.SalesArea.Id == salesArea.Id)
+                .Where(x =>
+                    x.SalesArea == salesArea.Name
+                    || x.SalesArea == salesArea.ShortName)
                 .Select(x => x.Id)
                 .ToArray();
 

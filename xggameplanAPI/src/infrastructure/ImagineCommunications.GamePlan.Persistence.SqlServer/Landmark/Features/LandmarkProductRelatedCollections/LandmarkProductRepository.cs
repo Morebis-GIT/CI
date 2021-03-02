@@ -47,7 +47,7 @@ namespace ImagineCommunications.GamePlan.Persistence.SqlServer.Landmark.Features
         {
             var query =
                 from product in _dbContext.Query<Entities.Tenant.Products.Product>()
-                join productAdvertiserJoin in _dbContext.Query<ProductAdvertiser>() on product.Uid equals
+                join productAdvertiserJoin in _dbContext.Query<ProductAdvertiser>() on product.Id equals
                     productAdvertiserJoin.ProductId
                     into paJoin
                 from productAdvertiser in paJoin.Where(x => x.StartDate <= onDate && x.EndDate > onDate)
@@ -55,7 +55,7 @@ namespace ImagineCommunications.GamePlan.Persistence.SqlServer.Landmark.Features
                 join advertiserJoin in _dbContext.Query<Advertiser>() on productAdvertiser.AdvertiserId equals
                     advertiserJoin.Id into aJoin
                 from advertiser in aJoin.DefaultIfEmpty()
-                join productAgencyJoin in _dbContext.Query<ProductAgency>() on product.Uid equals productAgencyJoin
+                join productAgencyJoin in _dbContext.Query<ProductAgency>() on product.Id equals productAgencyJoin
                         .ProductId
                     into pagJoin
                 from productAgency in pagJoin.Where(x => x.StartDate <= onDate && x.EndDate > onDate).DefaultIfEmpty()
@@ -65,7 +65,7 @@ namespace ImagineCommunications.GamePlan.Persistence.SqlServer.Landmark.Features
                     equals agencyGroupJoin.Id
                     into aggJoin
                 from agencyGroup in aggJoin.DefaultIfEmpty()
-                join productPersonJoin in _dbContext.Query<ProductPerson>() on product.Uid equals productPersonJoin
+                join productPersonJoin in _dbContext.Query<ProductPerson>() on product.Id equals productPersonJoin
                         .ProductId
                     into pseJoin
                 from productPerson in pseJoin.Where(x => x.StartDate <= onDate && x.EndDate > onDate).DefaultIfEmpty()
@@ -90,7 +90,7 @@ namespace ImagineCommunications.GamePlan.Persistence.SqlServer.Landmark.Features
 
             return query.Select(x => new ProductDto
             {
-                Uid = x.product.Uid,
+                Uid = x.product.Id,
                 Name = x.product.Name,
                 Externalidentifier = x.product.Externalidentifier,
                 ParentExternalidentifier = x.product.ParentExternalidentifier,

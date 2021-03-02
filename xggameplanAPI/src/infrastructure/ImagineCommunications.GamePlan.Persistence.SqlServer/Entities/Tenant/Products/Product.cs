@@ -7,14 +7,7 @@ namespace ImagineCommunications.GamePlan.Persistence.SqlServer.Entities.Tenant.P
     public class Product : IUniqueIdentifierPrimaryKey
     {
         public const string SearchFieldName = "TokenizedName";
-
-        Guid ISinglePrimaryKey<Guid>.Id
-        {
-            get => Uid;
-            set => Uid = value;
-        }
-
-        public Guid Uid { get; set; }
+        public Guid Id { get; set; }
         public string Externalidentifier { get; set; }
         public string ParentExternalidentifier { get; set; }
         public string Name { get; set; }

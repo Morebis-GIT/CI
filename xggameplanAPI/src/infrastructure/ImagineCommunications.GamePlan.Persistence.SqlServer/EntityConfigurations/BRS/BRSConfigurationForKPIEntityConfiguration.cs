@@ -10,7 +10,7 @@ namespace ImagineCommunications.GamePlan.Persistence.SqlServer.EntityConfigurati
         {
             builder.ToTable("BRSConfigurationForKPIs");
             builder.HasKey(k => k.Id);
-            builder.Property(p => p.Id).UseSqlServerIdentityColumn();
+            builder.Property(p => p.Id).UseMySqlIdentityColumn();
             builder.Property(p => p.KPIName).IsRequired().HasMaxLength(50);
             builder.HasIndex(i => i.BRSConfigurationTemplateId);
         }

@@ -34,25 +34,25 @@ Scenario: BulkSpotCreatedOrUpdated message should throw exception for invalid en
 		| PropertyName        |
 		| Data[0].EndDateTime |
 
+
 Scenario: BulkSpotCreatedOrUpdated message should create new record without break reference
-	Given The data from file Spot.BulkSpotCreatedOrUpdated.SalesAreas_Setup exists in database
-	And The data from file Spot.BulkSpotCreatedOrUpdated.Setup exists in database
+	Given The data from file Spot.BulkSpotCreatedOrUpdated.Setup exists in database
 	And I have BulkSpotCreatedOrUpdated message from file Spot.BulkSpotCreatedOrUpdated.Success_Create_WithoutBreak to publish
 	When I publish message to message broker
 	Then GamePlanIntelligence consumes message
 	And the Spots data in GamePlan database is updated as the data from the following file Spot.BulkSpotCreatedOrUpdated.Success_Create_WithoutBreak_Result
 
+
 Scenario: BulkSpotCreatedOrUpdated message should create new record with break reference
-	Given The data from file Spot.BulkSpotCreatedOrUpdated.SalesAreas_Setup exists in database
-	And The data from file Spot.BulkSpotCreatedOrUpdated.Setup exists in database
+	Given The data from file Spot.BulkSpotCreatedOrUpdated.Setup exists in database
 	And I have BulkSpotCreatedOrUpdated message from file Spot.BulkSpotCreatedOrUpdated.Success_Create_WithBreak to publish
 	When I publish message to message broker
 	Then GamePlanIntelligence consumes message
 	And the Spots data in GamePlan database is updated as the data from the following file Spot.BulkSpotCreatedOrUpdated.Success_Create_WithBreak_Result
 
+
 Scenario: BulkSpotCreatedOrUpdated message should update record
-	Given The data from file Spot.BulkSpotCreatedOrUpdated.SalesAreas_Setup exists in database
-	And The data from file Spot.BulkSpotCreatedOrUpdated.Setup exists in database
+	Given The data from file Spot.BulkSpotCreatedOrUpdated.Setup exists in database
 	And I have BulkSpotCreatedOrUpdated message from file Spot.BulkSpotCreatedOrUpdated.Success_Update to publish
 	When I publish message to message broker
 	Then GamePlanIntelligence consumes message

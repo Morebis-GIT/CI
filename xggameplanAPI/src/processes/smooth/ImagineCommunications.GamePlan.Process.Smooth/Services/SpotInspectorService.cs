@@ -12,7 +12,8 @@ namespace ImagineCommunications.GamePlan.Process.Smooth.Services
     public static class SpotInspectorService
     {
         private static readonly (bool, IEnumerable<SmoothFailureMessages>)
-            _spotIsAllowed = (true, new[] { SmoothFailureMessages.T0_NoFailure });
+            _spotIsAllowed =
+            (true, new[] { SmoothFailureMessages.T0_NoFailure });
 
         /// <summary>
         /// <para>
@@ -21,22 +22,13 @@ namespace ImagineCommunications.GamePlan.Process.Smooth.Services
         /// return one of the following:
         /// </para>
         /// <para>
-        /// <list type="number">
-        /// <item>
-        /// <description>
-        /// the boolean <c>false</c> and a SmoothFailure if the spot cannot be
+        /// 1) the boolean FALSE and a SmoothFailure if the spot cannot be
         /// added due to a restriction already being at the maximum allowed;
-        /// </description>
-        /// </item>
-        /// <item>
-        /// <description>
-        /// the boolean <c>true</c> and SmoothFailureMessages.T0_NoFailure when
+        /// 2) the boolean TRUE and SmoothFailureMessages.T0_NoFailure when
         /// the spot is not restricted.
-        /// </description>
-        /// </item>
-        /// </list>
         /// </para>
         ///</summary>
+        /// <returns></returns>
         public static (bool isAllowed, IEnumerable<SmoothFailureMessages> failureMessage)
             InspectSpot(
             SponsoredItem sponsoredItem,

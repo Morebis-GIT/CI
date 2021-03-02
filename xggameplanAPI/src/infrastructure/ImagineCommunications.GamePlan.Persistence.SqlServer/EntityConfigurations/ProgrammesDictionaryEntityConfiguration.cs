@@ -11,21 +11,17 @@ namespace ImagineCommunications.GamePlan.Persistence.SqlServer.EntityConfigurati
             _ = builder.ToTable("ProgrammeDictionaries");
 
             _ = builder.HasKey(e => e.Id);
-
-            _ = builder.Property(e => e.Id).UseSqlServerIdentityColumn();
+            _ = builder.Property(e => e.Id).UseMySqlIdentityColumn();
             _ = builder.Property(e => e.ExternalReference).HasMaxLength(64).IsRequired();
             _ = builder.Property(e => e.Name).HasMaxLength(128).IsRequired();
             _ = builder.Property(e => e.Description).HasMaxLength(512);
             _ = builder.Property(e => e.Classification).HasMaxLength(64);
-            _ = builder.Property<string>(ProgrammeDictionary.SearchField)
-                .HasComputedColumnSql(
-                    $"CONCAT_WS(' ', {nameof(ProgrammeDictionary.ExternalReference)}, {nameof(ProgrammeDictionary.Name)})");
+            _ = builder.Property<string>(ProgrammeDictionary.SearchField);
 
             _ = builder.HasMany(x => x.ProgrammeEpisodes).WithOne(x => x.ProgrammeDictionary)
                 .OnDelete(DeleteBehavior.Cascade);
 
             _ = builder.HasIndex(e => e.ExternalReference).IsUnique();
         }
-
     }
 }

@@ -11,7 +11,7 @@ namespace ImagineCommunications.GamePlan.Persistence.SqlServer.EntityConfigurati
         {
             builder.ToTable("PipelineAuditEvents");
 
-            builder.Property(x => x.Id).UseSqlServerIdentityColumn();
+            builder.Property(x => x.Id).UseMySqlIdentityColumn();
             builder.Property(x => x.TimeCreated).AsUtc();
             builder.Property(x => x.Message).HasMaxLength(4096).IsRequired();
 

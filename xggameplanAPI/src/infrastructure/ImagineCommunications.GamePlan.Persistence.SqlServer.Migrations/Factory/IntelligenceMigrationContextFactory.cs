@@ -40,7 +40,7 @@ namespace ImagineCommunications.GamePlan.Persistence.SqlServer.Migrations.Factor
         public IntelligenceMigrationDbContext CreateDbContext(string connectionString)
         {
             var optionsBuilder = new DbContextOptionsBuilder<IntelligenceDbContext>();
-            optionsBuilder.UseSqlServer(connectionString,
+            optionsBuilder.UseMySql(connectionString,
                 options => options.CommandTimeout(_timeoutSetting));
 
             return new IntelligenceMigrationDbContext(optionsBuilder.Options);

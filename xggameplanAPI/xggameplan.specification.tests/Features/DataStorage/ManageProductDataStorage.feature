@@ -140,6 +140,7 @@ Scenario Outline: Find Products by external references
 	| 662, 001       | 1                   |
 	| 001, 002       | 0                   |
 
+
 Scenario Outline: Search product advertiser
 	Given the current date is '2020-06-26 13:00:00'
 	And the following documents created:
@@ -160,6 +161,7 @@ Scenario Outline: Search product advertiser
 	| Advertiser 3 | 1                   |
 	| 00001        | 0                   |
 	| Advertiser 2 | 1                   |
+
 
 Scenario Outline: Search product
 	Given the following documents created:
@@ -192,7 +194,7 @@ Scenario Outline: Search product
 	| 1604               | Product 3 | P280      | 2019-01-15        | 2019-06-15      | null      | 1                   |
 	| 1604               | Product 3 | P280      | 2019-01-25        | 2019-06-15      | null      | 0                   |
 	| null               | null      | null      | null              | null            | 1604      | 1                   |
-	| null               | null      | null      | null              | null            | product   | 5                   |
+	| null               | null      | null      | null              | null            | Product   | 5                   |
 	| null               | null      | null      | null              | null            | 0001      | 0                   |
 	| null               | Product 2 | null      | null              | null            | null      | 2                   |
 	| null               | Product 2 | null      | 2019-02-01        | null            | null      | 2                   |

@@ -11,7 +11,7 @@ namespace ImagineCommunications.GamePlan.Persistence.SqlServer.EntityConfigurati
             builder.ToTable("EfficiencySettings");
 
             builder.HasKey(k => k.Id);
-            builder.Property(p => p.Id).HasDefaultValueSql("newid()");
+            builder.Property(k => k.Id);
 
             builder.Property(p => p.EfficiencyCalculationPeriod).IsRequired();
             builder.Property(p => p.PersistEfficiency).IsRequired();

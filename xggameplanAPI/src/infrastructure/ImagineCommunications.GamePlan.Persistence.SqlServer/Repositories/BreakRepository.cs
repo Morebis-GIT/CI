@@ -145,9 +145,9 @@ namespace ImagineCommunications.GamePlan.Persistence.SqlServer.Repositories
                     .Where(x => x.ExternalBreakRef == externalRef), opts => opts.UseEntityCache(_salesAreaByIdCache));
 
         public IEnumerable<Break> FindByExternal(List<string> externalRefs) =>
-            _mapper.Map<List<Break>>(BreakQuery()
-                .Where(x => externalRefs.Contains(x.ExternalBreakRef))
-                .AsNoTracking(), opts => opts.UseEntityCache(_salesAreaByIdCache));
+            _mapper.Map<List<Break>>(
+                BreakQuery()
+                    .Where(x => externalRefs.Contains(x.ExternalBreakRef)), opts => opts.UseEntityCache(_salesAreaByIdCache));
 
         public Break Get(Guid id) =>
             _mapper.Map<Break>(_dbContext.Find<Entities.Tenant.Breaks.Break>(new object[] { id },
@@ -155,7 +155,8 @@ namespace ImagineCommunications.GamePlan.Persistence.SqlServer.Repositories
                 opts => opts.UseEntityCache(_salesAreaByIdCache));
 
         public IEnumerable<Break> GetAll() =>
-            _mapper.Map<List<Break>>(BreakQuery().AsNoTracking(), opts => opts.UseEntityCache(_salesAreaByIdCache));
+            _mapper.Map<List<Break>>(
+                BreakQuery(), opts => opts.UseEntityCache(_salesAreaByIdCache));
 
         public void Remove(Guid uid) => Delete(uid);
 
@@ -166,10 +167,11 @@ namespace ImagineCommunications.GamePlan.Persistence.SqlServer.Repositories
             _dbContext.SaveChangesAsync();
 
         public IEnumerable<Break> Search(DateTime dateFrom, DateTime dateTo, string salesArea) =>
-            _mapper.Map<List<Break>>(BreakQuery()
+            _mapper.Map<List<Break>>(
+                BreakQuery()
                     .Where(x => x.SalesArea.Name == salesArea &&
                                 x.ScheduledDate >= dateFrom &&
-                                x.ScheduledDate <= dateTo).AsNoTracking(),
+                                x.ScheduledDate <= dateTo),
                 opts => opts.UseEntityCache(_salesAreaByIdCache));
 
         public IEnumerable<Break> Search(DateTime scheduledDate, string externalBreakRef, string salesArea) =>
@@ -177,7 +179,7 @@ namespace ImagineCommunications.GamePlan.Persistence.SqlServer.Repositories
                 BreakQuery()
                     .Where(x => x.SalesArea.Name == salesArea &&
                                 x.ScheduledDate == scheduledDate &&
-                                x.ExternalBreakRef == externalBreakRef).AsNoTracking(),
+                                x.ExternalBreakRef == externalBreakRef),
                 opts => opts.UseEntityCache(_salesAreaByIdCache));
 
         public IEnumerable<Break> Search(DateTimeRange scheduledDatesRange, IEnumerable<string> salesAreaNames) =>
@@ -185,7 +187,7 @@ namespace ImagineCommunications.GamePlan.Persistence.SqlServer.Repositories
                 BreakQuery()
                     .Where(x => x.ScheduledDate >= scheduledDatesRange.Start.ToUniversalTime()
                                 && x.ScheduledDate <= scheduledDatesRange.End.ToUniversalTime()
-                                && salesAreaNames.Contains(x.SalesArea.Name)).AsNoTracking(),
+                                && salesAreaNames.Contains(x.SalesArea.Name)),
                 opts => opts.UseEntityCache(_salesAreaByIdCache));
 
         public IEnumerable<Break> SearchByBroadcastDateRange(DateTime dateFrom, DateTime dateTo,
@@ -193,7 +195,7 @@ namespace ImagineCommunications.GamePlan.Persistence.SqlServer.Repositories
             _mapper.Map<List<Break>>(BreakQuery()
                     .Where(b => b.BroadcastDate >= dateFrom
                                 && b.BroadcastDate <= dateTo
-                                && salesAreaNames.Contains(b.SalesArea.Name)).AsNoTracking(),
+                                && salesAreaNames.Contains(b.SalesArea.Name)),
                 opts => opts.UseEntityCache(_salesAreaByIdCache));
 
         public void Truncate()

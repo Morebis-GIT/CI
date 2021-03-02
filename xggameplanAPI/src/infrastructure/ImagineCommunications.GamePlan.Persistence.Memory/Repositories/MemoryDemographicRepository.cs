@@ -19,15 +19,13 @@ namespace ImagineCommunications.GamePlan.Persistence.Memory.Repositories
 
         public void Add(IEnumerable<Demographic> items)
         {
-            foreach (var item in items)
-            {
-                Add(item);
-            }
+            InsertItems(items.ToList(), items.Select(i => i.Id.ToString()).ToList<string>());
         }
 
         public void Add(Demographic item)
         {
-            InsertOrReplaceItem(item, item.Id.ToString());
+            var items = new List<Demographic>() { item };
+            InsertItems(items, items.Select(i => i.Id.ToString()).ToList<string>());
         }
 
         public Demographic GetByExternalRef(string externalRef)
@@ -54,7 +52,7 @@ namespace ImagineCommunications.GamePlan.Persistence.Memory.Repositories
 
         public void Update(Demographic demographic)
         {
-            InsertOrReplaceItem(demographic, demographic.Id.ToString());
+            UpdateOrInsertItem(demographic, demographic.Id.ToString());
         }
 
         public void UpdateRange(IEnumerable<Demographic> demographics)

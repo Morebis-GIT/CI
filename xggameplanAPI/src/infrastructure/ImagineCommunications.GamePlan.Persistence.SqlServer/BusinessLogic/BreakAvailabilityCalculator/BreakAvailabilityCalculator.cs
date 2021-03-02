@@ -214,12 +214,12 @@ namespace ImagineCommunications.GamePlan.Persistence.SqlServer.BusinessLogic.Bre
                 return await dbContext.Query<Spot>()
                     .Where(s =>
                         s.StartDateTime >= period.Start && s.StartDateTime < period.End &&
-                        s.SalesArea.Name == salesAreaName)
+                        s.SalesArea == salesAreaName)
                     .AsNoTracking()
                     .Select(s => (ISpotForBreakAvailCalculation)new SpotAvailability
                     {
                         ExternalBreakNo = s.ExternalBreakNo,
-                        SalesArea = s.SalesArea.Name,
+                        SalesArea = s.SalesArea,
                         SpotLength = Duration.FromTimeSpan(s.SpotLength),
                         StartDateTime = s.StartDateTime,
                         ClientPicked = s.ClientPicked

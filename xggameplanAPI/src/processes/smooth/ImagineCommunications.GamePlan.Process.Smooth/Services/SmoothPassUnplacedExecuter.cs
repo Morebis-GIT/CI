@@ -30,34 +30,26 @@ namespace ImagineCommunications.GamePlan.Process.Smooth.Services
         private readonly ISmoothDiagnostics _smoothDiagnostics;
         private readonly ISmoothConfiguration _smoothConfiguration;
         private readonly SmoothResources _smoothResources;
-        private readonly SmoothProgramme _smoothProgramme;
         private readonly IClashExposureCountService _clashExposureCountService;
         private readonly SponsorshipRestrictionService _sponsorshipRestrictionService;
-        private readonly IReadOnlyCollection<Programme> _allProgrammesForPeriodAndSalesArea;
-        private readonly IImmutableDictionary<string, Clash> _clashesByExternalRef;
 
         private Action<string, Exception> RaiseException { get; }
 
         public SmoothPassUnplacedExecuter(
             ISmoothDiagnostics smoothDiagnostics,
             SmoothResources smoothResources,
-            SmoothProgramme smoothProgramme,
-            SponsorshipRestrictionService sponsorshipRestrictionService,
-            IReadOnlyCollection<Programme> allProgrammesForPeriodAndSalesArea,
             ISmoothConfiguration smoothConfiguration,
             IClashExposureCountService clashExposureCountService,
-            IImmutableDictionary<string, Clash> clashesByExternalRef,
+            SponsorshipRestrictionService sponsorshipRestrictionService,
             Action<string, Exception> raiseException
             )
         {
             _smoothDiagnostics = smoothDiagnostics;
             _smoothConfiguration = smoothConfiguration;
             _smoothResources = smoothResources;
-            _smoothProgramme = smoothProgramme;
             _clashExposureCountService = clashExposureCountService;
             _sponsorshipRestrictionService = sponsorshipRestrictionService;
-            _allProgrammesForPeriodAndSalesArea = allProgrammesForPeriodAndSalesArea;
-            _clashesByExternalRef = clashesByExternalRef;
+
             RaiseException = raiseException;
         }
 
@@ -69,14 +61,20 @@ namespace ImagineCommunications.GamePlan.Process.Smooth.Services
         /// </summary>
         public SmoothPassResult Execute(
             SmoothPassUnplaced smoothPass,
-            IReadOnlyCollection<Break> breaksBeingSmoothed,
-            ISet<Guid> spotIdsUsed,
+            SmoothProgramme smoothProg,
+            IReadOnlyCollection<SmoothBreak> progSmoothBreaks,
             IReadOnlyCollection<Spot> spots,
-            IReadOnlyDictionary<Guid, SpotInfo> spotInfos)
+            IReadOnlyDictionary<Guid, SpotInfo> spotInfos,
+            IImmutableDictionary<string, Clash> clashesByExternalRef,
+            IReadOnlyCollection<Break> breaksBeingSmoothed,
+            IReadOnlyCollection<Programme> scheduleProgrammes,
+            ISet<Guid> spotIdsUsed)
         {
             var smoothPassResult = new SmoothPassResult(smoothPass.Sequence);
+            var placedSpots = new List<Spot>();
 
-            if (MaximumOfTwoBreaksWithRemainingTime(_smoothProgramme.ProgrammeSmoothBreaks))
+            // Need at least 2 breaks with remaining time
+            if (progSmoothBreaks.Count(sb => sb.RemainingAvailability > Duration.Zero) < 2)
             {
                 return smoothPassResult;
             }
@@ -96,7 +94,7 @@ namespace ImagineCommunications.GamePlan.Process.Smooth.Services
                 MultipartSpots = null,      // Any
                 HasProductClashCode = null,
                 ProductClashCodesToExclude = null,
-                ExternalCampaignRefsToExclude = _smoothConfiguration.ExternalCampaignRefsToExclude,
+                ExternalCampaignRefsToExclude = _smoothConfiguration.ExternalCampaignRefsToExclude, // Always exclude these campaigns
                 HasSpotEndTime = null,
                 MinSpotLength = null,
                 MaxSpotLength = null,
@@ -107,8 +105,8 @@ namespace ImagineCommunications.GamePlan.Process.Smooth.Services
             var spotsToPlace = GetSpots(spotFilter, spots, spotInfos);
             var spotsOrdered = _smoothConfiguration.SortSpotsToPlace(
                 spotsToPlace,
-                (_smoothProgramme.Programme.StartDateTime, _smoothProgramme.Programme.Duration)
-            );
+                smoothProg.Prog
+                );
 
             // Try and place spots
             foreach (var spot in spotsOrdered)
@@ -117,10 +115,13 @@ namespace ImagineCommunications.GamePlan.Process.Smooth.Services
                 {
                     PlaceSpotsResult placeSpotsResult = PlaceSpot(
                         smoothPass,
+                        smoothProg,
                         spot,
                         spotInfos,
-                        _smoothProgramme.ProgrammeSmoothBreaks,
+                        progSmoothBreaks,
                         breaksBeingSmoothed,
+                        clashesByExternalRef,
+                        scheduleProgrammes,
                         spotIdsUsed);
 
                     smoothPassResult.PlaceSpotsResultList.Add(placeSpotsResult);
@@ -132,9 +133,6 @@ namespace ImagineCommunications.GamePlan.Process.Smooth.Services
             }
 
             return smoothPassResult;
-
-            static bool MaximumOfTwoBreaksWithRemainingTime(List<SmoothBreak> smoothBreaks) =>
-                smoothBreaks.Count(sb => sb.RemainingAvailability > Duration.Zero) < 2;
         }
 
         /// <summary>
@@ -142,27 +140,210 @@ namespace ImagineCommunications.GamePlan.Process.Smooth.Services
         /// </summary>
         private PlaceSpotsResult PlaceSpot(
             SmoothPassUnplaced smoothPass,
+            SmoothProgramme smoothProg,
             Spot spot,
             IReadOnlyDictionary<Guid, SpotInfo> spotInfos,
             IReadOnlyCollection<SmoothBreak> progSmoothBreaks,
             IReadOnlyCollection<Break> breaksBeingSmoothed,
+            IImmutableDictionary<string, Clash> clashesByExternalRef,
+            IReadOnlyCollection<Programme> scheduleProgrammes,
             ISet<Guid> spotIdsUsed)
         {
             var placeSpotsResult = new PlaceSpotsResult();
             bool spotPlaced = false;
 
-            // Don't currently handle multipart spots here because we shouldn't split them.
+            // Don't currently handle multipart spots here because we shouldn't
+            // split them
             if (!spot.IsMultipartSpot)
             {
-                spotPlaced = PlaceSingleSpot(
-                    smoothPass,
-                    spot,
-                    spotInfos,
-                    progSmoothBreaks,
-                    breaksBeingSmoothed,
-                    spotIdsUsed,
-                    placeSpotsResult,
-                    spotPlaced);
+                // Check each iteration, try and find a break
+                var smoothPassIterations = _smoothConfiguration.GetSmoothPassUnplacedIterations(spot, smoothPass);
+
+                foreach (SmoothPassUnplacedIteration smoothPassIteration in smoothPassIterations.OrderBy(i => i.Sequence))
+                {
+                    // Get all breaks where spot could be moved to if sufficient
+                    // time is remaining
+                    var smoothBreaksForElibility = progSmoothBreaks
+                        .Where(sb =>
+                        {
+                            var respectingSpotTime = smoothPassIteration.RespectSpotTime;
+                            bool isEligible = IsSpotEligible(respectingSpotTime, sb, spot);
+
+                            var spotToCheck = new List<Spot> { spot };
+
+                            return isEligible
+                                && sb.CanAddSpotsWithCampaignClashRule(
+                                    spotToCheck,
+                                    smoothPassIteration.RespectCampaignClash,
+                                    _smoothResources.CampaignClashChecker
+                                )
+                                && sb.CanAddSpotsWithProductClashRule(
+                                    spotToCheck,
+                                    spotInfos,
+                                    clashesByExternalRef,
+                                    smoothPassIteration.ProductClashRule,
+                                    smoothPassIteration.RespectClashExceptions,
+                                    _smoothResources.ProductClashChecker,
+                                    _smoothResources.ClashExceptionChecker,
+                                    _clashExposureCountService
+                                )
+                                && sb.CanAddSpotsWithRestrictionRule(
+                                    smoothProg,
+                                    spotToCheck,
+                                    smoothPassIteration.RespectRestrictions,
+                                    _smoothResources.RestrictionChecker,
+                                    breaksBeingSmoothed,
+                                    scheduleProgrammes
+                                );
+                        })
+                        .OrderByDescending(sb => sb.RemainingAvailability.BclCompatibleTicks);
+
+                    // See if we can just add the spot to a break with
+                    // sufficient duration. This can typically happen if we've
+                    // moved spots around on a previous call to this method and
+                    // freed up time.
+                    if (!spotPlaced && smoothBreaksForElibility.Any())
+                    {
+                        foreach (var smoothBreak in smoothBreaksForElibility)
+                        {
+                            if (AnySponsorshipRestrictions(spot, smoothBreak))
+                            {
+                                _smoothDiagnostics.LogSpotAction(
+                                    smoothPass,
+                                    smoothPassIteration.Sequence,
+                                    spot,
+                                    smoothBreak,
+                                    SmoothSpot.SmoothSpotActions.ValidateAddSpotToBreak,
+                                    "Spot not placed as a sponsorship restriction was found.");
+
+                                continue;
+                            }
+
+                            if (smoothBreak.RemainingAvailability >= spot.SpotLength)
+                            {
+                                var smoothSpotsAddedToBreak = SpotPlacementService.AddSpotsToBreak(
+                                    smoothBreak,
+                                    smoothPass.Sequence,
+                                    smoothPassIteration.Sequence,
+                                    new List<Spot>() { spot },
+                                    SpotPositionRules.Anywhere,
+                                    true,
+                                    spotIdsUsed,
+                                    null,
+                                    spotInfos,
+                                    _sponsorshipRestrictionService);
+
+                                foreach (var smoothSpot in smoothSpotsAddedToBreak)
+                                {
+                                    _smoothDiagnostics.LogSpotAction(
+                                        smoothPass,
+                                        smoothPassIteration.Sequence,
+                                        smoothSpot.Spot,
+                                        smoothBreak,
+                                        SmoothSpot.SmoothSpotActions.PlaceSpotInBreak,
+                                        "");
+                                }
+
+                                var placeSpotResult = new PlaceSpotResult(
+                                    spot.Uid,
+                                    smoothBreak.TheBreak.ExternalBreakRef);
+
+                                placeSpotsResult.PlacedSpotResults.Add(placeSpotResult);
+                                spotPlaced = true;
+
+                                break;
+                            }
+                        }
+                    }
+
+                    // Try moving spots in order to make room
+                    if (!spotPlaced && smoothBreaksForElibility.Any())
+                    {
+                        foreach (var smoothBreakForMoveFrom in smoothBreaksForElibility)
+                        {
+                            if (AnySponsorshipRestrictions(spot, smoothBreakForMoveFrom))
+                            {
+                                continue;
+                            }
+
+                            // Get all spots to consider for move from this break
+                            var spotsToConsiderForMove = _smoothConfiguration.GetSpotsThatCanBeMoved(spot, smoothBreakForMoveFrom);
+                            if (spotsToConsiderForMove.Count > 0)
+                            {
+                                // Calculate spot move details for these spots,
+                                // which spots to move, which break to move to
+                                SpotMoveDetails spotMoveDetails = GetSpotMoveDetails(
+                                    smoothPassIteration,
+                                    spot,
+                                    smoothBreakForMoveFrom,
+                                    spotsToConsiderForMove,
+                                    progSmoothBreaks);
+
+                                List<SmoothSpot> smoothSpotsToMove = spotMoveDetails.SmoothSpotsToMove;
+
+                                if (smoothSpotsToMove.Count > 0)
+                                {
+                                    // Found spots to move. Move spots to other breaks.
+                                    for (int spotIndex = 0; spotIndex < smoothSpotsToMove.Count; spotIndex++)
+                                    {
+                                        MoveSpot(
+                                            smoothPass,
+                                            smoothSpotsToMove[spotIndex],
+                                            smoothBreakForMoveFrom,
+                                            spotMoveDetails.SmoothBreaksToMoveTo[spotIndex],
+                                            spotInfos,
+                                            spotIdsUsed);
+                                    }
+
+                                    // Place the spot
+                                    var smoothSpotsAddedToBreak = SpotPlacementService.AddSpotsToBreak(
+                                        smoothBreakForMoveFrom,
+                                        smoothPass.Sequence,
+                                        smoothPassIteration.Sequence,
+                                        new List<Spot> { spot },
+                                        SpotPositionRules.Anywhere,
+                                        canMoveSpotToOtherBreak: true,
+                                        spotIdsUsed,
+                                        bestBreakFactorGroupName: null,
+                                        spotInfos,
+                                        _sponsorshipRestrictionService);
+
+                                    string externalSpotReferences = SpotUtilities.GetListOfSpotExternalReferences(
+                                        ",",
+                                        smoothSpotsToMove.Select(s => s.Spot).ToList()
+                                        );
+
+                                    // Log spot action for diagnostic
+                                    smoothSpotsAddedToBreak.ForEach(smoothSpot =>
+                                        _smoothDiagnostics.LogSpotAction(
+                                            smoothPass,
+                                            smoothPassIteration.Sequence,
+                                            smoothSpot.Spot,
+                                            smoothBreakForMoveFrom,
+                                            SmoothSpot.SmoothSpotActions.PlaceSpotInBreak,
+                                            $"Moved {externalSpotReferences}"
+                                            )
+                                        );
+
+                                    var placeSpotResult = new PlaceSpotResult(
+                                        spot.Uid,
+                                        smoothBreakForMoveFrom.TheBreak.ExternalBreakRef
+                                        );
+
+                                    placeSpotsResult.PlacedSpotResults.Add(placeSpotResult);
+                                    spotPlaced = true;
+
+                                    break;
+                                }
+                            }
+                        }
+                    }
+
+                    if (spotPlaced)
+                    {
+                        break;
+                    }
+                }
             }
 
             if (!spotPlaced)
@@ -177,218 +358,6 @@ namespace ImagineCommunications.GamePlan.Process.Smooth.Services
             }
 
             return placeSpotsResult;
-        }
-
-        /// <summary>Places a single, non-multipart spot.</summary>
-        /// <param name="smoothPass">The smooth pass.</param>
-        /// <param name="spot">The spot.</param>
-        /// <param name="spotInfos">The spot infos.</param>
-        /// <param name="progSmoothBreaks">The prog smooth breaks.</param>
-        /// <param name="breaksBeingSmoothed">The breaks being smoothed.</param>
-        /// <param name="spotIdsUsed">The spot ids used.</param>
-        /// <param name="placeSpotsResult">The place spots result.</param>
-        /// <param name="spotPlaced">if set to <c>true</c> the spot was placed.</param>
-        /// <returns></returns>
-        private bool PlaceSingleSpot(
-            SmoothPassUnplaced smoothPass,
-            Spot spot,
-            IReadOnlyDictionary<Guid, SpotInfo> spotInfos,
-            IReadOnlyCollection<SmoothBreak> progSmoothBreaks,
-            IReadOnlyCollection<Break> breaksBeingSmoothed,
-            ISet<Guid> spotIdsUsed,
-            PlaceSpotsResult placeSpotsResult,
-            bool spotPlaced)
-        {
-            // Check each iteration, try and find a break
-            var smoothPassIterations = _smoothConfiguration.GetSmoothPassUnplacedIterations(spot, smoothPass);
-
-            foreach (SmoothPassUnplacedIteration smoothPassIteration in smoothPassIterations.OrderBy(i => i.Sequence))
-            {
-                // Get all breaks where spot could be moved to if sufficient
-                // time is remaining
-                var smoothBreaksForElibility = progSmoothBreaks
-                    .Where(smoothBreak =>
-                    {
-                        var respectingSpotTime = smoothPassIteration.RespectSpotTime;
-                        bool isEligible = IsSpotEligible(respectingSpotTime, smoothBreak, spot);
-
-                        var spotToCheck = new List<Spot> { spot };
-                        var canAddSpotService = CanAddSpotService.Factory(smoothBreak);
-
-                        return isEligible
-                            && canAddSpotService.CanAddSpotsWithCampaignClashRule(
-                                spotToCheck,
-                                smoothPassIteration.RespectCampaignClash,
-                                _smoothResources.CampaignClashChecker
-                            )
-                            && canAddSpotService.CanAddSpotsWithProductClashRule(
-                                spotToCheck,
-                                spotInfos,
-                                _clashesByExternalRef,
-                                smoothPassIteration.ProductClashRule,
-                                smoothPassIteration.RespectClashExceptions,
-                                _smoothResources.ProductClashChecker,
-                                _smoothResources.ClashExceptionChecker,
-                                _clashExposureCountService
-                            )
-                            && canAddSpotService.CanAddSpotsWithRestrictionRule(
-                                _smoothProgramme,
-                                spotToCheck,
-                                smoothPassIteration.RespectRestrictions,
-                                _smoothResources.RestrictionChecker,
-                                breaksBeingSmoothed,
-                                _allProgrammesForPeriodAndSalesArea
-                            );
-                    })
-                    .OrderByDescending(sb => sb.RemainingAvailability.BclCompatibleTicks);
-
-                // See if we can just add the spot to a break with
-                // sufficient duration. This can typically happen if we've
-                // moved spots around on a previous call to this method and
-                // freed up time.
-                if (!spotPlaced && smoothBreaksForElibility.Any())
-                {
-                    foreach (var smoothBreak in smoothBreaksForElibility)
-                    {
-                        if (AnySponsorshipRestrictions(spot, smoothBreak))
-                        {
-                            _smoothDiagnostics.LogSpotAction(
-                                smoothPass,
-                                smoothPassIteration.Sequence,
-                                spot,
-                                smoothBreak,
-                                SmoothSpot.SmoothSpotActions.ValidateAddSpotToBreak,
-                                "Spot not placed as a sponsorship restriction was found.");
-
-                            continue;
-                        }
-
-                        if (smoothBreak.RemainingAvailability >= spot.SpotLength)
-                        {
-                            var smoothSpotsAddedToBreak = SpotPlacementService.AddSpotsToBreak(
-                                smoothBreak,
-                                smoothPass.Sequence,
-                                smoothPassIteration.Sequence,
-                                new List<Spot>() { spot },
-                                SpotPositionRules.Anywhere,
-                                true,
-                                spotIdsUsed,
-                                null,
-                                spotInfos,
-                                _sponsorshipRestrictionService);
-
-                            foreach (var smoothSpot in smoothSpotsAddedToBreak)
-                            {
-                                _smoothDiagnostics.LogSpotAction(
-                                    smoothPass,
-                                    smoothPassIteration.Sequence,
-                                    smoothSpot.Spot,
-                                    smoothBreak,
-                                    SmoothSpot.SmoothSpotActions.PlaceSpotInBreak,
-                                    "");
-                            }
-
-                            var placeSpotResult = new PlaceSpotResult(
-                                spot.Uid,
-                                smoothBreak.TheBreak.ExternalBreakRef);
-
-                            placeSpotsResult.PlacedSpotResults.Add(placeSpotResult);
-                            spotPlaced = true;
-
-                            break;
-                        }
-                    }
-                }
-
-                // Try moving spots in order to make room
-                if (!spotPlaced && smoothBreaksForElibility.Any())
-                {
-                    foreach (var smoothBreakForMoveFrom in smoothBreaksForElibility)
-                    {
-                        if (AnySponsorshipRestrictions(spot, smoothBreakForMoveFrom))
-                        {
-                            continue;
-                        }
-
-                        // Get all spots to consider for move from this break
-                        var spotsToConsiderForMove = _smoothConfiguration.GetSpotsThatCanBeMoved(spot, smoothBreakForMoveFrom);
-                        if (spotsToConsiderForMove.Count > 0)
-                        {
-                            // Calculate spot move details for these spots,
-                            // which spots to move, which break to move to
-                            SpotMoveDetails spotMoveDetails = GetSpotMoveDetails(
-                                smoothPassIteration,
-                                spot,
-                                smoothBreakForMoveFrom,
-                                spotsToConsiderForMove,
-                                progSmoothBreaks);
-
-                            List<SmoothSpot> smoothSpotsToMove = spotMoveDetails.SmoothSpotsToMove;
-
-                            if (smoothSpotsToMove.Count > 0)
-                            {
-                                // Found spots to move. Move spots to other breaks.
-                                for (int spotIndex = 0; spotIndex < smoothSpotsToMove.Count; spotIndex++)
-                                {
-                                    MoveSpot(
-                                        smoothPass,
-                                        smoothSpotsToMove[spotIndex],
-                                        smoothBreakForMoveFrom,
-                                        spotMoveDetails.SmoothBreaksToMoveTo[spotIndex],
-                                        spotInfos,
-                                        spotIdsUsed);
-                                }
-
-                                // Place the spot
-                                var smoothSpotsAddedToBreak = SpotPlacementService.AddSpotsToBreak(
-                                    smoothBreakForMoveFrom,
-                                    smoothPass.Sequence,
-                                    smoothPassIteration.Sequence,
-                                    new List<Spot> { spot },
-                                    SpotPositionRules.Anywhere,
-                                    canMoveSpotToOtherBreak: true,
-                                    spotIdsUsed,
-                                    bestBreakFactorGroupName: null,
-                                    spotInfos,
-                                    _sponsorshipRestrictionService);
-
-                                string externalSpotReferences = SpotUtilities.GetListOfSpotExternalReferences(
-                                    ",",
-                                    smoothSpotsToMove.ConvertAll(s => s.Spot));
-
-                                // Log spot action for diagnostic
-                                smoothSpotsAddedToBreak.ForEach(smoothSpot =>
-                                    _smoothDiagnostics.LogSpotAction(
-                                        smoothPass,
-                                        smoothPassIteration.Sequence,
-                                        smoothSpot.Spot,
-                                        smoothBreakForMoveFrom,
-                                        SmoothSpot.SmoothSpotActions.PlaceSpotInBreak,
-                                        $"Moved {externalSpotReferences}"
-                                        )
-                                    );
-
-                                var placeSpotResult = new PlaceSpotResult(
-                                    spot.Uid,
-                                    smoothBreakForMoveFrom.TheBreak.ExternalBreakRef
-                                    );
-
-                                placeSpotsResult.PlacedSpotResults.Add(placeSpotResult);
-                                spotPlaced = true;
-
-                                break;
-                            }
-                        }
-                    }
-                }
-
-                if (spotPlaced)
-                {
-                    break;
-                }
-            }
-
-            return spotPlaced;
         }
 
         private bool AnySponsorshipRestrictions(Spot spot, SmoothBreak smoothBreak)
@@ -622,7 +591,7 @@ namespace ImagineCommunications.GamePlan.Process.Smooth.Services
             SmoothBreak smoothBreak,
             Spot spot)
         {
-            var canAddSpotService = CanAddSpotService.Factory(smoothBreak);
+            ICanAddSpot canAddSpotService = new CanAddSpotService(smoothBreak);
 
             if (respectingSpotTime)
             {

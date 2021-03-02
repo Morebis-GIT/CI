@@ -15,13 +15,12 @@ namespace ImagineCommunications.GamePlan.Persistence.SqlServer.EntityConfigurati
             builder.ToTable("LibrarySalesAreaPassPriorities");
 
             builder.HasKey(e => e.Uid);
-            builder.Property(e => e.Uid).HasDefaultValueSql("newid()");
+            builder.Property(e => e.Uid);
 
-            builder.Property(e => e.Id)
-                .UseSqlServerIdentityColumn()
+            builder.Property(e => e.Id).HasDefaultValue(0)
                 .Metadata.AfterSaveBehavior = PropertySaveBehavior.Ignore;
 
-            builder.Property(e => e.Name).HasMaxLength(256).IsRequired();
+            builder.Property(e => e.Name).HasMaxLength(255).IsRequired();
             builder.Property(e => e.StartTime).AsTicks();
             builder.Property(e => e.EndTime).AsTicks();
             builder.Property(e => e.DowPattern).AsStringPattern(DayOfWeek.Monday).IsRequired();

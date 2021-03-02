@@ -11,7 +11,7 @@ namespace ImagineCommunications.GamePlan.Persistence.SqlServer.EntityConfigurati
         {
             builder.ToTable("SpotBookingRules");
             builder.HasKey(e => e.Id);
-            builder.Property(e => e.Id).UseSqlServerIdentityColumn();
+            builder.Property(e => e.Id).UseMySqlIdentityColumn();
             builder.Property(e => e.SpotLength).AsTicks();
             builder.Property(e => e.MinBreakLength).AsTicks();
             builder.Property(e => e.MaxBreakLength).AsTicks();

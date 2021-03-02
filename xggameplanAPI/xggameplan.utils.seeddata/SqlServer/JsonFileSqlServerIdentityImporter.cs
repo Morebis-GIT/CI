@@ -20,6 +20,8 @@ namespace xggameplan.utils.seeddata.SqlServer
 
         protected override void SaveImportedData()
         {
+            // TODO: Aurora-tbd require recheck
+            /*
             var tableName = _dbContext.Specific.Model.GetFullTableName<TIdentityEntity>();
             var connection = _dbContext.Specific.Database.GetDbConnection();
             _dbContext.Specific.Database.OpenConnection();
@@ -28,17 +30,21 @@ namespace xggameplan.utils.seeddata.SqlServer
                 command.CommandText = $"SET IDENTITY_INSERT {tableName} ON;";
                 _ = command.ExecuteNonQuery();
             }
+            */
             try
             {
                 base.SaveImportedData();
             }
             finally
             {
+                // TODO: Aurora-tbd require recheck
+                /*
                 using (var command = connection.CreateCommand())
                 {
                     command.CommandText = $"SET IDENTITY_INSERT {tableName} OFF;";
                     _ = command.ExecuteNonQuery();
                 }
+                */
             }
         }
     }

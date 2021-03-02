@@ -1,0 +1,923 @@
+[
+  {
+    "description": {
+      "ARA": "System Checks",
+      "ENG": "System Checks"
+    },
+    "faultTypes": [
+      {
+        "shortName": {
+          "ENG": "Floor Rate",
+          "ARA": "Floor Rate"
+        },
+        "description": {
+          "ENG": "Floor Rate",
+          "ARA": "Floor Rate"
+        },
+        "id": 68,
+        "isSelected": true
+      },
+      {
+        "shortName": {
+          "ENG": "Clash w/self det",
+          "ARA": "Clash w/self det"
+        },
+        "description": {
+          "ENG": "Clash with self detected",
+          "ARA": "Clash with self detected"
+        },
+        "id": 16,
+        "isSelected": true
+      },
+      {
+        "shortName": {
+          "ARA": "Spnsp Clash det",
+          "ENG": "Spnsp Clash det"
+        },
+        "description": {
+          "ARA": "Sponsorship Clash detected",
+          "ENG": "Sponsorship Clash detected"
+        },
+        "id": 45,
+        "isSelected": true
+      },
+      {
+        "shortName": {
+          "ENG": "No avlbl Spot Tps",
+          "ARA": "No avlbl Spot Tps"
+        },
+        "description": {
+          "ENG": "No Available Spot Types",
+          "ARA": "No Available Spot Types"
+        },
+        "id": 56,
+        "isSelected": true
+      },
+      {
+        "shortName": {
+          "ENG": "Brk Demo Restr",
+          "ARA": "Brk Demo Restr"
+        },
+        "description": {
+          "ENG": "Break Demographic Restrictions",
+          "ARA": "Break Demographic Restrictions"
+        },
+        "id": 70,
+        "isSelected": true
+      },
+      {
+        "shortName": {
+          "ENG": "No avlbl Sched Pmts",
+          "ARA": "No avlbl Sched Pmts"
+        },
+        "description": {
+          "ENG": "No Available Schedule Payments",
+          "ARA": "No Available Schedule Payments"
+        },
+        "id": 67,
+        "isSelected": true
+      },
+      {
+        "shortName": {
+          "ENG": "Existing Spot",
+          "ARA": "Existing Spot"
+        },
+        "description": {
+          "ENG": "Existing Spot",
+          "ARA": "Existing Spot"
+        },
+        "id": 55,
+        "isSelected": true
+      },
+      {
+        "shortName": {
+          "ENG": "Restrictions",
+          "ARA": "Restrictions"
+        },
+        "description": {
+          "ENG": "Restrictions",
+          "ARA": "Restrictions"
+        },
+        "id": 15,
+        "isSelected": true
+      },
+      {
+        "shortName": {
+          "ENG": "Clash det",
+          "ARA": "Clash det"
+        },
+        "description": {
+          "ENG": "Clash detected",
+          "ARA": "Clash detected"
+        },
+        "id": 14,
+        "isSelected": true
+      },
+      {
+        "shortName": {
+          "ARA": "Spot Len Book Rules",
+          "ENG": "Spot Len Book Rules"
+        },
+        "description": {
+          "ARA": "Spot Length Booking Rules",
+          "ENG": "Spot Length Booking Rules"
+        },
+        "id": 72,
+        "isSelected": true
+      }
+    ],
+    "id": "51d9e1a3-5fed-4dfd-92ce-187a29f0d1b2"
+  },
+  {
+    "description": {
+      "ARA": "Campaign Requirement",
+      "ENG": "Campaign Requirement"
+    },
+    "faultTypes": [
+      {
+        "shortName": {
+          "ENG": "Dprt Len Req (Tgt. Ach/Ovrsp)",
+          "ARA": "Dprt Len Req (Tgt. Ach/Ovrsp)"
+        },
+        "description": {
+          "ENG": "Daypart Length Requirement (Target Achieved/Oversupply)",
+          "ARA": "Daypart Length Requirement (Target Achieved/Oversupply)"
+        },
+        "id": 65,
+        "isSelected": true
+      },
+      {
+        "shortName": {
+          "ENG": "Spot Lgth Inval for Prd",
+          "ARA": "Spot Lgth Inval for Prd"
+        },
+        "description": {
+          "ENG": "Spot Length Invalid for Period",
+          "ARA": "Spot Length Invalid for Period"
+        },
+        "id": 5,
+        "isSelected": true
+      },
+      {
+        "shortName": {
+          "ENG": "Strk Wght Len Req (Tgt Ach/Ovrsp)",
+          "ARA": "Strk Wght Len Req (Tgt Ach/Ovrsp)"
+        },
+        "description": {
+          "ENG": "Strike Weight Length Requirement (Target Achieved/Oversupply)",
+          "ARA": "Strike Weight Length Requirement (Target Achieved/Oversupply)"
+        },
+        "id": 51,
+        "isSelected": true
+      },
+      {
+        "shortName": {
+          "ENG": "Strk Wght Len Req (Tgt Ach/Ovrsp)",
+          "ARA": "Strk Wght Len Req (Tgt Ach/Ovrsp)"
+        },
+        "description": {
+          "ENG": "Strike Weight Length Requirement (Target Achieved/Oversupply)",
+          "ARA": "Strike Weight Length Requirement (Target Achieved/Oversupply)"
+        },
+        "id": 66,
+        "isSelected": true
+      },
+      {
+        "shortName": {
+          "ARA": "Pos Req not avlbl",
+          "ENG": "Pos Req not avlbl"
+        },
+        "description": {
+          "ARA": "Position Requirement not available",
+          "ENG": "Position Requirement not available"
+        },
+        "id": 6,
+        "isSelected": true
+      },
+      {
+        "shortName": {
+          "ENG": "Prgm Req (Ach/Ovrsp)",
+          "ARA": "Prgm Req (Ach/Ovrsp)"
+        },
+        "description": {
+          "ENG": "Programme Requirement (Achieved/Oversupply)",
+          "ARA": "Programme Requirement (Achieved/Oversupply)"
+        },
+        "id": 78,
+        "isSelected": true
+      },
+      {
+        "shortName": {
+          "ENG": "Strk Wght Req (Tgt Ach/Ovrsp)",
+          "ARA": "Strk Wght Req (Tgt Ach/Ovrsp)"
+        },
+        "description": {
+          "ENG": "Strike Weight Requirement (Target Achieved/Oversupply)",
+          "ARA": "Strike Weight Requirement (Target Achieved/Oversupply)"
+        },
+        "id": 50,
+        "isSelected": true
+      },
+      {
+        "shortName": {
+          "ENG": "0 req for Lgth",
+          "ARA": "0 req for Lgth"
+        },
+        "description": {
+          "ENG": "Zero requirement for Length",
+          "ARA": "Zero requirement for Length"
+        },
+        "id": 8,
+        "isSelected": true
+      },
+      {
+        "shortName": {
+          "ENG": "Strk Wght/Dprt Req (Ach/Ovrsp)",
+          "ARA": "Strk Wght/Dprt Req (Ach/Ovrsp)"
+        },
+        "description": {
+          "ENG": "Strike Weight/Daypart Requirement (Target Achieved/Oversupply)",
+          "ARA": "Strike Weight/Daypart Requirement (Target Achieved/Oversupply)"
+        },
+        "id": 52,
+        "isSelected": true
+      },
+      {
+        "shortName": {
+          "ARA": "Prgm Req Incl Mismatch",
+          "ENG": "Prgm Req Incl Mismatch"
+        },
+        "description": {
+          "ARA": "Programme Required Inclusion Mismatch",
+          "ENG": "Programme Required Inclusion Mismatch"
+        },
+        "id": 4,
+        "isSelected": true
+      },
+      {
+        "shortName": {
+          "ENG": "Strk Wght/Dprt. Len Req (Tgt Ach/Ovrsp)",
+          "ARA": "Strk Wght/Dprt. Len Req (Tgt Ach/Ovrsp)"
+        },
+        "description": {
+          "ENG": "Strike Weight/Daypart Length Requirement (Target Achieved/Oversupply)",
+          "ARA": "Strike Weight/Daypart Length Requirement (Target Achieved/Oversupply)"
+        },
+        "id": 64,
+        "isSelected": true
+      },
+      {
+        "shortName": {
+          "ENG": "Camp Rtcd Restr",
+          "ARA": "Camp Rtcd Restr"
+        },
+        "description": {
+          "ENG": "Campaign Ratecard Restriction",
+          "ARA": "Campaign Ratecard Restriction"
+        },
+        "id": 59,
+        "isSelected": true
+      },
+      {
+        "shortName": {
+          "ENG": "Out Camp Strk Wght",
+          "ARA": "Out Camp Strk Wght"
+        },
+        "description": {
+          "ENG": "Outside Campaign Strike Weights",
+          "ARA": "Outside Campaign Strike Weights"
+        },
+        "id": 1,
+        "isSelected": true
+      },
+      {
+        "shortName": {
+          "ENG": "Camp Rev Req (Ach/Ovrsp)",
+          "ARA": "Camp Rev Req (Ach/Ovrsp)"
+        },
+        "description": {
+          "ENG": "Campaign Revenue Requirement (Achieved/Oversupply)",
+          "ARA": "Campaign Revenue Requirement (Achieved/Oversupply)"
+        },
+        "id": 57,
+        "isSelected": true
+      },
+      {
+        "shortName": {
+          "ENG": "Bonus Book Req",
+          "ARA": "Bonus Book Req"
+        },
+        "description": {
+          "ENG": "Bonus Booking Requirement",
+          "ARA": "Bonus Booking Requirement"
+        },
+        "id": 60,
+        "isSelected": true
+      },
+      {
+        "shortName": {
+          "ENG": "Strk Wght/Dprt Lght Req (Ach/Ovrsp)",
+          "ARA": "Strk Wght/Dprt Lght Req (Ach/Ovrsp)"
+        },
+        "description": {
+          "ENG": "Strike Weight/Daypart Length Requirement (Achieved/Oversupply)",
+          "ARA": "Strike Weight/Daypart Length Requirement (Achieved/Oversupply)"
+        },
+        "id": 61,
+        "isSelected": true
+      },
+      {
+        "shortName": {
+          "ENG": "Prgm not in Req",
+          "ARA": "Prgm not in Req"
+        },
+        "description": {
+          "ENG": "Programme not in Requirement",
+          "ARA": "Programme not in Requirement"
+        },
+        "id": 2,
+        "isSelected": true
+      },
+      {
+        "shortName": {
+          "ENG": "Dprt Len Req (Ach/Ovrsp)",
+          "ARA": "Dprt Len Req (Ach/Ovrsp)"
+        },
+        "description": {
+          "ENG": "Daypart Length Requirement (Achieved/Oversupply)",
+          "ARA": "Daypart Length Requirement (Achieved/Oversupply)"
+        },
+        "id": 62,
+        "isSelected": true
+      },
+      {
+        "shortName": {
+          "ENG": "Dprt Req (Tgt Ach/Ovrsp)",
+          "ARA": "Dprt Req (Tgt Ach/Ovrsp)"
+        },
+        "description": {
+          "ENG": "Daypart Requirement (Target Achieved/Oversupply)",
+          "ARA": "Daypart Requirement (Target Achieved/Oversupply)"
+        },
+        "id": 53,
+        "isSelected": true
+      },
+      {
+        "shortName": {
+          "ARA": "Prgm Cat not in Req",
+          "ENG": "Prgm Cat not in Req"
+        },
+        "description": {
+          "ARA": "Programme Category not in Requirement",
+          "ENG": "Programme Category not in Requirement"
+        },
+        "id": 3,
+        "isSelected": true
+      },
+      {
+        "shortName": {
+          "ENG": "Strk Wght Len Req (Ach/Ovrsp)",
+          "ARA": "Strk Wght Len Req (Ach/Ovrsp)"
+        },
+        "description": {
+          "ENG": "Strike Weight Length Requirement (Achieved/Oversupply)",
+          "ARA": "Strike Weight Length Requirement (Achieved/Oversupply)"
+        },
+        "id": 63,
+        "isSelected": true
+      },
+      {
+        "shortName": {
+          "ARA": "Spot Len Req (Tgt Ach/Ovrsp)",
+          "ENG": "Spot Len Req (Tgt Ach/Ovrsp)"
+        },
+        "description": {
+          "ARA": "Spot Length Requirement (Target Achieved/Oversupply)",
+          "ENG": "Spot Length Requirement (Target Achieved/Oversupply)"
+        },
+        "id": 54,
+        "isSelected": true
+      },
+      {
+        "shortName": {
+          "ARA": "Sponsorship Restr…<Clash>",
+          "ENG": "Sponsorship Restr…<Clash>"
+        },
+        "description": {
+          "ARA": "Sponsorship Restriction applied for Competitor Spot based on Competing <Clash>",
+          "ENG": "Sponsorship Restriction applied for Competitor Spot based on Competing <Clash>"
+        },
+        "id": 79,
+        "isSelected": true
+      },
+      {
+        "shortName": {
+          "ENG": "Out Camp Dprt",
+          "ARA": "Out Camp Dprt"
+        },
+        "description": {
+          "ENG": "Outside Campaign Daypart",
+          "ARA": "Outside Campaign Daypart"
+        },
+        "id": 9,
+        "isSelected": true
+      },
+      {
+        "shortName": {
+          "ARA": "Spot Len Req (Ach/Ovrsp)",
+          "ENG": "Spot Len Req (Ach/Ovrsp)"
+        },
+        "description": {
+          "ARA": "Spot Length Requirement (Achieved/Oversupply)",
+          "ENG": "Spot Length Requirement (Achieved/Oversupply)"
+        },
+        "id": 28,
+        "isSelected": true
+      },
+      {
+        "shortName": {
+          "ARA": "Dprt Req (Ach/Ovrsp)",
+          "ENG": "Dprt Req (Ach/Ovrsp)"
+        },
+        "description": {
+          "ARA": "Daypart Requirement (Achieved/Oversupply)",
+          "ENG": "Daypart Requirement (Achieved/Oversupply)"
+        },
+        "id": 27,
+        "isSelected": true
+      },
+      {
+        "shortName": {
+          "ENG": "SA Req (Ach/Ovrsp)",
+          "ARA": "SA Req (Ach/Ovrsp)"
+        },
+        "description": {
+          "ENG": "Sales Area Requirement (Achieved/Oversupply)",
+          "ARA": "Sales Area Requirement (Achieved/Oversupply)"
+        },
+        "id": 22,
+        "isSelected": true
+      },
+      {
+        "shortName": {
+          "ENG": "Cntr/End Req (Ach/Ovrsp)",
+          "ARA": "Cntr/End Req (Ach/Ovrsp)"
+        },
+        "description": {
+          "ENG": "Centre/End Requirement (Achieved/Oversupply)",
+          "ARA": "Centre/End Requirement (Achieved/Oversupply)"
+        },
+        "id": 23,
+        "isSelected": true
+      },
+      {
+        "shortName": {
+          "ENG": "SA Rev Req (Ach/Oversp)",
+          "ARA": "SA Rev Req (Ach/Oversp)"
+        },
+        "description": {
+          "ENG": "Sales Area Revenue Requirement (Achieved/Oversupply)",
+          "ARA": "Sales Area Revenue Requirement (Achieved/Oversupply)"
+        },
+        "id": 58,
+        "isSelected": true
+      },
+      {
+        "shortName": {
+          "ENG": "Strk Wght Req (Ach/Ovrsp)",
+          "ARA": "Strk Wght Req (Ach/Ovrsp)"
+        },
+        "description": {
+          "ENG": "Strike Weight Requirement (Achieved/Oversupply)",
+          "ARA": "Strike Weight Requirement (Achieved/Oversupply)"
+        },
+        "id": 24,
+        "isSelected": true
+      },
+      {
+        "shortName": {
+          "ARA": "Strk Wght/Dprt Req (Ach/Ovrsp)",
+          "ENG": "Strk Wght/Dprt Req (Ach/Ovrsp)"
+        },
+        "description": {
+          "ARA": "Strike Weight/Daypart Requirement (Achieved/Oversupply)",
+          "ENG": "Strike Weight/Daypart Requirement (Achieved/Oversupply)"
+        },
+        "id": 26,
+        "isSelected": true
+      },
+      {
+        "shortName": {
+          "ENG": "Book Pos Req (Ach/Ovrsp)",
+          "ARA": "Book Pos Req (Ach/Ovrsp)"
+        },
+        "description": {
+          "ENG": "Booking Position Requirement (Achieved/Oversupply)",
+          "ARA": "Booking Position Requirement (Achieved/Oversupply)"
+        },
+        "id": 29,
+        "isSelected": true
+      },
+      {
+        "shortName": {
+          "ARA": "Strk Wght Len Req (Ach/Ovrsp)",
+          "ENG": "Strk Wght Len Req (Ach/Ovrsp)"
+        },
+        "description": {
+          "ARA": "Strike Weight Length Requirement (Achieved/Oversupply)",
+          "ENG": "Strike Weight Length Requirement (Achieved/Oversupply)"
+        },
+        "id": 25,
+        "isSelected": true
+      },
+      {
+        "shortName": {
+          "ENG": "Sponsorship Restr…<Advertiser>",
+          "ARA": "Sponsorship Restr…<Advertiser>"
+        },
+        "description": {
+          "ENG": "Sponsorship Restriction applied for Competitor Spot based on Competing <Advertiser>",
+          "ARA": "Sponsorship Restriction applied for Competitor Spot based on Competing <Advertiser>"
+        },
+        "id": 80,
+        "isSelected": true
+      },
+      {
+        "shortName": {
+          "ENG": "Cntr/End Req",
+          "ARA": "Cntr/End Req"
+        },
+        "description": {
+          "ENG": "Centre/End Requirement",
+          "ARA": "Centre/End Requirement"
+        },
+        "id": 11,
+        "isSelected": true
+      },
+      {
+        "shortName": {
+          "ENG": "Time not in Req",
+          "ARA": "Time not in Req"
+        },
+        "description": {
+          "ENG": "Time not in Requirement",
+          "ARA": "Time not in Requirement"
+        },
+        "id": 12,
+        "isSelected": true
+      },
+      {
+        "shortName": {
+          "ARA": "Excl Camp Pkgs",
+          "ENG": "Excl Camp Pkgs"
+        },
+        "description": {
+          "ARA": "Exclude Campaign Packages",
+          "ENG": "Exclude Campaign Packages"
+        },
+        "id": 48,
+        "isSelected": true
+      },
+      {
+        "shortName": {
+          "ENG": "Brk Type",
+          "ARA": "Brk Type"
+        },
+        "description": {
+          "ENG": "Break Type",
+          "ARA": "Break Type"
+        },
+        "id": 13,
+        "isSelected": true
+      },
+      {
+        "shortName": {
+          "ENG": "Camp Req (Ach/Ovrsp)",
+          "ARA": "Camp Req (Ach/Ovrsp)"
+        },
+        "description": {
+          "ENG": "Campaign Requirement (Achieved/Oversupply)",
+          "ARA": "Campaign Requirement (Achieved/Oversupply)"
+        },
+        "id": 21,
+        "isSelected": true
+      },
+      {
+        "shortName": {
+          "ENG": "SA Req (Tgt Ach/Ovrsp)",
+          "ARA": "SA Req (Tgt Ach/Ovrsp)"
+        },
+        "description": {
+          "ENG": "Sales Area Requirement (Target Achieved/Oversupply)",
+          "ARA": "Sales Area Requirement (Target Achieved/Oversupply)"
+        },
+        "id": 49,
+        "isSelected": true
+      }
+    ],
+    "id": "cbbba5e3-298c-49a7-b384-35a6f9a8f1d0"
+  },
+  {
+    "description": {
+      "ENG": "Regional Booking",
+      "ARA": "Regional Booking"
+    },
+    "faultTypes": [
+      {
+        "shortName": {
+          "ENG": "Macro Book",
+          "ARA": "Macro Book"
+        },
+        "description": {
+          "ENG": "Macro Booking",
+          "ARA": "Macro Booking"
+        },
+        "id": 69,
+        "isSelected": true
+      },
+      {
+        "shortName": {
+          "ENG": "Rgnl Brk book",
+          "ARA": "Rgnl Brk book"
+        },
+        "description": {
+          "ENG": "Regional Break booking",
+          "ARA": "Regional Break booking"
+        },
+        "id": 47,
+        "isSelected": true
+      },
+      {
+        "shortName": {
+          "ENG": "Split Book Not Alwd",
+          "ARA": "Split Book Not Alwd"
+        },
+        "description": {
+          "ENG": "Split Bookings not allowed",
+          "ARA": "Split Bookings not allowed"
+        },
+        "id": 44,
+        "isSelected": true
+      }
+    ],
+    "id": "51efcda7-5961-4edc-807d-7aa349c6363c"
+  },
+  {
+    "description": {
+      "ENG": "Not enough availability",
+      "ARA": "Not enough availability"
+    },
+    "faultTypes": [
+      {
+        "shortName": {
+          "ENG": "Not Enough Avail in Brk",
+          "ARA": "Not Enough Avail in Brk"
+        },
+        "description": {
+          "ENG": "Not Enough Availability in Break",
+          "ARA": "Not Enough Availability in Break"
+        },
+        "id": 10,
+        "isSelected": true
+      }
+    ],
+    "id": "442af716-d2e5-47ed-994a-890c032eda06"
+  },
+  {
+    "description": {
+      "ENG": "Slotting Controls",
+      "ARA": "Slotting Controls"
+    },
+    "faultTypes": [
+      {
+        "shortName": {
+          "ENG": "Min Hrs Btw Spots",
+          "ARA": "Min Hrs Btw Spots"
+        },
+        "description": {
+          "ENG": "Min Hours Between Spots",
+          "ARA": "Min Hours Between Spots"
+        },
+        "id": 42,
+        "isSelected": true
+      },
+      {
+        "shortName": {
+          "ENG": "Min Wks Btw Prgm/Time",
+          "ARA": "Min Wks Btw Prgm/Time"
+        },
+        "description": {
+          "ENG": "Min Weeks Between Programme/Time",
+          "ARA": "Min Weeks Between Programme/Time"
+        },
+        "id": 41,
+        "isSelected": true
+      },
+      {
+        "shortName": {
+          "ENG": "Min Days Btw Prgm/Time",
+          "ARA": "Min Days Btw Prgm/Time"
+        },
+        "description": {
+          "ENG": "Min Days Between Programme/Time",
+          "ARA": "Min Days Between Programme/Time"
+        },
+        "id": 40,
+        "isSelected": true
+      },
+      {
+        "shortName": {
+          "ENG": "Max Spots/Prgm/Time",
+          "ARA": "Max Spots/Prgm/Time"
+        },
+        "description": {
+          "ENG": "Max Spots Per Programme/Time",
+          "ARA": "Max Spots Per Programme/Time"
+        },
+        "id": 39,
+        "isSelected": true
+      },
+      {
+        "shortName": {
+          "ARA": "Max Rtg for Spot Camp",
+          "ENG": "Max Rtg for Spot Camp"
+        },
+        "description": {
+          "ARA": "Max Ratings for Spot Campaigns",
+          "ENG": "Max Ratings for Spot Campaigns"
+        },
+        "id": 38,
+        "isSelected": true
+      },
+      {
+        "shortName": {
+          "ENG": "Min Brk Avail",
+          "ARA": "Min Brk Avail"
+        },
+        "description": {
+          "ENG": "Miniumum Break Availability",
+          "ARA": "Miniumum Break Availability"
+        },
+        "id": 43,
+        "isSelected": true
+      },
+      {
+        "shortName": {
+          "ENG": "Max Rtgs for Rtg Camp",
+          "ARA": "Max Rtgs for Rtg Camp"
+        },
+        "description": {
+          "ENG": "Max Ratings for Rating Campaigns",
+          "ARA": "Max Ratings for Rating Campaigns"
+        },
+        "id": 73,
+        "isSelected": true
+      },
+      {
+        "shortName": {
+          "ENG": "0 Rate Brks",
+          "ARA": "0 Rate Brks"
+        },
+        "description": {
+          "ENG": "Zero Rated Breaks",
+          "ARA": "Zero Rated Breaks"
+        },
+        "id": 71,
+        "isSelected": true
+      },
+      {
+        "shortName": {
+          "ENG": "Min Wks Btw Prgm",
+          "ARA": "Min Wks Btw Prgm"
+        },
+        "description": {
+          "ENG": "Min Weeks Between Programmes",
+          "ARA": "Min Weeks Between Programmes"
+        },
+        "id": 37,
+        "isSelected": true
+      },
+      {
+        "shortName": {
+          "ENG": "Effcy/Rank Lim",
+          "ARA": "Effcy/Rank Lim"
+        },
+        "description": {
+          "ENG": "Efficiency/Rank Limit",
+          "ARA": "Efficiency/Rank Limit"
+        },
+        "id": 20,
+        "isSelected": true
+      },
+      {
+        "shortName": {
+          "ENG": "Max 0 Rtgs",
+          "ARA": "Max 0 Rtgs"
+        },
+        "description": {
+          "ENG": "Max Zero Ratings",
+          "ARA": "Max Zero Ratings"
+        },
+        "id": 19,
+        "isSelected": true
+      },
+      {
+        "shortName": {
+          "ENG": "Max Spots/Day",
+          "ARA": "Max Spots/Day"
+        },
+        "description": {
+          "ENG": "Max Spots Per Day",
+          "ARA": "Max Spots Per Day"
+        },
+        "id": 30,
+        "isSelected": true
+      },
+      {
+        "shortName": {
+          "ENG": "Max Spots/Prgm/100 rtg",
+          "ARA": "Max Spots/Prgm/100 rtg"
+        },
+        "description": {
+          "ENG": "Max Spots per Programme/100 ratings",
+          "ARA": "Max Spots per Programme/100 ratings"
+        },
+        "id": 36,
+        "isSelected": true
+      },
+      {
+        "shortName": {
+          "ENG": "Max Spots/Prgm/Wk",
+          "ARA": "Max Spots/Prgm/Wk"
+        },
+        "description": {
+          "ENG": "Max Spots Per Programme/Week",
+          "ARA": "Max Spots Per Programme/Week"
+        },
+        "id": 35,
+        "isSelected": true
+      },
+      {
+        "shortName": {
+          "ENG": "Max Spots/Prgm/Day",
+          "ARA": "Max Spots/Prgm/Day"
+        },
+        "description": {
+          "ENG": "Max Spots Per Programme/Day",
+          "ARA": "Max Spots Per Programme/Day"
+        },
+        "id": 34,
+        "isSelected": true
+      },
+      {
+        "shortName": {
+          "ENG": "Min Brk Btw Spots",
+          "ARA": "Min Brk Btw Spots"
+        },
+        "description": {
+          "ENG": "Min Breaks Between Spots",
+          "ARA": "Min Breaks Between Spots"
+        },
+        "id": 33,
+        "isSelected": true
+      },
+      {
+        "shortName": {
+          "ARA": "Max Spots/2 Hrs",
+          "ENG": "Max Spots/2 Hrs"
+        },
+        "description": {
+          "ARA": "Max Spots Per 2 Hours",
+          "ENG": "Max Spots Per 2 Hours"
+        },
+        "id": 32,
+        "isSelected": true
+      },
+      {
+        "shortName": {
+          "ENG": "Max Spots/Hr",
+          "ARA": "Max Spots/Hr"
+        },
+        "description": {
+          "ENG": "Max Spots Per Hour",
+          "ARA": "Max Spots Per Hour"
+        },
+        "id": 31,
+        "isSelected": true
+      },
+      {
+        "shortName": {
+          "ENG": "Min TARP`s not met",
+          "ARA": "Min TARP`s not met"
+        },
+        "description": {
+          "ENG": "Min TARPs not met",
+          "ARA": "Min TARPs not met"
+        },
+        "id": 82,
+        "isSelected": true
+      }
+    ],
+    "id": "3152edd5-cd20-40ac-b315-c8d5d9fe890b"
+  }
+]

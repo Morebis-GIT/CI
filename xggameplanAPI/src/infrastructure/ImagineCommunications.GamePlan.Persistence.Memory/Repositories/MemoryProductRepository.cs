@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
 using ImagineCommunications.GamePlan.Domain.Generic.Queries;
@@ -23,15 +24,12 @@ namespace ImagineCommunications.GamePlan.Persistence.Memory.Repositories
 
         public void Add(IEnumerable<Product> items)
         {
-            foreach (var item in items)
-            {
-                Add(item);
-            }
+            InsertItems(items.ToList(), items.Select(i => i.Uid.ToString()).ToList<string>());
         }
 
         public void Add(Product item)
         {
-            InsertOrReplaceItem(item, item.Uid.ToString());
+            Add(new List<Product>() { item });
         }
 
         public void DeleteRangeByExternalRefs(IEnumerable<string> externalRefs)
@@ -53,7 +51,7 @@ namespace ImagineCommunications.GamePlan.Persistence.Memory.Repositories
 
         public void Update(Product item)
         {
-            InsertOrReplaceItem(item, item.Uid.ToString());
+            UpdateOrInsertItem(item, item.Uid.ToString());
         }
 
         public IEnumerable<Product> FindByExternal(string productref)
@@ -72,7 +70,6 @@ namespace ImagineCommunications.GamePlan.Persistence.Memory.Repositories
         public Product Get(Guid id) => Get(id, NodaTime.SystemClock.Instance.GetCurrentInstant().ToDateTimeUtc());
 
         public Product Get(Guid uid, DateTime onDate) => GetItemById(uid.ToString());
-
         public IEnumerable<Product> GetAll(DateTime onDate) => GetAllItems();
 
         public IEnumerable<Product> GetAll() =>
@@ -96,7 +93,7 @@ namespace ImagineCommunications.GamePlan.Persistence.Memory.Repositories
         public Task TruncateAsync()
         {
             Truncate();
-            return Task.CompletedTask;
+            return Task.FromResult(true);
         }
 
         public IEnumerable<Product> FindByAdvertiserId(List<string> advertiserIds) =>
@@ -117,9 +114,7 @@ namespace ImagineCommunications.GamePlan.Persistence.Memory.Repositories
 
         public int Count(Expression<Func<Product, bool>> query) => GetCount(query);
 
-        public void SaveChanges()
-        {
-        }
+        public void SaveChanges() { }
 
         public bool Exists(Expression<Func<Product, bool>> condition) =>
             throw new NotImplementedException();

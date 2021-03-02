@@ -10,7 +10,7 @@ namespace ImagineCommunications.GamePlan.Persistence.SqlServer.EntityConfigurati
         {
             builder.ToTable("DeliveryCappingGroup");
             builder.HasKey(e => e.Id);
-            builder.Property(e => e.Id).UseSqlServerIdentityColumn();
+            builder.Property(e => e.Id).UseMySqlIdentityColumn();
             builder.Property(e => e.Description).HasMaxLength(256).IsRequired();
         }
     }

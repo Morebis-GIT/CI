@@ -23,7 +23,7 @@ namespace ImagineCommunications.GamePlan.Persistence.File.Repositories
         public void Add(ClashException item)
         {
             List<ClashException> items = new List<ClashException>() { item };
-            InsertItems(_folder, _type, items, items.ConvertAll(i => i.Id.ToString()));
+            InsertItems(_folder, _type, items, items.Select(i => i.Id.ToString()).ToList());
         }
 
         public void Add(IEnumerable<ClashException> items)
@@ -36,7 +36,13 @@ namespace ImagineCommunications.GamePlan.Persistence.File.Repositories
             return GetAllByType<ClashException>(_folder, _type);
         }
 
-        public int CountAll => CountAll(_folder, _type);
+        public int CountAll
+        {
+            get
+            {
+                return CountAll<ClashException>(_folder, _type);
+            }
+        }
 
         public ClashException Find(Guid uid)
         {
@@ -62,7 +68,7 @@ namespace ImagineCommunications.GamePlan.Persistence.File.Repositories
 
         public void Remove(int id)
         {
-            DeleteItem(_folder, _type, id.ToString());
+            DeleteItem<ClashException>(_folder, _type, id.ToString());
         }
 
         public IEnumerable<ClashException> FindByExternal(string externalRef)
@@ -77,7 +83,7 @@ namespace ImagineCommunications.GamePlan.Persistence.File.Repositories
 
         public void Truncate()
         {
-            DeleteAllItems(_folder, _type);
+            DeleteAllItems<ClashException>(_folder, _type);
         }
 
         public IEnumerable<ClashException> Search(DateTime? dateRangeStart, DateTime? dateRangeEnd)

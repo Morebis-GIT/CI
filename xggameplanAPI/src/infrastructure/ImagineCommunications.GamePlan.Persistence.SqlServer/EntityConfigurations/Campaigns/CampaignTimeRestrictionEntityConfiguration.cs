@@ -13,7 +13,7 @@ namespace ImagineCommunications.GamePlan.Persistence.SqlServer.EntityConfigurati
             builder.ToTable("CampaignTimeRestrictions");
 
             builder.HasKey(e => e.Id);
-            builder.Property(e => e.Id).UseSqlServerIdentityColumn();
+            builder.Property(e => e.Id).UseMySqlIdentityColumn();
 
             builder.Property(e => e.StartDateTime).AsUtc();
             builder.Property(e => e.EndDateTime).AsUtc();

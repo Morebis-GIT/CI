@@ -1,0 +1,21 @@
+[
+  {
+    "Locked": false,
+    "ProvisioningAPIURL": "http://example.com:80",
+    "AutoProvisioning": true,
+    "MinLifetime": {
+      "ticks": 36000000000
+    },
+    "MaxLifetime": {
+      "ticks": 72000000000
+    },
+    "CreationTimeout": {
+      "ticks": 9000000000
+    },
+    "MinInstances": 0,
+    "MaxInstances": 3,
+    "SystemMaxInstances": 10,
+    "ApplicationVersion": "NOTSET",
+    "BinariesVersion": "NOTSET"
+  }
+]

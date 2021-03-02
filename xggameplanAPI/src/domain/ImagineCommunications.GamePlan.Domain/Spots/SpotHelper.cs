@@ -7,40 +7,32 @@ namespace ImagineCommunications.GamePlan.Domain.Spots
     public static class SpotHelper
     {
         public static bool IsBooked(string externalBreakNo) =>
-            !String.IsNullOrEmpty(externalBreakNo) &&
+            !string.IsNullOrEmpty(externalBreakNo) &&
             !externalBreakNo.Equals(Globals.UnplacedBreakString, StringComparison.InvariantCultureIgnoreCase);
 
-        public static IReadOnlyDictionary<int, Spot> IndexListById(IEnumerable<Spot> spots)
+        public static Dictionary<int, Spot> IndexListById(IEnumerable<Spot> spots)
         {
             var indexedSpots = new Dictionary<int, Spot>();
-
             foreach (var spot in spots)
             {
-                if (indexedSpots.ContainsKey(spot.CustomId))
+                if (!indexedSpots.ContainsKey(spot.CustomId))
                 {
-                    continue;
+                    indexedSpots.Add(spot.CustomId, spot);
                 }
-
-                indexedSpots.Add(spot.CustomId, spot);
             }
-
             return indexedSpots;
         }
 
-        public static IReadOnlyDictionary<Guid, Spot> IndexListByUid(IEnumerable<Spot> spots)
+        public static Dictionary<Guid, Spot> IndexListByUid(IEnumerable<Spot> spots)
         {
             var indexedSpots = new Dictionary<Guid, Spot>();
-
             foreach (var spot in spots)
             {
-                if (indexedSpots.ContainsKey(spot.Uid))
+                if (!indexedSpots.ContainsKey(spot.Uid))
                 {
-                    continue;
+                    indexedSpots.Add(spot.Uid, spot);
                 }
-
-                indexedSpots.Add(spot.Uid, spot);
             }
-
             return indexedSpots;
         }
     }

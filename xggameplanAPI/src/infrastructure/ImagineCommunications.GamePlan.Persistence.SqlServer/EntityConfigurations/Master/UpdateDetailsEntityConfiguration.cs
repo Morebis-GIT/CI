@@ -11,7 +11,7 @@ namespace ImagineCommunications.GamePlan.Persistence.SqlServer.EntityConfigurati
         {
             builder.ToTable("UpdateDetails");
             builder.HasKey(k => k.Id);
-            builder.Property(e => e.Id).HasDefaultValueSql("newid()");
+            builder.Property(e => e.Id);
             builder.Property(e => e.Name).IsRequired().HasMaxLength(128);
             builder.Property(e => e.TenantId).IsRequired().HasDefaultValue(0);
             builder.Property(e => e.TimeApplied).IsRequired().AsUtc();

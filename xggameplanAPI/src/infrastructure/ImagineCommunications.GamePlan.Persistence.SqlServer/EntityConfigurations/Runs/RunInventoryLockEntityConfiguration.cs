@@ -11,8 +11,7 @@ namespace ImagineCommunications.GamePlan.Persistence.SqlServer.EntityConfigurati
             builder.ToTable("RunInventoryLocks");
 
             builder.HasKey(k => k.Id);
-            builder.Property(p => p.Id).UseSqlServerIdentityColumn();
-
+            builder.Property(p => p.Id).UseMySqlIdentityColumn();
             builder.HasIndex(e => e.RunId);
             builder.HasIndex(e => e.ChosenScenarioId);
         }

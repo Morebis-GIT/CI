@@ -10,7 +10,8 @@ namespace ImagineCommunications.GamePlan.Persistence.SqlServer.EntityConfigurati
         {
             builder.ToTable("SalesAreasChannelGroups");
             builder.HasKey(e => e.Id);
-            builder.Property(p => p.Id).UseSqlServerIdentityColumn();
+            builder.Property(p => p.Id).UseMySqlIdentityColumn();
+
             builder.Property(x => x.Name).HasMaxLength(256);
             builder.HasIndex(e => e.SalesAreaId);
         }

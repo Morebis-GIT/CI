@@ -86,7 +86,7 @@ namespace ImagineCommunications.Gameplan.Integration.Handlers.EventHandlers.Prog
                     if (invalidCategories.Length != 0)
                     {
                         throw new DataSyncException(DataSyncErrorCode.ProgrammeCategoryNotFound,
-                            "Invalid programme categories: " + string.Join(",", invalidCategories));
+                            "Invalid programme categories: " + String.Join(",", invalidCategories));
                     }
                 }
 
@@ -123,7 +123,7 @@ namespace ImagineCommunications.Gameplan.Integration.Handlers.EventHandlers.Prog
                         return newCat;
                     });
 
-                    if (programme.ProgrammeCategoryLinks.All(x => !string.Equals(x.ProgrammeCategory.Name, category.Name)))
+                    if (programme.ProgrammeCategoryLinks.All(x => !String.Equals(x.ProgrammeCategory.Name, category.Name)))
                     {
                         var link = new ProgrammeCategoryLink
                         {

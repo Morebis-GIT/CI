@@ -178,24 +178,15 @@ namespace ImagineCommunications.GamePlan.Process.Smooth
                             var info = new StringBuilder(320);
                             _ = info
                                 .Append("Completed Smooth processing")
-                                .Append(": RunID=")
-                                .Append(Log(run.Id))
-                                .Append(": Sales Area=")
-                                .Append(salesAreaName)
-                                .Append(": Started=")
-                                .Append(Log(smoothStatistic.TimeStarted))
-                                .Append(": Ended=")
-                                .Append(Log(smoothStatistic.TimeEnded))
-                                .Append(": Elapsed=")
-                                .Append(Log((long)elapsedTime.TotalSeconds) + "s")
-                                .Append(": Breaks=")
-                                .Append(smoothOutput.Breaks.ToString())
-                                .Append(": Spots set=")
-                                .Append(smoothOutput.SpotsSet.ToString())
-                                .Append(": Spots not set=")
-                                .Append(smoothOutput.SpotsNotSet.ToString())
-                                .Append(": Recommendations=")
-                                .Append(smoothOutput.Recommendations.ToString())
+                                .Append(": RunID=" + Log(run.Id))
+                                .Append(": Sales Area=" + salesAreaName)
+                                .Append(": Started=" + Log(smoothStatistic.TimeStarted))
+                                .Append(": Ended=" + Log(smoothStatistic.TimeEnded))
+                                .Append(": Elapsed=" + Log((long)elapsedTime.TotalSeconds) + "s")
+                                .Append(": Breaks=" + smoothOutput.Breaks.ToString())
+                                .Append(": Spots set=" + smoothOutput.SpotsSet.ToString())
+                                .Append(": Spots not set=" + smoothOutput.SpotsNotSet.ToString())
+                                .Append(": Recommendations=" + smoothOutput.Recommendations.ToString())
                                 ;
 
                             raiseInfo(info.ToString());

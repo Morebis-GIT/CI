@@ -11,8 +11,7 @@ namespace ImagineCommunications.GamePlan.Persistence.SqlServer.EntityConfigurati
             builder.ToTable("TenantSettings");
 
             builder.HasKey(e => e.Id);
-            builder.Property(e => e.Id).HasDefaultValueSql("newid()");
-
+            builder.Property(e => e.Id);
             builder.Property(e => e.DefaultScenarioId);
             builder.Property(e => e.DefaultSalesAreaPassPriorityId);
             builder.Property(e => e.AutoBookTargetedZeroRatedBreaks);

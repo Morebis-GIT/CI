@@ -1,0 +1,53 @@
+[
+  {
+    "CriteriaList": [
+      {
+        "MaxDays": 30,
+        "MaxSalesAreas": null,
+        "MaxDemographics": null,
+        "MaxCampaigns": null,
+        "MaxBreaks": null
+      }
+    ],
+    "Id": 1,
+    "Description": "t3.medium (50GB)",
+    "CloudProvider": 0,
+    "InstanceType": "t3.medium",
+    "StorageSizeGb": 50,
+    "Cost": 24.0
+  },
+  {
+    "CriteriaList": [
+      {
+        "MaxDays": 97,
+        "MaxSalesAreas": null,
+        "MaxDemographics": null,
+        "MaxCampaigns": null,
+        "MaxBreaks": null
+      }
+    ],
+    "Id": 2,
+    "Description": "c5.xlarge (50GB)",
+    "CloudProvider": 0,
+    "InstanceType": "c5.xlarge",
+    "StorageSizeGb": 50,
+    "Cost": 36.0
+  },
+  {
+    "CriteriaList": [
+      {
+        "MaxDays": 190,
+        "MaxSalesAreas": null,
+        "MaxDemographics": null,
+        "MaxCampaigns": null,
+        "MaxBreaks": null
+      }
+    ],
+    "Id": 3,
+    "Description": "c5.2xlarge (50GB)",
+    "CloudProvider": 0,
+    "InstanceType": "c5.2xlarge",
+    "StorageSizeGb": 50,
+    "Cost": 54.0
+  }
+]

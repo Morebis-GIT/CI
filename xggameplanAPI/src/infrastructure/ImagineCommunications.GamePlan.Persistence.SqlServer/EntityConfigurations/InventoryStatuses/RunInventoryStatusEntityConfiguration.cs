@@ -10,8 +10,8 @@ namespace ImagineCommunications.GamePlan.Persistence.SqlServer.EntityConfigurati
         {
             builder.ToTable("RunExcludedInventoryStatuses");
             builder.HasKey(k => k.Id);
-            builder.Property(p => p.Id).UseSqlServerIdentityColumn();
-            builder.Property(e => e.RunId);
+            builder.Property(p => p.Id).UseMySqlIdentityColumn();
+            builder.Property(p => p.RunId);
             builder.Property(e => e.InventoryCode).HasMaxLength(10).IsRequired();
 
             builder.HasOne(e => e.Run)

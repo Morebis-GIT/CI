@@ -16,7 +16,6 @@ using ImagineCommunications.GamePlan.Persistence.SqlServer.Core.PostProcessing.B
 using ImagineCommunications.GamePlan.Persistence.SqlServer.Dto;
 using ImagineCommunications.GamePlan.Persistence.SqlServer.Entities.Tenant;
 using ImagineCommunications.GamePlan.Persistence.SqlServer.Entities.Tenant.Products;
-using ImagineCommunications.GamePlan.Persistence.SqlServer.Extensions;
 using Microsoft.EntityFrameworkCore;
 using NodaTime;
 using xggameplan.core.Extensions;
@@ -86,11 +85,11 @@ namespace ImagineCommunications.GamePlan.Persistence.SqlServer.Repositories
                 _dbContext.RemoveRange(productEntity.ProductAdvertisers.ToArray());
                 productEntity.ProductAdvertisers.Clear();
 
-                if (!string.IsNullOrWhiteSpace(productModel.AdvertiserIdentifier))
+                if (!String.IsNullOrWhiteSpace(productModel.AdvertiserIdentifier))
                 {
                     if (_dbAdvertisers.TryGetValue(productModel.AdvertiserIdentifier, out var dbAdv))
                     {
-                        if (!string.Equals(dbAdv.Name, productModel.AdvertiserName))
+                        if (!String.Equals(dbAdv.Name, productModel.AdvertiserName))
                         {
                             dbAdv.Name = productModel.AdvertiserName;
                         }
@@ -132,7 +131,7 @@ namespace ImagineCommunications.GamePlan.Persistence.SqlServer.Repositories
                 _dbContext.RemoveRange(productEntity.ProductAgencies.ToArray());
                 productEntity.ProductAgencies.Clear();
 
-                if (!string.IsNullOrWhiteSpace(productModel.AgencyIdentifier))
+                if (!String.IsNullOrWhiteSpace(productModel.AgencyIdentifier))
                 {
                     Entities.Tenant.AgencyGroup dbAgencyGroup = null;
                     if (productModel.AgencyGroup != null)
@@ -148,7 +147,7 @@ namespace ImagineCommunications.GamePlan.Persistence.SqlServer.Repositories
 
                     if (_dbAgencies.TryGetValue(productModel.AgencyIdentifier, out var dbAgency))
                     {
-                        if (!string.Equals(dbAgency.Name, productModel.AgencyName))
+                        if (!String.Equals(dbAgency.Name, productModel.AgencyName))
                         {
                             dbAgency.Name = productModel.AgencyName;
                         }
@@ -195,7 +194,7 @@ namespace ImagineCommunications.GamePlan.Persistence.SqlServer.Repositories
                 {
                     if (_dbPersons.TryGetValue(productModel.SalesExecutive.Identifier, out var dbPerson))
                     {
-                        if (!string.Equals(dbPerson.Name, productModel.SalesExecutive.Name))
+                        if (!String.Equals(dbPerson.Name, productModel.SalesExecutive.Name))
                         {
                             dbPerson.Name = productModel.SalesExecutive.Name;
                         }
@@ -231,12 +230,12 @@ namespace ImagineCommunications.GamePlan.Persistence.SqlServer.Repositories
         {
             var query =
                 from product in _dbContext.Query<Entities.Tenant.Products.Product>()
-                join productAdvertiserJoin in _dbContext.Query<ProductAdvertiser>() on product.Uid equals productAdvertiserJoin.ProductId
+                join productAdvertiserJoin in _dbContext.Query<ProductAdvertiser>() on product.Id equals productAdvertiserJoin.ProductId
                     into paJoin
                 from productAdvertiser in paJoin.DefaultIfEmpty()
                 join advertiserJoin in _dbContext.Query<Advertiser>() on productAdvertiser.AdvertiserId equals advertiserJoin.Id into aJoin
                 from advertiser in aJoin.DefaultIfEmpty()
-                join productAgencyJoin in _dbContext.Query<ProductAgency>() on product.Uid equals productAgencyJoin.ProductId
+                join productAgencyJoin in _dbContext.Query<ProductAgency>() on product.Id equals productAgencyJoin.ProductId
                     into pagJoin
                 from productAgency in pagJoin.DefaultIfEmpty()
                 join agencyJoin in _dbContext.Query<Agency>() on productAgency.AgencyId equals agencyJoin.Id into agJoin
@@ -244,7 +243,7 @@ namespace ImagineCommunications.GamePlan.Persistence.SqlServer.Repositories
                 join agencyGroupJoin in _dbContext.Query<Entities.Tenant.AgencyGroup>() on productAgency.AgencyGroupId equals agencyGroupJoin.Id
                     into aggJoin
                 from agencyGroup in aggJoin.DefaultIfEmpty()
-                join productPersonJoin in _dbContext.Query<ProductPerson>() on product.Uid equals productPersonJoin.ProductId
+                join productPersonJoin in _dbContext.Query<ProductPerson>() on product.Id equals productPersonJoin.ProductId
                     into pseJoin
                 from productPerson in pseJoin.DefaultIfEmpty()
                 join personJoin in _dbContext.Query<Person>() on productPerson.PersonId equals personJoin.Id into seJoin
@@ -266,7 +265,7 @@ namespace ImagineCommunications.GamePlan.Persistence.SqlServer.Repositories
             }
             return query.Select(x => new ProductDto
             {
-                Uid = x.product.Uid,
+                Uid = x.product.Id,
                 Name = x.product.Name,
                 Externalidentifier = x.product.Externalidentifier,
                 ParentExternalidentifier = x.product.ParentExternalidentifier,
@@ -325,7 +324,7 @@ namespace ImagineCommunications.GamePlan.Persistence.SqlServer.Repositories
                 throw new ArgumentNullException(nameof(item));
             }
 
-            var entity = ProductQuery.FirstOrDefault(x => x.Uid == item.Uid);
+            var entity = ProductQuery.FirstOrDefault(x => x.Id == item.Uid);
 
             if (entity == null)
             {
@@ -364,11 +363,11 @@ namespace ImagineCommunications.GamePlan.Persistence.SqlServer.Repositories
             {
                 var product = _mapper.Map<Entities.Tenant.Products.Product>(item);
                 products.Add(product);
-                if (!string.IsNullOrWhiteSpace(item.AdvertiserIdentifier))
+                if (!String.IsNullOrWhiteSpace(item.AdvertiserIdentifier))
                 {
                     if (_dbAdvertisers.TryGetValue(item.AdvertiserIdentifier, out var dbAdv))
                     {
-                        if (!string.Equals(dbAdv.Name, item.AdvertiserName))
+                        if (!String.Equals(dbAdv.Name, item.AdvertiserName))
                         {
                             dbAdv.Name = item.AdvertiserName;
                             advertisers.Add(dbAdv);
@@ -397,7 +396,7 @@ namespace ImagineCommunications.GamePlan.Persistence.SqlServer.Repositories
                     product.ProductAdvertisers.Add(productAdvertiser);
                 }
 
-                if (!string.IsNullOrWhiteSpace(item.AgencyIdentifier))
+                if (!String.IsNullOrWhiteSpace(item.AgencyIdentifier))
                 {
                     Entities.Tenant.AgencyGroup dbAgencyGroup = null;
                     if (item.AgencyGroup != null)
@@ -413,7 +412,7 @@ namespace ImagineCommunications.GamePlan.Persistence.SqlServer.Repositories
 
                     if (_dbAgencies.TryGetValue(item.AgencyIdentifier, out var dbAgency))
                     {
-                        if (!string.Equals(dbAgency.Name, item.AgencyName))
+                        if (!String.Equals(dbAgency.Name, item.AgencyName))
                         {
                             dbAgency.Name = item.AgencyName;
                             agencies.Add(dbAgency);
@@ -447,7 +446,7 @@ namespace ImagineCommunications.GamePlan.Persistence.SqlServer.Repositories
                 {
                     if (_dbPersons.TryGetValue(item.SalesExecutive.Identifier, out var dbPerson))
                     {
-                        if (!string.Equals(dbPerson.Name, item.SalesExecutive.Name))
+                        if (!String.Equals(dbPerson.Name, item.SalesExecutive.Name))
                         {
                             dbPerson.Name = item.SalesExecutive.Name;
                             persons.Add(dbPerson);
@@ -507,7 +506,7 @@ namespace ImagineCommunications.GamePlan.Persistence.SqlServer.Repositories
             {
                 foreach (var item in productAdvertisers)
                 {
-                    item.ProductId = item.Product.Uid;
+                    item.ProductId = item.Product.Id;
                     item.AdvertiserId = item.Advertiser.Id;
                 }
 
@@ -518,7 +517,7 @@ namespace ImagineCommunications.GamePlan.Persistence.SqlServer.Repositories
             {
                 foreach (var item in productAgencies)
                 {
-                    item.ProductId = item.Product.Uid;
+                    item.ProductId = item.Product.Id;
                     item.AgencyId = item.Agency.Id;
                     item.AgencyGroupId = item.AgencyGroup?.Id;
                 }
@@ -530,7 +529,7 @@ namespace ImagineCommunications.GamePlan.Persistence.SqlServer.Repositories
             {
                 foreach (var item in productPersons)
                 {
-                    item.ProductId = item.Product.Uid;
+                    item.ProductId = item.Product.Id;
                     item.PersonId = item.Person.Id;
                 }
 
@@ -566,7 +565,7 @@ namespace ImagineCommunications.GamePlan.Persistence.SqlServer.Repositories
                 {
                     var ids = externalRefs.Skip(i * 1000).Take(1000);
                     var prodcutIds = _dbContext.Query<Entities.Tenant.Products.Product>()
-                        .Where(x => ids.Contains(x.Externalidentifier)).Select(r => r.Uid)
+                        .Where(x => ids.Contains(x.Externalidentifier)).Select(r => r.Id)
                         .ToArray();
 
                     _dbContext.Specific.RemoveByUniqueIdentifierIds<Entities.Tenant.Products.Product>(prodcutIds);
@@ -580,8 +579,7 @@ namespace ImagineCommunications.GamePlan.Persistence.SqlServer.Repositories
             _dbContext.Query<Entities.Tenant.Products.Product>().ProjectTo<Product>(_mapper.ConfigurationProvider).Any(condition);
 
         public IEnumerable<Product> FindByExternal(string externalRef, DateTime onDate) =>
-            ActualProductQuery(onDate).Where(x => x.Externalidentifier == externalRef)
-                .ProjectTo<Product>(_mapper.ConfigurationProvider).ToList();
+             _mapper.Map<List<Product>>(ActualProductQuery(onDate).Where(x => x.Externalidentifier == externalRef)).ToList();
 
         public IEnumerable<Product> FindByExternal(List<string> externalRefs, DateTime onDate)
         {
@@ -591,9 +589,9 @@ namespace ImagineCommunications.GamePlan.Persistence.SqlServer.Repositories
             for (int i = 0, page = 0; i < externalRefs.Count; i += MaxClauseCount, page++)
             {
                 var refs = externalRefs.Skip(MaxClauseCount * page).Take(MaxClauseCount).ToArray();
-                products.AddRange(ActualProductQuery(onDate)
-                    .Where(x => refs.Contains(x.Externalidentifier)).ProjectTo<Product>(_mapper.ConfigurationProvider)
-                    .ToArray());
+                var actualProducts = _mapper.Map<List<Product>>(
+                    ActualProductQuery(onDate).Where(x => refs.Contains(x.Externalidentifier)).ToList()).ToArray();
+                products.AddRange(actualProducts);
             }
 
             return products;
@@ -601,10 +599,12 @@ namespace ImagineCommunications.GamePlan.Persistence.SqlServer.Repositories
 
         public Product Find(Guid uid) => Get(uid);
 
-        public IEnumerable<Product> FindByAdvertiserId(List<string> advertiserIds, DateTime onDate) =>
-            ActualProductQuery(onDate)
-                .Where(x => advertiserIds.Contains(x.AdvertiserIdentifier))
-                .ProjectTo<Product>(_mapper.ConfigurationProvider).ToList();
+        public IEnumerable<Product> FindByAdvertiserId(List<string> advertiserIds, DateTime onDate)
+        {
+            var actualProducts = ActualProductQuery(onDate)
+                .Where(x => advertiserIds.Contains(x.AdvertiserIdentifier));
+            return _mapper.Map<IEnumerable<Product>>(actualProducts.ToList());
+        }
 
         public IEnumerable<Product> FindByAdvertiserId(List<string> advertiserIds) =>
             FindByAdvertiserId(advertiserIds, _clock.GetCurrentInstant().ToDateTimeUtc());
@@ -621,8 +621,11 @@ namespace ImagineCommunications.GamePlan.Persistence.SqlServer.Repositories
         public Product Get(Guid uid, DateTime onDate) =>
             ActualProductQuery(onDate).ProjectTo<Product>(_mapper.ConfigurationProvider).FirstOrDefault(x => x.Uid == uid);
 
-        public IEnumerable<Product> GetAll(DateTime onDate) =>
-            ActualProductQuery(onDate).ProjectTo<Product>(_mapper.ConfigurationProvider).ToList();
+        public IEnumerable<Product> GetAll(DateTime onDate)
+        {
+            var actualProducts = ActualProductQuery(onDate).ToList();
+            return _mapper.Map<List<Product>>(actualProducts);
+        }
 
         public IEnumerable<Product> GetAll() =>
             GetAll(_clock.GetCurrentInstant().ToDateTimeUtc());
@@ -685,7 +688,7 @@ namespace ImagineCommunications.GamePlan.Persistence.SqlServer.Repositories
 
         public IEnumerable<string> GetReportingCategories() =>
             _dbContext.Query<Entities.Tenant.Products.Product>()
-                .Where(x => !string.IsNullOrEmpty(x.ReportingCategory))
+                .Where(x => !String.IsNullOrEmpty(x.ReportingCategory))
                 .Select(x => x.ReportingCategory)
                 .Distinct()
                 .ToList();
@@ -712,17 +715,17 @@ namespace ImagineCommunications.GamePlan.Persistence.SqlServer.Repositories
         {
             var where = new List<Expression<Func<Entities.Tenant.Products.Product, bool>>>();
 
-            if (!string.IsNullOrWhiteSpace(searchQuery.Externalidentifier))
+            if (!String.IsNullOrWhiteSpace(searchQuery.Externalidentifier))
             {
                 where.Add(p => p.Externalidentifier == searchQuery.Externalidentifier);
             }
 
-            if (!string.IsNullOrWhiteSpace(searchQuery.Name))
+            if (!String.IsNullOrWhiteSpace(searchQuery.Name))
             {
                 where.Add(p => p.Name == searchQuery.Name);
             }
 
-            if (!string.IsNullOrWhiteSpace(searchQuery.ClashCode))
+            if (!String.IsNullOrWhiteSpace(searchQuery.ClashCode))
             {
                 where.Add(p => p.ClashCode == searchQuery.ClashCode);
             }
@@ -737,11 +740,9 @@ namespace ImagineCommunications.GamePlan.Persistence.SqlServer.Repositories
                 where.Add(p => p.EffectiveEndDate < searchQuery.ToDateInclusive.AddTicks(1));
             }
 
-            if (!string.IsNullOrWhiteSpace(searchQuery.NameOrRef))
+            if (!String.IsNullOrWhiteSpace(searchQuery.NameOrRef))
             {
-                var query = _searchConditionBuilder.StartAllWith(
-                    searchQuery.NameOrRef.Split(new[] { " " }, StringSplitOptions.RemoveEmptyEntries)).Build();
-                where.Add(p => EF.Functions.Contains(EF.Property<string>(p, Entities.Tenant.Products.Product.SearchFieldName), query));
+                where.Add(p => p.Name.StartsWith(searchQuery.NameOrRef) || p.Externalidentifier.StartsWith(searchQuery.NameOrRef));
             }
 
             string sortBy;
@@ -768,6 +769,11 @@ namespace ImagineCommunications.GamePlan.Persistence.SqlServer.Repositories
                 ? ActualProductQuery(onDate)
                 : ActualProductQuery(onDate, where.AggregateAnd());
 
+            if (!String.IsNullOrWhiteSpace(searchQuery.NameOrRef))
+            {
+                items = items.MakeCaseInsensitive();
+            }
+
             var sortedItems = items.OrderBySingleItem(sortBy,
                     searchQuery.OrderByDirection ?? Domain.Generic.OrderDirection.Asc)
                 .ApplyPaging(searchQuery.Skip, searchQuery.Top);
@@ -784,27 +790,21 @@ namespace ImagineCommunications.GamePlan.Persistence.SqlServer.Repositories
                 throw new ArgumentNullException(nameof(searchQuery));
             }
 
-            var query = string.Empty;
-            if (!string.IsNullOrWhiteSpace(searchQuery.AdvertiserNameorRef))
-            {
-                query = _searchConditionBuilder.StartAllWith(
-                    searchQuery.AdvertiserNameorRef.Split(new[] { " " }, StringSplitOptions.RemoveEmptyEntries)).Build();
-            }
-
             var dbQuery =
                 (from p in _dbContext.Query<Entities.Tenant.Products.Product>()
-                 join pa in _dbContext.Query<ProductAdvertiser>() on p.Uid equals pa.ProductId
+                 join pa in _dbContext.Query<ProductAdvertiser>() on p.Id equals pa.ProductId
                  join a in _dbContext.Query<Advertiser>() on pa.AdvertiserId equals a.Id
                  where pa.StartDate <= onDate && pa.EndDate > onDate
                  select a).AsQueryable();
 
-            var items = (string.IsNullOrWhiteSpace(query)
+                dbQuery = String.IsNullOrWhiteSpace(searchQuery.AdvertiserNameorRef)
                     ? dbQuery
                     : dbQuery
-                        .Where(a => EF.Functions.Contains(
-                            EF.Property<string>(a, Entities.Tenant.Advertiser.SearchFieldName), query)))
-                .Distinct().OrderBy(x => x.ExternalIdentifier)
-                .ProjectTo<ProductAdvertiserModel>(_mapper.ConfigurationProvider);
+                        .Where(a => ( a.ExternalIdentifier.StartsWith(searchQuery.AdvertiserNameorRef) || a.Name.StartsWith(searchQuery.AdvertiserNameorRef)))
+                        .Distinct()
+                        .OrderBy(x => x.ExternalIdentifier);
+
+            var items = _mapper.Map<List<ProductAdvertiserModel>>(dbQuery.ToList());
 
             var totalCount = searchQuery.IncludeTotalCount ? items.Count() : 0;
 
@@ -824,7 +824,7 @@ namespace ImagineCommunications.GamePlan.Persistence.SqlServer.Repositories
                 throw new ArgumentNullException(nameof(product));
             }
 
-            var entity = ProductQuery.FirstOrDefault(x => x.Uid == product.Uid);
+            var entity = ProductQuery.FirstOrDefault(x => x.Id == product.Uid);
 
             if (entity != null)
             {
@@ -845,7 +845,7 @@ namespace ImagineCommunications.GamePlan.Persistence.SqlServer.Repositories
 
         protected override Expression VisitParameter(ParameterExpression node)
         {
-            return node.Type == _replaceExpression.Type ? (Expression)_replaceExpression : node;
+            return node.Type == _replaceExpression.Type ? _replaceExpression : node;
         }
     }
 }

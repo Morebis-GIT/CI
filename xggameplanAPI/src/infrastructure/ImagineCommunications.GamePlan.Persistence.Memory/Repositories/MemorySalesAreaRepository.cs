@@ -24,14 +24,15 @@ namespace ImagineCommunications.GamePlan.Persistence.Memory.Repositories
 
         public IEnumerable<SalesArea> GetAll() => GetAllItems();
 
-        public void Add(SalesArea item)
+        public void Add(SalesArea salesArea)
         {
-            InsertOrReplaceItem(item, item.Id.ToString());
+            var items = new List<SalesArea>() { salesArea };
+            InsertItems(items, items.Select(i => i.Id.ToString()).ToList<string>());
         }
 
-        public void Update(SalesArea item)
+        public void Update(SalesArea salesArea)
         {
-            InsertOrReplaceItem(item, item.Id.ToString());
+            UpdateOrInsertItem(salesArea, salesArea.Id.ToString());
         }
 
         public void Update(List<SalesArea> salesAreas)
@@ -54,9 +55,6 @@ namespace ImagineCommunications.GamePlan.Persistence.Memory.Repositories
         /// <returns></returns>
         public List<SalesArea> FindByNames(List<string> names) =>
             GetAllItems(sa => names.Contains(sa.Name));
-
-        public SalesArea FindByCustomId(int id) =>
-            GetAllItems().Find(x => x.CustomId.Equals(id));
 
         public SalesArea FindByName(string name) =>
             GetAllItems().Find(x => x.Name.Equals(name));
@@ -96,11 +94,6 @@ namespace ImagineCommunications.GamePlan.Persistence.Memory.Repositories
             {
                 DeleteItem(item.Id.ToString());
             }
-        }
-
-        public void Truncate()
-        {
-            DeleteAllItems();
         }
     }
 }

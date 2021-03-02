@@ -10,7 +10,7 @@ namespace ImagineCommunications.GamePlan.Persistence.SqlServer.Entities.Tenant.S
 
         public int SmoothConfigurationId { get; set; }
 
-        public ICollection<SmoothDiagnosticConfigurationSalesArea> SpotSalesAreas { get; set; } = new List<SmoothDiagnosticConfigurationSalesArea>(0);
+        public ICollection<string> SpotSalesAreas { get; set; } = new List<string>(0);
 
         public ICollection<string> SpotDemographics { get; set; } = new List<string>(0);
 

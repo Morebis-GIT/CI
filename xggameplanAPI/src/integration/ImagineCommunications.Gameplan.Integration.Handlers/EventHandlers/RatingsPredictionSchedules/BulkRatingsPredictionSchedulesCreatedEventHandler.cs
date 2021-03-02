@@ -3,24 +3,17 @@ using AutoMapper;
 using ImagineCommunications.BusClient.Abstraction.Classes;
 using ImagineCommunications.Gameplan.Integration.Contracts.Interfaces.RatingsPredictionSchedules;
 using ImagineCommunications.GamePlan.Domain.RatingSchedules;
-using ImagineCommunications.GamePlan.Persistence.SqlServer.Interfaces;
-using xggameplan.core.Extensions.AutoMapper;
 
 namespace ImagineCommunications.Gameplan.Integration.Handlers.EventHandlers.RatingsPredictionSchedules
 {
     public class BulkRatingsPredictionSchedulesCreatedEventHandler : EventHandler<IBulkRatingsPredictionSchedulesCreated>
     {
         private readonly IRatingsScheduleRepository _ratingsScheduleRepository;
-        private readonly ISqlServerSalesAreaByIdCacheAccessor _salesAreaByIdCache;
         private readonly IMapper _mapper;
 
-        public BulkRatingsPredictionSchedulesCreatedEventHandler(
-            IRatingsScheduleRepository ratingsScheduleRepository,
-            ISqlServerSalesAreaByIdCacheAccessor salesAreaByIdCache,
-            IMapper mapper)
+        public BulkRatingsPredictionSchedulesCreatedEventHandler(IRatingsScheduleRepository ratingsScheduleRepository, IMapper mapper)
         {
             _mapper = mapper;
-            _salesAreaByIdCache = salesAreaByIdCache;
             _ratingsScheduleRepository = ratingsScheduleRepository;
         }
 
@@ -36,7 +29,7 @@ namespace ImagineCommunications.Gameplan.Integration.Handlers.EventHandlers.Rati
                     _ratingsScheduleRepository.Remove(ratingsPredictionSchedule);
                 }
 
-                ratingsPredictionSchedules.Add(_mapper.Map<RatingsPredictionSchedule>(ratingsPredictionScheduleModel, opts => opts.UseEntityCache(_salesAreaByIdCache)));
+                ratingsPredictionSchedules.Add(_mapper.Map<RatingsPredictionSchedule>(ratingsPredictionScheduleModel));
             }
 
             _ratingsScheduleRepository.Insert(ratingsPredictionSchedules, false);

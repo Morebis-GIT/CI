@@ -69,7 +69,6 @@ namespace ImagineCommunications.GamePlan.Persistence.SqlServer.Landmark.Features
 
             var defaultCategories = new List<string> { "SPORTS" };
 
-            _salesAreaCache.Load();
             return _dbContext.Query<ScheduleBreak>()
                 .Where(x => x.BreakType != ExcludeBreakType && x.ScheduledDate >= fromDate &&
                             x.ScheduledDate <= toDate && salesAreaIds.Contains(x.SalesAreaId))

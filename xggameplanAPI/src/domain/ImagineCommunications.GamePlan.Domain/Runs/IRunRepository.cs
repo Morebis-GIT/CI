@@ -27,6 +27,8 @@ namespace ImagineCommunications.GamePlan.Domain.Runs
 
         IEnumerable<RunsWithScenarioIdTransformerResult> GetRunsWithScenarioId();
 
+        Run FindByExternalRunId(Guid externalRunId);
+
         IEnumerable<Run> FindTriggeredInLandmark();
 
         IEnumerable<Run> FindLandmarkRuns();

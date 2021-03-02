@@ -35,8 +35,8 @@ namespace xggameplan.Profile
                     {
                         SalesAreaNo = salesAreas.FirstOrDefault(s => s.Name.Equals(grp.Key.SalesArea))?.CustomId ?? 0,
                         WeekNo = grp.Key.WeekNo,
-                        WeekStartDate = week.startDate.ToString("yyyyMMdd"),
-                        WeekEndDate = week.endDate.ToString("yyyyMMdd"),
+                        WeekStartDate = week.Item1.ToString("yyyyMMdd"),
+                        WeekEndDate = week.Item2.ToString("yyyyMMdd"),
                         ProgrammeNo = grp.Key.ExternalReference != null
                             ? programmeDictionaries
                                   .FirstOrDefault(p => p.ExternalReference.Equals(grp.Key.ExternalReference,

@@ -95,24 +95,6 @@ Scenario Outline: Find SalesAreas by names
 	| QTQ91, NAME_1        | 1                   |
 	| NAME_1, NAME_2       | 0                   |
 
-Scenario Outline: Find SalesArea by custom id
-	Given the following documents created:
-		| Id                                   | Name  | ShortName | CustomId |
-		| 423D0C30-4661-4132-99ED-56ED9C64F205 | QTQ91 | Q91       | 1        |
-		| 6DAD8F17-04E5-447D-9DEA-1DEA6950A40E | GTV93 | G93       | 2        |
-		| 5DCC4E91-EDDE-4F8C-9001-56AACE72C9EB | STW92 | S92       | 3        |
-	When I call FindByCustomId method with parameters:
-		| Parameter | Value |
-		| id        | <Id>  |
-	Then there should be <ExpectedReturnCount> documents returned
-
-	Examples:
-	| Id | ExpectedReturnCount |
-	| 1  | 1                   |
-	| 0  | 0                   |
-	| 4  | 0                   |
-	| 3  | 1                   |
-
 Scenario Outline: Find SalesAreas by custom ids
 	Given the following documents created:
 		| Id                                   | Name  | ShortName | CustomId |

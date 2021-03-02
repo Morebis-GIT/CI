@@ -1,0 +1,57 @@
+[
+  {
+    "Uid": 1,
+    "Code": "C",
+    "Description": "Childrens"
+  },
+  {
+    "Uid": 2,
+    "Code": "G",
+    "Description": "General"
+  },
+  {
+    "Uid": 3,
+    "Code": "M",
+    "Description": "Mature"
+  },
+  {
+    "Uid": 4,
+    "Code": "MA",
+    "Description": "Mature Adults 15+"
+  },
+  {
+    "Uid": 5,
+    "Code": "NC",
+    "Description": "Not Classified"
+  },
+  {
+    "Uid": 6,
+    "Code": "P",
+    "Description": "Pre-School"
+  },
+  {
+    "Uid": 7,
+    "Code": "PG",
+    "Description": "Parental Guidance"
+  },
+  {
+    "Uid": 8,
+    "Code": "X",
+    "Description": "18"
+  },
+  {
+    "Uid": 9,
+    "Code": "R",
+    "Description": "Restricted 18+"
+  },
+  {
+    "Uid": 10,
+    "Code": "RC",
+    "Description": "Refused Classification"
+  },
+  {
+    "Uid": 11,
+    "Code": "E",
+    "Description": "Exempt"
+  }
+]

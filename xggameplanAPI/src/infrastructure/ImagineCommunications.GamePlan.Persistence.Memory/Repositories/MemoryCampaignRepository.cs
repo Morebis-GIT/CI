@@ -23,23 +23,27 @@ namespace ImagineCommunications.GamePlan.Persistence.Memory.Repositories
 
         public void Add(IEnumerable<Campaign> items)
         {
-            foreach (var item in items)
+            foreach(var campaign in items)
             {
-                _ = Add(item);
+                campaign.UpdateDerivedKPIs();
             }
+
+            // NOTE: Raven repo doesn't set CustomId
+            InsertItems(items.ToList(), items.Select(i => i.Id.ToString()).ToList<string>());
         }
 
         public Campaign Add(Campaign item)
         {
             item.UpdateDerivedKPIs();
 
+            var items = new List<Campaign>() { item };
+
             if (item.CustomId == 0)
             {
                 item.CustomId = FindCustomId();
             }
 
-            InsertOrReplaceItem(item, item.Id.ToString());
-
+            InsertItems(items, items.Select(i => i.Id.ToString()).ToList<string>());
             return item;
         }
 
@@ -54,20 +58,11 @@ namespace ImagineCommunications.GamePlan.Persistence.Memory.Repositories
 
         public Campaign Get(Guid id) => GetItemById(id.ToString());
 
-        public IEnumerable<Campaign> GetByGroup(string group) => throw new NotImplementedException();
-
-        public IEnumerable<string> GetAllActiveExternalIds() => throw new NotImplementedException();
-
         public IEnumerable<Campaign> Find(List<Guid> uids) => GetAllItems(c => uids.Contains(c.Id));
 
         public IEnumerable<Campaign> FindByRef(string externalref) => GetAllItems(c => c.ExternalId == externalref);
 
         public IEnumerable<Campaign> FindByRefs(List<string> externalRefs) => GetAllItems(c => externalRefs.Contains(c.ExternalId));
-
-        public IEnumerable<Campaign> FindMissingCampaignsFromGroup(
-            List<string> externalRefs,
-            List<string> campaignGroup
-        ) => throw new NotImplementedException();
 
         public IEnumerable<Campaign> GetAll() => GetAllItems();
 
@@ -91,7 +86,7 @@ namespace ImagineCommunications.GamePlan.Persistence.Memory.Repositories
 
         public IEnumerable<Campaign> GetAllActive()
         {
-            return GetAllItems(c =>
+            return GetAllItems(c => 
                 (c.DeliveryType == CampaignDeliveryType.Spot ? c.TargetRatings >= default(decimal) : c.TargetZeroRatedBreaks || c.TargetRatings > default(decimal)) &&
                 c.SalesAreaCampaignTarget != null &&
                 c.SalesAreaCampaignTarget.Count > 0 &&
@@ -109,8 +104,6 @@ namespace ImagineCommunications.GamePlan.Persistence.Memory.Repositories
             DeleteItem(uid.ToString());
         }
 
-        public void Delete(IEnumerable<string> campaignExternalIds) => throw new NotImplementedException();
-
         public void Truncate()
         {
             DeleteAllItems();
@@ -119,7 +112,7 @@ namespace ImagineCommunications.GamePlan.Persistence.Memory.Repositories
         public Task TruncateAsync()
         {
             Truncate();
-            return Task.CompletedTask;
+            return Task.FromResult(true);
         }
 
         public void SetCustomIds() => throw new NotImplementedException();
@@ -127,6 +120,13 @@ namespace ImagineCommunications.GamePlan.Persistence.Memory.Repositories
         public void SaveChanges()
         {
         }
+
+        public IEnumerable<Campaign> GetByGroup(string group) => throw new NotImplementedException();
+
+        public IEnumerable<Campaign> FindMissingCampaignsFromGroup(
+            List<string> externalRefs,
+            List<string> campaignGroup
+        ) => throw new NotImplementedException();
 
         public void Update(Campaign campaign)
         {
@@ -137,7 +137,11 @@ namespace ImagineCommunications.GamePlan.Persistence.Memory.Repositories
                 campaign.CustomId = FindCustomId();
             }
 
-            InsertOrReplaceItem(campaign, campaign.Id.ToString());
+            UpdateOrInsertItem(campaign, campaign.Id.ToString());
         }
+
+        public IEnumerable<string> GetAllActiveExternalIds() => throw new NotImplementedException();
+
+        public void Delete(IEnumerable<string> campaignExternalIds) => throw new NotImplementedException();
     }
 }

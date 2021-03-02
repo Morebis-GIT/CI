@@ -46,42 +46,31 @@ namespace ImagineCommunications.GamePlan.Process.Smooth.Models
             BreaksWithReducedOptimizerAvailForUnplacedSpots += smoothOutput.BreaksWithReducedOptimizerAvailForUnplacedSpots;
             Failures += smoothOutput.Failures;
 
-            // Append pass counts
-            foreach (var passSequence in smoothOutput.OutputByPass.Keys)
-            {
-                int outputCountSpotsSet = smoothOutput.OutputByPass[passSequence].CountSpotsSet;
-                if (OutputByPass.ContainsKey(passSequence))
-                {
-                    OutputByPass[passSequence].CountSpotsSet += outputCountSpotsSet;
-                }
-                else
-                {
-                    var outputForPass = new SmoothOutputForPass(passSequence)
-                    {
-                        CountSpotsSet = outputCountSpotsSet
-                    };
-
-                    OutputByPass.Add(passSequence, outputForPass);
-                }
-            }
-
-            // Append count of spots by failure message
             if (SpotsByFailureMessage is null)
             {
                 SpotsByFailureMessage = new Dictionary<int, int>();
             }
 
+            // Append pass counts
+            foreach (var passSequence in smoothOutput.OutputByPass.Keys)
+            {
+                if (!OutputByPass.ContainsKey(passSequence))
+                {
+                    OutputByPass.Add(passSequence, new SmoothOutputForPass() { PassSequence = passSequence });
+                }
+
+                OutputByPass[passSequence].CountSpotsSet += smoothOutput.OutputByPass[passSequence].CountSpotsSet;
+            }
+
+            //Append count of spots by failure message
             foreach (int failureMessageId in smoothOutput.SpotsByFailureMessage.Keys)
             {
-                int value = smoothOutput.SpotsByFailureMessage[failureMessageId];
-                if (SpotsByFailureMessage.ContainsKey(failureMessageId))
+                if (!SpotsByFailureMessage.ContainsKey(failureMessageId))
                 {
-                    SpotsByFailureMessage[failureMessageId] += value;
+                    SpotsByFailureMessage.Add(failureMessageId, 0);
                 }
-                else
-                {
-                    SpotsByFailureMessage.Add(failureMessageId, value);
-                }
+
+                SpotsByFailureMessage[failureMessageId] += smoothOutput.SpotsByFailureMessage[failureMessageId];
             }
         }
     }

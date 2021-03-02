@@ -11,7 +11,7 @@ namespace ImagineCommunications.GamePlan.Persistence.SqlServer.EntityConfigurati
                 builder.ToTable("TenantWebhookSettings");
 
                 builder.HasKey(res => res.Id);
-                builder.Property(res => res.Id).UseSqlServerIdentityColumn();
+                builder.Property(res => res.Id).UseMySqlIdentityColumn();
 
                 builder.Property(res => res.TenantSettingsId);
                 builder.Property(res => res.EventType);

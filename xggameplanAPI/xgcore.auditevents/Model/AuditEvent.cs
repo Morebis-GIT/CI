@@ -5,7 +5,7 @@ namespace xggameplan.AuditEvents
 {
     public class AuditEvent
     {
-        public string ID { get; set; } = String.Empty;
+        public string ID { get; set; }
 
         /// <summary>
         /// Time created.

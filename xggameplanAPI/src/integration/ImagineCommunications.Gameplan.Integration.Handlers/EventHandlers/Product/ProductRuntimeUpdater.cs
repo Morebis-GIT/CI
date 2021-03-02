@@ -94,19 +94,19 @@ namespace ImagineCommunications.Gameplan.Integration.Handlers.EventHandlers.Prod
             {
                 var productInfo = _dbContext.Query<ProductEntity>()
                     .Where(x => productBatchIds.Contains(x.Externalidentifier))
-                    .Select(x => new { x.Uid, x.Externalidentifier })
-                    .ToDictionary(k => k.Externalidentifier, v => v.Uid);
+                    .Select(x => new { x.Id, x.Externalidentifier })
+                    .ToDictionary(k => k.Externalidentifier, v => v.Id);
 
                 foreach (var extId in productBatchIds)
                 {
                     if (productInfo.TryGetValue(extId, out var uid))
                     {
                         _dbProductUIds.Add(uid);
-                        _products[extId].Uid = uid;
+                        _products[extId].Id = uid;
                     }
                     else
                     {
-                        _products[extId].Uid = Guid.NewGuid();
+                        _products[extId].Id = Guid.NewGuid();
                     }
                 }
 
@@ -319,7 +319,7 @@ namespace ImagineCommunications.Gameplan.Integration.Handlers.EventHandlers.Prod
                 {
                     foreach (var item in _productAdvertisers)
                     {
-                        item.ProductId = item.Product.Uid;
+                        item.ProductId = item.Product.Id;
                         item.AdvertiserId = item.Advertiser.Id;
                     }
 
@@ -330,7 +330,7 @@ namespace ImagineCommunications.Gameplan.Integration.Handlers.EventHandlers.Prod
                 {
                     foreach (var item in _productAgencies)
                     {
-                        item.ProductId = item.Product.Uid;
+                        item.ProductId = item.Product.Id;
                         item.AgencyId = item.Agency.Id;
                         item.AgencyGroupId = item.AgencyGroup?.Id;
                     }
@@ -342,7 +342,7 @@ namespace ImagineCommunications.Gameplan.Integration.Handlers.EventHandlers.Prod
                 {
                     foreach (var item in _productPersons)
                     {
-                        item.ProductId = item.Product.Uid;
+                        item.ProductId = item.Product.Id;
                         item.PersonId = item.Person.Id;
                     }
 

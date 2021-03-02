@@ -71,9 +71,6 @@ namespace ImagineCommunications.GamePlan.Persistence.RavenDb.Repositories
         public List<SalesArea> FindByNames(List<string> names) =>
             _session.GetAll<SalesArea>().Where(s => s.Name.In(names)).ToList();
 
-        public SalesArea FindByCustomId(int id) =>
-            _session.Query<SalesArea>().FirstOrDefault(s => s.CustomId == id);
-
         /// <summary>
         /// Get the sales areas by customId(s) (ints)
         /// </summary>

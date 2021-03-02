@@ -1,0 +1,18 @@
+[
+  {
+    "UserSettings": {},
+    "Id": 1000,
+    "Name": "System",
+    "Surname": "Internal",
+    "Email": "nextgen@imaginecommunications.com",
+    "Password": {
+      "HashedValue": "$2a$10$JcOzR96jsn5ELeWiND4Z/uZ.Ck45GeAg4myRB1f2Mi9hY//IGm5wS"
+    },
+    "Preview": null,
+    "ThemeName": "default",
+    "Location": "Internal",
+    "Role": "SuperUser",
+    "TenantId": 1,
+    "DefaultTimeZone": "Europe/London"
+  }
+]

@@ -1671,13 +1671,15 @@ namespace ImagineCommunications.GamePlan.Persistence.SqlServer.Migrations.Tenant
 
                     b.Property<int>("CampaignBookingPositionGroupId");
 
-                    b.Property<Guid>("SalesAreaId");
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(512);
 
                     b.HasKey("Id");
 
                     b.HasIndex("CampaignBookingPositionGroupId");
 
-                    b.HasIndex("SalesAreaId");
+                    b.HasIndex("Name");
 
                     b.ToTable("CampaignBookingPositionGroupSalesAreas");
                 });
@@ -1690,14 +1692,13 @@ namespace ImagineCommunications.GamePlan.Persistence.SqlServer.Migrations.Tenant
 
                     b.Property<Guid>("CampaignId");
 
-                    b.Property<Guid>("SalesAreaId");
+                    b.Property<string>("SalesArea")
+                        .HasMaxLength(64);
 
                     b.HasKey("Id");
 
                     b.HasIndex("CampaignId")
                         .IsUnique();
-
-                    b.HasIndex("SalesAreaId");
 
                     b.ToTable("CampaignBreakRequirements");
                 });
@@ -1811,13 +1812,15 @@ namespace ImagineCommunications.GamePlan.Persistence.SqlServer.Migrations.Tenant
 
                     b.Property<int>("CampaignProgrammeRestrictionId");
 
-                    b.Property<Guid>("SalesAreaId");
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(64);
 
                     b.HasKey("Id");
 
                     b.HasIndex("CampaignProgrammeRestrictionId");
 
-                    b.HasIndex("SalesAreaId");
+                    b.HasIndex("Name");
 
                     b.ToTable("CampaignProgrammeRestrictionsSalesAreas");
                 });
@@ -1830,7 +1833,8 @@ namespace ImagineCommunications.GamePlan.Persistence.SqlServer.Migrations.Tenant
 
                     b.Property<Guid>("CampaignId");
 
-                    b.Property<Guid>("SalesAreaId");
+                    b.Property<string>("SalesArea")
+                        .HasMaxLength(64);
 
                     b.Property<bool>("StopBooking");
 
@@ -1838,7 +1842,7 @@ namespace ImagineCommunications.GamePlan.Persistence.SqlServer.Migrations.Tenant
 
                     b.HasIndex("CampaignId");
 
-                    b.HasIndex("SalesAreaId");
+                    b.HasIndex("SalesArea");
 
                     b.ToTable("CampaignSalesAreaTargets");
                 });
@@ -1870,13 +1874,15 @@ namespace ImagineCommunications.GamePlan.Persistence.SqlServer.Migrations.Tenant
 
                     b.Property<int>("CampaignSalesAreaTargetGroupId");
 
-                    b.Property<Guid>("SalesAreaId");
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(64);
 
                     b.HasKey("Id");
 
                     b.HasIndex("CampaignSalesAreaTargetGroupId");
 
-                    b.HasIndex("SalesAreaId");
+                    b.HasIndex("Name");
 
                     b.ToTable("CampaignSalesAreaTargetGroupSalesAreas");
                 });
@@ -2141,13 +2147,15 @@ namespace ImagineCommunications.GamePlan.Persistence.SqlServer.Migrations.Tenant
 
                     b.Property<int>("CampaignTimeRestrictionId");
 
-                    b.Property<Guid>("SalesAreaId");
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(64);
 
                     b.HasKey("Id");
 
                     b.HasIndex("CampaignTimeRestrictionId");
 
-                    b.HasIndex("SalesAreaId");
+                    b.HasIndex("Name");
 
                     b.ToTable("CampaignTimeRestrictionsSalesAreas");
                 });
@@ -2225,7 +2233,7 @@ namespace ImagineCommunications.GamePlan.Persistence.SqlServer.Migrations.Tenant
 
                     b.Property<int?>("PeakExposureCount");
 
-                    b.Property<Guid?>("SalesAreaId");
+                    b.Property<Guid>("SalesAreaId");
 
                     b.Property<DateTime?>("StartDate");
 
@@ -2345,11 +2353,11 @@ namespace ImagineCommunications.GamePlan.Persistence.SqlServer.Migrations.Tenant
 
                     b.Property<int>("Order");
 
-                    b.Property<Guid>("SalesAreaId");
+                    b.Property<string>("SalesArea")
+                        .IsRequired()
+                        .HasMaxLength(512);
 
                     b.HasKey("Id");
-
-                    b.HasIndex("SalesAreaId");
 
                     b.ToTable("StandardDayParts");
                 });
@@ -2372,11 +2380,11 @@ namespace ImagineCommunications.GamePlan.Persistence.SqlServer.Migrations.Tenant
 
                     b.Property<bool>("RatingReplacement");
 
-                    b.Property<Guid>("SalesAreaId");
+                    b.Property<string>("SalesArea")
+                        .IsRequired()
+                        .HasMaxLength(512);
 
                     b.HasKey("Id");
-
-                    b.HasIndex("SalesAreaId");
 
                     b.ToTable("StandardDayPartGroups");
                 });
@@ -2767,7 +2775,7 @@ namespace ImagineCommunications.GamePlan.Persistence.SqlServer.Migrations.Tenant
                     b.Property<string>("Description")
                         .HasMaxLength(512);
 
-                    b.Property<Guid?>("SalesAreaId");
+                    b.Property<Guid>("SalesAreaId");
 
                     b.HasKey("Id");
 
@@ -2794,7 +2802,7 @@ namespace ImagineCommunications.GamePlan.Persistence.SqlServer.Migrations.Tenant
                         .IsRequired()
                         .HasColumnType("NCHAR(10)");
 
-                    b.Property<Guid?>("SalesAreaId");
+                    b.Property<Guid>("SalesAreaId");
 
                     b.Property<DateTime>("StartDate");
 
@@ -3105,7 +3113,9 @@ namespace ImagineCommunications.GamePlan.Persistence.SqlServer.Migrations.Tenant
 
                     b.Property<int>("PassId");
 
-                    b.Property<Guid>("SalesAreaId");
+                    b.Property<string>("SalesArea")
+                        .IsRequired()
+                        .HasMaxLength(64);
 
                     b.Property<string>("SelectableDays")
                         .HasMaxLength(7);
@@ -3117,8 +3127,6 @@ namespace ImagineCommunications.GamePlan.Persistence.SqlServer.Migrations.Tenant
                     b.HasKey("Id");
 
                     b.HasIndex("PassId");
-
-                    b.HasIndex("SalesAreaId");
 
                     b.ToTable("PassBreakExclusions");
                 });
@@ -3158,30 +3166,13 @@ namespace ImagineCommunications.GamePlan.Persistence.SqlServer.Migrations.Tenant
 
                     b.Property<double?>("PeakValue");
 
+                    b.Property<string>("SalesAreas");
+
                     b.HasKey("Id");
 
                     b.HasIndex("PassId");
 
                     b.ToTable("PassRatingPoints");
-                });
-
-            modelBuilder.Entity("ImagineCommunications.GamePlan.Persistence.SqlServer.Entities.Tenant.Passes.PassRatingPointSalesAreaRef", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<int>("PassRatingPointId");
-
-                    b.Property<Guid>("SalesAreaId");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("PassRatingPointId");
-
-                    b.HasIndex("SalesAreaId");
-
-                    b.ToTable("PassRatingPoint_SalesAreaRefs");
                 });
 
             modelBuilder.Entity("ImagineCommunications.GamePlan.Persistence.SqlServer.Entities.Tenant.Passes.PassRuleBase", b =>
@@ -3227,13 +3218,13 @@ namespace ImagineCommunications.GamePlan.Persistence.SqlServer.Migrations.Tenant
 
                     b.Property<int>("Priority");
 
-                    b.Property<Guid>("SalesAreaId");
+                    b.Property<string>("SalesArea")
+                        .IsRequired()
+                        .HasMaxLength(64);
 
                     b.HasKey("Id");
 
                     b.HasIndex("PassSalesAreaPriorityCollectionId");
-
-                    b.HasIndex("SalesAreaId");
 
                     b.ToTable("PassSalesAreaPriorities");
                 });
@@ -3362,15 +3353,17 @@ namespace ImagineCommunications.GamePlan.Persistence.SqlServer.Migrations.Tenant
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<Guid>("SalesAreaId");
+                    b.Property<string>("SalesArea")
+                        .IsRequired()
+                        .HasMaxLength(64);
 
                     b.Property<DateTime>("ScheduleDay");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("SalesAreaId");
+                    b.HasIndex("SalesArea");
 
-                    b.HasIndex("SalesAreaId", "ScheduleDay");
+                    b.HasIndex("SalesArea", "ScheduleDay");
 
                     b.ToTable("PredictionSchedules");
                 });
@@ -3724,11 +3717,12 @@ namespace ImagineCommunications.GamePlan.Persistence.SqlServer.Migrations.Tenant
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<Guid>("SalesAreaId");
+                    b.Property<string>("SalesArea")
+                        .HasMaxLength(64);
 
                     b.HasKey("Id");
 
-                    b.HasIndex("SalesAreaId");
+                    b.HasIndex("SalesArea");
 
                     b.ToTable("RSSettings");
                 });
@@ -3990,13 +3984,15 @@ namespace ImagineCommunications.GamePlan.Persistence.SqlServer.Migrations.Tenant
 
                     b.Property<int>("RestrictionId");
 
-                    b.Property<Guid>("SalesAreaId");
+                    b.Property<string>("SalesArea")
+                        .IsRequired()
+                        .HasMaxLength(64);
 
                     b.HasKey("Id");
 
                     b.HasIndex("RestrictionId");
 
-                    b.HasIndex("SalesAreaId");
+                    b.HasIndex("SalesArea");
 
                     b.ToTable("RestrictionsSalesAreas");
                 });
@@ -4435,13 +4431,15 @@ namespace ImagineCommunications.GamePlan.Persistence.SqlServer.Migrations.Tenant
 
                     b.Property<Guid>("RunId");
 
-                    b.Property<Guid>("SalesAreaId");
+                    b.Property<string>("SalesArea")
+                        .IsRequired()
+                        .HasMaxLength(64);
 
                     b.HasKey("Id");
 
                     b.HasIndex("RunId");
 
-                    b.HasIndex("SalesAreaId");
+                    b.HasIndex("SalesArea");
 
                     b.ToTable("RunSalesAreaPriorities");
                 });
@@ -4622,7 +4620,9 @@ namespace ImagineCommunications.GamePlan.Persistence.SqlServer.Migrations.Tenant
                         .IsRequired()
                         .HasMaxLength(64);
 
-                    b.Property<Guid>("SalesAreaId");
+                    b.Property<string>("SalesArea")
+                        .IsRequired()
+                        .HasMaxLength(512);
 
                     b.Property<string>("SupplierCode")
                         .IsRequired()
@@ -4630,7 +4630,7 @@ namespace ImagineCommunications.GamePlan.Persistence.SqlServer.Migrations.Tenant
 
                     b.HasKey("Id");
 
-                    b.HasIndex("SalesAreaId");
+                    b.HasIndex("SalesArea");
 
                     b.ToTable("SalesAreaDemographics");
                 });
@@ -5486,31 +5486,15 @@ namespace ImagineCommunications.GamePlan.Persistence.SqlServer.Migrations.Tenant
                     b.Property<string>("SpotMultipartSpots")
                         .IsRequired();
 
+                    b.Property<string>("SpotSalesAreas")
+                        .IsRequired();
+
                     b.HasKey("Id");
 
                     b.HasIndex("SmoothConfigurationId")
                         .IsUnique();
 
                     b.ToTable("SmoothDiagnosticConfigurations");
-                });
-
-            modelBuilder.Entity("ImagineCommunications.GamePlan.Persistence.SqlServer.Entities.Tenant.Smooth.Configuration.SmoothDiagnosticConfigurationSalesArea", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<Guid>("SalesAreaId");
-
-                    b.Property<int>("SmoothDiagnosticConfigurationId");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("SalesAreaId");
-
-                    b.HasIndex("SmoothDiagnosticConfigurationId");
-
-                    b.ToTable("SmoothDiagnosticConfigurationSalesAreas");
                 });
 
             modelBuilder.Entity("ImagineCommunications.GamePlan.Persistence.SqlServer.Entities.Tenant.Smooth.Configuration.SmoothPassEntities.SmoothPass", b =>
@@ -5863,6 +5847,8 @@ namespace ImagineCommunications.GamePlan.Persistence.SqlServer.Migrations.Tenant
                     b.Property<string>("ProgrammeName")
                         .HasMaxLength(128);
 
+                    b.Property<string>("SalesAreas");
+
                     b.Property<int>("SponsoredItemId");
 
                     b.Property<DateTime>("StartDate");
@@ -5872,25 +5858,6 @@ namespace ImagineCommunications.GamePlan.Persistence.SqlServer.Migrations.Tenant
                     b.HasIndex("SponsoredItemId");
 
                     b.ToTable("SponsorshipItems");
-                });
-
-            modelBuilder.Entity("ImagineCommunications.GamePlan.Persistence.SqlServer.Entities.Tenant.Sponsorships.SponsorshipItemSalesArea", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<Guid>("SalesAreaId");
-
-                    b.Property<int>("SponsorshipItemId");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("SalesAreaId");
-
-                    b.HasIndex("SponsorshipItemId");
-
-                    b.ToTable("SponsorshipItemsSalesAreas");
                 });
 
             modelBuilder.Entity("ImagineCommunications.GamePlan.Persistence.SqlServer.Entities.Tenant.Spot", b =>
@@ -5956,7 +5923,8 @@ namespace ImagineCommunications.GamePlan.Persistence.SqlServer.Migrations.Tenant
                     b.Property<string>("RequestedPositioninBreak")
                         .HasMaxLength(16);
 
-                    b.Property<Guid>("SalesAreaId");
+                    b.Property<string>("SalesArea")
+                        .HasMaxLength(64);
 
                     b.Property<bool>("Sponsored");
 
@@ -5978,7 +5946,7 @@ namespace ImagineCommunications.GamePlan.Persistence.SqlServer.Migrations.Tenant
 
                     b.HasIndex("MultipartSpot");
 
-                    b.HasIndex("SalesAreaId");
+                    b.HasIndex("SalesArea");
 
                     b.HasIndex("StartDateTime");
 
@@ -6016,13 +5984,13 @@ namespace ImagineCommunications.GamePlan.Persistence.SqlServer.Migrations.Tenant
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<Guid>("SalesAreaId");
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(512);
 
                     b.Property<int>("SpotBookingRuleId");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("SalesAreaId");
 
                     b.HasIndex("SpotBookingRuleId");
 
@@ -6167,13 +6135,13 @@ namespace ImagineCommunications.GamePlan.Persistence.SqlServer.Migrations.Tenant
                         .IsRequired()
                         .HasMaxLength(64);
 
-                    b.Property<Guid>("SalesAreaId");
+                    b.Property<string>("SalesArea")
+                        .IsRequired()
+                        .HasMaxLength(512);
 
                     b.Property<double>("TotalRatings");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("SalesAreaId");
 
                     b.ToTable("TotalRatings");
                 });
@@ -6189,7 +6157,8 @@ namespace ImagineCommunications.GamePlan.Persistence.SqlServer.Migrations.Tenant
 
                     b.Property<DateTime>("EndDate");
 
-                    b.Property<Guid>("SalesAreaId");
+                    b.Property<string>("SalesArea")
+                        .HasMaxLength(64);
 
                     b.Property<DateTime>("StartDate");
 
@@ -6201,7 +6170,7 @@ namespace ImagineCommunications.GamePlan.Persistence.SqlServer.Migrations.Tenant
 
                     b.HasIndex("EndDate");
 
-                    b.HasIndex("SalesAreaId");
+                    b.HasIndex("SalesArea");
 
                     b.HasIndex("StartDate");
 
@@ -6553,11 +6522,6 @@ namespace ImagineCommunications.GamePlan.Persistence.SqlServer.Migrations.Tenant
                         .WithMany("SalesAreas")
                         .HasForeignKey("CampaignBookingPositionGroupId")
                         .OnDelete(DeleteBehavior.Cascade);
-
-                    b.HasOne("ImagineCommunications.GamePlan.Persistence.SqlServer.Entities.Tenant.SalesAreas.SalesArea", "SalesArea")
-                        .WithMany()
-                        .HasForeignKey("SalesAreaId")
-                        .OnDelete(DeleteBehavior.Restrict);
                 });
 
             modelBuilder.Entity("ImagineCommunications.GamePlan.Persistence.SqlServer.Entities.Tenant.Campaigns.CampaignBreakRequirement", b =>
@@ -6566,11 +6530,6 @@ namespace ImagineCommunications.GamePlan.Persistence.SqlServer.Migrations.Tenant
                         .WithOne("BreakRequirement")
                         .HasForeignKey("ImagineCommunications.GamePlan.Persistence.SqlServer.Entities.Tenant.Campaigns.CampaignBreakRequirement", "CampaignId")
                         .OnDelete(DeleteBehavior.Cascade);
-
-                    b.HasOne("ImagineCommunications.GamePlan.Persistence.SqlServer.Entities.Tenant.SalesAreas.SalesArea", "SalesArea")
-                        .WithMany()
-                        .HasForeignKey("SalesAreaId")
-                        .OnDelete(DeleteBehavior.Restrict);
                 });
 
             modelBuilder.Entity("ImagineCommunications.GamePlan.Persistence.SqlServer.Entities.Tenant.Campaigns.CampaignBreakType", b =>
@@ -6611,11 +6570,6 @@ namespace ImagineCommunications.GamePlan.Persistence.SqlServer.Migrations.Tenant
                         .WithMany("SalesAreas")
                         .HasForeignKey("CampaignProgrammeRestrictionId")
                         .OnDelete(DeleteBehavior.Cascade);
-
-                    b.HasOne("ImagineCommunications.GamePlan.Persistence.SqlServer.Entities.Tenant.SalesAreas.SalesArea", "SalesArea")
-                        .WithMany()
-                        .HasForeignKey("SalesAreaId")
-                        .OnDelete(DeleteBehavior.Restrict);
                 });
 
             modelBuilder.Entity("ImagineCommunications.GamePlan.Persistence.SqlServer.Entities.Tenant.Campaigns.CampaignSalesAreaTarget", b =>
@@ -6624,11 +6578,6 @@ namespace ImagineCommunications.GamePlan.Persistence.SqlServer.Migrations.Tenant
                         .WithMany("SalesAreaCampaignTargets")
                         .HasForeignKey("CampaignId")
                         .OnDelete(DeleteBehavior.Cascade);
-
-                    b.HasOne("ImagineCommunications.GamePlan.Persistence.SqlServer.Entities.Tenant.SalesAreas.SalesArea", "SalesArea")
-                        .WithMany()
-                        .HasForeignKey("SalesAreaId")
-                        .OnDelete(DeleteBehavior.Restrict);
                 });
 
             modelBuilder.Entity("ImagineCommunications.GamePlan.Persistence.SqlServer.Entities.Tenant.Campaigns.CampaignSalesAreaTargetGroup", b =>
@@ -6645,11 +6594,6 @@ namespace ImagineCommunications.GamePlan.Persistence.SqlServer.Migrations.Tenant
                         .WithMany("SalesAreas")
                         .HasForeignKey("CampaignSalesAreaTargetGroupId")
                         .OnDelete(DeleteBehavior.Cascade);
-
-                    b.HasOne("ImagineCommunications.GamePlan.Persistence.SqlServer.Entities.Tenant.SalesAreas.SalesArea", "SalesArea")
-                        .WithMany()
-                        .HasForeignKey("SalesAreaId")
-                        .OnDelete(DeleteBehavior.Restrict);
                 });
 
             modelBuilder.Entity("ImagineCommunications.GamePlan.Persistence.SqlServer.Entities.Tenant.Campaigns.CampaignSalesAreaTargetMultipart", b =>
@@ -6730,11 +6674,6 @@ namespace ImagineCommunications.GamePlan.Persistence.SqlServer.Migrations.Tenant
                         .WithMany("SalesAreas")
                         .HasForeignKey("CampaignTimeRestrictionId")
                         .OnDelete(DeleteBehavior.Cascade);
-
-                    b.HasOne("ImagineCommunications.GamePlan.Persistence.SqlServer.Entities.Tenant.SalesAreas.SalesArea", "SalesArea")
-                        .WithMany()
-                        .HasForeignKey("SalesAreaId")
-                        .OnDelete(DeleteBehavior.Restrict);
                 });
 
             modelBuilder.Entity("ImagineCommunications.GamePlan.Persistence.SqlServer.Entities.Tenant.ClashDifference", b =>
@@ -6764,22 +6703,6 @@ namespace ImagineCommunications.GamePlan.Persistence.SqlServer.Migrations.Tenant
                         .WithMany("ClashExceptionsTimeAndDows")
                         .HasForeignKey("ClashExceptionId")
                         .OnDelete(DeleteBehavior.Cascade);
-                });
-
-            modelBuilder.Entity("ImagineCommunications.GamePlan.Persistence.SqlServer.Entities.Tenant.DayParts.StandardDayPart", b =>
-                {
-                    b.HasOne("ImagineCommunications.GamePlan.Persistence.SqlServer.Entities.Tenant.SalesAreas.SalesArea", "SalesArea")
-                        .WithMany()
-                        .HasForeignKey("SalesAreaId")
-                        .OnDelete(DeleteBehavior.Restrict);
-                });
-
-            modelBuilder.Entity("ImagineCommunications.GamePlan.Persistence.SqlServer.Entities.Tenant.DayParts.StandardDayPartGroup", b =>
-                {
-                    b.HasOne("ImagineCommunications.GamePlan.Persistence.SqlServer.Entities.Tenant.SalesAreas.SalesArea", "SalesArea")
-                        .WithMany()
-                        .HasForeignKey("SalesAreaId")
-                        .OnDelete(DeleteBehavior.Restrict);
                 });
 
             modelBuilder.Entity("ImagineCommunications.GamePlan.Persistence.SqlServer.Entities.Tenant.DayParts.StandardDayPartSplit", b =>
@@ -6957,11 +6880,6 @@ namespace ImagineCommunications.GamePlan.Persistence.SqlServer.Migrations.Tenant
                         .WithMany("BreakExclusions")
                         .HasForeignKey("PassId")
                         .OnDelete(DeleteBehavior.Cascade);
-
-                    b.HasOne("ImagineCommunications.GamePlan.Persistence.SqlServer.Entities.Tenant.SalesAreas.SalesArea", "SalesArea")
-                        .WithMany()
-                        .HasForeignKey("SalesAreaId")
-                        .OnDelete(DeleteBehavior.Restrict);
                 });
 
             modelBuilder.Entity("ImagineCommunications.GamePlan.Persistence.SqlServer.Entities.Tenant.Passes.PassProgrammeRepetition", b =>
@@ -6980,30 +6898,12 @@ namespace ImagineCommunications.GamePlan.Persistence.SqlServer.Migrations.Tenant
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
-            modelBuilder.Entity("ImagineCommunications.GamePlan.Persistence.SqlServer.Entities.Tenant.Passes.PassRatingPointSalesAreaRef", b =>
-                {
-                    b.HasOne("ImagineCommunications.GamePlan.Persistence.SqlServer.Entities.Tenant.Passes.PassRatingPoint")
-                        .WithMany("SalesAreas")
-                        .HasForeignKey("PassRatingPointId")
-                        .OnDelete(DeleteBehavior.Cascade);
-
-                    b.HasOne("ImagineCommunications.GamePlan.Persistence.SqlServer.Entities.Tenant.SalesAreas.SalesArea", "SalesArea")
-                        .WithMany()
-                        .HasForeignKey("SalesAreaId")
-                        .OnDelete(DeleteBehavior.Restrict);
-                });
-
             modelBuilder.Entity("ImagineCommunications.GamePlan.Persistence.SqlServer.Entities.Tenant.Passes.PassSalesAreaPriority", b =>
                 {
                     b.HasOne("ImagineCommunications.GamePlan.Persistence.SqlServer.Entities.Tenant.Passes.PassSalesAreaPriorityCollection")
                         .WithMany("SalesAreaPriorities")
                         .HasForeignKey("PassSalesAreaPriorityCollectionId")
                         .OnDelete(DeleteBehavior.Cascade);
-
-                    b.HasOne("ImagineCommunications.GamePlan.Persistence.SqlServer.Entities.Tenant.SalesAreas.SalesArea", "SalesArea")
-                        .WithMany()
-                        .HasForeignKey("SalesAreaId")
-                        .OnDelete(DeleteBehavior.Restrict);
                 });
 
             modelBuilder.Entity("ImagineCommunications.GamePlan.Persistence.SqlServer.Entities.Tenant.Passes.PassSalesAreaPriorityCollection", b =>
@@ -7020,14 +6920,6 @@ namespace ImagineCommunications.GamePlan.Persistence.SqlServer.Migrations.Tenant
                         .WithMany("SlottingLimits")
                         .HasForeignKey("PassId")
                         .OnDelete(DeleteBehavior.Cascade);
-                });
-
-            modelBuilder.Entity("ImagineCommunications.GamePlan.Persistence.SqlServer.Entities.Tenant.PredictionSchedules.PredictionSchedule", b =>
-                {
-                    b.HasOne("ImagineCommunications.GamePlan.Persistence.SqlServer.Entities.Tenant.SalesAreas.SalesArea", "SalesArea")
-                        .WithMany()
-                        .HasForeignKey("SalesAreaId")
-                        .OnDelete(DeleteBehavior.Restrict);
                 });
 
             modelBuilder.Entity("ImagineCommunications.GamePlan.Persistence.SqlServer.Entities.Tenant.PredictionSchedules.PredictionScheduleRating", b =>
@@ -7150,11 +7042,6 @@ namespace ImagineCommunications.GamePlan.Persistence.SqlServer.Migrations.Tenant
                         .WithMany("SalesAreas")
                         .HasForeignKey("RestrictionId")
                         .OnDelete(DeleteBehavior.Cascade);
-
-                    b.HasOne("ImagineCommunications.GamePlan.Persistence.SqlServer.Entities.Tenant.SalesAreas.SalesArea", "SalesArea")
-                        .WithMany()
-                        .HasForeignKey("SalesAreaId")
-                        .OnDelete(DeleteBehavior.Restrict);
                 });
 
             modelBuilder.Entity("ImagineCommunications.GamePlan.Persistence.SqlServer.Entities.Tenant.Runs.ExternalRunInfo", b =>
@@ -7227,11 +7114,6 @@ namespace ImagineCommunications.GamePlan.Persistence.SqlServer.Migrations.Tenant
                         .WithMany("SalesAreaPriorities")
                         .HasForeignKey("RunId")
                         .OnDelete(DeleteBehavior.Cascade);
-
-                    b.HasOne("ImagineCommunications.GamePlan.Persistence.SqlServer.Entities.Tenant.SalesAreas.SalesArea", "SalesArea")
-                        .WithMany()
-                        .HasForeignKey("SalesAreaId")
-                        .OnDelete(DeleteBehavior.Restrict);
                 });
 
             modelBuilder.Entity("ImagineCommunications.GamePlan.Persistence.SqlServer.Entities.Tenant.Runs.RunScenario", b =>
@@ -7283,10 +7165,11 @@ namespace ImagineCommunications.GamePlan.Persistence.SqlServer.Migrations.Tenant
 
             modelBuilder.Entity("ImagineCommunications.GamePlan.Persistence.SqlServer.Entities.Tenant.SalesAreas.SalesAreaDemographic", b =>
                 {
-                    b.HasOne("ImagineCommunications.GamePlan.Persistence.SqlServer.Entities.Tenant.SalesAreas.SalesArea", "SalesArea")
+                    b.HasOne("ImagineCommunications.GamePlan.Persistence.SqlServer.Entities.Tenant.SalesAreas.SalesArea")
                         .WithMany()
-                        .HasForeignKey("SalesAreaId")
-                        .OnDelete(DeleteBehavior.Restrict);
+                        .HasForeignKey("SalesArea")
+                        .HasPrincipalKey("Name")
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
 
             modelBuilder.Entity("ImagineCommunications.GamePlan.Persistence.SqlServer.Entities.Tenant.SalesAreas.SalesAreasChannelGroup", b =>
@@ -7505,14 +7388,6 @@ namespace ImagineCommunications.GamePlan.Persistence.SqlServer.Migrations.Tenant
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
-            modelBuilder.Entity("ImagineCommunications.GamePlan.Persistence.SqlServer.Entities.Tenant.Smooth.Configuration.SmoothDiagnosticConfigurationSalesArea", b =>
-                {
-                    b.HasOne("ImagineCommunications.GamePlan.Persistence.SqlServer.Entities.Tenant.Smooth.Configuration.SmoothDiagnosticConfiguration", "SmoothDiagnosticConfiguration")
-                        .WithMany("SpotSalesAreas")
-                        .HasForeignKey("SmoothDiagnosticConfigurationId")
-                        .OnDelete(DeleteBehavior.Cascade);
-                });
-
             modelBuilder.Entity("ImagineCommunications.GamePlan.Persistence.SqlServer.Entities.Tenant.Smooth.Configuration.SmoothPassEntities.SmoothPass", b =>
                 {
                     b.HasOne("ImagineCommunications.GamePlan.Persistence.SqlServer.Entities.Tenant.Smooth.Configuration.SmoothConfiguration")
@@ -7631,14 +7506,6 @@ namespace ImagineCommunications.GamePlan.Persistence.SqlServer.Migrations.Tenant
                     b.HasOne("ImagineCommunications.GamePlan.Persistence.SqlServer.Entities.Tenant.Sponsorships.SponsoredItem")
                         .WithMany("SponsorshipItems")
                         .HasForeignKey("SponsoredItemId")
-                        .OnDelete(DeleteBehavior.Cascade);
-                });
-
-            modelBuilder.Entity("ImagineCommunications.GamePlan.Persistence.SqlServer.Entities.Tenant.Sponsorships.SponsorshipItemSalesArea", b =>
-                {
-                    b.HasOne("ImagineCommunications.GamePlan.Persistence.SqlServer.Entities.Tenant.Sponsorships.SponsorshipItem", "SponsorshipItem")
-                        .WithMany("SalesAreas")
-                        .HasForeignKey("SponsorshipItemId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
@@ -7877,14 +7744,6 @@ namespace ImagineCommunications.GamePlan.Persistence.SqlServer.Migrations.Tenant
                         });
                 });
 
-            modelBuilder.Entity("ImagineCommunications.GamePlan.Persistence.SqlServer.Entities.Tenant.Universe", b =>
-                {
-                    b.HasOne("ImagineCommunications.GamePlan.Persistence.SqlServer.Entities.Tenant.SalesAreas.SalesArea", "SalesArea")
-                        .WithMany()
-                        .HasForeignKey("SalesAreaId")
-                        .OnDelete(DeleteBehavior.Restrict);
-                });
-
             modelBuilder.Entity("ImagineCommunications.GamePlan.Persistence.SqlServer.Entities.Tenant.Campaigns.CampaignCentreBreakRequirementItem", b =>
                 {
                     b.HasOne("ImagineCommunications.GamePlan.Persistence.SqlServer.Entities.Tenant.Campaigns.CampaignBreakRequirement")
@@ -7954,23 +7813,6 @@ namespace ImagineCommunications.GamePlan.Persistence.SqlServer.Migrations.Tenant
                         .HasConstraintName("FK_ScenarioResultMetrics_ScenarioResults_ScenarioResultId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
-
-            modelBuilder.Entity("ImagineCommunications.GamePlan.Persistence.SqlServer.Entities.Tenant.ISRSettings.ISRSettings", b =>
-            {
-                b.HasOne("ImagineCommunications.GamePlan.Persistence.SqlServer.Entities.Tenant.SalesAreas.SalesArea", "SalesArea")
-                    .WithMany()
-                    .HasForeignKey("SalesAreaId")
-                    .OnDelete(DeleteBehavior.Restrict);
-            });
-
-            modelBuilder.Entity("ImagineCommunications.GamePlan.Persistence.SqlServer.Entities.Tenant.TotalRating", b =>
-            {
-                b.HasOne("ImagineCommunications.GamePlan.Persistence.SqlServer.Entities.Tenant.SalesAreas.SalesArea", "SalesArea")
-                    .WithMany()
-                    .HasForeignKey("SalesAreaId")
-                    .OnDelete(DeleteBehavior.Restrict);
-            });
-            
 #pragma warning restore 612, 618
         }
     }

@@ -1,0 +1,20 @@
+[
+  {
+    "Id": 1,
+    "InstanceType": "t3.medium",
+    "StorageSizeGb": 50,
+    "Cost": 24.0
+  },
+  {
+    "Id": 2,
+    "InstanceType": "c5.xlarge",
+    "StorageSizeGb": 50,
+    "Cost": 36.0
+  },
+  {
+    "Id": 3,
+    "InstanceType": "c5.2xlarge",
+    "StorageSizeGb": 50,
+    "Cost": 54.0
+  }
+]

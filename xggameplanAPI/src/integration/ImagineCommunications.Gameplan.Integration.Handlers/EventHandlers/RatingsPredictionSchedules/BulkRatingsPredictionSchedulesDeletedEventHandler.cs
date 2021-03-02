@@ -16,6 +16,7 @@ namespace ImagineCommunications.Gameplan.Integration.Handlers.EventHandlers.Rati
     public class BulkRatingsPredictionSchedulesDeletedEventHandler : IEventHandler<IBulkRatingsPredictionSchedulesDeleted>,
         IBatchingEnumerateHandler<IBulkRatingsPredictionSchedulesDeleted, IRatingsPredictionSchedulesDeleted>
     {
+
         private const int DeletionBatch = 5_000;
         private readonly ISqlServerDbContextFactory<ISqlServerTenantDbContext> _dbContextFactory;
 
@@ -96,7 +97,7 @@ namespace ImagineCommunications.Gameplan.Integration.Handlers.EventHandlers.Rati
                             var ratingsPredictionSchedules = await dbContext.Query<PredictionScheduleEntity>().Where(p =>
                                     p.ScheduleDay >= ratingsPredictionScheduleDeleteBatch.FromDate &&
                                     p.ScheduleDay <= ratingsPredictionScheduleDeleteBatch.ToDate &&
-                                    p.SalesArea.Name == ratingsPredictionScheduleDeleteBatch.SalesArea)
+                                    p.SalesArea == ratingsPredictionScheduleDeleteBatch.SalesArea)
                                 .Select(x => new PredictionScheduleEntity { Id = x.Id })
                                 .Take(DeletionBatch)
                                 .AsNoTracking()

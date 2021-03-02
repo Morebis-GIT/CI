@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using AutoMapper;
 using ImagineCommunications.GamePlan.Domain.BusinessRules.Clashes;
+using ImagineCommunications.GamePlan.Domain.BusinessRules.Clashes.Objects;
 using ImagineCommunications.GamePlan.Domain.Campaigns.Objects;
 using ImagineCommunications.GamePlan.Domain.Shared.Products;
 using ImagineCommunications.GamePlan.Domain.Shared.Products.Objects;
@@ -54,7 +55,7 @@ namespace xggameplan.core.Services.OptimiserInputFilesSerialisers.Campaigns
 
             _products = _productRepository.FindByExternal(productExternalIds).ToDictionary(x => x.Externalidentifier);
 
-            var allClashes = _clashRepository.GetAll().IndexListByExternalRef();
+            var allClashes = Clash.IndexListByExternalRef(_clashRepository.GetAll());
             _clashRoots = ClashHelper.CalculateClashTopParents(allClashes);
         }
 

@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Threading.Tasks;
 using ImagineCommunications.GamePlan.Domain.Breaks.Objects;
-using ImagineCommunications.GamePlan.Domain.BusinessRules.Clashes;
 using ImagineCommunications.GamePlan.Domain.BusinessRules.Clashes.Objects;
 using ImagineCommunications.GamePlan.Domain.BusinessRules.ClashExceptions.Objects;
 using ImagineCommunications.GamePlan.Domain.BusinessRules.Restrictions.Objects;
@@ -33,8 +32,10 @@ namespace ImagineCommunications.GamePlan.Process.Smooth.Models
         public IImmutableList<Break> BreaksForAllSalesAreasForSmoothPeriod { get; set; }
 
         // All models as a collection
+        public IImmutableList<Clash> Clashes { get; set; }
         public IImmutableList<ClashException> ClashExceptions { get; set; }
         public IImmutableList<IndexType> IndexTypes { get; set; }
+        public IImmutableList<Product> Products { get; set; }
         public IImmutableList<Restriction> Restrictions { get; set; }
         public IImmutableList<Universe> Universes { get; set; }
         public IImmutableList<SmoothFailureMessage> SmoothFailureMessages { get; set; }
@@ -97,14 +98,25 @@ namespace ImagineCommunications.GamePlan.Process.Smooth.Models
                 () => universes = modelLoadingService.GetAllUniverses()
                 );
 
+            raiseInfo($"Loaded {Log(breaksForAllSalesAreasForSmoothPeriod.Count)} breaks");
+            raiseInfo($"Loaded {Log(campaigns.Count)} campaigns");
+            raiseInfo($"Loaded {Log(clashes.Count)} clashes");
+            raiseInfo($"Loaded {Log(clashExceptions.Count)} clash exceptions");
+            raiseInfo($"Loaded {Log(indexTypes.Count)} index types");
+            raiseInfo($"Loaded {Log(products.Count)} products");
+            raiseInfo($"Loaded {Log(restrictions.Count)} restrictions");
+            raiseInfo($"Loaded {Log(smoothFailureMessages.Count)} smooth failure messages");
+            raiseInfo($"Loaded {Log(sponsorshipRestrictions.Count)} sponsorship restrictions");
+            raiseInfo($"Loaded {Log(universes.Count)} universes");
+
             var campaignsByExternalRef = ImmutableDictionary<string, (string Name, string campaignGroup)>.Empty;
             var clashesByExternalRef = ImmutableDictionary<string, Clash>.Empty;
             var productsByExternalRef = ImmutableDictionary<string, Product>.Empty;
 
             Parallel.Invoke(
                 () => campaignsByExternalRef = IndexCampaignsByExternalId(campaigns),
-                () => clashesByExternalRef = clashes
-                        .IndexListByExternalRef()
+                () => clashesByExternalRef = Clash
+                        .IndexListByExternalRef(clashes)
                         .ToImmutableDictionary(),
                 () => productsByExternalRef = products
                         .IndexListByExternalID()
@@ -113,22 +125,13 @@ namespace ImagineCommunications.GamePlan.Process.Smooth.Models
 
             ISmoothConfiguration smoothConfigurationReader = new SmoothConfigurationReader(smoothConfiguration);
 
-            raiseInfo($"Loaded {Log(breaksForAllSalesAreasForSmoothPeriod.Count)} breaks");
-            raiseInfo($"Loaded {Log(campaigns.Count)} campaigns");
-            raiseInfo($"Loaded {Log(clashesByExternalRef.Count)} unique clashes");
-            raiseInfo($"Loaded {Log(clashExceptions.Count)} clash exceptions");
-            raiseInfo($"Loaded {Log(indexTypes.Count)} index types");
-            raiseInfo($"Loaded {Log(productsByExternalRef.Count)} unique products");
-            raiseInfo($"Loaded {Log(restrictions.Count)} restrictions");
-            raiseInfo($"Loaded {Log(smoothFailureMessages.Count)} smooth failure messages");
-            raiseInfo($"Loaded {Log(sponsorshipRestrictions.Count)} sponsorship restrictions");
-            raiseInfo($"Loaded {Log(universes.Count)} universes");
-
             return new ImmutableSmoothData
             {
                 BreaksForAllSalesAreasForSmoothPeriod = breaksForAllSalesAreasForSmoothPeriod,
+                Clashes = clashes,
                 ClashExceptions = clashExceptions,
                 IndexTypes = indexTypes,
+                Products = products,
                 Restrictions = restrictions,
                 SmoothFailureMessages = smoothFailureMessages,
                 SponsorshipRestrictions = sponsorshipRestrictions,

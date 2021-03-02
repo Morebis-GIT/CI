@@ -27,19 +27,18 @@ namespace ImagineCommunications.GamePlan.Process.Smooth.Services
             {
                 bool isMissingProductExternalRef = String.IsNullOrWhiteSpace(productExternalReference);
 
-                Product product = null;
-                if (!isMissingProductExternalRef)
-                {
-                    _ = productsByExternalRef.TryGetValue(productExternalReference, out product);
-                }
+                Product product = isMissingProductExternalRef
+                        || !productsByExternalRef.ContainsKey(productExternalReference)
+                    ? null
+                    : productsByExternalRef[productExternalReference];
 
                 if (product is null && !isMissingProductExternalRef)
                 {
                     var spotsWithMissingProducts = new List<string>(
                         allSpots
                             .Where(s => s.Product.Equals(productExternalReference, StringComparison.OrdinalIgnoreCase))
-                            .Select(s => s.ExternalSpotRef)
-                            );
+                            .Select(s => s.ExternalSpotRef
+                        ));
 
                     RaiseWarning(
                         $"Product {productExternalReference} for sales area {salesAreaName} " +
@@ -54,35 +53,38 @@ namespace ImagineCommunications.GamePlan.Process.Smooth.Services
                     continue;
                 }
 
-                string productClashCode = product.ClashCode;
-
-                if (!clashesByExternalRef.TryGetValue(productClashCode, out Clash childClash)
-                    || childClash is null)
+                Clash childClash = ClashOrDefault(product.ClashCode);
+                if (childClash is null)
                 {
                     RaiseWarning(
                         $"Product {productExternalReference} for sales area {salesAreaName} references " +
-                        $"clash code {productClashCode} but the clash does not exist"
+                        $"clash code {product.ClashCode} but the clash does not exist"
                         );
 
                     continue;
                 }
 
-                string parentExternalidentifier = childClash.ParentExternalidentifier;
-                if (String.IsNullOrWhiteSpace(parentExternalidentifier))
+                if (String.IsNullOrWhiteSpace(childClash.ParentExternalidentifier))
                 {
                     continue;
                 }
 
-                if (!clashesByExternalRef.TryGetValue(parentExternalidentifier, out Clash parentClash)
-                    || parentClash is null)
-
+                Clash parentClash = ClashOrDefault(childClash.ParentExternalidentifier);
+                if (parentClash is null)
                 {
                     RaiseWarning(
                         $"Product {productExternalReference} for sales area {salesAreaName} " +
-                        $"references clash code {productClashCode} but the parent clash " +
-                        $"{parentExternalidentifier} does not exist"
+                        $"references clash code {product.ClashCode} but the parent clash " +
+                        $"{childClash.ParentExternalidentifier} does not exist"
                         );
                 }
+
+                //----------------
+                // Local functions
+                Clash ClashOrDefault(string clashCode) =>
+                    clashesByExternalRef.ContainsKey(clashCode)
+                        ? clashesByExternalRef[clashCode]
+                        : null;
             }
         }
     }

@@ -7,6 +7,7 @@ using ImagineCommunications.GamePlan.Domain.AutoBookApi.Storage.Objects;
 using ImagineCommunications.GamePlan.Domain.Autopilot.FlexibilityLevels;
 using ImagineCommunications.GamePlan.Domain.Autopilot.Rules;
 using ImagineCommunications.GamePlan.Domain.Autopilot.Settings;
+using ImagineCommunications.GamePlan.Domain.AWSInstanceConfigurations;
 using ImagineCommunications.GamePlan.Domain.Breaks.Objects;
 using ImagineCommunications.GamePlan.Domain.BRS;
 using ImagineCommunications.GamePlan.Domain.BusinessRules.Clashes.Objects;
@@ -168,6 +169,10 @@ namespace xggameplan.utils.seeddata.SqlServer
                .InstancePerLifetimeScope();
 
             //tenant domain model handlers
+            _ = builder.RegisterType<AWSInstanceConfigurationDomainModelHandler>()
+                .As<IDomainModelHandler<AWSInstanceConfiguration>>()
+                .InstancePerLifetimeScope();
+
             _ = builder.RegisterType<AutoBookDomainModelHandler>()
                 .As<IDomainModelHandler<AutoBook>>()
                 .InstancePerLifetimeScope();

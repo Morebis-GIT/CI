@@ -12,7 +12,7 @@ namespace ImagineCommunications.GamePlan.Persistence.SqlServer.EntityConfigurati
             builder.ToTable("AccessTokens");
 
             builder.HasKey(k => k.Id);
-            builder.Property(p => p.Id).UseSqlServerIdentityColumn();
+            builder.Property(p => p.Id).UseMySqlIdentityColumn();
 
             builder.Property(p => p.Token).HasMaxLength(128).IsRequired();
             builder.Property(p => p.ValidUntilValue).IsRequired().AsUtc();

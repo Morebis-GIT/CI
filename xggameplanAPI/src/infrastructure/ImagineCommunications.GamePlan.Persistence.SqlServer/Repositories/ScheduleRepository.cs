@@ -204,7 +204,7 @@ namespace ImagineCommunications.GamePlan.Persistence.SqlServer.Repositories
         public IEnumerable<Schedule> GetAll()
         {
             _scheduleCache.Clear();
-            var entities = GetScheduleQueryWithAllIncludes().AsNoTracking().ToList();
+            var entities = GetScheduleQueryWithAllIncludes().ToList();
             entities.ForEach(s => _scheduleCache.Add(s.Id, s));
 
             return _mapper.Map<List<Schedule>>(entities, opts => opts.UseEntityCache(_salesAreaByIdCache));
@@ -307,7 +307,7 @@ namespace ImagineCommunications.GamePlan.Persistence.SqlServer.Repositories
         {
             var entities = GetScheduleQueryWithAllIncludes().Where(s =>
                     salesareanames.Contains(s.SalesArea.Name) && s.Date >= fromdate.Date && s.Date < todate.Date.AddDays(1))
-                .AsNoTracking().ToList();
+                .ToList();
             if (entities.Any())
             {
                 entities.ForEach(s =>
@@ -342,7 +342,7 @@ namespace ImagineCommunications.GamePlan.Persistence.SqlServer.Repositories
                     .Where(x => x.Date >= fromdate.Date && x.Date < todate.Date.AddDays(1) &&
                                 salesareanames.Contains(x.SalesArea.Name))
                     .SelectMany(x => x.Breaks)
-                    .Where(x => x.ScheduledDate >= fromdate && x.ScheduledDate <= todate).AsNoTracking(),
+                    .Where(x => x.ScheduledDate >= fromdate && x.ScheduledDate <= todate),
                 opts => opts.UseEntityCache(_salesAreaByIdCache));
 
         public List<Programme> GetProgrammes(List<string> salesareanames, DateTime fromdate, DateTime todate)

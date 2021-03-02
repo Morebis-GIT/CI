@@ -1,0 +1,78 @@
+﻿[
+  {
+    "Code": "A",
+    "Description": "Mature Adult"
+  },
+  {
+    "Code": "B",
+    "Description": "Betting & Gambling"
+  },
+  {
+    "Code": "C",
+    "Description": "Children"
+  },
+  {
+    "Code": "G",
+    "Description": "General"
+  },
+  {
+    "Code": "P",
+    "Description": "Parental Guidance"
+  },
+  {
+    "Code": "L",
+    "Description": "Liquor and Alcohol"
+  },
+  {
+    "Code": "M",
+    "Description": "Mature"
+  },
+  {
+    "Code": "V",
+    "Description": "Adult Violent"
+  },
+  {
+    "Code": "W",
+    "Description": "General with Warning"
+  },
+  {
+    "Code": "Q",
+    "Description": "R Classified material G or PG Style"
+  },
+  {
+    "Code": "R",
+    "Description": "R Classified material M Style"
+  },
+  {
+    "Code": "J",
+    "Description": "Parental Guidance with Warning"
+  },
+  {
+    "Code": "S",
+    "Description": "Mature Adult Sex Linest"
+  },
+  {
+    "Code": "F",
+    "Description": "G-Style for PG movie"
+  },
+  {
+    "Code": "H",
+    "Description": "G-style for M movie"
+  },
+  {
+    "Code": "J",
+    "Description": "PG-style for PG and M movie"
+  },
+  {
+    "Code": "K",
+    "Description": "G or PG-style of MA movie"
+  },
+  {
+    "Code": "T",
+    "Description": "M-style for M movie"
+  },
+  {
+    "Code": "Y",
+    "Description": "Premium Telephone Services"
+  }
+]

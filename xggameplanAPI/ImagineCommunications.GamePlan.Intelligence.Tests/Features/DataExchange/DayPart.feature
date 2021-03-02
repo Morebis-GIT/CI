@@ -7,12 +7,14 @@ Feature: DayPart
 Background:
 	Given GroupTransactionInfo for 1 event sent
 
+
 Scenario: BulkStandardDayPartCreated message should successfully save records
 	Given The data from file DayParts.Setup exists in database
 	Given I have BulkStandardDayPartCreated message from file DayParts.BulkStandardDayPartCreated.Success_Request to publish
 	When I publish message to message broker
 	Then GamePlanIntelligence consumes message
 	And the StandardDayParts data in GamePlan database is updated as the data from the following file DayParts.BulkStandardDayPartCreated.Result
+
 
 Scenario: BulkStandardDayPartCreated message should throw exception when sales area is not found
 	Given The data from file DayParts.Setup exists in database
@@ -30,6 +32,7 @@ Scenario: BulkStandardDayPartCreated message should throw validation exception f
 		| Data[0].Name       |
 		| Data[0].Order      |
 		| Data[0].Timeslices |
+
 
 Scenario: BulkStandardDayPartDeleted message should successfully truncate table
 	Given The data from file DayParts.Setup exists in database

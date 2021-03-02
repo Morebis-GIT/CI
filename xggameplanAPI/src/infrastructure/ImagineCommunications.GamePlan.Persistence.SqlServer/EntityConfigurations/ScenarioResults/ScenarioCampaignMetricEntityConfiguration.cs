@@ -11,7 +11,7 @@ namespace ImagineCommunications.GamePlan.Persistence.SqlServer.EntityConfigurati
             builder.ToTable("ScenarioCampaignMetrics");
 
             builder.HasKey(e => e.Id);
-            builder.Property(e => e.Id).UseSqlServerIdentityColumn();
+            builder.Property(e => e.Id).UseMySqlIdentityColumn();
             builder.Property(x => x.CampaignExternalId).HasMaxLength(64);
 
             builder.HasIndex(e => e.ScenarioId);

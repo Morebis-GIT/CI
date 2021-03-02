@@ -15,12 +15,14 @@ Scenario: BulkLengthFactorCreated invalid model
 		| PropertyName |
 		| Data         |
 
+
 Scenario: BulkLengthFactorCreated success case
 	Given The data from file LengthFactor.LengthFactor_Setup exists in database
 	And I have BulkLengthFactorCreated message from file LengthFactor.BulkLengthFactorCreated_SuccessRequest to publish
 	When I publish message to message broker
 	Then GamePlanIntelligence consumes message
 	And the LengthFactors data in GamePlan database is updated as the data from the following file LengthFactor_Data
+
 
 Scenario: BulkLengthFactorDeleted message should successfully truncate table
 	Given The data from file LengthFactor.LengthFactor_Setup exists in database

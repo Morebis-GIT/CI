@@ -26,11 +26,12 @@ namespace ImagineCommunications.GamePlan.Persistence.SqlServer.Repositories
         {
             if (_cachedTenantSettings == null)
             {
-                _cachedTenantSettings = _dbContext.Query<TenantSettingsEntity>()
-                    .ProjectTo<TenantSettings>(_mapper.ConfigurationProvider)
-                    .FirstOrDefault();
+                _cachedTenantSettings = _mapper.Map<TenantSettings>(_dbContext.Query<TenantSettingsEntity>()
+                    .Include(p => p.Features)
+                    .Include(p => p.RunEventSettings)
+                    .Include(p => p.WebhookSettings)
+                    .Include(p => p.RunRestrictions).FirstOrDefault());
             }
-
             return _cachedTenantSettings;
         }
 

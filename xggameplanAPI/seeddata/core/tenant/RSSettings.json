@@ -1,0 +1,1910 @@
+[
+   {
+      "Id": 1,
+      "SalesArea": "3D"
+   },
+   {
+      "Id": 2,
+      "SalesArea": "3DTV"
+   },
+   {
+      "Id": 3,
+      "SalesArea": "4Music"
+   },
+   {
+      "Id": 4,
+      "SalesArea": "4Music TS"
+   },
+   {
+      "Id": 5,
+      "SalesArea": "5 Select"
+   },
+   {
+      "Id": 6,
+      "SalesArea": "5 Select TS"
+   },
+   {
+      "Id": 7,
+      "SalesArea": "5 Spike"
+   },
+   {
+      "Id": 8,
+      "SalesArea": "5 Spike TS"
+   },
+   {
+      "Id": 9,
+      "SalesArea": "5 USA"
+   },
+   {
+      "Id": 10,
+      "SalesArea": "5STAR"
+   },
+   {
+      "Id": 11,
+      "SalesArea": "5STAR TS"
+   },
+   {
+      "Id": 12,
+      "SalesArea": "5USA TS"
+   },
+   {
+      "Id": 13,
+      "SalesArea": "92 News"
+   },
+   {
+      "Id": 14,
+      "SalesArea": "Aaj Tak"
+   },
+   {
+      "Id": 15,
+      "SalesArea": "ABN TV"
+   },
+   {
+      "Id": 16,
+      "SalesArea": "Alibi Ireland"
+   },
+   {
+      "Id": 17,
+      "SalesArea": "All Vod"
+   },
+   {
+      "Id": 18,
+      "SalesArea": "ALL VOD"
+   },
+   {
+      "Id": 19,
+      "SalesArea": "ALL VOD IRE"
+   },
+   {
+      "Id": 20,
+      "SalesArea": "All Vod Ireland"
+   },
+   {
+      "Id": 21,
+      "SalesArea": "AND TV"
+   },
+   {
+      "Id": 22,
+      "SalesArea": "Animal Planet"
+   },
+   {
+      "Id": 23,
+      "SalesArea": "ARY Family"
+   },
+   {
+      "Id": 24,
+      "SalesArea": "ATN Bangla"
+   },
+   {
+      "Id": 25,
+      "SalesArea": "B4U Movies"
+   },
+   {
+      "Id": 26,
+      "SalesArea": "B4U Music"
+   },
+   {
+      "Id": 27,
+      "SalesArea": "BET:BlackEntTv"
+   },
+   {
+      "Id": 28,
+      "SalesArea": "Bike Channel"
+   },
+   {
+      "Id": 29,
+      "SalesArea": "Bio"
+   },
+   {
+      "Id": 30,
+      "SalesArea": "Bio HD"
+   },
+   {
+      "Id": 31,
+      "SalesArea": "Blaze"
+   },
+   {
+      "Id": 32,
+      "SalesArea": "Bliss"
+   },
+   {
+      "Id": 33,
+      "SalesArea": "BOX OFFICE"
+   },
+   {
+      "Id": 34,
+      "SalesArea": "BuzMuzik"
+   },
+   {
+      "Id": 35,
+      "SalesArea": "Capital TV"
+   },
+   {
+      "Id": 36,
+      "SalesArea": "CBS Drama"
+   },
+   {
+      "Id": 37,
+      "SalesArea": "CBS Drama TS"
+   },
+   {
+      "Id": 38,
+      "SalesArea": "CBS Horror TS"
+   },
+   {
+      "Id": 39,
+      "SalesArea": "CBS Justice"
+   },
+   {
+      "Id": 40,
+      "SalesArea": "CBS Justice Ireland"
+   },
+   {
+      "Id": 41,
+      "SalesArea": "CBS Justice TS"
+   },
+   {
+      "Id": 42,
+      "SalesArea": "CBS Reality"
+   },
+   {
+      "Id": 43,
+      "SalesArea": "CBS Reality Ireland"
+   },
+   {
+      "Id": 44,
+      "SalesArea": "CBS Reality Simulcast (MadeTV)"
+   },
+   {
+      "Id": 45,
+      "SalesArea": "CBS Reality Simulcast(ThatsTV)"
+   },
+   {
+      "Id": 46,
+      "SalesArea": "CBS Reality TS"
+   },
+   {
+      "Id": 47,
+      "SalesArea": "Challenge"
+   },
+   {
+      "Id": 48,
+      "SalesArea": "Challenge Ireland"
+   },
+   {
+      "Id": 49,
+      "SalesArea": "Challenge TS"
+   },
+   {
+      "Id": 50,
+      "SalesArea": "Channel 5"
+   },
+   {
+      "Id": 51,
+      "SalesArea": "Channel 5+1 TS"
+   },
+   {
+      "Id": 52,
+      "SalesArea": "Channel One"
+   },
+   {
+      "Id": 53,
+      "SalesArea": "Chelsea TV"
+   },
+   {
+      "Id": 54,
+      "SalesArea": "Club MTV"
+   },
+   {
+      "Id": 55,
+      "SalesArea": "Clubland TS"
+   },
+   {
+      "Id": 56,
+      "SalesArea": "Clubland TV"
+   },
+   {
+      "Id": 57,
+      "SalesArea": "Colors Cineplex"
+   },
+   {
+      "Id": 58,
+      "SalesArea": "Colors Rishtey"
+   },
+   {
+      "Id": 59,
+      "SalesArea": "Colors TV"
+   },
+   {
+      "Id": 60,
+      "SalesArea": "Comedy Central"
+   },
+   {
+      "Id": 61,
+      "SalesArea": "Comedy Central Extra"
+   },
+   {
+      "Id": 62,
+      "SalesArea": "Comedy Central Extra Ire TS"
+   },
+   {
+      "Id": 63,
+      "SalesArea": "Comedy Central Extra Ireland"
+   },
+   {
+      "Id": 64,
+      "SalesArea": "Comedy Central Extra TS"
+   },
+   {
+      "Id": 65,
+      "SalesArea": "Comedy Central Ireland"
+   },
+   {
+      "Id": 66,
+      "SalesArea": "Comedy Central Ireland TS"
+   },
+   {
+      "Id": 67,
+      "SalesArea": "Comedy Central TS"
+   },
+   {
+      "Id": 68,
+      "SalesArea": "Crime + Inv"
+   },
+   {
+      "Id": 69,
+      "SalesArea": "Crime + Inv HD"
+   },
+   {
+      "Id": 70,
+      "SalesArea": "Current TV"
+   },
+   {
+      "Id": 71,
+      "SalesArea": "Dave Ireland"
+   },
+   {
+      "Id": 72,
+      "SalesArea": "Demand 5"
+   },
+   {
+      "Id": 73,
+      "SalesArea": "DEMAND 5"
+   },
+   {
+      "Id": 74,
+      "SalesArea": "Discovery"
+   },
+   {
+      "Id": 75,
+      "SalesArea": "Discovery HD"
+   },
+   {
+      "Id": 76,
+      "SalesArea": "Discovery History"
+   },
+   {
+      "Id": 77,
+      "SalesArea": "Discovery Home zx Health"
+   },
+   {
+      "Id": 78,
+      "SalesArea": "Discovery Ireland"
+   },
+   {
+      "Id": 79,
+      "SalesArea": "Discovery Real Time"
+   },
+   {
+      "Id": 80,
+      "SalesArea": "Discovery Science"
+   },
+   {
+      "Id": 81,
+      "SalesArea": "Discovery Shed"
+   },
+   {
+      "Id": 82,
+      "SalesArea": "Discovery TLC Ireland"
+   },
+   {
+      "Id": 83,
+      "SalesArea": "Discovery TLC UK"
+   },
+   {
+      "Id": 84,
+      "SalesArea": "Discovery Travel zx Living"
+   },
+   {
+      "Id": 85,
+      "SalesArea": "Discovery Turbo"
+   },
+   {
+      "Id": 86,
+      "SalesArea": "Diva"
+   },
+   {
+      "Id": 87,
+      "SalesArea": "DMAX"
+   },
+   {
+      "Id": 88,
+      "SalesArea": "DOCUMENTARIES"
+   },
+   {
+      "Id": 89,
+      "SalesArea": "Drama Ireland"
+   },
+   {
+      "Id": 90,
+      "SalesArea": "Dunya News"
+   },
+   {
+      "Id": 91,
+      "SalesArea": "E!"
+   },
+   {
+      "Id": 92,
+      "SalesArea": "E!Ireland"
+   },
+   {
+      "Id": 93,
+      "SalesArea": "ENTERTAINMENT"
+   },
+   {
+      "Id": 94,
+      "SalesArea": "ESPN Classic"
+   },
+   {
+      "Id": 95,
+      "SalesArea": "ESPN Sports"
+   },
+   {
+      "Id": 96,
+      "SalesArea": "ESPN Sports Pub"
+   },
+   {
+      "Id": 97,
+      "SalesArea": "Extreme Sports Channel"
+   },
+   {
+      "Id": 98,
+      "SalesArea": "Flava"
+   },
+   {
+      "Id": 99,
+      "SalesArea": "Food Network"
+   },
+   {
+      "Id": 100,
+      "SalesArea": "Food Network Ireland"
+   },
+   {
+      "Id": 101,
+      "SalesArea": "Football Interactive 10"
+   },
+   {
+      "Id": 102,
+      "SalesArea": "Forces TV"
+   },
+   {
+      "Id": 103,
+      "SalesArea": "FOX"
+   },
+   {
+      "Id": 104,
+      "SalesArea": "Fox News"
+   },
+   {
+      "Id": 105,
+      "SalesArea": "FOX TS"
+   },
+   {
+      "Id": 106,
+      "SalesArea": "Free Sports"
+   },
+   {
+      "Id": 107,
+      "SalesArea": "Free Sports Ireland"
+   },
+   {
+      "Id": 108,
+      "SalesArea": "Geo Kahani"
+   },
+   {
+      "Id": 109,
+      "SalesArea": "Geo News"
+   },
+   {
+      "Id": 110,
+      "SalesArea": "Geo TV"
+   },
+   {
+      "Id": 111,
+      "SalesArea": "GOLD Ireland"
+   },
+   {
+      "Id": 112,
+      "SalesArea": "Heart TV"
+   },
+   {
+      "Id": 113,
+      "SalesArea": "History"
+   },
+   {
+      "Id": 114,
+      "SalesArea": "History 2"
+   },
+   {
+      "Id": 115,
+      "SalesArea": "History HD"
+   },
+   {
+      "Id": 116,
+      "SalesArea": "Horror Channel"
+   },
+   {
+      "Id": 117,
+      "SalesArea": "Horse & Country"
+   },
+   {
+      "Id": 118,
+      "SalesArea": "Horse & Country TS"
+   },
+   {
+      "Id": 119,
+      "SalesArea": "Hum Europe"
+   },
+   {
+      "Id": 120,
+      "SalesArea": "Hum Masala"
+   },
+   {
+      "Id": 121,
+      "SalesArea": "Investigation Discovery"
+   },
+   {
+      "Id": 122,
+      "SalesArea": "Investigation Discovery Irelan"
+   },
+   {
+      "Id": 123,
+      "SalesArea": "IRELAND DOCUMENTARIES"
+   },
+   {
+      "Id": 124,
+      "SalesArea": "IRELAND ENTERTAINMENT"
+   },
+   {
+      "Id": 125,
+      "SalesArea": "IRELAND KIDS"
+   },
+   {
+      "Id": 126,
+      "SalesArea": "IRELAND MUSIC"
+   },
+   {
+      "Id": 127,
+      "SalesArea": "IRELAND NEWS"
+   },
+   {
+      "Id": 128,
+      "SalesArea": "IRELAND SPORT"
+   },
+   {
+      "Id": 129,
+      "SalesArea": "Kerrang! TV"
+   },
+   {
+      "Id": 130,
+      "SalesArea": "KIDS"
+   },
+   {
+      "Id": 131,
+      "SalesArea": "Kids Vod"
+   },
+   {
+      "Id": 132,
+      "SalesArea": "KIDS VOD"
+   },
+   {
+      "Id": 133,
+      "SalesArea": "Kiss TV"
+   },
+   {
+      "Id": 134,
+      "SalesArea": "Kix"
+   },
+   {
+      "Id": 135,
+      "SalesArea": "Kix Power"
+   },
+   {
+      "Id": 136,
+      "SalesArea": "Lamhe"
+   },
+   {
+      "Id": 137,
+      "SalesArea": "LIFESTYLE & CULTURE"
+   },
+   {
+      "Id": 138,
+      "SalesArea": "Lifetime"
+   },
+   {
+      "Id": 139,
+      "SalesArea": "Living Foodz"
+   },
+   {
+      "Id": 140,
+      "SalesArea": "Luxury Life"
+   },
+   {
+      "Id": 141,
+      "SalesArea": "Magic TV"
+   },
+   {
+      "Id": 142,
+      "SalesArea": "Manchester United TV"
+   },
+   {
+      "Id": 143,
+      "SalesArea": "MGMHD"
+   },
+   {
+      "Id": 144,
+      "SalesArea": "Milkshake"
+   },
+   {
+      "Id": 145,
+      "SalesArea": "Milkshake 5 Star"
+   },
+   {
+      "Id": 146,
+      "SalesArea": "MISCELLANEOUS"
+   },
+   {
+      "Id": 147,
+      "SalesArea": "MOVIES"
+   },
+   {
+      "Id": 148,
+      "SalesArea": "Movies 24"
+   },
+   {
+      "Id": 149,
+      "SalesArea": "Movies 24+"
+   },
+   {
+      "Id": 150,
+      "SalesArea": "Movies Mix"
+   },
+   {
+      "Id": 151,
+      "SalesArea": "MTV"
+   },
+   {
+      "Id": 152,
+      "SalesArea": "MTV Base"
+   },
+   {
+      "Id": 153,
+      "SalesArea": "MTV Beats"
+   },
+   {
+      "Id": 154,
+      "SalesArea": "MTV Classic"
+   },
+   {
+      "Id": 155,
+      "SalesArea": "MTV Hits"
+   },
+   {
+      "Id": 156,
+      "SalesArea": "MTV Ireland"
+   },
+   {
+      "Id": 157,
+      "SalesArea": "MTV Live"
+   },
+   {
+      "Id": 158,
+      "SalesArea": "MTV Music"
+   },
+   {
+      "Id": 159,
+      "SalesArea": "MTV Music Ireland"
+   },
+   {
+      "Id": 160,
+      "SalesArea": "MTV OMG"
+   },
+   {
+      "Id": 161,
+      "SalesArea": "MTV OMG TS"
+   },
+   {
+      "Id": 162,
+      "SalesArea": "MTV Rocks"
+   },
+   {
+      "Id": 163,
+      "SalesArea": "MTV Shows"
+   },
+   {
+      "Id": 164,
+      "SalesArea": "MTV TS"
+   },
+   {
+      "Id": 165,
+      "SalesArea": "MUSIC"
+   },
+   {
+      "Id": 166,
+      "SalesArea": "My Sky One"
+   },
+   {
+      "Id": 167,
+      "SalesArea": "MY SKY ONE"
+   },
+   {
+      "Id": 168,
+      "SalesArea": "Nat Geo Wild"
+   },
+   {
+      "Id": 169,
+      "SalesArea": "Nat Geo Wild HD"
+   },
+   {
+      "Id": 170,
+      "SalesArea": "National Geographic Channel"
+   },
+   {
+      "Id": 171,
+      "SalesArea": "National Geographic Channel HD"
+   },
+   {
+      "Id": 172,
+      "SalesArea": "National Geographic TS"
+   },
+   {
+      "Id": 173,
+      "SalesArea": "New Vision"
+   },
+   {
+      "Id": 174,
+      "SalesArea": "NEWS"
+   },
+   {
+      "Id": 175,
+      "SalesArea": "News 18"
+   },
+   {
+      "Id": 176,
+      "SalesArea": "Nick Jr"
+   },
+   {
+      "Id": 177,
+      "SalesArea": "Nick Jr Ireland"
+   },
+   {
+      "Id": 178,
+      "SalesArea": "Nick Jr Too"
+   },
+   {
+      "Id": 179,
+      "SalesArea": "Nick Jr Too Ireland"
+   },
+   {
+      "Id": 180,
+      "SalesArea": "Nick Jr Too TS"
+   },
+   {
+      "Id": 181,
+      "SalesArea": "Nick Toons"
+   },
+   {
+      "Id": 182,
+      "SalesArea": "Nick Toons Ireland"
+   },
+   {
+      "Id": 183,
+      "SalesArea": "Nick Toons TS"
+   },
+   {
+      "Id": 184,
+      "SalesArea": "Nickelodeon"
+   },
+   {
+      "Id": 185,
+      "SalesArea": "Nickelodeon Ireland"
+   },
+   {
+      "Id": 186,
+      "SalesArea": "Nickelodeon TS"
+   },
+   {
+      "Id": 187,
+      "SalesArea": "Non-Spot"
+   },
+   {
+      "Id": 188,
+      "SalesArea": "NON-SPOT"
+   },
+   {
+      "Id": 189,
+      "SalesArea": "Non-Spot Ireland"
+   },
+   {
+      "Id": 190,
+      "SalesArea": "NON-SPOT-IRELAND"
+   },
+   {
+      "Id": 191,
+      "SalesArea": "Now 70s"
+   },
+   {
+      "Id": 192,
+      "SalesArea": "Now 80s"
+   },
+   {
+      "Id": 193,
+      "SalesArea": "Now 90s"
+   },
+   {
+      "Id": 194,
+      "SalesArea": "ON DEMAND SHOWCASE"
+   },
+   {
+      "Id": 195,
+      "SalesArea": "On Demand Showcase HD1"
+   },
+   {
+      "Id": 196,
+      "SalesArea": "On Demand Showcase HD3"
+   },
+   {
+      "Id": 197,
+      "SalesArea": "On Demand Showcase SD2"
+   },
+   {
+      "Id": 198,
+      "SalesArea": "Paramount Network"
+   },
+   {
+      "Id": 199,
+      "SalesArea": "Paramount TS"
+   },
+   {
+      "Id": 200,
+      "SalesArea": "Pay Event Movies"
+   },
+   {
+      "Id": 201,
+      "SalesArea": "Pick"
+   },
+   {
+      "Id": 202,
+      "SalesArea": "Pick Ireland"
+   },
+   {
+      "Id": 203,
+      "SalesArea": "Pick TS"
+   },
+   {
+      "Id": 204,
+      "SalesArea": "Planet"
+   },
+   {
+      "Id": 205,
+      "SalesArea": "Pop"
+   },
+   {
+      "Id": 206,
+      "SalesArea": "Pop Girl"
+   },
+   {
+      "Id": 207,
+      "SalesArea": "Pop Max"
+   },
+   {
+      "Id": 208,
+      "SalesArea": "PTC Punjabi"
+   },
+   {
+      "Id": 209,
+      "SalesArea": "PTV Global"
+   },
+   {
+      "Id": 210,
+      "SalesArea": "PUB"
+   },
+   {
+      "Id": 211,
+      "SalesArea": "Q TV"
+   },
+   {
+      "Id": 212,
+      "SalesArea": "Quest"
+   },
+   {
+      "Id": 213,
+      "SalesArea": "Quest Ireland"
+   },
+   {
+      "Id": 214,
+      "SalesArea": "Quest Red"
+   },
+   {
+      "Id": 215,
+      "SalesArea": "Really Ireland"
+   },
+   {
+      "Id": 216,
+      "SalesArea": "Retro Movies"
+   },
+   {
+      "Id": 217,
+      "SalesArea": "ROK"
+   },
+   {
+      "Id": 218,
+      "SalesArea": "S4C"
+   },
+   {
+      "Id": 219,
+      "SalesArea": "S4C Contingency"
+   },
+   {
+      "Id": 220,
+      "SalesArea": "S4C TS"
+   },
+   {
+      "Id": 221,
+      "SalesArea": "Scuzz"
+   },
+   {
+      "Id": 222,
+      "SalesArea": "Sky 1"
+   },
+   {
+      "Id": 223,
+      "SalesArea": "Sky 1 HD"
+   },
+   {
+      "Id": 224,
+      "SalesArea": "Sky 1 Ireland"
+   },
+   {
+      "Id": 225,
+      "SalesArea": "Sky 2"
+   },
+   {
+      "Id": 226,
+      "SalesArea": "Sky 2 Ireland"
+   },
+   {
+      "Id": 227,
+      "SalesArea": "Sky 2 TS"
+   },
+   {
+      "Id": 228,
+      "SalesArea": "Sky Active Ads"
+   },
+   {
+      "Id": 229,
+      "SalesArea": "SKY ALL AREAS"
+   },
+   {
+      "Id": 230,
+      "SalesArea": "Sky Arts"
+   },
+   {
+      "Id": 231,
+      "SalesArea": "Sky Arts 2"
+   },
+   {
+      "Id": 232,
+      "SalesArea": "Sky Atlantic"
+   },
+   {
+      "Id": 233,
+      "SalesArea": "Sky Atlantic Ireland"
+   },
+   {
+      "Id": 234,
+      "SalesArea": "Sky Box Office 1"
+   },
+   {
+      "Id": 235,
+      "SalesArea": "Sky Box Office 10"
+   },
+   {
+      "Id": 236,
+      "SalesArea": "Sky Box Office 11"
+   },
+   {
+      "Id": 237,
+      "SalesArea": "Sky Box Office 12"
+   },
+   {
+      "Id": 238,
+      "SalesArea": "Sky Box Office 13"
+   },
+   {
+      "Id": 239,
+      "SalesArea": "Sky Box Office 14"
+   },
+   {
+      "Id": 240,
+      "SalesArea": "Sky Box Office 15"
+   },
+   {
+      "Id": 241,
+      "SalesArea": "Sky Box Office 16"
+   },
+   {
+      "Id": 242,
+      "SalesArea": "Sky Box Office 17"
+   },
+   {
+      "Id": 243,
+      "SalesArea": "Sky Box Office 18"
+   },
+   {
+      "Id": 244,
+      "SalesArea": "Sky Box Office 19"
+   },
+   {
+      "Id": 245,
+      "SalesArea": "Sky Box Office 2"
+   },
+   {
+      "Id": 246,
+      "SalesArea": "Sky Box Office 20"
+   },
+   {
+      "Id": 247,
+      "SalesArea": "Sky Box Office 21"
+   },
+   {
+      "Id": 248,
+      "SalesArea": "Sky Box Office 22"
+   },
+   {
+      "Id": 249,
+      "SalesArea": "Sky Box Office 23"
+   },
+   {
+      "Id": 250,
+      "SalesArea": "Sky Box Office 24"
+   },
+   {
+      "Id": 251,
+      "SalesArea": "Sky Box Office 25"
+   },
+   {
+      "Id": 252,
+      "SalesArea": "Sky Box Office 26"
+   },
+   {
+      "Id": 253,
+      "SalesArea": "Sky Box Office 27"
+   },
+   {
+      "Id": 254,
+      "SalesArea": "Sky Box Office 28"
+   },
+   {
+      "Id": 255,
+      "SalesArea": "Sky Box Office 29"
+   },
+   {
+      "Id": 256,
+      "SalesArea": "Sky Box Office 3"
+   },
+   {
+      "Id": 257,
+      "SalesArea": "Sky Box Office 30"
+   },
+   {
+      "Id": 258,
+      "SalesArea": "Sky Box Office 31"
+   },
+   {
+      "Id": 259,
+      "SalesArea": "Sky Box Office 32"
+   },
+   {
+      "Id": 260,
+      "SalesArea": "Sky Box Office 33"
+   },
+   {
+      "Id": 261,
+      "SalesArea": "Sky Box Office 34"
+   },
+   {
+      "Id": 262,
+      "SalesArea": "Sky Box Office 35"
+   },
+   {
+      "Id": 263,
+      "SalesArea": "Sky Box Office 36"
+   },
+   {
+      "Id": 264,
+      "SalesArea": "Sky Box Office 37"
+   },
+   {
+      "Id": 265,
+      "SalesArea": "Sky Box Office 38"
+   },
+   {
+      "Id": 266,
+      "SalesArea": "Sky Box Office 39"
+   },
+   {
+      "Id": 267,
+      "SalesArea": "Sky Box Office 4"
+   },
+   {
+      "Id": 268,
+      "SalesArea": "Sky Box Office 40"
+   },
+   {
+      "Id": 269,
+      "SalesArea": "Sky Box Office 41"
+   },
+   {
+      "Id": 270,
+      "SalesArea": "Sky Box Office 42"
+   },
+   {
+      "Id": 271,
+      "SalesArea": "Sky Box Office 43"
+   },
+   {
+      "Id": 272,
+      "SalesArea": "Sky Box Office 44"
+   },
+   {
+      "Id": 273,
+      "SalesArea": "Sky Box Office 45"
+   },
+   {
+      "Id": 274,
+      "SalesArea": "Sky Box Office 46"
+   },
+   {
+      "Id": 275,
+      "SalesArea": "Sky Box Office 47"
+   },
+   {
+      "Id": 276,
+      "SalesArea": "Sky Box Office 48"
+   },
+   {
+      "Id": 277,
+      "SalesArea": "Sky Box Office 49"
+   },
+   {
+      "Id": 278,
+      "SalesArea": "Sky Box Office 5"
+   },
+   {
+      "Id": 279,
+      "SalesArea": "Sky Box Office 50"
+   },
+   {
+      "Id": 280,
+      "SalesArea": "Sky Box Office 51"
+   },
+   {
+      "Id": 281,
+      "SalesArea": "Sky Box Office 52"
+   },
+   {
+      "Id": 282,
+      "SalesArea": "Sky Box Office 53"
+   },
+   {
+      "Id": 283,
+      "SalesArea": "Sky Box Office 54"
+   },
+   {
+      "Id": 284,
+      "SalesArea": "Sky Box Office 55"
+   },
+   {
+      "Id": 285,
+      "SalesArea": "Sky Box Office 56"
+   },
+   {
+      "Id": 286,
+      "SalesArea": "Sky Box Office 57"
+   },
+   {
+      "Id": 287,
+      "SalesArea": "Sky Box Office 58"
+   },
+   {
+      "Id": 288,
+      "SalesArea": "Sky Box Office 59"
+   },
+   {
+      "Id": 289,
+      "SalesArea": "Sky Box Office 6"
+   },
+   {
+      "Id": 290,
+      "SalesArea": "Sky Box Office 60"
+   },
+   {
+      "Id": 291,
+      "SalesArea": "Sky Box Office 7"
+   },
+   {
+      "Id": 292,
+      "SalesArea": "Sky Box Office 8"
+   },
+   {
+      "Id": 293,
+      "SalesArea": "Sky Box Office 9"
+   },
+   {
+      "Id": 294,
+      "SalesArea": "Sky Box Office HD"
+   },
+   {
+      "Id": 295,
+      "SalesArea": "Sky Cinema Action/Adventure"
+   },
+   {
+      "Id": 296,
+      "SalesArea": "Sky Cinema Animation"
+   },
+   {
+      "Id": 297,
+      "SalesArea": "Sky Cinema Comedy"
+   },
+   {
+      "Id": 298,
+      "SalesArea": "Sky Cinema Crime/Thriller"
+   },
+   {
+      "Id": 299,
+      "SalesArea": "Sky Cinema Disney"
+   },
+   {
+      "Id": 300,
+      "SalesArea": "Sky Cinema Drama/Romance"
+   },
+   {
+      "Id": 301,
+      "SalesArea": "Sky Cinema Family"
+   },
+   {
+      "Id": 302,
+      "SalesArea": "Sky Cinema Greats"
+   },
+   {
+      "Id": 303,
+      "SalesArea": "Sky Cinema Hits"
+   },
+   {
+      "Id": 304,
+      "SalesArea": "Sky Cinema Premiere"
+   },
+   {
+      "Id": 305,
+      "SalesArea": "Sky Cinema Sci-Fi/Horror"
+   },
+   {
+      "Id": 306,
+      "SalesArea": "Sky Cinema Select"
+   },
+   {
+      "Id": 307,
+      "SalesArea": "Sky Comedy"
+   },
+   {
+      "Id": 308,
+      "SalesArea": "Sky Comedy Ireland"
+   },
+   {
+      "Id": 309,
+      "SalesArea": "Sky Crime"
+   },
+   {
+      "Id": 310,
+      "SalesArea": "Sky Crime TS"
+   },
+   {
+      "Id": 311,
+      "SalesArea": "Sky Documentaries"
+   },
+   {
+      "Id": 312,
+      "SalesArea": "SKY ENTERTAINMENT"
+   },
+   {
+      "Id": 313,
+      "SalesArea": "Sky Go Linear"
+   },
+   {
+      "Id": 314,
+      "SalesArea": "SKY GO LINEAR"
+   },
+   {
+      "Id": 315,
+      "SalesArea": "Sky Go Linear Ireland"
+   },
+   {
+      "Id": 316,
+      "SalesArea": "SKY GO LINEAR IRELAND"
+   },
+   {
+      "Id": 317,
+      "SalesArea": "Sky Go One"
+   },
+   {
+      "Id": 318,
+      "SalesArea": "SKY GO ONE"
+   },
+   {
+      "Id": 319,
+      "SalesArea": "SKY GO ONE IRE"
+   },
+   {
+      "Id": 320,
+      "SalesArea": "Sky Go One Ireland"
+   },
+   {
+      "Id": 321,
+      "SalesArea": "SKY GO SPORTS"
+   },
+   {
+      "Id": 322,
+      "SalesArea": "Sky Go VOD"
+   },
+   {
+      "Id": 323,
+      "SalesArea": "SKY GO VOD"
+   },
+   {
+      "Id": 324,
+      "SalesArea": "Sky Go VOD Ireland"
+   },
+   {
+      "Id": 325,
+      "SalesArea": "SKY GO VOD IRELAND"
+   },
+   {
+      "Id": 326,
+      "SalesArea": "Sky Living Loves"
+   },
+   {
+      "Id": 327,
+      "SalesArea": "Sky Movies Classics"
+   },
+   {
+      "Id": 328,
+      "SalesArea": "Sky Movies Crime & Thriller HD"
+   },
+   {
+      "Id": 329,
+      "SalesArea": "Sky Movies Premiere +1"
+   },
+   {
+      "Id": 330,
+      "SalesArea": "Sky Movies Showcase HD"
+   },
+   {
+      "Id": 331,
+      "SalesArea": "Sky Multistart 1"
+   },
+   {
+      "Id": 332,
+      "SalesArea": "Sky Multistart 2"
+   },
+   {
+      "Id": 333,
+      "SalesArea": "Sky Multistart 3"
+   },
+   {
+      "Id": 334,
+      "SalesArea": "Sky Multistart 4"
+   },
+   {
+      "Id": 335,
+      "SalesArea": "Sky Multistart 5"
+   },
+   {
+      "Id": 336,
+      "SalesArea": "Sky Multistart 6"
+   },
+   {
+      "Id": 337,
+      "SalesArea": "Sky Multistart 7"
+   },
+   {
+      "Id": 338,
+      "SalesArea": "Sky Multistart 8"
+   },
+   {
+      "Id": 339,
+      "SalesArea": "Sky Nature"
+   },
+   {
+      "Id": 340,
+      "SalesArea": "Sky News"
+   },
+   {
+      "Id": 341,
+      "SalesArea": "Sky News Brexit Free"
+   },
+   {
+      "Id": 342,
+      "SalesArea": "Sky News International"
+   },
+   {
+      "Id": 343,
+      "SalesArea": "Sky News Ireland"
+   },
+   {
+      "Id": 344,
+      "SalesArea": "Sky Pub Business"
+   },
+   {
+      "Id": 345,
+      "SalesArea": "Sky Sports Action"
+   },
+   {
+      "Id": 346,
+      "SalesArea": "Sky Sports Action Pub"
+   },
+   {
+      "Id": 347,
+      "SalesArea": "Sky Sports Action Sky Go"
+   },
+   {
+      "Id": 348,
+      "SalesArea": "Sky Sports Active Hi 1"
+   },
+   {
+      "Id": 349,
+      "SalesArea": "Sky Sports Active Hi 2"
+   },
+   {
+      "Id": 350,
+      "SalesArea": "Sky Sports Active Hi 3"
+   },
+   {
+      "Id": 351,
+      "SalesArea": "Sky Sports Active Hi 4"
+   },
+   {
+      "Id": 352,
+      "SalesArea": "Sky Sports Active Hi 5"
+   },
+   {
+      "Id": 353,
+      "SalesArea": "Sky Sports Active Lo 1"
+   },
+   {
+      "Id": 354,
+      "SalesArea": "Sky Sports Active Lo 2"
+   },
+   {
+      "Id": 355,
+      "SalesArea": "Sky Sports Active Lo 3"
+   },
+   {
+      "Id": 356,
+      "SalesArea": "Sky Sports Active Lo 4"
+   },
+   {
+      "Id": 357,
+      "SalesArea": "Sky Sports Active Lo 5"
+   },
+   {
+      "Id": 358,
+      "SalesArea": "Sky Sports Active Lo 6"
+   },
+   {
+      "Id": 359,
+      "SalesArea": "Sky Sports Active Lo 7"
+   },
+   {
+      "Id": 360,
+      "SalesArea": "Sky Sports Active Lo 8"
+   },
+   {
+      "Id": 361,
+      "SalesArea": "Sky Sports Active Lo 9"
+   },
+   {
+      "Id": 362,
+      "SalesArea": "Sky Sports Arena"
+   },
+   {
+      "Id": 363,
+      "SalesArea": "Sky Sports Arena Ireland"
+   },
+   {
+      "Id": 364,
+      "SalesArea": "Sky Sports Arena Pub"
+   },
+   {
+      "Id": 365,
+      "SalesArea": "Sky Sports Arena Sky Go"
+   },
+   {
+      "Id": 366,
+      "SalesArea": "Sky Sports Box Office"
+   },
+   {
+      "Id": 367,
+      "SalesArea": "Sky Sports Contingency 1"
+   },
+   {
+      "Id": 368,
+      "SalesArea": "Sky Sports Contingency 2"
+   },
+   {
+      "Id": 369,
+      "SalesArea": "Sky Sports Contingency 3"
+   },
+   {
+      "Id": 370,
+      "SalesArea": "Sky Sports Contingency Ireland"
+   },
+   {
+      "Id": 371,
+      "SalesArea": "Sky Sports Contingency Pub"
+   },
+   {
+      "Id": 372,
+      "SalesArea": "Sky Sports Cricket"
+   },
+   {
+      "Id": 373,
+      "SalesArea": "Sky Sports Cricket Pub"
+   },
+   {
+      "Id": 374,
+      "SalesArea": "Sky Sports Cricket Sky Go"
+   },
+   {
+      "Id": 375,
+      "SalesArea": "Sky Sports F1"
+   },
+   {
+      "Id": 376,
+      "SalesArea": "Sky Sports Football"
+   },
+   {
+      "Id": 377,
+      "SalesArea": "Sky Sports Football Ireland"
+   },
+   {
+      "Id": 378,
+      "SalesArea": "Sky Sports Football Pub"
+   },
+   {
+      "Id": 379,
+      "SalesArea": "Sky Sports Football Sky Go"
+   },
+   {
+      "Id": 380,
+      "SalesArea": "Sky Sports Golf"
+   },
+   {
+      "Id": 381,
+      "SalesArea": "Sky Sports Golf Ireland"
+   },
+   {
+      "Id": 382,
+      "SalesArea": "Sky Sports Golf Pub"
+   },
+   {
+      "Id": 383,
+      "SalesArea": "Sky Sports Golf Sky Go"
+   },
+   {
+      "Id": 384,
+      "SalesArea": "Sky Sports HD - 3rd Event"
+   },
+   {
+      "Id": 385,
+      "SalesArea": "Sky Sports HD 1"
+   },
+   {
+      "Id": 386,
+      "SalesArea": "Sky Sports HD 2"
+   },
+   {
+      "Id": 387,
+      "SalesArea": "Sky Sports Main Event"
+   },
+   {
+      "Id": 388,
+      "SalesArea": "Sky Sports Main Event Ireland"
+   },
+   {
+      "Id": 389,
+      "SalesArea": "Sky Sports Main Event Pub"
+   },
+   {
+      "Id": 390,
+      "SalesArea": "Sky Sports Main Event Sky Go"
+   },
+   {
+      "Id": 391,
+      "SalesArea": "Sky Sports Mix"
+   },
+   {
+      "Id": 392,
+      "SalesArea": "Sky Sports Mix Sky Go"
+   },
+   {
+      "Id": 393,
+      "SalesArea": "Sky Sports Mix TS"
+   },
+   {
+      "Id": 394,
+      "SalesArea": "Sky Sports News"
+   },
+   {
+      "Id": 395,
+      "SalesArea": "Sky Sports News Ireland"
+   },
+   {
+      "Id": 396,
+      "SalesArea": "Sky Sports News Pub"
+   },
+   {
+      "Id": 397,
+      "SalesArea": "Sky Sports News Sky Go"
+   },
+   {
+      "Id": 398,
+      "SalesArea": "Sky Sports Prem League Sky Go"
+   },
+   {
+      "Id": 399,
+      "SalesArea": "Sky Sports Premier League"
+   },
+   {
+      "Id": 400,
+      "SalesArea": "Sky Sports Premier League Ire"
+   },
+   {
+      "Id": 401,
+      "SalesArea": "Sky Sports Premier League Pub"
+   },
+   {
+      "Id": 402,
+      "SalesArea": "Sky Sports Racing"
+   },
+   {
+      "Id": 403,
+      "SalesArea": "Sky Sports Racing Ireland"
+   },
+   {
+      "Id": 404,
+      "SalesArea": "Sky Witness"
+   },
+   {
+      "Id": 405,
+      "SalesArea": "Sky Witness Ireland"
+   },
+   {
+      "Id": 406,
+      "SalesArea": "SKY-ACTIVE ADS"
+   },
+   {
+      "Id": 407,
+      "SalesArea": "SkyPoker.Com"
+   },
+   {
+      "Id": 408,
+      "SalesArea": "Smash Hits TV"
+   },
+   {
+      "Id": 409,
+      "SalesArea": "Sony Channel"
+   },
+   {
+      "Id": 410,
+      "SalesArea": "Sony Channel TS"
+   },
+   {
+      "Id": 411,
+      "SalesArea": "Sony Crime Channel"
+   },
+   {
+      "Id": 412,
+      "SalesArea": "Sony Crime Channel 2"
+   },
+   {
+      "Id": 413,
+      "SalesArea": "Sony Crime Channel 2 TS"
+   },
+   {
+      "Id": 414,
+      "SalesArea": "Sony Crime Channel TS"
+   },
+   {
+      "Id": 415,
+      "SalesArea": "Sony Movies"
+   },
+   {
+      "Id": 416,
+      "SalesArea": "Sony Movies Action"
+   },
+   {
+      "Id": 417,
+      "SalesArea": "Sony Movies Action TS"
+   },
+   {
+      "Id": 418,
+      "SalesArea": "Sony Movies Classic"
+   },
+   {
+      "Id": 419,
+      "SalesArea": "Sony Movies TS"
+   },
+   {
+      "Id": 420,
+      "SalesArea": "Sony SAB"
+   },
+   {
+      "Id": 421,
+      "SalesArea": "SPORTS"
+   },
+   {
+      "Id": 422,
+      "SalesArea": "Star Bharat"
+   },
+   {
+      "Id": 423,
+      "SalesArea": "Star Gold"
+   },
+   {
+      "Id": 424,
+      "SalesArea": "Star Gold Contingency"
+   },
+   {
+      "Id": 425,
+      "SalesArea": "Star Plus"
+   },
+   {
+      "Id": 426,
+      "SalesArea": "Style"
+   },
+   {
+      "Id": 427,
+      "SalesArea": "Syfy"
+   },
+   {
+      "Id": 428,
+      "SalesArea": "TELESHOPPING LONG FORM"
+   },
+   {
+      "Id": 429,
+      "SalesArea": "The Box"
+   },
+   {
+      "Id": 430,
+      "SalesArea": "Times Now"
+   },
+   {
+      "Id": 431,
+      "SalesArea": "Tiny Pop"
+   },
+   {
+      "Id": 432,
+      "SalesArea": "Together"
+   },
+   {
+      "Id": 433,
+      "SalesArea": "Trace Latina"
+   },
+   {
+      "Id": 434,
+      "SalesArea": "Trace Pop Up"
+   },
+   {
+      "Id": 435,
+      "SalesArea": "Trace Urban"
+   },
+   {
+      "Id": 436,
+      "SalesArea": "Trace Vault"
+   },
+   {
+      "Id": 437,
+      "SalesArea": "Travel Channel"
+   },
+   {
+      "Id": 438,
+      "SalesArea": "True Crime"
+   },
+   {
+      "Id": 439,
+      "SalesArea": "True Crime TS"
+   },
+   {
+      "Id": 440,
+      "SalesArea": "True Drama"
+   },
+   {
+      "Id": 441,
+      "SalesArea": "True Movies 2"
+   },
+   {
+      "Id": 442,
+      "SalesArea": "TV VOd"
+   },
+   {
+      "Id": 443,
+      "SalesArea": "TV VOD"
+   },
+   {
+      "Id": 444,
+      "SalesArea": "TV VOD Ireland"
+   },
+   {
+      "Id": 445,
+      "SalesArea": "TV VOD IRELAND"
+   },
+   {
+      "Id": 446,
+      "SalesArea": "UMP Movies"
+   },
+   {
+      "Id": 447,
+      "SalesArea": "UMP Stars"
+   },
+   {
+      "Id": 448,
+      "SalesArea": "Universal"
+   },
+   {
+      "Id": 449,
+      "SalesArea": "Universal Ireland"
+   },
+   {
+      "Id": 450,
+      "SalesArea": "VH1"
+   },
+   {
+      "Id": 451,
+      "SalesArea": "Vice"
+   },
+   {
+      "Id": 452,
+      "SalesArea": "Vice TS"
+   },
+   {
+      "Id": 453,
+      "SalesArea": "Vintage TV"
+   },
+   {
+      "Id": 454,
+      "SalesArea": "Viva Kids"
+   },
+   {
+      "Id": 455,
+      "SalesArea": "W Ireland"
+   },
+   {
+      "Id": 456,
+      "SalesArea": "Wild TS"
+   },
+   {
+      "Id": 457,
+      "SalesArea": "YourTV"
+   },
+   {
+      "Id": 458,
+      "SalesArea": "YourTV TS"
+   },
+   {
+      "Id": 459,
+      "SalesArea": "Zee Cinema"
+   },
+   {
+      "Id": 460,
+      "SalesArea": "Zee TV"
+   },
+   {
+      "Id": 461,
+      "SalesArea": "Zing"
+   },
+   {
+      "Id": 462,
+      "SalesArea": "zz NDTV"
+   },
+   {
+      "Id": 463,
+      "SalesArea": "zzDivaOld"
+   },
+   {
+      "Id": 464,
+      "SalesArea": "zzHorror Chan Simulcast(Fasc"
+   },
+   {
+      "Id": 465,
+      "SalesArea": "zzMTV Ireland Old"
+   },
+   {
+      "Id": 466,
+      "SalesArea": "zzMTVOld"
+   },
+   {
+      "Id": 467,
+      "SalesArea": "zzOn Demand Showcase HD2"
+   },
+   {
+      "Id": 468,
+      "SalesArea": "zzOn Demand Showcase SD1"
+   },
+   {
+      "Id": 469,
+      "SalesArea": "zzS4Cold"
+   },
+   {
+      "Id": 470,
+      "SalesArea": "zzSky Arts 1"
+   },
+   {
+      "Id": 471,
+      "SalesArea": "zzSky Arts 1HD"
+   },
+   {
+      "Id": 472,
+      "SalesArea": "zzSky Arts 2"
+   },
+   {
+      "Id": 473,
+      "SalesArea": "zzSky Real Lives"
+   },
+   {
+      "Id": 474,
+      "SalesArea": "zzSky Real Lives 2"
+   },
+   {
+      "Id": 475,
+      "SalesArea": "zzSky Sports Ents"
+   },
+   {
+      "Id": 476,
+      "SalesArea": "zzz_Dummy 1 Channel not avail"
+   },
+   {
+      "Id": 477,
+      "SalesArea": "zzz_Dummy 2 Channel not avail"
+   }
+]

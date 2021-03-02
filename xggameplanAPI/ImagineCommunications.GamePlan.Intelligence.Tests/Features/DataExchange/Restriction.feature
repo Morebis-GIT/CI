@@ -87,11 +87,13 @@ Scenario: BulkRestrictionCreatedOrUpdated message should throw exception when sa
 	When I publish message to message broker
 	Then GamePlanIntelligence throws exception with the code: SalesAreaNotFound
 
+
 Scenario: BulkRestrictionCreatedOrUpdated message should throw exception when programme category is not found in metadata table
 	Given The data from file Restriction.BulkRestrictionCreatedOrUpdated.Setup exists in database
 	And I have BulkRestrictionCreatedOrUpdated message from file Restriction.BulkRestrictionCreatedOrUpdated.Error_ProgrammeCategoryNotFound to publish
 	When I publish message to message broker
 	Then GamePlanIntelligence throws exception with the code: ProgrammeCategoryNotFound
+
 
 Scenario: BulkRestrictionCreatedOrUpdated message should throw exception when clearance code is not found
 	Given The data from file Restriction.BulkRestrictionCreatedOrUpdated.Setup exists in database
@@ -99,12 +101,14 @@ Scenario: BulkRestrictionCreatedOrUpdated message should throw exception when cl
 	When I publish message to message broker
 	Then GamePlanIntelligence throws exception with the code: ClearanceCodeNotFound
 
+
 Scenario: BulkRestrictionCreatedOrUpdated message should create record in the database
 	Given The data from file Restriction.BulkRestrictionCreatedOrUpdated.Setup exists in database
 	And I have BulkRestrictionCreatedOrUpdated message from file Restriction.BulkRestrictionCreatedOrUpdated.Success_Create to publish
 	When I publish message to message broker
 	Then GamePlanIntelligence consumes message
 	And the Restrictions data in GamePlan database is updated as the data from the following file Restriction.BulkRestrictionCreatedOrUpdated.Success_Create_Result
+
 
 Scenario: BulkRestrictionCreatedOrUpdated message should update record in the database
 	Given The data from file Restriction.BulkRestrictionCreatedOrUpdated.Setup exists in database

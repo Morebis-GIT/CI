@@ -7,6 +7,7 @@ Feature: Programme
 Background:
 	Given GroupTransactionInfo for 1 event sent
 
+
 Scenario: BulkProgrammeCreated message should successfully save records
 	Given The data from file Programme.BulkProgrammeCreated.SalesAreas_Setup exists in database
 	And The data from file Programme.BulkProgrammeCreated.Setup exists in database
@@ -27,6 +28,7 @@ Scenario: BulkProgrammeCreated message should throw validation exception for emp
 		| Data[0].StartDateTime     |
 		| Data[0].Duration          |
 
+
 Scenario: BulkProgrammeCreated message should throw invalid data exception for invalid sales area name
 	Given The data from file Programme.BulkProgrammeCreated.SalesAreas_Setup exists in database
 	And The data from file Programme.BulkProgrammeCreated.Setup exists in database
@@ -34,12 +36,14 @@ Scenario: BulkProgrammeCreated message should throw invalid data exception for i
 	When I publish message to message broker
 	Then GamePlanIntelligence throws exception with the code: SalesAreaNotFound
 
+
 Scenario: BulkProgrammeCreated message should throw invalid data exception for invalid program categories
 	Given The data from file Programme.BulkProgrammeCreated.SalesAreas_Setup exists in database
 	And The data from file Programme.BulkProgrammeCreated.Setup exists in database
 	And I have BulkProgrammeCreated message from file Programme.BulkProgrammeCreated.Error_InvalidProgramCategories to publish
 	When I publish message to message broker
 	Then GamePlanIntelligence throws exception with the code: ProgrammeCategoryNotFound
+
 
 Scenario: BulkProgrammeDeleted message should successfully delete records
 	Given The data from file Programme.BulkProgrammeDeleted.SalesAreas_Setup exists in database
@@ -57,6 +61,7 @@ Scenario: BulkProgrammeDeleted message should throw validation exception for emp
 		| Data[0].SalesArea |
 		| Data[0].FromDate  |
 		| Data[0].ToDate    |
+
 
 Scenario: BulkProgrammeUpdated message should successfully update records
 	Given The data from file Programme.BulkProgrammeUpdated.Setup exists in database

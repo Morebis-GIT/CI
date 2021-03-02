@@ -19,6 +19,7 @@ namespace ImagineCommunications.GamePlan.Persistence.File.Repositories
 
         public void Dispose()
         {
+
         }
 
         public void Add(IEnumerable<Product> items)
@@ -58,6 +59,7 @@ namespace ImagineCommunications.GamePlan.Persistence.File.Repositories
             return GetAllByType<Product>(_folder, _type, currentItem => currentItem.Externalidentifier == productref);
         }
 
+
         public IEnumerable<Product> FindByExternal(List<string> productRefs) =>
             FindByExternal(productRefs, NodaTime.SystemClock.Instance.GetCurrentInstant().ToDateTimeUtc());
 
@@ -67,30 +69,35 @@ namespace ImagineCommunications.GamePlan.Persistence.File.Repositories
         public Product Get(Guid id) => Get(id, NodaTime.SystemClock.Instance.GetCurrentInstant().ToDateTimeUtc());
 
         public Product Get(Guid uid, DateTime onDate) => GetItemByID<Product>(_folder, _type, uid.ToString());
-
         public IEnumerable<Product> GetAll(DateTime onDate) => GetAllByType<Product>(_folder, _type);
 
         public IEnumerable<Product> GetAll() => GetAll(NodaTime.SystemClock.Instance.GetCurrentInstant().ToDateTimeUtc());
 
-        public int CountAll => CountAll(_folder, _type);
+        public int CountAll
+        {
+            get
+            {
+                return CountAll<Product>(_folder, _type);
+            }
+        }
 
         [Obsolete("Use Delete()")]
         public void Remove(Guid uid) => Delete(uid);
 
         public void Delete(Guid uid)
         {
-            DeleteItem(_folder, _type, uid.ToString());
+            DeleteItem<Product>(_folder, _type, uid.ToString());
         }
 
         public void Truncate()
         {
-            DeleteAllItems(_folder, _type);
+            DeleteAllItems<Product>(_folder, _type);
         }
 
         public Task TruncateAsync()
         {
             Truncate();
-            return Task.CompletedTask;
+            return Task.FromResult(true);
         }
 
         public IEnumerable<Product> FindByAdvertiserId(List<string> advertiserIds) =>
@@ -112,9 +119,7 @@ namespace ImagineCommunications.GamePlan.Persistence.File.Repositories
             return GetAllByType(_folder, _type, query).Count;
         }
 
-        public void SaveChanges()
-        {
-        }
+        public void SaveChanges() { }
 
         public bool Exists(Expression<Func<Product, bool>> condition) => throw new NotImplementedException();
 

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
 using AutoMapper;
+using AutoMapper.QueryableExtensions;
 using ImagineCommunications.GamePlan.Domain.BusinessRules.Restrictions;
 using ImagineCommunications.GamePlan.Domain.BusinessRules.Restrictions.Objects;
 using ImagineCommunications.GamePlan.Domain.BusinessRules.Restrictions.Queries;
@@ -13,10 +14,7 @@ using ImagineCommunications.GamePlan.Persistence.SqlServer.Core.Interfaces;
 using ImagineCommunications.GamePlan.Persistence.SqlServer.Entities.Tenant;
 using ImagineCommunications.GamePlan.Persistence.SqlServer.Entities.Tenant.Products;
 using ImagineCommunications.GamePlan.Persistence.SqlServer.Entities.Tenant.Restrictions;
-using ImagineCommunications.GamePlan.Persistence.SqlServer.Interfaces;
-using Microsoft.EntityFrameworkCore;
 using xggameplan.core.Extensions;
-using xggameplan.core.Extensions.AutoMapper;
 using xggameplan.Extensions;
 using Restriction = ImagineCommunications.GamePlan.Domain.BusinessRules.Restrictions.Objects.Restriction;
 using RestrictionEntity = ImagineCommunications.GamePlan.Persistence.SqlServer.Entities.Tenant.Restrictions.Restriction;
@@ -27,24 +25,13 @@ namespace ImagineCommunications.GamePlan.Persistence.SqlServer.Repositories
     {
         private const int RestrictionsBatchSize = 1000;
         private readonly ISqlServerLongRunningTenantDbContext _dbContext;
-        private readonly ISqlServerSalesAreaByIdCacheAccessor _salesAreaByIdCache;
-        private readonly ISqlServerSalesAreaByNameCacheAccessor _salesAreaByNameCache;
         private readonly IMapper _mapper;
 
-        public RestrictionRepository(
-            ISqlServerLongRunningTenantDbContext dbContext,
-            ISqlServerSalesAreaByIdCacheAccessor salesAreaByIdCache,
-            ISqlServerSalesAreaByNameCacheAccessor salesAreaByNameCache,
-            IMapper mapper)
+        public RestrictionRepository(ISqlServerLongRunningTenantDbContext dbContext, IMapper mapper)
         {
             _dbContext = dbContext;
-            _salesAreaByIdCache = salesAreaByIdCache;
-            _salesAreaByNameCache = salesAreaByNameCache;
             _mapper = mapper;
         }
-
-        protected IQueryable<RestrictionEntity> RestrictionsQuery =>
-            _dbContext.Query<RestrictionEntity>().Include(x => x.SalesAreas);
 
         public void Add(Restriction item)
         {
@@ -55,13 +42,13 @@ namespace ImagineCommunications.GamePlan.Persistence.SqlServer.Repositories
                 }, post => post.IncludeCollection(e => e.SalesAreas));
             if (entity == null)
             {
-                _ = _dbContext.Add(_mapper.Map<RestrictionEntity>(item, opts => opts.UseEntityCache(_salesAreaByNameCache)),
-                    post => post.MapTo(item, opts => opts.UseEntityCache(_salesAreaByIdCache)), _mapper);
+                _dbContext.Add(_mapper.Map<RestrictionEntity>(item),
+                    post => post.MapTo(item), _mapper);
             }
             else
             {
-                _ = _mapper.Map(item, entity, opts => opts.UseEntityCache(_salesAreaByNameCache));
-                _ = _dbContext.Update(entity, post => post.MapTo(item, opts => opts.UseEntityCache(_salesAreaByIdCache)), _mapper);
+                _mapper.Map(item, entity);
+                _dbContext.Update(entity, post => post.MapTo(item), _mapper);
             }
         }
 
@@ -72,11 +59,11 @@ namespace ImagineCommunications.GamePlan.Persistence.SqlServer.Repositories
                 throw new ArgumentNullException(nameof(items));
             }
 
-            var entities = _mapper.Map<IEnumerable<RestrictionEntity>>(items, opts => opts.UseEntityCache(_salesAreaByNameCache))
+            var entities = _mapper.Map<IEnumerable<RestrictionEntity>>(items)
                 .ToArray();
 
             _dbContext.AddRange(entities,
-                x => x.MapToCollection(items, opts => opts.UseEntityCache(_salesAreaByIdCache)), _mapper);
+                x => x.MapToCollection(items), _mapper);
         }
 
         public void UpdateRange(IEnumerable<Restriction> restrictions)
@@ -98,16 +85,16 @@ namespace ImagineCommunications.GamePlan.Persistence.SqlServer.Repositories
                             .Where(x => restIds.Contains(x.RestrictionId)).Select(r => r.Id)
                             .ToArray();
 
-                        _ = _dbContext.Specific.RemoveByIdentityIds<RestrictionEntity>(restIds);
+                        _dbContext.Specific.RemoveByIdentityIds<RestrictionEntity>(restIds);
                         var salesAreaCount = restSalesAreaIds.Length;
                         for (int j = 0; j <= salesAreaCount / 1000; j++)
                         {
                             var salesAreaIds = restSalesAreaIds.Skip(j * 1000).Take(1000).ToArray();
-                            _ = _dbContext.Specific.RemoveByIdentityIds<RestrictionSalesArea>(salesAreaIds);
+                            _dbContext.Specific.RemoveByIdentityIds<RestrictionSalesArea>(salesAreaIds);
                         }
                     }
 
-                    var entities = _mapper.Map<IEnumerable<RestrictionEntity>>(restrictions, opts => opts.UseEntityCache(_salesAreaByNameCache)).ToList();
+                    var entities = _mapper.Map<IEnumerable<RestrictionEntity>>(restrictions).ToList();
 
                     _dbContext.BulkInsertEngine.BulkInsert(entities,
                         new BulkInsertOptions { PreserveInsertOrder = true, SetOutputIdentity = true });
@@ -143,7 +130,7 @@ namespace ImagineCommunications.GamePlan.Persistence.SqlServer.Repositories
                 for (int i = 0, page = 0; i < ids.Length; i += size, page++)
                 {
                     var batch = ids.Skip(size * page).Take(size).ToArray();
-                    _ = _dbContext.Specific.RemoveByIdentityIds<RestrictionEntity>(batch);
+                    _dbContext.Specific.RemoveByIdentityIds<RestrictionEntity>(batch);
                 }
                 transaction.Commit();
             }
@@ -182,35 +169,44 @@ namespace ImagineCommunications.GamePlan.Persistence.SqlServer.Repositories
             }
         }
 
-        public Restriction Get(Guid uid) =>
-            _mapper.Map<Restriction>(RestrictionsQuery
-                    .FirstOrDefault(x => x.Uid == uid), opts => opts.UseEntityCache(_salesAreaByIdCache));
+        public Restriction Get(Guid uid)
+        {
+            return _dbContext.Query<RestrictionEntity>()
+                .ProjectTo<Restriction>(_mapper.ConfigurationProvider)
+                .FirstOrDefault(x => x.Uid == uid);
+        }
 
         public Restriction Get(string externalIdentifier) =>
-            _mapper.Map<Restriction>(RestrictionsQuery
-                .FirstOrDefault(x => x.ExternalIdentifier == externalIdentifier), opts => opts.UseEntityCache(_salesAreaByIdCache));
+            _dbContext.Query<RestrictionEntity>()
+                .ProjectTo<Restriction>(_mapper.ConfigurationProvider)
+                .FirstOrDefault(x => x.ExternalIdentifier == externalIdentifier);
 
         public IEnumerable<Restriction> Get(List<string> externalIdentifiers) =>
-            _mapper.Map<List<Restriction>>(RestrictionsQuery
+            _dbContext.Query<RestrictionEntity>()
                 .Where(x => externalIdentifiers.Contains(x.ExternalIdentifier))
-                .Select(RestrictionSqlEntitySelect).AsNoTracking(), opts => opts.UseEntityCache(_salesAreaByIdCache));
+                .ProjectTo<Restriction>(_mapper.ConfigurationProvider)
+                .ToList();
 
         public IEnumerable<Restriction> Get(List<string> salesAreaNames, bool matchAllSpecifiedSalesAreas, DateTime? dateRangeStart, DateTime? dateRangeEnd, RestrictionType? restrictionType)
         {
             var queryable = GetQueryableFilter(salesAreaNames, matchAllSpecifiedSalesAreas, dateRangeStart, dateRangeEnd, restrictionType);
-            return _mapper.Map<List<Restriction>>(queryable.Select(RestrictionSqlEntitySelect).AsNoTracking(), opts => opts.UseEntityCache(_salesAreaByIdCache));
+
+            return queryable
+                    .ProjectTo<Restriction>(_mapper.ConfigurationProvider)
+                    .ToList();
         }
 
         public IEnumerable<Restriction> GetAll() =>
-            _mapper.Map<List<Restriction>>(RestrictionsQuery.Select(RestrictionSqlEntitySelect).AsNoTracking(),
-                opts => opts.UseEntityCache(_salesAreaByIdCache));
+            _dbContext.Query<RestrictionEntity>()
+                .ProjectTo<Restriction>(_mapper.ConfigurationProvider)
+                .ToList();
 
         public Tuple<Restriction, RestrictionDescription> GetDesc(Guid id)
         {
             var query = GetRestrictionSearchQueryable();
             var item = query.FirstOrDefault(x => x.Uid == id);
             return item != null
-                ? Tuple.Create(_mapper.Map<Restriction>(item, opts => opts.UseEntityCache(_salesAreaByIdCache)), _mapper.Map<RestrictionDescription>(item))
+                ? Tuple.Create(_mapper.Map<Restriction>(item), _mapper.Map<RestrictionDescription>(item))
                 : null;
         }
 
@@ -228,12 +224,12 @@ namespace ImagineCommunications.GamePlan.Persistence.SqlServer.Repositories
                 if (searchQueryModel.MatchAllSpecifiedSalesAreas)
                 {
                     where.Add(x => x.SalesAreas == null || !x.SalesAreas.Any()
-                                                        || x.SalesAreas.Count(y => searchQueryModel.SalesAreaNames.Contains(y.SalesArea.Name)) == searchQueryModel.SalesAreaNames.Count);
+                                                        || x.SalesAreas.Count(y => searchQueryModel.SalesAreaNames.Contains(y.SalesArea)) == searchQueryModel.SalesAreaNames.Count);
                 }
                 else
                 {
                     where.Add(x => x.SalesAreas == null || !x.SalesAreas.Any()
-                                                        || x.SalesAreas.Any(y => searchQueryModel.SalesAreaNames.Contains(y.SalesArea.Name)));
+                                                        || x.SalesAreas.Any(y => searchQueryModel.SalesAreaNames.Contains(y.SalesArea)));
                 }
             }
 
@@ -264,7 +260,7 @@ namespace ImagineCommunications.GamePlan.Persistence.SqlServer.Repositories
                 .ToList();
 
             var result = sortedItems
-                .Select(x => Tuple.Create(_mapper.Map<Restriction>(x, opts => opts.UseEntityCache(_salesAreaByIdCache)), _mapper.Map<RestrictionDescription>(x))).ToList();
+                .Select(x => Tuple.Create(_mapper.Map<Restriction>(x), _mapper.Map<RestrictionDescription>(x))).ToList();
 
             return new PagedQueryResult<Tuple<Restriction, RestrictionDescription>>(queryable.Count(), result);
         }
@@ -280,13 +276,13 @@ namespace ImagineCommunications.GamePlan.Persistence.SqlServer.Repositories
         {
             var query =
                 (from restriction in _dbContext.Query<RestrictionEntity>()
-                 join prdct in _dbContext.Query<Product>() on restriction.ProductCode.ToString() equals prdct.Externalidentifier
+                 join prdct in _dbContext.Query<Product>() on restriction.ProductCode equals prdct.Externalidentifier
                      into products
                  from product in products.DefaultIfEmpty()
                  join cl in _dbContext.Query<Clash>() on restriction.ClashCode equals cl.Externalref
                      into clashes
                  from clash in clashes.DefaultIfEmpty()
-                 join paj in _dbContext.Query<ProductAdvertiser>() on product.Uid equals paj.ProductId into paJoin
+                 join paj in _dbContext.Query<ProductAdvertiser>() on product.Id equals paj.ProductId into paJoin
                  from pa in paJoin.DefaultIfEmpty()
                  join aj in _dbContext.Query<Advertiser>() on pa.AdvertiserId equals aj.Id into aJoin
                  from a in aJoin.DefaultIfEmpty()
@@ -316,7 +312,7 @@ namespace ImagineCommunications.GamePlan.Persistence.SqlServer.Repositories
                      TimeToleranceMinsAfter = restriction.TimeToleranceMinsAfter,
                      IndexType = restriction.IndexType,
                      IndexThreshold = restriction.IndexThreshold,
-                     ProductCode = restriction.ProductCode,
+                     ProductCode = Convert.ToInt32(restriction.ProductCode),
                      ClashCode = restriction.ClashCode,
                      ClearanceCode = restriction.ClearanceCode,
                      ClockNumber = restriction.ClockNumber,
@@ -340,12 +336,12 @@ namespace ImagineCommunications.GamePlan.Persistence.SqlServer.Repositories
                 if (matchAllSpecifiedSalesAreas)
                 {
                     where.Add(p => p.SalesAreas == null || !p.SalesAreas.Any()
-                                        || p.SalesAreas.Count(x => salesAreaNames.Contains(x.SalesArea.Name)) == salesAreaNames.Count);
+                                        || p.SalesAreas.Count(x => salesAreaNames.Contains(x.SalesArea)) == salesAreaNames.Count);
                 }
                 else
                 {
                     where.Add(p => p.SalesAreas == null || !p.SalesAreas.Any()
-                                        || p.SalesAreas.Any(x => salesAreaNames.Contains(x.SalesArea.Name)));
+                                        || p.SalesAreas.Any(x => salesAreaNames.Contains(x.SalesArea)));
                 }
             }
 
@@ -366,57 +362,12 @@ namespace ImagineCommunications.GamePlan.Persistence.SqlServer.Repositories
 
             if (where.Any() == false)
             {
-                return RestrictionsQuery;
+                return _dbContext.Query<RestrictionEntity>();
             }
 
             return !where.Any() ?
-                RestrictionsQuery :
-                RestrictionsQuery.Where(where.AggregateAnd());
+                _dbContext.Query<RestrictionEntity>() :
+                _dbContext.Query<RestrictionEntity>().Where(where.AggregateAnd());
         }
-
-        /// <summary>
-        /// Represents projection of EF Core Restriction model to itself, contains all its properties.
-        /// Is used to prevent EF Core 2.2.6 identity resolution (even for no-tracking queries)
-        /// that kills performance for large data-sets.
-        /// </summary>
-        /// <remarks>
-        /// Can be removed after migrating to EF Core 3.0 or higher
-        /// </remarks>>
-        protected static Expression<Func<RestrictionEntity, RestrictionEntity>> RestrictionSqlEntitySelect => x =>
-            new RestrictionEntity
-            {
-                Id = x.Id,
-                Uid = x.Uid,
-                StartDate = x.StartDate,
-                EndDate = x.EndDate,
-                StartTime = x.StartTime,
-                EndTime = x.EndTime,
-                RestrictionDays = x.RestrictionDays,
-                SchoolHolidayIndicator = x.SchoolHolidayIndicator,
-                PublicHolidayIndicator = x.PublicHolidayIndicator,
-                LiveProgrammeIndicator = x.LiveProgrammeIndicator,
-                RestrictionType = x.RestrictionType,
-                RestrictionBasis = x.RestrictionBasis,
-                ExternalProgRef = x.ExternalProgRef,
-                ProgrammeCategory = x.ProgrammeCategory,
-                ProgrammeClassification = x.ProgrammeClassification,
-                ProgrammeClassificationIndicator = x.ProgrammeClassificationIndicator,
-                TimeToleranceMinsBefore = x.TimeToleranceMinsBefore,
-                TimeToleranceMinsAfter = x.TimeToleranceMinsAfter,
-                IndexType = x.IndexType,
-                IndexThreshold = x.IndexThreshold,
-                ProductCode = x.ProductCode,
-                ClashCode = x.ClashCode,
-                ClearanceCode = x.ClearanceCode,
-                ClockNumber = x.ClockNumber,
-                ExternalIdentifier = x.ExternalIdentifier,
-                EpisodeNumber = x.EpisodeNumber,
-                SalesAreas = x.SalesAreas.Select(rs => new RestrictionSalesArea
-                {
-                    Id = rs.Id,
-                    RestrictionId = rs.RestrictionId,
-                    SalesAreaId = rs.SalesAreaId
-                }).ToList()
-            };
     }
 }

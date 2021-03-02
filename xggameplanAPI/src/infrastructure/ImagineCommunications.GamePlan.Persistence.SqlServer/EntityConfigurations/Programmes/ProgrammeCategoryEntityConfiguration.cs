@@ -10,9 +10,10 @@ namespace ImagineCommunications.GamePlan.Persistence.SqlServer.EntityConfigurati
         {
             _ = builder.ToTable("ProgrammeCategories");
 
-            _ = builder.HasKey(e => e.Id);
-            _ = builder.Property(p => p.Id).UseSqlServerIdentityColumn();
-            _ = builder.Property(x => x.Name).HasMaxLength(64).IsRequired();
+            builder.HasKey(e => e.Id);
+            builder.Property(p => p.Id).UseMySqlIdentityColumn();
+
+            builder.Property(x => x.Name).HasMaxLength(64).IsRequired();
 
             _ = builder.HasIndex(e => e.Name).IsUnique();
         }

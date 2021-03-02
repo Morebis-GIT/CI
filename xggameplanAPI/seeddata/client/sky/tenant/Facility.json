@@ -1,0 +1,380 @@
+[
+  {
+    "Id": 1,
+    "Code": "ABAREA",
+    "Description": "Allow split/joint spots in Automated Booking",
+    "Enabled": false
+  },
+  {
+    "Id": 2,
+    "Code": "ABBNEV",
+    "Description": "Automated Booking Include Bonus Spot Delivery",
+    "Enabled": false
+  },
+  {
+    "Id": 3,
+    "Code": "ABBONS",
+    "Description": "Autobook Bonus Value",
+    "Enabled": false
+  },
+  {
+    "Id": 4,
+    "Code": "ABBTRQ",
+    "Description": "Automated Booking Book to Target Requirement",
+    "Enabled": true
+  },
+  {
+    "Id": 5,
+    "Code": "ABDBUG",
+    "Description": "Automated Booking Debug File Generation",
+    "Enabled": true
+  },
+  {
+    "Id": 6,
+    "Code": "ABDEMO",
+    "Description": "Automated Booking Process Active Demographics Only",
+    "Enabled": false
+  },
+  {
+    "Id": 7,
+    "Code": "ABDPYT",
+    "Description": "Use Campaign Daypart in Addition to AB Daypart",
+    "Enabled": true
+  },
+  {
+    "Id": 8,
+    "Code": "ABEVTH",
+    "Description": "Automated Booking - Evaluation Threading",
+    "Enabled": true
+  },
+  {
+    "Id": 9,
+    "Code": "ABFAIL",
+    "Description": "Automated Booking - All Pass Failure Reporting",
+    "Enabled": true
+  },
+  {
+    "Id": 10,
+    "Code": "ABPRC2",
+    "Description": "Automated Booking Pricing Spot Based Campaign Only",
+    "Enabled": false
+  },
+  {
+    "Id": 11,
+    "Code": "ABPRCE",
+    "Description": "Autoboook Spot Pricing",
+    "Enabled": false
+  },
+  {
+    "Id": 12,
+    "Code": "ABPREQ",
+    "Description": "Automated Booking - Programme Inclusion with Slotting Controls",
+    "Enabled": false
+  },
+  {
+    "Id": 13,
+    "Code": "ABSPLG",
+    "Description": "Autobook by Length by Daypart by Strike Weight",
+    "Enabled": false
+  },
+  {
+    "Id": 14,
+    "Code": "ABSTAT",
+    "Description": "Store Run Statistics for Request",
+    "Enabled": true
+  },
+  {
+    "Id": 15,
+    "Code": "ABTZRB",
+    "Description": "Autobook Target Zero Rated Break",
+    "Enabled": true
+  },
+  {
+    "Id": 16,
+    "Code": "ABWGHT",
+    "Description": "Random Automated Booking Weightings",
+    "Enabled": false
+  },
+  {
+    "Id": 17,
+    "Code": "ABZBON",
+    "Description": "Automated Booking - Zero Price Bonus Spots",
+    "Enabled": false
+  },
+  {
+    "Id": 18,
+    "Code": "ABZERO",
+    "Description": "Book Campaigns with Zero Requirement",
+    "Enabled": false
+  },
+  {
+    "Id": 19,
+    "Code": "ABZRTG",
+    "Description": "Zero Rated Breaks Count for Rating Delivery",
+    "Enabled": false
+  },
+  {
+    "Id": 20,
+    "Code": "ADCLSH",
+    "Description": "Advertiser Clash",
+    "Enabled": false
+  },
+  {
+    "Id": 21,
+    "Code": "AGREG",
+    "Description": "Autogeneration Nat/Reg Booking",
+    "Enabled": true
+  },
+  {
+    "Id": 22,
+    "Code": "AUTSAG",
+    "Description": "Autobooking by Sales Area group",
+    "Enabled": false
+  },
+  {
+    "Id": 23,
+    "Code": "AUTSPN",
+    "Description": "Autobook Sponsorship campaigns by programme",
+    "Enabled": false
+  },
+  {
+    "Id": 24,
+    "Code": "B2BCLH",
+    "Description": "Back To Back Clash Available",
+    "Enabled": false
+  },
+  {
+    "Id": 25,
+    "Code": "BRKBON",
+    "Description": "Bonus Restriction on Break",
+    "Enabled": false
+  },
+  {
+    "Id": 26,
+    "Code": "BRKPGR",
+    "Description": "Break Position Groups",
+    "Enabled": true
+  },
+  {
+    "Id": 27,
+    "Code": "BTYPLN",
+    "Description": "Book spots by campaign Break Type and Length",
+    "Enabled": false
+  },
+  {
+    "Id": 28,
+    "Code": "CPPBKP",
+    "Description": "CPP Break Pricing",
+    "Enabled": false
+  },
+  {
+    "Id": 29,
+    "Code": "CURFIL",
+    "Description": "Earlier Automated Filling date",
+    "Enabled": false
+  },
+  {
+    "Id": 30,
+    "Code": "DECARE",
+    "Description": "Deal Campaign Regional Exclusions",
+    "Enabled": false
+  },
+  {
+    "Id": 31,
+    "Code": "DEMRST",
+    "Description": "Demographic Booking Restrictions",
+    "Enabled": false
+  },
+  {
+    "Id": 32,
+    "Code": "DISSUR",
+    "Description": "Campaign Discount and Surcharge",
+    "Enabled": false
+  },
+  {
+    "Id": 33,
+    "Code": "DLBOTY",
+    "Description": "Deal Bonus Types",
+    "Enabled": false
+  },
+  {
+    "Id": 34,
+    "Code": "DPSTWT",
+    "Description": "Define Dayparts by Deal and Campaign period",
+    "Enabled": false
+  },
+  {
+    "Id": 35,
+    "Code": "EFFFAC",
+    "Description": "Efficiency Factors",
+    "Enabled": true
+  },
+  {
+    "Id": 36,
+    "Code": "EFFRAN",
+    "Description": "Autogen Random Efficiency at 100eff",
+    "Enabled": true
+  },
+  {
+    "Id": 37,
+    "Code": "EPGTGT",
+    "Description": "EPG (Target) Sales Area Processing",
+    "Enabled": true
+  },
+  {
+    "Id": 38,
+    "Code": "EXCLSH",
+    "Description": "EXTEND CLASH",
+    "Enabled": true
+  },
+  {
+    "Id": 39,
+    "Code": "EXPDIS",
+    "Description": "Expected Expenditure Discounts",
+    "Enabled": false
+  },
+  {
+    "Id": 40,
+    "Code": "FLRPRC",
+    "Description": "Floor Pricing",
+    "Enabled": false
+  },
+  {
+    "Id": 41,
+    "Code": "HFSSIX",
+    "Description": "Enable Index Restrictions for HFSS or Age Group",
+    "Enabled": true
+  },
+  {
+    "Id": 42,
+    "Code": "LCKPRC",
+    "Description": "Lock Spot Price",
+    "Enabled": false
+  },
+  {
+    "Id": 43,
+    "Code": "MCNPSD",
+    "Description": "Update Spot from Nominal Prices",
+    "Enabled": false
+  },
+  {
+    "Id": 44,
+    "Code": "MNPRDC",
+    "Description": "Apply Discounts to Manually Priced Spots - Bulk",
+    "Enabled": false
+  },
+  {
+    "Id": 45,
+    "Code": "NATREG",
+    "Description": "National Regional Breaks",
+    "Enabled": false
+  },
+  {
+    "Id": 46,
+    "Code": "NODISC",
+    "Description": "Discount Processing Not Required",
+    "Enabled": false
+  },
+  {
+    "Id": 47,
+    "Code": "PGRCLA",
+    "Description": "Programme Classification",
+    "Enabled": false
+  },
+  {
+    "Id": 48,
+    "Code": "RATING",
+    "Description": "Hide Ratings",
+    "Enabled": false
+  },
+  {
+    "Id": 49,
+    "Code": "REGBRK",
+    "Description": "Regional Break - Store Reduced Break Information",
+    "Enabled": false
+  },
+  {
+    "Id": 50,
+    "Code": "RNDPRC",
+    "Description": "Spot Price - Round to Sales Area Ratecard Rounding",
+    "Enabled": false
+  },
+  {
+    "Id": 51,
+    "Code": "RTCTCA",
+    "Description": "Rate Card Tariff Category",
+    "Enabled": false
+  },
+  {
+    "Id": 52,
+    "Code": "SALREG",
+    "Description": "Regional Sales Availability",
+    "Enabled": false
+  },
+  {
+    "Id": 53,
+    "Code": "SANOEX",
+    "Description": "No of clash exposures defined by sales area",
+    "Enabled": true
+  },
+  {
+    "Id": 54,
+    "Code": "SBSPBP",
+    "Description": "Spot Book Starting Price from Break Price",
+    "Enabled": false
+  },
+  {
+    "Id": 55,
+    "Code": "SPNADV",
+    "Description": "Sponsorship Entitlement Group By Advertiser",
+    "Enabled": false
+  },
+  {
+    "Id": 56,
+    "Code": "SPNCHK",
+    "Description": "Sponsership Checking Required (y/n)",
+    "Enabled": true
+  },
+  {
+    "Id": 57,
+    "Code": "SPNENT",
+    "Description": "Sponsorship entitlement",
+    "Enabled": false
+  },
+  {
+    "Id": 58,
+    "Code": "SPTMSD",
+    "Description": "Spots map to scheduled payments",
+    "Enabled": false
+  },
+  {
+    "Id": 59,
+    "Code": "TOPRTG",
+    "Description": "Tot Spot Ratings Only",
+    "Enabled": false
+  },
+  {
+    "Id": 60,
+    "Code": "TOTEFF",
+    "Description": "Total efficiency for all Sales Areas within Break",
+    "Enabled": false
+  },
+  {
+    "Id": 61,
+    "Code": "XGCSVO",
+    "Description": "xG Gameplan - Produce Output Files with Header information",
+    "Enabled": true
+  },
+  {
+    "Id": 62,
+    "Code": "XGRTIM",
+    "Description": "xG Gameplan - Receive Ratings as Impressions",
+    "Enabled": false
+  },
+  {
+    "Id": 63,
+    "Code": "XGSCRC",
+    "Description": "xG GamePlan - Scenario Campaign Results at Campaign Level",
+    "Enabled": true
+  }
+]

@@ -7,7 +7,8 @@ namespace ImagineCommunications.GamePlan.Persistence.SqlServer.Entities.Tenant.P
     {
         public int Id { get; set; }
         public int PassId { get; set; }
-        public ICollection<PassRatingPointSalesAreaRef> SalesAreas { get; set; }
+
+        public ICollection<string> SalesAreas { get; set; }
         public double? OffPeakValue { get; set; }
         public double? PeakValue { get; set; }
         public double? MidnightToDawnValue { get; set; }

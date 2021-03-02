@@ -13,21 +13,11 @@ namespace ImagineCommunications.GamePlan.Persistence.Memory.Repositories
         {
         }
 
-        public void Dispose()
-        {
-        }
+        public void Dispose() { }
 
-        public void Add(SpotPlacement item)
+        public void Insert(IEnumerable<SpotPlacement> spotPlacements)
         {
-            InsertOrReplaceItem(item, item.Id.ToString());
-        }
-
-        public void Insert(IEnumerable<SpotPlacement> items)
-        {
-            foreach (var item in items)
-            {
-                Add(item);
-            }
+            InsertItems(spotPlacements.ToList(), spotPlacements.Select(i => i.Id.ToString()).ToList<string>());
         }
 
         public SpotPlacement GetByExternalSpotRef(string externalSpotRef)
@@ -42,7 +32,7 @@ namespace ImagineCommunications.GamePlan.Persistence.Memory.Repositories
 
         public void Update(SpotPlacement spotPlacement)
         {
-            InsertOrReplaceItem(spotPlacement, spotPlacement.Id.ToString());
+            UpdateOrInsertItem(spotPlacement, spotPlacement.Id.ToString());
         }
 
         public void Delete(int id)
@@ -60,13 +50,11 @@ namespace ImagineCommunications.GamePlan.Persistence.Memory.Repositories
             DeleteAllItems(sp => sp.ModifiedTime < modifiedTime);
         }
 
-        public void SaveChanges()
-        {
-        }
+        public void SaveChanges() { }
 
-        public void Truncate()
+        public void Add(SpotPlacement item)
         {
-            DeleteAllItems();
+            UpdateOrInsertItem(item, item.Id.ToString());
         }
     }
 }

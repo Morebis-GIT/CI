@@ -11,15 +11,13 @@ namespace ImagineCommunications.GamePlan.Process.Smooth.Models
     /// <summary>
     /// A collection of Smooth failures for a spot.
     /// </summary>
-    public class SmoothFailureMessagesForSpotsCollection
+    internal class SmoothFailureMessagesForSpotsCollection
         : IEnumerable<KeyValuePair<Guid, SmoothFailuresForSpotCollection>>
     {
         private readonly IDictionary<Guid, SmoothFailuresForSpotCollection> _results
             = new Dictionary<Guid, SmoothFailuresForSpotCollection>();
 
-        public SmoothFailureMessagesForSpotsCollection()
-        {
-        }
+        public SmoothFailureMessagesForSpotsCollection() { }
 
         internal SmoothFailureMessagesForSpotsCollection(SmoothBreak smoothBreak)
             : this() => SmoothBreak = smoothBreak;

@@ -1,0 +1,126 @@
+﻿[
+  {
+    "AgBreak": {
+      "AgSalesAreaPtrRef": {
+        "ClassId": 4
+      },
+      "EpisNp": 0,
+      "LongForm": "N",
+      "Solus": "N"
+    },
+    "AgCampaign": {
+      "AdvertiserIdentifier": " ",
+      "AgCampaignRequirement": {
+        "Required": 64039,
+        "SareRequired": 64039,
+        "TgtRequired": 64039
+      },
+      "BusinesssAreaNo": 1,
+      "CampaignNo": 1,
+      "CampaignSpotMaxRatings": 0,
+      "ClashCode": " ",
+      "ClashNo": 1,
+      "ClearanceCode": "",
+      "DealNo": 1,
+      "DeliveryCurrency": 6,
+      "DemographicNo": 1,
+      "EndDate": "20170903",
+      "IncludeFunctions": 8,
+      "MaxAgCampagignSalesArea": 1,
+      "MultiPartFlag": "N",
+      "NbrAgCampagignSalesArea": 1,
+      "ProductCode": 1,
+      "RevenueBudget": 0,
+      "RootClashCode": " ",
+      "StartDate": "20170828"
+    },
+    "AgCampaignSalesArea": {
+      "AgCampaignSalesAreaPtrRef": {
+        "ClassId": 3,
+        "SalesAreaNo": 1
+      },
+      "AgSalesAreaCampaignRequirement": {
+        "Required": 64039,
+        "SareRequired": 64039,
+        "Supplied": 0,
+        "TgtRequired": 64039
+      },
+      "CampaignNo": 1,
+      "CentreBreakRatio": 50,
+      "ChannelGroupNo": 13,
+      "EndBreakRatio": 50,
+      "MaxBreaks": 0,
+      "MultiPartOnly": 0,
+      "NbrAgDayParts": 1,
+      "NbrAgLengths": 1,
+      "NbrAgStrikeWeights": 1,
+      "NbrParts": 1,
+      "RevenuePercentage": 0,
+      "SalesAreaNo": 13
+    },
+    "AgExposure": {
+      "BreakSalesAreaNo": 0,
+      "EndDay": 7,
+      "EndTime": "995959",
+      "StartDay": 1,
+      "StartTime": 0
+    },
+    "AgHfssDemos": [
+      {
+        "BaseDemoNo": 16,
+        "BreakScheduledDate": "0",
+        "IndexDemoNo": 9,
+        "IndexType": 1,
+        "SalesAreaNo": 0
+      },
+      {
+        "BaseDemoNo": 16,
+        "BreakScheduledDate": "0",
+        "IndexDemoNo": 30,
+        "IndexType": 2,
+        "SalesAreaNo": 0
+      }
+    ],
+    "AgISRTimeBand": {
+      "Exclude": "I"
+    },
+    "AgPeakStartEndTime": {
+      "DayPartNumber": 1,
+      "EndDayOfDayPart": 7,
+      "MidPoint": -1,
+      "Name": "Peak Airtime",
+      "StartDayOfDayPart": 1
+    },
+    "AgProgRestriction": {
+      "EpisNo": 0,
+      "PrgcNo": 0,
+      "ProgNo": 0
+    },
+    "AgProgTxDetail": {
+      "EpisodeNo": 0
+    },
+    "AgRestriction": {
+      "EpisodeNo": 0,
+      "CopyCode": "0"
+    },
+    "AgSpot": {
+      "BonusSpot": "N",
+      "BookingPosition": -1,
+      "BreakDate": "286778",
+      "BreakNo": 286778,
+      "BreakSalesAreaNo": 286778,
+      "BreakTime": "286778",
+      "CampaignNo": 287778,
+      "ClientPicked": "N",
+      "ISRLocked": 0,
+      "MultipartIndicator": "N",
+      "PreempteeStatus": 10,
+      "PreemptorStatus": 10,
+      "PriceFactor": 1.000,
+      "SpotLength": 30,
+      "SpotNo": 477008891,
+      "SpotSalesAreaNo": 14001,
+      "Status": "S"
+    }
+  }
+]

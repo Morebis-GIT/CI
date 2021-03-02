@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -435,7 +434,6 @@ namespace xggameplan.RunManagement
             {
                 RaiseInfo("Executed Smooth.");
                 _pipelineAuditEventRepository.SaveChanges();
-                Debug.WriteLine("Finished Smooth.");
             }
         }
 

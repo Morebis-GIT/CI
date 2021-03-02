@@ -58,7 +58,7 @@
       ],
       "SalesAreaCampaignTarget": [
         {
-          "SalesArea": "GTV91",
+          "SalesArea": null,
           "StopBooking": true,
           "SalesAreaGroup": {
             "GroupName": "groupName1",

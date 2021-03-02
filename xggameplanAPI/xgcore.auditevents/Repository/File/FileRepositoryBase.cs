@@ -17,20 +17,6 @@ namespace xgcore.auditevents.Repository.File
         protected readonly string _folder;
         protected readonly string _type;
 
-        private static readonly JsonSerializerSettings _defaultJsonSerializerSettings;
-
-        static FileRepositoryBase()
-        {
-            _defaultJsonSerializerSettings = new JsonSerializerSettings
-            {
-                TypeNameHandling = TypeNameHandling.Auto
-            };
-
-            _defaultJsonSerializerSettings.Converters.Add(
-                new NodaTimeDurationTicksJsonConverter()
-                );
-        }
-
         protected FileRepositoryBase(string folder, string type)
         {
             _folder = folder;
@@ -46,11 +32,22 @@ namespace xgcore.auditevents.Repository.File
         protected T DeserializeContentBody<T>(string contentString) =>
             JsonConvert.DeserializeObject<T>(contentString);
 
-        protected string[] GetFilesByType(string folder, string type)
+        protected List<string> GetFilesByType(string folder, string type)
         {
-            return Directory.Exists(folder)
-                ? Directory.GetFiles(folder, $"*.{type}.json")
-                : Array.Empty<string>();
+            if (!Directory.Exists(folder))
+            {
+                return new List<string>();
+            }
+
+            var files = new List<string>();
+            string pattern = $"*.{type}.json";
+
+            foreach (string file in Directory.GetFiles(folder, pattern))
+            {
+                files.Add(file);
+            }
+
+            return files;
         }
 
         protected void InsertItems<T>(string folder, string type, List<T> items, List<string> ids)
@@ -80,7 +77,7 @@ namespace xgcore.auditevents.Repository.File
             SaveItem(item, file);
         }
 
-        protected void DeleteItem(string folder, string type, string id)
+        protected void DeleteItem<T>(string folder, string type, string id)
         {
             if (!Directory.Exists(folder))
             {
@@ -111,7 +108,7 @@ namespace xgcore.auditevents.Repository.File
             }
         }
 
-        protected void DeleteAllItems(string folder, string type)
+        protected void DeleteAllItems<T>(string folder, string type)
         {
             foreach (string file in GetFilesByType(folder, type))
             {
@@ -135,8 +132,8 @@ namespace xgcore.auditevents.Repository.File
             return default;
         }
 
-        protected int CountAll(string folder, string type) =>
-            GetFilesByType(folder, type).Length;
+        protected int CountAll<T>(string folder, string type) =>
+            GetFilesByType(folder, type).Count;
 
         protected List<T> GetAllByType<T>(string folder, string type)
         {
@@ -169,22 +166,34 @@ namespace xgcore.auditevents.Repository.File
             return items;
         }
 
-        private static T LoadItem<T>(string file) =>
+        private T LoadItem<T>(string file) =>
             JsonConvert.DeserializeObject<T>(
                 System.IO.File.ReadAllText(file),
-                _defaultJsonSerializerSettings);
+                DefaultJsonSerializerSettings);
 
-        private static void SaveItem<T>(T item, string file)
+        private static JsonSerializerSettings DefaultJsonSerializerSettings
+        {
+            get
+            {
+                var jsonSerializerSettings = new JsonSerializerSettings();
+                jsonSerializerSettings.TypeNameHandling = TypeNameHandling.Auto;
+                jsonSerializerSettings.Converters.Add(new NodaTimeDurationTicksJsonConverter());
+
+                return jsonSerializerSettings;
+            }
+        }
+
+        private void SaveItem<T>(T item, string file)
         {
             string contentString = JsonConvert.SerializeObject(
                 item,
                 Formatting.Indented,
-                _defaultJsonSerializerSettings);
+                DefaultJsonSerializerSettings);
 
             System.IO.File.WriteAllBytes(file, Encoding.UTF8.GetBytes(contentString));
         }
 
-        private static void DeleteItem(string file)
+        private void DeleteItem(string file)
         {
             System.IO.File.Delete(file);
         }

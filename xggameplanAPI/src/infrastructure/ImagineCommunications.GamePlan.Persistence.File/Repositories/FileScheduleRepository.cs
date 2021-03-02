@@ -28,10 +28,16 @@ namespace ImagineCommunications.GamePlan.Persistence.File.Repositories
 
         public void Delete(int id)
         {
-            DeleteItem(_folder, _type, id.ToString());
+            DeleteItem<Schedule>(_folder, _type, id.ToString());
         }
 
-        public int CountAll => GetAllByType<Schedule>(_folder, _type).Count;
+        public int CountAll
+        {
+            get
+            {
+                return GetAllByType<Schedule>(_folder, _type).Count;
+            }
+        }
 
         /// <summary>
         /// Add new entry in schedule
@@ -40,7 +46,7 @@ namespace ImagineCommunications.GamePlan.Persistence.File.Repositories
         public void Add(Schedule item)
         {
             List<Schedule> items = new List<Schedule>() { item };
-            InsertItems(_folder, _type, items, items.ConvertAll(i => i.Id.ToString()));
+            InsertItems(_folder, _type, items, items.Select(i => i.Id.ToString()).ToList());
         }
 
         /// <summary>
@@ -94,12 +100,12 @@ namespace ImagineCommunications.GamePlan.Persistence.File.Repositories
                                                            && s.Date < toDate.Date
                                                                .AddDays(1)
                                                            && salesAreaNames.Contains(s.SalesArea));
-            if (schedules.Count == 0)
+            if (!schedules.Any())
             {
                 return null;
             }
 
-            var index = (from schedule in schedules.Where(s => s.Breaks?.Count > 0)
+            var index = (from schedule in schedules.Where(s => s.Breaks != null && s.Breaks.Any())
                          let programmes = schedule.Programmes?.OrderBy(d => d.StartDateTime)
 
                          // Get first & last prog on the schedule
@@ -108,7 +114,7 @@ namespace ImagineCommunications.GamePlan.Persistence.File.Repositories
 
                          // Get breaks for all schedule progs, prog spanning
                          // calendar days will have breaks in multiple Schedule docs
-                         let breaks = schedules.Where(s => s.SalesArea == schedule.SalesArea && s.Breaks != null && s.Breaks.Count > 0 &&
+                         let breaks = schedules.Where(s => s.SalesArea == schedule.SalesArea && s.Breaks != null && s.Breaks.Any() &&
                                                 s.Date >= schedule.Date && s.Date <= schedule.Date.AddDays(1))
                                                 .SelectMany(s => s.Breaks)
                                                 .Where(b => programmeFirst != null && programmeLast != null &&
@@ -133,16 +139,15 @@ namespace ImagineCommunications.GamePlan.Persistence.File.Repositories
             return index;
         }
 
-        public List<Tuple<Break, Programme>> GetBreakWithProgramme(
-            List<string> salesAreaNames,
-            DateTime fromDate,
+        public List<Tuple<Break, Programme>> GetBreakWithProgramme(List<string> salesAreaNames, DateTime fromDate,
             DateTime toDate)
         {
             var schedules = GetAllByType<Schedule>(_folder, _type, s => s.Date >= fromDate.Date
-                                                       && s.Date < toDate.Date.AddDays(1)
+                                                       && s.Date < toDate.Date
+                                                           .AddDays(1)
                                                        && salesAreaNames.Contains(s.SalesArea));
 
-            if (schedules.Count == 0)
+            if (!schedules.Any())
             {
                 return null;
             }
@@ -200,11 +205,8 @@ namespace ImagineCommunications.GamePlan.Persistence.File.Repositories
                                                         && salesAreaNames.Contains(s.SalesArea));
 
             return schedules.Count > 0
-                ? schedules
-                    .Where(b => b.Breaks != null)
-                    .SelectMany(s => s.Breaks)
-                    .Where(x => x.ScheduledDate >= fromDate && x.ScheduledDate <= toDate)
-                    .ToList()
+                ? schedules.Where(b => b.Breaks != null).SelectMany(s => s.Breaks)
+                    .Where(x => x.ScheduledDate >= fromDate).Where(x => x.ScheduledDate <= toDate).ToList()
                 : null;
         }
 
@@ -223,7 +225,7 @@ namespace ImagineCommunications.GamePlan.Persistence.File.Repositories
 
         public void Truncate()
         {
-            DeleteAllItems(_folder, _type);
+            DeleteAllItems<Schedule>(_folder, _type);
         }
 
         public Task TruncateAsync()

@@ -13,12 +13,13 @@ namespace ImagineCommunications.GamePlan.Persistence.File.Repositories
     {
         public FileRestrictionRepository(string folder) : base(folder, "restriction")
         {
+
         }
 
         public void Add(Restriction item)
         {
             List<Restriction> items = new List<Restriction>() { item };
-            InsertItems(_folder, _type, items.ToList(), items.ConvertAll(i => i.Id.ToString()));
+            InsertItems(_folder, _type, items.ToList(), items.Select(i => i.Id.ToString()).ToList());
         }
 
         public void Add(IEnumerable<Restriction> items)
@@ -56,7 +57,7 @@ namespace ImagineCommunications.GamePlan.Persistence.File.Repositories
 
         public void Delete(Guid uid)
         {
-            DeleteItem(_folder, _type, uid.ToString());
+            DeleteItem<Restriction>(_folder, _type, uid.ToString());
         }
 
         public void DeleteRange(IEnumerable<Guid> ids)
@@ -71,7 +72,7 @@ namespace ImagineCommunications.GamePlan.Persistence.File.Repositories
 
         public void Truncate()
         {
-            DeleteAllItems(_folder, _type);
+            DeleteAllItems<Restriction>(_folder, _type);
         }
 
         public void SaveChanges()
@@ -85,6 +86,7 @@ namespace ImagineCommunications.GamePlan.Persistence.File.Repositories
 
         public void Dispose()
         {
+
         }
 
         public IEnumerable<Restriction> Get(List<string> externalIdentifiers)

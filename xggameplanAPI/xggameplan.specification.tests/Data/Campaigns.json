@@ -21,7 +21,6 @@
       "includeRightSizer": true,
       "salesAreaCampaignTarget": [
         {
-          "salesArea": "NWS91",
           "salesAreaGroup": {
             "groupName": "STW92",
             "salesAreas": [ "STW92" ]
@@ -386,10 +385,9 @@
           ]
         },
         {
-          "salesArea": "QTQ93",
           "salesAreaGroup": {
-            "groupName": "NWS91",
-            "salesAreas": [ "NWS91" ]
+            "groupName": "STW94",
+            "salesAreas": [ "STW94" ]
           },
           "multiparts": [
             {
@@ -778,10 +776,9 @@
           ]
         },
         {
-          "salesArea": "QTQ91",
           "salesAreaGroup": {
-            "groupName": "NWS91",
-            "salesAreas": [ "NWS91" ]
+            "groupName": "STW91",
+            "salesAreas": [ "STW91" ]
           },
           "multiparts": [
             {
@@ -1061,10 +1058,9 @@
           ]
         },
         {
-          "salesArea": "STW92",
           "salesAreaGroup": {
-            "groupName": "QTQ93",
-            "salesAreas": [ "QTQ93" ]
+            "groupName": "STW93",
+            "salesAreas": [ "STW93" ]
           },
           "multiparts": [
             {
@@ -1512,7 +1508,6 @@
       "includeRightSizer": true,
       "salesAreaCampaignTarget": [
         {
-          "salesArea": "STW92",
           "salesAreaGroup": {
             "groupName": "STW92",
             "salesAreas": [ "STW92" ]
@@ -1849,10 +1844,9 @@
           ]
         },
         {
-          "salesArea": "NWS91",
           "salesAreaGroup": {
-            "groupName": "NWS91",
-            "salesAreas": [ "NWS91" ]
+            "groupName": "STW94",
+            "salesAreas": [ "STW94" ]
           },
           "multiparts": [
             {
@@ -2186,10 +2180,9 @@
           ]
         },
         {
-          "salesArea": "QTQ93",
           "salesAreaGroup": {
-            "groupName": "NWS91",
-            "salesAreas": [ "NWS91" ]
+            "groupName": "STW91",
+            "salesAreas": [ "STW91" ]
           },
           "multiparts": [
             {
@@ -2373,10 +2366,9 @@
           ]
         },
         {
-          "salesArea": "GTV93",
           "salesAreaGroup": {
-            "groupName": "QTQ93",
-            "salesAreas": [ "QTQ93" ]
+            "groupName": "STW93",
+            "salesAreas": [ "STW93" ]
           },
           "multiparts": [
             {
@@ -2791,7 +2783,6 @@
       "includeRightSizer": true,
       "salesAreaCampaignTarget": [
         {
-          "salesArea": "STW92",
           "salesAreaGroup": {
             "groupName": "QTQ93",
             "salesAreas": [ "QTQ93" ]
@@ -2974,10 +2965,9 @@
           ]
         },
         {
-          "salesArea": "STW92",
           "salesAreaGroup": {
-            "groupName": "QTQ91",
-            "salesAreas": [ "QTQ91" ]
+            "groupName": "QTQ92",
+            "salesAreas": [ "QTQ92" ]
           },
           "multiparts": [
             {
@@ -3200,7 +3190,6 @@
           ]
         },
         {
-          "salesArea": "STW92",
           "salesAreaGroup": {
             "groupName": "QTQ91",
             "salesAreas": [ "QTQ91" ]
@@ -3355,10 +3344,9 @@
           ]
         },
         {
-          "salesArea": "STW92",
           "salesAreaGroup": {
-            "groupName": "QTQ91",
-            "salesAreas": [ "QTQ91" ]
+            "groupName": "QTQ94",
+            "salesAreas": [ "QTQ94" ]
           },
           "multiparts": [
             {
@@ -3522,10 +3510,9 @@
           ]
         },
         {
-          "salesArea": "GTV93",
           "salesAreaGroup": {
-            "groupName": "STW92",
-            "salesAreas": [ "STW92" ]
+            "groupName": "NWS93",
+            "salesAreas": [ "NWS93" ]
           },
           "multiparts": [
             {
@@ -3769,10 +3756,9 @@
           ]
         },
         {
-          "salesArea": "GTV93",
           "salesAreaGroup": {
-            "groupName": "STW92",
-            "salesAreas": [ "STW92" ]
+            "groupName": "NWS94",
+            "salesAreas": [ "NWS94" ]
           },
           "multiparts": [
             {
@@ -3984,7 +3970,6 @@
           ]
         },
         {
-          "salesArea": "GTV93",
           "salesAreaGroup": {
             "groupName": "NWS91",
             "salesAreas": [ "NWS91" ]
@@ -4107,10 +4092,9 @@
           ]
         },
         {
-          "salesArea": "GTV93",
           "salesAreaGroup": {
-            "groupName": "STW92",
-            "salesAreas": [ "STW92" ]
+            "groupName": "NWS92",
+            "salesAreas": [ "NWS92" ]
           },
           "multiparts": [
             {
@@ -4274,10 +4258,9 @@
           ]
         },
         {
-          "salesArea": "GTV93",
           "salesAreaGroup": {
-            "groupName": "QTQ93",
-            "salesAreas": [ "QTQ93" ]
+            "groupName": "STW93",
+            "salesAreas": [ "STW93" ]
           },
           "multiparts": [
             {
@@ -4446,10 +4429,9 @@
           ]
         },
         {
-          "salesArea": "QTQ93",
           "salesAreaGroup": {
-            "groupName": "NWS91",
-            "salesAreas": [ "NWS91" ]
+            "groupName": "STW94",
+            "salesAreas": [ "STW94" ]
           },
           "multiparts": [
             {
@@ -4731,10 +4713,9 @@
           ]
         },
         {
-          "salesArea": "QTQ93",
           "salesAreaGroup": {
-            "groupName": "NWS91",
-            "salesAreas": [ "NWS91" ]
+            "groupName": "STW91",
+            "salesAreas": [ "STW91" ]
           },
           "multiparts": [
             {
@@ -4822,7 +4803,6 @@
           ]
         },
         {
-          "salesArea": "QTQ93",
           "salesAreaGroup": {
             "groupName": "STW92",
             "salesAreas": [ "STW92" ]
@@ -4962,10 +4942,9 @@
           ]
         },
         {
-          "salesArea": "QTQ93",
           "salesAreaGroup": {
-            "groupName": "NWS91",
-            "salesAreas": [ "NWS91" ]
+            "groupName": "TCN92",
+            "salesAreas": [ "TCN92" ]
           },
           "multiparts": [
             {
@@ -5275,10 +5254,9 @@
           ]
         },
         {
-          "salesArea": "QTQ93",
           "salesAreaGroup": {
-            "groupName": "NWS91",
-            "salesAreas": [ "NWS91" ]
+            "groupName": "TCN91",
+            "salesAreas": [ "TCN91" ]
           },
           "multiparts": [
             {
@@ -5366,10 +5344,9 @@
           ]
         },
         {
-          "salesArea": "QTQ91",
           "salesAreaGroup": {
-            "groupName": "QTQ93",
-            "salesAreas": [ "QTQ93" ]
+            "groupName": "TCN94",
+            "salesAreas": [ "TCN94" ]
           },
           "multiparts": [
             {
@@ -5576,10 +5553,9 @@
           ]
         },
         {
-          "salesArea": "QTQ91",
           "salesAreaGroup": {
-            "groupName": "QTQ91",
-            "salesAreas": [ "QTQ91" ]
+            "groupName": "TCN93",
+            "salesAreas": [ "TCN93" ]
           },
           "multiparts": [
             {
@@ -5657,10 +5633,9 @@
           ]
         },
         {
-          "salesArea": "QTQ91",
           "salesAreaGroup": {
-            "groupName": "QTQ91",
-            "salesAreas": [ "QTQ91" ]
+            "groupName": "GTV94",
+            "salesAreas": [ "GTV94" ]
           },
           "multiparts": [
             {
@@ -5813,10 +5788,9 @@
           ]
         },
         {
-          "salesArea": "QTQ91",
           "salesAreaGroup": {
-            "groupName": "GTV93",
-            "salesAreas": [ "GTV93" ]
+            "groupName": "GTV92",
+            "salesAreas": [ "GTV92" ]
           },
           "multiparts": [
             {
@@ -5953,10 +5927,9 @@
           ]
         },
         {
-          "salesArea": "QTQ91",
           "salesAreaGroup": {
-            "groupName": "GTV93",
-            "salesAreas": [ "GTV93" ]
+            "groupName": "GTV91",
+            "salesAreas": [ "GTV91" ]
           },
           "multiparts": [
             {
@@ -6076,7 +6049,6 @@
           ]
         },
         {
-          "salesArea": "QTQ91",
           "salesAreaGroup": {
             "groupName": "GTV93",
             "salesAreas": [ "GTV93" ]
@@ -6168,7 +6140,6 @@
       "includeRightSizer": true,
       "salesAreaCampaignTarget": [
         {
-          "salesArea": "QTQ91",
           "salesAreaGroup": {
             "groupName": "QTQ93",
             "salesAreas": [ "QTQ93" ]
@@ -6383,10 +6354,9 @@
           ]
         },
         {
-          "salesArea": "QTQ91",
           "salesAreaGroup": {
-            "groupName": "QTQ91",
-            "salesAreas": [ "QTQ91" ]
+            "groupName": "QTQ92",
+            "salesAreas": [ "QTQ92" ]
           },
           "multiparts": [
             {
@@ -6576,7 +6546,6 @@
           ]
         },
         {
-          "salesArea": "QTQ91",
           "salesAreaGroup": {
             "groupName": "QTQ91",
             "salesAreas": [ "QTQ91" ]
@@ -6667,10 +6636,9 @@
           ]
         },
         {
-          "salesArea": "QTQ91",
           "salesAreaGroup": {
-            "groupName": "QTQ91",
-            "salesAreas": [ "QTQ91" ]
+            "groupName": "QTQ94",
+            "salesAreas": [ "QTQ94" ]
           },
           "multiparts": [
             {
@@ -6984,10 +6952,9 @@
           ]
         },
         {
-          "salesArea": "QTQ91",
           "salesAreaGroup": {
-            "groupName": "STW92",
-            "salesAreas": [ "STW92" ]
+            "groupName": "NWS93",
+            "salesAreas": [ "NWS93" ]
           },
           "multiparts": [
             {
@@ -7300,10 +7267,9 @@
           ]
         },
         {
-          "salesArea": "QTQ91",
           "salesAreaGroup": {
-            "groupName": "STW92",
-            "salesAreas": [ "STW92" ]
+            "groupName": "NWS94",
+            "salesAreas": [ "NWS94" ]
           },
           "multiparts": [
             {
@@ -7725,7 +7691,6 @@
           ]
         },
         {
-          "salesArea": "STW92",
           "salesAreaGroup": {
             "groupName": "NWS91",
             "salesAreas": [ "NWS91" ]
@@ -7848,10 +7813,9 @@
           ]
         },
         {
-          "salesArea": "STW92",
           "salesAreaGroup": {
-            "groupName": "STW92",
-            "salesAreas": [ "STW92" ]
+            "groupName": "NWS92",
+            "salesAreas": [ "NWS92" ]
           },
           "multiparts": [
             {
@@ -8041,10 +8005,9 @@
           ]
         },
         {
-          "salesArea": "STW92",
           "salesAreaGroup": {
-            "groupName": "QTQ93",
-            "salesAreas": [ "QTQ93" ]
+            "groupName": "STW93",
+            "salesAreas": [ "STW93" ]
           },
           "multiparts": [
             {
@@ -8353,10 +8316,9 @@
           ]
         },
         {
-          "salesArea": "STW92",
           "salesAreaGroup": {
-            "groupName": "NWS91",
-            "salesAreas": [ "NWS91" ]
+            "groupName": "STW94",
+            "salesAreas": [ "STW94" ]
           },
           "multiparts": [
             {
@@ -8681,10 +8643,9 @@
           ]
         },
         {
-          "salesArea": "STW92",
           "salesAreaGroup": {
-            "groupName": "NWS91",
-            "salesAreas": [ "NWS91" ]
+            "groupName": "STW91",
+            "salesAreas": [ "STW91" ]
           },
           "multiparts": [
             {
@@ -8772,7 +8733,6 @@
           ]
         },
         {
-          "salesArea": "QTQ93",
           "salesAreaGroup": {
             "groupName": "STW92",
             "salesAreas": [ "STW92" ]
@@ -8987,10 +8947,9 @@
           ]
         },
         {
-          "salesArea": "QTQ93",
           "salesAreaGroup": {
-            "groupName": "NWS91",
-            "salesAreas": [ "NWS91" ]
+            "groupName": "TCN92",
+            "salesAreas": [ "TCN92" ]
           },
           "multiparts": [
             {
@@ -9121,10 +9080,9 @@
           ]
         },
         {
-          "salesArea": "QTQ93",
           "salesAreaGroup": {
-            "groupName": "NWS91",
-            "salesAreas": [ "NWS91" ]
+            "groupName": "TCN91",
+            "salesAreas": [ "TCN91" ]
           },
           "multiparts": [
             {
@@ -9276,10 +9234,9 @@
           ]
         },
         {
-          "salesArea": "QTQ93",
           "salesAreaGroup": {
-            "groupName": "QTQ93",
-            "salesAreas": [ "QTQ93" ]
+            "groupName": "TCN94",
+            "salesAreas": [ "TCN94" ]
           },
           "multiparts": [
             {
@@ -9502,10 +9459,9 @@
           ]
         },
         {
-          "salesArea": "QTQ91",
           "salesAreaGroup": {
-            "groupName": "QTQ91",
-            "salesAreas": [ "QTQ91" ]
+            "groupName": "TCN93",
+            "salesAreas": [ "TCN93" ]
           },
           "multiparts": [
             {
@@ -9593,10 +9549,9 @@
           ]
         },
         {
-          "salesArea": "QTQ91",
           "salesAreaGroup": {
-            "groupName": "QTQ91",
-            "salesAreas": [ "QTQ91" ]
+            "groupName": "GTV94",
+            "salesAreas": [ "GTV94" ]
           },
           "multiparts": [
             {
@@ -9824,10 +9779,9 @@
           ]
         },
         {
-          "salesArea": "QTQ91",
           "salesAreaGroup": {
-            "groupName": "GTV93",
-            "salesAreas": [ "GTV93" ]
+            "groupName": "GTV92",
+            "salesAreas": [ "GTV92" ]
           },
           "multiparts": [
             {
@@ -10028,10 +9982,9 @@
           ]
         },
         {
-          "salesArea": "QTQ91",
           "salesAreaGroup": {
-            "groupName": "GTV93",
-            "salesAreas": [ "GTV93" ]
+            "groupName": "GTV91",
+            "salesAreas": [ "GTV91" ]
           },
           "multiparts": [
             {
@@ -10087,7 +10040,6 @@
           ]
         },
         {
-          "salesArea": "QTQ91",
           "salesAreaGroup": {
             "groupName": "GTV93",
             "salesAreas": [ "GTV93" ]

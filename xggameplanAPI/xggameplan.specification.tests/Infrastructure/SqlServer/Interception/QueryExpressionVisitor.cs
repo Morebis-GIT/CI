@@ -3,8 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Reflection;
-using Microsoft.EntityFrameworkCore;
+	
 using xggameplan.common.Extensions;
+using ImagineCommunications.GamePlan.Persistence.SqlServer.Core.Extensions;
 
 namespace xggameplan.specification.tests.Infrastructure.SqlServer.Interception
 {
@@ -50,9 +51,8 @@ namespace xggameplan.specification.tests.Infrastructure.SqlServer.Interception
 
         protected override Expression VisitMethodCall(MethodCallExpression node)
         {
-            //EF.Functions.Contains method
-            if (node.Method.Name == nameof(SqlServerDbFunctionsExtensions.Contains) &&
-                node.Method.DeclaringType == typeof(SqlServerDbFunctionsExtensions))
+            if (node.Method.Name == nameof(DbFunctionsExtensions.Contains) &&
+                node.Method.DeclaringType == typeof(DbFunctionsExtensions))
             {
                 MethodInfo methodInfo = null;
                 if (node.Arguments.Count == 3)

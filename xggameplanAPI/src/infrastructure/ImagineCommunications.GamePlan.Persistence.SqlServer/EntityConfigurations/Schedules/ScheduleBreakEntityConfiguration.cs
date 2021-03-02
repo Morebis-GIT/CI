@@ -1,5 +1,6 @@
 ﻿using ImagineCommunications.GamePlan.Persistence.SqlServer.Entities.Tenant.Schedules;
 using ImagineCommunications.GamePlan.Persistence.SqlServer.Extensions;
+
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
@@ -12,9 +13,6 @@ namespace ImagineCommunications.GamePlan.Persistence.SqlServer.EntityConfigurati
             _ = builder.ToTable("ScheduleBreaks");
 
             _ = builder.HasKey(e => e.Id);
-
-            _ = builder.Property(e => e.Id)
-                       .HasDefaultValueSql("newid()");
 
             _ = builder.Property(e => e.BreakType)
                        .HasMaxLength(32);

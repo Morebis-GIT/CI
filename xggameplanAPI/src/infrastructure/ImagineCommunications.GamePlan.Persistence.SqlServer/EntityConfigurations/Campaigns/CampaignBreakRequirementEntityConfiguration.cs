@@ -8,15 +8,12 @@ namespace ImagineCommunications.GamePlan.Persistence.SqlServer.EntityConfigurati
     {
         public void Configure(EntityTypeBuilder<CampaignBreakRequirement> builder)
         {
-            _ = builder.ToTable("CampaignBreakRequirements");
+            builder.ToTable("CampaignBreakRequirements");
 
-            _ = builder.HasKey(e => e.Id);
+            builder.HasKey(e => e.Id);
 
-            _ = builder.Property(e => e.Id).UseSqlServerIdentityColumn();
-
-            _ = builder.HasOne(x => x.SalesArea).WithMany()
-                .HasForeignKey(x => x.SalesAreaId)
-                .OnDelete(DeleteBehavior.Restrict);
+            builder.Property(e => e.Id).UseMySqlIdentityColumn();
+            builder.Property(e => e.SalesArea).HasMaxLength(64);
         }
     }
 }

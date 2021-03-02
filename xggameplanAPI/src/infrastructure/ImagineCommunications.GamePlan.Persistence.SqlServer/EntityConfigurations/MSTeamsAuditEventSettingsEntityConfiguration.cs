@@ -10,7 +10,7 @@ namespace ImagineCommunications.GamePlan.Persistence.SqlServer.EntityConfigurati
             builder.ToTable("MSTeamsAuditEventSettings");
 
             builder.HasKey(k => k.Id);
-            builder.Property(p => p.Id).UseSqlServerIdentityColumn();
+            builder.Property(p => p.Id).UseMySqlIdentityColumn();
 
             builder.Property(e => e.EventTypeId);
             builder.Property(e => e.MessageCreatorId).HasMaxLength(64).IsRequired();

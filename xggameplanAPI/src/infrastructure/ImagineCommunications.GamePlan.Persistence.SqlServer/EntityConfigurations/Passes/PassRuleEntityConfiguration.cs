@@ -17,7 +17,7 @@ namespace ImagineCommunications.GamePlan.Persistence.SqlServer.EntityConfigurati
                 .HasValue<PassRuleWeighting>((int)PassRuleType.Weighting);
             
             builder.HasKey(e => e.Id);
-            builder.Property(e => e.Id).UseSqlServerIdentityColumn();
+            builder.Property(e => e.Id).UseMySqlIdentityColumn();
 
             builder.Property(e => e.Description).HasMaxLength(512);
             builder.Property(e => e.InternalType).HasMaxLength(64);

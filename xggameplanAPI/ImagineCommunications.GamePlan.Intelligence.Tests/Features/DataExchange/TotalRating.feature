@@ -7,32 +7,32 @@ Feature: TotalRating
 Background:
 	Given GroupTransactionInfo for 1 event sent
 
+
 Scenario: BulkTotalRatingCreated message should successfully save records
-	Given The data from file TotalRatings.SalesAreas_Setup exists in database
-	And The data from file TotalRatings.Setup exists in database
-	And I have BulkTotalRatingCreated message from file TotalRatings.BulkTotalRatingCreated.Success_Request to publish
+	Given The data from file TotalRatings.Setup exists in database
+	Given I have BulkTotalRatingCreated message from file TotalRatings.BulkTotalRatingCreated.Success_Request to publish
 	When I publish message to message broker
 	Then GamePlanIntelligence consumes message
 	And the TotalRatings data in GamePlan database is updated as the data from the following file TotalRatings.BulkTotalRatingCreated.Success_Result
 
+
 Scenario: BulkTotalRatingCreated message should throw exception when sales area is not found
-	Given The data from file TotalRatings.SalesAreas_Setup exists in database
-	And The data from file TotalRatings.Setup exists in database
-	And I have BulkTotalRatingCreated message from file TotalRatings.BulkTotalRatingCreated.Error_SalesAreaNotFound to publish
+	Given The data from file TotalRatings.Setup exists in database
+	Given I have BulkTotalRatingCreated message from file TotalRatings.BulkTotalRatingCreated.Error_SalesAreaNotFound to publish
 	When I publish message to message broker
 	Then GamePlanIntelligence throws exception with the code: SalesAreaNotFound
 
+
 Scenario: BulkTotalRatingCreated message should throw exception when demographic is not found
-	Given The data from file TotalRatings.SalesAreas_Setup exists in database
-	And The data from file TotalRatings.Setup exists in database
-	And I have BulkTotalRatingCreated message from file TotalRatings.BulkTotalRatingCreated.Error_DemographicNotFound to publish
+	Given The data from file TotalRatings.Setup exists in database
+	Given I have BulkTotalRatingCreated message from file TotalRatings.BulkTotalRatingCreated.Error_DemographicNotFound to publish
 	When I publish message to message broker
 	Then GamePlanIntelligence throws exception with the code: DemographicNotFound
 
+
 Scenario: BulkTotalRatingDeleted message should successfully delete records
-	Given The data from file TotalRatings.SalesAreas_Setup exists in database
-	And The data from file TotalRatings.Setup exists in database
-	And I have BulkTotalRatingDeleted message from file TotalRatings.BulkTotalRatingDeleted.Success_Request to publish
+	Given The data from file TotalRatings.Setup exists in database
+	Given I have BulkTotalRatingDeleted message from file TotalRatings.BulkTotalRatingDeleted.Success_Request to publish
 	When I publish message to message broker
 	Then GamePlanIntelligence consumes message
 	And the TotalRatings data in GamePlan database is updated as the data from the following file TotalRatings.BulkTotalRatingDeleted.Success_Result

@@ -18,7 +18,7 @@ namespace ImagineCommunications.GamePlan.Persistence.SqlServer.Core.Helpers
                 throw new ArgumentNullException(nameof(dbContext));
             }
 
-            if (!dbContext.Specific.Database.IsSqlServer())
+            if (!dbContext.Specific.Database.IsMySql())
             {
                 return;
             }
@@ -32,9 +32,12 @@ namespace ImagineCommunications.GamePlan.Persistence.SqlServer.Core.Helpers
             var sequenceNameWithSchema = string.IsNullOrEmpty(schema)
                 ? $"[{typeof(TSequence).Name}]"
                 : $"[{schema}].[{typeof(TSequence).Name}]";
+            // TODO: Story to fix this invalid sytax to work with MySQL
+            /*
             var query = new RawSqlString($"ALTER SEQUENCE {sequenceNameWithSchema} RESTART WITH {max} NO CACHE");
 
             dbContext.Specific.Database.ExecuteSqlCommand(query);
+            */
         }
     }
 }

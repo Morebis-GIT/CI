@@ -11,7 +11,7 @@ namespace ImagineCommunications.GamePlan.Persistence.SqlServer.EntityConfigurati
             builder.ToTable("AgCampaignSalesAreas");
 
             builder.HasKey(e => e.Id);
-            builder.Property(e => e.Id).UseSqlServerIdentityColumn();
+            builder.Property(e => e.Id).UseMySqlIdentityColumn();
 
             builder.HasMany(e => e.AgLengths).WithOne()
                 .HasForeignKey(e => e.AgCampaignSalesAreaId)

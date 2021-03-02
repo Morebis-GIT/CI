@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
 using ImagineCommunications.GamePlan.Domain.BusinessRules.Clashes;
@@ -21,15 +22,13 @@ namespace ImagineCommunications.GamePlan.Persistence.Memory.Repositories
 
         public void Add(IEnumerable<Clash> items)
         {
-            foreach (var item in items)
-            {
-                Add(item);
-            }
+            InsertItems(items.ToList(), items.Select(i => i.Uid.ToString()).ToList());
         }
 
         public void Add(Clash item)
         {
-            InsertOrReplaceItem(item, item.Uid.ToString());
+            var items = new List<Clash>() { item };
+            InsertItems(items, items.Select(i => i.Uid.ToString()).ToList());
         }
 
         public Clash Get(Guid id)
@@ -85,7 +84,7 @@ namespace ImagineCommunications.GamePlan.Persistence.Memory.Repositories
         public Task TruncateAsync()
         {
             Truncate();
-            return Task.CompletedTask;
+            return Task.FromResult(true);
         }
 
         public PagedQueryResult<ClashNameModel> Search(ClashSearchQueryModel queryModel) =>
@@ -93,9 +92,7 @@ namespace ImagineCommunications.GamePlan.Persistence.Memory.Repositories
 
         public int Count(Expression<Func<Clash, bool>> query) => GetCount(query);
 
-        public void SaveChanges()
-        {
-        }
+        public void SaveChanges() { }
 
         public bool Exists(Expression<Func<Clash, bool>> condition) => throw new NotImplementedException();
 

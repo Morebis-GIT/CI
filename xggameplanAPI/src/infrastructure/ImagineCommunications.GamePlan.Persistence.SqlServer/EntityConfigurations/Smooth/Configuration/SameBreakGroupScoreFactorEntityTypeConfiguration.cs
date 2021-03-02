@@ -12,7 +12,7 @@ namespace ImagineCommunications.GamePlan.Persistence.SqlServer.EntityConfigurati
 
             builder.HasKey(x => x.Id);
 
-            builder.Property(x => x.Id).UseSqlServerIdentityColumn();
+            builder.Property(x => x.Id).UseMySqlIdentityColumn();
         }
     }
 }

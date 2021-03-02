@@ -184,12 +184,11 @@ namespace ImagineCommunications.GamePlan.Persistence.SqlServer.Repositories
             }
 
             var query = _dbContext.Query<Entities.Tenant.Clash>();
-            if (!string.IsNullOrWhiteSpace(queryModel.NameOrRef))
+            if (!String.IsNullOrWhiteSpace(queryModel.NameOrRef))
             {
-                var searchCondition = _searchConditionBuilder.StartAllWith(queryModel.NameOrRef.Split(new[] {" "},
-                    StringSplitOptions.RemoveEmptyEntries)).Build();
                 query = query.Where(p =>
-                    EF.Functions.Contains(EF.Property<string>(p, Entities.Tenant.Clash.SearchField), searchCondition));
+                        p.Description.StartsWith(queryModel.NameOrRef)
+                        || p.Externalref.StartsWith(queryModel.NameOrRef)).MakeCaseInsensitive();
             }
 
             return new PagedQueryResult<ClashNameModel>(query.Count(),

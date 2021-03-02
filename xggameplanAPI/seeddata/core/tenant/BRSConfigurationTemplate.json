@@ -1,0 +1,53 @@
+[
+  {
+    "name": "Default template",
+    "LastModified": "2020-01-30T00:00:00.0000000",
+    "IsDefault": true,
+    "kpiConfigurations": [
+      {
+        "kpiName": "averageSpotsDeliveredPerDay",
+        "priorityId": 1
+      },
+      {
+        "kpiName": "percent95to105",
+        "priorityId": 4
+      },
+      {
+        "kpiName": "percentbelow75",
+        "priorityId": 4
+      },
+      {
+        "kpiName": "averageEfficiency",
+        "priorityId": 4
+      },
+      {
+        "kpiName": "totalSpotsBooked",
+        "priorityId": 4
+      },
+      {
+        "kpiName": "totalValueDelivered",
+        "priorityId": 1
+      },
+       {
+        "kpiName": "totalZeroRatedSpots",
+        "priorityId": 1
+      },
+      {
+        "kpiName": "remainaudience",
+        "priorityId": 4
+      },
+      {
+        "kpiName": "remainingAvailability",
+        "priorityId": 4
+      },
+      {
+        "kpiName": "standardAverageCompletion",
+        "priorityId": 4
+      },
+      {
+        "kpiName": "weightedAverageCompletion",
+        "priorityId": 4
+      }
+    ]
+  }
+]

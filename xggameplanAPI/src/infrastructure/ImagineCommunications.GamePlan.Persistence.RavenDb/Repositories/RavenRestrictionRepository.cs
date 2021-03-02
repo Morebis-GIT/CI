@@ -371,7 +371,7 @@ namespace ImagineCommunications.GamePlan.Persistence.RavenDb.Repositories
                                  ProductDescription = product?.Name,
                                  ProgrammeDescription = programme?.ProgrammeName
                              })).ToList();
-                return new PagedQueryResult<Tuple<Restriction, RestrictionDescription>>(restrictions.Count, items);
+                return new PagedQueryResult<Tuple<Restriction, RestrictionDescription>>(restrictions.Count(), items);
             }
         }
 

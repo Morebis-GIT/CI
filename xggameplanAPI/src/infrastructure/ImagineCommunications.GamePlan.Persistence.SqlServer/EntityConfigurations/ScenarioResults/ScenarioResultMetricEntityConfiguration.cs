@@ -16,7 +16,7 @@ namespace ImagineCommunications.GamePlan.Persistence.SqlServer.EntityConfigurati
                 .HasValue<LandmarkScenarioResultMetric>(Domain.KPISource.Landmark);
 
             
-            builder.Property(e => e.Id).UseSqlServerIdentityColumn();
+            builder.Property(e => e.Id).UseMySqlIdentityColumn();
             builder.Property(e => e.Name).HasMaxLength(64).IsRequired();
             builder.Property(e => e.DisplayFormat).HasMaxLength(32).IsRequired();
             builder.Property(e => e.ResultSource).HasDefaultValue(KPISource.Gameplan);

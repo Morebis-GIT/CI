@@ -1,0 +1,1563 @@
+﻿[
+  {
+    "Id": 1,
+    "Version": "1.0.0",
+    "RestrictionCheckEnabled": true,
+    "ClashExceptionCheckEnabled": true,
+    "ExternalCampaignRefsToExclude": [
+      "GRID"
+    ],
+    "RecommendationsForExcludedCampaigns": true,
+    "SmoothFailuresForExcludedCampaigns": false,
+    "Passes": [
+      {
+        "$type": "ImagineCommunications.GamePlan.Domain.SmoothConfigurations.Objects.SmoothPassDefault, ImagineCommunications.GamePlan.Domain",
+        "Sponsored": null,
+        "HasMultipartSpots": null,
+        "Preemptable": null,
+        "BreakRequests": null,
+        "HasProductClashCode": null,
+        "CanSplitMultipartSpots": false,
+        "HasSpotEndTime": null,
+        "Sequence": 1
+      },
+      {
+        "$type": "ImagineCommunications.GamePlan.Domain.SmoothConfigurations.Objects.SmoothPassDefault, ImagineCommunications.GamePlan.Domain",
+        "Sponsored": null,
+        "HasMultipartSpots": null,
+        "Preemptable": null,
+        "BreakRequests": null,
+        "HasProductClashCode": null,
+        "CanSplitMultipartSpots": false,
+        "HasSpotEndTime": null,
+        "Sequence": 2
+      },
+      {
+        "$type": "ImagineCommunications.GamePlan.Domain.SmoothConfigurations.Objects.SmoothPassDefault, ImagineCommunications.GamePlan.Domain",
+        "Sponsored": null,
+        "HasMultipartSpots": null,
+        "Preemptable": null,
+        "BreakRequests": null,
+        "HasProductClashCode": null,
+        "CanSplitMultipartSpots": false,
+        "HasSpotEndTime": null,
+        "Sequence": 3
+      },
+      {
+        "$type": "ImagineCommunications.GamePlan.Domain.SmoothConfigurations.Objects.SmoothPassDefault, ImagineCommunications.GamePlan.Domain",
+        "Sponsored": null,
+        "HasMultipartSpots": null,
+        "Preemptable": null,
+        "BreakRequests": null,
+        "HasProductClashCode": null,
+        "CanSplitMultipartSpots": false,
+        "HasSpotEndTime": null,
+        "Sequence": 4
+      },
+      {
+        "$type": "ImagineCommunications.GamePlan.Domain.SmoothConfigurations.Objects.SmoothPassDefault, ImagineCommunications.GamePlan.Domain",
+        "Sponsored": null,
+        "HasMultipartSpots": null,
+        "Preemptable": null,
+        "BreakRequests": null,
+        "HasProductClashCode": true,
+        "CanSplitMultipartSpots": false,
+        "HasSpotEndTime": null,
+        "Sequence": 5
+      },
+      {
+        "$type": "ImagineCommunications.GamePlan.Domain.SmoothConfigurations.Objects.SmoothPassDefault, ImagineCommunications.GamePlan.Domain",
+        "Sponsored": null,
+        "HasMultipartSpots": null,
+        "Preemptable": null,
+        "BreakRequests": null,
+        "HasProductClashCode": null,
+        "CanSplitMultipartSpots": false,
+        "HasSpotEndTime": null,
+        "Sequence": 6
+      },
+      {
+        "$type": "ImagineCommunications.GamePlan.Domain.SmoothConfigurations.Objects.SmoothPassUnplaced, ImagineCommunications.GamePlan.Domain",
+        "Sequence": 7
+      }
+    ],
+    "IterationRecords": [
+      {
+        "PassSequences": [
+          1
+        ],
+        "SpotsCriteria": {
+          "HasSponsoredSpots": true,
+          "HasFIBORLIBRequests": null,
+          "HasBreakRequest": null
+        },
+        "PassDefaultIteration": {
+          "Sequence": 1001,
+          "RespectCampaignClash": true,
+          "ProductClashRules": 1,
+          "RespectSpotTime": true,
+          "BreakPositionRules": 0,
+          "RequestedPositionInBreakRules": 0,
+          "RespectRestrictions": true,
+          "RespectClashExceptions": true
+        },
+        "PassUnplacedIteration": null
+      },
+      {
+        "PassSequences": [
+          1
+        ],
+        "SpotsCriteria": {
+          "HasSponsoredSpots": true,
+          "HasFIBORLIBRequests": null,
+          "HasBreakRequest": null
+        },
+        "PassDefaultIteration": {
+          "Sequence": 1002,
+          "RespectCampaignClash": true,
+          "ProductClashRules": 1,
+          "RespectSpotTime": true,
+          "BreakPositionRules": 0,
+          "RequestedPositionInBreakRules": 1,
+          "RespectRestrictions": true,
+          "RespectClashExceptions": true
+        },
+        "PassUnplacedIteration": null
+      },
+      {
+        "PassSequences": [
+          1
+        ],
+        "SpotsCriteria": {
+          "HasSponsoredSpots": true,
+          "HasFIBORLIBRequests": null,
+          "HasBreakRequest": null
+        },
+        "PassDefaultIteration": {
+          "Sequence": 1003,
+          "RespectCampaignClash": true,
+          "ProductClashRules": 1,
+          "RespectSpotTime": true,
+          "BreakPositionRules": 0,
+          "RequestedPositionInBreakRules": 2,
+          "RespectRestrictions": true,
+          "RespectClashExceptions": true
+        },
+        "PassUnplacedIteration": null
+      },
+      {
+        "PassSequences": [
+          1
+        ],
+        "SpotsCriteria": {
+          "HasSponsoredSpots": true,
+          "HasFIBORLIBRequests": null,
+          "HasBreakRequest": null
+        },
+        "PassDefaultIteration": {
+          "Sequence": 1004,
+          "RespectCampaignClash": true,
+          "ProductClashRules": 2,
+          "RespectSpotTime": true,
+          "BreakPositionRules": 0,
+          "RequestedPositionInBreakRules": 0,
+          "RespectRestrictions": true,
+          "RespectClashExceptions": true
+        },
+        "PassUnplacedIteration": null
+      },
+      {
+        "PassSequences": [
+          1
+        ],
+        "SpotsCriteria": {
+          "HasSponsoredSpots": true,
+          "HasFIBORLIBRequests": null,
+          "HasBreakRequest": null
+        },
+        "PassDefaultIteration": {
+          "Sequence": 1005,
+          "RespectCampaignClash": true,
+          "ProductClashRules": 2,
+          "RespectSpotTime": true,
+          "BreakPositionRules": 0,
+          "RequestedPositionInBreakRules": 1,
+          "RespectRestrictions": true,
+          "RespectClashExceptions": true
+        },
+        "PassUnplacedIteration": null
+      },
+      {
+        "PassSequences": [
+          1
+        ],
+        "SpotsCriteria": {
+          "HasSponsoredSpots": true,
+          "HasFIBORLIBRequests": null,
+          "HasBreakRequest": null
+        },
+        "PassDefaultIteration": {
+          "Sequence": 1006,
+          "RespectCampaignClash": true,
+          "ProductClashRules": 2,
+          "RespectSpotTime": true,
+          "BreakPositionRules": 0,
+          "RequestedPositionInBreakRules": 2,
+          "RespectRestrictions": true,
+          "RespectClashExceptions": true
+        },
+        "PassUnplacedIteration": null
+      },
+      {
+        "PassSequences": [
+          1
+        ],
+        "SpotsCriteria": {
+          "HasSponsoredSpots": false,
+          "HasFIBORLIBRequests": null,
+          "HasBreakRequest": true
+        },
+        "PassDefaultIteration": {
+          "Sequence": 1007,
+          "RespectCampaignClash": true,
+          "ProductClashRules": 1,
+          "RespectSpotTime": true,
+          "BreakPositionRules": 0,
+          "RequestedPositionInBreakRules": 0,
+          "RespectRestrictions": true,
+          "RespectClashExceptions": true
+        },
+        "PassUnplacedIteration": null
+      },
+      {
+        "PassSequences": [
+          1
+        ],
+        "SpotsCriteria": {
+          "HasSponsoredSpots": false,
+          "HasFIBORLIBRequests": null,
+          "HasBreakRequest": true
+        },
+        "PassDefaultIteration": {
+          "Sequence": 1008,
+          "RespectCampaignClash": true,
+          "ProductClashRules": 1,
+          "RespectSpotTime": true,
+          "BreakPositionRules": 0,
+          "RequestedPositionInBreakRules": 1,
+          "RespectRestrictions": true,
+          "RespectClashExceptions": true
+        },
+        "PassUnplacedIteration": null
+      },
+      {
+        "PassSequences": [
+          1
+        ],
+        "SpotsCriteria": {
+          "HasSponsoredSpots": false,
+          "HasFIBORLIBRequests": null,
+          "HasBreakRequest": true
+        },
+        "PassDefaultIteration": {
+          "Sequence": 1009,
+          "RespectCampaignClash": true,
+          "ProductClashRules": 1,
+          "RespectSpotTime": true,
+          "BreakPositionRules": 0,
+          "RequestedPositionInBreakRules": 2,
+          "RespectRestrictions": true,
+          "RespectClashExceptions": true
+        },
+        "PassUnplacedIteration": null
+      },
+      {
+        "PassSequences": [
+          1
+        ],
+        "SpotsCriteria": {
+          "HasSponsoredSpots": false,
+          "HasFIBORLIBRequests": null,
+          "HasBreakRequest": false
+        },
+        "PassDefaultIteration": {
+          "Sequence": 1010,
+          "RespectCampaignClash": true,
+          "ProductClashRules": 1,
+          "RespectSpotTime": true,
+          "BreakPositionRules": 0,
+          "RequestedPositionInBreakRules": 0,
+          "RespectRestrictions": true,
+          "RespectClashExceptions": true
+        },
+        "PassUnplacedIteration": null
+      },
+      {
+        "PassSequences": [
+          1
+        ],
+        "SpotsCriteria": {
+          "HasSponsoredSpots": false,
+          "HasFIBORLIBRequests": null,
+          "HasBreakRequest": false
+        },
+        "PassDefaultIteration": {
+          "Sequence": 1011,
+          "RespectCampaignClash": true,
+          "ProductClashRules": 1,
+          "RespectSpotTime": true,
+          "BreakPositionRules": 0,
+          "RequestedPositionInBreakRules": 1,
+          "RespectRestrictions": true,
+          "RespectClashExceptions": true
+        },
+        "PassUnplacedIteration": null
+      },
+      {
+        "PassSequences": [
+          1
+        ],
+        "SpotsCriteria": {
+          "HasSponsoredSpots": false,
+          "HasFIBORLIBRequests": null,
+          "HasBreakRequest": false
+        },
+        "PassDefaultIteration": {
+          "Sequence": 1012,
+          "RespectCampaignClash": true,
+          "ProductClashRules": 1,
+          "RespectSpotTime": true,
+          "BreakPositionRules": 0,
+          "RequestedPositionInBreakRules": 2,
+          "RespectRestrictions": true,
+          "RespectClashExceptions": true
+        },
+        "PassUnplacedIteration": null
+      },
+      {
+        "PassSequences": [
+          1
+        ],
+        "SpotsCriteria": {
+          "HasSponsoredSpots": false,
+          "HasFIBORLIBRequests": null,
+          "HasBreakRequest": false
+        },
+        "PassDefaultIteration": {
+          "Sequence": 1013,
+          "RespectCampaignClash": true,
+          "ProductClashRules": 2,
+          "RespectSpotTime": true,
+          "BreakPositionRules": 0,
+          "RequestedPositionInBreakRules": 0,
+          "RespectRestrictions": true,
+          "RespectClashExceptions": true
+        },
+        "PassUnplacedIteration": null
+      },
+      {
+        "PassSequences": [
+          1
+        ],
+        "SpotsCriteria": {
+          "HasSponsoredSpots": false,
+          "HasFIBORLIBRequests": null,
+          "HasBreakRequest": false
+        },
+        "PassDefaultIteration": {
+          "Sequence": 1014,
+          "RespectCampaignClash": true,
+          "ProductClashRules": 2,
+          "RespectSpotTime": true,
+          "BreakPositionRules": 0,
+          "RequestedPositionInBreakRules": 1,
+          "RespectRestrictions": true,
+          "RespectClashExceptions": true
+        },
+        "PassUnplacedIteration": null
+      },
+      {
+        "PassSequences": [
+          1
+        ],
+        "SpotsCriteria": {
+          "HasSponsoredSpots": false,
+          "HasFIBORLIBRequests": null,
+          "HasBreakRequest": false
+        },
+        "PassDefaultIteration": {
+          "Sequence": 1015,
+          "RespectCampaignClash": true,
+          "ProductClashRules": 2,
+          "RespectSpotTime": true,
+          "BreakPositionRules": 0,
+          "RequestedPositionInBreakRules": 2,
+          "RespectRestrictions": true,
+          "RespectClashExceptions": true
+        },
+        "PassUnplacedIteration": null
+      },
+      {
+        "PassSequences": [
+          2
+        ],
+        "SpotsCriteria": {
+          "HasSponsoredSpots": null,
+          "HasFIBORLIBRequests": null,
+          "HasBreakRequest": null
+        },
+        "PassDefaultIteration": {
+          "Sequence": 2001,
+          "RespectCampaignClash": true,
+          "ProductClashRules": 2,
+          "RespectSpotTime": true,
+          "BreakPositionRules": 1,
+          "RequestedPositionInBreakRules": 0,
+          "RespectRestrictions": true,
+          "RespectClashExceptions": true
+        },
+        "PassUnplacedIteration": null
+      },
+      {
+        "PassSequences": [
+          2
+        ],
+        "SpotsCriteria": {
+          "HasSponsoredSpots": null,
+          "HasFIBORLIBRequests": null,
+          "HasBreakRequest": null
+        },
+        "PassDefaultIteration": {
+          "Sequence": 2002,
+          "RespectCampaignClash": true,
+          "ProductClashRules": 2,
+          "RespectSpotTime": true,
+          "BreakPositionRules": 1,
+          "RequestedPositionInBreakRules": 1,
+          "RespectRestrictions": true,
+          "RespectClashExceptions": true
+        },
+        "PassUnplacedIteration": null
+      },
+      {
+        "PassSequences": [
+          2
+        ],
+        "SpotsCriteria": {
+          "HasSponsoredSpots": null,
+          "HasFIBORLIBRequests": null,
+          "HasBreakRequest": null
+        },
+        "PassDefaultIteration": {
+          "Sequence": 2003,
+          "RespectCampaignClash": true,
+          "ProductClashRules": 2,
+          "RespectSpotTime": true,
+          "BreakPositionRules": 1,
+          "RequestedPositionInBreakRules": 2,
+          "RespectRestrictions": true,
+          "RespectClashExceptions": true
+        },
+        "PassUnplacedIteration": null
+      },
+      {
+        "PassSequences": [
+          3
+        ],
+        "SpotsCriteria": {
+          "HasSponsoredSpots": null,
+          "HasFIBORLIBRequests": null,
+          "HasBreakRequest": null
+        },
+        "PassDefaultIteration": {
+          "Sequence": 3001,
+          "RespectCampaignClash": true,
+          "ProductClashRules": 2,
+          "RespectSpotTime": true,
+          "BreakPositionRules": 2,
+          "RequestedPositionInBreakRules": 0,
+          "RespectRestrictions": true,
+          "RespectClashExceptions": true
+        },
+        "PassUnplacedIteration": null
+      },
+      {
+        "PassSequences": [
+          3
+        ],
+        "SpotsCriteria": {
+          "HasSponsoredSpots": null,
+          "HasFIBORLIBRequests": null,
+          "HasBreakRequest": null
+        },
+        "PassDefaultIteration": {
+          "Sequence": 3002,
+          "RespectCampaignClash": true,
+          "ProductClashRules": 2,
+          "RespectSpotTime": true,
+          "BreakPositionRules": 2,
+          "RequestedPositionInBreakRules": 1,
+          "RespectRestrictions": true,
+          "RespectClashExceptions": true
+        },
+        "PassUnplacedIteration": null
+      },
+      {
+        "PassSequences": [
+          3
+        ],
+        "SpotsCriteria": {
+          "HasSponsoredSpots": null,
+          "HasFIBORLIBRequests": null,
+          "HasBreakRequest": null
+        },
+        "PassDefaultIteration": {
+          "Sequence": 3003,
+          "RespectCampaignClash": true,
+          "ProductClashRules": 2,
+          "RespectSpotTime": true,
+          "BreakPositionRules": 2,
+          "RequestedPositionInBreakRules": 2,
+          "RespectRestrictions": true,
+          "RespectClashExceptions": true
+        },
+        "PassUnplacedIteration": null
+      },
+      {
+        "PassSequences": [
+          3
+        ],
+        "SpotsCriteria": {
+          "HasSponsoredSpots": null,
+          "HasFIBORLIBRequests": null,
+          "HasBreakRequest": null
+        },
+        "PassDefaultIteration": {
+          "Sequence": 3004,
+          "RespectCampaignClash": true,
+          "ProductClashRules": 2,
+          "RespectSpotTime": false,
+          "BreakPositionRules": 0,
+          "RequestedPositionInBreakRules": 0,
+          "RespectRestrictions": true,
+          "RespectClashExceptions": true
+        },
+        "PassUnplacedIteration": null
+      },
+      {
+        "PassSequences": [
+          3
+        ],
+        "SpotsCriteria": {
+          "HasSponsoredSpots": null,
+          "HasFIBORLIBRequests": null,
+          "HasBreakRequest": null
+        },
+        "PassDefaultIteration": {
+          "Sequence": 3005,
+          "RespectCampaignClash": true,
+          "ProductClashRules": 2,
+          "RespectSpotTime": false,
+          "BreakPositionRules": 0,
+          "RequestedPositionInBreakRules": 1,
+          "RespectRestrictions": true,
+          "RespectClashExceptions": true
+        },
+        "PassUnplacedIteration": null
+      },
+      {
+        "PassSequences": [
+          3
+        ],
+        "SpotsCriteria": {
+          "HasSponsoredSpots": null,
+          "HasFIBORLIBRequests": null,
+          "HasBreakRequest": null
+        },
+        "PassDefaultIteration": {
+          "Sequence": 3006,
+          "RespectCampaignClash": true,
+          "ProductClashRules": 2,
+          "RespectSpotTime": false,
+          "BreakPositionRules": 0,
+          "RequestedPositionInBreakRules": 2,
+          "RespectRestrictions": true,
+          "RespectClashExceptions": true
+        },
+        "PassUnplacedIteration": null
+      },
+      {
+        "PassSequences": [
+          3
+        ],
+        "SpotsCriteria": {
+          "HasSponsoredSpots": null,
+          "HasFIBORLIBRequests": null,
+          "HasBreakRequest": null
+        },
+        "PassDefaultIteration": {
+          "Sequence": 3007,
+          "RespectCampaignClash": true,
+          "ProductClashRules": 2,
+          "RespectSpotTime": false,
+          "BreakPositionRules": 1,
+          "RequestedPositionInBreakRules": 0,
+          "RespectRestrictions": true,
+          "RespectClashExceptions": true
+        },
+        "PassUnplacedIteration": null
+      },
+      {
+        "PassSequences": [
+          3
+        ],
+        "SpotsCriteria": {
+          "HasSponsoredSpots": null,
+          "HasFIBORLIBRequests": null,
+          "HasBreakRequest": null
+        },
+        "PassDefaultIteration": {
+          "Sequence": 3008,
+          "RespectCampaignClash": true,
+          "ProductClashRules": 2,
+          "RespectSpotTime": false,
+          "BreakPositionRules": 1,
+          "RequestedPositionInBreakRules": 1,
+          "RespectRestrictions": true,
+          "RespectClashExceptions": true
+        },
+        "PassUnplacedIteration": null
+      },
+      {
+        "PassSequences": [
+          3
+        ],
+        "SpotsCriteria": {
+          "HasSponsoredSpots": null,
+          "HasFIBORLIBRequests": null,
+          "HasBreakRequest": null
+        },
+        "PassDefaultIteration": {
+          "Sequence": 3009,
+          "RespectCampaignClash": true,
+          "ProductClashRules": 2,
+          "RespectSpotTime": false,
+          "BreakPositionRules": 1,
+          "RequestedPositionInBreakRules": 2,
+          "RespectRestrictions": true,
+          "RespectClashExceptions": true
+        },
+        "PassUnplacedIteration": null
+      },
+      {
+        "PassSequences": [
+          4
+        ],
+        "SpotsCriteria": {
+          "HasSponsoredSpots": null,
+          "HasFIBORLIBRequests": null,
+          "HasBreakRequest": null
+        },
+        "PassDefaultIteration": {
+          "Sequence": 4001,
+          "RespectCampaignClash": true,
+          "ProductClashRules": 2,
+          "RespectSpotTime": false,
+          "BreakPositionRules": 2,
+          "RequestedPositionInBreakRules": 0,
+          "RespectRestrictions": true,
+          "RespectClashExceptions": true
+        },
+        "PassUnplacedIteration": null
+      },
+      {
+        "PassSequences": [
+          4
+        ],
+        "SpotsCriteria": {
+          "HasSponsoredSpots": null,
+          "HasFIBORLIBRequests": null,
+          "HasBreakRequest": null
+        },
+        "PassDefaultIteration": {
+          "Sequence": 4002,
+          "RespectCampaignClash": true,
+          "ProductClashRules": 2,
+          "RespectSpotTime": false,
+          "BreakPositionRules": 2,
+          "RequestedPositionInBreakRules": 1,
+          "RespectRestrictions": true,
+          "RespectClashExceptions": true
+        },
+        "PassUnplacedIteration": null
+      },
+      {
+        "PassSequences": [
+          4
+        ],
+        "SpotsCriteria": {
+          "HasSponsoredSpots": null,
+          "HasFIBORLIBRequests": null,
+          "HasBreakRequest": null
+        },
+        "PassDefaultIteration": {
+          "Sequence": 4003,
+          "RespectCampaignClash": true,
+          "ProductClashRules": 2,
+          "RespectSpotTime": false,
+          "BreakPositionRules": 2,
+          "RequestedPositionInBreakRules": 2,
+          "RespectRestrictions": true,
+          "RespectClashExceptions": true
+        },
+        "PassUnplacedIteration": null
+      },
+      {
+        "PassSequences": [
+          5
+        ],
+        "SpotsCriteria": {
+          "HasSponsoredSpots": null,
+          "HasFIBORLIBRequests": null,
+          "HasBreakRequest": null
+        },
+        "PassDefaultIteration": {
+          "Sequence": 5001,
+          "RespectCampaignClash": true,
+          "ProductClashRules": 0,
+          "RespectSpotTime": true,
+          "BreakPositionRules": 2,
+          "RequestedPositionInBreakRules": 2,
+          "RespectRestrictions": true,
+          "RespectClashExceptions": false
+        },
+        "PassUnplacedIteration": null
+      },
+      {
+        "PassSequences": [
+          5
+        ],
+        "SpotsCriteria": {
+          "HasSponsoredSpots": null,
+          "HasFIBORLIBRequests": null,
+          "HasBreakRequest": null
+        },
+        "PassDefaultIteration": {
+          "Sequence": 5002,
+          "RespectCampaignClash": true,
+          "ProductClashRules": 0,
+          "RespectSpotTime": false,
+          "BreakPositionRules": 2,
+          "RequestedPositionInBreakRules": 2,
+          "RespectRestrictions": true,
+          "RespectClashExceptions": false
+        },
+        "PassUnplacedIteration": null
+      },
+      {
+        "PassSequences": [
+          6
+        ],
+        "SpotsCriteria": {
+          "HasSponsoredSpots": null,
+          "HasFIBORLIBRequests": null,
+          "HasBreakRequest": null
+        },
+        "PassDefaultIteration": {
+          "Sequence": 6001,
+          "RespectCampaignClash": false,
+          "ProductClashRules": 2,
+          "RespectSpotTime": true,
+          "BreakPositionRules": 2,
+          "RequestedPositionInBreakRules": 2,
+          "RespectRestrictions": true,
+          "RespectClashExceptions": false
+        },
+        "PassUnplacedIteration": null
+      },
+      {
+        "PassSequences": [
+          6
+        ],
+        "SpotsCriteria": {
+          "HasSponsoredSpots": null,
+          "HasFIBORLIBRequests": null,
+          "HasBreakRequest": null
+        },
+        "PassDefaultIteration": {
+          "Sequence": 6002,
+          "RespectCampaignClash": false,
+          "ProductClashRules": 2,
+          "RespectSpotTime": false,
+          "BreakPositionRules": 2,
+          "RequestedPositionInBreakRules": 2,
+          "RespectRestrictions": true,
+          "RespectClashExceptions": false
+        },
+        "PassUnplacedIteration": null
+      },
+      {
+        "PassSequences": [
+          6
+        ],
+        "SpotsCriteria": {
+          "HasSponsoredSpots": null,
+          "HasFIBORLIBRequests": null,
+          "HasBreakRequest": null
+        },
+        "PassDefaultIteration": {
+          "Sequence": 6003,
+          "RespectCampaignClash": false,
+          "ProductClashRules": 0,
+          "RespectSpotTime": false,
+          "BreakPositionRules": 2,
+          "RequestedPositionInBreakRules": 2,
+          "RespectRestrictions": true,
+          "RespectClashExceptions": false
+        },
+        "PassUnplacedIteration": null
+      },
+      {
+        "PassSequences": [
+          7
+        ],
+        "SpotsCriteria": {
+          "HasSponsoredSpots": null,
+          "HasFIBORLIBRequests": null,
+          "HasBreakRequest": null
+        },
+        "PassDefaultIteration": null,
+        "PassUnplacedIteration": {
+          "Sequence": 7001,
+          "RespectSpotTime": false,
+          "RespectCampaignClash": false,
+          "ProductClashRule": 0,
+          "RespectRestrictions": true,
+          "RespectClashExceptions": false
+        }
+      }
+    ],
+    "BestBreakFactorGroupRecords": [
+      {
+        "PassSequences": [
+          1,
+          2,
+          3,
+          4
+        ],
+        "SpotsCriteria": {
+          "HasSponsoredSpots": true,
+          "HasFIBORLIBRequests": null,
+          "HasBreakRequest": null
+        },
+        "BestBreakFactorGroup": {
+          "Items": [
+            {
+              "DefaultFactors": [
+                {
+                  "Priority": 1,
+                  "Factor": 113
+                }
+              ],
+              "FilterFactors": [
+                {
+                  "Priority": 1,
+                  "Factor": 100
+                },
+                {
+                  "Priority": 2,
+                  "Factor": 114
+                },
+                {
+                  "Priority": 3,
+                  "Factor": 15
+                }
+              ],
+              "AllFilterFactorsMustBeNonZero": true,
+              "UseZeroScoresInEvaluation": true,
+              "Evaluation": 0
+            }
+          ],
+          "Evaluation": 1,
+          "SameBreakGroupScoreAction": 1,
+          "SameBreakGroupScoreFactor": {
+            "Priority": 1,
+            "Factor": 3
+          },
+          "Sequence": 1001,
+          "Name": "1A"
+        }
+      },
+      {
+        "PassSequences": [
+          1,
+          2,
+          3,
+          4
+        ],
+        "SpotsCriteria": {
+          "HasSponsoredSpots": true,
+          "HasFIBORLIBRequests": null,
+          "HasBreakRequest": null
+        },
+        "BestBreakFactorGroup": {
+          "Items": [
+            {
+              "DefaultFactors": [
+                {
+                  "Priority": 1,
+                  "Factor": 113
+                }
+              ],
+              "FilterFactors": [
+                {
+                  "Priority": 1,
+                  "Factor": 100
+                },
+                {
+                  "Priority": 2,
+                  "Factor": 101
+                },
+                {
+                  "Priority": 3,
+                  "Factor": 17
+                }
+              ],
+              "AllFilterFactorsMustBeNonZero": true,
+              "UseZeroScoresInEvaluation": true,
+              "Evaluation": 0
+            }
+          ],
+          "Evaluation": 1,
+          "SameBreakGroupScoreAction": 1,
+          "SameBreakGroupScoreFactor": {
+            "Priority": 1,
+            "Factor": 4
+          },
+          "Sequence": 1002,
+          "Name": "1B"
+        }
+      },
+      {
+        "PassSequences": [
+          1,
+          2,
+          3,
+          4
+        ],
+        "SpotsCriteria": {
+          "HasSponsoredSpots": true,
+          "HasFIBORLIBRequests": null,
+          "HasBreakRequest": null
+        },
+        "BestBreakFactorGroup": {
+          "Items": [
+            {
+              "DefaultFactors": [
+                {
+                  "Priority": 1,
+                  "Factor": 113
+                }
+              ],
+              "FilterFactors": [
+                {
+                  "Priority": 1,
+                  "Factor": 100
+                },
+                {
+                  "Priority": 2,
+                  "Factor": 17
+                }
+              ],
+              "AllFilterFactorsMustBeNonZero": true,
+              "UseZeroScoresInEvaluation": true,
+              "Evaluation": 0
+            }
+          ],
+          "Evaluation": 1,
+          "SameBreakGroupScoreAction": 1,
+          "SameBreakGroupScoreFactor": {
+            "Priority": 1,
+            "Factor": 3
+          },
+          "Sequence": 1003,
+          "Name": "1C"
+        }
+      },
+      {
+        "PassSequences": [
+          1,
+          2,
+          3,
+          4
+        ],
+        "SpotsCriteria": {
+          "HasSponsoredSpots": null,
+          "HasFIBORLIBRequests": true,
+          "HasBreakRequest": null
+        },
+        "BestBreakFactorGroup": {
+          "Items": [
+            {
+              "DefaultFactors": [
+                {
+                  "Priority": 1,
+                  "Factor": 104
+                },
+                {
+                  "Priority": 2,
+                  "Factor": 112
+                },
+                {
+                  "Priority": 3,
+                  "Factor": 110
+                },
+                {
+                  "Priority": 4,
+                  "Factor": 6
+                }
+              ],
+              "FilterFactors": [
+                {
+                  "Priority": 1,
+                  "Factor": 107
+                }
+              ],
+              "AllFilterFactorsMustBeNonZero": true,
+              "UseZeroScoresInEvaluation": true,
+              "Evaluation": 0
+            }
+          ],
+          "Evaluation": 1,
+          "SameBreakGroupScoreAction": 1,
+          "SameBreakGroupScoreFactor": {
+            "Priority": 1,
+            "Factor": 105
+          },
+          "Sequence": 2001,
+          "Name": "2A"
+        }
+      },
+      {
+        "PassSequences": [
+          1,
+          2,
+          3,
+          4
+        ],
+        "SpotsCriteria": {
+          "HasSponsoredSpots": null,
+          "HasFIBORLIBRequests": true,
+          "HasBreakRequest": null
+        },
+        "BestBreakFactorGroup": {
+          "Items": [
+            {
+              "DefaultFactors": [
+                {
+                  "Priority": 1,
+                  "Factor": 104
+                },
+                {
+                  "Priority": 2,
+                  "Factor": 112
+                },
+                {
+                  "Priority": 3,
+                  "Factor": 110
+                },
+                {
+                  "Priority": 4,
+                  "Factor": 6
+                }
+              ],
+              "FilterFactors": [
+                {
+                  "Priority": 1,
+                  "Factor": 5
+                }
+              ],
+              "AllFilterFactorsMustBeNonZero": true,
+              "UseZeroScoresInEvaluation": true,
+              "Evaluation": 0
+            }
+          ],
+          "Evaluation": 1,
+          "SameBreakGroupScoreAction": 1,
+          "SameBreakGroupScoreFactor": {
+            "Priority": 1,
+            "Factor": 105
+          },
+          "Sequence": 2002,
+          "Name": "2B"
+        }
+      },
+      {
+        "PassSequences": [
+          1,
+          2,
+          3,
+          4
+        ],
+        "SpotsCriteria": {
+          "HasSponsoredSpots": null,
+          "HasFIBORLIBRequests": true,
+          "HasBreakRequest": null
+        },
+        "BestBreakFactorGroup": {
+          "Items": [
+            {
+              "DefaultFactors": [
+                {
+                  "Priority": 1,
+                  "Factor": 104
+                },
+                {
+                  "Priority": 2,
+                  "Factor": 112
+                },
+                {
+                  "Priority": 3,
+                  "Factor": 110
+                },
+                {
+                  "Priority": 4,
+                  "Factor": 6
+                }
+              ],
+              "FilterFactors": [],
+              "AllFilterFactorsMustBeNonZero": true,
+              "UseZeroScoresInEvaluation": true,
+              "Evaluation": 0
+            }
+          ],
+          "Evaluation": 1,
+          "SameBreakGroupScoreAction": 1,
+          "SameBreakGroupScoreFactor": {
+            "Priority": 1,
+            "Factor": 105
+          },
+          "Sequence": 2003,
+          "Name": "2C"
+        }
+      },
+      {
+        "PassSequences": [
+          1,
+          2,
+          3,
+          4
+        ],
+        "SpotsCriteria": {
+          "HasSponsoredSpots": null,
+          "HasFIBORLIBRequests": false,
+          "HasBreakRequest": null
+        },
+        "BestBreakFactorGroup": {
+          "Items": [
+            {
+              "DefaultFactors": [
+                {
+                  "Priority": 1,
+                  "Factor": 112
+                },
+                {
+                  "Priority": 2,
+                  "Factor": 110
+                },
+                {
+                  "Priority": 3,
+                  "Factor": 6
+                }
+              ],
+              "FilterFactors": [
+                {
+                  "Priority": 1,
+                  "Factor": 9
+                }
+              ],
+              "AllFilterFactorsMustBeNonZero": true,
+              "UseZeroScoresInEvaluation": true,
+              "Evaluation": 0
+            }
+          ],
+          "Evaluation": 1,
+          "SameBreakGroupScoreAction": 1,
+          "SameBreakGroupScoreFactor": {
+            "Priority": 1,
+            "Factor": 105
+          },
+          "Sequence": 3001,
+          "Name": "3A"
+        }
+      },
+      {
+        "PassSequences": [
+          1,
+          2,
+          3,
+          4
+        ],
+        "SpotsCriteria": {
+          "HasSponsoredSpots": null,
+          "HasFIBORLIBRequests": false,
+          "HasBreakRequest": null
+        },
+        "BestBreakFactorGroup": {
+          "Items": [
+            {
+              "DefaultFactors": [
+                {
+                  "Priority": 1,
+                  "Factor": 112
+                },
+                {
+                  "Priority": 2,
+                  "Factor": 110
+                },
+                {
+                  "Priority": 3,
+                  "Factor": 6
+                }
+              ],
+              "FilterFactors": [
+                {
+                  "Priority": 1,
+                  "Factor": 5
+                }
+              ],
+              "AllFilterFactorsMustBeNonZero": true,
+              "UseZeroScoresInEvaluation": true,
+              "Evaluation": 0
+            }
+          ],
+          "Evaluation": 1,
+          "SameBreakGroupScoreAction": 1,
+          "SameBreakGroupScoreFactor": {
+            "Priority": 1,
+            "Factor": 105
+          },
+          "Sequence": 3002,
+          "Name": "3B"
+        }
+      },
+      {
+        "PassSequences": [
+          1,
+          2,
+          3,
+          4
+        ],
+        "SpotsCriteria": {
+          "HasSponsoredSpots": null,
+          "HasFIBORLIBRequests": false,
+          "HasBreakRequest": null
+        },
+        "BestBreakFactorGroup": {
+          "Items": [
+            {
+              "DefaultFactors": [
+                {
+                  "Priority": 1,
+                  "Factor": 112
+                },
+                {
+                  "Priority": 2,
+                  "Factor": 110
+                },
+                {
+                  "Priority": 3,
+                  "Factor": 6
+                }
+              ],
+              "FilterFactors": [],
+              "AllFilterFactorsMustBeNonZero": true,
+              "UseZeroScoresInEvaluation": true,
+              "Evaluation": 0
+            }
+          ],
+          "Evaluation": 1,
+          "SameBreakGroupScoreAction": 1,
+          "SameBreakGroupScoreFactor": {
+            "Priority": 1,
+            "Factor": 105
+          },
+          "Sequence": 3003,
+          "Name": "3C"
+        }
+      },
+      {
+        "PassSequences": [
+          5
+        ],
+        "SpotsCriteria": {
+          "HasSponsoredSpots": null,
+          "HasFIBORLIBRequests": false,
+          "HasBreakRequest": null
+        },
+        "BestBreakFactorGroup": {
+          "Items": [
+            {
+              "DefaultFactors": [
+                {
+                  "Priority": 1,
+                  "Factor": 7
+                },
+                {
+                  "Priority": 2,
+                  "Factor": 110
+                },
+                {
+                  "Priority": 3,
+                  "Factor": 6
+                }
+              ],
+              "FilterFactors": [
+                {
+                  "Priority": 1,
+                  "Factor": 9
+                }
+              ],
+              "AllFilterFactorsMustBeNonZero": true,
+              "UseZeroScoresInEvaluation": true,
+              "Evaluation": 0
+            }
+          ],
+          "Evaluation": 1,
+          "SameBreakGroupScoreAction": 1,
+          "SameBreakGroupScoreFactor": {
+            "Priority": 1,
+            "Factor": 105
+          },
+          "Sequence": 4001,
+          "Name": "4A"
+        }
+      },
+      {
+        "PassSequences": [
+          5
+        ],
+        "SpotsCriteria": {
+          "HasSponsoredSpots": null,
+          "HasFIBORLIBRequests": false,
+          "HasBreakRequest": null
+        },
+        "BestBreakFactorGroup": {
+          "Items": [
+            {
+              "DefaultFactors": [
+                {
+                  "Priority": 1,
+                  "Factor": 7
+                },
+                {
+                  "Priority": 2,
+                  "Factor": 110
+                },
+                {
+                  "Priority": 3,
+                  "Factor": 6
+                }
+              ],
+              "FilterFactors": [
+                {
+                  "Priority": 1,
+                  "Factor": 5
+                }
+              ],
+              "AllFilterFactorsMustBeNonZero": true,
+              "UseZeroScoresInEvaluation": true,
+              "Evaluation": 0
+            }
+          ],
+          "Evaluation": 1,
+          "SameBreakGroupScoreAction": 1,
+          "SameBreakGroupScoreFactor": {
+            "Priority": 1,
+            "Factor": 105
+          },
+          "Sequence": 4002,
+          "Name": "4B"
+        }
+      },
+      {
+        "PassSequences": [
+          5
+        ],
+        "SpotsCriteria": {
+          "HasSponsoredSpots": null,
+          "HasFIBORLIBRequests": false,
+          "HasBreakRequest": null
+        },
+        "BestBreakFactorGroup": {
+          "Items": [
+            {
+              "DefaultFactors": [
+                {
+                  "Priority": 1,
+                  "Factor": 7
+                },
+                {
+                  "Priority": 2,
+                  "Factor": 110
+                },
+                {
+                  "Priority": 3,
+                  "Factor": 6
+                }
+              ],
+              "FilterFactors": [],
+              "AllFilterFactorsMustBeNonZero": true,
+              "UseZeroScoresInEvaluation": true,
+              "Evaluation": 0
+            }
+          ],
+          "Evaluation": 1,
+          "SameBreakGroupScoreAction": 1,
+          "SameBreakGroupScoreFactor": {
+            "Priority": 1,
+            "Factor": 105
+          },
+          "Sequence": 4003,
+          "Name": "4C"
+        }
+      },
+      {
+        "PassSequences": [
+          6
+        ],
+        "SpotsCriteria": {
+          "HasSponsoredSpots": null,
+          "HasFIBORLIBRequests": false,
+          "HasBreakRequest": null
+        },
+        "BestBreakFactorGroup": {
+          "Items": [
+            {
+              "DefaultFactors": [
+                {
+                  "Priority": 1,
+                  "Factor": 112
+                },
+                {
+                  "Priority": 2,
+                  "Factor": 110
+                },
+                {
+                  "Priority": 3,
+                  "Factor": 6
+                }
+              ],
+              "FilterFactors": [
+                {
+                  "Priority": 1,
+                  "Factor": 9
+                }
+              ],
+              "AllFilterFactorsMustBeNonZero": true,
+              "UseZeroScoresInEvaluation": true,
+              "Evaluation": 0
+            }
+          ],
+          "Evaluation": 1,
+          "SameBreakGroupScoreAction": 1,
+          "SameBreakGroupScoreFactor": {
+            "Priority": 1,
+            "Factor": 105
+          },
+          "Sequence": 5001,
+          "Name": "5A"
+        }
+      },
+      {
+        "PassSequences": [
+          6
+        ],
+        "SpotsCriteria": {
+          "HasSponsoredSpots": null,
+          "HasFIBORLIBRequests": false,
+          "HasBreakRequest": null
+        },
+        "BestBreakFactorGroup": {
+          "Items": [
+            {
+              "DefaultFactors": [
+                {
+                  "Priority": 1,
+                  "Factor": 112
+                },
+                {
+                  "Priority": 2,
+                  "Factor": 110
+                },
+                {
+                  "Priority": 3,
+                  "Factor": 6
+                }
+              ],
+              "FilterFactors": [
+                {
+                  "Priority": 1,
+                  "Factor": 5
+                }
+              ],
+              "AllFilterFactorsMustBeNonZero": true,
+              "UseZeroScoresInEvaluation": true,
+              "Evaluation": 0
+            }
+          ],
+          "Evaluation": 1,
+          "SameBreakGroupScoreAction": 1,
+          "SameBreakGroupScoreFactor": {
+            "Priority": 1,
+            "Factor": 105
+          },
+          "Sequence": 5002,
+          "Name": "5B"
+        }
+      },
+      {
+        "PassSequences": [
+          6
+        ],
+        "SpotsCriteria": {
+          "HasSponsoredSpots": null,
+          "HasFIBORLIBRequests": false,
+          "HasBreakRequest": null
+        },
+        "BestBreakFactorGroup": {
+          "Items": [
+            {
+              "DefaultFactors": [
+                {
+                  "Priority": 1,
+                  "Factor": 112
+                },
+                {
+                  "Priority": 2,
+                  "Factor": 110
+                },
+                {
+                  "Priority": 3,
+                  "Factor": 6
+                }
+              ],
+              "FilterFactors": [],
+              "AllFilterFactorsMustBeNonZero": true,
+              "UseZeroScoresInEvaluation": true,
+              "Evaluation": 0
+            }
+          ],
+          "Evaluation": 1,
+          "SameBreakGroupScoreAction": 1,
+          "SameBreakGroupScoreFactor": {
+            "Priority": 1,
+            "Factor": 105
+          },
+          "Sequence": 5003,
+          "Name": "5C"
+        }
+      }
+    ]
+  }
+]

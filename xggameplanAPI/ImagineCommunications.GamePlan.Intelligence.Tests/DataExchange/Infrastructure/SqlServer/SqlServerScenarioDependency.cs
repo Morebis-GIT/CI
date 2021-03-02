@@ -45,8 +45,6 @@ using ImagineCommunications.GamePlan.Domain.Shared.SalesAreas;
 using ImagineCommunications.GamePlan.Domain.Shared.Schedules;
 using ImagineCommunications.GamePlan.Domain.Shared.System.Tenants;
 using ImagineCommunications.GamePlan.Domain.Shared.Universes;
-using ImagineCommunications.GamePlan.Domain.SmoothConfigurations.Objects;
-using ImagineCommunications.GamePlan.Domain.Sponsorships.Objects;
 using ImagineCommunications.GamePlan.Domain.SpotBookingRules;
 using ImagineCommunications.GamePlan.Domain.SpotPlacements;
 using ImagineCommunications.GamePlan.Domain.Spots;
@@ -56,9 +54,11 @@ using ImagineCommunications.GamePlan.Intelligence.Tests.DataExchange.Infrastruct
 using ImagineCommunications.GamePlan.Intelligence.Tests.DataExchange.Infrastructure.SqlServer.Interception;
 using ImagineCommunications.GamePlan.Intelligence.Tests.Infrastructure.Interfaces;
 using ImagineCommunications.GamePlan.Persistence.SqlServer.BusinessLogic.CampaignCleaning;
+using ImagineCommunications.GamePlan.Persistence.SqlServer.Caches;
 using ImagineCommunications.GamePlan.Persistence.SqlServer.Core.DomainModelContext;
 using ImagineCommunications.GamePlan.Persistence.SqlServer.Core.Extensions;
 using ImagineCommunications.GamePlan.Persistence.SqlServer.Core.Interfaces;
+using ImagineCommunications.GamePlan.Persistence.SqlServer.Entities.Tenant.PredictionSchedules;
 using ImagineCommunications.GamePlan.Persistence.SqlServer.Interfaces;
 using ImagineCommunications.GamePlan.Persistence.SqlServer.Repositories;
 using ImagineCommunications.GamePlan.Persistence.SqlServer.Services;
@@ -69,6 +69,7 @@ using Microsoft.Extensions.DependencyInjection;
 using NodaTime;
 using xggameplan.core.Interfaces;
 using BookingPositionGroupEntity = ImagineCommunications.GamePlan.Persistence.SqlServer.Entities.Tenant.BookingPositionGroups.BookingPositionGroup;
+using CampaignEntity = ImagineCommunications.GamePlan.Persistence.SqlServer.Entities.Tenant.Campaigns.Campaign;
 using CampaignSettingsEntity = ImagineCommunications.GamePlan.Persistence.SqlServer.Entities.Tenant.Campaigns.CampaignSettings;
 using ClashEntity = ImagineCommunications.GamePlan.Persistence.SqlServer.Entities.Tenant.Clash;
 using ClashExceptionEntity = ImagineCommunications.GamePlan.Persistence.SqlServer.Entities.Tenant.ClashExceptions.ClashException;
@@ -82,12 +83,18 @@ using ProgrammeClassificationEntity = ImagineCommunications.GamePlan.Persistence
 using ProgrammeDictionaryEntity = ImagineCommunications.GamePlan.Persistence.SqlServer.Entities.Tenant.ProgrammeDictionary;
 using ProgrammeEpisodeEntity = ImagineCommunications.GamePlan.Persistence.SqlServer.Entities.Tenant.Programmes.ProgrammeEpisode;
 using RecommendationEntity = ImagineCommunications.GamePlan.Persistence.SqlServer.Entities.Tenant.Recommendation;
+using RestrictionEntity = ImagineCommunications.GamePlan.Persistence.SqlServer.Entities.Tenant.Restrictions.Restriction;
 using SalesAreaDemographicEntity = ImagineCommunications.GamePlan.Persistence.SqlServer.Entities.Tenant.SalesAreas.SalesAreaDemographic;
 using SalesAreaEntity = ImagineCommunications.GamePlan.Persistence.SqlServer.Entities.Tenant.SalesAreas.SalesArea;
 using ScenarioEntity = ImagineCommunications.GamePlan.Persistence.SqlServer.Entities.Tenant.Scenarios.Scenario;
 using ScenarioResultEntity = ImagineCommunications.GamePlan.Persistence.SqlServer.Entities.Tenant.ScenarioResults.ScenarioResult;
 using SpotBookingRuleEntity = ImagineCommunications.GamePlan.Persistence.SqlServer.Entities.Tenant.SpotBookingRules.SpotBookingRule;
+using SpotEntity = ImagineCommunications.GamePlan.Persistence.SqlServer.Entities.Tenant.Spot;
+using StandardDayPartEntity = ImagineCommunications.GamePlan.Persistence.SqlServer.Entities.Tenant.DayParts.StandardDayPart;
+using StandardDayPartGroupEntity = ImagineCommunications.GamePlan.Persistence.SqlServer.Entities.Tenant.DayParts.StandardDayPartGroup;
 using TenantSettingsEntity = ImagineCommunications.GamePlan.Persistence.SqlServer.Entities.Tenant.TenantSettings.TenantSettings;
+using TotalRatingEntity = ImagineCommunications.GamePlan.Persistence.SqlServer.Entities.Tenant.TotalRating;
+using UniverseEntity = ImagineCommunications.GamePlan.Persistence.SqlServer.Entities.Tenant.Universe;
 
 namespace ImagineCommunications.GamePlan.Intelligence.Tests.DataExchange.Infrastructure.SqlServer
 {
@@ -105,7 +112,6 @@ namespace ImagineCommunications.GamePlan.Intelligence.Tests.DataExchange.Infrast
                     .UseInMemoryDatabase(Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture))
                     .ConfigureWarnings(x => x.Ignore(InMemoryEventId.TransactionIgnoredWarning))
                     .UseBulkInsertEngine(dbContext => new SqlServerTestBulkInsertEngine(dbContext))
-                    .EnableSensitiveDataLogging()
                     .Options);
             objectContainer.RegisterFactoryAs<DbContextOptions>(oc =>
                 oc.Resolve<DbContextOptions<SqlServerTestDbContext>>());
@@ -122,10 +128,10 @@ namespace ImagineCommunications.GamePlan.Intelligence.Tests.DataExchange.Infrast
             objectContainer.RegisterFactoryAs<ISqlServerTenantDbContext>(oc => oc.Resolve<ISqlServerTestDbContext>());
             objectContainer.RegisterFactoryAs<ISqlServerLongRunningTenantDbContext>(oc => oc.Resolve<ISqlServerTestDbContext>());
 
-            objectContainer.RegisterTypeAs<SalesAreaTestCacheAccessor, SalesAreaTestCacheAccessor>();
-            objectContainer.RegisterFactoryAs<ISqlServerSalesAreaByIdCacheAccessor>(oc => oc.Resolve<SalesAreaTestCacheAccessor>());
-            objectContainer.RegisterFactoryAs<ISqlServerSalesAreaByNullableIdCacheAccessor>(oc => oc.Resolve<SalesAreaTestCacheAccessor>());
-            objectContainer.RegisterFactoryAs<ISqlServerSalesAreaByNameCacheAccessor>(oc => oc.Resolve<SalesAreaTestCacheAccessor>());
+            objectContainer.RegisterTypeAs<SalesAreaCacheAccessor, SalesAreaCacheAccessor>();
+            objectContainer.RegisterFactoryAs<ISqlServerSalesAreaByIdCacheAccessor>(oc => oc.Resolve<SalesAreaCacheAccessor>());
+            objectContainer.RegisterFactoryAs<ISqlServerSalesAreaByNullableIdCacheAccessor>(oc => oc.Resolve<SalesAreaCacheAccessor>());
+            objectContainer.RegisterFactoryAs<ISqlServerSalesAreaByNameCacheAccessor>(oc => oc.Resolve<SalesAreaCacheAccessor>());
 
             objectContainer.RegisterTypeAs<LockTypeRepository, ILockTypeRepository>();
             objectContainer.RegisterTypeAs<InventoryTypeRepository, IInventoryTypeRepository>();
@@ -171,8 +177,7 @@ namespace ImagineCommunications.GamePlan.Intelligence.Tests.DataExchange.Infrast
             objectContainer.RegisterTypeAs<InventoryLockDomainModelHandler, IDomainModelHandler<InventoryLock>>();
             objectContainer.RegisterTypeAs<MetadataCategoryDomainModelHandler, IDomainModelHandler<Metadata>>();
             objectContainer.RegisterTypeAs<BreakDomainModelHandler, IDomainModelHandler<Break>>();
-            objectContainer.RegisterTypeAs<CampaignDomainModelHandler, IDomainModelHandler<Campaign>>();
-            objectContainer.RegisterTypeAs<RestrictionDomainModelHandler, IDomainModelHandler<Restriction>>();
+            objectContainer.RegisterTypeAs<SimpleDomainModelMappingHandler<CampaignEntity, Campaign>, IDomainModelHandler<Campaign>>();
             objectContainer.RegisterTypeAs<SimpleDomainModelMappingHandler<CampaignSettingsEntity, CampaignSettings>, IDomainModelHandler<CampaignSettings>>();
             objectContainer.RegisterTypeAs<SimpleDomainModelMappingHandler<ClashEntity, Clash>, IDomainModelHandler<Clash>>();
             objectContainer.RegisterTypeAs<SimpleDomainModelMappingHandler<ClashExceptionEntity, ClashException>, IDomainModelHandler<ClashException>>();
@@ -180,30 +185,29 @@ namespace ImagineCommunications.GamePlan.Intelligence.Tests.DataExchange.Infrast
             objectContainer.RegisterTypeAs<SimpleDomainModelMappingHandler<ProgrammeClassificationEntity, ProgrammeClassification>, IDomainModelHandler<ProgrammeClassification>>();
             objectContainer.RegisterTypeAs<SimpleDomainModelMappingHandler<ProgrammeDictionaryEntity, ProgrammeDictionary>, IDomainModelHandler<ProgrammeDictionary>>();
             objectContainer.RegisterTypeAs<ProgrammeDomainModelHandler, IDomainModelHandler<Programme>>();
-            objectContainer.RegisterTypeAs<RatingsPredictionScheduleDomainModelHandler, IDomainModelHandler<RatingsPredictionSchedule>>();
+            objectContainer.RegisterTypeAs<SimpleDomainModelMappingHandler<PredictionSchedule, RatingsPredictionSchedule>, IDomainModelHandler<RatingsPredictionSchedule>>();
             objectContainer.RegisterTypeAs<SimpleDomainModelMappingHandler<ProductEntity, Product>, IDomainModelHandler<Product>>();
             objectContainer.RegisterTypeAs<SimpleDomainModelMappingHandler<RecommendationEntity, Recommendation>, IDomainModelHandler<Recommendation>>();
+            objectContainer.RegisterTypeAs<SimpleDomainModelMappingHandler<RestrictionEntity, Restriction>, IDomainModelHandler<Restriction>>();
             objectContainer.RegisterTypeAs<SimpleDomainModelMappingHandler<ImagineCommunications.GamePlan.Persistence.SqlServer.Entities.Tenant.InventoryStatuses.InventoryLockType, InventoryLockType>, IDomainModelHandler<InventoryLockType>>();
             objectContainer.RegisterTypeAs<SimpleDomainModelMappingHandler<InventoryTypeEntity, InventoryType>, IDomainModelHandler<InventoryType>>();
             objectContainer.RegisterTypeAs<SimpleDomainModelMappingHandler<SalesAreaEntity, SalesArea>, IDomainModelHandler<SalesArea>>();
             objectContainer.RegisterTypeAs<SimpleDomainModelMappingHandler<ScenarioResultEntity, ScenarioResult>, IDomainModelHandler<ScenarioResult>>();
-            objectContainer.RegisterTypeAs<SpotDomainModelHandler, IDomainModelHandler<Spot>>();
+            objectContainer.RegisterTypeAs<SimpleDomainModelMappingHandler<SpotEntity, Spot>, IDomainModelHandler<Spot>>();
             objectContainer.RegisterTypeAs<SimpleDomainModelMappingHandler<TenantSettingsEntity, TenantSettings>, IDomainModelHandler<TenantSettings>>();
             objectContainer.RegisterTypeAs<SimpleDomainModelMappingHandler<BookingPositionGroupEntity, BookingPositionGroup>, IDomainModelHandler<BookingPositionGroup>>();
-            objectContainer.RegisterTypeAs<UniverseDomainModelHandler, IDomainModelHandler<Universe>>();
-            objectContainer.RegisterTypeAs<TotalRatingDomainModelHandler, IDomainModelHandler<TotalRating>>();
+            objectContainer.RegisterTypeAs<SimpleDomainModelMappingHandler<UniverseEntity, Universe>, IDomainModelHandler<Universe>>();
+            objectContainer.RegisterTypeAs<SimpleDomainModelMappingHandler<TotalRatingEntity, TotalRating>, IDomainModelHandler<TotalRating>>();
             objectContainer.RegisterTypeAs<SimpleDomainModelMappingHandler<SalesAreaDemographicEntity, SalesAreaDemographic>, IDomainModelHandler<SalesAreaDemographic>>();
             objectContainer.RegisterTypeAs<SimpleDomainModelMappingHandler<ProgrammeCategoryHierarchyEntity, ProgrammeCategoryHierarchy>, IDomainModelHandler<ProgrammeCategoryHierarchy>>();
             objectContainer.RegisterTypeAs<SimpleDomainModelMappingHandler<ClearanceCodeEntity, ClearanceCode>, IDomainModelHandler<ClearanceCode>>();
             objectContainer.RegisterTypeAs<SimpleDomainModelMappingHandler<ScenarioEntity, Scenario>, IDomainModelHandler<Scenario>>();
-            objectContainer.RegisterTypeAs<StandardDayPartDomainModelHandler, IDomainModelHandler<StandardDayPart>>();
-            objectContainer.RegisterTypeAs<StandardDayPartGroupDomainModelHandler, IDomainModelHandler<StandardDayPartGroup>>();
+            objectContainer.RegisterTypeAs<SimpleDomainModelMappingHandler<StandardDayPartEntity, StandardDayPart>, IDomainModelHandler<StandardDayPart>>();
+            objectContainer.RegisterTypeAs<SimpleDomainModelMappingHandler<StandardDayPartGroupEntity, StandardDayPartGroup>, IDomainModelHandler<StandardDayPartGroup>>();
             objectContainer.RegisterTypeAs<SimpleDomainModelMappingHandler<SpotBookingRuleEntity, SpotBookingRule>, IDomainModelHandler<SpotBookingRule>>();
             objectContainer.RegisterTypeAs<SimpleDomainModelMappingHandler<ProgrammeEpisodeEntity, ProgrammeEpisode>, IDomainModelHandler<ProgrammeEpisode>>();
             objectContainer.RegisterTypeAs<SimpleDomainModelMappingHandler<LengthFactorEntity, LengthFactor>, IDomainModelHandler<LengthFactor>>();
             objectContainer.RegisterTypeAs<ScheduleDomainModelHandler, IDomainModelHandler<Schedule>>();
-            objectContainer.RegisterTypeAs<SmoothDiagnosticConfigurationDomainModelHandler, IDomainModelHandler<SmoothDiagnosticConfiguration>>();
-            objectContainer.RegisterTypeAs<SponsorshipDomainModelHandler, IDomainModelHandler<Sponsorship>>();
 
             objectContainer.RegisterTypeAs<SqlServerScenarioDbContext, IScenarioDbContext>();
             objectContainer.RegisterTypeAs<SqlServerJsonTestDataImporter, ITestDataImporter>();

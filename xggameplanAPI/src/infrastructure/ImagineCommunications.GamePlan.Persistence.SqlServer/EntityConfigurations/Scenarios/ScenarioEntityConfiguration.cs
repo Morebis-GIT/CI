@@ -11,10 +11,9 @@ namespace ImagineCommunications.GamePlan.Persistence.SqlServer.EntityConfigurati
             builder.ToTable("Scenarios");
 
             builder.HasKey(e => e.Id);
-            builder.Property(e => e.Id).HasDefaultValueSql("newid()");
+            builder.Property(e => e.Id);
             builder.Property(e => e.Name).HasMaxLength(256);
-            builder.Property<string>(Scenario.SearchField)
-                .HasComputedColumnSql("CONCAT_WS(' ', Id, [Name])");
+            builder.Property<string>(Scenario.SearchField).HasMaxLength(TextColumnLenght.SearchField);
 
             builder.HasIndex(e => e.IsLibraried);
 

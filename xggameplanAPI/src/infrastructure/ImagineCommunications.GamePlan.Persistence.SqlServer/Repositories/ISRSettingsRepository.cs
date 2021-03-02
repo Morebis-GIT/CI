@@ -43,13 +43,13 @@ namespace ImagineCommunications.GamePlan.Persistence.SqlServer.Repositories
             _mapper.Map<List<ISRSettings>>(
                 _dbContext.Query<ISRSettingsEntity>()
                     .Include(x => x.DemographicsSettings)
-                    .Where(x => salesAreas.Contains(x.SalesArea.Name)).AsNoTracking(),
+                    .Where(x => salesAreas.Contains(x.SalesArea.Name)),
                 opts => opts.UseEntityCache(_salesAreaByIdCache));
 
         public List<ISRSettings> GetAll() =>
             _mapper.Map<List<ISRSettings>>(
                 _dbContext.Query<ISRSettingsEntity>()
-                    .Include(x => x.DemographicsSettings).AsNoTracking()
+                    .Include(x => x.DemographicsSettings)
                 , opts => opts.UseEntityCache(_salesAreaByIdCache));
 
         public void Add(IEnumerable<ISRSettings> items)

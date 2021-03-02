@@ -1,4 +1,5 @@
-﻿using ImagineCommunications.GamePlan.Persistence.SqlServer.Entities.Tenant.Campaigns;
+﻿using System;
+using ImagineCommunications.GamePlan.Persistence.SqlServer.Entities.Tenant.Campaigns;
 using ImagineCommunications.GamePlan.Persistence.SqlServer.Extensions;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
@@ -13,7 +14,7 @@ namespace ImagineCommunications.GamePlan.Persistence.SqlServer.EntityConfigurati
             builder.ToTable("Campaigns");
 
             builder.HasKey(e => e.Id);
-            builder.Property(e => e.Id).HasDefaultValueSql("newid()");
+            builder.Property(e => e.Id);
 
             builder.Property(e => e.CustomId).Metadata.AfterSaveBehavior = PropertySaveBehavior.Ignore;
             builder.Property(e => e.ExternalId).HasMaxLength(64);
@@ -32,12 +33,10 @@ namespace ImagineCommunications.GamePlan.Persistence.SqlServer.EntityConfigurati
 
             builder.Property(e => e.CampaignGroup).HasMaxLength(32);
             builder.Property(e => e.BusinessType).HasMaxLength(32);
-            builder.Property(e => e.ActiveLength).HasColumnType("NVARCHAR(MAX)");
+            builder.Property(e => e.ActiveLength).HasMaxLength(Int32.MaxValue); 
             builder.Property(e => e.ExpectedClearanceCode).HasMaxLength(64);
             builder.Property(e => e.CreationDate).AsUtc();
-            builder.Property<string>(Campaign.SearchTokensFieldName)
-                .HasComputedColumnSql("CONCAT_WS(' ',[CampaignGroup],[Name],[ExternalId],[BusinessType])");
-
+            
             builder.HasIndex(e => e.CustomId).IsUnique();
             builder.HasIndex(e => e.ExternalId);
             builder.HasIndex(e => e.Product);

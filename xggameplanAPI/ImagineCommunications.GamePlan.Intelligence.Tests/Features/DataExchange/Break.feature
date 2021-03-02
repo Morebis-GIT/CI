@@ -22,6 +22,7 @@ Scenario: BulkBreakCreated invalid model
 		| Data[2].BreakType        |
 		| Data[3].ExternalBreakRef |
 		| Data[3].Duration         |
+		
 
 Scenario: BulkBreakCreated invalid BreakType
 	Given The data from file Break.SalesAreas_Setup exists in database
@@ -41,6 +42,7 @@ Scenario: BulkBreakCreated invalid SalesArea names
 	When I publish message to message broker
 	Then GamePlanIntelligence throws exception with the code: SalesAreaNotFound
 
+@ignore
 Scenario: BulkBreakCreated successfully creates single Breaks, updates existing Schedule
 	Given The data from file Break.SalesAreas_Setup exists in database
 	And The data from file Break.BulkBreakCreated_Setup exists in database

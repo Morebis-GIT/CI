@@ -86,59 +86,59 @@ Scenario: BulkCampaignCreatedOrUpdated message should throw exception when Inclu
 	When I publish message to message broker
 	Then GamePlanIntelligence throws exception with the code: InvalidRightSizer
 
+
 Scenario: BulkCampaignCreatedOrUpdated message should throw exception when CampaignPassPriority is invalid
-	Given The data from file SalesArea.ExistingSalesAreas exists in database
-	And The data from file Campaign.BulkCampaignCreatedOrUpdated.Setup exists in database
+	Given The data from file Campaign.BulkCampaignCreatedOrUpdated.Setup exists in database
 	And I have BulkCampaignCreatedOrUpdated message from file Campaign.BulkCampaignCreatedOrUpdated.Error_InvalidCampaignPassPriority to publish
 	When I publish message to message broker
 	Then GamePlanIntelligence throws exception with the code: InvalidCampaignPassPriority
 
+
 Scenario: BulkCampaignCreatedOrUpdated message should throw exception when demographic is not found
-	Given The data from file SalesArea.ExistingSalesAreas exists in database
-	And The data from file Campaign.BulkCampaignCreatedOrUpdated.Setup exists in database
+	Given The data from file Campaign.BulkCampaignCreatedOrUpdated.Setup exists in database
 	And I have BulkCampaignCreatedOrUpdated message from file Campaign.BulkCampaignCreatedOrUpdated.Error_DemographicNotFound to publish
 	When I publish message to message broker
 	Then GamePlanIntelligence throws exception with the code: DemographicNotFound
 
+
 Scenario: BulkCampaignCreatedOrUpdated message should throw exception when product is not found
-	Given The data from file SalesArea.ExistingSalesAreas exists in database
-	And The data from file Campaign.BulkCampaignCreatedOrUpdated.Setup exists in database
+	Given The data from file Campaign.BulkCampaignCreatedOrUpdated.Setup exists in database
 	And I have BulkCampaignCreatedOrUpdated message from file Campaign.BulkCampaignCreatedOrUpdated.Error_ProductNotFound to publish
 	When I publish message to message broker
 	Then GamePlanIntelligence throws exception with the code: ProductNotFound
 
+
 Scenario: BulkCampaignCreatedOrUpdated message should throw exception when BreakType is invalid
-	Given The data from file SalesArea.ExistingSalesAreas exists in database
-	And The data from file Campaign.BulkCampaignCreatedOrUpdated.Setup exists in database
+	Given The data from file Campaign.BulkCampaignCreatedOrUpdated.Setup exists in database
 	And I have BulkCampaignCreatedOrUpdated message from file Campaign.BulkCampaignCreatedOrUpdated.Error_InvalidBreakType to publish
 	When I publish message to message broker
 	Then GamePlanIntelligence throws exception with the code: InvalidBreakType
 
+
 Scenario: BulkCampaignCreatedOrUpdated message should throw exception when sales areas are not found
-	Given The data from file SalesArea.ExistingSalesAreas exists in database
-	And The data from file Campaign.BulkCampaignCreatedOrUpdated.Setup exists in database
+	Given The data from file Campaign.BulkCampaignCreatedOrUpdated.Setup exists in database
 	And I have BulkCampaignCreatedOrUpdated message from file Campaign.BulkCampaignCreatedOrUpdated.Error_SalesAreasNotFound to publish
 	When I publish message to message broker
 	Then GamePlanIntelligence throws exception with the code: SalesAreaNotFound
 
+
 Scenario: BulkCampaignCreatedOrUpdated message should throw exception when ProgrammeCategory is not found
-	Given The data from file SalesArea.ExistingSalesAreas exists in database
-	And The data from file Campaign.BulkCampaignCreatedOrUpdated.Setup exists in database
+	Given The data from file Campaign.BulkCampaignCreatedOrUpdated.Setup exists in database
 	And I have BulkCampaignCreatedOrUpdated message from file Campaign.BulkCampaignCreatedOrUpdated.Error_ProgrammeCategoryNotFound to publish
 	When I publish message to message broker
 	Then GamePlanIntelligence throws exception with the code: ProgrammeCategoryNotFound
 
+
 Scenario: BulkCampaignCreatedOrUpdated message should successfully create record in the database
-	Given The data from file SalesArea.ExistingSalesAreas exists in database
-	And The data from file Campaign.BulkCampaignCreatedOrUpdated.Setup exists in database
+	Given The data from file Campaign.BulkCampaignCreatedOrUpdated.Setup exists in database
 	And I have BulkCampaignCreatedOrUpdated message from file Campaign.BulkCampaignCreatedOrUpdated.Success_Create_Request to publish
 	When I publish message to message broker
 	Then GamePlanIntelligence consumes message
 	And the Campaigns data in GamePlan database is updated as the data from the following file Campaign.BulkCampaignCreatedOrUpdated.Success_Create_Result
 
+
 Scenario: BulkCampaignCreatedOrUpdated message should successfully update record in the database
-	Given The data from file SalesArea.ExistingSalesAreas exists in database
-	And The data from file Campaign.BulkCampaignCreatedOrUpdated.Setup exists in database
+	Given The data from file Campaign.BulkCampaignCreatedOrUpdated.Setup exists in database
 	And I have BulkCampaignCreatedOrUpdated message from file Campaign.BulkCampaignCreatedOrUpdated.Success_Update_Request to publish
 	When I publish message to message broker
 	Then GamePlanIntelligence consumes message
@@ -152,9 +152,9 @@ Scenario: BulkCampaignDeleted message should throw model validation exception
 		| PropertyName       |
 		| Data[0].ExternalId |
 
+
 Scenario: BulkCampaignDeleted message should successfully delete record from the database
-	Given The data from file SalesArea.ExistingSalesAreas exists in database
-	And The data from file Campaign.BulkCampaignDeleted.Setup exists in database
+	Given The data from file Campaign.BulkCampaignDeleted.Setup exists in database
 	And I have BulkCampaignDeleted message from file Campaign.BulkCampaignDeleted.Success_Request to publish
 	When I publish message to message broker
 	Then GamePlanIntelligence consumes message

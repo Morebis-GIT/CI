@@ -1,0 +1,275 @@
+[
+  {
+    "Description": {
+      "ENG": "Invalid break type",
+      "ARA": "Invalid break type"
+    },
+    "Id": 1
+  },
+  {
+    "Description": {
+      "ENG": "Time requirements for spot",
+      "ARA": "Time requirements for spot"
+    },
+    "Id": 2
+  },
+  {
+    "Description": {
+      "ENG": "Insufficient break availability",
+      "ARA": "Insufficient break availability"
+    },
+    "Id": 3
+  },
+  {
+    "Description": {
+      "ENG": "Product clash",
+      "ARA": "Product clash"
+    },
+    "Id": 4
+  },
+  {
+    "Description": {
+      "ENG": "Campaign clash",
+      "ARA": "Campaign clash"
+    },
+    "Id": 5
+  },
+  {
+    "Description": {
+      "ENG": "Multiple spots with the same requested break",
+      "ARA": "Multiple spots with the same requested break"
+    },
+    "Id": 6
+  },
+  {
+    "Description": {
+      "ENG": "Multiple spots with the same requested position in break",
+      "ARA": "Multiple spots with the same requested position in break"
+    },
+    "Id": 7
+  },
+  {
+    "Description": {
+      "ENG": "Cannot add Top and Tail multipart spots to the same break",
+      "ARA": "Cannot add Top and Tail multipart spots to the same break"
+    },
+    "Id": 8
+  },
+  {
+    "Description": {
+      "ENG": "Spot bumped from previous run",
+      "ARA": "Spot bumped from previous run"
+    },
+    "Id": 9
+  },
+  {
+    "Description": {
+      "ENG": "Advertiser clash",
+      "ARA": "Advertiser clash"
+    },
+    "Id": 10
+  },
+  {
+    "Description": {
+      "ENG": "Cannot add Same Break spots to the same break",
+      "ARA": "Cannot add Same Break spots to the same break"
+    },
+    "Id": 11
+  },
+  {
+    "Description": {
+      "ENG": "No attempt to place spot due to no break or programme data",
+      "ARA": "No attempt to place spot due to no break or programme data"
+    },
+    "Id": 101
+  },
+  {
+    "Description": {
+      "ENG": "Spot moved between breaks",
+      "ARA": "Spot moved between breaks"
+    },
+    "Id": 201
+  },
+  {
+    "Description": {
+      "ENG": "Time restriction for product",
+      "ARA": "Time restriction for product"
+    },
+    "Id": 301
+  },
+  {
+    "Description": {
+      "ENG": "Time restriction for copy",
+      "ARA": "Time restriction for copy"
+    },
+    "Id": 302
+  },
+  {
+    "Description": {
+      "ENG": "Time restriction for clearance code",
+      "ARA": "Time restriction for clearance code"
+    },
+    "Id": 303
+  },
+  {
+    "Description": {
+      "ENG": "Time restriction for clash",
+      "ARA": "Time restriction for clash"
+    },
+    "Id": 304
+  },
+  {
+    "Description": {
+      "ENG": "Programme restriction for product",
+      "ARA": "Programme restriction for product"
+    },
+    "Id": 305
+  },
+  {
+    "Description": {
+      "ENG": "Programme restriction for copy",
+      "ARA": "Programme restriction for copy"
+    },
+    "Id": 306
+  },
+  {
+    "Description": {
+      "ENG": "Programme restriction for clearance code",
+      "ARA": "Programme restriction for clearance code"
+    },
+    "Id": 307
+  },
+  {
+    "Description": {
+      "ENG": "Programme restriction for clash",
+      "ARA": "Programme restriction for clash"
+    },
+    "Id": 308
+  },
+  {
+    "Description": {
+      "ENG": "Programme category restriction for product",
+      "ARA": "Programme category restriction for product"
+    },
+    "Id": 309
+  },
+  {
+    "Description": {
+      "ENG": "Programme category restriction for copy",
+      "ARA": "Programme category restriction for copy"
+    },
+    "Id": 310
+  },
+  {
+    "Description": {
+      "ENG": "Programme category restriction for clearance code",
+      "ARA": "Programme category restriction for clearance code"
+    },
+    "Id": 311
+  },
+  {
+    "Description": {
+      "ENG": "Programme category restriction for clash",
+      "ARA": "Programme category restriction for clash"
+    },
+    "Id": 312
+  },
+  {
+    "Description": {
+      "ENG": "Index restriction for product",
+      "ARA": "Index restriction for product"
+    },
+    "Id": 313
+  },
+  {
+    "Description": {
+      "ENG": "Index restriction for copy",
+      "ARA": "Index restriction for copy"
+    },
+    "Id": 314
+  },
+  {
+    "Description": {
+      "ENG": "Index restriction for clearance code",
+      "ARA": "Index restriction for clearance code"
+    },
+    "Id": 315
+  },
+  {
+    "Description": {
+      "ENG": "Index restriction for clash",
+      "ARA": "Index restriction for clash"
+    },
+    "Id": 316
+  },
+  {
+    "Description": {
+      "ENG": "Programme classification restriction for product",
+      "ARA": "Programme classification restriction for product"
+    },
+    "Id": 317
+  },
+  {
+    "Description": {
+      "ENG": "Programme classification restriction for copy",
+      "ARA": "Programme classification restriction for copy"
+    },
+    "Id": 318
+  },
+  {
+    "Description": {
+      "ENG": "Programme classification restriction for clearance code",
+      "ARA": "Programme classification restriction for clearance code"
+    },
+    "Id": 319
+  },
+  {
+    "Description": {
+      "ENG": "Programme classification restriction for clash",
+      "ARA": "Programme classification restriction for clash"
+    },
+    "Id": 320
+  },
+  {
+    "Description": {
+      "ENG": "Clearance code restriction for product",
+      "ARA": "Clearance code restriction for product"
+    },
+    "Id": 321
+  },
+  {
+    "Description": {
+      "ENG": "Clearance code restriction for copy",
+      "ARA": "Clearance code restriction for copy"
+    },
+    "Id": 322
+  },
+  {
+    "Description": {
+      "ENG": "Clearance code restriction for clearance code",
+      "ARA": "Clearance code restriction for clearance code"
+    },
+    "Id": 323
+  },
+  {
+    "Description": {
+      "ENG": "Clearance code restriction for clash",
+      "ARA": "Clearance code restriction for clash"
+    },
+    "Id": 324
+  },
+  {
+    "Description": {
+      "ENG": "Sponsorship Restriction Applied For Competitor Spot Based On Competing Clash",
+      "ARA": "Sponsorship Restriction Applied For Competitor Spot Based On Competing Clash"
+    },
+    "Id": 325
+  },
+  {
+    "Description": {
+      "ENG": "Sponsorship Restriction Applied For Competitor Spot Based On Competing Advertiser",
+      "ARA": "Sponsorship Restriction Applied For Competitor Spot Based On Competing Advertiser"
+    },
+    "Id": 326
+  }
+]

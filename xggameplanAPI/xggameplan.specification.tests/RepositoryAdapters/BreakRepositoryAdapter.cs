@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using ImagineCommunications.GamePlan.Domain.Breaks;
 using ImagineCommunications.GamePlan.Domain.Breaks.Objects;
 using ImagineCommunications.GamePlan.Domain.Generic.Types.Ranges;
@@ -72,8 +73,8 @@ namespace xggameplan.specification.tests.RepositoryAdapters
         {
             DbContext.WaitForIndexesAfterSaveChanges();
             Repository.Delete(parameters.GetBySpecflowService<List<string>>("ids")
-                .ConvertAll(x => x.Trim().SpecflowConvert<Guid>())
-            );
+                .Select(x => x.Trim().SpecflowConvert<Guid>())
+                .ToList());
             DbContext.SaveChanges();
 
             return CallMethodResult.CreateHandled();

@@ -11,7 +11,8 @@ namespace ImagineCommunications.GamePlan.Persistence.SqlServer.EntityConfigurati
             builder.ToTable("ResultFiles");
 
             builder.HasKey(e => e.Id);
-            builder.Property(e => e.Id).UseSqlServerIdentityColumn();
+            builder.Property(e => e.Id).UseMySqlIdentityColumn();
+
 
             builder.Property(e => e.FileId).HasMaxLength(64).IsRequired();
             builder.Property(e => e.IsCompressed);

@@ -7,8 +7,6 @@ Feature: Manage SpotBookingRules data storage
 
 Background:
 	Given there is a SpotBookingRules repository
-	And predefined SalesAreas.json data 
-	And predefined data imported
 
 Scenario: Add new SpotBookingRules
 	When I create 3 documents

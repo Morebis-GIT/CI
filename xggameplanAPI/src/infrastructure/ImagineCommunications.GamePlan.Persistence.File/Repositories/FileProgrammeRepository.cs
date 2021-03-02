@@ -30,7 +30,7 @@ namespace ImagineCommunications.GamePlan.Persistence.File.Repositories
         public void Add(Programme item)
         {
             List<Programme> items = new List<Programme>() { item };
-            InsertItems(_folder, _type, items, items.ConvertAll(i => i.Id.ToString()));
+            InsertItems(_folder, _type, items, items.Select(i => i.Id.ToString()).ToList());
         }
 
         [Obsolete("Use Get()")]
@@ -62,25 +62,31 @@ namespace ImagineCommunications.GamePlan.Persistence.File.Repositories
             return GetAllByType<Programme>(_folder, _type);
         }
 
-        public int CountAll => CountAll(_folder, _type);
+        public int CountAll
+        {
+            get
+            {
+                return CountAll<Programme>(_folder, _type);
+            }
+        }
 
         [Obsolete("Use Delete()")]
         public void Remove(Guid uid) => Delete(uid);
 
         public void Delete(Guid uid)
         {
-            DeleteItem(_folder, _type, uid.ToString());
+            DeleteItem<Programme>(_folder, _type, uid.ToString());
         }
 
         public void Truncate()
         {
-            DeleteAllItems(_folder, _type);
+            DeleteAllItems<Programme>(_folder, _type);
         }
 
         public Task TruncateAsync()
         {
             Truncate();
-            return Task.CompletedTask;
+            return Task.FromResult(true);
         }
 
         public IEnumerable<Programme> FindByExternal(string externalRef)
@@ -98,9 +104,7 @@ namespace ImagineCommunications.GamePlan.Persistence.File.Repositories
             return GetAllByType(_folder, _type, query).Count;
         }
 
-        public void SaveChanges()
-        {
-        }
+        public void SaveChanges() { }
 
         public bool Exists(Expression<Func<Programme, bool>> condition) => throw new NotImplementedException();
     }

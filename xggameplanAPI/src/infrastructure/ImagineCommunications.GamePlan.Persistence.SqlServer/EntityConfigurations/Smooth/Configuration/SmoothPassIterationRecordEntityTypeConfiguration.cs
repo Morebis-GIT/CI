@@ -11,14 +11,11 @@ namespace ImagineCommunications.GamePlan.Persistence.SqlServer.EntityConfigurati
             builder.ToTable("SmoothConfigurationSmoothPassIterationRecords");
             builder.HasKey(x => x.Id);
 
-            builder.Property(x => x.Id).UseSqlServerIdentityColumn();
+            builder.Property(x => x.Id).UseMySqlIdentityColumn();
 
-            builder.OwnsOne(x => x.SpotsCriteria, e =>
-            {
-                e.Property(x => x.HasSponsoredSpots).HasColumnName("SpotsCriteriaHasSponsoredSpots");
-                e.Property(x => x.HasFIBORLIBRequests).HasColumnName("SpotsCriteriaHasFIBORLIBRequests");
-                e.Property(x => x.HasBreakRequest).HasColumnName("SpotsCriteriaHasBreakRequest");
-            });
+            builder.Property(x => x.SpotsCriteriaHasBreakRequest);
+            builder.Property(x => x.SpotsCriteriaHasFIBORLIBRequests);
+            builder.Property(x => x.SpotsCriteriaHasSponsoredSpots);
 
             builder.HasOne(x => x.PassDefaultIteration).WithOne()
                 .HasForeignKey<SmoothPassDefaultIteration>(x => x.SmoothPassIterationRecordId);

@@ -1,0 +1,14 @@
+[
+    {
+        "Id": 1,
+        "Name": "Development",
+        "DefaultTheme": "Default",
+        "TenantDb": {
+            "Provider": "RavenDb",
+            "ConfigurationJson": "{\"connectionString\":\"Url = http://localhost:8080;Database=TenantDB\"}",
+            "Configuration": {
+                "$type": "NextGen.Configuration.Configuration, NextGen.Configuration"
+            }
+        }
+    }
+]

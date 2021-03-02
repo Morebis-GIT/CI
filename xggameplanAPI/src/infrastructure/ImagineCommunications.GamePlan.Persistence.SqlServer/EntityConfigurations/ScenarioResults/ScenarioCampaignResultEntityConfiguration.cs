@@ -11,8 +11,8 @@ namespace ImagineCommunications.GamePlan.Persistence.SqlServer.EntityConfigurati
         {
             _ = builder.ToTable("ScenarioCampaignResults");
 
-            _ = builder.HasKey(e => e.Id);
-            _ = builder.Property(e => e.Id).UseSqlServerIdentityColumn();
+            builder.HasKey(e => e.Id);
+            builder.Property(e => e.Id).UseMySqlIdentityColumn();
 
             _ = builder.Property(e => e.CampaignExternalId).HasMaxLength(64);
             _ = builder.Property(e => e.SalesAreaName).HasMaxLength(128);

@@ -7,7 +7,6 @@ Feature: Manage Restrictions data storage
 
 Background:
 	Given there is a Restrictions repository
-	And predefined SalesAreas.json data
 	And predefined Restrictions data
 
 Scenario: Add new Restriction
@@ -90,15 +89,15 @@ Scenario Outline: Search Restrictions
 	| SalesAreaNames | StartDate  | EndDate    | RestrictionType | MatchAllSpecifiedSalesAreas | ExpectedReturnCount |
 	| null           | null       | null       | null            | false                       | 4                   |
 	| null           | null       | null       | null            | true                        | 4                   |
-	| QTQ91, GTV93   | null       | null       | null            | false                       | 4                   |
-	| QTQ91, GTV93   | null       | null       | Time            | false                       | 1                   |
+	| GTV91, GTV94   | null       | null       | null            | false                       | 4                   |
+	| GTV91, GTV94   | null       | null       | Time            | false                       | 1                   |
 	| null           | null       | null       | Programme       | false                       | 1                   |
 	| null           | 2019-05-08 | 2019-10-08 | Programme       | false                       | 1                   |
 	| null           | 2020-05-08 | 2021-10-26 | null            | false                       | 4                   |
 	| TM1            | 2019-05-08 | 2019-10-26 | null            | false                       | 0                   |
 	| TM1            | 2019-05-08 | 2019-10-26 | null            | true                        | 0                   |
-	| TM1, QTQ91     | null       | null       | null            | true                        | 0                   |
-	| TM1, QTQ91     | null       | null       | null            | false                       | 4                   |
+	| TM1, GTV91     | null       | null       | null            | true                        | 0                   |
+	| TM1, GTV91     | null       | null       | null            | false                       | 4                   |
 
 Scenario Outline: Delete Restrictions by criteria
 	Given predefined data imported

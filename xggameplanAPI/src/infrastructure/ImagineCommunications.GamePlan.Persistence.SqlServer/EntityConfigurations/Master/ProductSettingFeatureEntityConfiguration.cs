@@ -14,7 +14,7 @@ namespace ImagineCommunications.GamePlan.Persistence.SqlServer.EntityConfigurati
 
             builder.Property(e => e.Name).HasMaxLength(128);
             builder.Property(e => e.Enabled).HasDefaultValue(false).IsRequired();
-            builder.Property(e => e.Settings).HasMaxLength(2048).HasDefaultValue("{}");
+            builder.Property(e => e.Settings).HasMaxLength(2048);
 
             builder.HasIndex(i => i.ProductSettingsId);
         }

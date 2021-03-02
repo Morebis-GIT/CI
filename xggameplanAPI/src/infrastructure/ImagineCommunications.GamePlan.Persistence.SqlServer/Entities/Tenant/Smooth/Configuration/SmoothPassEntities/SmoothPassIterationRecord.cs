@@ -11,14 +11,19 @@ namespace ImagineCommunications.GamePlan.Persistence.SqlServer.Entities.Tenant.S
 
         public ICollection<SmoothPassIterationRecordPassSequenceItem> PassSequences { get; set; }
 
-        public SmoothPassIterationSpotsCriteria SpotsCriteria { get; set; }
+        public bool? SpotsCriteriaHasSponsoredSpots { get; set; }
+
+        public bool? SpotsCriteriaHasFIBORLIBRequests { get; set; }
+
+        public bool? SpotsCriteriaHasBreakRequest { get; set; }
 
         public SmoothPassDefaultIteration PassDefaultIteration { get; set; }
 
         public SmoothPassUnplacedIteration PassUnplacedIteration { get; set; }
     }
-
+    
     public class SmoothPassIterationSpotsCriteria : SpotsCriteria
     {
+        public int Id { get; set; }
     }
 }

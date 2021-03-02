@@ -12,7 +12,7 @@ namespace ImagineCommunications.GamePlan.Persistence.SqlServer.EntityConfigurati
             builder.ToTable("ProductPersons");
 
             builder.HasKey(k => k.Id);
-            builder.Property(e => e.Id).UseSqlServerIdentityColumn();
+            builder.Property(e => e.Id).UseMySqlIdentityColumn();
 
             builder.Property(p => p.StartDate).AsUtc();
             builder.Property(p => p.EndDate).AsUtc();

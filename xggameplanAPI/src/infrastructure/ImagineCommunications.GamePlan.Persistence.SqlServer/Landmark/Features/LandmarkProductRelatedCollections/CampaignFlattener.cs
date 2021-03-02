@@ -57,7 +57,7 @@ namespace ImagineCommunications.GamePlan.Persistence.SqlServer.Landmark.Features
                      demographicJoin.ExternalRef into dJoin
                  from demographic in dJoin.DefaultIfEmpty()
                  join productJoin in _dbContext.Query<ProductEntity>() on campaignWithProductRelations.ProductId
-                     equals productJoin.Uid into pJoin
+                     equals productJoin.Id into pJoin
                  from product in pJoin.DefaultIfEmpty()
                  join clashJoin in _dbContext.Query<ClashEntity>() on product.ClashCode equals clashJoin.Externalref
                      into clJoin

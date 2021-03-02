@@ -4,11 +4,12 @@ using System.Diagnostics;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
-using EFCore.BulkExtensions;
 using ImagineCommunications.GamePlan.Persistence.SqlServer.Core.Interfaces;
 using Microsoft.Extensions.Logging;
 using xggameplan.common.Extensions;
 using xggameplan.common.Helpers;
+using Z.BulkOperations;
+using Z.EntityFramework.Extensions;
 
 namespace ImagineCommunications.GamePlan.Persistence.SqlServer.Core.BulkInsert
 {
@@ -223,13 +224,26 @@ namespace ImagineCommunications.GamePlan.Persistence.SqlServer.Core.BulkInsert
         {
             _dbContext = dbContext ?? throw new ArgumentNullException(nameof(dbContext));
             _bulkInsertEngineOptions = bulkInsertEngineOptions ?? throw new ArgumentNullException(nameof(bulkInsertEngineOptions));
+            EntityFrameworkManager.ContextFactory = context => _dbContext;
+        }
+
+        private void UseBulkOptions<TEntity>(BulkOperation<TEntity>  bulkOperation, BulkInsertOptions options) where TEntity : class
+        {
+            bulkOperation.BatchSize = options.BatchSize;
+            bulkOperation.ColumnInputNames = options.PropertiesToInclude;
+            bulkOperation.BatchTimeout = options.BulkCopyTimeout;
+            //bulkOperation.InsertKeepIdentity = options.SetOutputIdentity;
         }
 
         public void BulkInsert<TEntity>(IList<TEntity> entities, BulkInsertOptions options = null) where TEntity : class
         {
             Logger?.LogInformation($"Executing BulkInsert method of '{GetType().Name}'.");
             ExecuteBulkInsertAction(entities, BulkInsertOperation.BulkInsert, options,
-                (ent, opt) => _dbContext.BulkInsert(ent, opt));
+                  (ent, opt) =>
+                  {
+                      _dbContext.BulkInsert(ent, bulkOperation => UseBulkOptions<TEntity>(bulkOperation,opt));
+                      _dbContext.ChangeTracker.AcceptAllChanges();
+                  });
             Logger?.LogInformation($"Executed BulkInsert method of '{GetType().Name}'.");
         }
 
@@ -238,28 +252,49 @@ namespace ImagineCommunications.GamePlan.Persistence.SqlServer.Core.BulkInsert
         {
             Logger?.LogInformation($"Executing BulkInsertAsync method of '{GetType().Name}'.");
             await ExecuteBulkInsertActionAsync(entities, BulkInsertOperation.BulkInsert, options,
-                    async (ent, opt) => await _dbContext.BulkInsertAsync(ent, opt, null, cancellationToken).ConfigureAwait(false))
+                async (ent, opt) =>
+                    await _dbContext.BulkInsertAsync(
+                        entities: ent,
+                        options: bulkOptions => UseBulkOptions<TEntity>(bulkOptions, opt),
+                        cancellationToken: cancellationToken)
+                    .ConfigureAwait(false))
                 .ConfigureAwait(false);
             Logger?.LogInformation($"Executed BulkInsertAsync method of '{GetType().Name}'.");
         }
 
         public void BulkInsertOrUpdate<TEntity>(IList<TEntity> entities, BulkInsertOptions options = null) where TEntity : class
         {
-            Logger?.LogInformation($"Executing BulkInsertOrUpdate method of '{GetType().Name}'.");
+            Logger?.LogInformation($"Executing BulkMerge method of '{GetType().Name}'.");
             ExecuteBulkInsertAction(entities, BulkInsertOperation.BulkInsertOrUpdate, options,
-                (ent, opt) => _dbContext.BulkInsertOrUpdate(ent, opt));
-            Logger?.LogInformation($"Executed BulkInsertOrUpdate method of '{GetType().Name}'.");
+                (ent, opt) => {
+                    _dbContext.BulkMerge(
+                        entities: ent,
+                        options: bulkOptions =>
+                        {
+                            UseBulkOptions<TEntity>(bulkOptions, opt);
+                            bulkOptions.InsertIfNotExists = true;
+                        });
+                    });
+            Logger?.LogInformation($"Executed BulkMerge method of '{GetType().Name}'.");
         }
 
         public async Task BulkInsertOrUpdateAsync<TEntity>(IList<TEntity> entities, BulkInsertOptions options = null, CancellationToken cancellationToken = default)
             where TEntity : class
         {
-            Logger?.LogInformation($"Executing BulkInsertOrUpdateAsync method of '{GetType().Name}'.");
+            Logger?.LogInformation($"Executing BulkMergeAsync method of '{GetType().Name}'.");
             await ExecuteBulkInsertActionAsync(entities, BulkInsertOperation.BulkInsertOrUpdate, options,
-                    async (ent, opt) => await _dbContext.BulkInsertOrUpdateAsync(ent, opt, null, cancellationToken)
-                        .ConfigureAwait(false))
-                .ConfigureAwait(false);
-            Logger?.LogInformation($"Executed BulkInsertOrUpdateAsync method of '{GetType().Name}'.");
+                    async (ent, opt) =>
+                        await _dbContext.BulkMergeAsync(
+                            entities: ent,
+                            options: bulkOptions =>
+                            {
+                                UseBulkOptions<TEntity>(bulkOptions, opt);
+                                bulkOptions.InsertIfNotExists = true;
+                            },
+                            cancellationToken: cancellationToken)
+                            .ConfigureAwait(false))
+                    .ConfigureAwait(false);
+            Logger?.LogInformation($"Executed BulkMergeAsync method of '{GetType().Name}'.");
         }
 
         public void BulkUpdate<TEntity>(IList<TEntity> entities, BulkInsertOptions options = null) where TEntity : class
@@ -280,13 +315,21 @@ namespace ImagineCommunications.GamePlan.Persistence.SqlServer.Core.BulkInsert
             {
                 if (Logger == null)
                 {
-                    _dbContext.BulkUpdate(entities, options);
+                    _dbContext.BulkUpdate(
+                           entities: entities,
+                           options: bulkOptions => UseBulkOptions<TEntity>(bulkOptions, options) );
                 }
                 else
                 {
                     Logger.LogInformation($"BulkUpdate starting for '{GetType().Name}'.");
-                    var stopwatch = StopwatchHelper.StopwatchAction(() => _dbContext.BulkUpdate(entities, options));
-                    Logger.LogInformation($"BulkUpdate completed ({stopwatch.ElapsedMilliseconds.ToString()} ms) for '{GetType().Name}'.");
+                    var stopwatch = StopwatchHelper.StopwatchAction(() =>
+                    _dbContext.BulkUpdate(
+                           entities: entities,
+                           options: bulkOptions => UseBulkOptions<TEntity>(bulkOptions, options)
+                           )
+                    );
+
+                    Logger.LogInformation($"BulkUpdate completed ({stopwatch.ElapsedMilliseconds} ms) for '{GetType().Name}'.");
                 }
             }
             catch
@@ -319,13 +362,21 @@ namespace ImagineCommunications.GamePlan.Persistence.SqlServer.Core.BulkInsert
             {
                 if (Logger is null)
                 {
-                    await _dbContext.BulkUpdateAsync(entities, options).ConfigureAwait(false);
+                    await _dbContext.BulkUpdateAsync(
+                           entities: entities,
+                           options: bulkOptions => UseBulkOptions<TEntity>(bulkOptions, options),
+                           cancellationToken: cancellationToken)
+                        .ConfigureAwait(false);
                 }
                 else
                 {
                     Logger.LogInformation($"BulkUpdate starting for '{GetType().Name}'.");
                     var stopwatch = Stopwatch.StartNew();
-                    await _dbContext.BulkUpdateAsync(entities, options, null, cancellationToken).ConfigureAwait(false);
+                    await _dbContext.BulkUpdateAsync(
+                           entities: entities,
+                           options: bulkOptions => UseBulkOptions<TEntity>(bulkOptions, options),
+                           cancellationToken: cancellationToken)
+                         .ConfigureAwait(false);
                     stopwatch.Stop();
                     Logger.LogInformation($"BulkUpdate completed ({stopwatch.ElapsedMilliseconds.ToString()} ms) for '{GetType().Name}'.");
                 }

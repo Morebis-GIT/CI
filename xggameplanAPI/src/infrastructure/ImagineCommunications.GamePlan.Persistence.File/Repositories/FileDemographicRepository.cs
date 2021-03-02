@@ -12,10 +12,12 @@ namespace ImagineCommunications.GamePlan.Persistence.File.Repositories
         public FileDemographicRepository(string folder)
             : base(folder, "demographic")
         {
+
         }
 
         public void Dispose()
         {
+
         }
 
         public void Add(IEnumerable<Demographic> items)
@@ -26,7 +28,7 @@ namespace ImagineCommunications.GamePlan.Persistence.File.Repositories
         public void Add(Demographic item)
         {
             List<Demographic> items = new List<Demographic>() { item };
-            InsertItems(_folder, _type, items, items.ConvertAll(i => i.Id.ToString()));
+            InsertItems(_folder, _type, items, items.Select(i => i.Id.ToString()).ToList());
         }
 
         public Demographic GetByExternalRef(string externalRef)
@@ -41,7 +43,7 @@ namespace ImagineCommunications.GamePlan.Persistence.File.Repositories
 
         public void Delete(int id)
         {
-            DeleteItem(_folder, _type, id.ToString());
+            DeleteItem<Demographic>(_folder, _type, id.ToString());
         }
 
         public IEnumerable<Demographic> GetAll()
@@ -49,7 +51,13 @@ namespace ImagineCommunications.GamePlan.Persistence.File.Repositories
             return GetAllByType<Demographic>(_folder, _type);
         }
 
-        public int CountAll => CountAll(_folder, _type);
+        public int CountAll
+        {
+            get
+            {
+                return CountAll<Demographic>(_folder, _type);
+            }
+        }
 
         public void Update(Demographic demographic)
         {
@@ -63,7 +71,7 @@ namespace ImagineCommunications.GamePlan.Persistence.File.Repositories
 
         public void Truncate()
         {
-            DeleteAllItems(_folder, _type);
+            DeleteAllItems<Demographic>(_folder, _type);
         }
 
         public void DeleteRangeByExternalRefs(IEnumerable<string> externalRefs)
@@ -75,6 +83,7 @@ namespace ImagineCommunications.GamePlan.Persistence.File.Repositories
 
         public void SaveChanges()
         {
+
         }
 
         public List<string> GetAllGameplanDemographics() => throw new NotImplementedException();

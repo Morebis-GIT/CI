@@ -12,9 +12,8 @@ namespace ImagineCommunications.GamePlan.Persistence.SqlServer.EntityConfigurati
             builder.ToTable("RunScenarios");
 
             builder.HasKey(k => k.Id);
-
-            builder.Property(p => p.Id).UseSqlServerIdentityColumn();
-
+            
+            builder.Property(p => p.Id).UseMySqlIdentityColumn();
             builder.Property(p => p.StartedDateTime).AsUtc();
             builder.Property(p => p.CompletedDateTime).AsUtc();
             builder.Property(p => p.Progress).HasMaxLength(32);

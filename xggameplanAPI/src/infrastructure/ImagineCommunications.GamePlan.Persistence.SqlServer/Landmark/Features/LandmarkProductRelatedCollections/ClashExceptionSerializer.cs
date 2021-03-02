@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Data.SqlClient;
 using System.IO;
 using System.Linq;
 using ImagineCommunications.GamePlan.Domain.BusinessRules.Clashes.Objects;
@@ -11,6 +10,7 @@ using ImagineCommunications.GamePlan.Persistence.SqlServer.Entities;
 using ImagineCommunications.GamePlan.Persistence.SqlServer.Entities.Tenant.ClashExceptions;
 using ImagineCommunications.GamePlan.Persistence.SqlServer.Views.Tenant;
 using Microsoft.EntityFrameworkCore;
+using MySql.Data.MySqlClient;
 using NodaTime;
 using xggameplan.AuditEvents;
 using xggameplan.common.Extensions;
@@ -64,7 +64,7 @@ namespace ImagineCommunications.GamePlan.Persistence.SqlServer.Landmark.Features
 
             var productLinks = _dbContext.Specific
                                    .StoredProcedure<ClashExceptionProductLinkForOptimizer>(
-                                       new SqlParameter("@EndDate", run.EndDate))
+                                       new MySqlParameter("@EndDate", run.EndDate))
                                    .AsEnumerable()?
                                    .GroupBy(key => key.Id)
                                    .ToDictionary(k => k.Key,

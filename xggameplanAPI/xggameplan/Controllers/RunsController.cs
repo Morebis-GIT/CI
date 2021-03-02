@@ -1289,15 +1289,6 @@ namespace xggameplan.Controllers
             // Validate the Run before saving
             _runsValidator.ValidateForSave(run, allScenarios, allPassesByScenario, allSalesAreas);
 
-            // apply Run processes settings for Campaign Pass Priorities in all Scenarios
-            if (run.CampaignsProcessesSettings != null && run.CampaignsProcessesSettings.Any())
-            {
-                ApplyRunProcessesSettingsForCampaignPassPriorities(allScenarios, run.CampaignsProcessesSettings);
-            }
-
-            _runRepository.Add(run);
-            _runRepository.SaveChanges();
-
             if (newPasses != null && newPasses.Any())
             {
                 _passRepository.Add(newPasses);
@@ -1318,6 +1309,19 @@ namespace xggameplan.Controllers
                 _scenarioRepository.Update(updatedScenarios);
             }
             _scenarioRepository.SaveChanges();
+
+            
+
+            // apply Run processes settings for Campaign Pass Priorities in all Scenarios
+            if (run.CampaignsProcessesSettings != null && run.CampaignsProcessesSettings.Any())
+            {
+                ApplyRunProcessesSettingsForCampaignPassPriorities(allScenarios, run.CampaignsProcessesSettings);
+            }
+
+            _runRepository.Add(run);
+            _runRepository.SaveChanges();
+
+           
 
             // Log event
             _auditEventRepository.Insert(AuditEventFactory.CreateAuditEventForRunCreated(0, 0, run.Id, null));

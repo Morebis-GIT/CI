@@ -67,7 +67,7 @@ namespace ImagineCommunications.GamePlan.Intelligence.Configurations.Dependencie
         public void Register(IServiceCollection services)
         {
             var dbContextOptionsBuilder = new DbContextOptionsBuilder<SqlServerLongRunningTenantDbContext>()
-                .UseSqlServer(_connectionString, options => options.CommandTimeout(_timeout))
+                .UseMySql(_connectionString, options => options.CommandTimeout(_timeout))
                 .UseQueryTrackingBehavior(QueryTrackingBehavior.TrackAll)
                 .UseBulkInsertEngine(dbContext => new SqlServerBulkInsertEngine(dbContext, new SqlServerBulkInsertEngineOptionsBuilder<SqlServerBulkInsertEngineOptions>().Options));
 
@@ -157,6 +157,7 @@ namespace ImagineCommunications.GamePlan.Intelligence.Configurations.Dependencie
             _ = services.AddScoped<ISqlServerSalesAreaByIdCacheAccessor>(x => x.GetRequiredService<SalesAreaCacheAccessor>());
             _ = services.AddScoped<ISqlServerSalesAreaByNullableIdCacheAccessor>(x => x.GetRequiredService<SalesAreaCacheAccessor>());
             _ = services.AddScoped<ISqlServerSalesAreaByNameCacheAccessor>(x => x.GetRequiredService<SalesAreaCacheAccessor>());
+
         }
     }
 }

@@ -68,11 +68,6 @@ namespace ImagineCommunications.GamePlan.Persistence.SqlServer.Repositories
             _mapper.Map<Domain.Shared.SalesAreas.SalesArea>(_dbContext.Find<Entities.Tenant.SalesAreas.SalesArea>(new object[] { id },
                 find => find.IncludeCollection(sa => sa.ChannelGroups).IncludeCollection(sa => sa.Holidays)));
 
-        public Domain.Shared.SalesAreas.SalesArea FindByCustomId(int id) =>
-            _dbContext.Query<Entities.Tenant.SalesAreas.SalesArea>()
-                .ProjectTo<Domain.Shared.SalesAreas.SalesArea>(_mapper.ConfigurationProvider)
-                .FirstOrDefault(x => x.CustomId == id);
-
         public List<Domain.Shared.SalesAreas.SalesArea> FindByIds(List<int> Ids) =>
             _dbContext.Query<Entities.Tenant.SalesAreas.SalesArea>()
                 .Where(x => Ids.Contains(x.CustomId))

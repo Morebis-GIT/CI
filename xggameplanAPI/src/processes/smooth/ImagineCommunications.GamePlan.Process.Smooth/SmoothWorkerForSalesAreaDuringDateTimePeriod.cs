@@ -2,7 +2,6 @@
 using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Collections.Immutable;
-using System.Linq;
 using System.Threading.Tasks;
 using ImagineCommunications.GamePlan.Domain.BusinessRules.Clashes;
 using ImagineCommunications.GamePlan.Domain.Generic.Helpers;
@@ -15,6 +14,7 @@ using ImagineCommunications.GamePlan.Domain.SmoothFailureMessages;
 using ImagineCommunications.GamePlan.Domain.SmoothFailures;
 using ImagineCommunications.GamePlan.Process.Smooth.Dtos;
 using ImagineCommunications.GamePlan.Process.Smooth.Interfaces;
+using ImagineCommunications.GamePlan.Process.Smooth.Legacy;
 using ImagineCommunications.GamePlan.Process.Smooth.Models;
 using ImagineCommunications.GamePlan.Process.Smooth.Services;
 
@@ -34,12 +34,6 @@ namespace ImagineCommunications.GamePlan.Process.Smooth
         private Action<string> RaiseInfo { get; }
         private Action<string> RaiseWarning { get; }
         private Action<string, Exception> RaiseException { get; }
-
-        private static readonly ParallelOptions _weekBatchesToProcessInParallel =
-            new ParallelOptions
-            {
-                MaxDegreeOfParallelism = 2
-            };
 
         // Notification of day processed
         public delegate void SmoothBatchComplete(
@@ -91,9 +85,7 @@ namespace ImagineCommunications.GamePlan.Process.Smooth
 
             var smoothOutput = new SmoothOutput { SalesAreaName = salesArea.Name };
 
-            foreach (var item in PrepareSmoothFailureMessageCollection(
-                _threadSafeCollections.SmoothFailureMessages
-                ))
+            foreach (var item in PrepareSmoothFailureMessageCollection(_threadSafeCollections.SmoothFailureMessages))
             {
                 smoothOutput.SpotsByFailureMessage.Add(item);
             }
@@ -105,11 +97,15 @@ namespace ImagineCommunications.GamePlan.Process.Smooth
             }
 
             var (fromDateTime, toDateTime) = smoothPeriod;
-            if (toDateTime.TimeOfDay.Ticks == 0)
+            if (toDateTime.TimeOfDay.Ticks == 0) // No time part, include whole day
             {
-                // No time part, include whole day
                 toDateTime = toDateTime.AddDays(1).AddTicks(-1);
             }
+
+            var weekBatchesToProcessInParallel = new ParallelOptions
+            {
+                MaxDegreeOfParallelism = 2
+            };
 
             var smoothFailuresFactory = new SmoothFailuresFactory(_smoothConfiguration);
             var smoothRecommendationsFactory = new SmoothRecommendationsFactory(_smoothConfiguration);
@@ -137,7 +133,7 @@ namespace ImagineCommunications.GamePlan.Process.Smooth
 
             _ = Parallel.ForEach(
                     DateHelper.SplitUTCDateRange((fromDateTime, toDateTime), 7),
-                    _weekBatchesToProcessInParallel,
+                    weekBatchesToProcessInParallel,
                     dateRangeToSmooth =>
                     {
                         var result = smoothDateRange.Execute(dateRangeToSmooth);
@@ -155,8 +151,7 @@ namespace ImagineCommunications.GamePlan.Process.Smooth
 
             var (spotIdsUsed, spotIdsNotUsed) = CollateThreadOutputToSmoothOutput(
                 smoothOutput,
-                batchAllThreadOutputCollection
-                );
+                batchAllThreadOutputCollection);
 
             _saveSmoothChanges.SaveUnplacedSpots(
                 smoothOutput,
@@ -171,11 +166,11 @@ namespace ImagineCommunications.GamePlan.Process.Smooth
         private static IDictionary<int, int> PrepareSmoothFailureMessageCollection(
             IImmutableList<SmoothFailureMessage> smoothFailureMessages)
         {
-            var result = new Dictionary<int, int>(smoothFailureMessages.Count);
+            var result = new Dictionary<int, int>();
 
-            foreach (var messageId in smoothFailureMessages.Select(x => x.Id))
+            foreach (var message in smoothFailureMessages)
             {
-                result.Add(messageId, 0);
+                result.Add(message.Id, 0);
             }
 
             return result;
@@ -196,8 +191,10 @@ namespace ImagineCommunications.GamePlan.Process.Smooth
 
                 result.Add(
                     smoothPass.Sequence,
-                    new SmoothOutputForPass(smoothPass.Sequence)
-                    );
+                    new SmoothOutputForPass
+                    {
+                        PassSequence = smoothPass.Sequence
+                    });
             }
 
             return result;

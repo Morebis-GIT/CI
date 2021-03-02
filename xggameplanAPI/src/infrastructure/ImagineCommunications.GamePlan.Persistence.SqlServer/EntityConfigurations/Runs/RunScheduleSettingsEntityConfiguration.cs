@@ -11,7 +11,7 @@ namespace ImagineCommunications.GamePlan.Persistence.SqlServer.EntityConfigurati
             builder.ToTable("RunScheduleSettings");
 
             builder.HasKey(x => x.Id);
-            builder.Property(x => x.Id).UseSqlServerIdentityColumn();
+            builder.Property(x => x.Id).UseMySqlIdentityColumn();
             builder.Property(x => x.QueueName).IsRequired().HasMaxLength(64);
             builder.Property(x => x.Comment).HasMaxLength(512);
 

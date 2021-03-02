@@ -11,8 +11,8 @@ namespace ImagineCommunications.GamePlan.Persistence.SqlServer.EntityConfigurati
         {
             _ = builder.ToTable("ISRSettings");
 
-            _ = builder.HasKey(e => e.Id);
-            _ = builder.Property(e => e.Id).UseSqlServerIdentityColumn();
+            builder.HasKey(e => e.Id);
+            builder.Property(e => e.Id).UseMySqlIdentityColumn();
 
             _ = builder.Property(e => e.DefaultEfficiencyThreshold);
             _ = builder.Property(e => e.BreakType).HasMaxLength(64);

@@ -7,8 +7,6 @@ Feature: Manage TotalRatings data storage
 
 Background:
 	Given there is a TotalRatings repository
-	And predefined TotalRatings.SalesAreas.json data
-	And predefined data imported
 
 Scenario: Get TotalRatings by id
 	Given the following documents created:

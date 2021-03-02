@@ -56,40 +56,46 @@ namespace xggameplan.RunManagement
 
         private void ResetScenarioResults(Guid scenarioId)
         {
-            using var scope = _repositoryFactory.BeginRepositoryScope();
-            var scenarioResultRepository = scope.CreateRepository<IScenarioResultRepository>();
-            scenarioResultRepository.Remove(scenarioId);
-            scenarioResultRepository.SaveChanges();
+            using (var scope = _repositoryFactory.BeginRepositoryScope())
+            {
+                var scenarioResultRepository = scope.CreateRepository<IScenarioResultRepository>();
+                scenarioResultRepository.Remove(scenarioId);
+                scenarioResultRepository.SaveChanges();
+            }
         }
 
         private void ResetAutoBookFailures(Guid scenarioId)
         {
-            using var scope = _repositoryFactory.BeginRepositoryScope();
-            var failuresRepository = scope.CreateRepository<IFailuresRepository>();
-            failuresRepository.Delete(scenarioId);
-            failuresRepository.SaveChanges();
+            using (var scope = _repositoryFactory.BeginRepositoryScope())
+            {
+                var failuresRepository = scope.CreateRepository<IFailuresRepository>();
+                failuresRepository.Delete(scenarioId);
+                failuresRepository.SaveChanges();
+            }
         }
 
         private void ResetResultFiles(Guid scenarioId)
         {
-            using var scope = _repositoryFactory.BeginRepositoryScope();
-            var repositories = scope.CreateRepositories(
-                typeof(IOutputFileRepository),
-                typeof(IResultsFileRepository)
-            );
-            var outputFileRepository = repositories.Get<IOutputFileRepository>();
-            var resultsFileRepository = repositories.Get<IResultsFileRepository>();
-
-            foreach (OutputFile outputFile in outputFileRepository.GetAll())
+            using (var scope = _repositoryFactory.BeginRepositoryScope())
             {
-                try
+                var repositories = scope.CreateRepositories(
+                    typeof(IOutputFileRepository),
+                    typeof(IResultsFileRepository)
+                );
+                var outputFileRepository = repositories.Get<IOutputFileRepository>();
+                var resultsFileRepository = repositories.Get<IResultsFileRepository>();
+
+                foreach (OutputFile outputFile in outputFileRepository.GetAll())
                 {
-                    if (resultsFileRepository.Exists(scenarioId, outputFile.FileId))
+                    try
                     {
-                        resultsFileRepository.Delete(scenarioId, outputFile.FileId);
+                        if (resultsFileRepository.Exists(scenarioId, outputFile.FileId))
+                        {
+                            resultsFileRepository.Delete(scenarioId, outputFile.FileId);
+                        }
                     }
+                    catch { };      // Ignore
                 }
-                catch { }
             }
         }
 
@@ -99,9 +105,11 @@ namespace xggameplan.RunManagement
         /// <param name="runId"></param>
         public void ResetSmoothFailures(Guid runId)
         {
-            using var scope = _repositoryFactory.BeginRepositoryScope();
-            var smoothFailureRepository = scope.CreateRepository<ISmoothFailureRepository>();
-            smoothFailureRepository.RemoveByRunId(runId);
+            using (var scope = _repositoryFactory.BeginRepositoryScope())
+            {
+                var smoothFailureRepository = scope.CreateRepository<ISmoothFailureRepository>();
+                smoothFailureRepository.RemoveByRunId(runId);
+            }
         }
 
         /// <summary>
@@ -111,10 +119,12 @@ namespace xggameplan.RunManagement
         /// <param name="resetRecommendationProcessors"></param>
         private void ResetRecommendations(Guid scenarioId, IReadOnlyList<string> resetRecommendationProcessors)
         {
-            using var scope = _repositoryFactory.BeginRepositoryScope();
-            var recommendationRepository = scope.CreateRepository<IRecommendationRepository>();
-            recommendationRepository.RemoveByScenarioIdAndProcessors(scenarioId, resetRecommendationProcessors);
-            recommendationRepository.SaveChanges();
+            using (var scope = _repositoryFactory.BeginRepositoryScope())
+            {
+                var recommendationRepository = scope.CreateRepository<IRecommendationRepository>();
+                recommendationRepository.RemoveByScenarioIdAndProcessors(scenarioId, resetRecommendationProcessors);
+                recommendationRepository.SaveChanges();
+            }
         }
     }
 }

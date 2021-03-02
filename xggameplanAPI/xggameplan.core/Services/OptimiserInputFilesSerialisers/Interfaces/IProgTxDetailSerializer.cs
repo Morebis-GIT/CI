@@ -9,6 +9,10 @@ namespace xggameplan.core.Services.OptimiserInputFilesSerialisers.Interfaces
 {
     public interface IProgTxDetailSerializer
     {
+        /// <summary>Gets the filename.</summary>
+        /// <value>The filename.</value>
+        string Filename { get; }
+
         /// <summary>
         /// Serializes programme details into the specified folder name.
         /// </summary>

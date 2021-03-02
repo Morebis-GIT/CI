@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using ImagineCommunications.GamePlan.Domain.SmoothConfigurations;
-using ImagineCommunications.GamePlan.Domain.Spots;
 using xggameplan.common;
 using xggameplan.Common;
 
@@ -13,38 +11,86 @@ namespace ImagineCommunications.GamePlan.Process.Smooth.Models
     /// sequence numbers are eventually converted back to ordinal positions
     /// after all spots have been placed.
     /// </summary>
-    public static class SpotPositioning
+    public class SpotPositioning
     {
-        // Value given when a break sequence number cannot be found.
-        private const int ZeroBreakSequenceNumber = 0;
-
-        private static readonly List<BreakSequenceType> _breakSeqTypes;
-
-        static SpotPositioning() => _breakSeqTypes = GetAll();
-
-        private static List<BreakSequenceType> GetAll()
+        public class BreakSeqType
         {
-            var breakSeqTypes = new List<BreakSequenceType>();
+            /// <summary>
+            /// Categories of break sequence type
+            /// </summary>
+            public enum Categories
+            {
+                /// <summary>
+                /// Requested position in break
+                /// </summary>
+                RequestedPositionInBreak = 0,
+
+                /// <summary>
+                /// Multipart spot
+                /// </summary>
+                MultipartSpot = 1,
+
+                /// <summary>
+                /// Middle of break, spots that don't have a requested position
+                /// in break
+                /// </summary>
+                MiddleOfBreak = 2
+            }
+
+            public int Order { get; internal set; }
+            public Categories Category { get; internal set; }
+            public string RequestedPositionInBreak { get; internal set; }
+            public string MultipartSpotType { get; set; }
+
+            /// <summary>
+            /// Min sequence number
+            /// </summary>
+            public int MinSequence { get; internal set; }
+
+            /// <summary>
+            /// Max sequence number, typically used for Categories.MiddleOfBreak
+            /// where there are multiple spots, each with a different sequence
+            /// </summary>
+            public int MaxSequence { get; internal set; }
+
+            public BreakSeqType(int order, Categories category, string requestPositionInBreak, string multipartSpotType, int minSequence)
+            {
+                Order = order;
+                Category = category;
+                RequestedPositionInBreak = requestPositionInBreak;
+                MultipartSpotType = multipartSpotType;
+                MinSequence = minSequence;
+                MaxSequence = minSequence;
+            }
+
+            public BreakSeqType(int order, Categories category, string requestPositionInBreak, string multipartSpotType, int minSequence, int maxSequence)
+            {
+                Order = order;
+                Category = category;
+                RequestedPositionInBreak = requestPositionInBreak;
+                MultipartSpotType = multipartSpotType;
+                MinSequence = minSequence;
+                MaxSequence = maxSequence;
+            }
+        }
+
+        private readonly List<BreakSeqType> _breakSeqTypes;
+
+        public SpotPositioning() => _breakSeqTypes = GetAll();
+
+        private List<BreakSeqType> GetAll()
+        {
+            var breakSeqTypes = new List<BreakSeqType>();
 
             // First in break
             breakSeqTypes.Add(CreateRequestedPositionInBreakRequest(1, PositionInBreakRequests.TrueFirst, -150000));
             breakSeqTypes.Add(CreateRequestedPositionInBreakRequest(2, PositionInBreakRequests.First, -140000));
 
             // Multipart Top/Tail (Top)
-            breakSeqTypes.Add(
-                CreateMultipartSpot(
-                    3,
-                    MultipartSpotTypes.GetSpotTypeAndPositionKey(MultipartSpotTypes.TopTail, MultipartSpotPositions.TopTail_Top),
-                    -130000)
-                );
+            breakSeqTypes.Add(CreateMultipartSpot(3, MultipartSpotTypes.GetSpotTypeAndPositionKey(MultipartSpotTypes.TopTail, MultipartSpotPositions.TopTail_Top), -130000));
 
             // Multipart Same Break (Top)
-            breakSeqTypes.Add(
-                CreateMultipartSpot(
-                    4,
-                    MultipartSpotTypes.GetSpotTypeAndPositionKey(MultipartSpotTypes.SameBreak, MultipartSpotPositions.SameBreak_Top),
-                    -120000)
-                );
+            breakSeqTypes.Add(CreateMultipartSpot(4, MultipartSpotTypes.GetSpotTypeAndPositionKey(MultipartSpotTypes.SameBreak, MultipartSpotPositions.SameBreak_Top), -120000));
 
             breakSeqTypes.Add(CreateRequestedPositionInBreakRequest(5, PositionInBreakRequests.SecondFromStart, -110000));
             breakSeqTypes.Add(CreateRequestedPositionInBreakRequest(6, PositionInBreakRequests.ThirdFromStart, -100000));
@@ -74,18 +120,26 @@ namespace ImagineCommunications.GamePlan.Process.Smooth.Models
             return breakSeqTypes;
         }
 
-        public static BreakSequenceType GetBreakSeqTypeForMultipartSpot(
-            string multipartSpot,
-            string multipartSpotPosition)
+        public BreakSeqType GetBreakSeqTypeForMultipartSpot(string multipartSpot, string multipartSpotPosition)
         {
-            string multipartSpotType = MultipartSpotTypes.GetSpotTypeAndPositionKey(
-                multipartSpot,
-                multipartSpotPosition);
-
             return _breakSeqTypes.Find(bst =>
-                bst.Category == BreakSequenceTypeCategory.MultipartSpot &&
-                bst.MultipartSpotType == multipartSpotType
-            );
+                bst.Category == BreakSeqType.Categories.MultipartSpot
+                && bst.MultipartSpotType == MultipartSpotTypes.GetSpotTypeAndPositionKey(multipartSpot, multipartSpotPosition)
+                );
+        }
+
+        public string GetRequestedPositionInBreakFromSpotPosition(string spotPosition, string first, string last)
+        {
+            var requestedPositionInBreaks = new Dictionary<string, string>()
+            {
+                { "1ST_START", first },
+                { "2ND_START", PositionInBreakRequests.SecondFromStart },
+                { "3RD_START", PositionInBreakRequests.ThirdFromStart },
+                { "3RD_LAST", PositionInBreakRequests.ThirdFromLast },
+                { "2ND_LAST", PositionInBreakRequests.SecondFromLast },
+                { "LAST", last }
+            };
+            return requestedPositionInBreaks.ContainsKey(spotPosition) ? requestedPositionInBreaks[spotPosition] : "";
         }
 
         /// <summary>
@@ -93,11 +147,11 @@ namespace ImagineCommunications.GamePlan.Process.Smooth.Models
         /// </summary>
         /// <param name="requestedPositionInBreak"></param>
         /// <returns></returns>
-        public static int GetBreakSeqFromRequestedPositionInBreak(
-            string requestedPositionInBreak)
+        public int GetBreakSeqFromRequestedPositionInBreak(string requestedPositionInBreak)
         {
-            var breakSeqType = _breakSeqTypes.Find(b =>
-                b.Category == BreakSequenceTypeCategory.RequestedPositionInBreak &&
+            var breakSeqType = _breakSeqTypes.Find(
+                b =>
+                b.Category == BreakSeqType.Categories.RequestedPositionInBreak &&
                 b.RequestedPositionInBreak == requestedPositionInBreak
             );
 
@@ -111,9 +165,10 @@ namespace ImagineCommunications.GamePlan.Process.Smooth.Models
         /// <param name="requestedPositionInBreak"></param>
         /// <param name="actualPositionInBreak"></param>
         /// <returns></returns>
-        public static int GetBreakSeqFromRequestedPositionInBreakOrActualPositionInBreak(
+        public int GetBreakSeqFromRequestedPositionInBreakOrActualPositionInBreak(
             string requestedPositionInBreak,
-            string actualPositionInBreak)
+            string actualPositionInBreak
+            )
         {
             // Check if requested PIB set
             if (!String.IsNullOrEmpty(requestedPositionInBreak))
@@ -124,27 +179,27 @@ namespace ImagineCommunications.GamePlan.Process.Smooth.Models
             // If requested PIB not set then check actual PIB. We do this rather
             // than placing the spot in the middle of the break because these
             // are effectively PIB requests anyway.
-            return actualPositionInBreak switch
+            switch (actualPositionInBreak)
             {
-                "1" => GetBreakSeqFromRequestedPositionInBreak(PositionInBreakRequests.First),
-                "2" => GetBreakSeqFromRequestedPositionInBreak(PositionInBreakRequests.SecondFromStart),
-                "3" => GetBreakSeqFromRequestedPositionInBreak(PositionInBreakRequests.ThirdFromStart),
-                // Middle of break, anything else (E.g. 4th, 5th etc
-                _ => GetBreakSeqForMiddleOfBreak(Convert.ToInt32(actualPositionInBreak)),
-            };
+                case "1": return GetBreakSeqFromRequestedPositionInBreak(PositionInBreakRequests.First);
+                case "2": return GetBreakSeqFromRequestedPositionInBreak(PositionInBreakRequests.SecondFromStart);
+                case "3": return GetBreakSeqFromRequestedPositionInBreak(PositionInBreakRequests.ThirdFromStart);
+            }
+
+            // Middle of break, anything else (E.g. 4th, 5th etc
+            return GetBreakSeqForMiddleOfBreak(Convert.ToInt32(actualPositionInBreak));
         }
 
         /// <summary>
         /// Returns default break sequence for putting the spot in the middle of
         /// the break with specified position.
         /// </summary>
-        private static int GetBreakSeqForMiddleOfBreak(int position)
+        /// <param name="spots"></param>
+        /// <returns></returns>
+        private int GetBreakSeqForMiddleOfBreak(int position)
         {
-            BreakSequenceType breakSeqType = _breakSeqTypes.Find(b =>
-            b.Category == BreakSequenceTypeCategory.MiddleOfBreak);
-
-            // So that position 1 is BreakSeqType.Position
-            return breakSeqType.MinSequence + (position - 1);
+            BreakSeqType breakSeqType = _breakSeqTypes.Find(b => b.Category == BreakSeqType.Categories.MiddleOfBreak);
+            return breakSeqType.MinSequence + (position - 1);      // So that postion 1 is BreakSeqType.Position
         }
 
         /// <summary>
@@ -152,10 +207,9 @@ namespace ImagineCommunications.GamePlan.Process.Smooth.Models
         /// the break at the next free position
         /// </summary>
         /// <returns></returns>
-        public static int GetBreakSeqForMiddleOfBreak(SmoothBreak smoothBreak)
+        public int GetBreakSeqForMiddleOfBreak(SmoothBreak smoothBreak)
         {
-            BreakSequenceType breakSeqType = _breakSeqTypes.Find(b =>
-                b.Category == BreakSequenceTypeCategory.MiddleOfBreak);
+            BreakSeqType breakSeqType = _breakSeqTypes.Find(b => b.Category == BreakSeqType.Categories.MiddleOfBreak);
 
             int position = 3;       // After 3rd
 
@@ -165,7 +219,6 @@ namespace ImagineCommunications.GamePlan.Process.Smooth.Models
                 position++;
                 int breakSeq = GetBreakSeqForMiddleOfBreak(position);
                 var spots = smoothBreak.SmoothSpots.Where(s => s.BreakSequence == breakSeq);
-
                 if (!spots.Any())
                 {
                     return breakSeq;
@@ -178,391 +231,28 @@ namespace ImagineCommunications.GamePlan.Process.Smooth.Models
         /// </summary>
         /// <param name="multipartSpot"></param>
         /// <param name="multipartSpotPosition"></param>
-        public static int GetBreakSeqFromMultipartSpotPosition(
-            string multipartSpot,
-            string multipartSpotPosition)
+        /// <returns></returns>
+        public int GetBreakSeqFromMultipartSpotPosition(string multipartSpot, string multipartSpotPosition)
         {
-            string multipartSpotType = MultipartSpotTypes.GetSpotTypeAndPositionKey(
-                multipartSpot,
-                multipartSpotPosition);
-
-            BreakSequenceType breakSeqType = _breakSeqTypes.Find(b =>
-                b.Category == BreakSequenceTypeCategory.MultipartSpot &&
-                b.MultipartSpotType == multipartSpotType);
+            string multipartSpotType = MultipartSpotTypes.GetSpotTypeAndPositionKey(multipartSpot, multipartSpotPosition);
+            BreakSeqType breakSeqType = _breakSeqTypes.Find(b => b.Category == BreakSeqType.Categories.MultipartSpot && b.MultipartSpotType == multipartSpotType);
 
             return breakSeqType?.MinSequence ?? 0;
         }
 
-        private static BreakSequenceType CreateRequestedPositionInBreakRequest(
-            int order,
-            string requestedPositionInBreakRequest,
-            int sequence)
+        private BreakSeqType CreateRequestedPositionInBreakRequest(int order, string requestedPositionInBreakRequest, int sequence)
         {
-            return new BreakSequenceType(
-                order,
-                BreakSequenceTypeCategory.RequestedPositionInBreak,
-                requestedPositionInBreakRequest,
-                null,
-                sequence);
+            return new BreakSeqType(order, BreakSeqType.Categories.RequestedPositionInBreak, requestedPositionInBreakRequest, null, sequence);
         }
 
-        private static BreakSequenceType CreateMultipartSpot(
-            int order,
-            string multipartSpotType,
-            int sequence)
+        private BreakSeqType CreateMultipartSpot(int order, string multipartSpotType, int sequence)
         {
-            return new BreakSequenceType(
-                order,
-                BreakSequenceTypeCategory.MultipartSpot,
-                null,
-                multipartSpotType,
-                sequence);
+            return new BreakSeqType(order, BreakSeqType.Categories.MultipartSpot, null, multipartSpotType, sequence);
         }
 
-        private static BreakSequenceType CreateMiddleOfBreak(
-            int order,
-            int minSequence,
-            int maxSequence)
+        private BreakSeqType CreateMiddleOfBreak(int order, int minSequence, int maxSequence)
         {
-            return new BreakSequenceType(
-                order,
-                BreakSequenceTypeCategory.MiddleOfBreak,
-                null,
-                null,
-                minSequence,
-                maxSequence);
-        }
-
-        public static int GetBreakSequenceNumber(
-            SmoothBreak smoothBreak,
-            SpotPositionRules passRequestedPositionInBreakRules,
-            Spot spot,
-            IReadOnlyDictionary<string, bool> hasSpotPositions)
-        {
-            return passRequestedPositionInBreakRules switch
-            {
-                SpotPositionRules.Exact => ExactBreakSequenceNumber(smoothBreak, spot),
-                SpotPositionRules.Near => NearBreakSequenceNumber(smoothBreak, spot, hasSpotPositions),
-                SpotPositionRules.Anywhere => GetBreakSeqForMiddleOfBreak(smoothBreak),
-                _ => 0,
-            };
-        }
-
-        private static int ExactBreakSequenceNumber(
-            SmoothBreak smoothBreak,
-            Spot spot)
-        {
-            if (spot.IsMultipartSpot)
-            {
-                return GetBreakSeqFromMultipartSpotPosition(spot.MultipartSpot, spot.MultipartSpotPosition);
-            }
-            else
-            {
-                return String.IsNullOrEmpty(spot.RequestedPositioninBreak) ?
-                    GetBreakSeqForMiddleOfBreak(smoothBreak) :
-                    GetBreakSeqFromRequestedPositionInBreak(spot.RequestedPositioninBreak);
-            }
-        }
-
-        private static int NearBreakSequenceNumber(
-            SmoothBreak smoothBreak,
-            Spot spot,
-            IReadOnlyDictionary<string, bool> hasSpotPositions)
-        {
-            return spot.IsMultipartSpot
-                ? NearBreakSequenceNumberForMultipartSpot(smoothBreak, spot, hasSpotPositions)
-                : NearBreakSequenceNumberForRegularSpot(smoothBreak, spot, hasSpotPositions);
-        }
-
-        private static int NearBreakSequenceNumberForMultipartSpot(
-            SmoothBreak smoothBreak,
-            Spot spot,
-            IReadOnlyDictionary<string, bool> hasSpotPositions)
-        {
-            int breakSeq = 0;
-
-            switch (spot.MultipartSpot)
-            {
-                case MultipartSpotTypes.TopTail:
-                    breakSeq = BreakSequenceNumberForMultipartTopTailSpot(
-                        spot,
-                        hasSpotPositions,
-                        breakSeq);
-
-                    break;
-
-                case MultipartSpotTypes.SameBreak:
-                    breakSeq = BreakSequenceNumberForMultipartSameBreakSpot(
-                        spot,
-                        hasSpotPositions,
-                        breakSeq);
-
-                    break;
-            }
-
-            // Default to middle of break
-            if (breakSeq == 0)
-            {
-                breakSeq = GetBreakSeqForMiddleOfBreak(smoothBreak);
-            }
-
-            return breakSeq;
-        }
-
-        private static int BreakSequenceNumberForMultipartSameBreakSpot(
-            Spot spot,
-            IReadOnlyDictionary<string, bool> hasSpotPositions,
-            int breakSeq)
-        {
-            switch (spot.MultipartSpotPosition)
-            {
-                case MultipartSpotPositions.SameBreak_Top:
-                    if (!hasSpotPositions["1ST_START"])
-                    {
-                        breakSeq = GetBreakSeqFromMultipartSpotPosition(spot.MultipartSpot, spot.MultipartSpotPosition);
-                    }
-
-                    break;
-
-                case MultipartSpotPositions.SameBreak_Mid:
-                    breakSeq = GetBreakSeqFromMultipartSpotPosition(spot.MultipartSpot, spot.MultipartSpotPosition);
-
-                    break;
-
-                case MultipartSpotPositions.SameBreak_Tail:
-                    if (!hasSpotPositions["LAST"])
-                    {
-                        breakSeq = GetBreakSeqFromMultipartSpotPosition(spot.MultipartSpot, spot.MultipartSpotPosition);
-                    }
-
-                    break;
-
-                case MultipartSpotPositions.SameBreak_Any:
-                    breakSeq = GetBreakSeqFromMultipartSpotPosition(spot.MultipartSpot, spot.MultipartSpotPosition);
-                    break;
-            }
-
-            return breakSeq;
-        }
-
-        private static int BreakSequenceNumberForMultipartTopTailSpot(
-            Spot spot,
-            IReadOnlyDictionary<string, bool> hasSpotPositions,
-            int breakSeq)
-        {
-            switch (spot.MultipartSpotPosition)
-            {
-                case MultipartSpotPositions.TopTail_Top:
-                    if (!hasSpotPositions["1ST_START"])
-                    {
-                        breakSeq = GetBreakSeqFromMultipartSpotPosition(spot.MultipartSpot, spot.MultipartSpotPosition);
-                    }
-
-                    break;
-
-                case MultipartSpotPositions.TopTail_Tail:
-                    if (!hasSpotPositions["LAST"])
-                    {
-                        breakSeq = GetBreakSeqFromMultipartSpotPosition(spot.MultipartSpot, spot.MultipartSpotPosition);
-                    }
-
-                    break;
-            }
-
-            return breakSeq;
-        }
-
-        private static int NearBreakSequenceNumberForRegularSpot(
-            SmoothBreak smoothBreak,
-            Spot spot,
-            IReadOnlyDictionary<string, bool> hasSpotPositions)
-        {
-            return spot.RequestedPositioninBreak switch
-            {
-                PositionInBreakRequests.TrueFirst => BreakSequenceNumberForRegularTrueFirstSpot(hasSpotPositions),
-                PositionInBreakRequests.First => BreakSequenceNumberForRegularFirstSpot(hasSpotPositions),
-                PositionInBreakRequests.SecondFromStart => BreakSequenceNumberForRegularSecondFromStartSpot(hasSpotPositions),
-                PositionInBreakRequests.ThirdFromStart => BreakSequenceNumberForRegularThirdFromStartSpot(hasSpotPositions),
-                PositionInBreakRequests.ThirdFromLast => BreakSequenceNumberForRegularThirdFromLastSpot(hasSpotPositions),
-                PositionInBreakRequests.SecondFromLast => BreakSequenceNumberForRegularSecondFromLastSpot(hasSpotPositions),
-                PositionInBreakRequests.Last => BreakSequenceNumberForRegularLastSpot(hasSpotPositions),
-                PositionInBreakRequests.TrueLast => BreakSequenceNumberForRegularTrueLastSpot(hasSpotPositions),
-
-                // No PIB request
-                _ => GetBreakSeqForMiddleOfBreak(smoothBreak)
-            };
-        }
-
-        private static string GetRequestedPositionInBreakFromSpotPosition(
-            string spotPosition,
-            string first,
-            string last)
-        {
-            return spotPosition switch
-            {
-                "1ST_START" => first,
-                "2ND_START" => PositionInBreakRequests.SecondFromStart,
-                "3RD_START" => PositionInBreakRequests.ThirdFromStart,
-                "3RD_LAST" => PositionInBreakRequests.ThirdFromLast,
-                "2ND_LAST" => PositionInBreakRequests.SecondFromLast,
-                "LAST" => last,
-                _ => String.Empty
-            };
-        }
-
-        private static int GetBreakSequenceNumberFromSpotPositions(
-            string[] spotPositions,
-            IReadOnlyDictionary<string, bool> hasSpotPositions,
-            (string first, string last) pibRequests)
-        {
-            foreach (string spotPosition in spotPositions)
-            {
-                if (hasSpotPositions[spotPosition])
-                {
-                    continue;
-                }
-
-                string requestedPositionInBreak = GetRequestedPositionInBreakFromSpotPosition(
-                    spotPosition,
-                    pibRequests.first,
-                    pibRequests.last);
-
-                return GetBreakSeqFromRequestedPositionInBreak(requestedPositionInBreak);
-            }
-
-            return ZeroBreakSequenceNumber;
-        }
-
-        private static int BreakSequenceNumberForRegularTrueFirstSpot(
-            IReadOnlyDictionary<string, bool> hasSpotPositions)
-        {
-            // Check existing PIB requests in priority
-            // order from most to least desired
-            string[] spotPositions =
-                hasSpotPositions["1ST_START"] ||
-                hasSpotPositions["TT|TOP"] ||
-                hasSpotPositions["SB|TOP"]
-                ? new[] { "2ND_START", "3RD_START" }
-                : new[] { "1ST_START", "2ND_START", "3RD_START" };
-
-            return GetBreakSequenceNumberFromSpotPositions(
-                spotPositions,
-                hasSpotPositions,
-                (PositionInBreakRequests.TrueFirst, PositionInBreakRequests.TrueLast)
-                );
-        }
-
-        private static int BreakSequenceNumberForRegularFirstSpot(
-            IReadOnlyDictionary<string, bool> hasSpotPositions)
-        {
-            // Check existing PIB requests in priority
-            // order from most to least desired
-            string[] spotPositions =
-                hasSpotPositions["1ST_START"] ||
-                hasSpotPositions["TT|TOP"] ||
-                hasSpotPositions["SB|TOP"]
-                ? new[] { "2ND_START", "3RD_START" }
-                : new[] { "1ST_START", "2ND_START", "3RD_START" };
-
-            return GetBreakSequenceNumberFromSpotPositions(
-                spotPositions,
-                hasSpotPositions,
-                (PositionInBreakRequests.First, PositionInBreakRequests.Last)
-                );
-        }
-
-        private static int BreakSequenceNumberForRegularSecondFromStartSpot(
-            IReadOnlyDictionary<string, bool> hasSpotPositions)
-        {
-            // Check existing PIB requests in priority
-            // order from most to least desired
-            string[] spotPositions = hasSpotPositions["2ND_START"]
-                ? new[] { "3RD_START" }
-                : new[] { "2ND_START", "3RD_START" };
-
-            return GetBreakSequenceNumberFromSpotPositions(
-                spotPositions,
-                hasSpotPositions,
-                (PositionInBreakRequests.First, PositionInBreakRequests.Last)
-                );
-        }
-
-        private static int BreakSequenceNumberForRegularThirdFromStartSpot(
-            IReadOnlyDictionary<string, bool> hasSpotPositions)
-        {
-            // Check existing PIB requests in priority
-            // order from most to least desired
-            string[] spotPositions = hasSpotPositions["3RD_START"]
-                ? new[] { "2ND_START" }
-                : new[] { "3RD_START", "2ND_START" };
-
-            return GetBreakSequenceNumberFromSpotPositions(
-                spotPositions,
-                hasSpotPositions,
-                (PositionInBreakRequests.First, PositionInBreakRequests.Last)
-                );
-        }
-
-        private static int BreakSequenceNumberForRegularThirdFromLastSpot(
-            IReadOnlyDictionary<string, bool> hasSpotPositions)
-        {
-            // Check existing PIB requests in priority
-            // order from most to least desired
-            return GetBreakSequenceNumberFromSpotPositions(
-                new[] { "3RD_LAST", "2ND_LAST" },
-                hasSpotPositions,
-                (PositionInBreakRequests.First, PositionInBreakRequests.Last)
-                );
-        }
-
-        private static int BreakSequenceNumberForRegularSecondFromLastSpot(
-            IReadOnlyDictionary<string, bool> hasSpotPositions)
-        {
-            // Check existing PIB requests in priority
-            // order from most to least desired
-            return GetBreakSequenceNumberFromSpotPositions(
-                new[] { "2ND_LAST", "3RD_LAST" },
-                hasSpotPositions,
-                (PositionInBreakRequests.First, PositionInBreakRequests.Last)
-                );
-        }
-
-        private static int BreakSequenceNumberForRegularLastSpot(
-            IReadOnlyDictionary<string, bool> hasSpotPositions)
-        {
-            // Check existing PIB requests in priority
-            // order from most to least desired
-            string[] spotPositions =
-                hasSpotPositions["LAST"] ||
-                hasSpotPositions["TT|TAIL"] ||
-                hasSpotPositions["SB|TAIL"]
-                ? new[] { "2ND_LAST", "3RD_LAST" }
-                : new[] { "LAST", "2ND_LAST", "3RD_LAST" };
-
-            return GetBreakSequenceNumberFromSpotPositions(
-                spotPositions,
-                hasSpotPositions,
-                (PositionInBreakRequests.First, PositionInBreakRequests.Last)
-                );
-        }
-
-        private static int BreakSequenceNumberForRegularTrueLastSpot(
-            IReadOnlyDictionary<string, bool> hasSpotPositions)
-        {
-            // Check existing PIB requests in priority
-            // order from most to least desired
-            string[] spotPositions =
-                hasSpotPositions["LAST"] ||
-                hasSpotPositions["TT|TAIL"] ||
-                hasSpotPositions["SB|TAIL"]
-                ? new[] { "2ND_LAST", "3RD_LAST" }
-                : new[] { "LAST", "2ND_LAST", "3RD_LAST" };
-
-            return GetBreakSequenceNumberFromSpotPositions(
-                spotPositions,
-                hasSpotPositions,
-                (PositionInBreakRequests.TrueFirst, PositionInBreakRequests.TrueLast)
-                );
+            return new BreakSeqType(order, BreakSeqType.Categories.MiddleOfBreak, null, null, minSequence, maxSequence);
         }
     }
 }

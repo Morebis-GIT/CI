@@ -15,7 +15,7 @@ namespace ImagineCommunications.GamePlan.Persistence.SqlServer.EntityConfigurati
             builder.ToTable("CampaignTargetStrikeWeightDayPartTimeSlices");
 
             builder.HasKey(e => e.Id);
-            builder.Property(e => e.Id).UseSqlServerIdentityColumn();
+            builder.Property(e => e.Id).UseMySqlIdentityColumn();
 
             builder.Property(e => e.FromTime).AsTicks();
             builder.Property(e => e.ToTime).AsTicks();

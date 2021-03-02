@@ -11,7 +11,7 @@ namespace ImagineCommunications.GamePlan.Persistence.SqlServer.EntityConfigurati
             builder.ToTable("TaskInstanceParameters");
 
             builder.HasKey(k => k.Id);
-            builder.Property(k => k.Id).UseSqlServerIdentityColumn();
+            builder.Property(k => k.Id).UseMySqlIdentityColumn();
 
             builder.Property(e => e.TaskInstanceId).IsRequired().HasMaxLength(128);
             builder.Property(e => e.Name).IsRequired().HasMaxLength(128);

@@ -25,14 +25,11 @@ namespace ImagineCommunications.GamePlan.Persistence.SqlServer.Core.PostProcessi
         }
 
         /// <summary>
-        /// Updates each instance of the specified collection by the values of
-        /// entities one by one.
+        /// Updates each instance of the specified collection by the values of entities one by one.
         /// </summary>
         /// <typeparam name="T"></typeparam>
-        /// <param name="instances">     </param>
-        /// <param name="mappingOptions">
-        /// mapping context options for custom mapping actions
-        /// </param>
+        /// <param name="instances"></param>
+        /// <param name="mappingOptions">mapping context options for custom mapping actions</param>
         public void MapToCollection<T>(IEnumerable<T> instances, Action<IMappingOperationOptions> mappingOptions = null) where T : class
         {
             if (_entities.Count() != (instances ?? throw new ArgumentNullException(nameof(instances))).Count())

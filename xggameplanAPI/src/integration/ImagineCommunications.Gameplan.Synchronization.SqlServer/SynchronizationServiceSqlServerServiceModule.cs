@@ -17,7 +17,7 @@ namespace ImagineCommunications.Gameplan.Synchronization.SqlServer
         protected override void Load(ContainerBuilder builder)
         {
             var dbContextOptionsBuilder = new DbContextOptionsBuilder<SynchronizationDbContext>()
-                .UseSqlServer(_connectionString);
+                .UseMySql(_connectionString);
 
             builder.RegisterInstance(dbContextOptionsBuilder.Options).SingleInstance();
             builder.RegisterType<SynchronizationDbContext>().InstancePerLifetimeScope();

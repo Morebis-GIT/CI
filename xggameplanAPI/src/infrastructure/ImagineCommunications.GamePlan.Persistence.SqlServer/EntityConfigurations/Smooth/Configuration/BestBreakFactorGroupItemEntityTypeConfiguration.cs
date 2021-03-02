@@ -11,7 +11,7 @@ namespace ImagineCommunications.GamePlan.Persistence.SqlServer.EntityConfigurati
             builder.ToTable("SmoothConfigurationBestBreakFactorGroupItems");
 
             builder.HasKey(x => x.Id);
-            builder.Property(x => x.Id).UseSqlServerIdentityColumn();
+            builder.Property(x => x.Id).UseMySqlIdentityColumn();
 
             builder.HasMany(x => x.DefaultFactors).WithOne().HasForeignKey(x => x.BestBreakFactorGroupItemId);
             builder.HasMany(x => x.FilterFactors).WithOne().HasForeignKey(x => x.BestBreakFactorGroupItemId);

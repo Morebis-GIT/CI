@@ -28,7 +28,7 @@ namespace xggameplan.utils.seeddata.Seeding
 
         public bool Import(string dataFolder, bool replaceExistingData)
         {
-            var searchPattern = string.IsNullOrEmpty(TableName) ? $"{typeof(T).Name}*.json" : $"{TableName}.json";
+            var searchPattern = string.IsNullOrEmpty(TableName) ? $"{typeof(T).Name}??.json" : $"{TableName}.json";
             if (Directory.Exists(dataFolder))
             {
                 var file = Directory.GetFiles(dataFolder, searchPattern)

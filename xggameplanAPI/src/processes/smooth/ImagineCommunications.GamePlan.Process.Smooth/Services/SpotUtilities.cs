@@ -2,10 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using ImagineCommunications.GamePlan.Domain.SmoothConfigurations;
 using ImagineCommunications.GamePlan.Domain.Spots;
 using ImagineCommunications.GamePlan.Process.Smooth.Models;
-using ImagineCommunications.GamePlan.Process.Smooth.Types;
 using NodaTime;
 
 namespace ImagineCommunications.GamePlan.Process.Smooth.Services
@@ -21,7 +19,7 @@ namespace ImagineCommunications.GamePlan.Process.Smooth.Services
         {
             if (spots.Count == 0)
             {
-                return TimeSpan.Zero;
+                return TimeSpan.FromTicks(0);
             }
 
             var total = new Duration();
@@ -43,7 +41,7 @@ namespace ImagineCommunications.GamePlan.Process.Smooth.Services
         {
             if (spots.Count == 0)
             {
-                return TimeSpan.Zero;
+                return TimeSpan.FromTicks(0);
             }
 
             TimeSpan total = GetTotalSpotLength(spots);
@@ -145,61 +143,6 @@ namespace ImagineCommunications.GamePlan.Process.Smooth.Services
             }
 
             return spotsToReturn;
-        }
-
-        /// <summary>
-        /// Determines whether this Spot instance can be placed within the requested
-        /// break or container.
-        /// </summary>
-        /// <param name="spot">The spot.</param>
-        /// <param name="progSmoothBreaks">The prog smooth breaks.</param>
-        /// <param name="breakPositionRules">The break position rules.</param>
-        /// <param name="respectSpotTime">if set to <c>true</c>, respect spot time.</param>
-        /// <param name="validBreaksForSpotTime">The valid breaks for spot time.</param>
-        /// <param name="isRestrictedSpotTime">if set to <c>true</c>, is restricted spot time.</param>
-        /// <param name="progSmoothBreak">The prog smooth break.</param>
-        /// <returns>
-        ///   <c>true</c> if this Spot instance can be placed within the break or container requested; otherwise, <c>false</c>.
-        /// </returns>
-        public static bool CanSpotBePlacedInRequestedBreakOrContainer(
-            Spot spot,
-            IReadOnlyList<SmoothBreak> progSmoothBreaks,
-            SpotPositionRules breakPositionRules,
-            bool respectSpotTime,
-            IOrderedEnumerable<SmoothBreak> validBreaksForSpotTime,
-            bool isRestrictedSpotTime,
-            SmoothBreak progSmoothBreak)
-        {
-            var canAddSpotService = CanAddSpotService.Factory(progSmoothBreak);
-
-            string spotBreakOrContainerRequest = spot.BreakRequest;
-            if (ContainerReference.TryParse(spotBreakOrContainerRequest, out ContainerReference cr))
-            {
-                spotBreakOrContainerRequest = cr.ToString();
-            }
-
-            if (canAddSpotService.CanAddSpotWithBreakRequest(spotBreakOrContainerRequest, progSmoothBreaks, breakPositionRules))
-            {
-                return true;
-            }
-            else if (IsBreakWithinSpotTimeRestriction(respectSpotTime, isRestrictedSpotTime, validBreaksForSpotTime, progSmoothBreak))
-            {
-                return true;
-            }
-
-            return false;
-        }
-
-        internal static bool IsBreakWithinSpotTimeRestriction(
-            bool respectSpotTime,
-            bool isRestrictedSpotTime,
-            IOrderedEnumerable<SmoothBreak> validBreaksForSpotTime,
-            SmoothBreak progSmoothBreak)
-        {
-            return isRestrictedSpotTime
-                && respectSpotTime
-                && progSmoothBreak.Position >= validBreaksForSpotTime.First().Position
-                && progSmoothBreak.Position <= validBreaksForSpotTime.LastOrDefault()?.Position;
         }
 
         /// <summary>

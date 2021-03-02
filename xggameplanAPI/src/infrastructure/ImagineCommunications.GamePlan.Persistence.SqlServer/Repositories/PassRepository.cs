@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Linq.Expressions;
 using AutoMapper;
 using AutoMapper.QueryableExtensions;
 using ImagineCommunications.GamePlan.Domain.Generic;
@@ -13,10 +12,8 @@ using ImagineCommunications.GamePlan.Domain.Passes.Queries;
 using ImagineCommunications.GamePlan.Persistence.SqlServer.Core.Extensions;
 using ImagineCommunications.GamePlan.Persistence.SqlServer.Core.Interfaces;
 using ImagineCommunications.GamePlan.Persistence.SqlServer.Extensions;
-using ImagineCommunications.GamePlan.Persistence.SqlServer.Interfaces;
 using Microsoft.EntityFrameworkCore;
 using xggameplan.core.Extensions;
-using xggameplan.core.Extensions.AutoMapper;
 using PassEntity = ImagineCommunications.GamePlan.Persistence.SqlServer.Entities.Tenant.Passes.Pass;
 
 namespace ImagineCommunications.GamePlan.Persistence.SqlServer.Repositories
@@ -25,53 +22,24 @@ namespace ImagineCommunications.GamePlan.Persistence.SqlServer.Repositories
     {
         private readonly ISqlServerTenantDbContext _dbContext;
         private readonly IFullTextSearchConditionBuilder _searchConditionBuilder;
-        private readonly ISqlServerSalesAreaByIdCacheAccessor _salesAreaByIdCache;
-        private readonly ISqlServerSalesAreaByNameCacheAccessor _salesAreaByNameCache;
         private readonly IMapper _mapper;
 
-        public IQueryable<PassEntity> PassQuery =>
-            _dbContext.Query<PassEntity>()
-            .Include(x => x.General)
-            .Include(x => x.Rules)
-            .Include(x => x.Tolerances)
-            .Include(x => x.Weightings)
-            .Include(x => x.BreakExclusions)
-            .Include(x => x.RatingPoints)
-                .ThenInclude(x => x.SalesAreas)
-            .Include(x => x.ProgrammeRepetitions)
-            .Include(x => x.SlottingLimits)
-            .Include(x => x.PassSalesAreaPriorities)
-                .ThenInclude(x => x.SalesAreaPriorities);
-
-        public PassRepository(
-            ISqlServerTenantDbContext dbContext,
-            IFullTextSearchConditionBuilder searchConditionBuilder,
-            ISqlServerSalesAreaByIdCacheAccessor salesAreaByIdCache,
-            ISqlServerSalesAreaByNameCacheAccessor salesAreaByNameCache,
-            IMapper mapper)
+        public PassRepository(ISqlServerTenantDbContext dbContext,
+            IFullTextSearchConditionBuilder searchConditionBuilder, IMapper mapper)
         {
             _dbContext = dbContext;
             _searchConditionBuilder = searchConditionBuilder;
-            _salesAreaByIdCache = salesAreaByIdCache;
-            _salesAreaByNameCache = salesAreaByNameCache;
             _mapper = mapper;
         }
 
-        private IQueryable<PassEntity> GetPassByExpression(Expression<Func<PassEntity, bool>> expression) =>
-            PassQuery.Where(expression);
-
-        public Pass Get(int id)
-        {
-            return _mapper.Map<Pass>(
-                PassQuery.FirstOrDefault(x => x.Id == id),
-                opt => opt.UseEntityCache(_salesAreaByIdCache));
-        }
+        public Pass Get(int id) => _dbContext.Query<PassEntity>()
+            .ProjectTo<Pass>(_mapper.ConfigurationProvider).FirstOrDefault(p => p.Id == id);
 
         public Pass FindByName(string name, bool isLibraried)
         {
-            var query = _mapper.Map<List<Pass>>(
-                GetPassByExpression(p => p.Name == name),
-                opt => opt.UseEntityCache(_salesAreaByIdCache));
+            var query = _dbContext.Query<PassEntity>()
+                .Where(p => p.Name == name)
+                .ProjectTo<Pass>(_mapper.ConfigurationProvider);
 
             return (isLibraried)
                 ? query.FirstOrDefault(p => p.IsLibraried == true)
@@ -79,14 +47,15 @@ namespace ImagineCommunications.GamePlan.Persistence.SqlServer.Repositories
         }
 
         public IEnumerable<Pass> FindByIds(IEnumerable<int> ids) =>
-            _mapper.Map<List<Pass>>(
-                GetPassByExpression(p => ids.Contains(p.Id)).AsNoTracking(),
-                opt => opt.UseEntityCache(_salesAreaByIdCache));
+            _dbContext.Query<PassEntity>()
+                .Where(p => ids.Contains(p.Id))
+                .ProjectTo<Pass>(_mapper.ConfigurationProvider)
+                .ToList();
 
         public IEnumerable<Pass> GetAll() =>
-            _mapper.Map<List<Pass>>(
-                PassQuery.AsNoTracking(),
-                opt => opt.UseEntityCache(_salesAreaByIdCache));
+            _dbContext.Query<PassEntity>()
+                .ProjectTo<Pass>(_mapper.ConfigurationProvider)
+                .ToList();
 
         public IEnumerable<int> GetLibraryIds() =>
             _dbContext.Query<PassEntity>()
@@ -94,12 +63,12 @@ namespace ImagineCommunications.GamePlan.Persistence.SqlServer.Repositories
                 .Select(x => x.Id)
                 .ToList();
 
-        public IEnumerable<Pass> FindByScenarioId(Guid scenarioId) =>
-            _mapper.Map<List<Pass>>(
-                _dbContext.Query<Entities.Tenant.Scenarios.ScenarioPassReference>()
+        public IEnumerable<Pass> FindByScenarioId(Guid scenarioId)
+        {
+            return _dbContext.Query<Entities.Tenant.Scenarios.ScenarioPassReference>()
                 .Where(x => x.ScenarioId == scenarioId)
-                .Select(x => x.Pass).AsNoTracking(),
-            opt => opt.UseEntityCache(_salesAreaByIdCache));
+                .Select(x => x.Pass).ProjectTo<Pass>(_mapper.ConfigurationProvider).ToList();
+        }
 
         public SearchResultModel<PassDigestListItem> MinimalDataSearch(
             SearchQueryDto queryModel,
@@ -147,7 +116,7 @@ namespace ImagineCommunications.GamePlan.Persistence.SqlServer.Repositories
 
         public PagedQueryResult<Pass> Search(PassSearchQueryModel queryModel, StringMatchRules freeTextMatchRules)
         {
-            var query = PassQuery;
+            var query = _dbContext.Query<PassEntity>();
 
             if (queryModel.IsLibraried != null)
             {
@@ -156,22 +125,32 @@ namespace ImagineCommunications.GamePlan.Persistence.SqlServer.Repositories
                     : query.Where(e => e.IsLibraried == null || e.IsLibraried == false);
             }
 
-            if (!string.IsNullOrWhiteSpace(queryModel.Name))
-            {
-                var searchCondition = _searchConditionBuilder
-                    .StartAnyWith(queryModel.Name.Split(new[] { " " }, StringSplitOptions.RemoveEmptyEntries))
-                    .Build();
+            // TODO: discuss the business requirements for Pass search before uncommenting the code
 
-                query = query.Where(p => EF.Functions.Contains(p.Name, searchCondition));
+            if (!string.IsNullOrWhiteSpace(queryModel.Name) )
+            {
+                switch (freeTextMatchRules.HowManyWordsToMatch)
+                {
+                    case StringMatchHowManyWordsToMatch.AllWords:
+                        query = query.Where(p => p.Name.Contains(queryModel.Name)).MakeContainsAll();
+                        break;
+                    case StringMatchHowManyWordsToMatch.AnyWord:
+                        query = query.Where(p => p.Name.Contains(queryModel.Name)).MakeContainsAny();
+                        break;
+                }
+                if (!freeTextMatchRules.CaseSensitive)
+                {
+                    query = query.MakeCaseInsensitive();
+                }
             }
 
             query = (queryModel.OrderBy?.Any() ?? false)
                 ? query.OrderByMultipleItems(queryModel.OrderBy)
                 : query.OrderBy(p => p.Name);
 
-            List<Pass> passList = _mapper.Map<List<Pass>>(
-                query.Where(e => freeTextMatchRules.IsMatches(e.Name, queryModel.Name)).AsNoTracking(),
-                opt => opt.UseEntityCache(_salesAreaByIdCache));
+            var passList = query.ProjectTo<Pass>(_mapper.ConfigurationProvider).AsEnumerable()
+                .Where(e => freeTextMatchRules.IsMatches(e.Name, queryModel.Name))
+                .ToList();
 
             return new PagedQueryResult<Pass>(passList.Count,
                 passList.ApplyPaging(queryModel.Skip, queryModel.Top).ToList());
@@ -179,25 +158,13 @@ namespace ImagineCommunications.GamePlan.Persistence.SqlServer.Repositories
 
         public void Add(Pass pass)
         {
-            _ = _dbContext.Add(
-                   _mapper.Map<PassEntity>(
-                       pass,
-                       opt => opt.UseEntityCache(_salesAreaByNameCache)),
-                   post => post.MapTo(
-                       pass,
-                       opt => opt.UseEntityCache(_salesAreaByIdCache)),
-                   _mapper);
+            _dbContext.Add(_mapper.Map<PassEntity>(pass),
+                post => post.MapTo(pass), _mapper);
         }
 
         public void Add(IEnumerable<Pass> items) =>
-            _dbContext.AddRange(
-                _mapper.Map<PassEntity[]>(
-                    items,
-                    opt => opt.UseEntityCache(_salesAreaByNameCache)),
-                post => post.MapToCollection(
-                    items,
-                    opt => opt.UseEntityCache(_salesAreaByIdCache)),
-                _mapper);
+            _dbContext.AddRange(_mapper.Map<PassEntity[]>(items),
+                post => post.MapToCollection(items), _mapper);
 
         public void Delete(int id)
         {
@@ -206,7 +173,7 @@ namespace ImagineCommunications.GamePlan.Persistence.SqlServer.Repositories
 
         public void Remove(IEnumerable<int> ids)
         {
-            var entities = PassQuery
+            var entities = _dbContext.Query<PassEntity>()
                 .Where(p => ids.Contains(p.Id))
                 .ToArray();
 
@@ -215,38 +182,30 @@ namespace ImagineCommunications.GamePlan.Persistence.SqlServer.Repositories
 
         public void RemoveByScenarioId(Guid scenarioId)
         {
-            List<int> entityIds = _dbContext.Query<Entities.Tenant.Scenarios.ScenarioPassReference>()
-                 .Where(x => x.ScenarioId == scenarioId)
-                 .Select(x => x.Pass.Id)
-                 .ToList();
-            if (entityIds.Any())
+            var entities = _dbContext.Query<Entities.Tenant.Scenarios.ScenarioPassReference>()
+                .Where(x => x.ScenarioId == scenarioId)
+                .Select(x => x.Pass).ToArray();
+            if (entities.Any())
             {
-                Remove(entityIds);
+                _dbContext.RemoveRange(entities);
             }
         }
 
         public void Update(Pass pass)
         {
-            var entity = PassQuery.FirstOrDefault(x => x.Id == pass.Id);
+            var entity = GetPassQueryWithAllIncludes().FirstOrDefault(x => x.Id == pass.Id);
             if (entity != null)
             {
-                _ = _mapper.Map(
-                    pass,
-                    entity,
-                    opt => opt.UseEntityCache(_salesAreaByNameCache));
-                _ = _dbContext.Update(
-                    entity,
-                    p => p.MapTo(
-                        pass,
-                        opt => opt.UseEntityCache(_salesAreaByIdCache)),
-                    _mapper);
+                _mapper.Map(pass, entity);
+                _dbContext.Update(entity, p => p.MapTo(pass), _mapper);
             }
         }
 
         public void Update(IEnumerable<Pass> passes)
         {
             var ids = (passes ?? throw new ArgumentNullException(nameof(passes))).Select(x => x.Id).ToArray();
-            var entities = GetPassByExpression(p => ids.Contains(p.Id))
+            var entities = GetPassQueryWithAllIncludes()
+                .Where(p => ids.Contains(p.Id))
                 .ToList();
 
             foreach (var entity in entities)
@@ -254,20 +213,25 @@ namespace ImagineCommunications.GamePlan.Persistence.SqlServer.Repositories
                 var pass = passes.FirstOrDefault(x => x.Id == entity.Id);
                 if (pass != null)
                 {
-                    _ = _mapper.Map(
-                        pass,
-                        entity,
-                        opt => opt.UseEntityCache(_salesAreaByNameCache));
-                    _ = _dbContext.Update(
-                        entity,
-                        p => p.MapTo(
-                            pass,
-                            opt => opt.UseEntityCache(_salesAreaByIdCache)),
-                        _mapper);
+                    _mapper.Map(pass, entity);
+                    _dbContext.Update(entity, post => post.MapTo(pass), _mapper);
                 }
             }
         }
 
         public void SaveChanges() => _dbContext.SaveChanges();
+
+        private IQueryable<PassEntity> GetPassQueryWithAllIncludes() =>
+            _dbContext.Query<PassEntity>()
+                .Include(x => x.General)
+                .Include(x => x.Rules)
+                .Include(x => x.Tolerances)
+                .Include(x => x.Weightings)
+                .Include(x => x.BreakExclusions)
+                .Include(x => x.RatingPoints)
+                .Include(x => x.ProgrammeRepetitions)
+                .Include(x => x.SlottingLimits)
+                .Include(x => x.PassSalesAreaPriorities)
+                    .ThenInclude(x => x.SalesAreaPriorities);
     }
 }

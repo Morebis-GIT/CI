@@ -188,7 +188,6 @@ namespace ImagineCommunications.GamePlan.Intelligence.Tests.DataExchange.Infrast
             _ = modelBuilder.ApplyConfiguration(new PassBreakExclusionEntityConfiguration());
             _ = modelBuilder.ApplyConfiguration(new PassProgrammeRepetitionEntityConfiguration());
             _ = modelBuilder.ApplyConfiguration(new PassRatingPointEntityConfiguration());
-            _ = modelBuilder.ApplyConfiguration(new PassRatingPointSalesAreaRefEntityConfiguration());
             _ = modelBuilder.ApplyConfiguration(new PassRuleEntityConfiguration());
             _ = modelBuilder.ApplyConfiguration(new PassSalesAreaPriorityCollectionEntityConfiguration());
             _ = modelBuilder.ApplyConfiguration(new PassSalesAreaPriorityEntityConfiguration());
@@ -251,7 +250,6 @@ namespace ImagineCommunications.GamePlan.Intelligence.Tests.DataExchange.Infrast
             _ = modelBuilder.ApplyConfiguration(new ScheduleProgrammeEntityConfiguration());
             _ = modelBuilder.ApplyConfiguration(new SmoothConfigurationEntityTypeConfiguration());
             _ = modelBuilder.ApplyConfiguration(new SmoothDiagnosticConfigurationEntityTypeConfiguration());
-            _ = modelBuilder.ApplyConfiguration(new SmoothDiagnosticConfigurationSalesAreaEntityTypeConfiguration());
             _ = modelBuilder.ApplyConfiguration(new SmoothFailureEntityTypeConfiguration());
             _ = modelBuilder.ApplyConfiguration(new SmoothFailureMessageDescriptionEntityTypeConfiguration());
             _ = modelBuilder.ApplyConfiguration(new SmoothFailureMessageEntityTypeConfiguration());
@@ -266,12 +264,10 @@ namespace ImagineCommunications.GamePlan.Intelligence.Tests.DataExchange.Infrast
             _ = modelBuilder.ApplyConfiguration(new SmoothPassIterationRecordPassSequenceItemEntityTypeConfiguration());
             _ = modelBuilder.ApplyConfiguration(new SponsoredDayPartEntityConfiguration());
             _ = modelBuilder.ApplyConfiguration(new SponsoredItemEntityConfiguration());
-            
             _ = modelBuilder.ApplyConfiguration(new SponsorshipAdvertiserExclusivityEntityConfiguration());
             _ = modelBuilder.ApplyConfiguration(new SponsorshipClashExclusivityEntityConfiguration());
             _ = modelBuilder.ApplyConfiguration(new SponsorshipEntityConfiguration());
             _ = modelBuilder.ApplyConfiguration(new SponsorshipItemEntityConfiguration());
-            _ = modelBuilder.ApplyConfiguration(new SponsorshipItemSalesAreaEntityConfiguration());
             _ = modelBuilder.ApplyConfiguration(new SpotEntityConfiguration());
             _ = modelBuilder.ApplyConfiguration(new SpotPlacementEntityConfiguration());
             _ = modelBuilder.ApplyConfiguration(new StandardDayPartEntityConfiguration());

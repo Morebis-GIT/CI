@@ -12,7 +12,7 @@ namespace ImagineCommunications.GamePlan.Persistence.SqlServer.EntityConfigurati
             builder.ToTable("TaskInstances");
 
             builder.HasKey(k => k.Id);
-            builder.Property(e => e.Id).HasDefaultValueSql("newid()");
+            builder.Property(e => e.Id);
 
             builder.Property(e => e.TaskId).IsRequired().HasMaxLength(128);
             builder.Property(e => e.Status).IsRequired();

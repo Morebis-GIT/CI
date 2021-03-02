@@ -7,8 +7,6 @@ Feature: Manage Sales Area Demographics data storage
 	
 Background: 
 	Given there is a SalesAreaDemographic repository
-	And predefined SalesAreaDemographic.SalesAreas.json data
-	And predefined data imported
 	
 Scenario: Get all sales area demographics
 	Given 3 documents created

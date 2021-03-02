@@ -16,6 +16,8 @@ using ImagineCommunications.GamePlan.Domain.KPIComparisonConfigs;
 using ImagineCommunications.GamePlan.Domain.LibrarySalesAreaPassPriorities;
 using ImagineCommunications.GamePlan.Domain.Maintenance.UpdateDetail;
 using ImagineCommunications.GamePlan.Domain.Optimizer.Facilities;
+using ImagineCommunications.GamePlan.Domain.Optimizer.ISRSettings.Objects;
+using ImagineCommunications.GamePlan.Domain.Optimizer.RSSettings.Objects;
 using ImagineCommunications.GamePlan.Domain.OutputFiles.Objects;
 using ImagineCommunications.GamePlan.Domain.Passes.Objects;
 using ImagineCommunications.GamePlan.Domain.PositionInBreaks.BookingPositionGroups.Objects;
@@ -23,6 +25,7 @@ using ImagineCommunications.GamePlan.Domain.PositionInBreaks.BookingPositions;
 using ImagineCommunications.GamePlan.Domain.ProgrammeCategory;
 using ImagineCommunications.GamePlan.Domain.Scenarios.Objects;
 using ImagineCommunications.GamePlan.Domain.Shared.ClearanceCodes;
+using ImagineCommunications.GamePlan.Domain.Shared.Demographics;
 using ImagineCommunications.GamePlan.Domain.Shared.FunctionalAreas.Objects;
 using ImagineCommunications.GamePlan.Domain.Shared.Languages;
 using ImagineCommunications.GamePlan.Domain.Shared.Metadatas;
@@ -140,6 +143,13 @@ namespace xggameplan.utils.seeddata.SqlServer
                         .Keyed<IJsonFileImporter>(typeof(KPIPriority));
                     _ = builder.RegisterType<JsonFileImporter<BRSConfigurationTemplate>>()
                         .Keyed<IJsonFileImporter>(typeof(BRSConfigurationTemplate));
+                        builder.RegisterType<JsonFileImporter<Demographic>>()
+                       .Keyed<IJsonFileImporter>(typeof(Demographic));
+                    _ = builder.RegisterType<JsonFileImporter<RSSettings>>()
+                       .Keyed<IJsonFileImporter>(typeof(RSSettings));
+                    _ = builder.RegisterType<JsonFileImporter<ISRSettings>>()
+                       .Keyed<IJsonFileImporter>(typeof(ISRSettings));
+
                     break;
             }
         }

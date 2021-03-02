@@ -20,7 +20,7 @@ namespace xggameplan.core.Services.OptimiserInputFilesSerialisers
     {
         private const string ShortDateFormat = "yyyyMMdd";
         private const string TimeFormat = "HHmmss";
-        private const string Filename = "v_rb_prgt_list.xml";
+        private const string FileName = "v_rb_prgt_list.xml";
 
         private readonly IClock _clock;
 
@@ -35,6 +35,8 @@ namespace xggameplan.core.Services.OptimiserInputFilesSerialisers
             _clock = clock;
         }
 
+        public string Filename => FileName;
+
         public void Serialize(
             string folderName,
             IReadOnlyCollection<Programme> programs,
@@ -46,12 +48,12 @@ namespace xggameplan.core.Services.OptimiserInputFilesSerialisers
             RaiseInfo(
                 $"Started populating {Filename}. Total programmes - {programs.Count}, Current Time - {_clock.GetCurrentInstant().ToDateTimeUtc()}");
 
-            List<AgProgTxDetail> data = programs.SelectMany(pgm =>
+            var data = programs.SelectMany(pgm =>
             {
-                int programmeNo = programmeDictionaries
+                var programmeNo = programmeDictionaries
                     .FirstOrDefault(p =>
                         p.ExternalReference.Equals(pgm.ExternalReference, StringComparison.OrdinalIgnoreCase))?.Id ?? 0;
-                int salesAreaNo = salesAreas.FirstOrDefault(s => s.Name.Equals(pgm.SalesArea))?.CustomId ?? 0;
+                var salesAreaNo = salesAreas.FirstOrDefault(s => s.Name.Equals(pgm.SalesArea))?.CustomId ?? 0;
 
                 return pgm.ProgrammeCategories.DefaultIfEmpty().Select(c =>
                 {

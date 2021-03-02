@@ -6,13 +6,35 @@
     <GenerateRuntimeConfigurationFiles>True</GenerateRuntimeConfigurationFiles>
     <AssemblyName>Migrations</AssemblyName>
     <RootNamespace>ImagineCommunications.GamePlan.Persistence.SqlServer.Migrations</RootNamespace>
-    <PublishSingleFile>true</PublishSingleFile>
+    <PublishSingleFile>false</PublishSingleFile>
     <RuntimeIdentifier>win-x64</RuntimeIdentifier>
   </PropertyGroup>
 
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <DefineConstants></DefineConstants>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+  </PropertyGroup>
+
   <ItemGroup>
-    <Compile Remove="TenantMigrations\20210120150407_XGGT-18292_SmoothDiagnosticConf_SponsorshipItem_SpotBookingRule_SalesAreaId.cs" />
-    <Compile Remove="TenantMigrations\20210120150407_XGGT-18292_SmoothDiagnosticConf_SponsorshipItem_SpotBookingRule_SalesAreaId.Designer.cs" />
+    <Compile Remove="IntelligenceMigrations\**" />
+    <Compile Remove="MasterMigrations\**" />
+    <Compile Remove="SynchronizationMigrations\**" />
+    <Compile Remove="TenantMigrations\**" />
+    <EmbeddedResource Remove="IntelligenceMigrations\**" />
+    <EmbeddedResource Remove="MasterMigrations\**" />
+    <EmbeddedResource Remove="SynchronizationMigrations\**" />
+    <EmbeddedResource Remove="TenantMigrations\**" />
+    <None Remove="IntelligenceMigrations\**" />
+    <None Remove="MasterMigrations\**" />
+    <None Remove="SynchronizationMigrations\**" />
+    <None Remove="TenantMigrations\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Remove="TenantDbMigrations\20201020181125_InitTenantSchema.cs" />
+    <Compile Remove="TenantDbMigrations\20201020181125_InitTenantSchema.Designer.cs" />
+    <Compile Remove="TenantDbMigrations\20201020185936_InitSchemaSql.cs" />
+    <Compile Remove="TenantDbMigrations\20201020185936_InitSchemaSql.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>
@@ -23,7 +45,8 @@
     </PackageReference>
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="2.2.6" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="2.2.6" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="2.2.6" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Relational" Version="2.2.6" />
+    <PackageReference Include="Pomelo.EntityFrameworkCore.MySql" Version="2.2.6" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="2.2.6">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
@@ -50,6 +73,10 @@
     <None Update="config.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="TenantDbMigrations\" />
   </ItemGroup>
 
 </Project>

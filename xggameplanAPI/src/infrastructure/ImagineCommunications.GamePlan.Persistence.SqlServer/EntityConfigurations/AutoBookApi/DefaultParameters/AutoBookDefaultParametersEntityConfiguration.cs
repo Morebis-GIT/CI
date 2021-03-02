@@ -12,8 +12,7 @@ namespace ImagineCommunications.GamePlan.Persistence.SqlServer.EntityConfigurati
             builder.ToTable("AutoBookDefaultParameters");
 
             builder.HasKey(e => e.Id);
-            builder.Property(e => e.Id).HasDefaultValueSql("newid()");            
-
+            builder.Property(e => e.Id).HasMaxLength(64).IsRequired();
             builder.Property(e => e.AgBreak_ScheduledDate).HasMaxLength(32);
             builder.Property(e => e.AgBreak_ExternalNo).HasMaxLength(64);
             builder.Property(e => e.AgBreak_NominalTime).HasMaxLength(32);

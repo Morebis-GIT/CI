@@ -1,0 +1,11 @@
+[
+    {
+        "Id": 1,
+        "Name": "Default Sales Area Pass Priorities",
+        "StartTime": null,
+        "EndTime": null,
+        "DaysOfWeek": "1111111",
+        "SalesAreaPriorities": [],
+        "Uid": "502d22c2-1707-4d1d-b038-38daf027eeee"
+    }
+]

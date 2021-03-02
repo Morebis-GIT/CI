@@ -17,11 +17,9 @@ using ImagineCommunications.GamePlan.Persistence.SqlServer.Entities.Tenant;
 using ImagineCommunications.GamePlan.Persistence.SqlServer.Entities.Tenant.Campaigns;
 using ImagineCommunications.GamePlan.Persistence.SqlServer.Entities.Tenant.Products;
 using ImagineCommunications.GamePlan.Persistence.SqlServer.Extensions;
-using ImagineCommunications.GamePlan.Persistence.SqlServer.Interfaces;
 using ImagineCommunications.GamePlan.Persistence.SqlServer.Mapping;
 using Microsoft.EntityFrameworkCore;
 using xggameplan.core.Extensions;
-using xggameplan.core.Extensions.AutoMapper;
 using Campaign = ImagineCommunications.GamePlan.Domain.Campaigns.Objects.Campaign;
 using CampaignStatus = ImagineCommunications.GamePlan.Persistence.SqlServer.Entities.CampaignStatus;
 
@@ -34,39 +32,17 @@ namespace ImagineCommunications.GamePlan.Persistence.SqlServer.Repositories
         private readonly IFullTextSearchConditionBuilder _searchConditionBuilder;
         private readonly IIdentityGenerator _identityGenerator;
         private readonly SequenceRebuilder<Entities.Tenant.Campaigns.Campaign, CampaignNoIdentity> _sequenceRebuilder;
-        private readonly ISqlServerSalesAreaByIdCacheAccessor _salesAreaByIdCache;
-        private readonly ISqlServerSalesAreaByNameCacheAccessor _salesAreaByNameCache;
         protected readonly IMapper _mapper;
-
-        private IQueryable<Entities.Tenant.Campaigns.Campaign> CampaignQuery =>
-            _dbContext.Query<Entities.Tenant.Campaigns.Campaign>()
-                .Include(o => o.BreakRequirement).ThenInclude(o => o.CentreBreakRequirement)
-                .Include(o => o.BreakRequirement).ThenInclude(o => o.EndBreakRequirement)
-                .Include(o => o.SalesAreaCampaignTargets).ThenInclude(o => o.Multiparts).ThenInclude(o => o.Lengths)
-                .Include(o => o.SalesAreaCampaignTargets).ThenInclude(o => o.CampaignTargets).ThenInclude(o => o.StrikeWeights).ThenInclude(o => o.Lengths)
-                .Include(o => o.SalesAreaCampaignTargets).ThenInclude(o => o.CampaignTargets).ThenInclude(o => o.StrikeWeights).ThenInclude(o => o.DayParts).ThenInclude(o => o.Lengths)
-                .Include(o => o.SalesAreaCampaignTargets).ThenInclude(o => o.CampaignTargets).ThenInclude(o => o.StrikeWeights).ThenInclude(o => o.DayParts).ThenInclude(o => o.Timeslices)
-                .Include(o => o.SalesAreaCampaignTargets).ThenInclude(o => o.SalesAreaGroup).ThenInclude(o => o.SalesAreas)
-                .Include(o => o.BreakTypes)
-                .Include(o => o.ProgrammeRestrictions).ThenInclude(o => o.CategoryOrProgramme)
-                .Include(o => o.ProgrammeRestrictions).ThenInclude(o => o.SalesAreas)
-                .Include(o => o.TimeRestrictions).ThenInclude(o => o.SalesAreas)
-                .Include(o => o.BookingPositionGroups).ThenInclude(o => o.SalesAreas)
-                .Include(o => o.CampaignPaybacks);
 
         public CampaignRepository(ISqlServerLongRunningTenantDbContext dbContext,
             IFullTextSearchConditionBuilder searchConditionBuilder,
             IIdentityGenerator identityGenerator,
-            ISqlServerSalesAreaByIdCacheAccessor salesAreaByIdCache,
-            ISqlServerSalesAreaByNameCacheAccessor salesAreaByNameCache,
             IMapper mapper)
         {
             _dbContext = dbContext;
             _searchConditionBuilder = searchConditionBuilder;
             _identityGenerator = identityGenerator;
             _sequenceRebuilder = new SequenceRebuilder<Entities.Tenant.Campaigns.Campaign, CampaignNoIdentity>();
-            _salesAreaByIdCache = salesAreaByIdCache;
-            _salesAreaByNameCache = salesAreaByNameCache;
             _mapper = mapper;
         }
 
@@ -74,8 +50,8 @@ namespace ImagineCommunications.GamePlan.Persistence.SqlServer.Repositories
         {
             PrepareCampaignsToSave(new List<Campaign> { item });
 
-            _ = _dbContext.Add(_mapper.Map<Entities.Tenant.Campaigns.Campaign>(item, opts => opts.UseEntityCache(_salesAreaByNameCache)),
-                post => post.MapTo(item, opts => opts.UseEntityCache(_salesAreaByIdCache)), _mapper);
+            _dbContext.Add(_mapper.Map<Entities.Tenant.Campaigns.Campaign>(item),
+                post => post.MapTo(item), _mapper);
 
             return item;
         }
@@ -84,8 +60,8 @@ namespace ImagineCommunications.GamePlan.Persistence.SqlServer.Repositories
         {
             PrepareCampaignsToSave(item);
 
-            _dbContext.AddRange(_mapper.Map<Entities.Tenant.Campaigns.Campaign[]>(item, opts => opts.UseEntityCache(_salesAreaByNameCache)),
-                post => post.MapToCollection(item, opts => opts.UseEntityCache(_salesAreaByIdCache)), _mapper);
+            _dbContext.AddRange(_mapper.Map<Entities.Tenant.Campaigns.Campaign[]>(item),
+                post => post.MapToCollection(item), _mapper);
         }
 
         protected void PrepareCampaignsToSave(IEnumerable<Campaign> items)
@@ -109,9 +85,21 @@ namespace ImagineCommunications.GamePlan.Persistence.SqlServer.Repositories
             }
         }
 
+        public IEnumerable<Campaign> GetAll() =>
+            _dbContext.Query<Entities.Tenant.Campaigns.Campaign>().ProjectTo<Campaign>(_mapper.ConfigurationProvider).ToList();
+
+        public IEnumerable<CampaignReducedModel> GetAllFlat() =>
+            _dbContext.Query<Entities.Tenant.Campaigns.Campaign>().ProjectTo<CampaignReducedModel>(_mapper.ConfigurationProvider).ToList();
+
+        public IEnumerable<string> GetAllActiveExternalIds() =>
+            _dbContext.Query<Entities.Tenant.Campaigns.Campaign>()
+                .Where(c => c.ExternalId != null && c.Status == CampaignStatus.Active).Select(c => c.ExternalId)
+                .ToList();
+
         public PagedQueryResult<CampaignWithProductFlatModel> GetWithProduct(CampaignSearchQueryModel queryModel)
         {
-            var res = _mapper.Map<List<CampaignWithProductFlatModel>>(GetSearchDtoQuery(queryModel).AsNoTracking(), opts => opts.UseEntityCache(_salesAreaByIdCache));
+            var res = GetSearchDtoQuery(queryModel)
+                .ProjectTo<CampaignWithProductFlatModel>(_mapper.ConfigurationProvider).ToList();
 
             if (queryModel != null && queryModel.GroupByGroupName)
             {
@@ -199,78 +187,49 @@ namespace ImagineCommunications.GamePlan.Persistence.SqlServer.Repositories
 
         public int CountAllActive => _dbContext.Query<Entities.Tenant.Campaigns.Campaign>().Count(CampaignProfile.IsActivePredicate);
 
-        public IEnumerable<Campaign> GetAll() =>
-            FindByRefs(_dbContext.Query<Entities.Tenant.Campaigns.Campaign>()
-                .Select(x => x.ExternalId)
-                .AsNoTracking().ToList());
-
-        public IEnumerable<CampaignReducedModel> GetAllFlat() =>
-            _mapper.Map<List<CampaignReducedModel>>(
-                _dbContext.Query<Entities.Tenant.Campaigns.Campaign>()
-                    .Include(o => o.SalesAreaCampaignTargets).AsNoTracking(),
-                opts => opts.UseEntityCache(_salesAreaByIdCache));
-
         public IEnumerable<Campaign> GetAllActive() =>
-            FindByRefs(_dbContext.Query<Entities.Tenant.Campaigns.Campaign>()
+            _dbContext.Query<Entities.Tenant.Campaigns.Campaign>()
                 .Where(CampaignProfile.IsActivePredicate)
-                .Select(x => x.ExternalId)
-                .AsNoTracking().ToList());
+                .ProjectTo<Campaign>(_mapper.ConfigurationProvider).ToList();
 
         public IEnumerable<Campaign> GetAllScenarioUI() =>
-            _mapper.Map<List<Campaign>>(
-                CampaignQuery
-                .Where(c => c.Status != CampaignStatus.Cancelled && c.ActualRatings >= c.TargetRatings &&
-                            c.SalesAreaCampaignTargets.Any()).AsNoTracking(),
-                opts => opts.UseEntityCache(_salesAreaByIdCache));
-
-        public IEnumerable<string> GetAllActiveExternalIds() =>
             _dbContext.Query<Entities.Tenant.Campaigns.Campaign>()
-                .Where(c => c.ExternalId != null && c.Status == CampaignStatus.Active).Select(c => c.ExternalId)
+                .Where(c => c.Status != CampaignStatus.Cancelled && c.ActualRatings >= c.TargetRatings &&
+                            c.SalesAreaCampaignTargets.Any())
+                .ProjectTo<Campaign>(_mapper.ConfigurationProvider)
                 .ToList();
 
         public Campaign Find(Guid uid) => Get(uid);
 
-        public Campaign Get(Guid uid) => _mapper.Map<Campaign>(
-                CampaignQuery
-                .FirstOrDefault(c => c.Id == uid),
-                opts => opts.UseEntityCache(_salesAreaByIdCache));
+        public Campaign Get(Guid uid) =>
+            _dbContext.Query<Entities.Tenant.Campaigns.Campaign>().ProjectTo<Campaign>(_mapper.ConfigurationProvider)
+                .FirstOrDefault(c => c.Id == uid);
 
         public IEnumerable<Campaign> Find(List<Guid> uids) =>
-            _mapper.Map<List<Campaign>>(
-                CampaignQuery
-                .Where(c => uids.Contains(c.Id)).AsNoTracking(),
-                opts => opts.UseEntityCache(_salesAreaByIdCache));
+            _dbContext.Query<Entities.Tenant.Campaigns.Campaign>().Where(c => uids.Contains(c.Id))
+                .ProjectTo<Campaign>(_mapper.ConfigurationProvider).ToList();
 
         public IEnumerable<Campaign> FindByRef(string externalRef) =>
-            _mapper.Map<List<Campaign>>(
-                CampaignQuery
-                .Where(c => c.ExternalId == externalRef),
-                opts => opts.UseEntityCache(_salesAreaByIdCache));
+            _dbContext.Query<Entities.Tenant.Campaigns.Campaign>().Where(c => c.ExternalId == externalRef)
+                .ProjectTo<Campaign>(_mapper.ConfigurationProvider).ToList();
 
         public IEnumerable<Campaign> GetByGroup(string group) =>
-            _mapper.Map<List<Campaign>>(
-                CampaignQuery
-                .Where(c => c.CampaignGroup == group).AsNoTracking(),
-                opts => opts.UseEntityCache(_salesAreaByIdCache));
+            _dbContext.Query<Entities.Tenant.Campaigns.Campaign>().Where(c => c.CampaignGroup == group)
+                .ProjectTo<Campaign>(_mapper.ConfigurationProvider).ToList();
 
         public IEnumerable<Campaign> FindByRefs(List<string> externalRefs) =>
             GroupElementsForClause(externalRefs).SelectMany(group =>
             {
                 var ids = group.ToList();
-
-                return _mapper.Map<List<Campaign>>(
-                    CampaignQuery
-                    .Where(c => ids.Contains(c.ExternalId)).AsNoTracking(),
-                    opts => opts.UseEntityCache(_salesAreaByIdCache));
+                return _dbContext.Query<Entities.Tenant.Campaigns.Campaign>().Where(c => ids.Contains(c.ExternalId))
+                    .ProjectTo<Campaign>(_mapper.ConfigurationProvider).AsEnumerable();
             }).ToList();
 
         public IEnumerable<Campaign> FindMissingCampaignsFromGroup(List<string> externalRefs, List<string> campaignGroup)
         {
-            return GroupElementsForClause(campaignGroup).SelectMany(group =>
-            _mapper.Map<List<Campaign>>(
-                CampaignQuery
-                .Where(c => group.Contains(c.CampaignGroup)).AsNoTracking(),
-                opts => opts.UseEntityCache(_salesAreaByIdCache))
+            return GroupElementsForClause(campaignGroup).SelectMany(group => _dbContext
+                .Query<Entities.Tenant.Campaigns.Campaign>()
+                .Where(c => group.Contains(c.CampaignGroup)).ProjectTo<Campaign>(_mapper.ConfigurationProvider).AsEnumerable()
                 .Where(r => !externalRefs.Contains(r.ExternalId))
             ).ToList();
         }
@@ -278,15 +237,15 @@ namespace ImagineCommunications.GamePlan.Persistence.SqlServer.Repositories
         public IEnumerable<CampaignNameModel> FindNameByRefs(ICollection<string> externalRefs)
         {
             var distinctExternalRefs = externalRefs.Distinct().ToList();
-            var campaignNames = new List<CampaignNameModel>();
+            var products = new List<CampaignNameModel>();
             for (int i = 0, page = 0; i < distinctExternalRefs.Count; i += MaxClauseCount, page++)
             {
                 var refs = distinctExternalRefs.Skip(MaxClauseCount * page).Take(MaxClauseCount).ToArray();
-                campaignNames.AddRange(_dbContext.Query<Entities.Tenant.Campaigns.Campaign>()
-                    .Where(x => refs.Contains(x.ExternalId)).ProjectTo<CampaignNameModel>(_mapper.ConfigurationProvider));
+                products.AddRange(_dbContext.Query<Entities.Tenant.Campaigns.Campaign>()
+                    .Where(x => refs.Contains(x.ExternalId)).ProjectTo<CampaignNameModel>(_mapper.ConfigurationProvider).ToArray());
             }
 
-            return campaignNames;
+            return products;
         }
 
         public IEnumerable<string> GetBusinessTypes() =>
@@ -330,8 +289,8 @@ namespace ImagineCommunications.GamePlan.Persistence.SqlServer.Repositories
             if (entity != null)
             {
                 campaign.UpdateDerivedKPIs();
-                _ = _mapper.Map(campaign, entity, opts => opts.IgnoreCollections().UseEntityCache(_salesAreaByNameCache));
-                _ = _dbContext.Update(entity);
+                _mapper.Map(campaign, entity, opts => opts.IgnoreCollections());
+                _dbContext.Update(entity);
             }
         }
 
@@ -354,13 +313,13 @@ namespace ImagineCommunications.GamePlan.Persistence.SqlServer.Repositories
                 join clashJoin in _dbContext.Query<Clash>() on product.ClashCode equals clashJoin.Externalref into
                     clashes
                 from clash in clashes.DefaultIfEmpty()
-                join productAdvertiserJoin in _dbContext.Query<ProductAdvertiser>() on product.Uid equals
+                join productAdvertiserJoin in _dbContext.Query<ProductAdvertiser>() on product.Id equals
                     productAdvertiserJoin.ProductId into paJoin
                 from productAdvertiser in paJoin.DefaultIfEmpty()
                 join advertiserJoin in _dbContext.Query<Advertiser>() on productAdvertiser.AdvertiserId equals
                     advertiserJoin.Id into advertisers
                 from advertiser in advertisers.DefaultIfEmpty()
-                join productAgencyJoin in _dbContext.Query<ProductAgency>() on product.Uid equals productAgencyJoin
+                join productAgencyJoin in _dbContext.Query<ProductAgency>() on product.Id equals productAgencyJoin
                     .ProductId into pagJoin
                 from productAgency in pagJoin.DefaultIfEmpty()
                 join agencyJoin in _dbContext.Query<Agency>() on productAgency.AgencyId equals agencyJoin.Id into
@@ -369,7 +328,7 @@ namespace ImagineCommunications.GamePlan.Persistence.SqlServer.Repositories
                 join agencyGroupJoin in _dbContext.Query<AgencyGroup>() on productAgency.AgencyGroupId equals
                     agencyGroupJoin.Id into agencyGroups
                 from agencyGroup in agencyGroups.DefaultIfEmpty()
-                join productPersonJoin in _dbContext.Query<ProductPerson>() on product.Uid equals productPersonJoin
+                join productPersonJoin in _dbContext.Query<ProductPerson>() on product.Id equals productPersonJoin
                     .ProductId into ppJoin
                 from productPerson in ppJoin.DefaultIfEmpty()
                 join personJoin in _dbContext.Query<Person>() on productPerson.PersonId equals personJoin.Id into
@@ -468,32 +427,20 @@ namespace ImagineCommunications.GamePlan.Persistence.SqlServer.Repositories
                 var ftsQueryText = _searchConditionBuilder.StartWith(queryModel.Description).Build();
 
                 query = query.Where(q =>
-                    //campaign
-                    EF.Functions.Contains(
-                        EF.Property<string>(q.Campaign, Entities.Tenant.Campaigns.Campaign.SearchTokensFieldName),
-                        ftsQueryText) ||
-                    q.Campaign.CampaignGroup.Contains(queryModel.Description) ||
-                    q.Campaign.Name.Contains(queryModel.Description) ||
-                    q.Campaign.ExternalId.Contains(queryModel.Description) ||
-                    q.Campaign.BusinessType.Contains(queryModel.Description) ||
-                    //demographics
-                    q.Demographic.ShortName.Contains(queryModel.Description) ||
-                    //product
-                    q.Product.Name.Contains(queryModel.Description) ||
-                    EF.Functions.Contains(EF.Property<string>(q.Product, Product.SearchFieldName),
-                        ftsQueryText) ||
-                    //advertiser
-                    q.Advertiser.Name.Contains(queryModel.Description) ||
-                    EF.Functions.Contains(EF.Property<string>(q.Advertiser, Advertiser.SearchFieldName),
-                        ftsQueryText) ||
-                    //agency
-                    q.Agency.Name.Contains(queryModel.Description) ||
-                    EF.Functions.Contains(EF.Property<string>(q.Agency, Agency.SearchFieldName),
-                        ftsQueryText) ||
-                    //clash
-                    q.Clash.Externalref.Contains(queryModel.Description) ||
-                    q.Clash.Description.Contains(queryModel.Description)
-                );
+                q.Campaign.Name.Contains(queryModel.Description)
+             || q.Campaign.ExternalId.Contains(queryModel.Description)
+             || q.Campaign.CampaignGroup.Contains(queryModel.Description)
+             || q.Campaign.BusinessType.Contains(queryModel.Description)
+             || q.Demographic.ShortName.Contains(queryModel.Description)
+             || q.Product.Name.Contains(queryModel.Description)
+             || q.Product.Externalidentifier.Contains(queryModel.Description)
+             || q.Advertiser.Name.Contains(queryModel.Description)
+             || q.Advertiser.ExternalIdentifier.Contains(queryModel.Description)
+             || q.Agency.Name.Contains(queryModel.Description)
+             || q.Agency.ExternalIdentifier.Contains(queryModel.Description)
+             || q.Clash.Externalref.Contains(queryModel.Description)
+             || q.Clash.Description.Contains(queryModel.Description)
+         ).MakeCaseInsensitive();
             }
 
             if (queryModel.BusinessTypes != null && queryModel.BusinessTypes.Any())

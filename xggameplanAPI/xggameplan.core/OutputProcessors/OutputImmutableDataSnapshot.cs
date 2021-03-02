@@ -31,7 +31,7 @@ namespace xggameplan.core.OutputProcessors
             IProgrammeDictionaryRepository programmeDictionaryRepository, ISpotRepository spotRepository,
             IMetadataRepository metadataRepository)
         {
-            var runStartDate = new Lazy<DateTime>(() => Run.Value.StartDate.Add(Run.Value.StartTime));
+            var runStartDate = new Lazy<DateTime>(() => DateHelper.ConvertBroadcastToStandard(Run.Value.StartDate, Run.Value.StartTime));
             var runEndDate = new Lazy<DateTime>(() => DateHelper.ConvertBroadcastToStandard(Run.Value.EndDate, Run.Value.EndTime));
 
             Run = new Lazy<Run>(() => runRepository.Find(runWithScenarioRef.RunId));

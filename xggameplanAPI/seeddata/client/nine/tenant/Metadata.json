@@ -1,0 +1,8 @@
+[
+  {
+    "Dictionary": {
+      "ProgramCategories": "[{\"Id\":1,\"value\":\"SPORT\"},{\"Id\":2,\"value\":\"CHILDREN\"},{\"Id\":3,\"value\":\"NEWS\"},{\"Id\":4,\"value\":\"OTHER\"}]",
+      "BreakTypes": "[{\"Id\":1,\"Value\":\"BASE\"},{\"Id\":2,\"Value\":\"PREMIUM\"}]"
+    }
+  }
+]

@@ -11,7 +11,7 @@ namespace ImagineCommunications.GamePlan.Persistence.SqlServer.EntityConfigurati
             builder.ToTable("CampaignSalesAreaTargetMultiparts");
 
             builder.HasKey(e => e.Id);
-            builder.Property(e => e.Id).UseSqlServerIdentityColumn();
+            builder.Property(e => e.Id).UseMySqlIdentityColumn();
             builder.Property(e => e.DesiredPercentageSplit).HasColumnType("DECIMAL(28,18)");
             builder.Property(e => e.CurrentPercentageSplit).HasColumnType("DECIMAL(28,18)");
 

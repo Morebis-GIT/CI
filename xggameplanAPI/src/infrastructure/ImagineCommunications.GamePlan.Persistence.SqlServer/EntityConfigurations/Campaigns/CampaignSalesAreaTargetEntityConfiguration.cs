@@ -8,27 +8,24 @@ namespace ImagineCommunications.GamePlan.Persistence.SqlServer.EntityConfigurati
     {
         public void Configure(EntityTypeBuilder<CampaignSalesAreaTarget> builder)
         {
-            _ = builder.ToTable("CampaignSalesAreaTargets");
+            builder.ToTable("CampaignSalesAreaTargets");
 
-            _ = builder.HasKey(e => e.Id);
+            builder.HasKey(e => e.Id);
 
-            _ = builder.Property(e => e.Id).UseSqlServerIdentityColumn();
+            builder.Property(e => e.Id).UseMySqlIdentityColumn();
+            builder.Property(e => e.SalesArea).HasMaxLength(64);
+            builder.HasIndex(e => e.CampaignId);
+            builder.HasIndex(e => e.SalesArea);
 
-            _ = builder.HasIndex(e => e.CampaignId);
-            _ = builder.HasIndex(e => e.SalesAreaId);
-
-            _ = builder.HasOne(x => x.SalesAreaGroup).WithOne()
+            builder.HasOne(x => x.SalesAreaGroup).WithOne()
                 .HasForeignKey<CampaignSalesAreaTargetGroup>(x => x.CampaignSalesAreaTargetId)
                 .OnDelete(DeleteBehavior.Cascade);
-            _ = builder.HasMany(x => x.Multiparts).WithOne()
+            builder.HasMany(x => x.Multiparts).WithOne()
                 .HasForeignKey(x => x.CampaignSalesAreaTargetId)
                 .OnDelete(DeleteBehavior.Cascade);
-            _ = builder.HasMany(x => x.CampaignTargets).WithOne()
+            builder.HasMany(x => x.CampaignTargets).WithOne()
                 .HasForeignKey(x => x.CampaignSalesAreaTargetId)
                 .OnDelete(DeleteBehavior.Cascade);
-            _ = builder.HasOne(x => x.SalesArea).WithMany()
-                .HasForeignKey(x => x.SalesAreaId)
-                .OnDelete(DeleteBehavior.Restrict);
         }
     }
 }

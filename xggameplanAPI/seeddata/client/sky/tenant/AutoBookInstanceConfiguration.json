@@ -1,0 +1,20 @@
+[  
+  {
+    "CriteriaList": [
+      {
+	   "Id": 1,
+        "MaxDays": 100,
+        "MaxSalesAreas": null,
+        "MaxDemographics": null,
+        "MaxCampaigns": null,
+        "MaxBreaks": null
+      }
+    ],
+    "Id": 1,
+    "Description": "r5.2xlarge (100GB)",
+    "CloudProvider": 0,
+    "InstanceType": "r5.2xlarge",
+    "StorageSizeGb": 100,
+    "Cost": 54.0
+  }
+]

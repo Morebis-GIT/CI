@@ -83,8 +83,7 @@ namespace ImagineCommunications.GamePlan.Persistence.SqlServer.Repositories
             return _mapper.Map<List<LibrarySalesAreaPassPriority>>(
                 await _dbContext.Query<Entities.Tenant.LibrarySalesAreaPassPriority>()
                     .Include(e => e.SalesAreaPriorities)
-                    .AsNoTracking()
-                    .ToListAsync()
+                    .ToArrayAsync()
                     .ConfigureAwait(false), opts => opts.UseEntityCache(_salesAreaByIdCache));
         }
 

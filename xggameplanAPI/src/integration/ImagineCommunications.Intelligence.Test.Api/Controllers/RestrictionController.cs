@@ -7,7 +7,7 @@ using ImagineCommunications.Gameplan.Integration.Contracts.Models.Restriction;
 
 namespace ImagineCommunications.Intelligence.Test.Api.Controllers
 {
-    public class RestrictionController : BaseController<IEvent, IEvent, IEvent, IBulkRestrictionCreatedOrUpdated, IBulkEvent<IEvent>, IBulkRestrictionDeleted>
+    public class RestrictionController : BaseController<IEvent, IEvent, IBulkRestrictionDeleted, IBulkRestrictionCreatedOrUpdated, IBulkEvent<IEvent>, IBulkEvent<IEvent>>
     {
         public RestrictionController(IServiceBus serviceBus) : base(serviceBus) { }
 

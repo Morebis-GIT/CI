@@ -1,0 +1,15 @@
+[
+    {
+        "Id": "5a24aca9-0a60-4dba-8293-f3691353aabf",
+        "Passes": [
+            {
+                "Id": 1
+            }
+        ],
+        "CampaignPassPriorities": [],
+        "Name": "Default Scenario",
+        "CustomId": 1,
+        "IsAutopilot": false,
+        "IsLibraried": true
+    }
+]

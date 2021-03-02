@@ -13,26 +13,16 @@ namespace ImagineCommunications.GamePlan.Persistence.Memory.Repositories
         MemoryRepositoryBase<Break>,
         IBreakRepository
     {
-        public MemoryBreakRepository()
-        {
-        }
-
-        public void Add(Break item)
-        {
-            InsertOrReplaceItem(item, item.Id.ToString());
-        }
+        public MemoryBreakRepository() { }
 
         public void Add(IEnumerable<Break> items)
         {
-            foreach (Break item in items)
-            {
-                Add(item);
-            }
+            InsertItems(items.ToList(), items.Select(i => i.Id.ToString()).ToList<string>());
         }
 
-        public IEnumerable<Break> FindByExternal(string externalRef)
+        public IEnumerable<Break> FindByExternal(string externalref)
         {
-            return GetAllItems(b => b.ExternalBreakRef == externalRef);
+            return GetAllItems(b => b.ExternalBreakRef == externalref);
         }
 
         public IEnumerable<Break> FindByExternal(List<string> externalRef)
@@ -68,6 +58,12 @@ namespace ImagineCommunications.GamePlan.Persistence.Memory.Repositories
                                            && salesAreaNames.Contains(currentItem.SalesArea));
         }
 
+        public void Add(Break item)
+        {
+            var items = new List<Break>() { item };
+            InsertItems(items, items.Select(i => i.Id.ToString()).ToList<string>());
+        }
+
         [Obsolete("Use Get()")]
         public Break Find(Guid id) => Get(id);
 
@@ -98,22 +94,18 @@ namespace ImagineCommunications.GamePlan.Persistence.Memory.Repositories
             DeleteAllItems();
         }
 
-        public Task TruncateAsync()
+        public async Task TruncateAsync()
         {
             Truncate();
-            return Task.CompletedTask;
+            _ = await Task.FromResult(true).ConfigureAwait(false);
         }
 
-        public void SaveChanges()
-        {
-        }
+        public void SaveChanges() { }
 
-        public Task SaveChangesAsync() => Task.CompletedTask;
+        public async Task SaveChangesAsync() => await Task.FromResult(true).ConfigureAwait(false);
 
         public int Count(Expression<Func<Break, bool>> query) => GetCount(query);
 
-        public void Dispose()
-        {
-        }
+        public void Dispose() { }
     }
 }

@@ -9,10 +9,8 @@ using ImagineCommunications.GamePlan.Domain.Generic.Types;
 using ImagineCommunications.GamePlan.Domain.Generic.Types.Ranges;
 using ImagineCommunications.GamePlan.Persistence.SqlServer.Dto;
 using ImagineCommunications.GamePlan.Persistence.SqlServer.Entities.Tenant.Campaigns;
-using ImagineCommunications.GamePlan.Persistence.SqlServer.Entities.Tenant.SalesAreas;
 using ImagineCommunications.GamePlan.Persistence.SqlServer.Extensions;
 using NodaTime;
-using xggameplan.core.Extensions.AutoMapper;
 using CampaignBookingPositionGroup = ImagineCommunications.GamePlan.Domain.Campaigns.Objects.CampaignBookingPositionGroup;
 using CampaignBreakRequirement = ImagineCommunications.GamePlan.Domain.Campaigns.Objects.CampaignBreakRequirement;
 using CampaignBreakRequirementItem = ImagineCommunications.GamePlan.Domain.Campaigns.Objects.CampaignBreakRequirementItem;
@@ -90,14 +88,18 @@ namespace ImagineCommunications.GamePlan.Persistence.SqlServer.Mapping
                 .ForMember(dest => dest.Id, opt => opt.Ignore())
                 .ForMember(dest => dest.CampaignSalesAreaTargetId, opt => opt.Ignore());
 
-            CreateMap<string, CampaignSalesAreaTargetGroupSalesArea>()
-                .ForMember(d => d.SalesAreaId,
-                    opts => opts.FromEntityCache(opt => opt.Entity<SalesArea>(x => x.Id)))
-                .ReverseMap()
-                .FromEntityCache(x => x.SalesAreaId, opt => opt.Entity<SalesArea>(x => x.Name));
-
             _ = CreateMap<CampaignSalesAreaTargetGroup, SalesAreaGroup>()
+                .ForMember(dest => dest.SalesAreas, opt => opt.MapFrom(src => src.SalesAreas.Select(x => x.Name).ToList()))
                 .ReverseMap()
+                .ForMember(dest => dest.SalesAreas, opt =>
+                {
+                    opt.PreCondition(src => src.SalesAreas != null);
+                    opt.MapFrom(src => new HashSet<CampaignSalesAreaTargetGroupSalesArea>(
+                        src.SalesAreas.Select(x => new CampaignSalesAreaTargetGroupSalesArea
+                        {
+                            Name = x
+                        })));
+                })
                 .ForMember(dest => dest.Id, opt => opt.Ignore())
                 .ForMember(dest => dest.CampaignSalesAreaTargetId, opt => opt.Ignore());
 
@@ -124,13 +126,7 @@ namespace ImagineCommunications.GamePlan.Persistence.SqlServer.Mapping
                 .ForMember(dest => dest.CampaignSalesAreaTargetId, opt => opt.Ignore());
 
             _ = CreateMap<CampaignSalesAreaTarget, SalesAreaCampaignTarget>()
-                .ForMember(d => d.SalesArea,
-                    opts => opts.FromEntityCache(src => src.SalesAreaId,
-                        s => s.Entity<SalesArea>(x => x.Name).CheckNavigationPropertyFirst(x => x.SalesArea)))
                 .ReverseMap()
-                .ForMember(d => d.SalesArea, o => o.Ignore())
-                .ForMember(d => d.SalesAreaId,
-                    o => o.FromEntityCache(src => src.SalesArea, opts => opts.Entity<SalesArea>(x => x.Id)))
                 .ForMember(dest => dest.Multiparts, opt =>
                 {
                     opt.PreCondition(src => src.Multiparts != null);
@@ -144,15 +140,19 @@ namespace ImagineCommunications.GamePlan.Persistence.SqlServer.Mapping
                 .ForMember(dest => dest.Id, opt => opt.Ignore())
                 .ForMember(dest => dest.CampaignId, opt => opt.Ignore());
 
-            CreateMap<string, CampaignProgrammeRestrictionSalesArea>()
-                .ForMember(d => d.SalesAreaId,
-                    opts => opts.FromEntityCache(opt => opt.Entity<SalesArea>(x => x.Id)))
-                .ReverseMap()
-                .FromEntityCache(x => x.SalesAreaId, opt => opt.Entity<SalesArea>(x => x.Name));
-
             _ = CreateMap<CampaignProgrammeRestriction, ProgrammeRestriction>()
+                .ForMember(dest => dest.SalesAreas, opt => opt.MapFrom(src => src.SalesAreas.Select(x => x.Name).ToList()))
                 .ForMember(dest => dest.CategoryOrProgramme, opt => opt.MapFrom(src => src.CategoryOrProgramme.Select(x => x.Name).ToList()))
                 .ReverseMap()
+                .ForMember(dest => dest.SalesAreas, opt =>
+                {
+                    opt.PreCondition(src => src.SalesAreas != null);
+                    opt.MapFrom(src => new HashSet<CampaignProgrammeRestrictionSalesArea>(
+                        src.SalesAreas.Select(x => new CampaignProgrammeRestrictionSalesArea
+                        {
+                            Name = x
+                        })));
+                })
                 .ForMember(dest => dest.CategoryOrProgramme, opt =>
                 {
                     opt.PreCondition(src => src.CategoryOrProgramme != null);
@@ -165,25 +165,35 @@ namespace ImagineCommunications.GamePlan.Persistence.SqlServer.Mapping
                 .ForMember(dest => dest.Id, opt => opt.Ignore())
                 .ForMember(dest => dest.CampaignId, opt => opt.Ignore());
 
-            CreateMap<string, CampaignTimeRestrictionSalesArea>()
-                .ForMember(d => d.SalesAreaId,
-                    opts => opts.FromEntityCache(opt => opt.Entity<SalesArea>(x => x.Id)))
-                .ReverseMap()
-                .FromEntityCache(x => x.SalesAreaId, opt => opt.Entity<SalesArea>(x => x.Name));
-
             _ = CreateMap<CampaignTimeRestriction, TimeRestriction>()
+                .ForMember(dest => dest.SalesAreas,
+                    opt => opt.MapFrom(src => src.SalesAreas.Select(x => x.Name).ToList()))
                 .ReverseMap()
+                .ForMember(dest => dest.SalesAreas, opt =>
+                {
+                    opt.PreCondition(src => src.SalesAreas != null);
+                    opt.MapFrom(src => new HashSet<CampaignTimeRestrictionSalesArea>(
+                        src.SalesAreas.Select(x => new CampaignTimeRestrictionSalesArea
+                        {
+                            Name = x
+                        })));
+                })
                 .ForMember(dest => dest.Id, opt => opt.Ignore())
                 .ForMember(dest => dest.CampaignId, opt => opt.Ignore());
 
-            CreateMap<string, CampaignBookingPositionGroupSalesArea>()
-                .ForMember(d => d.SalesAreaId,
-                    opts => opts.FromEntityCache(opt => opt.Entity<SalesArea>(x => x.Id)))
-                .ReverseMap()
-                .FromEntityCache(x => x.SalesAreaId, opt => opt.Entity<SalesArea>(x => x.Name));
-
             _ = CreateMap<Entities.Tenant.Campaigns.CampaignBookingPositionGroup, CampaignBookingPositionGroup>()
+                .ForMember(dest => dest.SalesAreas,
+                    opt => opt.MapFrom(src => src.SalesAreas.Select(x => x.Name).ToList()))
                 .ReverseMap()
+                .ForMember(dest => dest.SalesAreas, opt =>
+                {
+                    opt.PreCondition(src => src.SalesAreas != null);
+                    opt.MapFrom(src => new HashSet<CampaignBookingPositionGroupSalesArea>(
+                        src.SalesAreas.Select(x => new CampaignBookingPositionGroupSalesArea
+                        {
+                            Name = x
+                        })));
+                })
                 .ForMember(dest => dest.Id, opt => opt.Ignore())
                 .ForMember(dest => dest.CampaignId, opt => opt.Ignore());
 
@@ -274,16 +284,7 @@ namespace ImagineCommunications.GamePlan.Persistence.SqlServer.Mapping
                 .ForMember(dest => dest.DeliveryType, opt => opt.MapFrom(src => (CampaignDeliveryType)src.DeliveryType));
 
             _ = CreateMap<Entities.Tenant.Campaigns.Campaign, CampaignNameModel>();
-
-            _ = CreateMap<CampaignBreakRequirement, Entities.Tenant.Campaigns.CampaignBreakRequirement>()
-                .ForMember(d => d.SalesArea, o => o.Ignore())
-                .ForMember(d => d.SalesAreaId,
-                    o => o.FromEntityCache(src => src.SalesArea, opts => opts.Entity<SalesArea>(x => x.Id)))
-                .ReverseMap()
-                .ForMember(d => d.SalesArea,
-                    opts => opts.FromEntityCache(src => src.SalesAreaId,
-                        s => s.Entity<SalesArea>(x => x.Name).CheckNavigationPropertyFirst(x => x.SalesArea)));
-
+            _ = CreateMap<CampaignBreakRequirement, Entities.Tenant.Campaigns.CampaignBreakRequirement>().ReverseMap();
             _ = CreateMap<CampaignBreakRequirementItem, Entities.Tenant.Campaigns.CampaignBreakRequirementItem>().ReverseMap();
             _ = CreateMap<CampaignBreakRequirementItem, Entities.Tenant.Campaigns.CampaignCentreBreakRequirementItem>().ReverseMap();
             _ = CreateMap<CampaignBreakRequirementItem, Entities.Tenant.Campaigns.CampaignEndBreakRequirementItem>().ReverseMap();

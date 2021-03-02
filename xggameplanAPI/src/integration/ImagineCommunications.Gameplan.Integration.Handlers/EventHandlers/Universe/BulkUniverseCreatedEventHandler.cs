@@ -39,7 +39,7 @@ namespace ImagineCommunications.Gameplan.Integration.Handlers.EventHandlers.Univ
                 DateTime.MinValue, DateTime.MinValue).ToList();
 
             SaveUniverse(command.Data.ToList(), universes);
-            _universeRepository.SaveChanges();
+            _salesAreaRepository.SaveChanges();
         }
 
         private void SaveUniverse(List<IUniverseCreated> newUniverses, List<UniverseDbObject> existingUniverses)
@@ -57,6 +57,7 @@ namespace ImagineCommunications.Gameplan.Integration.Handlers.EventHandlers.Univ
                         SaveUniverse(item, existingUniverse, out UniverseDbObject nextUniverse, ref universes);
                         existingUniverse = nextUniverse;
                     });
+
                 });
             if (universes.Any())
             {
@@ -133,7 +134,7 @@ namespace ImagineCommunications.Gameplan.Integration.Handlers.EventHandlers.Univ
 
         private static void AddOrUpdate(ref List<UniverseDbObject> universes, UniverseDbObject universe)
         {
-            _ = universes.RemoveAll(_ => _.Id.Equals(universe.Id));
+            universes.RemoveAll(_ => _.Id.Equals(universe.Id));
             universes.Add(universe);
         }
     }

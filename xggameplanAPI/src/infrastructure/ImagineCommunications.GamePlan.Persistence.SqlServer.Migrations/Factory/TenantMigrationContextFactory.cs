@@ -37,7 +37,7 @@ namespace ImagineCommunications.GamePlan.Persistence.SqlServer.Migrations.Factor
         public TenantMigrationDbContext CreateDbContext(string connectionString)
         {
             var optionsBuilder = new DbContextOptionsBuilder<TenantMigrationDbContext>();
-            optionsBuilder.UseSqlServer(connectionString,
+            optionsBuilder.UseMySql(connectionString,
                 options => options.CommandTimeout(_timeoutSetting));
 
             return new TenantMigrationDbContext(optionsBuilder.Options);

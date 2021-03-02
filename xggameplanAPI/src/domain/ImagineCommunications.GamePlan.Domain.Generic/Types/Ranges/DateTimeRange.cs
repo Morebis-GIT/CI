@@ -9,7 +9,7 @@ namespace ImagineCommunications.GamePlan.Domain.Generic.Types.Ranges
     /// <summary>
     /// Represents an immutable range of date and times, start and end inclusive.
     /// </summary>
-    [DebuggerDisplay("{Start.ToUniversalTime().ToString(\"O\"), nq} to {End.ToUniversalTime().ToString(\"O\"), nq}")]
+    [DebuggerDisplay("{Start.ToUniversalTime().ToString(\"O\")} to {End.ToUniversalTime().ToString(\"O\")}")]
     public readonly struct DateTimeRange : IEquatable<DateTimeRange>, IEnumerable<DateTime>
     {
         #region DateTimeRange Types

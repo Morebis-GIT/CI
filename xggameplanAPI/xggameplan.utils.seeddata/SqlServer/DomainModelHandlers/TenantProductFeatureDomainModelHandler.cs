@@ -29,9 +29,11 @@ namespace xggameplan.utils.seeddata.SqlServer.DomainModelHandlers
             return model;
         }
 
-        public void AddRange(params TenantProductFeature[] models) =>
-            _dbContext.BulkInsertEngine.BulkInsert(_mapper.Map<List<TenantProductFeatureEntity>>(models),
-                post => post.TryToUpdate(models), _mapper);
+        public void AddRange(params TenantProductFeature[] models)
+        {
+            var entities = _mapper.Map<List<TenantProductFeatureEntity>>(models).ToArray();
+            _dbContext.AddRange(entities);
+        }
 
         public int Count() => _dbContext.Query<TenantProductFeatureEntity>().Count();
 

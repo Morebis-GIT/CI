@@ -9,15 +9,14 @@ namespace ImagineCommunications.GamePlan.Persistence.SqlServer.EntityConfigurati
         public void Configure(EntityTypeBuilder<Clash> builder)
         {
             builder.ToTable("Clashes");
-
+            builder.Property(e => e.Uid);
             builder.HasKey(e => e.Uid);
-            builder.Property(e => e.Uid).HasDefaultValueSql("newid()");
+            
 
             builder.Property(p => p.Externalref).HasMaxLength(64);
             builder.Property(p => p.ParentExternalidentifier).HasMaxLength(64);
-            builder.Property(p => p.Description).HasMaxLength(512);
-
-            builder.Property<string>(Clash.SearchField).HasComputedColumnSql("CONCAT_WS(' ', Externalref, Description)");
+            builder.Property(p => p.Description).HasMaxLength(TextColumnLenght.Medium);
+            builder.Property<string>(Clash.SearchField).HasMaxLength(TextColumnLenght.SearchField);
 
             builder.HasMany(e => e.Differences).WithOne().HasForeignKey(e => e.ClashId);
 

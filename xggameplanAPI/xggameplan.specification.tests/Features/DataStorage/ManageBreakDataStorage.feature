@@ -140,6 +140,7 @@ Scenario Outline: Search Breaks by parameters
 	| 2019-01-11 | 2019-04-25 | TCN92     | 0                   |
 	| 2019-01-11 | 2019-03-07 | QTQ93     | 0                   |
 
+@ignore
 Scenario Outline: Search Breaks by date range and sales areas
 	Given the following documents created:
 		| Id                                   | ScheduledDate       | SalesArea | BreakType | ExternalBreakRef |

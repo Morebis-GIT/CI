@@ -16,10 +16,12 @@ namespace ImagineCommunications.GamePlan.Persistence.File.Repositories
     {
         public FileClashRepository(string folder) : base(folder, "clash")
         {
+
         }
 
         public void Dispose()
         {
+
         }
 
         public void Add(IEnumerable<Clash> items)
@@ -30,7 +32,7 @@ namespace ImagineCommunications.GamePlan.Persistence.File.Repositories
         public void Add(Clash item)
         {
             var items = new List<Clash>() { item };
-            InsertItems(_folder, _type, items, items.ConvertAll(i => i.Uid.ToString()));
+            InsertItems(_folder, _type, items, items.Select(i => i.Uid.ToString()).ToList<string>());
         }
 
         public Clash Get(Guid id)
@@ -50,18 +52,21 @@ namespace ImagineCommunications.GamePlan.Persistence.File.Repositories
             return GetAllByType<Clash>(_folder, _type, c => externalRefs.Contains(c.Externalref));
         }
 
-        public IEnumerable<Clash> GetAll() => GetAllByType<Clash>(_folder, _type);
+        public IEnumerable<Clash> GetAll()
+        {
+            return GetAllByType<Clash>(_folder, _type);
+        }
 
         public IEnumerable<ClashNameModel> GetDescriptionByExternalRefs(ICollection<string> externalRefs) => throw new NotImplementedException();
 
-        public int Count() => CountAll(_folder, _type);
+        public int Count() => CountAll<Clash>(_folder, _type);
 
         [Obsolete("Use Count()")]
         public int CountAll => Count();
 
         public void Delete(Guid uid)
         {
-            DeleteItem(_folder, _type, uid.ToString());
+            DeleteItem<Clash>(_folder, _type, uid.ToString());
         }
 
         public void Remove(Guid uid) => Delete(uid);
@@ -70,24 +75,22 @@ namespace ImagineCommunications.GamePlan.Persistence.File.Repositories
         {
             isDeleted = false;
             var item = Find(uid);
-            if (item is null)
+            if (item != null)
             {
-                return;
+                DeleteItem<Clash>(_folder, _type, uid.ToString());
+                isDeleted = true;
             }
-
-            DeleteItem(_folder, _type, uid.ToString());
-            isDeleted = true;
         }
 
         public void Truncate()
         {
-            DeleteAllItems(_folder, _type);
+            DeleteAllItems<Clash>(_folder, _type);
         }
 
         public Task TruncateAsync()
         {
             Truncate();
-            return Task.CompletedTask;
+            return Task.FromResult(true);
         }
 
         public PagedQueryResult<ClashNameModel> Search(ClashSearchQueryModel queryModel)
@@ -100,12 +103,9 @@ namespace ImagineCommunications.GamePlan.Persistence.File.Repositories
             return GetAllByType(_folder, _type, query).Count;
         }
 
-        public void SaveChanges()
-        {
-        }
+        public void SaveChanges() { }
 
         public bool Exists(Expression<Func<Clash, bool>> condition) => throw new NotImplementedException();
-
         public void DeleteRange(IEnumerable<Guid> ids)
         {
             throw new NotImplementedException();

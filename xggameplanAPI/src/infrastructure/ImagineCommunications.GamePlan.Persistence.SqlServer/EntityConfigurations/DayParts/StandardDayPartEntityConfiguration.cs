@@ -8,19 +8,15 @@ namespace ImagineCommunications.GamePlan.Persistence.SqlServer.EntityConfigurati
     {
         public void Configure(EntityTypeBuilder<StandardDayPart> builder)
         {
-            _ = builder.ToTable("StandardDayParts");
-            _ = builder.HasKey(k => k.Id);
-            _ = builder.Property(e => e.Id).UseSqlServerIdentityColumn();
-            _ = builder.HasOne(x => x.SalesArea)
-                .WithMany()
-                .HasForeignKey(x => x.SalesAreaId)
-                .OnDelete(DeleteBehavior.Restrict);
-            _ = builder.Property(e => e.Name).HasMaxLength(64).IsRequired();
+            builder.ToTable("StandardDayParts");
+            builder.HasKey(k => k.Id);
+            builder.Property(e => e.Id).UseMySqlIdentityColumn();
+            builder.Property(e => e.SalesArea).HasMaxLength(512).IsRequired();
+            builder.Property(e => e.Name).HasMaxLength(64).IsRequired();
 
-            _ = builder.HasMany(x => x.Timeslices).WithOne()
+            builder.HasMany(x => x.Timeslices).WithOne()
                 .HasForeignKey(x => x.DayPartId)
                 .OnDelete(DeleteBehavior.Cascade);
-            _ = builder.HasIndex(x => x.SalesAreaId);
         }
     }
 }

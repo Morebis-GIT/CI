@@ -2,12 +2,12 @@
 using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Linq;
+using ImagineCommunications.GamePlan.Domain.Shared.Programmes.Objects;
 using ImagineCommunications.GamePlan.Domain.SmoothConfigurations.Objects;
 using ImagineCommunications.GamePlan.Domain.Spots;
 using ImagineCommunications.GamePlan.Process.Smooth.Dtos;
 using ImagineCommunications.GamePlan.Process.Smooth.Interfaces;
 using ImagineCommunications.GamePlan.Process.Smooth.Models;
-using NodaTime;
 using xggameplan.common;
 using xggameplan.Common;
 
@@ -276,9 +276,11 @@ namespace ImagineCommunications.GamePlan.Process.Smooth.Services
 
         public IEnumerable<Spot> SortSpotsToPlace(
             IEnumerable<Spot> spots,
-            (DateTime programmeStartDateTime, Duration programmeDuration) programmeTxDetails)
+            Programme programme
+            )
         {
-            var (programmeStart, programmeDuration) = programmeTxDetails;
+            var programmeStart = programme.StartDateTime;
+            var programmeDuration = programme.Duration;
 
             return spots
                 .OrderBy(s => NonpreemptableFirst(s.Preemptable))

@@ -3,107 +3,110 @@ using System.Linq;
 using AutoMapper;
 using ImagineCommunications.GamePlan.Domain.SmoothConfigurations;
 using ImagineCommunications.GamePlan.Domain.SmoothConfigurations.Objects;
-using ImagineCommunications.GamePlan.Persistence.SqlServer.Entities.Tenant.SalesAreas;
-using xggameplan.core.Extensions.AutoMapper;
-using SmoothConfigEntities = ImagineCommunications.GamePlan.Persistence.SqlServer.Entities.Tenant.Smooth.Configuration;
+using SmoothConfigurationEntity = ImagineCommunications.GamePlan.Persistence.SqlServer.Entities.Tenant.Smooth.Configuration.SmoothConfiguration;
+using SmoothDiagnosticConfigurationEntity = ImagineCommunications.GamePlan.Persistence.SqlServer.Entities.Tenant.Smooth.Configuration.SmoothDiagnosticConfiguration;
+using SmoothPassEntity = ImagineCommunications.GamePlan.Persistence.SqlServer.Entities.Tenant.Smooth.Configuration.SmoothPassEntities.SmoothPass;
+using SmoothPassDefaultEntity = ImagineCommunications.GamePlan.Persistence.SqlServer.Entities.Tenant.Smooth.Configuration.SmoothPassEntities.SmoothPassDefault;
+using SmoothPassBookedEntity = ImagineCommunications.GamePlan.Persistence.SqlServer.Entities.Tenant.Smooth.Configuration.SmoothPassEntities.SmoothPassBooked;
+using SmoothPassUnplacedEntity = ImagineCommunications.GamePlan.Persistence.SqlServer.Entities.Tenant.Smooth.Configuration.SmoothPassEntities.SmoothPassUnplaced;
+using SmoothPassIterationRecordEntity = ImagineCommunications.GamePlan.Persistence.SqlServer.Entities.Tenant.Smooth.Configuration.SmoothPassEntities.SmoothPassIterationRecord;
+using SpotsCriteriaEntity = ImagineCommunications.GamePlan.Persistence.SqlServer.Entities.Tenant.Smooth.Configuration.SpotsCriteria;
+using SmoothPassIterationRecordPassSequenceItem = ImagineCommunications.GamePlan.Persistence.SqlServer.Entities.Tenant.Smooth.Configuration.SmoothPassEntities.SmoothPassIterationRecordPassSequenceItem;
+using SmoothPassDefaultIterationEntity = ImagineCommunications.GamePlan.Persistence.SqlServer.Entities.Tenant.Smooth.Configuration.SmoothPassEntities.SmoothPassDefaultIteration;
+using SmoothPassUnplacedIterationEntity = ImagineCommunications.GamePlan.Persistence.SqlServer.Entities.Tenant.Smooth.Configuration.SmoothPassEntities.SmoothPassUnplacedIteration;
+using BestBreakFactorGroupRecordEntity = ImagineCommunications.GamePlan.Persistence.SqlServer.Entities.Tenant.Smooth.Configuration.BestBreakFactorEntities.BestBreakFactorGroupRecord;
+using BestBreakFactorGroupRecordPassSequenceItem = ImagineCommunications.GamePlan.Persistence.SqlServer.Entities.Tenant.Smooth.Configuration.BestBreakFactorEntities.BestBreakFactorGroupRecordPassSequenceItem;
+using BestBreakFactorGroupEntity = ImagineCommunications.GamePlan.Persistence.SqlServer.Entities.Tenant.Smooth.Configuration.BestBreakFactorEntities.BestBreakFactorGroup;
+using BestBreakFactorEntity = ImagineCommunications.GamePlan.Persistence.SqlServer.Entities.Tenant.Smooth.Configuration.BestBreakFactorEntities.BestBreakFactor;
+using BestBreakFactorGroupItemEntity = ImagineCommunications.GamePlan.Persistence.SqlServer.Entities.Tenant.Smooth.Configuration.BestBreakFactorEntities.BestBreakFactorGroupItem;
+using BestBreakDefaultFactorEntity = ImagineCommunications.GamePlan.Persistence.SqlServer.Entities.Tenant.Smooth.Configuration.BestBreakFactorEntities.BestBreakDefaultFactor;
+using BestBreakFilterFactorEntity = ImagineCommunications.GamePlan.Persistence.SqlServer.Entities.Tenant.Smooth.Configuration.BestBreakFactorEntities.BestBreakFilterFactor;
+using SameBreakGroupScoreFactorEntity = ImagineCommunications.GamePlan.Persistence.SqlServer.Entities.Tenant.Smooth.Configuration.BestBreakFactorEntities.SameBreakGroupScoreFactor;
+using SmoothPassIterationSpotsCriteriaEntity = ImagineCommunications.GamePlan.Persistence.SqlServer.Entities.Tenant.Smooth.Configuration.SmoothPassEntities.SmoothPassIterationSpotsCriteria;
 
 namespace ImagineCommunications.GamePlan.Persistence.SqlServer.Mapping
 {
-    using BestBreakFactorEntities = SmoothConfigEntities.BestBreakFactorEntities;
-    using SmoothPassEntities = SmoothConfigEntities.SmoothPassEntities;
-
     public class SmoothConfigurationProfile : Profile
     {
         public SmoothConfigurationProfile()
         {
             //From Domain
-            _ = CreateMap<SmoothConfiguration, SmoothConfigEntities.SmoothConfiguration>().ReverseMap();
-            _ = CreateMap<SmoothDiagnosticConfiguration, SmoothConfigEntities.SmoothDiagnosticConfiguration>();
+            CreateMap<SmoothConfiguration, SmoothConfigurationEntity>().ReverseMap();
 
-            _ = CreateMap<SmoothPassDefault, SmoothPassEntities.SmoothPassDefault>();
-            _ = CreateMap<SmoothPassBooked, SmoothPassEntities.SmoothPassBooked>().ReverseMap();
-            _ = CreateMap<SmoothPassUnplaced, SmoothPassEntities.SmoothPassUnplaced>();
-            _ = CreateMap<SmoothPassDefaultIteration, SmoothPassEntities.SmoothPassDefaultIteration>();
-            _ = CreateMap<SmoothPassUnplacedIteration, SmoothPassEntities.SmoothPassUnplacedIteration>();
+            CreateMap<SmoothDiagnosticConfiguration, SmoothDiagnosticConfigurationEntity>();
 
-            _ = CreateMap<SmoothPass, SmoothPassEntities.SmoothPass>()
-                .Include<SmoothPassDefault, SmoothPassEntities.SmoothPassDefault>()
-                .Include<SmoothPassBooked, SmoothPassEntities.SmoothPassBooked>()
-                .Include<SmoothPassUnplaced, SmoothPassEntities.SmoothPassUnplaced>();
+            CreateMap<SmoothPass, SmoothPassEntity>()
+                .Include<SmoothPassDefault, SmoothPassDefaultEntity>()
+                .Include<SmoothPassBooked, SmoothPassBookedEntity>()
+                .Include<SmoothPassUnplaced, SmoothPassUnplacedEntity>();
 
-            _ = CreateMap<SpotsCriteria, SmoothConfigEntities.SpotsCriteria>().ReverseMap();
-            _ = CreateMap<SpotsCriteria, BestBreakFactorEntities.BestBreakFactorGroupSpotsCriteria>().ReverseMap();
-            _ = CreateMap<SpotsCriteria, SmoothPassEntities.SmoothPassIterationSpotsCriteria>().ReverseMap();
+            CreateMap<SmoothPassDefault, SmoothPassDefaultEntity>();
+            CreateMap<SmoothPassBooked, SmoothPassBookedEntity>().ReverseMap();
+            CreateMap<SmoothPassUnplaced, SmoothPassUnplacedEntity>();
 
-            _ = CreateMap<BestBreakFactorGroupRecord, BestBreakFactorEntities.BestBreakFactorGroupRecord>()
+            CreateMap<SmoothPassIterationRecord, SmoothPassIterationRecordEntity>()
                 .ForMember(d => d.PassSequences,
                     opt => opt.MapFrom(s =>
-                        s.PassSequences.Select(x => new BestBreakFactorEntities.BestBreakFactorGroupRecordPassSequenceItem { Value = x })));
+                        s.PassSequences.Select(x => new SmoothPassIterationRecordPassSequenceItem {Value = x})));
+            CreateMap<SpotsCriteria, SpotsCriteriaEntity>().ReverseMap();
+            
+            CreateMap<SpotsCriteria, SmoothPassIterationSpotsCriteriaEntity>().ReverseMap();
+            CreateMap<SmoothPassDefaultIteration, SmoothPassDefaultIterationEntity>();
+            CreateMap<SmoothPassUnplacedIteration, SmoothPassUnplacedIterationEntity>();
 
-            _ = CreateMap<BestBreakFactorGroup, BestBreakFactorEntities.BestBreakFactorGroup>();
-            _ = CreateMap<BestBreakFactor, BestBreakFactorEntities.BestBreakFactor>().ReverseMap();
-            _ = CreateMap<BestBreakFactorGroupItem, BestBreakFactorEntities.BestBreakFactorGroupItem>();
-            _ = CreateMap<BestBreakFactor, BestBreakFactorEntities.BestBreakDefaultFactor>().ReverseMap();
-            _ = CreateMap<BestBreakFactor, BestBreakFactorEntities.BestBreakFilterFactor>().ReverseMap();
-            _ = CreateMap<BestBreakFactor, BestBreakFactorEntities.SameBreakGroupScoreFactor>().ReverseMap();
-
-            _ = CreateMap<SmoothPassIterationRecord, SmoothPassEntities.SmoothPassIterationRecord>()
+            CreateMap<BestBreakFactorGroupRecord, BestBreakFactorGroupRecordEntity>()
                 .ForMember(d => d.PassSequences,
                     opt => opt.MapFrom(s =>
-                        s.PassSequences.Select(x => new SmoothPassEntities.SmoothPassIterationRecordPassSequenceItem { Value = x })));
+                        s.PassSequences.Select(x => new BestBreakFactorGroupRecordPassSequenceItem {Value = x})));
+
+            CreateMap<BestBreakFactorGroup, BestBreakFactorGroupEntity>();
+            CreateMap<BestBreakFactor, BestBreakFactorEntity>().ReverseMap();
+            CreateMap<BestBreakFactorGroupItem, BestBreakFactorGroupItemEntity>();
+            CreateMap<BestBreakFactor, BestBreakDefaultFactorEntity>().ReverseMap();
+            CreateMap<BestBreakFactor, BestBreakFilterFactorEntity>().ReverseMap();
+            CreateMap<BestBreakFactor, SameBreakGroupScoreFactorEntity>().ReverseMap();
 
             //To Domain
-            CreateMap<string, SmoothConfigEntities.SmoothDiagnosticConfigurationSalesArea>()
-                .ForMember(dest => dest.SalesAreaId,
-                    opts => opts.FromEntityCache(opt => opt.Entity<SalesArea>(x => x.Id)))
-                .ReverseMap()
-                .FromEntityCache(x => x.SalesAreaId, opt => opt.Entity<SalesArea>(x => x.Name));
-
-            _ = CreateMap<SmoothConfigEntities.SmoothDiagnosticConfiguration, SmoothDiagnosticConfiguration>()
+            CreateMap<SmoothDiagnosticConfigurationEntity, SmoothDiagnosticConfiguration>()
                 .ForMember(d => d.SpotSalesAreas, opt => opt.Condition(s => s.SpotSalesAreas.Any()))
                 .ForMember(d => d.SpotDemographics, opt => opt.Condition(s => s.SpotDemographics.Any()))
                 .ForMember(d => d.SpotExternalRefs, opt => opt.Condition(s => s.SpotExternalRefs.Any()))
                 .ForMember(d => d.SpotExternalCampaignRefs, opt => opt.Condition(s => s.SpotExternalCampaignRefs.Any()))
                 .ForMember(d => d.SpotMultipartSpots, opt => opt.Condition(s => s.SpotMultipartSpots.Any()));
 
-            _ = CreateMap<SmoothPassEntities.SmoothPass, SmoothPass>()
-                    .Include<SmoothPassEntities.SmoothPassDefault, SmoothPassDefault>()
-                    .Include<SmoothPassEntities.SmoothPassBooked, SmoothPassBooked>()
-                    .Include<SmoothPassEntities.SmoothPassUnplaced, SmoothPassUnplaced>();
+            CreateMap<SmoothPassIterationRecordEntity, SmoothPassIterationRecord>()
+                .ForMember(d => d.PassSequences, opt => opt.MapFrom(s => s.PassSequences.Select(x => x.Value)));
+            CreateMap<BestBreakFactorGroupRecordEntity, BestBreakFactorGroupRecord>()
+                .ForMember(d => d.PassSequences, opt => opt.MapFrom(s => s.PassSequences.Select(x => x.Value)));
 
-            _ = CreateMap<SmoothPassEntities.SmoothPassIterationRecord, SmoothPassIterationRecord>()
-                    .ForMember(d => d.PassSequences, opt => opt.MapFrom(s => s.PassSequences.Select(x => x.Value)));
+            CreateMap<SmoothPassEntity, SmoothPass>()
+                .Include<SmoothPassDefaultEntity, SmoothPassDefault>()
+                .Include<SmoothPassBookedEntity, SmoothPassBooked>()
+                .Include<SmoothPassUnplacedEntity, SmoothPassUnplaced>();
 
-            CreateMap<SmoothPassEntities.SmoothPassUnplaced, SmoothPassUnplaced>()
+            CreateMap<SmoothPassUnplacedEntity, SmoothPassUnplaced>()
                 .ConvertUsing(s => s != null ? new SmoothPassUnplaced(s.Sequence) : null);
-
-            CreateMap<SmoothPassEntities.SmoothPassDefault, SmoothPassDefault>()
+            CreateMap<SmoothPassDefaultEntity, SmoothPassDefault>()
                 .ConvertUsing(s => s != null ? new SmoothPassDefault(s.Sequence, s.Sponsored, s.HasMultipartSpots,
                     s.CanSplitMultipartSpots, s.Preemptable, s.BreakRequests.ToList(), s.HasProductClashCode,
                     s.HasSpotEndTime) : null);
-
-            CreateMap<SmoothPassEntities.SmoothPassDefaultIteration, SmoothPassDefaultIteration>()
-            .ConvertUsing(s => s != null ? new SmoothPassDefaultIteration(s.Sequence, s.RespectSpotTime, s.RespectCampaignClash,
-                (ProductClashRules)s.ProductClashRules, (SpotPositionRules)s.BreakPositionRules,
-                (SpotPositionRules)s.RequestedPositionInBreakRules, s.RespectRestrictions,
-                s.RespectClashExceptions) : null);
-            CreateMap<SmoothPassEntities.SmoothPassUnplacedIteration, SmoothPassUnplacedIteration>()
-                .ConvertUsing(s => s != null ? new SmoothPassUnplacedIteration(s.Sequence, s.RespectSpotTime,
-                    s.RespectCampaignClash, (ProductClashRules)s.ProductClashRule, s.RespectRestrictions,
+            CreateMap<SmoothPassDefaultIterationEntity, SmoothPassDefaultIteration>()
+                .ConvertUsing(s => s != null ? new SmoothPassDefaultIteration(s.Sequence, s.RespectSpotTime, s.RespectCampaignClash,
+                    (ProductClashRules) s.ProductClashRules, (SpotPositionRules) s.BreakPositionRules,
+                    (SpotPositionRules) s.RequestedPositionInBreakRules, s.RespectRestrictions,
                     s.RespectClashExceptions) : null);
-
-            _ = CreateMap<BestBreakFactorEntities.BestBreakFactorGroupRecord, BestBreakFactorGroupRecord>()
-                .ForMember(d => d.PassSequences, opt => opt.MapFrom(s => s.PassSequences.Select(x => x.Value)));
-
-            CreateMap<BestBreakFactorEntities.BestBreakFactorGroup, BestBreakFactorGroup>()
+            CreateMap<SmoothPassUnplacedIterationEntity, SmoothPassUnplacedIteration>()
+                .ConvertUsing(s => s != null ? new SmoothPassUnplacedIteration(s.Sequence, s.RespectSpotTime,
+                    s.RespectCampaignClash, (ProductClashRules) s.ProductClashRule, s.RespectRestrictions,
+                    s.RespectClashExceptions) : null);
+            CreateMap<BestBreakFactorGroupEntity, BestBreakFactorGroup>()
                 .ConvertUsing((s, d, rc) => s != null ? new BestBreakFactorGroup(s.Sequence, s.Name,
-                    (BestBreakFactorGroupEvaluation)s.Evaluation,
-                    (SameBreakGroupScoreActions)s.SameBreakGroupScoreAction,
+                    (BestBreakFactorGroupEvaluation) s.Evaluation,
+                    (SameBreakGroupScoreActions) s.SameBreakGroupScoreAction,
                     rc.Mapper.Map<BestBreakFactor>(s.SameBreakGroupScoreFactor),
                     rc.Mapper.Map<List<BestBreakFactorGroupItem>>(s.Items)) : null);
-
-            CreateMap<BestBreakFactorEntities.BestBreakFactorGroupItem, BestBreakFactorGroupItem>()
-                .ConvertUsing((s, d, rc) => s != null ? new BestBreakFactorGroupItem((BestBreakFactorItemEvaluation)s.Evaluation,
+            CreateMap<BestBreakFactorGroupItemEntity, BestBreakFactorGroupItem>()
+                .ConvertUsing((s, d, rc) => s != null ? new BestBreakFactorGroupItem((BestBreakFactorItemEvaluation) s.Evaluation,
                     s.UseZeroScoresInEvaluation, s.AllFilterFactorsMustBeNonZero,
                     rc.Mapper.Map<List<BestBreakFactor>>(s.FilterFactors),
                     rc.Mapper.Map<List<BestBreakFactor>>(s.DefaultFactors)) : null);

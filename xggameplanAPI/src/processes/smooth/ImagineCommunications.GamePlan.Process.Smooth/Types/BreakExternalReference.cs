@@ -34,8 +34,6 @@ namespace ImagineCommunications.GamePlan.Process.Smooth.Types
         public override readonly int GetHashCode() =>
             _breakExternalReference.GetHashCode();
 
-        /// <summary>Converts the value to string.</summary>
-        /// <returns>A <see cref="System.String" /> that represents this instance.</returns>
         public override readonly string ToString() =>
             _breakExternalReference;
 

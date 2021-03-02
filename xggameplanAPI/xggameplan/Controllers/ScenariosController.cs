@@ -411,10 +411,8 @@ namespace xggameplan.Controllers
                 }
             }
 
-            var oldPassIds = scenario.Passes.Select(p => p.Id).ToList();
-
             // Get PassIds to delete
-            var deletedPassIds = oldPassIds.Except(command.Passes.Select(p => p.Id)).Distinct().ToList();
+            var deletedPassIds = scenario.Passes.Select(p => p.Id).Except(command.Passes.Select(p => p.Id)).Distinct().ToList();
 
             ValidateCampaignPriorityRounds(command.CampaignPriorityRounds);
 
@@ -426,7 +424,7 @@ namespace xggameplan.Controllers
             _passRepository.SaveChanges();
 
             // update scenario with any changes to passes in that scenario.campaignpasspriorities
-            UpdateScenarioWithEditedPassList(scenario, oldPassIds, deletedPassIds);
+            UpdateScenarioWithEditedPassList(scenario, deletedPassIds);
 
             // Validate, update and save scenario
             ValidateForSave(scenario);
@@ -434,24 +432,26 @@ namespace xggameplan.Controllers
             scenario.DateUserModified = DateTime.UtcNow;
 
             _scenarioRepository.Update(new List<Scenario> { scenario }); // Used bulk update method as a temporary solution as it is optimized to update nested collections
-                                                                         // Will be changed in scope of performance optimizations phase 2
+                                                                         // Will be changed in scope of performance optimizations phaze 2
             _scenarioRepository.SaveChanges();   // Do not remove this, need to persist changes now so that we can return ScenarioModel
 
             return Ok(Mappings.MapToScenarioModel(scenario, _scenarioRepository, _passRepository,
                 _tenantSettingsRepository, _mapper));
         }
 
-        private void UpdateScenarioWithEditedPassList(Scenario scenario, IEnumerable<int> oldPassIds, IEnumerable<int> deletedPassIds)
+        private void UpdateScenarioWithEditedPassList(Scenario scenario, IEnumerable<int> deletedPassIds)
         {
-            if (scenario.CampaignPassPriorities is null ||
-                !scenario.CampaignPassPriorities.Any())
+            if (scenario.CampaignPassPriorities == null
+                || !scenario.CampaignPassPriorities.Any())
             {
                 return;
             }
 
-            var oldPasses = _passRepository.FindByIds(oldPassIds);
+            var oldPasses = _passRepository.FindByScenarioId(scenario.Id);
 
-            var newPasses = _passRepository.FindByIds(scenario.Passes.Select(pp => pp.Id).Where(p => !oldPassIds.Contains(p)));
+            var oldPassesIds = oldPasses.Select(p => p.Id);
+
+            var newPasses = _passRepository.FindByIds(scenario.Passes.Select(pp => pp.Id).Where(p => !oldPassesIds.Contains(p)));
 
             var anyNewPasses = newPasses.Any();
 

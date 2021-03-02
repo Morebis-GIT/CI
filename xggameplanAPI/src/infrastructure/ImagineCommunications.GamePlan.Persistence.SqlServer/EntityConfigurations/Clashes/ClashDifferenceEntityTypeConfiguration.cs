@@ -1,5 +1,6 @@
 ﻿using ImagineCommunications.GamePlan.Persistence.SqlServer.Entities.Tenant;
 using ImagineCommunications.GamePlan.Persistence.SqlServer.Extensions;
+
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
@@ -11,10 +12,9 @@ namespace ImagineCommunications.GamePlan.Persistence.SqlServer.EntityConfigurati
         {
             _ = builder.ToTable("ClashDifferences");
             _ = builder.HasKey(x => x.Id);
-            _ = builder.Property(x => x.Id).UseSqlServerIdentityColumn();
+            _ = builder.Property(x => x.Id).UseMySqlIdentityColumn();
             _ = builder.Property(x => x.StartDate).AsUtc();
             _ = builder.Property(x => x.EndDate).AsUtc();
-
             _ = builder.HasIndex(x => x.ClashId);
             _ = builder.HasIndex(x => x.SalesAreaId);
 

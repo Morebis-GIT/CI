@@ -26,7 +26,7 @@ namespace ImagineCommunications.GamePlan.Persistence.SqlServer.Entities.Tenant.R
         public int TimeToleranceMinsAfter { get; set; }
         public int IndexType { get; set; }
         public int IndexThreshold { get; set; }
-        public int ProductCode { get; set; }
+        public string ProductCode { get; set; }
         public string ClashCode { get; set; }
         public string ClearanceCode { get; set; }
         public string ClockNumber { get; set; }

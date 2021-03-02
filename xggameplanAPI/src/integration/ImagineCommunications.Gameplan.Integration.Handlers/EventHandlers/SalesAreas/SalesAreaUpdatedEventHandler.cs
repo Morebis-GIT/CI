@@ -30,8 +30,8 @@ namespace ImagineCommunications.Gameplan.Integration.Handlers.EventHandlers.Sale
 
         public override void Handle(ISalesAreaUpdated command)
         {
-            var salesArea = _salesAreaRepository.FindByCustomId(command.CustomId);
-            if (salesArea is null)
+            var salesArea = _salesAreaRepository.FindByShortName(command.ShortName);
+            if (salesArea == null)
             {
                 throw new DataSyncException(DataSyncErrorCode.SalesAreaNotFound, "no sales area found");
             }
@@ -50,7 +50,7 @@ namespace ImagineCommunications.Gameplan.Integration.Handlers.EventHandlers.Sale
             _salesAreaRepository.SaveChanges();
         }
 
-        private static void UpdateSalesAreaModel(SalesArea salesArea, SalesArea newSalesArea)
+        private void UpdateSalesAreaModel(SalesArea salesArea, SalesArea newSalesArea)
         {
             salesArea.BaseDemographic1 = newSalesArea.BaseDemographic1;
             salesArea.BaseDemographic2 = newSalesArea.BaseDemographic2;
@@ -60,8 +60,6 @@ namespace ImagineCommunications.Gameplan.Integration.Handlers.EventHandlers.Sale
             salesArea.StartOffset = newSalesArea.StartOffset;
             salesArea.DayDuration = newSalesArea.DayDuration;
             salesArea.CustomId = newSalesArea.CustomId;
-            salesArea.Name = newSalesArea.Name;
-            salesArea.ShortName = newSalesArea.ShortName;
         }
 
         private void UpdateSalesAreaDemographics(SalesArea salesArea, List<SalesAreaDemographic> demographics)

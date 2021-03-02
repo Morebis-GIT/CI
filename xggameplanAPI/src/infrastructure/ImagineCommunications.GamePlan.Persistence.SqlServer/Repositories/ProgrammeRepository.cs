@@ -62,7 +62,7 @@ namespace ImagineCommunications.GamePlan.Persistence.SqlServer.Repositories
                 opts => opts.UseEntityCache(_salesAreaByIdCache));
 
         public IEnumerable<Programme> GetAll() =>
-            _mapper.Map<List<Programme>>(ProgrammeQuery.AsNoTracking(), opts => opts.UseEntityCache(_salesAreaByIdCache));
+            _mapper.Map<List<Programme>>(ProgrammeQuery, opts => opts.UseEntityCache(_salesAreaByIdCache));
 
         public int CountAll =>
             _dbContext.Query<Entities.Tenant.Programmes.Programme>().Count();
@@ -102,15 +102,12 @@ namespace ImagineCommunications.GamePlan.Persistence.SqlServer.Repositories
                 query = query.Where(p => p.StartDateTime <= searchQuery.ToDateInclusive);
             }
 
-            if (!string.IsNullOrWhiteSpace(searchQuery.NameOrRef))
+            if (!String.IsNullOrWhiteSpace(searchQuery.NameOrRef))
             {
-                var searchCondition = _searchConditionBuilder
-                    .StartAllWith(searchQuery.NameOrRef.Split(new[] { " " }, StringSplitOptions.RemoveEmptyEntries))
-                    .Build();
-
-                query = query
-                    .Where(p => EF.Functions.Contains(
-                        EF.Property<string>(p.ProgrammeDictionary, Entities.Tenant.ProgrammeDictionary.SearchField), searchCondition));
+               query = query
+                    .Where(p =>
+                            p.ProgrammeDictionary.Name.Contains(searchQuery.NameOrRef)
+                        || p.ProgrammeDictionary.ExternalReference.Contains(searchQuery.NameOrRef));
             }
 
             if (searchQuery.OrderBy != null)
@@ -135,7 +132,7 @@ namespace ImagineCommunications.GamePlan.Persistence.SqlServer.Repositories
 
         public IEnumerable<Programme> FindByExternal(List<string> externalRefs) =>
             _mapper.Map<List<Programme>>(ProgrammeQuery
-                    .Where(e => externalRefs.Contains(e.ProgrammeDictionary.ExternalReference)).AsNoTracking(),
+                    .Where(e => externalRefs.Contains(e.ProgrammeDictionary.ExternalReference)),
                 opts => opts.UseEntityCache(_salesAreaByIdCache));
 
         public IEnumerable<Programme> FindByExternal(string externalRef) =>
@@ -187,7 +184,7 @@ namespace ImagineCommunications.GamePlan.Persistence.SqlServer.Repositories
             {
                 var category = _programmeCategoryCache.GetOrAdd(cat, key => new ProgrammeCategory { Name = key });
 
-                if (programme.ProgrammeCategoryLinks.All(x => !string.Equals(x.ProgrammeCategory.Name, category.Name)))
+                if (programme.ProgrammeCategoryLinks.All(x => !String.Equals(x.ProgrammeCategory.Name, category.Name)))
                 {
                     programme.ProgrammeCategoryLinks.Add(new ProgrammeCategoryLink
                     {
@@ -271,7 +268,7 @@ namespace ImagineCommunications.GamePlan.Persistence.SqlServer.Repositories
                             return newCat;
                         });
 
-                        if (programme.ProgrammeCategoryLinks.All(x => !string.Equals(x.ProgrammeCategory.Name, category.Name)))
+                        if (programme.ProgrammeCategoryLinks.All(x => !String.Equals(x.ProgrammeCategory.Name, category.Name)))
                         {
                             var link = new ProgrammeCategoryLink
                             {

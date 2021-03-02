@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using ImagineCommunications.GamePlan.Domain.Shared.Universes;
 
 namespace ImagineCommunications.GamePlan.Persistence.Memory.Repositories
@@ -8,13 +9,9 @@ namespace ImagineCommunications.GamePlan.Persistence.Memory.Repositories
         MemoryRepositoryBase<Universe>,
         IUniverseRepository
     {
-        public MemoryUniverseRepository()
-        {
-        }
+        public MemoryUniverseRepository() { }
 
-        public void Dispose()
-        {
-        }
+        public void Dispose() { }
 
         public IEnumerable<Universe> GetAll() => GetAllItems();
 
@@ -34,17 +31,14 @@ namespace ImagineCommunications.GamePlan.Persistence.Memory.Repositories
 
         public Universe Find(Guid id) => GetItemById(id.ToString());
 
-        public void Insert(IEnumerable<Universe> items)
+        public void Insert(IEnumerable<Universe> universes)
         {
-            foreach (var item in items)
-            {
-                InsertOrReplaceItem(item, item.Id.ToString());
-            }
+            InsertItems(universes.ToList(), universes.Select(i => i.Id.ToString()).ToList<string>());
         }
 
         public void Update(Universe universe)
         {
-            InsertOrReplaceItem(universe, universe.Id.ToString());
+            UpdateOrInsertItem(universe, universe.Id.ToString());
         }
 
         public void Remove(Guid id)
@@ -62,8 +56,6 @@ namespace ImagineCommunications.GamePlan.Persistence.Memory.Repositories
             throw new NotImplementedException();
         }
 
-        public void SaveChanges()
-        {
-        }
+        public void SaveChanges() { }
     }
 }

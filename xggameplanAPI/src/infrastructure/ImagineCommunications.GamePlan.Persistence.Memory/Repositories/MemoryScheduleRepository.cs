@@ -34,7 +34,8 @@ namespace ImagineCommunications.GamePlan.Persistence.Memory.Repositories
         /// <param name="item"></param>
         public void Add(Schedule item)
         {
-            InsertOrReplaceItem(item, item.Id.ToString());
+            var items = new List<Schedule>() { item };
+            InsertItems(items, items.Select(i => i.Id.ToString()).ToList<string>());
         }
 
         /// <summary>
@@ -43,7 +44,7 @@ namespace ImagineCommunications.GamePlan.Persistence.Memory.Repositories
         /// <param name="item"></param>
         public void Update(Schedule item)
         {
-            InsertOrReplaceItem(item, item.Id.ToString());
+            UpdateOrInsertItem(item, item.Id.ToString());
         }
 
         public int GetScheduleBreaksCount(string salesAreaName, DateTime scheduleDate)

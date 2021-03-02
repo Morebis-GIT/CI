@@ -10,7 +10,7 @@ namespace ImagineCommunications.GamePlan.Persistence.SqlServer.EntityConfigurati
         {
             builder.ToTable("FunctionalAreas");
             builder.HasKey(x => x.Id);
-            builder.Property(x => x.Id).HasDefaultValueSql("NEWID()");
+            builder.Property(x => x.Id);
 
             builder.HasMany(x => x.Descriptions).WithOne().HasForeignKey(x => x.FunctionalAreaId);
             builder.HasMany(x => x.FunctionalAreaFaultTypes).WithOne().HasForeignKey(x => x.FunctionalAreaId);

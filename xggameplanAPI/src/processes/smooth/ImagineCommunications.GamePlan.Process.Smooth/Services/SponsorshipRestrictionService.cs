@@ -4,13 +4,11 @@ using System.Collections.Immutable;
 using System.Linq;
 using ImagineCommunications.GamePlan.Domain.Breaks.Objects;
 using ImagineCommunications.GamePlan.Domain.Generic.Helpers;
-using ImagineCommunications.GamePlan.Domain.Shared.Programmes.Objects;
 using ImagineCommunications.GamePlan.Domain.Sponsorships.Enums;
 using ImagineCommunications.GamePlan.Domain.Sponsorships.Objects;
 using ImagineCommunications.GamePlan.Domain.Spots;
 using ImagineCommunications.GamePlan.Process.Smooth.Dtos;
 using ImagineCommunications.GamePlan.Process.Smooth.Dtos.EventArguments;
-using ImagineCommunications.GamePlan.Process.Smooth.Interfaces;
 using ImagineCommunications.GamePlan.Process.Smooth.Models;
 using ImagineCommunications.GamePlan.Process.Smooth.Types;
 using NodaTime;
@@ -25,7 +23,6 @@ namespace ImagineCommunications.GamePlan.Process.Smooth.Services
     {
         private readonly IReadOnlyList<SponsorshipRestrictionFilterResults> _sponsorshipRestrictions;
         private readonly IReadOnlyDictionary<Guid, SpotInfo> _spotInfos;
-
         private Action<string, Exception> RaiseException { get; }
         public ISmoothSponsorshipTimelineManager TimelineManager { get; set; }
 
@@ -65,244 +62,9 @@ namespace ImagineCommunications.GamePlan.Process.Smooth.Services
         /// Empty list to use when there's nothing to return.
         /// </summary>
         private static
-        IReadOnlyCollection<(Guid spotUid, SmoothFailureMessages failureMessage)>
-        NoSponsorshipRestrictionFailures
-        { get; } = new List<(Guid spotUid, SmoothFailureMessages failureMessage)>(0);
-
-        /// <summary>Create a new <see cref="SponsorshipRestrictionService"/>.</summary>
-        public static SponsorshipRestrictionService Factory(
-            IReadOnlyDictionary<Guid, SpotInfo> spotInfos,
-            SponsorshipRestrictionFilterService filterService,
-            ISmoothSponsorshipTimelineManager timelineManager,
-            Programme oneProgramme,
-            Action<string, Exception> raiseException)
-        {
-            SponsorshipRestrictionService sponsorshipRestrictionService =
-                CreateSponsorshipRestrictionService(
-                    spotInfos,
-                    filterService,
-                    timelineManager,
-                    oneProgramme,
-                    raiseException);
-
-            sponsorshipRestrictionService.RaiseAddedSpotToBreakEvent += addedSpotToBreakEventHandler;
-            sponsorshipRestrictionService.RaiseRemovedSpotFromBreakEvent += removedSpotFromBreakEventHandler;
-
-            return sponsorshipRestrictionService;
-
-            //-----------------
-            // Local functions
-            void addedSpotToBreakEventHandler(object source, AddedSpotToBreakEventArgs e)
-            {
-                if (!(source is SponsorshipRestrictionService service))
-                {
-                    return;
-                }
-
-                try
-                {
-                    SmoothSponsorshipTimeline timeline = e.IsSponsor
-                        ? timelineManager.FindTimelineForSponsoredProduct(
-                            e.BreakExternalReference,
-                            e.ProductExternalReference)
-                        : timelineManager.FindTimelineForCompetitor(
-                            e.BreakExternalReference,
-                            e.ProductAdvertiserIdentifier,
-                            e.ProductClashCode);
-
-                    AddSpotToRunningTotal(timeline.RunningTotals, e);
-
-                    timeline.RestrictionLimits = SponsorshipLimitsCalculator
-                        .CalculateRestrictionLimits(
-                            timeline.RunningTotals,
-                            e.CalculationType,
-                            e.Applicability);
-                }
-                catch (Exception ex)
-                {
-                    raiseException("Unable to find a sponsorship timeline after " +
-                        $"adding {(e.IsSponsor ? "sponsored" : "competitor")} " +
-                        $"spot with product {e.ProductExternalReference.ToString()} into " +
-                        $"break {e.BreakExternalReference.ToString()}",
-                        ex);
-                }
-
-                // Local function for the event
-                static void AddSpotToRunningTotal(
-                    SmoothSponsorshipRunningTotals sponsorshipLimitations,
-                    AddedSpotToBreakEventArgs e)
-                {
-                    if (e.IsSponsor)
-                    {
-                        AddSponsoredSpot();
-                    }
-                    else
-                    {
-                        sponsorshipLimitations.AddCompetitorToAdvertiserIdentifier(
-                            e.ProductExternalReference,
-                            e.ProductAdvertiserIdentifier);
-                        sponsorshipLimitations.AddCompetitorToClashCode(
-                            e.ProductExternalReference,
-                            e.ProductClashCode);
-
-                        AddCompetitorSpot();
-                    }
-
-                    void AddCompetitorSpot()
-                    {
-                        if (e.RestrictionType.type == SponsorshipRestrictionType.SpotDuration)
-                        {
-                            sponsorshipLimitations.AddCompetitorToSpotByDuration(
-                            e.ProductExternalReference,
-                            e.RestrictionType.duration);
-                        }
-                        else
-                        {
-                            sponsorshipLimitations.AddCompetitorToSpotByCount(
-                            e.ProductExternalReference,
-                            1);
-                        }
-                    }
-
-                    void AddSponsoredSpot()
-                    {
-                        if (e.RestrictionType.type == SponsorshipRestrictionType.SpotDuration)
-                        {
-                            sponsorshipLimitations.AddSponsoredProductToSpotByDuration(
-                            e.ProductExternalReference,
-                            e.RestrictionType.duration);
-                        }
-                        else
-                        {
-                            sponsorshipLimitations.AddSponsoredProductToSpotByCount(
-                            e.ProductExternalReference,
-                            1);
-                        }
-                    }
-                }
-            }
-
-            void removedSpotFromBreakEventHandler(object source, RemovedSpotFromBreakEventArgs e)
-            {
-                if (!(source is SponsorshipRestrictionService service))
-                {
-                    return;
-                }
-
-                try
-                {
-                    SmoothSponsorshipTimeline timeline = e.IsSponsor
-                        ? timelineManager.FindTimelineForSponsoredProduct(
-                            e.BreakExternalReference,
-                            e.ProductExternalReference)
-                        : timelineManager.FindTimelineForCompetitor(
-                            e.BreakExternalReference,
-                            e.ProductAdvertiserIdentifier,
-                            e.ProductClashCode);
-
-                    RemoveSpotFromRunningTotal(timeline.RunningTotals, e);
-
-                    timeline.RestrictionLimits = SponsorshipLimitsCalculator
-                        .CalculateRestrictionLimits(
-                            timeline.RunningTotals,
-                            e.CalculationType,
-                            e.Applicability);
-                }
-                catch (Exception ex)
-                {
-                    raiseException("Unable to find a sponsorship timeline after " +
-                        $"removing {(e.IsSponsor ? "sponsored" : "competitor")} " +
-                        $"spot with product {e.ProductExternalReference.ToString()} into " +
-                        $"break {e.BreakExternalReference.ToString()}",
-                        ex);
-                }
-
-                // Local function for the event
-                void RemoveSpotFromRunningTotal(
-                    SmoothSponsorshipRunningTotals sponsorshipRunningTotals,
-                    RemovedSpotFromBreakEventArgs e)
-                {
-                    if (e.IsSponsor)
-                    {
-                        RemoveSponsoredSpot();
-                    }
-                    else
-                    {
-                        RemoveCompetitorSpot();
-                    }
-
-                    void RemoveSponsoredSpot()
-                    {
-                        if (e.RestrictionType.Type == SponsorshipRestrictionType.SpotDuration)
-                        {
-                            sponsorshipRunningTotals
-                                .RemoveSponsoredProductToSpotByDuration(
-                                e.ProductExternalReference,
-                                e.RestrictionType.Duration);
-                        }
-                        else
-                        {
-                            sponsorshipRunningTotals
-                                .RemoveSponsoredProductToSpotByCount(
-                                e.ProductExternalReference,
-                                1);
-                        }
-                    }
-
-                    void RemoveCompetitorSpot()
-                    {
-                        if (e.RestrictionType.Type == SponsorshipRestrictionType.SpotDuration)
-                        {
-                            sponsorshipRunningTotals
-                                .RemoveCompetitorToSpotByDuration(
-                                e.ProductExternalReference,
-                                e.RestrictionType.Duration);
-                        }
-                        else
-                        {
-                            sponsorshipRunningTotals
-                                .RemoveCompetitorToSpotByCount(
-                                e.ProductExternalReference,
-                                1);
-                        }
-                    }
-                }
-            }
-
-            static SponsorshipRestrictionService CreateSponsorshipRestrictionService(
-                IReadOnlyDictionary<Guid, SpotInfo> spotInfos,
-                SponsorshipRestrictionFilterService filterService,
-                ISmoothSponsorshipTimelineManager timelineManager,
-                Programme oneProgramme,
-                Action<string, Exception> raiseException)
-            {
-                var programmeSponsorshipRestrictions = GetProgrammeSponsorshipRestrictions(
-                    filterService,
-                    oneProgramme
-                    );
-
-                return new SponsorshipRestrictionService(
-                    programmeSponsorshipRestrictions,
-                    timelineManager,
-                    spotInfos,
-                    raiseException);
-
-                //-----------------
-                // Local function for CreateSponsorshipRestrictionService()
-
-                /// <summary>
-                /// Filter a list of sponsorship restrictions for a specific programme.
-                /// </summary>
-                /// <param name="sponsorshipRestrictionFilterService"></param>
-                /// <param name="oneProgramme"></param>
-                /// <returns></returns>
-                static IImmutableList<SponsorshipRestrictionFilterResults>
-                GetProgrammeSponsorshipRestrictions(
-                    SponsorshipRestrictionFilterService sponsorshipRestrictionFilterService,
-                    Programme oneProgramme
-                    ) => sponsorshipRestrictionFilterService.Filter(oneProgramme);
-            }
-        }
+        IReadOnlyCollection<(Guid spotUid, SmoothFailureMessages failureMessage)> NoSponsorshipRestrictionFailures
+        { get; }
+            = new List<(Guid spotUid, SmoothFailureMessages failureMessage)>(0);
 
         /// <summary>
         /// Evaluate sponsorship restrictions for the given spot in relation to
@@ -311,7 +73,7 @@ namespace ImagineCommunications.GamePlan.Process.Smooth.Services
         /// <param name="spotToCheckForRestrictions">
         /// A candidate spot for the break, assuming no restrictions block its placement.
         /// </param>
-        /// <param name="breakExternalReference"></param>
+        /// <param name="externalBreakRef"></param>
         /// <param name="breakScheduledDate">
         /// When the break is scheduled for transmission as UTC.
         /// </param>
@@ -412,52 +174,54 @@ namespace ImagineCommunications.GamePlan.Process.Smooth.Services
 
                     case SponsorshipCalculationType.Flat:
                     case SponsorshipCalculationType.Percentage:
-
-                        bool breakAlreadyContainASponsoredSpot = DoesBreakAlreadyContainASponsoredSpot(
-                            spotsAlreadyInTheBreak,
-                            sponsoredProductsExternalRefs);
-
-                        bool spotIsASponsor = IsSpotProductASponsor(product, sponsoredProductsExternalRefs);
-
-                        if (spotIsASponsor)
                         {
-                            AddFailureIfSpotIsASponsorAndBreakAlreadyContainsACompetitorSpot(
-                                spotUid,
-                                product,
+                            bool breakAlreadyContainASponsoredSpot = DoesBreakAlreadyContainASponsoredSpot(
                                 spotsAlreadyInTheBreak,
-                                result,
-                                sponsoredProductsExternalRefs,
-                                clashExclusivities,
-                                advertiserExclusivities);
-                        }
-                        else if (breakAlreadyContainASponsoredSpot)
-                        {
-                            AddFailureIfSpotIsACompetitor(
-                                spotUid,
-                                result,
-                                isThisSpotACompetitorByClashCode,
-                                isThisSpotACompetitorByAdvertiser);
-                        }
-                        else if (isThisSpotACompetitorByAdvertiser || isThisSpotACompetitorByClashCode)
-                        {
-                            /*
-                             * For a given spot, break and set of restrictions,
-                             * could this spot be added to the break?
-                             *
-                             * If not, add a Smooth Failure of the correct type.
-                             */
-                            try
+                                sponsoredProductsExternalRefs);
+
+                            bool spotIsASponsor = IsSpotProductASponsor(product, sponsoredProductsExternalRefs);
+
+                            if (spotIsASponsor)
                             {
-                                SmoothSponsorshipRestrictionLimits restrictionLimits =
-                                    TimelineManager
-                                    .FindTimelineForCompetitor(
+                                AddFailureIfSpotIsASponsorAndBreakAlreadyContainsACompetitorSpot(
+                                    spotUid,
+                                    product,
+                                    spotsAlreadyInTheBreak,
+                                    result,
+                                    sponsoredProductsExternalRefs,
+                                    clashExclusivities,
+                                    advertiserExclusivities);
+                            }
+                            else if (breakAlreadyContainASponsoredSpot)
+                            {
+                                AddFailureIfSpotIsACompetitor(
+                                    spotUid,
+                                    result,
+                                    isThisSpotACompetitorByClashCode,
+                                    isThisSpotACompetitorByAdvertiser);
+                            }
+                            else if (isThisSpotACompetitorByAdvertiser ||
+                                isThisSpotACompetitorByClashCode)
+                            {
+                                /*
+                                 * For a given spot, break and set of restrictions,
+                                 * could this spot be added to the break?
+                                 *
+                                 * If not, add a Smooth Failure of the correct type.
+                                 *
+                                 */
+                                try
+                                {
+                                    SmoothSponsorshipRestrictionLimits restrictionLimits =
+                                        TimelineManager
+                                        .FindTimelineForCompetitor(
                                         breakExternalReference,
                                         _spotInfos[spotUid].ProductAdvertiserIdentifier,
                                         _spotInfos[spotUid].ProductClashCode)
-                                   .RestrictionLimits;
+                                       .RestrictionLimits;
 
-                                var (isSpotAllowed, failureMessage) = SpotInspectorService
-                                    .InspectSpot(
+                                    var (isSpotAllowed, failureMessage) = SpotInspectorService
+                                        .InspectSpot(
                                         item,
                                         restrictionLimits,
                                         spotToCheckForRestrictions.Product,
@@ -467,26 +231,29 @@ namespace ImagineCommunications.GamePlan.Process.Smooth.Services
                                         (isThisSpotACompetitorByClashCode,
                                         _spotInfos[spotUid].ProductClashCode));
 
-                                if (!isSpotAllowed)
-                                {
-                                    foreach (var message in failureMessage)
+                                    if (!isSpotAllowed)
                                     {
-                                        result.Add((spotUid, message));
+                                        foreach (var message in failureMessage)
+                                        {
+                                            result.Add(
+                                                (spotUid,
+                                                message));
+                                        }
                                     }
                                 }
+                                catch (Exception ex)
+                                {
+                                    RaiseException("Unable to find a sponsorship timeline" +
+                                        $" when checking calculation type {item.CalculationType}, " +
+                                        $"applicability {item.Applicability}, restriction " +
+                                        $"type {item.RestrictionType} " +
+                                        $"for spot {spotToCheckForRestrictions.ExternalSpotRef} ",
+                                        ex);
+                                }
                             }
-                            catch (Exception ex)
-                            {
-                                RaiseException("Unable to find a sponsorship timeline" +
-                                    $" when checking calculation type {item.CalculationType}, " +
-                                    $"applicability {item.Applicability}, restriction " +
-                                    $"type {item.RestrictionType} " +
-                                    $"for spot {spotToCheckForRestrictions.ExternalSpotRef} ",
-                                    ex);
-                            }
-                        }
 
-                        break;
+                            break;
+                        }
                 }
             }
 
@@ -710,7 +477,6 @@ namespace ImagineCommunications.GamePlan.Process.Smooth.Services
                     spot.Product,
                     theBreak.ScheduledDate,
                     theBreak.Duration);
-
             foreach (var spotToSponsorship in spotToSponsorships)
             {
                 if (!spotToSponsorship.found)
@@ -979,12 +745,17 @@ namespace ImagineCommunications.GamePlan.Process.Smooth.Services
             IReadOnlyCollection<ClashExclusivity> clashExclusivities,
             IReadOnlyCollection<AdvertiserExclusivity> advertiserExclusivities)
         {
-            return applicability switch
+            switch (applicability)
             {
-                SponsorshipApplicability.AllCompetitors => GetRestrictionOrDefault(),
-                SponsorshipApplicability.EachCompetitor => GetRestrictionTypeByEachCompetitor(),
-                _ => SponsorshipRestrictionType.SpotCount,
-            };
+                case SponsorshipApplicability.AllCompetitors:
+                    return GetRestrictionOrDefault();
+
+                case SponsorshipApplicability.EachCompetitor:
+                    return GetRestrictionTypeByEachCompetitor();
+
+                default:
+                    return SponsorshipRestrictionType.SpotCount;
+            }
 
             SponsorshipRestrictionType GetRestrictionOrDefault() =>
                 restrictionType ?? SponsorshipRestrictionType.SpotCount;

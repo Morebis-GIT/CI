@@ -155,6 +155,7 @@
     <Compile Include="SqlServer\DomainModelHandlers\ChannelDomainModelHandler.cs" />
     <Compile Include="SqlServer\DomainModelHandlers\CampaignDomainModelHandler.cs" />
     <Compile Include="SqlServer\DomainModelHandlers\BreakDomainModelHandler.cs" />
+    <Compile Include="SqlServer\DomainModelHandlers\AWSInstanceConfigurationDomainModelHandler.cs" />
     <Compile Include="SqlServer\DomainModelHandlers\AutoBookInstanceConfigurationDomainModelHandler.cs" />
     <Compile Include="SqlServer\DomainModelHandlers\AutoBookSettingsDomainModelHandler.cs" />
     <Compile Include="SqlServer\DomainModelHandlers\FunctionalAreaDomainModelHandler.cs" />
@@ -230,6 +231,10 @@
     <ProjectReference Include="..\src\domain\ImagineCommunications.GamePlan.Domain.Generic\ImagineCommunications.GamePlan.Domain.Generic.csproj">
       <Project>{e4e13375-e595-4df3-81d4-c14314bacdfb}</Project>
       <Name>ImagineCommunications.GamePlan.Domain.Generic</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\src\domain\ImagineCommunications.GamePlan.Domain.Tests\ImagineCommunications.GamePlan.Domain.Tests.csproj">
+      <Project>{860e56dc-5068-4fa8-8d55-03cebbeef9ea}</Project>
+      <Name>ImagineCommunications.GamePlan.Domain.Tests</Name>
     </ProjectReference>
     <ProjectReference Include="..\src\domain\ImagineCommunications.GamePlan.Domain\ImagineCommunications.GamePlan.Domain.csproj">
       <Project>{3099d7dc-bc6e-4d9f-9668-c5798bd7f37c}</Project>

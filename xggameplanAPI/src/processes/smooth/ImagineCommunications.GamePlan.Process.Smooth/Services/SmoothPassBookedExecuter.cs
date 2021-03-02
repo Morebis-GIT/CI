@@ -3,10 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using ImagineCommunications.GamePlan.Domain.Breaks.Objects;
-using ImagineCommunications.GamePlan.Domain.BusinessRules.Restrictions.Objects;
 using ImagineCommunications.GamePlan.Domain.Shared.Programmes.Objects;
 using ImagineCommunications.GamePlan.Domain.SmoothConfigurations.Objects;
-using ImagineCommunications.GamePlan.Domain.Spots;
 using ImagineCommunications.GamePlan.Process.Smooth.Dtos;
 using ImagineCommunications.GamePlan.Process.Smooth.Interfaces;
 using ImagineCommunications.GamePlan.Process.Smooth.Models;
@@ -23,21 +21,11 @@ namespace ImagineCommunications.GamePlan.Process.Smooth.Services
         private readonly ISmoothDiagnostics _smoothDiagnostics;
         private readonly SmoothResources _smoothResources;
         private readonly SponsorshipRestrictionService _sponsorshipRestrictionService;
-        private readonly IReadOnlyCollection<Programme> _allProgrammesForPeriodAndSalesArea;
-        private readonly SmoothProgramme _smoothProgramme;
-
-        private static readonly IReadOnlyList<SmoothFailureMessages> _sponsorshipRestrictionFailures =
-            new SmoothFailureMessages[] {
-                SmoothFailureMessages.T1_SponsorshipRestrictionAppliedForCompetitorSpotBasedOnCompetingClash,
-                SmoothFailureMessages.T1_SponsorshipRestrictionAppliedForCompetitorSpotBasedOnCompetingAdvertiser
-                };
 
         public SmoothPassBookedExecuter(
             ISmoothDiagnostics smoothDiagnostics,
             SmoothResources smoothResources,
-            SmoothProgramme smoothProgramme,
             SponsorshipRestrictionService sponsorshipRestrictionService,
-            IReadOnlyCollection<Programme> allProgrammesForPeriodAndSalesArea,
             Action<string> raiseInfo,
             Action<string, Exception> raiseException
             )
@@ -45,8 +33,6 @@ namespace ImagineCommunications.GamePlan.Process.Smooth.Services
             _smoothDiagnostics = smoothDiagnostics;
             _smoothResources = smoothResources;
             _sponsorshipRestrictionService = sponsorshipRestrictionService;
-            _allProgrammesForPeriodAndSalesArea = allProgrammesForPeriodAndSalesArea;
-            _smoothProgramme = smoothProgramme;
 
             RaiseInfo = raiseInfo;
             RaiseException = raiseException;
@@ -60,53 +46,63 @@ namespace ImagineCommunications.GamePlan.Process.Smooth.Services
         /// a restriction
         /// </summary>
         /// <param name="smoothPass"></param>
-        /// <param name="breaksForThePeriodBeingSmoothed"></param>
+        /// <param name="smoothProg"></param>
+        /// <param name="progSmoothBreaks"></param>
+        /// <param name="breaksBeingSmoothed"></param>
+        /// <param name="scheduleProgrammes"></param>
         /// <param name="spotIdsUsed"></param>
         /// <returns></returns>
         public SmoothPassResult Execute(
             SmoothPassBooked smoothPass,
-            IReadOnlyCollection<Break> breaksForThePeriodBeingSmoothed,
+            SmoothProgramme smoothProg,
+            IReadOnlyCollection<SmoothBreak> progSmoothBreaks,
+            IReadOnlyCollection<Break> breaksBeingSmoothed,
+            IReadOnlyCollection<Programme> scheduleProgrammes,
             ISet<Guid> spotIdsUsed
             )
         {
             var smoothPassResult = new SmoothPassResult(smoothPass.Sequence);
-            var programme = _smoothProgramme.Programme;
-            var salesArea = _smoothProgramme.SalesArea;
 
             // Check booked spots within each break
-            foreach (var smoothBreak in _smoothProgramme.ProgrammeSmoothBreaks)
+            foreach (var smoothBreak in progSmoothBreaks)
             {
                 var breakSpotsToCheck = new List<SmoothSpot>(
                     smoothBreak.SmoothSpots.Where(s => !s.IsCurrent));
 
-                Break theBreak = smoothBreak.TheBreak;
-
-                bool AnySponsorshipRestrictions(Spot spotToCheckForRestrictions)
-                {
-                    IReadOnlyCollection<(Guid spotUid, SmoothFailureMessages failureMessage)> result =
-                        _sponsorshipRestrictionService.CheckSponsorshipRestrictions(
-                            spotToCheckForRestrictions,
-                            theBreak.ExternalBreakRef,
-                            theBreak.ScheduledDate,
-                            theBreak.Duration,
-                            smoothBreak.SmoothSpots.Select(s => s.Spot).ToList()
-                            );
-
-                    return result
-                        .Where(r => r.spotUid == spotToCheckForRestrictions.Uid)
-                        .Select(r => r.failureMessage)
-                        .Any(r => _sponsorshipRestrictionFailures.Contains(r));
-                }
+                BreakExternalReference breakExternalReference = smoothBreak.TheBreak.ExternalBreakRef;
 
                 foreach (var smoothSpot in breakSpotsToCheck)
                 {
-                    Spot spot = smoothSpot.Spot;
+                    bool AnySponsorshipRestrictions()
+                    {
+                        IReadOnlyCollection<(Guid spotUid, SmoothFailureMessages failureMessage)> result =
+                            _sponsorshipRestrictionService
+                            .CheckSponsorshipRestrictions(
+                                smoothSpot.Spot,
+                                breakExternalReference,
+                                smoothBreak.TheBreak.ScheduledDate,
+                                smoothBreak.TheBreak.Duration,
+                                smoothBreak.SmoothSpots.Select(s => s.Spot).ToList()
+                                );
+
+                        return result
+                            .Where(r => r.spotUid == smoothSpot.Spot.Uid)
+                            .Select(r => r.failureMessage)
+                            .Any(r => SponsorshipRestrictionFailures().Contains(r));
+
+                        static IReadOnlyList<SmoothFailureMessages> SponsorshipRestrictionFailures() =>
+                            new SmoothFailureMessages[] {
+                                SmoothFailureMessages.T1_SponsorshipRestrictionAppliedForCompetitorSpotBasedOnCompetingClash,
+                                SmoothFailureMessages.T1_SponsorshipRestrictionAppliedForCompetitorSpotBasedOnCompetingAdvertiser
+                                };
+                    }
 
                     try
                     {
-                        if (AnySponsorshipRestrictions(spot))
+                        if (AnySponsorshipRestrictions())
                         {
-                            UnplaceRestrictedSpot(
+                            // Spot has sponsorship restriction(s), unplace it
+                            UnplaceSpot(
                                 smoothPass,
                                 smoothSpot,
                                 smoothBreak,
@@ -117,21 +113,21 @@ namespace ImagineCommunications.GamePlan.Process.Smooth.Services
                             continue;
                         }
 
-                        var restrictionResults = _smoothResources.RestrictionChecker
-                            .CheckRestrictions(
-                                programme,
-                                theBreak,
-                                spot,
-                                salesArea,
-                                breaksForThePeriodBeingSmoothed,
-                                _allProgrammesForPeriodAndSalesArea);
+                        var restrictionResults = _smoothResources.RestrictionChecker.CheckRestrictions(
+                            smoothProg.Prog,
+                            smoothBreak.TheBreak,
+                            smoothSpot.Spot,
+                            smoothProg.SalesArea,
+                            breaksBeingSmoothed,
+                            scheduleProgrammes);
 
                         if (restrictionResults.Count == 0)
                         {
                             continue;
                         }
 
-                        UnplaceRestrictedSpot(
+                        // Spot has restriction(s), unplace it
+                        UnplaceSpot(
                             smoothPass,
                             smoothSpot,
                             smoothBreak,
@@ -139,13 +135,12 @@ namespace ImagineCommunications.GamePlan.Process.Smooth.Services
                             spotIdsUsed
                             );
 
-                        smoothPassResult.BookedSpotIdsUnplacedDueToRestrictions.Add(spot.Uid);
+                        smoothPassResult.BookedSpotIdsUnplacedDueToRestrictions.Add(smoothSpot.Spot.Uid);
                     }
                     catch (Exception exception)
                     {
                         RaiseException(
-                            $"Error checking booked spot {spot.ExternalSpotRef} " +
-                            $"on pass {Log(smoothPass.Sequence)}",
+                            $"Error checking booked spot {smoothSpot.Spot.ExternalSpotRef} on pass {Log(smoothPass.Sequence)}",
                             exception
                             );
                     }
@@ -169,37 +164,25 @@ namespace ImagineCommunications.GamePlan.Process.Smooth.Services
             foreach (var restrictionResult in restrictionResults)
             {
                 _ = description.Append(description.Length == 0 ? String.Empty : "; ");
-
-                Restriction restriction = restrictionResult.Restriction;
-
                 _ = description.AppendFormat(
                         "(ID={0}; Type={1}; Basis={2}; Reason={3})",
-                        restriction.Id.ToString(),
-                        restriction.RestrictionType.ToString(),
-                        restriction.RestrictionBasis.ToString(),
+                        restrictionResult.Restriction.Id.ToString(),
+                        restrictionResult.Restriction.RestrictionType.ToString(),
+                        restrictionResult.Restriction.RestrictionBasis.ToString(),
                         restrictionResult.Reason.ToString());
             }
 
             return description.ToString();
         }
 
-        /// <summary>Unplaces the restricted spot.</summary>
-        /// <param name="smoothPass">The smooth pass.</param>
-        /// <param name="smoothSpot">The smooth spot.</param>
-        /// <param name="smoothBreak">The smooth break.</param>
-        /// <param name="spotActionMessage">The spot action message.</param>
-        /// <param name="spotIdsUsed">The spot ids used.</param>
-        private void UnplaceRestrictedSpot(
+        private void UnplaceSpot(
             SmoothPass smoothPass,
             SmoothSpot smoothSpot,
             SmoothBreak smoothBreak,
             string spotActionMessage,
             ISet<Guid> spotIdsUsed)
         {
-            RaiseInfo(
-                $"Unplacing booked spot {smoothSpot.Spot.ExternalSpotRef} " +
-                $"from break {smoothBreak.TheBreak.ExternalBreakRef}: {spotActionMessage}"
-                );
+            RaiseInfo($"Unplacing booked spot {smoothSpot.Spot.ExternalSpotRef} from break {smoothBreak.TheBreak.ExternalBreakRef}: {spotActionMessage}");
 
             SpotPlacementService.RemoveSpotFromBreak(
                 smoothBreak,

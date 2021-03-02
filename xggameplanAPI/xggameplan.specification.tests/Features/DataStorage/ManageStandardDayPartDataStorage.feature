@@ -7,8 +7,6 @@ Feature: Manage StandardDayPart data storage
 
 Background:
 	Given there is a StandardDayParts repository
-	And predefined StandardDayParts.SalesAreas.json data
-	And predefined data imported
 
 Scenario: Add new standardDayPart
 	When I create the following documents:

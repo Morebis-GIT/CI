@@ -1,9 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Linq.Expressions;
-using System.Threading.Tasks;
-using ImagineCommunications.GamePlan.Domain.Generic.Repository;
 using ImagineCommunications.GamePlan.Domain.SmoothFailures;
 using ImagineCommunications.GamePlan.Persistence.RavenDb.Extensions;
 using ImagineCommunications.GamePlan.Persistence.RavenDb.Indexes;
@@ -27,7 +24,7 @@ namespace ImagineCommunications.GamePlan.Persistence.RavenDb.Repositories
                 {
                     foreach (var item in items)
                     {
-                        _ = bulkInsert.Store(item);
+                        bulkInsert.Store(item);
                     }
                 }
             }
@@ -55,64 +52,19 @@ namespace ImagineCommunications.GamePlan.Persistence.RavenDb.Repositories
 
         public void RemoveByRunId(Guid runId)
         {
-            const int maximumTimeoutSeconds = 180;
-            const int retryMillisecondDelay = 100;
-            const int maximumNumberOfRetries = 100;
-
-            var maximumSecondsWaitingForNonStaleIndexes = TimeSpan.FromSeconds(maximumTimeoutSeconds);
-            int remainingRetries = maximumNumberOfRetries;
-            bool retry = false;
-            var startTime = DateTime.UtcNow;
-
-            do
+            lock (_session)
             {
-                retry = false;
+                _session.Advanced.DocumentStore.DatabaseCommands
+                    .DeleteByIndex(
+                        SmoothFailures_ByRunId.DefaultIndexName,
+                        new IndexQuery()
+                        {
+                            Query = $"RunId:{runId}"
+                        })
+                    .WaitForCompletion();
 
-                try
-                {
-                    _ = _session.Advanced.DocumentStore.DatabaseCommands
-                            .DeleteByIndex(SmoothFailures_ByRunId.DefaultIndexName,
-                                new IndexQuery()
-                                {
-                                    Query = $"RunId:{runId.ToString()}"
-                                })
-                            .WaitForCompletion();
-                }
-                catch (Exception ex) when (CanRetry(ex))
-                {
-                    remainingRetries--;
-                    retry = true;
-
-                    Task.Delay(retryMillisecondDelay).Wait();
-                }
-                catch (Exception ex) when (remainingRetries == 0)
-                {
-                    throw new RepositoryException(
-                        $"Deleting all {nameof(SmoothFailure)} documents stopped after {maximumNumberOfRetries.ToString()} attempts. Wait for a few minutes and try again.",
-                        ex
-                    );
-                }
-                catch (Exception ex) when (IndexIsStale(ex))
-                {
-                    throw new RepositoryException(
-                        $"Deleting all {nameof(SmoothFailure)} documents timed out after {maximumTimeoutSeconds.ToString()} seconds as the index is stale. Wait for a few minutes and try again.",
-                        ex
-                    );
-                }
-            } while (retry);
-
-            bool IndexIsStale(Exception ex) => ex.Message.Contains("index is stale");
-
-            bool MaximumTimeToWaitForIndexesExceeded() =>
-                DateTime.UtcNow - startTime > maximumSecondsWaitingForNonStaleIndexes;
-
-            bool CanRetry(Exception ex) =>
-                IndexIsStale(ex) &&
-                remainingRetries > 0 &&
-                !MaximumTimeToWaitForIndexesExceeded();
-
-            Expression<Func<SmoothFailure, bool>> ForceDelete() =>
-                obj => obj.RunId != Guid.Empty;
+                SaveChanges();
+            }
         }
 
         public void SaveChanges()

@@ -32,9 +32,10 @@ namespace ImagineCommunications.GamePlan.Process.Smooth
                     }
                     else
                     {
-                        var smoothPassOutput = new SmoothOutputForPass(passOutput.PassSequence)
+                        var smoothPassOutput = new SmoothOutputForPass
                         {
-                            CountSpotsSet = passOutput.CountSpotsSet
+                            CountSpotsSet = passOutput.CountSpotsSet,
+                            PassSequence = passOutput.PassSequence
                         };
 
                         smoothOutput.OutputByPass.Add(smoothPassSequence, smoothPassOutput);

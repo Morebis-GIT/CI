@@ -1,0 +1,1132 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{68BF9439-EDDB-4E98-8423-30638A6B174F}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>ImagineCommunications.GamePlan.Process.Smooth.Tests</RootNamespace>
+    <AssemblyName>ImagineCommunications.GamePlan.Process.Smooth.Tests</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <LangVersion>8.0</LangVersion>
+    <FileAlignment>512</FileAlignment>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="DataDrivenTests\BreakTypeTests\SpotAndBreakComparisonTests.cs" />
+    <Compile Include="DataDrivenTests\ClashExposureCountTests.cs" />
+    <Compile Include="Helpers\DataDrivenTests.cs" />
+    <Compile Include="DataDrivenTests\OverbookBreakTests\DoNotOverbookTests.cs" />
+    <Compile Include="DataDrivenTests\SmoothHandheldSpotTests.cs" />
+    <Compile Include="DataDrivenTests\SponsorshipExclusivityTests\MidnightSpanTests.cs" />
+    <Compile Include="DataDrivenTests\SponsorshipExclusivityTests\SponsorshipExclusiveTimebandTests.cs" />
+    <Compile Include="DataDrivenTests\SponsorshipExclusivityTests\SponsorshipFlatProgrammeEachCompetitorSpotDurationTests.cs" />
+    <Compile Include="DataDrivenTests\SponsorshipExclusivityTests\SponsorshipFlatProgrammeEachCompetitorSpotCountTests.cs" />
+    <Compile Include="DataDrivenTests\SponsorshipExclusivityTests\SponsorshipFlatTimebandEachCompetitorSpotDurationTests.cs" />
+    <Compile Include="DataDrivenTests\SponsorshipExclusivityTests\SponsorshipFlatTimebandEachCompetitorSpotCountTests.cs" />
+    <Compile Include="DataDrivenTests\SponsorshipExclusivityTests\SponsorshipFlatTimebandAllCompetitorsTests.cs" />
+    <Compile Include="DataDrivenTests\SponsorshipExclusivityTests\SponsorshipNoneTimebandTests.cs" />
+    <Compile Include="DataDrivenTests\SponsorshipExclusivityTests\SponsorshipPercentageProgrammeEachCompetitorsSpotCountTests.cs" />
+    <Compile Include="DataDrivenTests\SponsorshipExclusivityTests\SponsorshipPercentageProgrammeEachCompetitorsSpotDurationTests.cs" />
+    <Compile Include="DataDrivenTests\SponsorshipExclusivityTests\SponsorshipPercentageTimebandEachCompetitorSpotCountTests.cs" />
+    <Compile Include="DataDrivenTests\SponsorshipExclusivityTests\SponsorshipPercentageTimebandEachCompetitorSpotDurationTests.cs" />
+    <Compile Include="DataDrivenTests\SponsorshipExclusivityTests\SponsorshipPercentageTimebandAllCompetitorsTests.cs" />
+    <Compile Include="DataDrivenTests\UnplacedSpotPassTests\DoNotPlaceCompetitorsInPass7001Tests.cs" />
+    <Compile Include="Helpers\CollectionDefinitions\SmoothSponsorshipFlatProgrammeEachCompetitorSpotDurationCollectionDefinition.cs" />
+    <Compile Include="Helpers\CollectionDefinitions\SmoothSponsorshipFlatProgrammeEachCompetitorSpotCountCollectionDefinition.cs" />
+    <Compile Include="Helpers\CollectionDefinitions\SmoothSponsorshipFlatTimebandEachCompetitorSpotDurationCollectionDefinition.cs" />
+    <Compile Include="Helpers\CollectionDefinitions\SmoothSponsorshipFlatTimebandEachCompetitorSpotCountCollectionDefinition.cs" />
+    <Compile Include="Helpers\CollectionDefinitions\SmoothSponsorshipPercentageProgrammeEachCompetitorSpotDurationCollectionDefinition.cs" />
+    <Compile Include="Helpers\CollectionDefinitions\SmoothSponsorshipPercentageTimebandEachCompetitorSpotDurationCollectionDefinition.cs" />
+    <Compile Include="Helpers\SmoothTestResults.cs" />
+    <Compile Include="Helpers\TruncateAllPossibleRepositoryData.cs" />
+    <Compile Include="Helpers\CollectionDefinitions\SmoothSponsorshipExclusiveTimebandCollectionDefinition.cs" />
+    <Compile Include="Helpers\CollectionDefinitions\SmoothSponsorshipExclusiveProgrammeCollectionDefinition.cs" />
+    <Compile Include="Helpers\CollectionDefinitions\SmoothSponsorshipFlatTimebandAllCompetitorsCollectionDefinition.cs" />
+    <Compile Include="Helpers\CollectionDefinitions\SmoothSponsorshipNoneTimebandCollectionDefinition.cs" />
+    <Compile Include="Helpers\CollectionDefinitions\SmoothSponsorshipPercentageProgrammeEachCompetitorSpotCountCollectionDefinition.cs" />
+    <Compile Include="Helpers\CollectionDefinitions\SmoothSponsorshipPercentageTimebandEachCompetitorSpotCountCollectionDefinition.cs" />
+    <Compile Include="Helpers\CollectionDefinitions\SmoothSponsorshipPercentageTimebandAllCompetitorsCollectionDefinition.cs" />
+    <Compile Include="Helpers\CollectionDefinitions\SmoothSponsorshipPercentageProgrammeAllCompetitorsCollectionDefinition.cs" />
+    <Compile Include="Helpers\CollectionDefinitions\SmoothSponsorshipFlatProgrammeAllCompetitorsCollectionDefinition.cs" />
+    <Compile Include="Helpers\CollectionDefinitions\SmoothSponsorshipNoneProgrammeCollectionDefinition.cs" />
+    <Compile Include="Helpers\CollectionFixtures\BreakResult.cs" />
+    <Compile Include="Helpers\CollectionFixtures\ProgrammeResult.cs" />
+    <Compile Include="DataDrivenTests\SponsorshipExclusivityTests\TimelineGeneratorTests.cs" />
+    <Compile Include="MockDataTests\ServiceTests\CanAddSpotServiceTests.CanAddSpotWithBreakType.cs" />
+    <Compile Include="MockDataTests\ServiceTests\CanAddSpotServiceTests.IsSpotEligible.cs" />
+    <Compile Include="MockDataTests\SpotInspectorServiceTests.AllCount.cs">
+      <DependentUpon>SpotInspectorServiceTests.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MockDataTests\SpotInspectorServiceTests.AllDuration.cs">
+      <DependentUpon>SpotInspectorServiceTests.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MockDataTests\SpotInspectorServiceTests.cs" />
+    <Compile Include="DataDrivenTests\SponsorshipExclusivityTests\ServiceTests\SmoothSponsorshipRunningTotalsTest.cs" />
+    <Compile Include="DataDrivenTests\SponsorshipExclusivityTests\NoSponsorshipRestrictionsTests.cs" />
+    <Compile Include="DataDrivenTests\SponsorshipExclusivityTests\ProgrammeExclusiveTests.cs" />
+    <Compile Include="DataDrivenTests\SponsorshipExclusivityTests\ProgrammeNoneTests.cs" />
+    <Compile Include="DataDrivenTests\SponsorshipExclusivityTests\ServiceTests\SponsorshipLimitsCalculatorTest.cs" />
+    <Compile Include="DataDrivenTests\SponsorshipExclusivityTests\SponsorshipExclusiveProgrammeTests.cs" />
+    <Compile Include="DataDrivenTests\SponsorshipExclusivityTests\SponsorshipFlatProgrammeAllCompetitorsTests.cs" />
+    <Compile Include="DataDrivenTests\SponsorshipExclusivityTests\SponsorshipNoneProgrammeTests.cs" />
+    <Compile Include="DataDrivenTests\SponsorshipExclusivityTests\SponsorshipPercentageProgrammeAllCompetitorsTests.cs" />
+    <Compile Include="MockDataTests\LogFilenameFactoryTests.cs" />
+    <Compile Include="MockDataTests\SponsorshipRestrictionServiceTriggerRecalculationOfAllowedLimitsTests.cs" />
+    <Compile Include="Helpers\FolderHelpers.cs" />
+    <Compile Include="Helpers\Pivot\PivotSpot.cs" />
+    <Compile Include="Helpers\Pivot\PivotBreak.cs" />
+    <Compile Include="Helpers\Pivot\PivotProgramme.cs" />
+    <Compile Include="Helpers\Pivot\PivotRecommendations.cs" />
+    <Compile Include="Helpers\Pivot\PivotSalesArea.cs" />
+    <Compile Include="Helpers\CollectionFixtures\SmoothFixture.cs" />
+    <Compile Include="Helpers\CollectionDefinitions\SmoothCollectionDefinition.cs" />
+    <Compile Include="MockDataTests\AddSpotsToBreakTests.cs" />
+    <Compile Include="MockDataTests\ProgrammeSpecificDataSetTests.cs" />
+    <Compile Include="MockDataTests\RestrictionWindowTests.cs" />
+    <Compile Include="Data\RestrictionWindowsTestData.cs" />
+    <Compile Include="Helpers\RepositoryDataCopier.cs" />
+    <Compile Include="Helpers\SmoothSession.cs" />
+    <Compile Include="DataDrivenTests\BreakAvailabilityTests.cs" />
+    <Compile Include="DataDrivenTests\BreakRequestTests.cs" />
+    <Compile Include="DataDrivenTests\PositionInBreakRequestTests.cs" />
+    <Compile Include="MockDataTests\GetProductClashesForMultipleSpotsTests.cs" />
+    <Compile Include="MockDataTests\GetProductClashesForSingleSpotTests.cs" />
+    <Compile Include="MockDataTests\CheckRestrictionsTests.cs" />
+    <Compile Include="DataDrivenTests\SameBreakRequestMultipartSpotTests.cs" />
+    <Compile Include="Helpers\SmoothTest.cs" />
+    <Compile Include="Helpers\RecommendationExtensions.cs" />
+    <Compile Include="DataDrivenTests\SponsorshipExclusivityTests\SponsorshipRestrictionsTests.cs" />
+    <Compile Include="DataDrivenTests\SponsorSpotTests.cs" />
+    <Compile Include="Helpers\TestSmoothProgrammeDetails.cs" />
+    <Compile Include="DataDrivenTests\TopTailMultipartSpotTests.cs" />
+    <Compile Include="MockDataTests\SponsorshipRestrictionFilterServiceTests.cs" />
+    <Compile Include="MockDataTests\SponsorshipRestrictionFilterServiceTests.DateRange.cs">
+      <DependentUpon>SponsorshipRestrictionFilterServiceTests.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MockDataTests\SponsorshipRestrictionFilterServiceTests.Duration.cs">
+      <DependentUpon>SponsorshipRestrictionFilterServiceTests.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MockDataTests\SponsorshipRestrictionFilterServiceTests.ProgrammeName.cs">
+      <DependentUpon>SponsorshipRestrictionFilterServiceTests.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MockDataTests\SpotInspectorServiceTests.EachCount.cs">
+      <DependentUpon>SpotInspectorServiceTests.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MockDataTests\SpotInspectorServiceTests.EachDuration.cs">
+      <DependentUpon>SpotInspectorServiceTests.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MockDataTests\TestBase.cs" />
+    <Compile Include="MockDataTests\VerifySpotProductsReferencesTests.cs" />
+    <Compile Include="ModelTests\SmoothFailureMessagesForSpotsCollectionTests.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TypeTests\SpotExternalReferenceTests.cs" />
+    <Compile Include="TypeTests\ProductExternalReferenceTests.cs" />
+    <Compile Include="TypeTests\BreakExternalReferenceTests.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="AutoFixture">
+      <Version>4.11.0</Version>
+    </PackageReference>
+    <PackageReference Include="FluentAssertions">
+      <Version>5.10.3</Version>
+    </PackageReference>
+    <PackageReference Include="Microsoft.CodeAnalysis.FxCopAnalyzers">
+      <Version>3.0.0</Version>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+      <PrivateAssets>all</PrivateAssets>
+    </PackageReference>
+    <PackageReference Include="Moq">
+      <Version>4.13.1</Version>
+    </PackageReference>
+    <PackageReference Include="NodaTime">
+      <Version>2.4.7</Version>
+    </PackageReference>
+    <PackageReference Include="System.Collections.Immutable">
+      <Version>1.6.0</Version>
+    </PackageReference>
+    <PackageReference Include="xunit">
+      <Version>2.4.1</Version>
+    </PackageReference>
+    <PackageReference Include="xunit.analyzers">
+      <Version>0.10.0</Version>
+    </PackageReference>
+    <PackageReference Include="xunit.assert">
+      <Version>2.4.1</Version>
+    </PackageReference>
+    <PackageReference Include="xunit.runner.visualstudio">
+      <Version>2.4.1</Version>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+      <PrivateAssets>all</PrivateAssets>
+    </PackageReference>
+    <PackageReference Include="Xunit.SkippableFact">
+      <Version>1.4.8</Version>
+    </PackageReference>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\..\test\ImagineCommunications.GamePlan.CommonTestsHelpers\ImagineCommunications.GamePlan.CommonTestsHelpers.csproj">
+      <Project>{0C9C1259-6948-4621-A532-FBCCC56AEC5D}</Project>
+      <Name>ImagineCommunications.GamePlan.CommonTestsHelpers</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\domain\ImagineCommunications.GamePlan.Domain.Generic\ImagineCommunications.GamePlan.Domain.Generic.csproj">
+      <Project>{E4E13375-E595-4DF3-81D4-C14314BACDFB}</Project>
+      <Name>ImagineCommunications.GamePlan.Domain.Generic</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\domain\ImagineCommunications.GamePlan.Domain\ImagineCommunications.GamePlan.Domain.csproj">
+      <Project>{3099d7dc-bc6e-4d9f-9668-c5798bd7f37c}</Project>
+      <Name>ImagineCommunications.GamePlan.Domain</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\infrastructure\ImagineCommunications.GamePlan.Persistence.File\ImagineCommunications.GamePlan.Persistence.File.csproj">
+      <Project>{03689E61-5D61-4A84-B6C0-4C483EEA9E5A}</Project>
+      <Name>ImagineCommunications.GamePlan.Persistence.File</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\infrastructure\ImagineCommunications.GamePlan.Persistence.Memory\ImagineCommunications.GamePlan.Persistence.Memory.csproj">
+      <Project>{51AAB30E-1451-46E7-A564-E3AE0C11F064}</Project>
+      <Name>ImagineCommunications.GamePlan.Persistence.Memory</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ImagineCommunications.GamePlan.Process.Smooth\ImagineCommunications.GamePlan.Process.Smooth.csproj">
+      <Project>{fbb5923b-27aa-4a77-b3c6-9fe8a9bbddde}</Project>
+      <Name>ImagineCommunications.GamePlan.Process.Smooth</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <None Include="Data\CoreRepositoryData\Breaks\1.break.json" />
+    <None Include="Data\CvsTestData\Sponsorship\all.csv" />
+    <None Include="Data\CvsTestData\Sponsorship\TestCaseData-Exclusive-Programme-NegativeTest.csv" />
+    <None Include="Data\CvsTestData\Sponsorship\TestCaseData-Exclusive-Programme-PositiveTest.csv" />
+    <None Include="Data\CvsTestData\Sponsorship\TestCaseData-Exclusive-TimeBand-NegativeTest.csv" />
+    <None Include="Data\CvsTestData\Sponsorship\TestCaseData-Exclusive-TimeBand-PositiveTest.csv" />
+    <None Include="Data\CvsTestData\Sponsorship\TestCaseData-Flat-Programme-AllCompetitors-SpotCount-NegativeTest.csv" />
+    <None Include="Data\CvsTestData\Sponsorship\TestCaseData-Flat-Programme-AllCompetitors-SpotCount-PositiveTest.csv" />
+    <None Include="Data\CvsTestData\Sponsorship\TestCaseData-Flat-Programme-AllCompetitors-SpotDuration-NegativeTest.csv" />
+    <None Include="Data\CvsTestData\Sponsorship\TestCaseData-Flat-Programme-AllCompetitors-SpotDuration-PositiveTest.csv" />
+    <None Include="Data\CvsTestData\Sponsorship\TestCaseData-Flat-Programme-EachCompetitor-SpotCount-NegativeTest.csv" />
+    <None Include="Data\CvsTestData\Sponsorship\TestCaseData-Flat-Programme-EachCompetitor-SpotCount-PositiveTest.csv" />
+    <None Include="Data\CvsTestData\Sponsorship\TestCaseData-Flat-Programme-EachCompetitor-SpotDuration-NegativeTest.csv" />
+    <None Include="Data\CvsTestData\Sponsorship\TestCaseData-Flat-Programme-EachCompetitor-SpotDuration-PositiveTest.csv" />
+    <None Include="Data\CvsTestData\Sponsorship\TestCaseData-Flat-TimeBand-AllCompetitors-SpotCount-NegativeTest.csv" />
+    <None Include="Data\CvsTestData\Sponsorship\TestCaseData-Flat-TimeBand-AllCompetitors-SpotCount-PositiveTest.csv" />
+    <None Include="Data\CvsTestData\Sponsorship\TestCaseData-Flat-TimeBand-AllCompetitors-SpotDuration-NegativeTest.csv" />
+    <None Include="Data\CvsTestData\Sponsorship\TestCaseData-Flat-TimeBand-AllCompetitors-SpotDuration-PositiveTest.csv" />
+    <None Include="Data\CvsTestData\Sponsorship\TestCaseData-Flat-TimeBand-EachCompetitor-SpotCount-NegativeTest.csv" />
+    <None Include="Data\CvsTestData\Sponsorship\TestCaseData-Flat-TimeBand-EachCompetitor-SpotCount-PositiveTest.csv" />
+    <None Include="Data\CvsTestData\Sponsorship\TestCaseData-Flat-TimeBand-EachCompetitor-SpotDuration-NegativeTest.csv" />
+    <None Include="Data\CvsTestData\Sponsorship\TestCaseData-Flat-TimeBand-EachCompetitor-SpotDuration-PositiveTest.csv" />
+    <None Include="Data\CvsTestData\Sponsorship\TestCaseData-None-Programme-NegativeTest.csv" />
+    <None Include="Data\CvsTestData\Sponsorship\TestCaseData-None-Programme-PositiveTest.csv" />
+    <None Include="Data\CvsTestData\Sponsorship\TestCaseData-None-TimeBand-NegativeTest.csv" />
+    <None Include="Data\CvsTestData\Sponsorship\TestCaseData-None-TimeBand-PositiveTest.csv" />
+    <None Include="Data\CvsTestData\Sponsorship\TestCaseData-Percentage-Programme-AllCompetitors-SpotCount-NegativeTest.csv" />
+    <None Include="Data\CvsTestData\Sponsorship\TestCaseData-Percentage-Programme-AllCompetitors-SpotCount-PositiveTest.csv" />
+    <None Include="Data\CvsTestData\Sponsorship\TestCaseData-Percentage-Programme-AllCompetitors-SpotDuration-NegativeTest.csv" />
+    <None Include="Data\CvsTestData\Sponsorship\TestCaseData-Percentage-Programme-AllCompetitors-SpotDuration-PositiveTest.csv" />
+    <None Include="Data\CvsTestData\Sponsorship\TestCaseData-Percentage-Programme-EachCompetitor-SpotCount-NegativeTest.csv" />
+    <None Include="Data\CvsTestData\Sponsorship\TestCaseData-Percentage-Programme-EachCompetitor-SpotCount-PositiveTest.csv" />
+    <None Include="Data\CvsTestData\Sponsorship\TestCaseData-Percentage-Programme-EachCompetitor-SpotDuration-NegativeTest.csv" />
+    <None Include="Data\CvsTestData\Sponsorship\TestCaseData-Percentage-Programme-EachCompetitor-SpotDuration-PositiveTest.csv" />
+    <None Include="Data\CvsTestData\Sponsorship\TestCaseData-Percentage-TimeBand-AllCompetitors-SpotCount-NegativeTest.csv" />
+    <None Include="Data\CvsTestData\Sponsorship\TestCaseData-Percentage-TimeBand-AllCompetitors-SpotCount-PositiveTest.csv" />
+    <None Include="Data\CvsTestData\Sponsorship\TestCaseData-Percentage-TimeBand-AllCompetitors-SpotDuration-NegativeTest.csv" />
+    <None Include="Data\CvsTestData\Sponsorship\TestCaseData-Percentage-TimeBand-AllCompetitors-SpotDuration-PositiveTest.csv" />
+    <None Include="Data\CvsTestData\Sponsorship\TestCaseData-Percentage-TimeBand-EachCompetitor-SpotCount-NegativeTest.csv" />
+    <None Include="Data\CvsTestData\Sponsorship\TestCaseData-Percentage-TimeBand-EachCompetitor-SpotCount-PositiveTest.csv" />
+    <None Include="Data\CvsTestData\Sponsorship\TestCaseData-Percentage-TimeBand-EachCompetitor-SpotDuration-NegativeTest.csv" />
+    <None Include="Data\CvsTestData\Sponsorship\TestCaseData-Percentage-TimeBand-EachCompetitor-SpotDuration-PositiveTest.csv" />
+    <None Include="Data\TestRepositoryData\.editorconfig" />
+    <None Include="Data\TestRepositoryData\BreakAvailability\Breaks\3.break.json" />
+    <None Include="Data\TestRepositoryData\BreakAvailability\Breaks\4.break.json" />
+    <None Include="Data\TestRepositoryData\BreakAvailability\Breaks\2.break.json" />
+    <None Include="Data\TestRepositoryData\BreakAvailability\Spots\1.spot.json" />
+    <None Include="Data\TestRepositoryData\BreakRequest_Respected\Breaks\2.break.json" />
+    <None Include="Data\TestRepositoryData\BreakRequest_Respected\Breaks\3.break.json" />
+    <None Include="Data\TestRepositoryData\BreakRequest_Respected\Breaks\4.break.json" />
+    <None Include="Data\TestRepositoryData\BreakRequest_Respected\Spots\1.spot.json" />
+    <None Include="Data\TestRepositoryData\ClashExposureCount_ProgrammeInPeakTimePlacesAllSpotsInPassOne\Breaks\11.break.json" />
+    <None Include="Data\TestRepositoryData\ClashExposureCount_ProgrammeInPeakTimePlacesAllSpotsInPassOne\Breaks\12.break.json" />
+    <None Include="Data\TestRepositoryData\ClashExposureCount_ProgrammeInPeakTimePlacesAllSpotsInPassOne\Breaks\13.break.json" />
+    <None Include="Data\TestRepositoryData\ClashExposureCount_ProgrammeInPeakTimePlacesAllSpotsInPassOne\Breaks\14.break.json" />
+    <None Include="Data\TestRepositoryData\ClashExposureCount_ProgrammeInPeakTimePlacesAllSpotsInPassOne\Breaks\15.break.json" />
+    <None Include="Data\TestRepositoryData\ClashExposureCount_ProgrammeInPeakTimePlacesAllSpotsInPassOne\Clashes\I41.clash.json" />
+    <None Include="Data\TestRepositoryData\ClashExposureCount_ProgrammeInPeakTimePlacesAllSpotsInPassOne\Clashes\P475.clash.json" />
+    <None Include="Data\TestRepositoryData\ClashExposureCount_ProgrammeInPeakTimePlacesAllSpotsInPassOne\Products\12658.product.json" />
+    <None Include="Data\TestRepositoryData\ClashExposureCount_ProgrammeInPeakTimePlacesAllSpotsInPassOne\Products\142539.product.json" />
+    <None Include="Data\TestRepositoryData\ClashExposureCount_ProgrammeInPeakTimePlacesAllSpotsInPassOne\Products\143850.product.json" />
+    <None Include="Data\TestRepositoryData\ClashExposureCount_ProgrammeInPeakTimePlacesAllSpotsInPassOne\Products\146243.product.json" />
+    <None Include="Data\TestRepositoryData\ClashExposureCount_ProgrammeInPeakTimePlacesAllSpotsInPassOne\Products\146532.product.json" />
+    <None Include="Data\TestRepositoryData\ClashExposureCount_ProgrammeInPeakTimePlacesAllSpotsInPassOne\Products\149400.product.json" />
+    <None Include="Data\TestRepositoryData\ClashExposureCount_ProgrammeInPeakTimePlacesAllSpotsInPassOne\Products\149492.product.json" />
+    <None Include="Data\TestRepositoryData\ClashExposureCount_ProgrammeInPeakTimePlacesAllSpotsInPassOne\Products\150296.product.json" />
+    <None Include="Data\TestRepositoryData\ClashExposureCount_ProgrammeInPeakTimePlacesAllSpotsInPassOne\Products\150468.product.json" />
+    <None Include="Data\TestRepositoryData\ClashExposureCount_ProgrammeInPeakTimePlacesAllSpotsInPassOne\Products\150920.product.json" />
+    <None Include="Data\TestRepositoryData\ClashExposureCount_ProgrammeInPeakTimePlacesAllSpotsInPassOne\Spots\10.spot.json" />
+    <None Include="Data\TestRepositoryData\ClashExposureCount_ProgrammeInPeakTimePlacesAllSpotsInPassOne\Spots\11.spot.json" />
+    <None Include="Data\TestRepositoryData\ClashExposureCount_ProgrammeInPeakTimePlacesAllSpotsInPassOne\Spots\12.spot.json" />
+    <None Include="Data\TestRepositoryData\ClashExposureCount_ProgrammeInPeakTimePlacesAllSpotsInPassOne\Spots\13.spot.json" />
+    <None Include="Data\TestRepositoryData\ClashExposureCount_ProgrammeInPeakTimePlacesAllSpotsInPassOne\Spots\4.spot.json" />
+    <None Include="Data\TestRepositoryData\ClashExposureCount_ProgrammeInPeakTimePlacesAllSpotsInPassOne\Spots\5.spot.json" />
+    <None Include="Data\TestRepositoryData\ClashExposureCount_ProgrammeInPeakTimePlacesAllSpotsInPassOne\Spots\6.spot.json" />
+    <None Include="Data\TestRepositoryData\ClashExposureCount_ProgrammeInPeakTimePlacesAllSpotsInPassOne\Spots\7.spot.json" />
+    <None Include="Data\TestRepositoryData\ClashExposureCount_ProgrammeInPeakTimePlacesAllSpotsInPassOne\Spots\8.spot.json" />
+    <None Include="Data\TestRepositoryData\ClashExposureCount_ProgrammeInPeakTimePlacesAllSpotsInPassOne\Spots\9.spot.json" />
+    <None Include="Data\TestRepositoryData\DoNotOverbookBreak\Spots\1.spot.json" />
+    <None Include="Data\TestRepositoryData\DoNotOverbookBreak\Spots\2.spot.json" />
+    <None Include="Data\TestRepositoryData\FirstInBreakRequest_Respected\Spots\1.spot.json" />
+    <None Include="Data\TestRepositoryData\FirstInBreakRequest_Respected\Spots\2.spot.json" />
+    <None Include="Data\TestRepositoryData\FirstInBreakRequest_Respected\Spots\3.spot.json" />
+    <None Include="Data\TestRepositoryData\LastInBreakRequest_Respected\Spots\1.spot.json" />
+    <None Include="Data\TestRepositoryData\LastInBreakRequest_Respected\Spots\2.spot.json" />
+    <None Include="Data\TestRepositoryData\LastInBreakRequest_Respected\Spots\3.spot.json" />
+    <None Include="Data\TestRepositoryData\SameBreakRequest_Respected\Spots\20.spot.json" />
+    <None Include="Data\TestRepositoryData\SameBreakRequest_Respected\Spots\21.spot.json" />
+    <None Include="Data\TestRepositoryData\SameBreakRequest_Respected\Spots\22.spot.json" />
+    <None Include="Data\TestRepositoryData\SameBreakRequest_Respected\Spots\23.spot.json" />
+    <None Include="Data\TestRepositoryData\SameBreakRequest_Respected\Spots\24.spot.json" />
+    <None Include="Data\TestRepositoryData\SameBreakRequest_Respected\Spots\25.spot.json" />
+    <None Include="Data\TestRepositoryData\SameBreakRequest_Respected\Spots\26.spot.json" />
+    <None Include="Data\TestRepositoryData\SmoothHandheldOnly_DynamicOnly\Breaks\3.break.json" />
+    <None Include="Data\TestRepositoryData\SmoothHandheldOnly_DynamicOnly\Breaks\4.break.json" />
+    <None Include="Data\TestRepositoryData\SmoothHandheldOnly_DynamicOnly\Breaks\2.break.json" />
+    <None Include="Data\TestRepositoryData\SmoothHandheldOnly_DynamicOnly\Spots\1.spot.json" />
+    <None Include="Data\TestRepositoryData\SmoothHandheldOnly_DynamicOnly\Spots\2.spot.json" />
+    <None Include="Data\TestRepositoryData\SmoothHandheldOnly_HandheldAndDynamic\Breaks\3.break.json" />
+    <None Include="Data\TestRepositoryData\SmoothHandheldOnly_HandheldAndDynamic\Breaks\4.break.json" />
+    <None Include="Data\TestRepositoryData\SmoothHandheldOnly_HandheldAndDynamic\Breaks\2.break.json" />
+    <None Include="Data\TestRepositoryData\SmoothHandheldOnly_HandheldAndDynamic\Spots\1.spot.json" />
+    <None Include="Data\TestRepositoryData\SmoothHandheldOnly_HandheldAndDynamic\Spots\2.spot.json" />
+    <None Include="Data\TestRepositoryData\SmoothHandheldOnly_HandheldOnly\Breaks\3.break.json" />
+    <None Include="Data\TestRepositoryData\SmoothHandheldOnly_HandheldOnly\Breaks\4.break.json" />
+    <None Include="Data\TestRepositoryData\SmoothHandheldOnly_HandheldOnly\Breaks\2.break.json" />
+    <None Include="Data\TestRepositoryData\SmoothHandheldOnly_HandheldOnly\Spots\1.spot.json" />
+    <None Include="Data\TestRepositoryData\SmoothHandheldOnly_HandheldOnly\Spots\2.spot.json" />
+    <None Include="Data\TestRepositoryData\SponsoredSpot_MovePreBookedSpot\Breaks\2.break.json" />
+    <None Include="Data\TestRepositoryData\SponsoredSpot_MovePreBookedSpot\Breaks\4.break.json" />
+    <None Include="Data\TestRepositoryData\SponsoredSpot_MovePreBookedSpot\Breaks\3.break.json" />
+    <None Include="Data\TestRepositoryData\SponsoredSpot_MovePreBookedSpot\Spots\1.spot.json" />
+    <None Include="Data\TestRepositoryData\SponsoredSpot_MovePreBookedSpot\Spots\2.spot.json" />
+    <None Include="Data\TestRepositoryData\SponsoredSpot_MovePreBookedSpot\Spots\3.spot.json" />
+    <None Include="Data\TestRepositoryData\SponsoredSpot_OneSponsorSpot\Breaks\3.break.json" />
+    <None Include="Data\TestRepositoryData\SponsoredSpot_OneSponsorSpot\Breaks\4.break.json" />
+    <None Include="Data\TestRepositoryData\SponsoredSpot_OneSponsorSpot\Breaks\2.break.json" />
+    <None Include="Data\TestRepositoryData\SponsoredSpot_OneSponsorSpot\Spots\1.spot.json" />
+    <None Include="Data\TestRepositoryData\SponsoredSpot_OneSponsorSpot\Spots\2.spot.json" />
+    <None Include="Data\TestRepositoryData\SponsoredSpot_TwoSponsorSpots\Breaks\3.break.json" />
+    <None Include="Data\TestRepositoryData\SponsoredSpot_TwoSponsorSpots\Breaks\4.break.json" />
+    <None Include="Data\TestRepositoryData\SponsoredSpot_TwoSponsorSpots\Breaks\2.break.json" />
+    <None Include="Data\TestRepositoryData\SponsoredSpot_TwoSponsorSpots\Spots\1.spot.json" />
+    <None Include="Data\TestRepositoryData\SponsoredSpot_TwoSponsorSpots\Spots\2.spot.json" />
+    <None Include="Data\CoreRepositoryData\.editorconfig" />
+    <None Include="Data\CoreRepositoryData\Clashes\I2.clash.json" />
+    <None Include="Data\CoreRepositoryData\Clashes\P1.clash.json" />
+    <None Include="Data\CoreRepositoryData\ClashExceptions\2.clash_exception.json" />
+    <None Include="Data\CoreRepositoryData\ClashExceptions\3.clash_exception.json" />
+    <None Include="Data\CoreRepositoryData\Products\1.product.json" />
+    <None Include="Data\CoreRepositoryData\Programmes\1.programme.json" />
+    <None Include="Data\CoreRepositoryData\SalesAreas\NWS91.sales_area.json" />
+    <None Include="Data\CoreRepositoryData\SmoothConfigurations\1.smooth_configuration.json" />
+    <None Include="Data\CoreRepositoryData\SmoothFailureMessages\1.smooth_failure_message.json" />
+    <None Include="Data\CoreRepositoryData\SmoothFailureMessages\10.smooth_failure_message.json" />
+    <None Include="Data\CoreRepositoryData\SmoothFailureMessages\101.smooth_failure_message.json" />
+    <None Include="Data\CoreRepositoryData\SmoothFailureMessages\2.smooth_failure_message.json" />
+    <None Include="Data\CoreRepositoryData\SmoothFailureMessages\201.smooth_failure_message.json" />
+    <None Include="Data\CoreRepositoryData\SmoothFailureMessages\3.smooth_failure_message.json" />
+    <None Include="Data\CoreRepositoryData\SmoothFailureMessages\4.smooth_failure_message.json" />
+    <None Include="Data\CoreRepositoryData\SmoothFailureMessages\5.smooth_failure_message.json" />
+    <None Include="Data\CoreRepositoryData\SmoothFailureMessages\6.smooth_failure_message.json" />
+    <None Include="Data\CoreRepositoryData\SmoothFailureMessages\7.smooth_failure_message.json" />
+    <None Include="Data\CoreRepositoryData\SmoothFailureMessages\8.smooth_failure_message.json" />
+    <None Include="Data\CoreRepositoryData\SmoothFailureMessages\9.smooth_failure_message.json" />
+    <None Include="Data\CoreRepositoryData\TenantSettings\1.tenantSetting.json" />
+    <None Include="Data\CoreRepositoryData\ClashExceptions\1.clash_exception.json" />
+    <None Include="Data\TestRepositoryData\ClashExposureCount_ProgrammeInPeakTimePlacesAllSpotsInPassOne\Programmes\2.programme.json" />
+    <None Include="Data\TestRepositoryData\ClashExposureCount_ProgrammeInPeakTimePlacesAllSpotsInPassOne\SalesAreas\2.sales_area.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\Timeband-Flat-All-Count_MidnightSpan\Breaks\1.break.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\Timeband-Flat-All-Count_MidnightSpan\Breaks\133.break.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\Timeband-Flat-All-Count_MidnightSpan\Breaks\134.break.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\Timeband-Flat-All-Count_MidnightSpan\Breaks\135.break.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\Timeband-Flat-All-Count_MidnightSpan\Breaks\2.break.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\Timeband-Flat-All-Count_MidnightSpan\Breaks\3.break.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\Timeband-Flat-All-Count_MidnightSpan\Clashes\P195.clash.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\Timeband-Flat-All-Count_MidnightSpan\Clashes\P274.clash.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\Timeband-Flat-All-Count_MidnightSpan\Clashes\P475.clash.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\Timeband-Flat-All-Count_MidnightSpan\Products\113265.product.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\Timeband-Flat-All-Count_MidnightSpan\Products\118049.product.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\Timeband-Flat-All-Count_MidnightSpan\Products\142599.product.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\Timeband-Flat-All-Count_MidnightSpan\Products\142949.product.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\Timeband-Flat-All-Count_MidnightSpan\Products\145937.product.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\Timeband-Flat-All-Count_MidnightSpan\Products\146046.product.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\Timeband-Flat-All-Count_MidnightSpan\Products\147589.product.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\Timeband-Flat-All-Count_MidnightSpan\Products\148874.product.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\Timeband-Flat-All-Count_MidnightSpan\Programmes\39.programme.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\Timeband-Flat-All-Count_MidnightSpan\Programmes\40.programme.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\Timeband-Flat-All-Count_MidnightSpan\Sponsorships\1.sponsorship.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\Timeband-Flat-All-Count_MidnightSpan\Spots\368127.spot.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\Timeband-Flat-All-Count_MidnightSpan\Spots\368169.spot.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\Timeband-Flat-All-Count_MidnightSpan\Spots\61.spot.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\Timeband-Flat-All-Count_MidnightSpan\Spots\62.spot.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\Timeband-Flat-All-Count_MidnightSpan\Spots\63.spot.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\Timeband-Flat-All-Count_MidnightSpan\Spots\64.spot.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\Timeband-Flat-All-Count_MidnightSpan\Spots\65.spot.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\Timeband-Flat-All-Count_MidnightSpan\Spots\66.spot.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\Timeband-Flat-All-Count_MidnightSpan\Spots\67.spot.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\Timeband-Flat-All-Count_MidnightSpan\Spots\68.spot.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\Timeband-Flat-All-Count_MidnightSpan\Spots\69.spot.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\Timeband-Flat-All-Count_MidnightSpan\Spots\70.spot.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\Timeband-Flat-All-Duration_MidnightSpan\Breaks\1.break.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\Timeband-Flat-All-Duration_MidnightSpan\Breaks\133.break.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\Timeband-Flat-All-Duration_MidnightSpan\Breaks\134.break.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\Timeband-Flat-All-Duration_MidnightSpan\Breaks\135.break.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\Timeband-Flat-All-Duration_MidnightSpan\Breaks\2.break.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\Timeband-Flat-All-Duration_MidnightSpan\Breaks\3.break.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\Timeband-Flat-All-Duration_MidnightSpan\Clashes\P195.clash.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\Timeband-Flat-All-Duration_MidnightSpan\Clashes\P274.clash.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\Timeband-Flat-All-Duration_MidnightSpan\Clashes\P475.clash.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\Timeband-Flat-All-Duration_MidnightSpan\Products\113265.product.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\Timeband-Flat-All-Duration_MidnightSpan\Products\118049.product.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\Timeband-Flat-All-Duration_MidnightSpan\Products\142599.product.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\Timeband-Flat-All-Duration_MidnightSpan\Products\142949.product.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\Timeband-Flat-All-Duration_MidnightSpan\Products\145937.product.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\Timeband-Flat-All-Duration_MidnightSpan\Products\146046.product.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\Timeband-Flat-All-Duration_MidnightSpan\Products\147589.product.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\Timeband-Flat-All-Duration_MidnightSpan\Products\148874.product.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\Timeband-Flat-All-Duration_MidnightSpan\Programmes\39.programme.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\Timeband-Flat-All-Duration_MidnightSpan\Programmes\40.programme.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\Timeband-Flat-All-Duration_MidnightSpan\Sponsorships\1.sponsorship.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\Timeband-Flat-All-Duration_MidnightSpan\Spots\368127.spot.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\Timeband-Flat-All-Duration_MidnightSpan\Spots\368169.spot.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\Timeband-Flat-All-Duration_MidnightSpan\Spots\61.spot.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\Timeband-Flat-All-Duration_MidnightSpan\Spots\62.spot.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\Timeband-Flat-All-Duration_MidnightSpan\Spots\63.spot.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\Timeband-Flat-All-Duration_MidnightSpan\Spots\64.spot.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\Timeband-Flat-All-Duration_MidnightSpan\Spots\65.spot.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\Timeband-Flat-All-Duration_MidnightSpan\Spots\66.spot.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\Timeband-Flat-All-Duration_MidnightSpan\Spots\67.spot.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\Timeband-Flat-All-Duration_MidnightSpan\Spots\68.spot.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\Timeband-Flat-All-Duration_MidnightSpan\Spots\69.spot.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\Timeband-Flat-All-Duration_MidnightSpan\Spots\70.spot.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\Timeband-Flat-Each-Count_MidnightSpan\Spots\61.spot.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\Timeband-Flat-Each-Count_MidnightSpan\Spots\62.spot.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\Timeband-Flat-Each-Count_MidnightSpan\Spots\63.spot.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\Timeband-Flat-Each-Count_MidnightSpan\Spots\64.spot.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\Timeband-Flat-Each-Count_MidnightSpan\Spots\65.spot.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\Timeband-Flat-Each-Count_MidnightSpan\Spots\66.spot.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\Timeband-Flat-Each-Count_MidnightSpan\Spots\67.spot.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\Timeband-Flat-Each-Count_MidnightSpan\Spots\68.spot.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\Timeband-Flat-Each-Count_MidnightSpan\Spots\69.spot.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\Timeband-Flat-Each-Count_MidnightSpan\Spots\70.spot.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\Timeband-Flat-Each-Duration_MidnightSpan\Spots\61.spot.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\Timeband-Flat-Each-Duration_MidnightSpan\Spots\62.spot.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\Timeband-Flat-Each-Duration_MidnightSpan\Spots\63.spot.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\Timeband-Flat-Each-Duration_MidnightSpan\Spots\64.spot.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\Timeband-Flat-Each-Duration_MidnightSpan\Spots\65.spot.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\Timeband-Flat-Each-Duration_MidnightSpan\Spots\66.spot.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\Timeband-Flat-Each-Duration_MidnightSpan\Spots\67.spot.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\Timeband-Flat-Each-Duration_MidnightSpan\Spots\68.spot.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\Timeband-Flat-Each-Duration_MidnightSpan\Spots\69.spot.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\Timeband-Flat-Each-Duration_MidnightSpan\Spots\70.spot.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\Timeband-Percentage-All-Count_MidnightSpan\Spots\61.spot.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\Timeband-Percentage-All-Count_MidnightSpan\Spots\62.spot.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\Timeband-Percentage-All-Count_MidnightSpan\Spots\63.spot.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\Timeband-Percentage-All-Count_MidnightSpan\Spots\64.spot.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\Timeband-Percentage-All-Count_MidnightSpan\Spots\65.spot.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\Timeband-Percentage-All-Count_MidnightSpan\Spots\66.spot.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\Timeband-Percentage-All-Count_MidnightSpan\Spots\67.spot.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\Timeband-Percentage-All-Count_MidnightSpan\Spots\68.spot.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\Timeband-Percentage-All-Count_MidnightSpan\Spots\69.spot.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\Timeband-Percentage-All-Count_MidnightSpan\Spots\70.spot.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\Timeband-Percentage-All-Duration_MidnightSpan\Spots\61.spot.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\Timeband-Percentage-All-Duration_MidnightSpan\Spots\62.spot.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\Timeband-Percentage-All-Duration_MidnightSpan\Spots\63.spot.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\Timeband-Percentage-All-Duration_MidnightSpan\Spots\64.spot.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\Timeband-Percentage-All-Duration_MidnightSpan\Spots\65.spot.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\Timeband-Percentage-All-Duration_MidnightSpan\Spots\66.spot.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\Timeband-Percentage-All-Duration_MidnightSpan\Spots\67.spot.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\Timeband-Percentage-All-Duration_MidnightSpan\Spots\68.spot.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\Timeband-Percentage-All-Duration_MidnightSpan\Spots\69.spot.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\Timeband-Percentage-All-Duration_MidnightSpan\Spots\70.spot.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\Timeband-Percentage-Each-Count_MidnightSpan\Spots\61.spot.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\Timeband-Percentage-Each-Count_MidnightSpan\Spots\62.spot.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\Timeband-Percentage-Each-Count_MidnightSpan\Spots\63.spot.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\Timeband-Percentage-Each-Count_MidnightSpan\Spots\64.spot.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\Timeband-Percentage-Each-Count_MidnightSpan\Spots\65.spot.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\Timeband-Percentage-Each-Count_MidnightSpan\Spots\66.spot.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\Timeband-Percentage-Each-Count_MidnightSpan\Spots\67.spot.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\Timeband-Percentage-Each-Count_MidnightSpan\Spots\68.spot.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\Timeband-Percentage-Each-Count_MidnightSpan\Spots\69.spot.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\Timeband-Percentage-Each-Count_MidnightSpan\Spots\70.spot.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\Timeband-Percentage-Each-Duration_MidnightSpan\Breaks\1.break.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\Timeband-Percentage-Each-Duration_MidnightSpan\Breaks\133.break.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\Timeband-Percentage-Each-Duration_MidnightSpan\Breaks\134.break.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\Timeband-Percentage-Each-Duration_MidnightSpan\Breaks\135.break.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\Timeband-Percentage-Each-Duration_MidnightSpan\Breaks\2.break.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\Timeband-Percentage-Each-Duration_MidnightSpan\Breaks\3.break.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\Timeband-Percentage-Each-Duration_MidnightSpan\Clashes\P195.clash.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\Timeband-Percentage-Each-Duration_MidnightSpan\Clashes\P274.clash.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\Timeband-Percentage-Each-Duration_MidnightSpan\Clashes\P475.clash.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\Timeband-Percentage-Each-Duration_MidnightSpan\Products\113265.product.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\Timeband-Percentage-Each-Duration_MidnightSpan\Products\118049.product.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\Timeband-Percentage-Each-Duration_MidnightSpan\Products\142599.product.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\Timeband-Percentage-Each-Duration_MidnightSpan\Products\142949.product.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\Timeband-Percentage-Each-Duration_MidnightSpan\Products\145937.product.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\Timeband-Percentage-Each-Duration_MidnightSpan\Products\146046.product.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\Timeband-Percentage-Each-Duration_MidnightSpan\Products\147589.product.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\Timeband-Percentage-Each-Duration_MidnightSpan\Products\148874.product.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\Timeband-Percentage-Each-Duration_MidnightSpan\Programmes\39.programme.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\Timeband-Percentage-Each-Duration_MidnightSpan\Programmes\40.programme.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\Timeband-Percentage-Each-Duration_MidnightSpan\Sponsorships\1.sponsorship.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\Timeband-Percentage-Each-Duration_MidnightSpan\Spots\368127.spot.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\Timeband-Percentage-Each-Duration_MidnightSpan\Spots\368169.spot.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\Timeband-Percentage-Each-Count_MidnightSpan\Breaks\1.break.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\Timeband-Percentage-Each-Count_MidnightSpan\Breaks\133.break.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\Timeband-Percentage-Each-Count_MidnightSpan\Breaks\134.break.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\Timeband-Percentage-Each-Count_MidnightSpan\Breaks\135.break.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\Timeband-Percentage-Each-Count_MidnightSpan\Breaks\2.break.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\Timeband-Percentage-Each-Count_MidnightSpan\Breaks\3.break.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\Timeband-Percentage-Each-Count_MidnightSpan\Clashes\P195.clash.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\Timeband-Percentage-Each-Count_MidnightSpan\Clashes\P274.clash.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\Timeband-Percentage-Each-Count_MidnightSpan\Clashes\P475.clash.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\Timeband-Percentage-Each-Count_MidnightSpan\Products\113265.product.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\Timeband-Percentage-Each-Count_MidnightSpan\Products\118049.product.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\Timeband-Percentage-Each-Count_MidnightSpan\Products\142599.product.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\Timeband-Percentage-Each-Count_MidnightSpan\Products\142949.product.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\Timeband-Percentage-Each-Count_MidnightSpan\Products\145937.product.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\Timeband-Percentage-Each-Count_MidnightSpan\Products\146046.product.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\Timeband-Percentage-Each-Count_MidnightSpan\Products\147589.product.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\Timeband-Percentage-Each-Count_MidnightSpan\Products\148874.product.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\Timeband-Percentage-Each-Count_MidnightSpan\Programmes\39.programme.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\Timeband-Percentage-Each-Count_MidnightSpan\Programmes\40.programme.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\Timeband-Percentage-Each-Count_MidnightSpan\Sponsorships\1.sponsorship.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\Timeband-Percentage-Each-Count_MidnightSpan\Spots\368127.spot.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\Timeband-Percentage-Each-Count_MidnightSpan\Spots\368169.spot.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\Timeband-Flat-Each-Duration_MidnightSpan\Breaks\1.break.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\Timeband-Flat-Each-Duration_MidnightSpan\Breaks\133.break.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\Timeband-Flat-Each-Duration_MidnightSpan\Breaks\134.break.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\Timeband-Flat-Each-Duration_MidnightSpan\Breaks\135.break.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\Timeband-Flat-Each-Duration_MidnightSpan\Breaks\2.break.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\Timeband-Flat-Each-Duration_MidnightSpan\Breaks\3.break.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\Timeband-Flat-Each-Duration_MidnightSpan\Clashes\P195.clash.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\Timeband-Flat-Each-Duration_MidnightSpan\Clashes\P274.clash.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\Timeband-Flat-Each-Duration_MidnightSpan\Clashes\P475.clash.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\Timeband-Flat-Each-Duration_MidnightSpan\Products\113265.product.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\Timeband-Flat-Each-Duration_MidnightSpan\Products\118049.product.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\Timeband-Flat-Each-Duration_MidnightSpan\Products\142599.product.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\Timeband-Flat-Each-Duration_MidnightSpan\Products\142949.product.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\Timeband-Flat-Each-Duration_MidnightSpan\Products\145937.product.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\Timeband-Flat-Each-Duration_MidnightSpan\Products\146046.product.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\Timeband-Flat-Each-Duration_MidnightSpan\Products\147589.product.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\Timeband-Flat-Each-Duration_MidnightSpan\Products\148874.product.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\Timeband-Flat-Each-Duration_MidnightSpan\Programmes\39.programme.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\Timeband-Flat-Each-Duration_MidnightSpan\Programmes\40.programme.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\Timeband-Flat-Each-Duration_MidnightSpan\Sponsorships\1.sponsorship.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\Timeband-Flat-Each-Duration_MidnightSpan\Spots\368127.spot.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\Timeband-Flat-Each-Duration_MidnightSpan\Spots\368169.spot.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\Timeband-Percentage-All-Duration_MidnightSpan\Breaks\1.break.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\Timeband-Percentage-All-Duration_MidnightSpan\Breaks\133.break.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\Timeband-Percentage-All-Duration_MidnightSpan\Breaks\134.break.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\Timeband-Percentage-All-Duration_MidnightSpan\Breaks\135.break.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\Timeband-Percentage-All-Duration_MidnightSpan\Breaks\2.break.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\Timeband-Percentage-All-Duration_MidnightSpan\Breaks\3.break.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\Timeband-Percentage-All-Duration_MidnightSpan\Clashes\P195.clash.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\Timeband-Percentage-All-Duration_MidnightSpan\Clashes\P274.clash.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\Timeband-Percentage-All-Duration_MidnightSpan\Clashes\P475.clash.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\Timeband-Percentage-All-Duration_MidnightSpan\Products\113265.product.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\Timeband-Percentage-All-Duration_MidnightSpan\Products\118049.product.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\Timeband-Percentage-All-Duration_MidnightSpan\Products\142599.product.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\Timeband-Percentage-All-Duration_MidnightSpan\Products\142949.product.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\Timeband-Percentage-All-Duration_MidnightSpan\Products\145937.product.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\Timeband-Percentage-All-Duration_MidnightSpan\Products\146046.product.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\Timeband-Percentage-All-Duration_MidnightSpan\Products\147589.product.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\Timeband-Percentage-All-Duration_MidnightSpan\Products\148874.product.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\Timeband-Percentage-All-Duration_MidnightSpan\Programmes\39.programme.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\Timeband-Percentage-All-Duration_MidnightSpan\Programmes\40.programme.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\Timeband-Percentage-All-Duration_MidnightSpan\Sponsorships\1.sponsorship.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\Timeband-Percentage-All-Duration_MidnightSpan\Spots\368127.spot.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\Timeband-Percentage-All-Duration_MidnightSpan\Spots\368169.spot.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\Timeband-Percentage-All-Count_MidnightSpan\Breaks\1.break.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\Timeband-Percentage-All-Count_MidnightSpan\Breaks\133.break.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\Timeband-Percentage-All-Count_MidnightSpan\Breaks\134.break.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\Timeband-Percentage-All-Count_MidnightSpan\Breaks\135.break.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\Timeband-Percentage-All-Count_MidnightSpan\Breaks\2.break.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\Timeband-Percentage-All-Count_MidnightSpan\Breaks\3.break.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\Timeband-Percentage-All-Count_MidnightSpan\Clashes\P195.clash.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\Timeband-Percentage-All-Count_MidnightSpan\Clashes\P274.clash.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\Timeband-Percentage-All-Count_MidnightSpan\Clashes\P475.clash.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\Timeband-Percentage-All-Count_MidnightSpan\Products\113265.product.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\Timeband-Percentage-All-Count_MidnightSpan\Products\118049.product.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\Timeband-Percentage-All-Count_MidnightSpan\Products\142599.product.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\Timeband-Percentage-All-Count_MidnightSpan\Products\142949.product.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\Timeband-Percentage-All-Count_MidnightSpan\Products\145937.product.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\Timeband-Percentage-All-Count_MidnightSpan\Products\146046.product.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\Timeband-Percentage-All-Count_MidnightSpan\Products\147589.product.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\Timeband-Percentage-All-Count_MidnightSpan\Products\148874.product.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\Timeband-Percentage-All-Count_MidnightSpan\Programmes\39.programme.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\Timeband-Percentage-All-Count_MidnightSpan\Programmes\40.programme.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\Timeband-Percentage-All-Count_MidnightSpan\Sponsorships\1.sponsorship.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\Timeband-Percentage-All-Count_MidnightSpan\Spots\368127.spot.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\Timeband-Percentage-All-Count_MidnightSpan\Spots\368169.spot.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\Timeband-Flat-Each-Count_MidnightSpan\Programmes\40.programme.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\Timeband-Flat-Each-Count_MidnightSpan\Programmes\39.programme.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\SharedData\Spots\259.spot.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\SharedData\Spots\260.spot.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\SharedData\Spots\261.spot.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\SharedData\Spots\262.spot.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\SharedData\Spots\263.spot.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\SharedData\Spots\264.spot.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\SharedData\Spots\265.spot.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\SharedData\Spots\266.spot.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\SharedData\Spots\267.spot.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\SharedData\Spots\268.spot.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\SharedData\Spots\269.spot.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\SharedData\Spots\270.spot.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\SharedData\Spots\271.spot.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\SharedData\Spots\272.spot.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\SharedData\Spots\273.spot.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\SharedData\Spots\274.spot.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\SharedData\Spots\275.spot.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\SharedData\Spots\276.spot.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\SharedData\Spots\277.spot.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\SharedData\Spots\278.spot.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\SharedData\Spots\279.spot.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\SharedData\Spots\280.spot.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\SharedData\Spots\281.spot.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\SharedData\Spots\282.spot.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\SharedData\Spots\283.spot.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\SharedData\Spots\284.spot.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\SharedData\Spots\285.spot.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\SharedData\Spots\286.spot.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\SharedData\Spots\287.spot.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\SharedData\Spots\288.spot.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\SharedData\Spots\289.spot.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\SharedData\Spots\290.spot.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\SharedData\Spots\291.spot.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\SharedData\Spots\292.spot.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\SharedData\Spots\293.spot.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\SharedData\Spots\294.spot.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\SharedData\Spots\295.spot.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\SharedData\Spots\296.spot.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\SharedData\Spots\297.spot.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\SharedData\Spots\298.spot.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\SharedData\Spots\299.spot.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\SharedData\Spots\300.spot.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\SharedData\Spots\301.spot.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\SharedData\Spots\302.spot.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\SharedData\Spots\303.spot.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\SharedData\Spots\304.spot.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\SharedData\Spots\305.spot.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\SharedData\Spots\306.spot.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\SharedData\Spots\307.spot.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\SharedData\Spots\308.spot.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\SharedData\Spots\309.spot.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\SharedData\Spots\310.spot.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\SharedData\Spots\311.spot.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\SharedData\Spots\312.spot.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\SharedData\Spots\313.spot.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\SharedData\Spots\314.spot.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\SharedData\Spots\315.spot.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\SharedData\Spots\316.spot.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\Timeband-Flat-Each-Count_MidnightSpan\Breaks\1.break.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\Timeband-Flat-Each-Count_MidnightSpan\Breaks\133.break.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\Timeband-Flat-Each-Count_MidnightSpan\Breaks\134.break.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\Timeband-Flat-Each-Count_MidnightSpan\Breaks\135.break.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\Timeband-Flat-Each-Count_MidnightSpan\Breaks\2.break.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\Timeband-Flat-Each-Count_MidnightSpan\Breaks\3.break.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\Timeband-Flat-Each-Count_MidnightSpan\Clashes\P195.clash.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\Timeband-Flat-Each-Count_MidnightSpan\Clashes\P274.clash.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\Timeband-Flat-Each-Count_MidnightSpan\Clashes\P475.clash.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\Timeband-Flat-Each-Count_MidnightSpan\Products\113265.product.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\Timeband-Flat-Each-Count_MidnightSpan\Products\142949.product.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\Timeband-Flat-Each-Count_MidnightSpan\Products\147589.product.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\Timeband-Flat-Each-Count_MidnightSpan\Products\118049.product.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\Timeband-Flat-Each-Count_MidnightSpan\Products\148874.product.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\Timeband-Flat-Each-Count_MidnightSpan\Products\146046.product.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\Timeband-Flat-Each-Count_MidnightSpan\Products\145937.product.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\Timeband-Flat-Each-Count_MidnightSpan\Products\142599.product.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\Timeband-Flat-Each-Count_MidnightSpan\Sponsorships\1.sponsorship.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\Timeband-Flat-Each-Count_MidnightSpan\Spots\368127.spot.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\Timeband-Flat-Each-Count_MidnightSpan\Spots\368169.spot.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\Timeband-Percentage-Each-Duration_MidnightSpan\Spots\61.spot.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\Timeband-Percentage-Each-Duration_MidnightSpan\Spots\62.spot.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\Timeband-Percentage-Each-Duration_MidnightSpan\Spots\63.spot.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\Timeband-Percentage-Each-Duration_MidnightSpan\Spots\64.spot.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\Timeband-Percentage-Each-Duration_MidnightSpan\Spots\65.spot.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\Timeband-Percentage-Each-Duration_MidnightSpan\Spots\66.spot.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\Timeband-Percentage-Each-Duration_MidnightSpan\Spots\67.spot.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\Timeband-Percentage-Each-Duration_MidnightSpan\Spots\68.spot.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\Timeband-Percentage-Each-Duration_MidnightSpan\Spots\69.spot.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\Timeband-Percentage-Each-Duration_MidnightSpan\Spots\70.spot.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\TimelineGenerator\BigOne\Sponsorships\1.sponsorship.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\TimelineGenerator\BigOne\Sponsorships\2.sponsorship.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\TimelineGenerator\BigOne\Sponsorships\3.sponsorship.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\TimelineGenerator\BigOne\Sponsorships\4.sponsorship.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\TimelineGenerator\BigOne\Sponsorships\5.sponsorship.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\TimelineGenerator\BigOne\Sponsorships\6.sponsorship.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\TimelineGenerator\AfterMidnight\Sponsorships\1.sponsorship.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\TimelineGenerator\Midnight\Sponsorships\1.sponsorship.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\TimelineGenerator\Dates\Sponsorships\1.sponsorship.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\TimelineGenerator\Empty\Sponsorships\1.sponsorship.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\TimelineGenerator\Empty\Sponsorships\2.sponsorship.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\TimelineGenerator\Empty\Sponsorships\3.sponsorship.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\TimelineGenerator\Empty\Sponsorships\4.sponsorship.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\TimelineGenerator\Times\Sponsorships\1.sponsorship.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\Programme_None\1stCome1stServed_UC2_1BreakByAdCode\Clashes\P3.clash.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\Programme_None\1stCome1stServed_UC2_1BreakByAdCode\Products\2.product.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\Programme_None\1stCome1stServed_UC2_1BreakByAdCode\Sponsorships\1.sponsorship.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\Programme_None\1stCome1stServed_UC2_1BreakByAdCode\Spots\1.spot.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\Programme_None\1stCome1stServed_UC2_1BreakByAdCode\Spots\2.spot.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\Programme_None\1stCome1stServed_UC1_1BreakByAdCode\Clashes\P3.clash.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\Programme_None\1stCome1stServed_UC1_1BreakByAdCode\Products\2.product.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\Programme_None\1stCome1stServed_UC1_1BreakByAdCode\Sponsorships\1.sponsorship.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\Programme_None\1stCome1stServed_UC1_1BreakByAdCode\Spots\1.spot.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\Programme_None\1stCome1stServed_UC1_1BreakByAdCode\Spots\2.spot.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\Programme_None\1stCome1stServed_UC2_1BreakByClashCode\Products\2.product.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\Programme_None\1stCome1stServed_UC2_1BreakByClashCode\Sponsorships\1.sponsorship.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\Programme_None\1stCome1stServed_UC2_1BreakByClashCode\Spots\1.spot.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\Programme_None\1stCome1stServed_UC2_1BreakByClashCode\Spots\2.spot.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\Programme_None\1stCome1stServed_UC1_1BreakByClashCode\Products\2.product.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\Programme_None\1stCome1stServed_UC1_1BreakByClashCode\Sponsorships\1.sponsorship.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\Programme_None\1stCome1stServed_UC1_1BreakByClashCode\Spots\1.spot.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\Programme_None\1stCome1stServed_UC1_1BreakByClashCode\Spots\2.spot.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\Programme_None\1stCome1stServed_UC4_2BreaksByAdCode\Breaks\2.break.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\Programme_None\1stCome1stServed_UC4_2BreaksByAdCode\Clashes\P3.clash.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\Programme_None\1stCome1stServed_UC4_2BreaksByAdCode\Products\2.product.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\Programme_None\1stCome1stServed_UC4_2BreaksByAdCode\Sponsorships\1.sponsorship.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\Programme_None\1stCome1stServed_UC4_2BreaksByAdCode\Spots\1.spot.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\Programme_None\1stCome1stServed_UC4_2BreaksByAdCode\Spots\2.spot.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\Programme_None\1stCome1stServed_UC4_2BreaksByAdCode\Spots\3.spot.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\Programme_None\1stCome1stServed_UC3_2BreaksByAdCode\Breaks\2.break.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\Programme_None\1stCome1stServed_UC3_2BreaksByAdCode\Clashes\P3.clash.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\Programme_None\1stCome1stServed_UC3_2BreaksByAdCode\Products\2.product.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\Programme_None\1stCome1stServed_UC3_2BreaksByAdCode\Sponsorships\1.sponsorship.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\Programme_None\1stCome1stServed_UC3_2BreaksByAdCode\Spots\1.spot.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\Programme_None\1stCome1stServed_UC3_2BreaksByAdCode\Spots\2.spot.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\Programme_None\1stCome1stServed_UC3_2BreaksByAdCode\Spots\3.spot.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\Programme_None\1stCome1stServed_UC4_2BreaksByClashCode\Breaks\2.break.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\Programme_None\1stCome1stServed_UC4_2BreaksByClashCode\Products\2.product.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\Programme_None\1stCome1stServed_UC4_2BreaksByClashCode\Sponsorships\1.sponsorship.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\Programme_None\1stCome1stServed_UC4_2BreaksByClashCode\Spots\1.spot.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\Programme_None\1stCome1stServed_UC4_2BreaksByClashCode\Spots\2.spot.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\Programme_None\1stCome1stServed_UC4_2BreaksByClashCode\Spots\3.spot.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\Programme_None\1stCome1stServed_UC3_2BreaksByClashCode\Breaks\2.break.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\Programme_None\1stCome1stServed_UC3_2BreaksByClashCode\Products\2.product.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\Programme_None\1stCome1stServed_UC3_2BreaksByClashCode\Sponsorships\1.sponsorship.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\Programme_None\1stCome1stServed_UC3_2BreaksByClashCode\Spots\1.spot.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\Programme_None\1stCome1stServed_UC3_2BreaksByClashCode\Spots\2.spot.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\Programme_None\1stCome1stServed_UC3_2BreaksByClashCode\Spots\3.spot.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\Programme_Exclusive\Exclusive_UC1_1BreakByAdCode\Clashes\P3.clash.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\Programme_Exclusive\Exclusive_UC1_1BreakByAdCode\Products\2.product.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\Programme_Exclusive\Exclusive_UC1_1BreakByAdCode\Sponsorships\1.sponsorship.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\Programme_Exclusive\Exclusive_UC1_1BreakByAdCode\Spots\1.spot.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\Programme_Exclusive\Exclusive_UC1_1BreakByAdCode\Spots\2.spot.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\Programme_Exclusive\Exclusive_UC1_1BreakByClashCode\Products\2.product.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\Programme_Exclusive\Exclusive_UC1_1BreakByClashCode\Sponsorships\1.sponsorship.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\Programme_Exclusive\Exclusive_UC1_1BreakByClashCode\Spots\1.spot.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\Programme_Exclusive\Exclusive_UC1_1BreakByClashCode\Spots\2.spot.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\Programme_Exclusive\Exclusive_UC2_1BreakByAdCode\Clashes\P3.clash.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\Programme_Exclusive\Exclusive_UC2_1BreakByAdCode\Products\2.product.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\Programme_Exclusive\Exclusive_UC2_1BreakByAdCode\Sponsorships\1.sponsorship.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\Programme_Exclusive\Exclusive_UC2_1BreakByAdCode\Spots\1.spot.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\Programme_Exclusive\Exclusive_UC2_1BreakByAdCode\Spots\2.spot.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\Programme_Exclusive\Exclusive_UC2_1BreakByClashCode\Products\2.product.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\Programme_Exclusive\Exclusive_UC2_1BreakByClashCode\Sponsorships\1.sponsorship.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\Programme_Exclusive\Exclusive_UC2_1BreakByClashCode\Spots\1.spot.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\Programme_Exclusive\Exclusive_UC2_1BreakByClashCode\Spots\2.spot.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\Programme_Exclusive\Exclusive_UC3_2BreaksByAdCode\Breaks\2.break.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\Programme_Exclusive\Exclusive_UC3_2BreaksByAdCode\Clashes\P3.clash.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\Programme_Exclusive\Exclusive_UC3_2BreaksByAdCode\Products\2.product.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\Programme_Exclusive\Exclusive_UC3_2BreaksByAdCode\Sponsorships\1.sponsorship.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\Programme_Exclusive\Exclusive_UC3_2BreaksByAdCode\Spots\1.spot.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\Programme_Exclusive\Exclusive_UC3_2BreaksByAdCode\Spots\2.spot.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\Programme_Exclusive\Exclusive_UC3_2BreaksByAdCode\Spots\3.spot.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\Programme_Exclusive\Exclusive_UC3_2BreaksByClashCode\Breaks\2.break.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\Programme_Exclusive\Exclusive_UC3_2BreaksByClashCode\Products\2.product.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\Programme_Exclusive\Exclusive_UC3_2BreaksByClashCode\Sponsorships\1.sponsorship.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\Programme_Exclusive\Exclusive_UC3_2BreaksByClashCode\Spots\1.spot.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\Programme_Exclusive\Exclusive_UC3_2BreaksByClashCode\Spots\2.spot.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\Programme_Exclusive\Exclusive_UC3_2BreaksByClashCode\Spots\3.spot.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\SharedData\Breaks\37.break.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\SharedData\Breaks\38.break.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\SharedData\Breaks\39.break.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\SharedData\Breaks\40.break.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\SharedData\Breaks\41.break.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\SharedData\Breaks\42.break.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\SharedData\Breaks\43.break.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\SharedData\Breaks\44.break.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\SharedData\Breaks\45.break.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\SharedData\Clashes\Pet.clash.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\SharedData\Clashes\MobilePhone.clash.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\SharedData\Clashes\Laptop.clash.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\SharedData\Clashes\_Electronics.clash.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\SharedData\Clashes\_Drink.clash.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\SharedData\Clashes\FizzyDrink.clash.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\SharedData\Clashes\_Food.clash.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\SharedData\Clashes\FastFood.clash.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\SharedData\Products\Apple_MacBookAir.product.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\SharedData\Products\Apple_MacBookPro13.product.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\SharedData\Products\Apple_MacBookPro15.product.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\SharedData\Products\Coca Cola_DietCoke.product.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\SharedData\Products\Coca Cola_NormalCoke.product.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\SharedData\Products\Coca Cola_ZeroCoke.product.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\SharedData\Products\Dell_XPS13.product.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\SharedData\Products\Dell_XPS15.product.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\SharedData\Products\Dell_XPS17.product.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\SharedData\Products\EE_Iphone11.product.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\SharedData\Products\EE_Iphone11Max.product.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\SharedData\Products\EE_IphoneX.product.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\SharedData\Products\KFC_chickenWings.product.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\SharedData\Products\KFC_FilletBurger.product.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\SharedData\Products\KFC_ZingerBurger.product.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\SharedData\Products\Pepsi_CherryPepsi.product.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\SharedData\Products\Pepsi_NormalPepsi.product.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\SharedData\Products\Pepsi_PepsiMax.product.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\SharedData\Products\PetAtHome_CatFood.product.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\SharedData\Products\PetAtHome_DogFood.product.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\SharedData\Products\PetAtHome_RabbitFood.product.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\SharedData\Products\Subway_BMT.product.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\SharedData\Products\Subway_Chicken.product.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\SharedData\Products\Subway_Meatball.product.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\SharedData\Programmes\a5bc4ba3-1e02-491f-8179-372e1d475652.programme.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\SharedData\Programmes\a5bc4ba3-1e02-491f-8179-372e1d475651.programme.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\SharedData\Programmes\a5bc4ba3-1e02-491f-8179-372e1d475653.programme.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\SharedData\Spots\101.spot.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\SharedData\Spots\102.spot.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\SharedData\Spots\103.spot.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\SharedData\Spots\104.spot.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\SharedData\Spots\105.spot.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\SharedData\Spots\106.spot.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\SharedData\Spots\107.spot.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\SharedData\Spots\108.spot.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\SharedData\Spots\109.spot.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\SharedData\Spots\110.spot.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\SharedData\Spots\111.spot.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\SharedData\Spots\112.spot.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\SharedData\Spots\113.spot.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\SharedData\Spots\114.spot.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\SharedData\Spots\115.spot.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\SharedData\Spots\116.spot.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\SharedData\Spots\117.spot.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\SharedData\Spots\118.spot.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\SharedData\Spots\119.spot.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\SharedData\Spots\120.spot.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\SharedData\Spots\121.spot.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\SharedData\Spots\122.spot.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\SharedData\Spots\123.spot.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\SharedData\Spots\124.spot.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\SharedData\Spots\125.spot.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\SharedData\Spots\126.spot.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\SharedData\Spots\127.spot.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\SharedData\Spots\128.spot.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\SharedData\Spots\129.spot.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\SharedData\Spots\130.spot.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\SharedData\Spots\131.spot.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\SharedData\Spots\132.spot.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\SharedData\Spots\133.spot.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\SharedData\Spots\134.spot.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\SharedData\Spots\135.spot.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\SharedData\Spots\136.spot.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\SharedData\Spots\137.spot.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\SharedData\Spots\138.spot.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\SharedData\Spots\139.spot.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\SharedData\Spots\140.spot.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\SharedData\Spots\141.spot.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\SharedData\Spots\142.spot.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\SharedData\Spots\143.spot.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\SharedData\Spots\144.spot.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\SharedData\Spots\145.spot.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\SharedData\Spots\146.spot.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\SharedData\Spots\147.spot.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\SharedData\Spots\148.spot.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\SharedData\Spots\149.spot.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\SharedData\Spots\150.spot.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\SharedData\Spots\151.spot.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\SharedData\Spots\152.spot.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\SharedData\Spots\153.spot.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\SharedData\Spots\154.spot.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\SharedData\Spots\155.spot.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\SharedData\Spots\156.spot.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\SharedData\Spots\157.spot.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\SharedData\Spots\158.spot.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\SharedData\Spots\159.spot.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\SharedData\Spots\160.spot.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\SharedData\Spots\161.spot.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\SharedData\Spots\162.spot.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\SharedData\Spots\163.spot.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\SharedData\Spots\164.spot.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\SharedData\Spots\165.spot.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\SharedData\Spots\166.spot.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\SharedData\Spots\167.spot.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\SharedData\Spots\168.spot.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\SharedData\Spots\169.spot.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\SharedData\Spots\170.spot.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\SharedData\Spots\171.spot.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\SharedData\Spots\172.spot.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\SharedData\Spots\173.spot.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\SharedData\Spots\174.spot.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\SharedData\Spots\175.spot.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\SharedData\Spots\176.spot.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\SharedData\Spots\177.spot.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\SharedData\Spots\178.spot.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\SharedData\Spots\179.spot.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\SharedData\Spots\180.spot.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\SharedData\Spots\181.spot.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\SharedData\Spots\182.spot.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\SharedData\Spots\183.spot.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\SharedData\Spots\184.spot.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\SharedData\Spots\185.spot.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\SharedData\Spots\186.spot.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\SharedData\Spots\187.spot.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\SharedData\Spots\188.spot.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\SharedData\Spots\189.spot.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\SharedData\Spots\190.spot.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\SharedData\Spots\191.spot.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\SharedData\Spots\192.spot.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\SharedData\Spots\193.spot.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\SharedData\Spots\194.spot.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\SharedData\Spots\195.spot.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\SharedData\Spots\196.spot.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\SharedData\Spots\197.spot.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\SharedData\Spots\198.spot.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\SharedData\Spots\199.spot.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\SharedData\Spots\200.spot.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\SharedData\Spots\201.spot.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\SharedData\Spots\202.spot.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\SharedData\Spots\203.spot.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\SharedData\Spots\204.spot.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\SharedData\Spots\205.spot.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\SharedData\Spots\206.spot.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\SharedData\Spots\207.spot.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\SharedData\Spots\208.spot.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\SharedData\Spots\209.spot.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\SharedData\Spots\210.spot.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\SharedData\Spots\211.spot.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\SharedData\Spots\212.spot.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\SharedData\Spots\213.spot.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\SharedData\Spots\214.spot.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\SharedData\Spots\215.spot.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\SharedData\Spots\216.spot.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\SharedData\Spots\217.spot.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\SharedData\Spots\218.spot.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\SharedData\Spots\219.spot.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\SharedData\Spots\220.spot.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\SharedData\Spots\221.spot.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\SharedData\Spots\222.spot.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\SharedData\Spots\223.spot.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\SharedData\Spots\224.spot.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\SharedData\Spots\225.spot.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\SharedData\Spots\226.spot.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\SharedData\Spots\227.spot.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\SharedData\Spots\228.spot.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\SharedData\Spots\229.spot.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\SharedData\Spots\230.spot.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\SharedData\Spots\231.spot.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\SharedData\Spots\232.spot.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\SharedData\Spots\233.spot.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\SharedData\Spots\234.spot.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\SharedData\Spots\235.spot.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\SharedData\Spots\236.spot.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\SharedData\Spots\237.spot.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\SharedData\Spots\238.spot.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\SharedData\Spots\239.spot.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\SharedData\Spots\240.spot.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\SharedData\Spots\241.spot.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\SharedData\Spots\242.spot.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\SharedData\Spots\243.spot.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\SharedData\Spots\244.spot.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\SharedData\Spots\245.spot.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\SharedData\Spots\246.spot.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\SharedData\Spots\247.spot.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\SharedData\Spots\248.spot.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\SharedData\Spots\249.spot.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\SharedData\Spots\250.spot.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\SharedData\Spots\251.spot.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\SharedData\Spots\252.spot.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\SharedData\Spots\253.spot.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\SharedData\Spots\254.spot.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\SharedData\Spots\255.spot.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\SharedData\Spots\256.spot.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\SharedData\Spots\257.spot.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\SharedData\Spots\258.spot.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\UnplacedSpotPass\Breaks\1.break.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\UnplacedSpotPass\Breaks\3.break.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\UnplacedSpotPass\Breaks\2.break.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\UnplacedSpotPass\Clashes\P274.clash.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\UnplacedSpotPass\Clashes\P475.clash.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\UnplacedSpotPass\Clashes\P445.clash.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\UnplacedSpotPass\Clashes\P135.clash.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\UnplacedSpotPass\Clashes\P195.clash.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\UnplacedSpotPass\Clashes\P93.clash.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\UnplacedSpotPass\Clashes\P96.clash.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\UnplacedSpotPass\Clashes\P616.clash.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\UnplacedSpotPass\Clashes\P423.clash.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\UnplacedSpotPass\Products\137558.product.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\UnplacedSpotPass\Products\150542.product.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\UnplacedSpotPass\Products\115799.product.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\UnplacedSpotPass\Products\142539.product.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\UnplacedSpotPass\Products\149492.product.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\UnplacedSpotPass\Products\146532.product.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\UnplacedSpotPass\Products\146243.product.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\UnplacedSpotPass\Products\142599.product.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\UnplacedSpotPass\Products\150296.product.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\UnplacedSpotPass\Products\150468.product.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\UnplacedSpotPass\Products\150425.product.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\UnplacedSpotPass\Products\141935.product.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\UnplacedSpotPass\Products\135437.product.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\UnplacedSpotPass\Products\151159.product.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\UnplacedSpotPass\Products\118049.product.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\UnplacedSpotPass\Programmes\1.programme.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\UnplacedSpotPass\Sponsorships\1.sponsorship.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\UnplacedSpotPass\Spots\10.spot.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\UnplacedSpotPass\Spots\12.spot.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\UnplacedSpotPass\Spots\13.spot.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\UnplacedSpotPass\Spots\14.spot.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\UnplacedSpotPass\Spots\15.spot.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\UnplacedSpotPass\Spots\11.spot.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\UnplacedSpotPass\Spots\9.spot.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\UnplacedSpotPass\Spots\8.spot.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\UnplacedSpotPass\Spots\7.spot.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\UnplacedSpotPass\Spots\6.spot.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\UnplacedSpotPass\Spots\5.spot.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\UnplacedSpotPass\Spots\4.spot.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\UnplacedSpotPass\Spots\3.spot.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\UnplacedSpotPass\Spots\2.spot.json" />
+    <None Include="Data\TestRepositoryData\SponsorshipExclusivity\UnplacedSpotPass\Spots\1.spot.json" />
+    <None Include="Data\TestRepositoryData\SpotAndBreakComparisonTests\Breaks\2.break.json" />
+    <None Include="Data\TestRepositoryData\SpotAndBreakComparisonTests\Breaks\3.break.json" />
+    <None Include="Data\TestRepositoryData\SpotAndBreakComparisonTests\Breaks\4.break.json" />
+    <None Include="Data\TestRepositoryData\SpotAndBreakComparisonTests\Spots\5.spot.json" />
+    <None Include="Data\TestRepositoryData\SpotAndBreakComparisonTests\Spots\4.spot.json" />
+    <None Include="Data\TestRepositoryData\SpotAndBreakComparisonTests\Spots\3.spot.json" />
+    <None Include="Data\TestRepositoryData\SpotAndBreakComparisonTests\Spots\2.spot.json" />
+    <None Include="Data\TestRepositoryData\SpotAndBreakComparisonTests\Spots\1.spot.json" />
+    <None Include="Data\TestRepositoryData\TopTailRequest_Respected\Breaks\3.break.json" />
+    <None Include="Data\TestRepositoryData\TopTailRequest_Respected\Breaks\4.break.json" />
+    <None Include="Data\TestRepositoryData\TopTailRequest_Respected\Breaks\2.break.json" />
+    <None Include="Data\TestRepositoryData\TopTailRequest_Respected\Spots\1.spot.json" />
+    <None Include="Data\TestRepositoryData\TopTailRequest_Respected\Spots\2.spot.json" />
+    <None Include="Data\TestRepositoryData\TopTailRequest_Respected\Spots\3.spot.json" />
+    <None Include="ImagineCommunications.GamePlan.Process.Smooth.Tests.xunit.runner.json" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="System.Xml.Linq" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Data\CvsTestData\Sponsorship\Diagrams\Programme-Prog1-T1-BP1-NB.png" />
+    <Content Include="Data\CvsTestData\Sponsorship\Diagrams\Programme-Prog1-T1-BP1-NB.txt" />
+    <Content Include="Data\CvsTestData\Sponsorship\Diagrams\Programme-Prog1-T2-BP1-B1P.png" />
+    <Content Include="Data\CvsTestData\Sponsorship\Diagrams\Programme-Prog1-T2-BP1-B1P.txt" />
+    <Content Include="Data\CvsTestData\Sponsorship\Diagrams\Programme-Prog1-T3-BP1-B1.png" />
+    <Content Include="Data\CvsTestData\Sponsorship\Diagrams\Programme-Prog1-T3-BP1-B1.txt" />
+    <Content Include="Data\CvsTestData\Sponsorship\Diagrams\Programme-Prog1-T4-MP1-NB.png" />
+    <Content Include="Data\CvsTestData\Sponsorship\Diagrams\Programme-Prog1-T4-MP1-NB.txt" />
+    <Content Include="Data\CvsTestData\Sponsorship\Diagrams\Programme-Prog1-T5-P1-B1B2B3.png" />
+    <Content Include="Data\CvsTestData\Sponsorship\Diagrams\Programme-Prog1-T5-P1-B1B2B3.txt" />
+    <Content Include="Data\CvsTestData\Sponsorship\Diagrams\Programme-Prog1-T6-P2-B1B2B3.png" />
+    <Content Include="Data\CvsTestData\Sponsorship\Diagrams\Programme-Prog1-T6-P2-B1B2B3.txt" />
+    <Content Include="Data\CvsTestData\Sponsorship\Diagrams\Programme-Prog1-T7-P3-B1B2B3.png" />
+    <Content Include="Data\CvsTestData\Sponsorship\Diagrams\Programme-Prog1-T7-P3-B1B2B3.txt" />
+    <Content Include="Data\CvsTestData\Sponsorship\Diagrams\Programme-Prog1-T8-P1P2P3-B1B2B3.png" />
+    <Content Include="Data\CvsTestData\Sponsorship\Diagrams\Programme-Prog1-T8-P1P2P3-B1B2B3.txt" />
+    <Content Include="Data\CvsTestData\Sponsorship\Diagrams\Programme-Prog1-T9-MP2-B2PB3P.png" />
+    <Content Include="Data\CvsTestData\Sponsorship\Diagrams\Programme-Prog1-T9-MP2-B2PB3P.txt" />
+    <Content Include="Data\CvsTestData\Sponsorship\Diagrams\Programme-Prog2-T1-BP1-NB.png" />
+    <Content Include="Data\CvsTestData\Sponsorship\Diagrams\Programme-Prog2-T1-BP1-NB.txt" />
+    <Content Include="Data\CvsTestData\Sponsorship\Diagrams\Programme-Prog2-T2-BP1-B1P.png" />
+    <Content Include="Data\CvsTestData\Sponsorship\Diagrams\Programme-Prog2-T2-BP1-B1P.txt" />
+    <Content Include="Data\CvsTestData\Sponsorship\Diagrams\Programme-Prog2-T3-BP1-B1.png" />
+    <Content Include="Data\CvsTestData\Sponsorship\Diagrams\Programme-Prog2-T3-BP1-B1.txt" />
+    <Content Include="Data\CvsTestData\Sponsorship\Diagrams\Programme-Prog2-T4-MP1-NB.png" />
+    <Content Include="Data\CvsTestData\Sponsorship\Diagrams\Programme-Prog2-T4-MP1-NB.txt" />
+    <Content Include="Data\CvsTestData\Sponsorship\Diagrams\Programme-Prog2-T5-P1-B1B2B3.png" />
+    <Content Include="Data\CvsTestData\Sponsorship\Diagrams\Programme-Prog2-T5-P1-B1B2B3.txt" />
+    <Content Include="Data\CvsTestData\Sponsorship\Diagrams\Programme-Prog2-T6-P2-B1B2B3.png" />
+    <Content Include="Data\CvsTestData\Sponsorship\Diagrams\Programme-Prog2-T6-P2-B1B2B3.txt" />
+    <Content Include="Data\CvsTestData\Sponsorship\Diagrams\Programme-Prog2-T7-P3-B1B2B3.png" />
+    <Content Include="Data\CvsTestData\Sponsorship\Diagrams\Programme-Prog2-T7-P3-B1B2B3.txt" />
+    <Content Include="Data\CvsTestData\Sponsorship\Diagrams\Programme-Prog2-T8-P1P2P3-B1B2B3.png" />
+    <Content Include="Data\CvsTestData\Sponsorship\Diagrams\Programme-Prog2-T8-P1P2P3-B1B2B3.txt" />
+    <Content Include="Data\CvsTestData\Sponsorship\Diagrams\Programme-Prog2-T9-MP2-B2PB3P.png" />
+    <Content Include="Data\CvsTestData\Sponsorship\Diagrams\Programme-Prog2-T9-MP2-B2PB3P.txt" />
+    <Content Include="Data\CvsTestData\Sponsorship\Diagrams\Programme-Prog3-T1-BP1-NB.png" />
+    <Content Include="Data\CvsTestData\Sponsorship\Diagrams\Programme-Prog3-T1-BP1-NB.txt" />
+    <Content Include="Data\CvsTestData\Sponsorship\Diagrams\Programme-Prog3-T2-BP1-B1P.png" />
+    <Content Include="Data\CvsTestData\Sponsorship\Diagrams\Programme-Prog3-T2-BP1-B1P.txt" />
+    <Content Include="Data\CvsTestData\Sponsorship\Diagrams\Programme-Prog3-T3-BP1-B1.png" />
+    <Content Include="Data\CvsTestData\Sponsorship\Diagrams\Programme-Prog3-T3-BP1-B1.txt" />
+    <Content Include="Data\CvsTestData\Sponsorship\Diagrams\Programme-Prog3-T4-MP1-NB.png" />
+    <Content Include="Data\CvsTestData\Sponsorship\Diagrams\Programme-Prog3-T4-MP1-NB.txt" />
+    <Content Include="Data\CvsTestData\Sponsorship\Diagrams\Programme-Prog3-T5-P1-B1B2B3.png" />
+    <Content Include="Data\CvsTestData\Sponsorship\Diagrams\Programme-Prog3-T5-P1-B1B2B3.txt" />
+    <Content Include="Data\CvsTestData\Sponsorship\Diagrams\Programme-Prog3-T6-P2-B1B2B3.png" />
+    <Content Include="Data\CvsTestData\Sponsorship\Diagrams\Programme-Prog3-T6-P2-B1B2B3.txt" />
+    <Content Include="Data\CvsTestData\Sponsorship\Diagrams\Programme-Prog3-T7-P3-B1B2B3.png" />
+    <Content Include="Data\CvsTestData\Sponsorship\Diagrams\Programme-Prog3-T7-P3-B1B2B3.txt" />
+    <Content Include="Data\CvsTestData\Sponsorship\Diagrams\Programme-Prog3-T8-P1P2P3-B1B2B3.png" />
+    <Content Include="Data\CvsTestData\Sponsorship\Diagrams\Programme-Prog3-T8-P1P2P3-B1B2B3.txt" />
+    <Content Include="Data\CvsTestData\Sponsorship\Diagrams\Programme-Prog3-T9-MP2-B2PB3P.png" />
+    <Content Include="Data\CvsTestData\Sponsorship\Diagrams\Programme-Prog3-T9-MP2-B2PB3P.txt" />
+    <Content Include="Data\CvsTestData\Sponsorship\Diagrams\Programme-ProgNotExit-T1-BP1-NB.png" />
+    <Content Include="Data\CvsTestData\Sponsorship\Diagrams\Programme-ProgNotExit-T1-BP1-NB.txt" />
+    <Content Include="Data\CvsTestData\Sponsorship\Diagrams\Programme-ProgNotExit-T2-BP1-B1P.png" />
+    <Content Include="Data\CvsTestData\Sponsorship\Diagrams\Programme-ProgNotExit-T2-BP1-B1P.txt" />
+    <Content Include="Data\CvsTestData\Sponsorship\Diagrams\Programme-ProgNotExit-T3-BP1-B1.png" />
+    <Content Include="Data\CvsTestData\Sponsorship\Diagrams\Programme-ProgNotExit-T3-BP1-B1.txt" />
+    <Content Include="Data\CvsTestData\Sponsorship\Diagrams\Programme-ProgNotExit-T4-MP1-NB.png" />
+    <Content Include="Data\CvsTestData\Sponsorship\Diagrams\Programme-ProgNotExit-T4-MP1-NB.txt" />
+    <Content Include="Data\CvsTestData\Sponsorship\Diagrams\Programme-ProgNotExit-T5-P1-B1B2B3.png" />
+    <Content Include="Data\CvsTestData\Sponsorship\Diagrams\Programme-ProgNotExit-T5-P1-B1B2B3.txt" />
+    <Content Include="Data\CvsTestData\Sponsorship\Diagrams\Programme-ProgNotExit-T6-P2-B1B2B3.png" />
+    <Content Include="Data\CvsTestData\Sponsorship\Diagrams\Programme-ProgNotExit-T6-P2-B1B2B3.txt" />
+    <Content Include="Data\CvsTestData\Sponsorship\Diagrams\Programme-ProgNotExit-T7-P3-B1B2B3.png" />
+    <Content Include="Data\CvsTestData\Sponsorship\Diagrams\Programme-ProgNotExit-T7-P3-B1B2B3.txt" />
+    <Content Include="Data\CvsTestData\Sponsorship\Diagrams\Programme-ProgNotExit-T8-P1P2P3-B1B2B3.png" />
+    <Content Include="Data\CvsTestData\Sponsorship\Diagrams\Programme-ProgNotExit-T8-P1P2P3-B1B2B3.txt" />
+    <Content Include="Data\CvsTestData\Sponsorship\Diagrams\Programme-ProgNotExit-T9-MP2-B2PB3P.png" />
+    <Content Include="Data\CvsTestData\Sponsorship\Diagrams\Programme-ProgNotExit-T9-MP2-B2PB3P.txt" />
+    <Content Include="Data\CvsTestData\Sponsorship\Diagrams\TimeBand-T1-BP1-NB.png" />
+    <Content Include="Data\CvsTestData\Sponsorship\Diagrams\TimeBand-T1-BP1-NB.txt" />
+    <Content Include="Data\CvsTestData\Sponsorship\Diagrams\TimeBand-T2-BP1-B1P.png" />
+    <Content Include="Data\CvsTestData\Sponsorship\Diagrams\TimeBand-T2-BP1-B1P.txt" />
+    <Content Include="Data\CvsTestData\Sponsorship\Diagrams\TimeBand-T3-BP1-B1.png" />
+    <Content Include="Data\CvsTestData\Sponsorship\Diagrams\TimeBand-T3-BP1-B1.txt" />
+    <Content Include="Data\CvsTestData\Sponsorship\Diagrams\TimeBand-T4-MP1-NB.png" />
+    <Content Include="Data\CvsTestData\Sponsorship\Diagrams\TimeBand-T4-MP1-NB.txt" />
+    <Content Include="Data\CvsTestData\Sponsorship\Diagrams\TimeBand-T5-P1-B1B2B3.png" />
+    <Content Include="Data\CvsTestData\Sponsorship\Diagrams\TimeBand-T5-P1-B1B2B3.txt" />
+    <Content Include="Data\CvsTestData\Sponsorship\Diagrams\TimeBand-T6-P2-B1B2B3.png" />
+    <Content Include="Data\CvsTestData\Sponsorship\Diagrams\TimeBand-T6-P2-B1B2B3.txt" />
+    <Content Include="Data\CvsTestData\Sponsorship\Diagrams\TimeBand-T7-P3-B1B2B3.png" />
+    <Content Include="Data\CvsTestData\Sponsorship\Diagrams\TimeBand-T7-P3-B1B2B3.txt" />
+    <Content Include="Data\CvsTestData\Sponsorship\Diagrams\TimeBand-T8-P1P2P3-B1B2B3.png" />
+    <Content Include="Data\CvsTestData\Sponsorship\Diagrams\TimeBand-T8-P1P2P3-B1B2B3.txt" />
+    <Content Include="Data\CvsTestData\Sponsorship\Diagrams\TimeBand-T9-MP2-B2PB3P.png" />
+    <Content Include="Data\CvsTestData\Sponsorship\Diagrams\TimeBand-T9-MP2-B2PB3P.txt" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <ProjectExtensions />
+  <Target Name="CopyDataForTests" AfterTargets="AfterBuild" Condition="'$(BuildingForLiveUnitTesting)' == 'true'">
+    <ItemGroup>
+      <JsonTestData Include="$(MSBuildProjectDirectory)\Data\**\*.json" />
+      <CsvTestData Include="$(MSBuildProjectDirectory)\Data\**\*.csv" />
+    </ItemGroup>
+    <Copy SkipUnchangedFiles="true" SourceFiles="@(JsonTestData)" DestinationFiles="@(JsonTestData->'$(BaseOutputPath)..\src\processes\smooth\$(MSBuildProjectName)\Data\%(RecursiveDir)%(Filename).json')" />
+    <Copy SkipUnchangedFiles="true" SourceFiles="@(CsvTestData)" DestinationFiles="@(CsvTestData->'$(BaseOutputPath)..\src\processes\smooth\$(MSBuildProjectName)\Data\%(RecursiveDir)%(Filename).csv')" />
+  </Target>
+</Project>

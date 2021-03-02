@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Data.SqlClient;
 using System.Linq;
 using AutoMapper;
 using AutoMapper.QueryableExtensions;
 using ImagineCommunications.GamePlan.Persistence.SqlServer.Core.Interfaces;
 using ImagineCommunications.GamePlan.Persistence.SqlServer.Views.Tenant;
+using MySql.Data.MySqlClient;
 using xggameplan.core.Interfaces;
 using xggameplan.Model;
 
@@ -35,7 +35,7 @@ namespace ImagineCommunications.GamePlan.Persistence.SqlServer.Landmark.Features
         public IReadOnlyCollection<RecommendationAggregateModel> Aggregate(Guid scenarioId)
         {
             return _dbContext.Specific
-                .StoredProcedure<RecommendationAggregate>(new SqlParameter("@ScenarioId", scenarioId))
+                .StoredProcedure<RecommendationAggregate>(new MySqlParameter("@ScenarioId", scenarioId))
                 .ProjectTo<RecommendationAggregateModel>(_mapper.ConfigurationProvider).ToArray();
         }
     }

@@ -9,11 +9,12 @@ namespace ImagineCommunications.GamePlan.Persistence.File.Repositories
     {
         public FileIndexTypeRepository(string folder) : base(folder, "index_type")
         {
+
         }
 
         public void Add(IEnumerable<IndexType> items)
         {
-            InsertItems(_folder, _type, items.ToList(), items.Select(i => i.Id.ToString()).ToList());
+            InsertItems(_folder, _type, items.ToList(), Enumerable.ToList(items.Select(i => i.Id.ToString())));
         }
 
         public void Update(IndexType item)
@@ -23,7 +24,7 @@ namespace ImagineCommunications.GamePlan.Persistence.File.Repositories
 
         public void Remove(int id)
         {
-            DeleteItem(_folder, _type, id.ToString());
+            DeleteItem<IndexType>(_folder, _type, id.ToString());
         }
 
         public IndexType Find(int id)
@@ -36,19 +37,27 @@ namespace ImagineCommunications.GamePlan.Persistence.File.Repositories
             return GetAllByType<IndexType>(_folder, _type);
         }
 
-        public int CountAll => CountAll(_folder, _type);
+        public int CountAll
+        {
+            get
+            {
+                return CountAll<IndexType>(_folder, _type);
+            }
+        }
 
         public void Truncate()
         {
-            DeleteAllItems(_folder, _type);
+            DeleteAllItems<IndexType>(_folder, _type);
         }
 
         public void SaveChanges()
         {
+
         }
 
         public void Dispose()
         {
+
         }
     }
 }

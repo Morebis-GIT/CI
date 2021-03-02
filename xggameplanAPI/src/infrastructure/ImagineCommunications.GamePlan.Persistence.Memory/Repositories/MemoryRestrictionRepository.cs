@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using ImagineCommunications.GamePlan.Domain.BusinessRules.Restrictions;
 using ImagineCommunications.GamePlan.Domain.BusinessRules.Restrictions.Objects;
 using ImagineCommunications.GamePlan.Domain.BusinessRules.Restrictions.Queries;
@@ -17,15 +18,13 @@ namespace ImagineCommunications.GamePlan.Persistence.Memory.Repositories
 
         public void Add(Restriction item)
         {
-            InsertOrReplaceItem(item, item.Id.ToString());
+            var items = new List<Restriction>() { item };
+            InsertItems(items.ToList(), items.Select(i => i.Id.ToString()).ToList<string>());
         }
 
         public void Add(IEnumerable<Restriction> items)
         {
-            foreach (var item in items)
-            {
-                Add(item);
-            }
+            InsertItems(items.ToList(), items.Select(i => i.Id.ToString()).ToList<string>());
         }
 
         public IEnumerable<Restriction> GetAll() => GetAllItems();

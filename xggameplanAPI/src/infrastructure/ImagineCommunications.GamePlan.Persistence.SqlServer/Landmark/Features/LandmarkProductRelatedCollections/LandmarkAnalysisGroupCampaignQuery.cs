@@ -85,7 +85,7 @@ namespace ImagineCommunications.GamePlan.Persistence.SqlServer.Landmark.Features
                 var intermediateQuery = initialQuery.Join(
                         productQuery,
                         c => c.relations.ProductId,
-                        s => s.Uid,
+                        s => s.Id,
                         (campaign, product) => new { campaign, product }
                     );
 

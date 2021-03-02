@@ -86,76 +86,51 @@ namespace xggameplan.specification.tests.Infrastructure.TestAdapters
 
         protected void AssignTestContextSingleResult(TTestModel model)
         {
-            TestContext.LastOperationCount = model is null ? 0 : 1;
+            TestContext.LastOperationCount = model == null ? 0 : 1;
             TestContext.LastSingleResult = model;
-            TestContext.LastCollectionResult = model is null
-                ? null
-                : new List<object> { model };
+            TestContext.LastCollectionResult = model != null ? new List<object> { model } : null;
         }
 
         protected void AssignTestContextCollectionResult(IEnumerable<TTestModel> collection)
         {
             TestContext.LastCollectionResult = collection?.Cast<object>().ToList();
             TestContext.LastOperationCount = collection?.Count() ?? 0;
-            TestContext.LastSingleResult = TestContext.LastOperationCount == 1
-                ? collection.First()
-                : null;
+            TestContext.LastSingleResult = TestContext.LastOperationCount == 1 ? collection.First() : null;
         }
 
         protected void AssignTestContextTupleResult(ITuple tuple)
         {
-            TestContext.LastCollectionResult = null;
-            TestContext.LastSingleResult = null;
-
-            if (tuple is null)
-            {
-                TestContext.LastOperationCount = 0;
-
-                return;
-            }
-
             int operationCount = 0;
 
-            for (int i = 0; i < tuple.Length; i++)
+            for (int i = 0; i < tuple?.Length; i++)
             {
-                switch (tuple[i])
+                if (tuple[i] is IEnumerable item)
                 {
-                    case IEnumerable item:
-                        operationCount += Count(item);
-                        break;
-
-                    case null:
-                        break;
-
-                    default:
-                        operationCount++;
-                        break;
+                    var enumerator = item.GetEnumerator();
+                    try
+                    {
+                        while (enumerator.MoveNext())
+                        {
+                            operationCount++;
+                        }
+                    }
+                    finally
+                    {
+                        if (enumerator is IDisposable disposable)
+                        {
+                            disposable.Dispose();
+                        }
+                    }
                 }
-            }
-
-            TestContext.LastOperationCount = operationCount;
-        }
-
-        private static int Count(IEnumerable item)
-        {
-            int operationCount = 0;
-            var enumerator = item.GetEnumerator();
-            try
-            {
-                while (enumerator.MoveNext())
+                else if (tuple[i] != null)
                 {
                     operationCount++;
                 }
             }
-            finally
-            {
-                if (enumerator is IDisposable disposable)
-                {
-                    disposable.Dispose();
-                }
-            }
 
-            return operationCount;
+            TestContext.LastCollectionResult = null;
+            TestContext.LastOperationCount = operationCount;
+            TestContext.LastSingleResult = null;
         }
 
         protected RepositoryExecuteResult ExecuteAdapterAction(Action action)
@@ -182,7 +157,7 @@ namespace xggameplan.specification.tests.Infrastructure.TestAdapters
         {
             return ExecuteAdapterAction(() =>
             {
-                var res = new List<TRepositoryModel>();
+                List<TRepositoryModel> res = new List<TRepositoryModel>();
 
                 if (count > 0)
                 {
@@ -202,7 +177,7 @@ namespace xggameplan.specification.tests.Infrastructure.TestAdapters
 
                 TestContext.LastOperationCount = res.Count;
                 TestContext.LastCollectionResult = count > 1 ? res.Cast<object>().ToList() : null;
-                TestContext.LastSingleResult = res.Count == 1 ? res[0] : null;
+                TestContext.LastSingleResult = res.Count == 1 ? res.First() : null;
             });
         }
 
@@ -210,31 +185,22 @@ namespace xggameplan.specification.tests.Infrastructure.TestAdapters
         {
             return ExecuteAdapterAction(() =>
             {
-                if (count == 0)
+                if (count > 0)
                 {
-                    return;
-                }
+                    DbContext.WaitForIndexesAfterSaveChanges();
 
-                DbContext.WaitForIndexesAfterSaveChanges();
+                    if (count == 1)
+                    {
+                        _ = DbContext.Add(ModelConverter.ConvertToRepositoryModel(GetAutoModelComposer().Create()));
+                    }
+                    else
+                    {
+                        DbContext.AddRange(GetAutoModelComposer().CreateMany(count)
+                            .Select(ModelConverter.ConvertToRepositoryModel).ToArray());
+                    }
 
-                if (count == 1)
-                {
-                    _ = DbContext.Add(
-                            ModelConverter.ConvertToRepositoryModel(
-                                GetAutoModelComposer().Create()
-                            ));
+                    DbContext.SaveChanges();
                 }
-                else
-                {
-                    DbContext.AddRange(
-                        GetAutoModelComposer()
-                            .CreateMany(count)
-                            .Select(ModelConverter.ConvertToRepositoryModel)
-                            .ToArray()
-                        );
-                }
-
-                DbContext.SaveChanges();
             });
         }
 
@@ -253,11 +219,7 @@ namespace xggameplan.specification.tests.Infrastructure.TestAdapters
         {
             return ExecuteAdapterAction(() =>
             {
-                var models = entities
-                    .CreateSet<TTestModel>()
-                    .Select(ModelConverter.ConvertToRepositoryModel)
-                    .ToArray();
-
+                var models = entities.CreateSet<TTestModel>().Select(ModelConverter.ConvertToRepositoryModel).ToArray();
                 DbContext.WaitForIndexesAfterSaveChanges();
                 DbContext.AddRange(models);
                 DbContext.SaveChanges();
@@ -294,12 +256,13 @@ namespace xggameplan.specification.tests.Infrastructure.TestAdapters
         {
             return ExecuteAdapterAction(() =>
             {
-                if (TestContext.LastSingleResult is null)
+                if (TestContext.LastSingleResult == null)
                 {
                     throw new RepositoryAdapterException("There is no model to update.");
                 }
 
-                if (!(TestContext.LastSingleResult is TTestModel model))
+                var model = TestContext.LastSingleResult as TTestModel;
+                if (model == null)
                 {
                     throw new RepositoryAdapterException("Updating model has different type.");
                 }
@@ -420,40 +383,31 @@ namespace xggameplan.specification.tests.Infrastructure.TestAdapters
                     enumerableInterfaceType = callResult.ResultType;
                 }
 
-                if (enumerableInterfaceType is null)
+                if (enumerableInterfaceType == null)
                 {
                     enumerableInterfaceType = callResult.ResultType.GetInterface(typeof(IEnumerable<>).Name);
                 }
 
                 if (enumerableInterfaceType != null)
                 {
-                    var genericType = enumerableInterfaceType.GenericTypeArguments[0];
+                    var genericType = enumerableInterfaceType.GenericTypeArguments.First();
                     if (typeof(TTestModel).IsAssignableFrom(genericType))
                     {
-                        AssignTestContextCollectionResult(
-                            ((IEnumerable)callResult.Result).Cast<TTestModel>()
-                            );
-
+                        AssignTestContextCollectionResult(((IEnumerable)callResult.Result).Cast<TTestModel>());
                         return;
                     }
 
                     if (typeof(TRepositoryModel).IsAssignableFrom(genericType))
                     {
-                        AssignTestContextCollectionResult(
-                            ((IEnumerable)callResult.Result)
-                            .Cast<TRepositoryModel>()
-                            .Select(ModelConverter.ConvertToTestModel)
-                            );
-
+                        AssignTestContextCollectionResult(((IEnumerable)callResult.Result).Cast<TRepositoryModel>()
+                            .Select(ModelConverter.ConvertToTestModel));
                         return;
                     }
 
                     var result = (callResult.Result as IEnumerable)?.Cast<object>().ToList();
                     TestContext.LastOperationCount = result?.Count ?? 0;
                     TestContext.LastCollectionResult = result;
-                    TestContext.LastSingleResult = TestContext.LastOperationCount == 1
-                        ? result[0]
-                        : null;
+                    TestContext.LastSingleResult = TestContext.LastOperationCount == 1 ? result.First() : null;
 
                     return;
                 }
@@ -466,32 +420,28 @@ namespace xggameplan.specification.tests.Infrastructure.TestAdapters
 
         public void CheckReceivedResult(Table values)
         {
-            if (TestContext.LastSingleResult is null)
+            if (TestContext.LastSingleResult == null)
             {
                 throw new RepositoryAdapterException("There is no model to check.");
             }
 
-            values.CompareToInstance(
-                TestContext.LastSingleResult,
-                TestContext.LastSingleResult.GetType()
-                );
+            values.CompareToInstance(TestContext.LastSingleResult, TestContext.LastSingleResult.GetType());
         }
 
-        public RepositoryTestContext GetTestContext() =>
-            GetTestContext<RepositoryTestContext>();
-
-        public TTestContextType GetTestContext<TTestContextType>()
-            where TTestContextType : RepositoryTestContext
+        public RepositoryTestContext GetTestContext()
         {
-            if (typeof(TTestContextType).IsAssignableFrom(typeof(TTestContext)))
+            return GetTestContext<RepositoryTestContext>();
+        }
+
+        public TTestContextType GetTestContext<TTestContextType>() where TTestContextType : RepositoryTestContext
+        {
+            if (!typeof(TTestContextType).IsAssignableFrom(typeof(TTestContext)))
             {
-                return TestContext as TTestContextType;
+                throw new Exception(
+                    $"{typeof(TTestContext).Name} test context type can't be returned as requested {typeof(TTestContextType).Name} type.");
             }
 
-            throw new Exception(
-                typeof(TTestContext).Name + " test context type can't be " +
-                $"returned as requested {typeof(TTestContextType).Name} type."
-                );
+            return TestContext as TTestContextType;
         }
     }
 }

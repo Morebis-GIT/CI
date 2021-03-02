@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using xgcore.auditevents.Repository.File;
 using xggameplan.AuditEvents;
 
@@ -11,11 +12,12 @@ namespace xggameplan.Repository.File
     {
         public FileMSTeamsAuditEventSettingsRepository(string folder) : base(folder, "msteams_audit_event_settings")
         {
+
         }
 
         public void Insert(List<MSTeamsAuditEventSettings> items)
         {
-            InsertItems<MSTeamsAuditEventSettings>(_folder, _type, items, items.ConvertAll(i => i.EventTypeId.ToString()));
+            InsertItems<MSTeamsAuditEventSettings>(_folder, _type, items, items.Select(i => i.EventTypeId.ToString()).ToList());
         }
 
         public List<MSTeamsAuditEventSettings> GetAll()
@@ -35,16 +37,17 @@ namespace xggameplan.Repository.File
 
         public void DeleteByID(int id)
         {
-            DeleteItem(_folder, _type, id.ToString());
+            DeleteItem<MSTeamsAuditEventSettings>(_folder, _type, id.ToString());
         }
 
         public void DeleteAll()
         {
-            DeleteAllItems(_folder, _type);
+            DeleteAllItems<MSTeamsAuditEventSettings>(_folder, _type);
         }
 
         public void SaveChanges()
         {
+
         }
     }
 }

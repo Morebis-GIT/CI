@@ -21,40 +21,8 @@ namespace ImagineCommunications.GamePlan.Persistence.SqlServer.Repositories
             _mapper = mapper;
         }
 
-        public void Add(IEnumerable<AutoBookInstanceConfiguration> instanceConfigurations)
-        {
-            using (var transaction = _dbContext.Specific.Database.BeginTransaction())
-            {
-                var entities =
-                    _mapper.Map<List<Entities.Tenant.AutoBookApi.AutoBookInstanceConfiguration>>(instanceConfigurations);
-
-                _dbContext.BulkInsertEngine.BulkInsertOrUpdate(entities);
-
-                var ids = entities.Select(x => x.Id).ToArray();
-                var criteriaIds = ids.Any()
-                    ? _dbContext.Query<AutoBookInstanceConfigurationCriteria>()
-                        .Where(x => ids.Contains(x.AutoBookInstanceConfigurationId))
-                        .Select(x => x.Id).ToArray()
-                    : Array.Empty<int>();
-
-                if (criteriaIds.Any())
-                {
-                    _dbContext.Specific
-                        .RemoveByIdentityIds<AutoBookInstanceConfigurationCriteria>(
-                            criteriaIds);
-                }
-
-                var criteria = entities.SelectMany(x => x.CriteriaList.Select(r =>
-                {
-                    r.AutoBookInstanceConfigurationId = x.Id;
-                    return r;
-                })).ToList();
-
-                _dbContext.BulkInsertEngine.BulkInsert(criteria);
-
-                transaction.Commit();
-            }
-        }
+        public void Add(IEnumerable<AutoBookInstanceConfiguration> instanceConfigurations)=>
+            _dbContext.AddRange(_mapper.Map<IEnumerable<Entities.Tenant.AutoBookApi.AutoBookInstanceConfiguration>>(instanceConfigurations).ToArray());
 
         public AutoBookInstanceConfiguration Get(int id) =>
             _dbContext.Query<Entities.Tenant.AutoBookApi.AutoBookInstanceConfiguration>()

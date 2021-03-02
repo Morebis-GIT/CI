@@ -47,8 +47,7 @@ namespace ImagineCommunications.GamePlan.Intelligence.Tests.DataExchange.Infrast
                 toUpdate = entities.Except(listToAdd);
                 foreach (var ent in toUpdate)
                 {
-                    var obj = _dbContext.Query<TEntity>()
-                        .FirstOrDefault(t => ((IIdentityPrimaryKey)t).Id == ((IIdentityPrimaryKey)ent).Id);
+                    var obj = _dbContext.Query<TEntity>().Where(t => ((IIdentityPrimaryKey)t).Id == ((IIdentityPrimaryKey)ent).Id).FirstOrDefault();
                     if (obj == null)
                     {
                         listToAdd.Add(ent);
@@ -65,8 +64,7 @@ namespace ImagineCommunications.GamePlan.Intelligence.Tests.DataExchange.Infrast
                 toUpdate = entities.Except(listToAdd);
                 foreach (var ent in toUpdate)
                 {
-                    var obj = _dbContext.Query<TEntity>().FirstOrDefault(t =>
-                        ((IUniqueIdentifierPrimaryKey)t).Id == ((IUniqueIdentifierPrimaryKey)ent).Id);
+                    var obj = _dbContext.Query<TEntity>().Where(t => ((IUniqueIdentifierPrimaryKey)t).Id == ((IUniqueIdentifierPrimaryKey)ent).Id).FirstOrDefault();
                     if (obj == null)
                     {
                         listToAdd.Add(ent);

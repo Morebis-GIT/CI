@@ -4,6 +4,7 @@ using System.Linq;
 using ImagineCommunications.GamePlan.Domain.SmoothConfigurations;
 using ImagineCommunications.GamePlan.Domain.Spots;
 using ImagineCommunications.GamePlan.Process.Smooth.Dtos;
+using ImagineCommunications.GamePlan.Process.Smooth.Interfaces;
 using ImagineCommunications.GamePlan.Process.Smooth.Models;
 using ImagineCommunications.GamePlan.Process.Smooth.Types;
 using NodaTime;
@@ -40,7 +41,7 @@ namespace ImagineCommunications.GamePlan.Process.Smooth.Services
         /// <returns></returns>
         public IReadOnlyCollection<SmoothScenario> GetSmoothScenarios(
             IReadOnlyCollection<Spot> spotsForBreak,
-            IReadOnlyList<SmoothBreak> progSmoothBreaks,
+            IReadOnlyCollection<SmoothBreak> progSmoothBreaks,
             IReadOnlyCollection<SmoothFailureMessagesForSpotsCollection> validateAddSpotsToBreakResults,
             SpotPositionRules breakPositionRules,
             bool respectSpotTime)
@@ -80,10 +81,8 @@ namespace ImagineCommunications.GamePlan.Process.Smooth.Services
         /// <returns></returns>
         private bool CanMoveSpotFromBreak(Spot spot)
         {
-            // Unbooked spots can always be moved
-            // Booked spots can only be moved if preemptable
-            return BreakUtilities.IsBreakRefNotSetOrUnused(_spotInfos[spot.Uid].ExternalBreakRefAtRunStart) ||
-                   (!BreakUtilities.IsBreakRefNotSetOrUnused(_spotInfos[spot.Uid].ExternalBreakRefAtRunStart) && spot.Preemptable);
+            return BreakUtilities.IsBreakRefNotSetOrUnused(_spotInfos[spot.Uid].ExternalBreakRefAtRunStart) ||                          // Unbooked spots can always be moved
+                   (!BreakUtilities.IsBreakRefNotSetOrUnused(_spotInfos[spot.Uid].ExternalBreakRefAtRunStart) && spot.Preemptable);     // Booked spots can only be moved if preemptable
         }
 
         /// <summary>
@@ -99,7 +98,7 @@ namespace ImagineCommunications.GamePlan.Process.Smooth.Services
         /// </summary>
         private IReadOnlyCollection<SmoothScenario> GetSmoothScenariosForSponsoredSpots(
             IReadOnlyCollection<Spot> spotsForBreak,
-            IReadOnlyList<SmoothBreak> progSmoothBreaks,
+            IReadOnlyCollection<SmoothBreak> progSmoothBreaks,
             IReadOnlyCollection<SmoothFailureMessagesForSpotsCollection> validateAddSpotsToBreakResults,
             int lastSmoothScenarioSequence,
             SpotPositionRules breakPositionRules,
@@ -123,7 +122,7 @@ namespace ImagineCommunications.GamePlan.Process.Smooth.Services
             var validBreaksForSpotTime = progSmoothBreaks
                 .Where(sb =>
                 {
-                    var canAddSpotService = CanAddSpotService.Factory(sb);
+                    ICanAddSpot canAddSpotService = new CanAddSpotService(sb);
                     return canAddSpotService.CanAddSpotWithTime(sponsoredSpot.StartDateTime, sponsoredSpot.EndDateTime);
                 })
                 .OrderBy(sb => sb.TheBreak.ScheduledDate);
@@ -133,8 +132,7 @@ namespace ImagineCommunications.GamePlan.Process.Smooth.Services
                 return new List<SmoothScenario>();
             }
 
-            bool isRestrictedSpotTime = validBreaksForSpotTime.First().Position != 1 ||
-                validBreaksForSpotTime.Last().Position != progSmoothBreaks[progSmoothBreaks.Count - 1].Position;
+            bool isRestrictedSpotTime = validBreaksForSpotTime.First().Position != 1 || validBreaksForSpotTime.Last().Position != progSmoothBreaks.Last().Position;
 
             var smoothScenarios = new List<SmoothScenario>();
 
@@ -170,30 +168,25 @@ namespace ImagineCommunications.GamePlan.Process.Smooth.Services
                     bool addScenariosToFixFailures = false;
 
                     if (!HasBreakRequest(sponsoredSpot) &&
-                        (
-                            progSmoothBreak.Position == listOfProgrammeSmoothBreaks[0].Position ||
-                            progSmoothBreak.Position == progSmoothBreaks[progSmoothBreaks.Count - 1].Position
+                        (progSmoothBreak.Position == listOfProgrammeSmoothBreaks[0].Position || progSmoothBreak.Position == progSmoothBreaks.Last().Position)
                         )
-                    )
                     {
                         addScenariosToFixFailures = true;
                     }
                     else if (HasBreakRequest(sponsoredSpot))
                     {
-                        addScenariosToFixFailures = SpotUtilities.CanSpotBePlacedInRequestedBreakOrContainer(
-                            sponsoredSpot,
-                            progSmoothBreaks,
-                            breakPositionRules,
-                            respectSpotTime,
-                            validBreaksForSpotTime,
-                            isRestrictedSpotTime,
-                            progSmoothBreak);
+                        ICanAddSpot canAddSpotService = new CanAddSpotService(progSmoothBreak);
+
+                        if (canAddSpotService.CanAddSpotWithBreakRequest(sponsoredSpot.BreakRequest, progSmoothBreaks.Count, breakPositionRules))
+                        {
+                            addScenariosToFixFailures = true;
+                        }
+                        else if (IsBreakWithinSpotTimeRestriction(respectSpotTime, isRestrictedSpotTime, validBreaksForSpotTime, progSmoothBreak))
+                        {
+                            addScenariosToFixFailures = true;
+                        }
                     }
-                    else if (SpotUtilities.IsBreakWithinSpotTimeRestriction(
-                        respectSpotTime,
-                        isRestrictedSpotTime,
-                        validBreaksForSpotTime,
-                        progSmoothBreak))
+                    else if (IsBreakWithinSpotTimeRestriction(respectSpotTime, isRestrictedSpotTime, validBreaksForSpotTime, progSmoothBreak))
                     {
                         addScenariosToFixFailures = true;
                     }
@@ -206,20 +199,150 @@ namespace ImagineCommunications.GamePlan.Process.Smooth.Services
                         {
                             switch (failure.FailureMessage)
                             {
+                                // Move spots for campaign clash
                                 case SmoothFailureMessages.T1_CampaignClash:
-                                    MoveCampaignClashSpots(spotsForBreak, sponsoredSpot, progSmoothBreak, spotGroupsToMove);
+                                    List<Spot> spotsToSeeIfCanBeMoved = _smoothResources.CampaignClashChecker.GetCampaignClashesForNewSpots(
+                                        new List<Spot>() { sponsoredSpot },
+                                        progSmoothBreak.SmoothSpots.Select(s => s.Spot).ToList()
+                                        );
+
+                                    var spotsForCampaignClashFailure = GetSpotsThatCanBeMovedForSpots(
+                                        spotsForBreak,
+                                        spotsToSeeIfCanBeMoved);
+
+                                    foreach (var spot in spotsForCampaignClashFailure)
+                                    {
+                                        spotGroupsToMove.Add(
+                                            new Spot[] { spot }
+                                        );
+                                    }
+
                                     break;
 
+                                // Move spots to free up break availability
                                 case SmoothFailureMessages.T1_InsufficentRemainingDuration:
-                                    MoveSpotsToIncreaseBreakAvailability(spotsForBreak, sponsoredSpot, progSmoothBreak, spotGroupsToMove);
+                                    Duration minSpotLength = sponsoredSpot.SpotLength - progSmoothBreak.RemainingAvailability;
+
+                                    // Sanity check
+                                    if (minSpotLength > Duration.Zero)
+                                    {
+                                        // Get all single spots that
+                                        IReadOnlyCollection<Spot> spotsWithEnoughLength = progSmoothBreak.SmoothSpots
+                                            .Where(s => s.Spot.SpotLength >= minSpotLength)
+                                            .Select(s => s.Spot)
+                                            .ToList();
+
+                                        var spotsForInsufficientRemainingDurationFailure = GetSpotsThatCanBeMovedForSpots(
+                                            spotsForBreak,
+                                            spotsWithEnoughLength);
+
+                                        // Single spots can be moved
+                                        if (spotsForInsufficientRemainingDurationFailure.Count > 0)
+                                        {
+                                            // Limit number to try
+                                            foreach (var spot in spotsForInsufficientRemainingDurationFailure.Take(2))
+                                            {
+                                                spotGroupsToMove.Add(new Spot[] { spot });
+                                            }
+                                        }
+                                        else
+                                        {
+                                            // No single spots can be moved to
+                                            // make room, try spot combinations
+                                            // Get all short spots that can be moved
+                                            IReadOnlyCollection<Spot> spots = progSmoothBreak.SmoothSpots
+                                                .Select(s => s.Spot)
+                                                .ToList();
+
+                                            var spotsToMoveFromBreak = GetSpotsThatCanBeMovedForSpots(
+                                                spotsForBreak,
+                                                spots)
+                                            .ToList();
+
+                                            // Add spot combinations (pairs)
+                                            // that would leave sufficient break availability
+                                            if (spotsToMoveFromBreak.Count <= 1)
+                                            {
+                                                break;
+                                            }
+
+                                            // Get all combinations of 2 spots
+                                            // from the lowest priority N spots
+                                            // (because we ideally want to move
+                                            // the lowest priority spots),
+                                            var spotCombinations = Combinations
+                                                .GetCombinations(2, spotsToMoveFromBreak.Take(3).ToArray())
+                                                .OrderByDescending(sc => sc.Average(s => s.Preemptlevel));
+
+                                            // Check each combination
+                                            int countSpotCombinationsUsed = 0;
+
+                                            // Spots leave sufficient availability
+                                            foreach (var spotCombination in spotCombinations
+                                                .Where(sc => SpotUtilities.GetTotalSpotLength(sc) >= minSpotLength.ToTimeSpan())
+                                                )
+                                            {
+                                                foreach (var _ in spotsForInsufficientRemainingDurationFailure)
+                                                {
+                                                    spotGroupsToMove.Add(spotCombination);
+                                                }
+
+                                                countSpotCombinationsUsed++;
+
+                                                // Limit number of combinations
+                                                if (countSpotCombinationsUsed >= 2)
+                                                {
+                                                    break;
+                                                }
+                                            }
+                                            break;
+                                        }
+                                    }
                                     break;
 
                                 case SmoothFailureMessages.T1_ProductClash:
-                                    MoveProductClashSpots(spotsForBreak, sponsoredSpot, progSmoothBreak, spotGroupsToMove);
+                                    // Move spots for product clash
+                                    IReadOnlyCollection<Spot> spotsThatClash = _smoothResources.ProductClashChecker
+                                        .GetProductClashesForSingleSpot(
+                                            sponsoredSpot,
+                                            progSmoothBreak.SmoothSpots.Select(s => s.Spot).ToList(),
+                                            _spotInfos,
+                                            ClashCodeLevel.Parent
+                                            );
+
+                                    var spotsForProductClashFailure = GetSpotsThatCanBeMovedForSpots(
+                                        spotsForBreak,
+                                        spotsThatClash);
+
+                                    foreach (var spot in spotsForProductClashFailure)
+                                    {
+                                        spotGroupsToMove.Add(new Spot[] { spot });
+                                    }
+
                                     break;
 
                                 case SmoothFailureMessages.T1_RequestedPositionInBreak:
-                                    MoveRequestedPositionInBreakSpots(spotsForBreak, sponsoredSpot, progSmoothBreak, spotGroupsToMove);
+
+                                    var spotPositioning = new SpotPositioning();
+                                    int breakSeqForPositionInBreakRequest = String.IsNullOrEmpty(sponsoredSpot.RequestedPositioninBreak)
+                                        ? 0
+                                        : spotPositioning.GetBreakSeqFromRequestedPositionInBreak(sponsoredSpot.RequestedPositioninBreak);
+
+                                    // Move spots with same requested position
+                                    // in break
+                                    var spotsForRequestedPositionInBreakFailure = GetSpotsThatCanBeMovedForSpots(
+                                        spotsForBreak,
+                                        progSmoothBreak.SmoothSpots
+                                            .Where(s => s.BreakSequence == breakSeqForPositionInBreakRequest)
+                                            .Select(s => s.Spot)
+                                            .ToList()
+                                            );
+
+                                    foreach (var spot in spotsForRequestedPositionInBreakFailure)
+                                    {
+                                        spotGroupsToMove.Add(new Spot[] { spot });
+                                    }
+
                                     break;
                             }
                         }
@@ -229,9 +352,7 @@ namespace ImagineCommunications.GamePlan.Process.Smooth.Services
                     // scenarios for same spot
                     foreach (var spotGroupToMove in spotGroupsToMove)
                     {
-                        string externalSpotRefsForGroup = SpotUtilities.GetListOfSpotExternalReferences(
-                            ",",
-                            spotGroupToMove.ToList());
+                        string externalSpotRefsForGroup = SpotUtilities.GetListOfSpotExternalReferences(",", spotGroupToMove.ToList());
 
                         if (!externalSpotRefsMovedOutOfBreakByGroup.Contains(externalSpotRefsForGroup))
                         {
@@ -263,164 +384,21 @@ namespace ImagineCommunications.GamePlan.Process.Smooth.Services
 
             return smoothScenarios;
 
+            // Local functions
+            static bool IsBreakWithinSpotTimeRestriction(
+                bool respectSpotTime,
+                bool isRestrictedSpotTime,
+                IOrderedEnumerable<SmoothBreak> validBreaksForSpotTime,
+                SmoothBreak progSmoothBreak)
+            {
+                return isRestrictedSpotTime
+                    && respectSpotTime
+                    && progSmoothBreak.Position >= validBreaksForSpotTime.First().Position
+                    && progSmoothBreak.Position <= validBreaksForSpotTime.LastOrDefault()?.Position;
+            }
+
             static bool HasBreakRequest(Spot spot) =>
                 !String.IsNullOrWhiteSpace(spot.BreakRequest);
-        }
-
-        private void MoveSpotsToIncreaseBreakAvailability(
-            IReadOnlyCollection<Spot> spotsForBreak,
-            Spot sponsoredSpot,
-            SmoothBreak progSmoothBreak,
-            List<Spot[]> spotGroupsToMove)
-        {
-            Duration minSpotLength = sponsoredSpot.SpotLength - progSmoothBreak.RemainingAvailability;
-
-            // Sanity check
-            if (minSpotLength <= Duration.Zero)
-            {
-                return;
-            }
-
-            IReadOnlyCollection<Spot> spotsWithEnoughLength = progSmoothBreak.SmoothSpots
-                .Where(s => s.Spot.SpotLength >= minSpotLength)
-                .Select(s => s.Spot)
-                .ToList();
-
-            var spotsForInsufficientRemainingDurationFailure = GetSpotsThatCanBeMovedForSpots(
-                spotsForBreak,
-                spotsWithEnoughLength);
-
-            // Single spots that can be moved
-            if (spotsForInsufficientRemainingDurationFailure.Count > 0)
-            {
-                // Limit number to try
-                foreach (var spot in spotsForInsufficientRemainingDurationFailure.Take(2))
-                {
-                    spotGroupsToMove.Add(new Spot[] { spot });
-                }
-
-                return;
-            }
-
-            // No single spots can be moved to make room, try spot combinations.
-            // Get all short spots that can be moved.
-            IReadOnlyCollection<Spot> spots = progSmoothBreak.SmoothSpots
-                .ConvertAll(s => s.Spot);
-
-            var spotsToMoveFromBreak = GetSpotsThatCanBeMovedForSpots(
-                spotsForBreak,
-                spots)
-            .ToList();
-
-            // Add spot combinations (pairs) that would leave sufficient break
-            // availability.
-            if (spotsToMoveFromBreak.Count <= 1)
-            {
-                return;
-            }
-
-            // Get all combinations of 2 spots from the lowest priority N spots
-            // (because we ideally want to move the lowest priority spots).
-            var spotCombinations = Combinations
-                .GetCombinations(2, spotsToMoveFromBreak.Take(3).ToArray())
-                .OrderByDescending(sc => sc.Average(s => s.Preemptlevel));
-
-            // Check each combination
-            int countSpotCombinationsUsed = 0;
-
-            // Spots leave sufficient availability
-            foreach (var spotCombination in spotCombinations
-                .Where(sc => SpotUtilities.GetTotalSpotLength(sc) >= minSpotLength.ToTimeSpan())
-                )
-            {
-                foreach (var _ in spotsForInsufficientRemainingDurationFailure)
-                {
-                    spotGroupsToMove.Add(spotCombination);
-                }
-
-                countSpotCombinationsUsed++;
-
-                // Limit number of combinations
-                if (countSpotCombinationsUsed >= 2)
-                {
-                    break;
-                }
-            }
-        }
-
-        private void MoveRequestedPositionInBreakSpots(
-            IReadOnlyCollection<Spot> spotsForBreak,
-            Spot sponsoredSpot,
-            SmoothBreak progSmoothBreak,
-            List<Spot[]> spotGroupsToMove)
-        {
-            int breakSeqForPositionInBreakRequest =
-                String.IsNullOrWhiteSpace(sponsoredSpot.RequestedPositioninBreak)
-                    ? 0
-                    : SpotPositioning.GetBreakSeqFromRequestedPositionInBreak(sponsoredSpot.RequestedPositioninBreak);
-
-            // Move spots with same requested position in break
-            var spotsThatMightBeMoved = progSmoothBreak.SmoothSpots
-                .Where(s => s.BreakSequence == breakSeqForPositionInBreakRequest)
-                .Select(s => s.Spot)
-                .ToList();
-
-            var spotsThatCanBeMoved = GetSpotsThatCanBeMovedForSpots(
-                spotsForBreak,
-                spotsThatMightBeMoved);
-
-            foreach (var spot in spotsThatCanBeMoved)
-            {
-                spotGroupsToMove.Add(new Spot[] { spot });
-            }
-        }
-
-        private void MoveProductClashSpots(
-            IReadOnlyCollection<Spot> spotsForBreak,
-            Spot sponsoredSpot,
-            SmoothBreak progSmoothBreak,
-            List<Spot[]> spotGroupsToMove)
-        {
-            IReadOnlyCollection<Spot> spotsThatMightBeMoved = _smoothResources
-                .ProductClashChecker
-                .GetProductClashesForSingleSpot(
-                    sponsoredSpot,
-                    progSmoothBreak.SmoothSpots.ConvertAll(s => s.Spot),
-                    _spotInfos,
-                    ClashCodeLevel.Parent
-                    );
-
-            var spotsThatCanBeMoved = GetSpotsThatCanBeMovedForSpots(
-                spotsForBreak,
-                spotsThatMightBeMoved);
-
-            foreach (var spot in spotsThatCanBeMoved)
-            {
-                spotGroupsToMove.Add(new Spot[] { spot });
-            }
-        }
-
-        private void MoveCampaignClashSpots(
-            IReadOnlyCollection<Spot> spotsForBreak,
-            Spot sponsoredSpot,
-            SmoothBreak progSmoothBreak,
-            List<Spot[]> spotGroupsToMove)
-        {
-            IReadOnlyCollection<Spot> spotsThatMightBeMoved = _smoothResources
-                .CampaignClashChecker
-                .GetCampaignClashesForNewSpots(
-                    new List<Spot>() { sponsoredSpot },
-                    progSmoothBreak.SmoothSpots.ConvertAll(s => s.Spot)
-                    );
-
-            var spotsThatCanBeMoved = GetSpotsThatCanBeMovedForSpots(
-                spotsForBreak,
-                spotsThatMightBeMoved);
-
-            foreach (var spot in spotsThatCanBeMoved)
-            {
-                spotGroupsToMove.Add(new Spot[] { spot });
-            }
         }
 
         /// <summary>

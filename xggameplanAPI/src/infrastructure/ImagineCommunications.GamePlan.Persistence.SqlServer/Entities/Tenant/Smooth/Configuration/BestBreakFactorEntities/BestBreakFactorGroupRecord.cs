@@ -10,12 +10,12 @@ namespace ImagineCommunications.GamePlan.Persistence.SqlServer.Entities.Tenant.S
 
         public ICollection<BestBreakFactorGroupRecordPassSequenceItem> PassSequences { get; set; }
 
-        public BestBreakFactorGroupSpotsCriteria SpotsCriteria { get; set; }
+        public bool? SpotsCriteriaHasSponsoredSpots { get; set; }
+
+        public bool? SpotsCriteriaHasFIBORLIBRequests { get; set; }
+
+        public bool? SpotsCriteriaHasBreakRequest { get; set; }
 
         public BestBreakFactorGroup BestBreakFactorGroup { get; set; }
-    }
-
-    public class BestBreakFactorGroupSpotsCriteria : SpotsCriteria
-    {
     }
 }

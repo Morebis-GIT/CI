@@ -52,7 +52,7 @@ namespace ImagineCommunications.GamePlan.Persistence.SqlServer.Landmark.Features
             _productLinks =
                 (from campaignWithProductRelations in _dbContext.Specific.View<CampaignWithProductRelations>()
                  join productJoin in _dbContext.Query<ProductEntity>() on campaignWithProductRelations.ProductId
-                     equals productJoin.Uid into pJoin
+                     equals productJoin.Id into pJoin
                  from product in pJoin.DefaultIfEmpty()
                  join clashRootJoin in _dbContext.Specific.View<ClashRoot>() on product.ClashCode
                      equals clashRootJoin.ExternalRef into crJoin
@@ -83,7 +83,7 @@ namespace ImagineCommunications.GamePlan.Persistence.SqlServer.Landmark.Features
             {
                 return new Product
                 {
-                    Uid = productLink.Product.Uid,
+                    Uid = productLink.Product.Id,
                     ClashCode = productLink.Product.ClashCode,
                     AdvertiserIdentifier = productLink.Advertiser?.ExternalIdentifier ?? string.Empty
                 };

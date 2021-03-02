@@ -8,16 +8,18 @@ namespace ImagineCommunications.GamePlan.Persistence.SqlServer.EntityConfigurati
     {
         public void Configure(EntityTypeBuilder<SalesAreaDemographic> builder)
         {
-            _ = builder.ToTable("SalesAreaDemographics");
-            _ = builder.HasKey(e => e.Id);
-            _ = builder.Property(p => p.Id).UseSqlServerIdentityColumn();
-            _ = builder.Property(e => e.ExternalRef).HasMaxLength(64).IsRequired();
-            _ = builder.Property(e => e.SupplierCode).HasMaxLength(20).IsRequired();
+            builder.ToTable("SalesAreaDemographics");
+            builder.HasKey(e => e.Id);
+            builder.Property(p => p.Id).UseMySqlIdentityColumn();
+            builder.Property(e => e.SalesArea).HasMaxLength(255).IsRequired();
+            builder.Property(e => e.ExternalRef).HasMaxLength(64).IsRequired();
+            builder.Property(e => e.SupplierCode).HasMaxLength(20).IsRequired();
 
-            _ = builder.HasOne(x => x.SalesArea).WithMany().HasForeignKey(x => x.SalesAreaId)
-                .OnDelete(DeleteBehavior.Restrict);
-
-            _ = builder.HasIndex(x => x.SalesAreaId);
+            builder
+                .HasOne<SalesArea>()
+                .WithMany()
+                .HasForeignKey(x => x.SalesArea)
+                .HasPrincipalKey(x => x.Name);
         }
     }
 }

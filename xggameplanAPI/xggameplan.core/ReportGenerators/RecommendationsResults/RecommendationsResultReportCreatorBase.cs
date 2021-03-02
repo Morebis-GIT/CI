@@ -107,7 +107,7 @@ namespace xggameplan.core.ReportGenerators.ScenarioCampaignResults
         /// <returns></returns>
         private static DateTime GetWeekCommencingDate(DayOfWeek startDayOfWeek, DateTime startDate)
         {
-            return startDate.Date.StartAndEndOfWeekDate(startDayOfWeek).startDate;
+            return startDate.Date.StartAndEndOfWeekDate(startDayOfWeek).Item1; // week start date
         }
 
         /// <summary>Generates the report data.</summary>
@@ -213,28 +213,18 @@ namespace xggameplan.core.ReportGenerators.ScenarioCampaignResults
             using (var reportBuilder = new OneTableExcelReportBuilder(new ExcelStyleApplier())
                 .PredefineStyles(GamePlanReportStyles.RecommendationReportPredefineStyles))
             {
-                if (extendedData.Count == 0)
+                for (int i = 0, page = 1; i < extendedData.Count; i += PageSize, page++)
                 {
+                    // copy for lambda
+                    int j = i;
                     _ = reportBuilder.Sheet(sheetName, sheetBuilder =>
                     {
-                        sheetBuilder.DataContent(extendedData, sheetConfiguration);
+                        sheetBuilder
+                            .Freeze(1, 2)
+                            .DataContent(extendedData.Skip(j).Take(PageSize).ToArray(), sheetConfiguration);
                     });
-                }
-                else
-                {
-                    for (int i = 0, page = 1; i < extendedData.Count; i += PageSize, page++)
-                    {
-                        // copy for lambda
-                        int j = i;
-                        _ = reportBuilder.Sheet(sheetName, sheetBuilder =>
-                        {
-                            sheetBuilder
-                                .Freeze(1, 2)
-                                .DataContent(extendedData.Skip(j).Take(PageSize).ToArray(), sheetConfiguration);
-                        });
 
-                        sheetName = $"{SheetName} ({page})";
-                    }
+                    sheetName = $"{SheetName} ({page})";
                 }
 
                 reportBuilder.SaveAs(stream);

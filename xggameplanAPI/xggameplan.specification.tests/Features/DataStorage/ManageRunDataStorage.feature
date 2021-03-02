@@ -188,6 +188,6 @@ Scenario Outline: Search runs
 		| 003          |            |            | Errors                 | AllWords     | ExactOrder | EndsWithWord   | False         |                    | 1                   |
 		| 004          | 2020-08-06 | 2020-08-08 | Complete               | AllWords     | ExactOrder | EndsWithWord   | True          |                    | 1                   |
 		| TeSt New     | 2019-03-01 | 2099-08-10 | InProgress, Complete   | AnyWord      | AnyOrder   | ContainsWord   | False         |                    | 5                   |
-		#| TEST New     |            |            | NotStarted             | AnyWord      | AnyOrder   | ContainsWord   | False         | X                  | 1                   |
+		#| TEST New     |            |            | NotStarted             | AnyWord      | AnyOrder   | ContainsWord   | False         | X                  | 2                   |
 		| new test     |            |            | NotStarted, Complete   | AnyWord      | AnyOrder   | ContainsWord   | False         | XG                 | 4                   |
 		| Testew1      |            |            | NotStarted, InProgress | AnyWord      | AnyOrder   | ContainsWord   | False         | XGN                | 0                   |

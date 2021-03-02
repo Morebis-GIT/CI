@@ -8,7 +8,7 @@ namespace xggameplan.Extensions
 {
     public static class DateTimeExtensions
     {
-        public static (DateTime startDate, DateTime endDate) StartAndEndOfWeekDate(this DateTime dt,
+        public static Tuple<DateTime, DateTime> StartAndEndOfWeekDate(this DateTime dt,
             DayOfWeek startOfWeek = DayOfWeek.Monday)
         {
             var diff = dt.DayOfWeek - startOfWeek;
@@ -16,9 +16,9 @@ namespace xggameplan.Extensions
             {
                 diff += 7;
             }
-            var startDate = dt.AddDays(-1 * diff).Date;
-            var endDate = startDate.AddDays(6).Date;
-            return (startDate, endDate);
+            var startdate = dt.AddDays(-1 * diff).Date;
+            var enddate = startdate.AddDays(6).Date;
+            return Tuple.Create(startdate, enddate);
         }
 
         public static int GetWeekNumber(this DateTime date, DayOfWeek startOfWeek = DayOfWeek.Monday)

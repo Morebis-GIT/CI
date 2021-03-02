@@ -57,6 +57,7 @@ namespace ImagineCommunications.GamePlan.Persistence.SqlServer.Mapping
 
                     return product;
                 })
+                .ForMember(dest => dest.Uid, opt => opt.MapFrom(src => src.Id))
                 .ReverseMap();
 
             CreateMap<ProductDto, Domain.Shared.Products.Objects.Product>()

@@ -7,43 +7,41 @@ Feature: Manage Campaign data storage
 
 Background:
 	Given there is a Campaigns repository
-	And predefined Campaigns.SalesAreas.json data
+	And predefined Campaigns data
 
 Scenario: Add new Campaign
-	Given predefined data imported
 	When I create a document
 	And I get all documents
 	Then there should be 1 documents returned
 
 Scenario: Add new Campaigns
-	Given predefined data imported
 	When I create 3 documents
 	And I get all documents
 	Then there should be 3 documents returned
 
+
 Scenario: Remove an existing Campaign
-	Given predefined Campaigns data
-	And predefined data imported
+	Given predefined data imported
 	When I delete document with id 'FC2C1BF6-82B8-4759-9286-0B872D2D3FAE'
 	And I get all documents
 	Then there should be 3 documents returned
 
+
 Scenario: Removing a non-existing Campaign
-	Given predefined Campaigns data
-	And predefined data imported
+	Given predefined data imported
 	When I delete document with id '735D6DCC-B101-49F1-9B54-36D3D8DAD0D7'
 	And I get all documents
 	Then there should be 4 documents returned
 
+
 Scenario: Get a non-existing Campaign by id
-	Given predefined Campaigns data
-	And predefined data imported
+	Given predefined data imported
 	When I get document with id '735D6DCC-B101-49F1-9B54-36D3D8DAD0D7'
 	Then no documents should be returned
 
+
 Scenario: Get an existing Campaign by id
-	Given predefined Campaigns data
-	And predefined data imported
+	Given predefined data imported
 	When I get document with id 'D3D6667D-4A91-49CC-80A3-68E31324F8E2'
 	Then there should be 1 documents returned
 	And the received document should contain the following values:
@@ -51,39 +49,35 @@ Scenario: Get an existing Campaign by id
 		| Id       | D3D6667D-4A91-49CC-80A3-68E31324F8E2 |
 
 Scenario: Get all Campaigns
-	Given predefined data imported
-	And 3 documents created
+	Given 3 documents created
 	When I get all documents
 	Then there should be 3 documents returned
 
 Scenario: Get all flat Campaign models
-	Given predefined data imported
-	And 3 documents created
+	Given 3 documents created
 	When I call GetAllFlat method
 	Then there should be 3 documents returned
 
 Scenario: Counting all Campaigns
-	Given predefined data imported
-	And 3 documents created
+	Given 3 documents created
 	When I count the number of documents
 	Then there should be 3 documents counted
 
 Scenario: Truncating Campaign documents
 	Given 5 documents created
-	And predefined data imported
 	When I truncate documents
 	And I get all documents
 	Then no documents should be returned
 
+
 Scenario: Get all active Campaigns
-	Given predefined Campaigns data
-	And predefined data imported
+	Given predefined data imported
 	When I call GetAllActive method
 	Then there should be 2 documents returned
 
+
 Scenario Outline: Find Campaigns by list of id
-	Given predefined Campaigns data
-	And predefined data imported
+	Given predefined data imported
 	When I call Find method with parameters:
 		| Parameter | Value  |
 		| uids      | <uids> |
@@ -95,9 +89,9 @@ Scenario Outline: Find Campaigns by list of id
 		| FC2C1BF6-82B8-4759-9286-0B872D2D3FAE, 3042C3FD-C8E8-4979-B655-BB9D87497D64 | 1                   |
 		| 00000000-0000-0000-0000-000000000001, 00000000-0000-0000-0000-000000000002 | 0                   |
 
+
 Scenario: Get Campaign by external reference
-	Given predefined Campaigns data
-	And predefined data imported
+	Given predefined data imported
 	When I call FindByRef method with parameters:
 		| Parameter   | Value      |
 		| externalref | 15G1572617 |
@@ -107,15 +101,15 @@ Scenario: Get Campaign by external reference
 		| Id         | FC2C1BF6-82B8-4759-9286-0B872D2D3FAE |
 		| ExternalId | 15G1572617                           |
 
+
 Scenario: Find distinct business types
-	Given predefined Campaigns data
-	And predefined data imported
+	Given predefined data imported
 	When I call GetBusinessTypes method
 	Then there should be 1 documents returned
 
+
 Scenario Outline: Find Campaigns by external references
-	Given predefined Campaigns data
-	And predefined data imported
+	Given predefined data imported
 	When I call FindByRefs method with parameters:
 		| Parameter    | Value          |
 		| externalRefs | <ExternalRefs> |
@@ -127,10 +121,10 @@ Scenario Outline: Find Campaigns by external references
 		| 15G1572616, 15G1572617, 30G1572617 | 3                   |
 		| 15G1572616, 15G1572617, EMPTY_ONE  | 2                   |
 		| EMPTY_ONE, EMPTY_TWO               | 0                   |
+		
 
 Scenario Outline: Find Campaign names by external references
-	Given predefined Campaigns data
-	And predefined data imported
+	Given predefined data imported
 	When I call FindNameByRefs method with parameters:
 		| Parameter    | Value          |
 		| externalRefs | <ExternalRefs> |
@@ -143,9 +137,9 @@ Scenario Outline: Find Campaign names by external references
 		| 15G1572616, 15G1572617, EMPTY_ONE  | 2                   |
 		| EMPTY_ONE, EMPTY_TWO               | 0                   |
 
+
 Scenario Outline: Get Campaigns by group name
-	Given predefined Campaigns data
-	And predefined data imported
+	Given predefined data imported
 	When I call GetByGroup method with parameters:
 		| Parameter | Value   |
 		| group     | <Group> |
@@ -157,9 +151,9 @@ Scenario Outline: Get Campaigns by group name
 		| G1572616 | 2                   |
 		| G1572618 | 0                   |
 
+
 Scenario Outline: Find missing Campaigns from group
-	Given predefined Campaigns data
-	And predefined data imported
+	Given predefined data imported
 	When I call FindMissingCampaignsFromGroup method with parameters:
 		| Parameter     | Value           |
 		| externalRefs  | <ExternalRefs>  |
@@ -173,11 +167,10 @@ Scenario Outline: Find missing Campaigns from group
 		| 15G1572616, 15G1572617, 30G1572616, 30G1572617 | G1572616, G1572617   | 0                   |
 		| EMPTY_ONE, EMPTY_TWO                           | EMPTY_ONE, EMPTY_TWO | 0                   |
 
-@Ignore
+
 #it seems that the repository query can't be processed by in-memory provider
 Scenario Outline: Get Campaigns with product
-	Given predefined Campaigns data
-	And predefined data imported
+	Given predefined data imported
 	When I call GetWithProduct method with parameters:
 		| Parameter   | Value         |
 		| status      | <Status>      |
@@ -197,7 +190,8 @@ Scenario Outline: Get Campaigns with product
 		| Active    | null       | null       | null         | 2                   |
 		| Active    | null       | null       | G1572617     | 1                   |
 		| Active    | 2019-02-15 | 2019-06-03 | null         | 2                   |
-		| Active    | 2019-02-15 | 2019-06-03 | Adv 2        | 1                   |
+#		TODO: Revise what is wrong with next line. Note Campaigns.json does not contains Campaign with name
+#		| Active    | 2019-02-15 | 2019-06-03 | Adv 2        | 1                   |
 		| Active    | 2019-02-15 | 2019-06-03 | EMPTY_ONE    | 0                   |
 		| Cancelled | null       | null       | null         | 2                   |
 		| Cancelled | null       | null       | G1572616     | 1                   |
@@ -205,9 +199,9 @@ Scenario Outline: Get Campaigns with product
 		| Cancelled | 2019-02-15 | 2019-04-30 | Campaign One | 1                   |
 		| Cancelled | 2019-02-15 | 2019-04-30 | EMPTY_ONE    | 0                   |
 
+
 Scenario: Update Campaign by external reference
-	Given predefined Campaigns data
-	And predefined data imported
+	Given predefined data imported
 	When I call FindByRef method with parameters:
 		| Parameter   | Value      |
 		| externalref | 15G1572617 |

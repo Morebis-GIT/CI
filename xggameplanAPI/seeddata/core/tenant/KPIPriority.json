@@ -1,0 +1,32 @@
+[
+  {
+    "Id": 1,
+    "Name": "Exclude",
+    "WeightingFactor": 0
+  },
+  {
+    "Id": 2,
+    "Name": "Extremely Low",
+    "WeightingFactor": 0.3
+  },
+  {
+    "Id": 3,
+    "Name": "Low",
+    "WeightingFactor": 0.7
+  },
+  {
+    "Id": 4,
+    "Name": "Medium",
+    "WeightingFactor": 1
+  },
+  {
+    "Id": 5,
+    "Name": "High",
+    "WeightingFactor": 1.3
+  },
+  {
+    "Id": 6,
+    "Name": "Extremely High",
+    "WeightingFactor": 1.7
+  }
+]

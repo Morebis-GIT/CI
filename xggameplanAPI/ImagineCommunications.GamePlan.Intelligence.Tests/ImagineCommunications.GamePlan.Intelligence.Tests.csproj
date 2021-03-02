@@ -42,27 +42,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DataExchange\Infrastructure\MappingOverride.cs" />
-    <Compile Include="DataExchange\Infrastructure\SqlServer\DomainModelHandlers\UniverseDomainModelHandler.cs" />
-    <Compile Include="DataExchange\Infrastructure\SqlServer\DomainModelHandlers\SmoothDiagnosticConfigurationDomainModelHandler.cs" />
-    <Compile Include="DataExchange\Infrastructure\SqlServer\DomainModelHandlers\SponsorshipItemDomainModelHandler.cs" />
-    <Compile Include="DataExchange\Infrastructure\SqlServer\DomainModelHandlers\SpotBookingRuleDomainModelHandler.cs" />
     <Compile Include="DataExchange\Infrastructure\SqlServer\DomainModelHandlers\BreakDomainModelHandler.cs" />
-    <Compile Include="DataExchange\Infrastructure\SqlServer\DomainModelHandlers\CampaignDomainModelHandler.cs" />
-    <Compile Include="DataExchange\Infrastructure\SqlServer\DomainModelHandlers\RestrictionDomainModelHandler.cs" />
     <Compile Include="DataExchange\Infrastructure\SqlServer\DomainModelHandlers\InventoryLockDomainModelHandler.cs" />
     <Compile Include="DataExchange\Infrastructure\SqlServer\DomainModelHandlers\ProgrammeDomainModelHandler.cs" />
-    <Compile Include="DataExchange\Infrastructure\SqlServer\DomainModelHandlers\RatingsPredictionScheduleDomainModelHandler.cs" />
-    <Compile Include="DataExchange\Infrastructure\SqlServer\DomainModelHandlers\SpotDomainModelHandler.cs" />
-    <Compile Include="DataExchange\Infrastructure\SqlServer\DomainModelHandlers\StandardDayPartDomainModelHandler.cs" />
-    <Compile Include="DataExchange\Infrastructure\SqlServer\DomainModelHandlers\StandardDayPartGroupDomainModelHandler.cs" />
-    <Compile Include="DataExchange\Infrastructure\SqlServer\DomainModelHandlers\TotalRatingDomainModelHandler.cs" />
     <Compile Include="DataExchange\Infrastructure\SqlServer\Interception\FtsContainsMethodDescriptor.cs" />
     <Compile Include="DataExchange\Infrastructure\SqlServer\Interception\FtsEntityReferenceVisitor.cs" />
     <Compile Include="DataExchange\Infrastructure\SqlServer\Interception\FtsInjectionDescriptor.cs" />
     <Compile Include="DataExchange\Infrastructure\SqlServer\Interception\FtsRegistrationBuilder.cs" />
     <Compile Include="DataExchange\Infrastructure\SqlServer\PropertyCopier.cs" />
-    <Compile Include="DataExchange\Infrastructure\SqlServer\SalesAreaTestCacheAccessor.cs" />
     <Compile Include="DataExchange\Infrastructure\SqlServer\SqlServerTenantIdentifierTestSequence.cs" />
     <Compile Include="DataExchange\Infrastructure\SqlServer\SqlServerTestDbContextFactory.cs" />
     <Compile Include="DataExchange\Infrastructure\SqlServer\SqlServerTestTruncateHandler.cs" />
@@ -506,11 +493,7 @@
     <EmbeddedResource Include="DataExchange\Data\Break\SalesAreas_Setup.json" />
     <EmbeddedResource Include="DataExchange\Data\Programme\BulkProgrammeCreated\SalesAreas_Setup.json" />
     <EmbeddedResource Include="DataExchange\Data\Programme\BulkProgrammeDeleted\SalesAreas_Setup.json" />
-    <EmbeddedResource Include="DataExchange\Data\DayPartGroups\SalesAreas_Setup.json" />
     <EmbeddedResource Include="DataExchange\Data\SalesArea\ExistingSalesAreas.json" />
-    <EmbeddedResource Include="DataExchange\Data\Spot\BulkSpotCreatedOrUpdated\SalesAreas_Setup.json" />
-    <EmbeddedResource Include="DataExchange\Data\Universe\SalesAreas_Setup.json" />
-    <EmbeddedResource Include="DataExchange\Data\TotalRatings\SalesAreas_Setup.json" />
     <None Include="Features\DataExchange\Campaign.feature" />
     <None Include="Features\DataExchange\LengthFactor.feature" />
     <None Include="Features\DataExchange\BookingPositionGroup.feature" />
@@ -520,7 +503,6 @@
     <EmbeddedResource Include="DataExchange\Data\InventoryStatus\BulkInventoryTypeCreated\SuccessPath.json" />
     <EmbeddedResource Include="DataExchange\Data\InventoryStatus\BulkInventoryTypeCreated\Error_InvalidLockTypes.json" />
     <None Include="Features\DataExchange\BreakType.feature" />
-    <None Include="Features\DataExchange\Campaign.feature" />
     <None Include="Features\DataExchange\ClashException.feature" />
     <None Include="Features\DataExchange\DayPart.feature" />
     <None Include="Features\DataExchange\DayPartGroup.feature" />

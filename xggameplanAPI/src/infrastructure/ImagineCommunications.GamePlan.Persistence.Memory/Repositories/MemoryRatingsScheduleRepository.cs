@@ -31,20 +31,18 @@ namespace ImagineCommunications.GamePlan.Persistence.Memory.Repositories
         /// <param name="item"></param>
         public void Add(RatingsPredictionSchedule item)
         {
-            InsertOrReplaceItem(item, GetID(item.SalesArea, item.ScheduleDay));
+            var items = new List<RatingsPredictionSchedule>() { item };
+            InsertItems(items, items.Select(i => GetID(i.SalesArea, i.ScheduleDay)).ToList());
         }
 
         public void Update(RatingsPredictionSchedule item)
         {
-            InsertOrReplaceItem(item, GetID(item.SalesArea, item.ScheduleDay));
+            UpdateOrInsertItem(item, GetID(item.SalesArea, item.ScheduleDay));
         }
 
         public void Insert(List<RatingsPredictionSchedule> items, bool setIdentity = true)
         {
-            foreach (var item in items)
-            {
-                Add(item);
-            }
+            InsertItems(items.ToList(), items.Select(i => GetID(i.SalesArea, i.ScheduleDay)).ToList());
         }
 
         public void Remove(RatingsPredictionSchedule item)
@@ -84,12 +82,10 @@ namespace ImagineCommunications.GamePlan.Persistence.Memory.Repositories
         public Task TruncateAsync()
         {
             Truncate();
-            return Task.CompletedTask;
+            return Task.FromResult(true);
         }
 
-        public void SaveChanges()
-        {
-        }
+        public void SaveChanges() { }
 
         /// <summary>
         /// Checks the Demographic/SalesArea/ScheduleDay where there are not
@@ -100,7 +96,7 @@ namespace ImagineCommunications.GamePlan.Persistence.Memory.Repositories
         /// <param name="fromDateTime"></param>
         /// <param name="toDateTime"></param>
         /// <param name="salesAreaNames"></param>
-        /// <param name="demographics"></param>
+        /// <param name="demographicsNames"></param>
         /// <param name="noOfRatingPredictionsPerScheduleDayAreaDemo"></param>
         /// <returns>List of messages for any errors in the document collection</returns>
         public List<RatingsPredictionValidationMessage> Validate_RatingsPredictionSchedules(

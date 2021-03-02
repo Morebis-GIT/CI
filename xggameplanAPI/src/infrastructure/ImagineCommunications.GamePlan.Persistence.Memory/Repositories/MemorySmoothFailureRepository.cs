@@ -9,17 +9,9 @@ namespace ImagineCommunications.GamePlan.Persistence.Memory.Repositories
         MemoryRepositoryBase<SmoothFailure>,
         ISmoothFailureRepository
     {
-        public void Dispose()
-        {
-        }
+        public void Dispose() { }
 
-        public void AddRange(IEnumerable<SmoothFailure> items)
-        {
-            foreach (var item in items)
-            {
-                InsertOrReplaceItem(item, item.RunId.ToString());
-            }
-        }
+        public void AddRange(IEnumerable<SmoothFailure> items) { }
 
         public IEnumerable<SmoothFailure> GetByRunId(Guid runId)
         {
@@ -36,9 +28,7 @@ namespace ImagineCommunications.GamePlan.Persistence.Memory.Repositories
             DeleteAllItems(sf => sf.RunId == runId);
         }
 
-        public void SaveChanges()
-        {
-        }
+        public void SaveChanges() { }
 
         public void Truncate()
         {

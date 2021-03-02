@@ -9,22 +9,19 @@ namespace ImagineCommunications.GamePlan.Persistence.SqlServer.EntityConfigurati
     {
         public void Configure(EntityTypeBuilder<SmoothDiagnosticConfiguration> builder)
         {
-            _ = builder.ToTable("SmoothDiagnosticConfigurations");
-            _ = builder.HasKey(x => x.Id);
+            builder.ToTable("SmoothDiagnosticConfigurations");
+            builder.HasKey(x => x.Id);
 
-            _ = builder.Property(x => x.Id).UseSqlServerIdentityColumn();
+            builder.Property(x => x.Id).UseMySqlIdentityColumn();
 
+            builder.Property(x => x.SpotSalesAreas).AsDelimitedString().IsRequired();
+            builder.Property(x => x.SpotDemographics).AsDelimitedString().IsRequired();
+            builder.Property(x => x.SpotExternalRefs).AsDelimitedString().IsRequired();
+            builder.Property(x => x.SpotExternalCampaignRefs).AsDelimitedString().IsRequired();
+            builder.Property(x => x.SpotMultipartSpots).AsDelimitedString().IsRequired();
 
-            _ = builder.Property(x => x.SpotDemographics).AsDelimitedString().IsRequired();
-            _ = builder.Property(x => x.SpotExternalRefs).AsDelimitedString().IsRequired();
-            _ = builder.Property(x => x.SpotExternalCampaignRefs).AsDelimitedString().IsRequired();
-            _ = builder.Property(x => x.SpotMultipartSpots).AsDelimitedString().IsRequired();
-
-            _ = builder.Property(x => x.SpotMinStartTime).AsUtc();
-            _ = builder.Property(x => x.SpotMaxStartTime).AsUtc();
-
-            _ = builder.HasMany(x => x.SpotSalesAreas).WithOne(x => x.SmoothDiagnosticConfiguration).IsRequired();
-            
+            builder.Property(x => x.SpotMinStartTime).AsUtc();
+            builder.Property(x => x.SpotMaxStartTime).AsUtc();
         }
     }
 }

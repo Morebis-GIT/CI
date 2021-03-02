@@ -1,0 +1,18 @@
+[
+  {    "KPIName": "percent95to105",             "DiscernibleDifference": 1,    "HigherIsBest": true  },
+  {    "KPIName": "percentbelow95",             "DiscernibleDifference": 1,    "HigherIsBest": false },
+  {    "KPIName": "percentbelow75",             "DiscernibleDifference": 1,    "HigherIsBest": false },
+  {    "KPIName": "remainaudience",             "DiscernibleDifference": 10000,"HigherIsBest": true  },
+  {    "KPIName": "remainingAvailability",      "DiscernibleDifference": 1000, "HigherIsBest": true  },
+  {    "KPIName": "averageEfficiency",          "DiscernibleDifference": 1,    "HigherIsBest": true  },
+  {    "KPIName": "averagecancelEfficiency",    "DiscernibleDifference": 1,    "HigherIsBest": true  },
+  {    "KPIName": "percentgreater100",          "DiscernibleDifference": 1,    "HigherIsBest": true, "Ranked": false },
+  {    "KPIName": "totalSpotsBooked",           "DiscernibleDifference": 1,    "HigherIsBest": true, "Ranked": false },
+  {    "KPIName": "noOfCampaigns",              "DiscernibleDifference": 1,    "HigherIsBest": true, "Ranked": false },
+  {    "KPIName": "availability",               "DiscernibleDifference": 1,    "HigherIsBest": true  },
+  {    "KPIName": "standardAverageCompletion",  "DiscernibleDifference": 1,    "HigherIsBest": true  },
+  {    "KPIName": "weightedAverageCompletion",  "DiscernibleDifference": 1,    "HigherIsBest": true  },
+  {    "KPIName": "totalValueDelivered",        "DiscernibleDifference": 1,    "HigherIsBest": true, "Ranked": true },
+  {    "KPIName": "averageSpotsDeliveredPerDay","DiscernibleDifference": 1,    "HigherIsBest": true, "Ranked": true },
+  {    "KPIName": "totalZeroRatedSpots",        "DiscernibleDifference": 1,    "HigherIsBest": false,"Ranked": true }
+]

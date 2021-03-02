@@ -11,7 +11,7 @@ namespace ImagineCommunications.GamePlan.Persistence.SqlServer.EntityConfigurati
             builder.ToTable("SmoothFailuresSmoothFailureMessages");
             
             builder.HasKey(x => x.Id);
-            builder.Property(x => x.Id).UseSqlServerIdentityColumn();
+            builder.Property(x => x.Id).UseMySqlIdentityColumn();
 
             builder.HasIndex(x => new {x.SmoothFailureId, x.SmoothFailureMessageId}).IsUnique();
         }

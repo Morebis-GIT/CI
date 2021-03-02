@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using xgcore.auditevents.Repository.File;
 using xggameplan.AuditEvents;
 
@@ -8,11 +9,12 @@ namespace xggameplan.Repository.File
     {
         public FileCSVAuditEventSettingsRepository(string folder) : base(folder, "csv_audit_event_settings")
         {
+
         }
 
         public void Insert(List<CSVAuditEventSettings> items)
         {
-            InsertItems<CSVAuditEventSettings>(_folder, _type, items, items.ConvertAll(i => i.EventTypeId.ToString()));
+            InsertItems<CSVAuditEventSettings>(_folder, _type, items, items.Select(i => i.EventTypeId.ToString()).ToList());
         }
 
         public List<CSVAuditEventSettings> GetAll()
@@ -32,16 +34,17 @@ namespace xggameplan.Repository.File
 
         public void DeleteByID(int id)
         {
-            DeleteItem(_folder, _type, id.ToString());
+            DeleteItem<CSVAuditEventSettings>(_folder, _type, id.ToString());
         }
 
         public void DeleteAll()
         {
-            DeleteAllItems(_folder, _type);
+            DeleteAllItems<CSVAuditEventSettings>(_folder, _type);
         }
 
         public void SaveChanges()
         {
+
         }
     }
 }

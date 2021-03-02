@@ -9,7 +9,7 @@ Background:
 	Given there is a Programmes repository
 	And predefined Breaks.SalesAreas.json data
 
-Scenario: Add new Programme 
+Scenario: Add new Programme
 	When I create a document
 	And I get all documents
 	Then there should be 1 documents returned
@@ -174,6 +174,7 @@ Scenario Outline: Search Programmes by filter
 	| 2019-01-10        | 2019-03-10      | QTQ91, GTV93 | null      | 2                   |
 	| 2019-03-10        | 2019-03-20      | STW92, QTQ91 | null      | 0                   |
 	| null              | null            | null         | null      | 3                   |
+
 
 Scenario Outline: Search Programmes by filter Name Or Reference
 	Given the following documents created:

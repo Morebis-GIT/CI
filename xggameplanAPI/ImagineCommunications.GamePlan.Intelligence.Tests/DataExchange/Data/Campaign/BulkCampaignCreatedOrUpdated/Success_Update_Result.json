@@ -57,9 +57,9 @@
           "SalesArea": null,
           "StopBooking": true,
           "SalesAreaGroup": {
-            "GroupName": "GTV93",
+            "GroupName": "TCN93",
             "SalesAreas": [
-              "GTV93"
+              "TCN93"
             ]
           },
           "Multiparts": [

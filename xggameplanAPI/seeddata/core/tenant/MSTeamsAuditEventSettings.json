@@ -1,0 +1,186 @@
+[
+  {
+    "EventTypeId": 3,
+    "MessageCreatorId": "Simple",
+    "PostMessageSettings": {
+      "Enabled": false,
+      "Url": "http://example.com"
+    }
+  },
+  {
+    "EventTypeId": 2,
+    "MessageCreatorId": "Simple",
+    "PostMessageSettings": {
+      "Enabled": false,
+      "Url": "http://example.com"
+    }
+  },
+  {
+    "EventTypeId": 23,
+    "MessageCreatorId": "Simple",
+    "PostMessageSettings": {
+      "Enabled": false,
+      "Url": "http://example.com"
+    }
+  },
+  {
+    "EventTypeId": 1,
+    "MessageCreatorId": "Simple",
+    "PostMessageSettings": {
+      "Enabled": false,
+      "Url": "http://example.com"
+    }
+  },
+  {
+    "EventTypeId": 4,
+    "MessageCreatorId": "Simple",
+    "PostMessageSettings": {
+      "Enabled": false,
+      "Url": "http://example.com"
+    }
+  },
+  {
+    "EventTypeId": 5,
+    "MessageCreatorId": "Simple",
+    "PostMessageSettings": {
+      "Enabled": false,
+      "Url": "http://example.com"
+    }
+  },
+  {
+    "EventTypeId": 6,
+    "MessageCreatorId": "Simple",
+    "PostMessageSettings": {
+      "Enabled": false,
+      "Url": "http://example.com"
+    }
+  },
+  {
+    "EventTypeId": 7,
+    "MessageCreatorId": "Simple",
+    "PostMessageSettings": {
+      "Enabled": false,
+      "Url": "http://example.com"
+    }
+  },
+  {
+    "EventTypeId": 11,
+    "MessageCreatorId": "Simple",
+    "PostMessageSettings": {
+      "Enabled": false,
+      "Url": "http://example.com"
+    }
+  },
+  {
+    "EventTypeId": 12,
+    "MessageCreatorId": "Simple",
+    "PostMessageSettings": {
+      "Enabled": false,
+      "Url": "http://example.com"
+    }
+  },
+  {
+    "EventTypeId": 15,
+    "MessageCreatorId": "Simple",
+    "PostMessageSettings": {
+      "Enabled": false,
+      "Url": "http://example.com"
+    }
+  },
+  {
+    "EventTypeId": 24,
+    "MessageCreatorId": "Simple",
+    "PostMessageSettings": {
+      "Enabled": false,
+      "Url": "http://example.com"
+    }
+  },
+  {
+    "EventTypeId": 25,
+    "MessageCreatorId": "Simple",
+    "PostMessageSettings": {
+      "Enabled": false,
+      "Url": "http://example.com"
+    }
+  },
+  {
+    "EventTypeId": 26,
+    "MessageCreatorId": "Simple",
+    "PostMessageSettings": {
+      "Enabled": false,
+      "Url": "http://example.com"
+    }
+  },
+  {
+    "EventTypeId": 27,
+    "MessageCreatorId": "Simple",
+    "PostMessageSettings": {
+      "Enabled": false,
+      "Url": "http://example.com"
+    }
+  },
+  {
+    "EventTypeId": 28,
+    "MessageCreatorId": "Simple",
+    "PostMessageSettings": {
+      "Enabled": false,
+      "Url": "http://example.com"
+    }
+  },
+  {
+    "EventTypeId": 29,
+    "MessageCreatorId": "Simple",
+    "PostMessageSettings": {
+      "Enabled": false,
+      "Url": "http://example.com"
+    }
+  },
+  {
+    "EventTypeId": 30,
+    "MessageCreatorId": "Simple",
+    "PostMessageSettings": {
+      "Enabled": false,
+      "Url": "http://example.com"
+    }
+  },
+  {
+    "EventTypeId": 31,
+    "MessageCreatorId": "Simple",
+    "PostMessageSettings": {
+      "Enabled": false,
+      "Url": "http://example.com"
+    }
+  },
+  {
+    "EventTypeId": 32,
+    "MessageCreatorId": "Simple",
+    "PostMessageSettings": {
+      "Enabled": false,
+      "Url": "http://example.com"
+    }
+  },
+  {
+    "EventTypeId": 33,
+    "MessageCreatorId": "Simple",
+    "PostMessageSettings": {
+      "Enabled": false,
+      "Url": "http://example.com"
+    }
+  },
+  {
+    "EventTypeId": 34,
+    "MessageCreatorId": "Simple",
+    "PostMessageSettings": {
+      "Enabled": false,
+      "Url": "http://example.com"
+    }
+  },
+  {
+    "EventTypeId": 35,
+    "MessageCreatorId": "Simple",
+    "PostMessageSettings": {
+      "Enabled": false,
+      "Url": "http://example.com"
+    }
+  }
+]

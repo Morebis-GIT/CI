@@ -1,6 +1,6 @@
 ﻿namespace ImagineCommunications.GamePlan.Process.Smooth.Interfaces.BreakFactors
 {
-    internal interface IStandardScore
+    public interface IStandardScore
     {
         double StandardScore { get; }
     }

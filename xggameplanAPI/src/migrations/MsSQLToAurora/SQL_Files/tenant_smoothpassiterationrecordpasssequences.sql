@@ -1,0 +1,37 @@
+-- MySQL dump 10.13  Distrib 5.6.49, for Win64 (x86_64)
+--
+-- Host: localhost    Database: xggptenant
+-- ------------------------------------------------------
+-- Server version	5.6.49-log
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8 */;
+/*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
+/*!40103 SET TIME_ZONE='+00:00' */;
+/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
+/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
+/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+
+--
+-- Dumping data for table `smoothpassiterationrecordpasssequences`
+--
+
+LOCK TABLES `smoothpassiterationrecordpasssequences` WRITE;
+/*!40000 ALTER TABLE `smoothpassiterationrecordpasssequences` DISABLE KEYS */;
+INSERT INTO `smoothpassiterationrecordpasssequences` VALUES (1,6,3),(2,9,6),(3,5,3),(4,1,3),(5,14,6),(6,13,6),(7,8,4),(8,12,5),(9,17,4),(10,10,4),(11,7,3),(12,11,5),(13,24,1),(14,3,3),(15,21,1),(16,22,1),(17,23,1),(18,16,7),(19,25,1),(20,29,1),(21,27,1),(22,28,1),(23,36,1),(24,30,1),(25,31,1),(26,32,1),(27,33,1),(28,19,1),(29,34,1),(30,35,2),(31,20,2),(32,26,2),(33,18,3),(34,15,3),(35,2,3),(36,4,3);
+/*!40000 ALTER TABLE `smoothpassiterationrecordpasssequences` ENABLE KEYS */;
+UNLOCK TABLES;
+/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
+
+/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
+/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
+/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
+
+-- Dump completed on 2020-09-28  9:40:20

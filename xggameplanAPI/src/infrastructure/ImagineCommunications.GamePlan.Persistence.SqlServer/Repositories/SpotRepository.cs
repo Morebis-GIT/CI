@@ -10,10 +10,7 @@ using ImagineCommunications.GamePlan.Domain.Spots;
 using ImagineCommunications.GamePlan.Persistence.SqlServer.Core.BulkInsert;
 using ImagineCommunications.GamePlan.Persistence.SqlServer.Core.Extensions;
 using ImagineCommunications.GamePlan.Persistence.SqlServer.Core.Interfaces;
-using ImagineCommunications.GamePlan.Persistence.SqlServer.Interfaces;
-using Microsoft.EntityFrameworkCore;
 using xggameplan.Common;
-using xggameplan.core.Extensions.AutoMapper;
 
 namespace ImagineCommunications.GamePlan.Persistence.SqlServer.Repositories
 {
@@ -23,19 +20,11 @@ namespace ImagineCommunications.GamePlan.Persistence.SqlServer.Repositories
         private const int _spotDeleteBatchSize = 10000;
 
         private readonly ISqlServerTenantDbContext _dbContext;
-        private readonly ISqlServerSalesAreaByIdCacheAccessor _salesAreaByIdCache;
-        private readonly ISqlServerSalesAreaByNameCacheAccessor _salesAreaByNameCache;
         private readonly IMapper _mapper;
 
-        public SpotRepository(
-            ISqlServerTenantDbContext dbContext,
-            ISqlServerSalesAreaByIdCacheAccessor salesAreaByIdCache,
-            ISqlServerSalesAreaByNameCacheAccessor salesAreaByNameCache,
-            IMapper mapper)
+        public SpotRepository(ISqlServerTenantDbContext dbContext, IMapper mapper)
         {
             _dbContext = dbContext;
-            _salesAreaByIdCache = salesAreaByIdCache;
-            _salesAreaByNameCache = salesAreaByNameCache;
             _mapper = mapper;
         }
 
@@ -50,29 +39,24 @@ namespace ImagineCommunications.GamePlan.Persistence.SqlServer.Repositories
             .Sum();
 
         public void Add(Spot item) => _dbContext.Add(
-            _mapper.Map<Entities.Tenant.Spot>(item,
-                opts => opts.UseEntityCache(_salesAreaByNameCache)),
-            post => post.MapTo(item,
-                opts => opts.UseEntityCache(_salesAreaByIdCache)),
+            _mapper.Map<Entities.Tenant.Spot>(item),
+            post => post.MapTo(item),
             _mapper);
 
         public void Add(IEnumerable<Spot> items)
         {
-            var entities = _mapper.Map<List<Entities.Tenant.Spot>>(items,
-                opts => opts.UseEntityCache(_salesAreaByNameCache));
+            var entities = _mapper.Map<List<Entities.Tenant.Spot>>(items);
 
             _dbContext.BulkInsertEngine.BulkInsertOrUpdate(
                 entities,
                 new BulkInsertOptions { SetOutputIdentity = true, PreserveInsertOrder = true },
-                post => post.TryToUpdate(items,
-                    opts => opts.UseEntityCache(_salesAreaByIdCache)),
+                post => post.TryToUpdate(items),
                 _mapper);
         }
 
         public void InsertOrReplace(IEnumerable<Spot> items)
         {
-            var entities = _mapper.Map<List<Entities.Tenant.Spot>>(items,
-                opts => opts.UseEntityCache(_salesAreaByNameCache));
+            var entities = _mapper.Map<List<Entities.Tenant.Spot>>(items);
             using (var transaction = _dbContext.Specific.Database.BeginTransaction())
             {
                 var ids = entities.Select(s => s.ExternalSpotRef);
@@ -126,52 +110,50 @@ namespace ImagineCommunications.GamePlan.Persistence.SqlServer.Repositories
             }
         }
 
-        public Spot Find(Guid uid) =>
-            _mapper.Map<Spot>(
-                _dbContext.Query<Entities.Tenant.Spot>()
-                    .FirstOrDefault(e => e.Uid == uid),
-                opts => opts.UseEntityCache(_salesAreaByIdCache));
+        public Spot Find(Guid uid) => _dbContext
+            .Query<Entities.Tenant.Spot>()
+            .ProjectTo<Spot>(_mapper.ConfigurationProvider)
+            .FirstOrDefault(e => e.Uid == uid);
 
-        public IEnumerable<Spot> FindByExternal(string externalRef) =>
-            _mapper.Map<List<Spot>>(
-                _dbContext.Query<Entities.Tenant.Spot>()
-                    .Where(e => e.ExternalCampaignNumber == externalRef),
-                opts => opts.UseEntityCache(_salesAreaByIdCache));
+        public IEnumerable<Spot> FindByExternal(string externalRef) => _dbContext
+            .Query<Entities.Tenant.Spot>()
+            .Where(e => e.ExternalCampaignNumber == externalRef)
+            .ProjectTo<Spot>(_mapper.ConfigurationProvider)
+            .ToArray();
 
-        public IEnumerable<Spot> FindByExternal(List<string> externalRefs) =>
-            _mapper.Map<List<Spot>>(
-                _dbContext.Query<Entities.Tenant.Spot>()
-                    .Where(e => externalRefs.Contains(e.ExternalSpotRef)).AsNoTracking(),
-                opts => opts.UseEntityCache(_salesAreaByIdCache));
+        public IEnumerable<Spot> FindByExternal(List<string> externalRefs) => _dbContext
+            .Query<Entities.Tenant.Spot>()
+            .Where(e => externalRefs.Contains(e.ExternalSpotRef))
+            .ProjectTo<Spot>(_mapper.ConfigurationProvider)
+            .ToArray();
 
-        public IEnumerable<Spot> FindByExternalBreakNumbers(IEnumerable<string> externalBreakNumbers) =>
-            _mapper.Map<List<Spot>>(
-                _dbContext.Query<Entities.Tenant.Spot>()
-                    .Where(e => externalBreakNumbers.Contains(e.ExternalBreakNo)).AsNoTracking(),
-                opts => opts.UseEntityCache(_salesAreaByIdCache));
+        public IEnumerable<Spot> FindByExternalBreakNumbers(IEnumerable<string> externalBreakNumbers) => _dbContext
+            .Query<Entities.Tenant.Spot>()
+            .Where(e => externalBreakNumbers.Contains(e.ExternalBreakNo))
+            .ProjectTo<Spot>(_mapper.ConfigurationProvider)
+            .ToArray();
 
-        public Spot FindByExternalSpotRef(string externalSpotRef) =>
-            _mapper.Map<Spot>(
-                _dbContext.Query<Entities.Tenant.Spot>()
-                    .FirstOrDefault(e => e.ExternalSpotRef == externalSpotRef),
-                opts => opts.UseEntityCache(_salesAreaByIdCache));
+        public Spot FindByExternalSpotRef(string externalSpotRef) => _dbContext
+            .Query<Entities.Tenant.Spot>()
+            .ProjectTo<Spot>(_mapper.ConfigurationProvider)
+            .FirstOrDefault(e => e.ExternalSpotRef == externalSpotRef);
 
-        public IEnumerable<Spot> GetAll() =>
-            _mapper.Map<List<Spot>>(
-                _dbContext.Query<Entities.Tenant.Spot>().AsNoTracking(),
-                opts => opts.UseEntityCache(_salesAreaByIdCache));
+        public IEnumerable<Spot> GetAll() => _dbContext
+            .Query<Entities.Tenant.Spot>()
+            .ProjectTo<Spot>(_mapper.ConfigurationProvider)
+            .ToArray();
 
-        public IEnumerable<Spot> GetAllMultipart() =>
-            _mapper.Map<List<Spot>>(
-                _dbContext.Query<Entities.Tenant.Spot>()
-                    .Where(e => MultipartSpotTypes.All.Contains(e.MultipartSpot)).AsNoTracking(),
-                opts => opts.UseEntityCache(_salesAreaByIdCache));
+        public IEnumerable<Spot> GetAllMultipart() => _dbContext
+            .Query<Entities.Tenant.Spot>()
+            .Where(e => MultipartSpotTypes.All.Contains(e.MultipartSpot))
+            .ProjectTo<Spot>(_mapper.ConfigurationProvider)
+            .ToArray();
 
-        public IEnumerable<Spot> GetAllByCampaign(string campaignExternalId) =>
-            _mapper.Map<List<Spot>>(
-                _dbContext.Query<Entities.Tenant.Spot>()
-                    .Where(e => e.ExternalCampaignNumber == campaignExternalId).AsNoTracking(),
-                opts => opts.UseEntityCache(_salesAreaByIdCache));
+        public IEnumerable<Spot> GetAllByCampaign(string campaignExternalId) => _dbContext
+            .Query<Entities.Tenant.Spot>()
+            .Where(e => e.ExternalCampaignNumber == campaignExternalId)
+            .ProjectTo<Spot>(_mapper.ConfigurationProvider)
+            .ToArray();
 
         public void Remove(Guid uid)
         {
@@ -186,21 +168,23 @@ namespace ImagineCommunications.GamePlan.Persistence.SqlServer.Repositories
 
         public void SaveChanges() => _dbContext.SaveChanges();
 
-        public IEnumerable<Spot> Search(DateTime datefrom, DateTime dateto, string salesarea) =>
-            _mapper.Map<List<Spot>>(
-                _dbContext.Query<Entities.Tenant.Spot>().Where(e =>
-                    e.SalesArea.Name == salesarea &&
-                    e.StartDateTime >= datefrom &&
-                    e.StartDateTime <= dateto).AsNoTracking(),
-                opts => opts.UseEntityCache(_salesAreaByIdCache));
+        public IEnumerable<Spot> Search(DateTime datefrom, DateTime dateto, string salesarea) => _dbContext
+            .Query<Entities.Tenant.Spot>()
+            .Where(e =>
+                e.SalesArea == salesarea &&
+                e.StartDateTime >= datefrom &&
+                e.StartDateTime <= dateto)
+            .ProjectTo<Spot>(_mapper.ConfigurationProvider)
+            .ToArray();
 
-        public IEnumerable<Spot> Search(DateTime datefrom, DateTime dateto, List<string> salesareas) =>
-            _mapper.Map<List<Spot>>(
-                _dbContext.Query<Entities.Tenant.Spot>().Where(e =>
-                    salesareas.Contains(e.SalesArea.Name) &&
-                    e.StartDateTime >= datefrom &&
-                    e.StartDateTime <= dateto).AsNoTracking(),
-                opts => opts.UseEntityCache(_salesAreaByIdCache));
+        public IEnumerable<Spot> Search(DateTime datefrom, DateTime dateto, List<string> salesareas) => _dbContext
+            .Query<Entities.Tenant.Spot>()
+            .Where(e =>
+                salesareas.Contains(e.SalesArea) &&
+                e.StartDateTime >= datefrom &&
+                e.StartDateTime <= dateto)
+            .ProjectTo<Spot>(_mapper.ConfigurationProvider)
+            .ToArray();
 
         public void Truncate() => _dbContext.Truncate<Entities.Tenant.Spot>();
 
@@ -215,10 +199,8 @@ namespace ImagineCommunications.GamePlan.Persistence.SqlServer.Repositories
 
             if (entity != null)
             {
-                _ = _mapper.Map(item, entity, opts => opts.UseEntityCache(_salesAreaByNameCache));
-                _ = _dbContext.Update(entity,
-                        post => post.MapTo(item, opts => opts.UseEntityCache(_salesAreaByIdCache)),
-                        _mapper);
+                _mapper.Map(item, entity);
+                _dbContext.Update(entity, post => post.MapTo(item), _mapper);
             }
         }
     }

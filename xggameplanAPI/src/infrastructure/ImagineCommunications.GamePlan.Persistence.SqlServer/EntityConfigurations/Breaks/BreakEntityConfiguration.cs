@@ -12,9 +12,6 @@ namespace ImagineCommunications.GamePlan.Persistence.SqlServer.EntityConfigurati
             _ = builder.ToTable("Breaks")
                        .HasKey(e => e.Id);
 
-            _ = builder.Property(e => e.Id)
-                       .HasDefaultValueSql("newid()");
-
             _ = builder.Property(e => e.BreakType)
                        .HasMaxLength(32);
 

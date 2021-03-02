@@ -53,91 +53,97 @@ namespace ImagineCommunications.GamePlan.Process.Smooth.Services
                 return;
             }
 
-            RaiseInfo(
-                "Starting to save SpotPlacements " +
-                $"for {Log(spotsToSave.Count)} spots " +
-                $"for {batchStartEndDateForLogging}");
-
-            int pageNumber = 0;
-            int newCount = 0;
-            int updatedCount = 0;
-
-            var batch = spotsToSave.Take(DefaultBatchSize);
-
-            using var scope = RepositoryFactory.BeginRepositoryScope();
-
-            do
+            try
             {
-                var spotPlacementRepository = scope.CreateRepository<ISpotPlacementRepository>();
+                int pageNumber = 0;
+                int newCount = 0;
+                int updatedCount = 0;
 
-                foreach (Spot spot in batch)
+                IReadOnlyCollection<Spot> batch = spotsToSave
+                    .Take(DefaultBatchSize)
+                    .ToList();
+
+                while (batch.Count > 0)
                 {
-                    if (spotPlacementsByExternalRef.TryGetValue(
-                            spot.ExternalSpotRef,
-                            out SpotPlacement spotPlacement)
-                        )
+                    using (var scope = RepositoryFactory.BeginRepositoryScope())
                     {
-                        updatedCount++;
+                        var spotPlacementRepository = scope.CreateRepository<ISpotPlacementRepository>();
 
-                        // Before updating ExternalBreakRef record
-                        // previous value so we can reset schedule data
-                        spotPlacement.ResetExternalBreakRef = spotPlacement.ExternalBreakRef;
-                        spotPlacement.ModifiedTime = processorDateTime;
-                        spotPlacement.ExternalBreakRef = ExternalBreakNumberOrDefault(spot);
-
-                        spotPlacementRepository.Update(spotPlacement);
-                    }
-                    else
-                    {
-                        newCount++;
-
-                        SpotInfo spotInfo = spotInfos[spot.Uid];
-
-                        // A subsequent schedule data reset needs to
-                        // reset SpotPlacement.ExternalBreakRef to the
-                        // break that the spot was in before this run started
-                        spotPlacement = new SpotPlacement()
+                        foreach (Spot spot in batch)
                         {
-                            ModifiedTime = processorDateTime,
-                            ExternalSpotRef = spot.ExternalSpotRef,
-                            ResetExternalBreakRef = spotInfo.ExternalBreakRefAtRunStart,
-                            ExternalBreakRef = ExternalBreakNumberOrDefault(spot),
-                        };
+                            SpotPlacement spotPlacement = PreviousSpotPlacementOrDefault(
+                                spotPlacementsByExternalRef,
+                                spot.ExternalSpotRef
+                                );
 
-                        spotPlacementRepository.Add(spotPlacement);
-                    }
+                            if (spotPlacement is null)
+                            {
+                                newCount++;
 
-                    try
-                    {
+                                SpotInfo spotInfo = spotInfos[spot.Uid];
+
+                                // A subsequent schedule data reset needs to
+                                // reset SpotPlacement.ExternalBreakRef to the
+                                // break that the spot was in before this run started
+                                spotPlacement = new SpotPlacement()
+                                {
+                                    ModifiedTime = processorDateTime,
+                                    ExternalSpotRef = spot.ExternalSpotRef,
+                                    ResetExternalBreakRef = spotInfo.ExternalBreakRefAtRunStart,
+                                    ExternalBreakRef = ExternalBreakNumberOrDefault(spot),
+                                };
+
+                                spotPlacementRepository.Add(spotPlacement);
+                            }
+                            else
+                            {
+                                updatedCount++;
+
+                                // Before updating ExternalBreakRef record
+                                // previous value so we can reset schedule data
+                                spotPlacement.ResetExternalBreakRef = spotPlacement.ExternalBreakRef;
+                                spotPlacement.ModifiedTime = processorDateTime;
+                                spotPlacement.ExternalBreakRef = ExternalBreakNumberOrDefault(spot);
+
+                                spotPlacementRepository.Update(spotPlacement);
+                            }
+                        }
+
                         spotPlacementRepository.SaveChanges();
                     }
-                    catch (Exception exception)
-                    {
-                        throw new Exception(
-                            "Error saving Smooth spot placements for " +
-                            $"spot {spotPlacement.ExternalSpotRef} for " +
-                            $"batch {batchStartEndDateForLogging}",
-                            exception
-                            );
-                    }
+
+                    pageNumber++;
+                    batch = spotsToSave
+                        .Skip(DefaultBatchSize * pageNumber)
+                        .Take(DefaultBatchSize)
+                        .ToList();
                 }
 
-                batch = spotsToSave
-                    .Skip(DefaultBatchSize * ++pageNumber)
-                    .Take(DefaultBatchSize);
-            } while (batch.Any());
+                RaiseInfo(
+                    $"Saved SpotPlacements for {Log(spotsToSave.Count)} spots (New={Log(newCount)}, Updated={Log(updatedCount)}) for {batchStartEndDateForLogging}"
+                    );
 
-            RaiseInfo(
-                $"Finished saving SpotPlacements for {Log(spotsToSave.Count)} spots " +
-                $"(New={Log(newCount)}, Updated={Log(updatedCount)}) " +
-                $"for {batchStartEndDateForLogging}"
-            );
+                // Local functions
+                SpotPlacement PreviousSpotPlacementOrDefault(
+                    IReadOnlyDictionary<string, SpotPlacement> previousSpotPlacements,
+                    string externalSpotRef
+                    ) =>
+                    previousSpotPlacements.ContainsKey(externalSpotRef)
+                        ? previousSpotPlacements[externalSpotRef]
+                        : null;
 
-            // Local functions
-            static string ExternalBreakNumberOrDefault(Spot spot) =>
-                spot.IsBooked()
-                    ? spot.ExternalBreakNo
-                    : null;
+                string ExternalBreakNumberOrDefault(Spot spot) =>
+                    spot.IsBooked()
+                        ? spot.ExternalBreakNo
+                        : null;
+            }
+            catch (Exception exception)
+            {
+                throw new Exception(
+                    $"Error saving Smooth spot placements for {batchStartEndDateForLogging}",
+                    exception
+                    );
+            }
         }
 
         public void SaveSmoothFailures(
@@ -151,55 +157,63 @@ namespace ImagineCommunications.GamePlan.Process.Smooth.Services
         {
             // Add Smooth failures where no attempt was made to place the spot
             // due to no break or programme data
-            smoothFailures.AddRange(
-                smoothFailuresFactory.CreateSmoothFailuresForNoPlaceAttempt(
-                    runId,
-                    salesAreaName,
-                    spots,
-                    spotInfos,
-                    ImmutableLookupCollection.CampaignsByExternalRef,
-                    ImmutableLookupCollection.ClashesByExternalRef,
-                    ImmutableLookupCollection.ProductsByExternalRef));
+            try
+            {
+                smoothFailures.AddRange(
+                    smoothFailuresFactory.CreateSmoothFailuresForNoPlaceAttempt(
+                        runId,
+                        salesAreaName,
+                        spots,
+                        spotInfos,
+                        ImmutableLookupCollection.CampaignsByExternalRef,
+                        ImmutableLookupCollection.ClashesByExternalRef,
+                        ImmutableLookupCollection.ProductsByExternalRef));
+            }
+            catch (Exception exception)
+            {
+                throw new Exception(
+                    $"Error adding Smooth failures for no spot placement attempt for {batchStartEndDateForLogging}", exception);
+            }
 
             if (smoothFailures.Count == 0)
             {
-                RaiseInfo(
-                    "No smooth failures to save " +
-                    $"for sales area {salesAreaName}");
+                RaiseInfo($"No smooth failures to save for sales area {salesAreaName}");
 
                 return;
             }
 
-            RaiseInfo(
-                $"Saving {Log(smoothFailures.Count)} Smooth failures " +
-                $"for sales area {salesAreaName}");
+            RaiseInfo($"Saving {Log(smoothFailures.Count)} Smooth failures for sales area {salesAreaName}");
 
-            var batch = smoothFailures.Take(DefaultBatchSize);
-
-            int pageNumber = 0;
-
-            using var scope = RepositoryFactory.BeginRepositoryScope();
-            do
+            try
             {
-                var repository = scope.CreateRepository<ISmoothFailureRepository>();
-                repository.AddRange(batch);
+                int pageNumber = 0;
 
-                try
-                {
-                    repository.SaveChanges();
-                }
-                catch (Exception exception)
-                {
-                    throw new Exception(
-                        $"Error saving Smooth failures for {batchStartEndDateForLogging}",
-                        exception);
-                }
+                IReadOnlyCollection<SmoothFailure> batch = smoothFailures
+                    .Take(DefaultBatchSize)
+                    .ToList();
 
-                pageNumber++;
-                batch = smoothFailures
-                    .Skip(DefaultBatchSize * pageNumber)
-                    .Take(DefaultBatchSize);
-            } while (batch.Any());
+                while (batch.Count > 0)
+                {
+                    using (var scope = RepositoryFactory.BeginRepositoryScope())
+                    {
+                        var repository = scope.CreateRepository<ISmoothFailureRepository>();
+
+                        repository.AddRange(batch);
+                        repository.SaveChanges();
+                    }
+
+                    pageNumber++;
+                    batch = smoothFailures
+                        .Skip(DefaultBatchSize * pageNumber)
+                        .Take(DefaultBatchSize)
+                        .ToList();
+                }
+            }
+            catch (Exception exception)
+            {
+                throw new Exception(
+                    $"Error saving Smooth failures for {batchStartEndDateForLogging}", exception);
+            }
         }
 
         public void SaveSmoothRecommendations(
@@ -219,66 +233,56 @@ namespace ImagineCommunications.GamePlan.Process.Smooth.Services
                 return;
             }
 
-            RaiseInfo(
-                $"Saving {Log(recommendations.Count)} " +
-                $"Smooth recommendations {auditMessageWithSalesAreaNameAndBatchStartEndDate})"
-                );
+            RaiseInfo($"Saving {Log(recommendations.Count)} Smooth recommendations {auditMessageWithSalesAreaNameAndBatchStartEndDate})");
 
-            var recommendationsWithScenarioId = new List<Recommendation>(recommendations.Count);
-
-            foreach (var recommendation in recommendations)
+            try
             {
-                var updatedRecommendation = (Recommendation)recommendation.Clone();
-                updatedRecommendation.ScenarioId = runScenarioId;
-                recommendationsWithScenarioId.Add(updatedRecommendation);
-            }
+                var recommendationsWithScenarioId = new List<Recommendation>(recommendations.Count);
 
-            int pageNumber = 0;
-
-            var batch = recommendationsWithScenarioId
-                .Take(DefaultBatchSize);
-
-            using var scope = RepositoryFactory.BeginRepositoryScope();
-            while (batch.Any())
-            {
-                var repository = scope.CreateRepository<IRecommendationRepository>();
-                repository.Insert(batch);
-
-                try
+                foreach (var recommendation in recommendations)
                 {
-                    repository.SaveChanges();
+                    var updatedRecommendation = (Recommendation)recommendation.Clone();
+                    updatedRecommendation.ScenarioId = runScenarioId;
+                    recommendationsWithScenarioId.Add(updatedRecommendation);
                 }
-                catch (Exception exception)
-                {
-                    RaiseInfo(
-                        "Guru meditation while saving Smooth recommendations " +
-                        auditMessageWithSalesAreaNameAndBatchStartEndDate + Environment.NewLine +
-                        $"{exception.Message} - {exception.StackTrace}"
-                        );
 
-                    if (exception.InnerException != null)
+                int pageNumber = 0;
+
+                IReadOnlyCollection<Recommendation> batch = recommendationsWithScenarioId
+                    .Take(DefaultBatchSize)
+                    .ToList();
+
+                while (batch.Count > 0)
+                {
+                    using (var scope = RepositoryFactory.BeginRepositoryScope())
                     {
-                        RaiseInfo(
-                            "Guru meditation while saving Smooth recommendations " +
-                            $"{exception.InnerException.Message} - {exception.InnerException.StackTrace}"
-                            );
+                        var repository = scope.CreateRepository<IRecommendationRepository>();
+
+                        repository.Insert(batch);
+                        repository.SaveChanges();
                     }
 
-                    throw new Exception(
-                        "Guru meditation while saving Smooth recommendations " +
-                        auditMessageWithSalesAreaNameAndBatchStartEndDate,
-                        exception);
+                    pageNumber++;
+                    batch = recommendationsWithScenarioId
+                        .Skip(DefaultBatchSize * pageNumber)
+                        .Take(DefaultBatchSize)
+                        .ToList();
+                }
+            }
+            catch (Exception exception)
+            {
+                RaiseInfo($"Guru meditation while saving recommendations: {exception.Message} - {exception.StackTrace}");
+
+                if (exception.InnerException != null)
+                {
+                    RaiseInfo($"Guru meditation while saving recommendations: {exception.InnerException.Message} - {exception.InnerException.StackTrace}");
                 }
 
-                pageNumber++;
-                batch = recommendationsWithScenarioId
-                    .Skip(DefaultBatchSize * pageNumber)
-                    .Take(DefaultBatchSize);
+                throw new Exception(
+                    $"Error while saving Smooth recommendations {auditMessageWithSalesAreaNameAndBatchStartEndDate}", exception);
             }
 
-            RaiseInfo(
-                $"Saved {Log(recommendations.Count)} Smooth recommendations " +
-                auditMessageWithSalesAreaNameAndBatchStartEndDate);
+            RaiseInfo($"Saved {Log(recommendations.Count)} Smooth recommendations {auditMessageWithSalesAreaNameAndBatchStartEndDate})");
         }
 
         public void SaveSmoothedSpots(IReadOnlyCollection<Spot> spotsToBatchSave)
@@ -344,6 +348,7 @@ namespace ImagineCommunications.GamePlan.Process.Smooth.Services
                     }
 
                     Spot spot = spotRepository.Find(spotIdNotUsed);
+
                     if (spot is null)
                     {
                         continue;

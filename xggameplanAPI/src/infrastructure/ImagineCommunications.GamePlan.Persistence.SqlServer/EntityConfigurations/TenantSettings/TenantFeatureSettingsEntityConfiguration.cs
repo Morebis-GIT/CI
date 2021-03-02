@@ -11,7 +11,7 @@ namespace ImagineCommunications.GamePlan.Persistence.SqlServer.EntityConfigurati
             builder.ToTable("TenantFeatureSettings");
 
             builder.HasKey(res => res.Id);
-            builder.Property(res => res.Id).UseSqlServerIdentityColumn();
+            builder.Property(res => res.Id).UseMySqlIdentityColumn();
 
             builder.Property(res => res.TenantSettingsId);
             builder.Property(res => res.IdValue).HasMaxLength(256);

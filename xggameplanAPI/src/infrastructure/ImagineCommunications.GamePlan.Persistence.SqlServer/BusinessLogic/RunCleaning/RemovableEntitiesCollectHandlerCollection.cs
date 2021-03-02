@@ -75,27 +75,12 @@ namespace ImagineCommunications.GamePlan.Persistence.SqlServer.BusinessLogic.Run
 
         public async Task<IReadOnlyCollection<object>> CollectScenarioPasses(ISqlServerTenantDbContext dbContext)
         {
-            Pass[] entities = await (
+            return await (
                     from scenarioPassReference in dbContext.Query<ScenarioPassReference>()
                         .Where(x => _scenarioIds.Contains(x.ScenarioId))
                     join pass in dbContext.Query<Pass>() on scenarioPassReference.PassId equals pass.Id
                     select new Pass { Id = pass.Id }).AsNoTracking().ToArrayAsync(_cancellationToken)
                 .ConfigureAwait(false);
-
-            List<Pass> passesToDelete = new List<Pass>();
-
-            foreach (Pass pass in entities)
-            {
-                var toDelete = dbContext.Query<Pass>()
-                    .Include(x => x.RatingPoints)
-                        .ThenInclude(x => x.SalesAreas)
-                    .AsNoTracking()
-                    .FirstOrDefault(x => x.Id == pass.Id);
-
-                passesToDelete.Add(toDelete);
-            }
-
-            return passesToDelete;
         }
 
         public Task<IReadOnlyCollection<object>> CollectScenarioCampaignResult(ISqlServerTenantDbContext dbContext)

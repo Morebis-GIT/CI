@@ -36,7 +36,7 @@
       "TimeRestrictions": [
         {
           "SalesAreas": [
-            "GTV93"
+            "GTV91"
           ],
           "DowPattern": [
             "Sun"
@@ -58,12 +58,12 @@
       ],
       "SalesAreaCampaignTarget": [
         {
-          "SalesArea": "GTV93",
+          "SalesArea": null,
           "StopBooking": true,
           "SalesAreaGroup": {
             "GroupName": "groupName1",
             "SalesAreas": [
-              "GTV93"
+              "GTV91"
             ]
           },
           "Multiparts": [

@@ -12,7 +12,7 @@ namespace ImagineCommunications.GamePlan.Persistence.SqlServer.EntityConfigurati
             builder.ToTable("EmailAuditEventSettings");
 
             builder.HasKey(res => res.Id);
-            builder.Property(res => res.Id).UseSqlServerIdentityColumn();
+            builder.Property(res => res.Id).UseMySqlIdentityColumn();
 
             builder.Property(res => res.EventTypeId);
             builder.Property(res => res.EmailCreatorId).HasMaxLength(64);

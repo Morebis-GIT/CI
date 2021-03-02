@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Collections.Immutable;
 using System.Diagnostics.Contracts;
 using System.Linq;
 using System.Text;
@@ -9,14 +8,13 @@ using ImagineCommunications.GamePlan.Domain.BusinessRules.Clashes;
 using ImagineCommunications.GamePlan.Domain.BusinessRules.Clashes.Objects;
 using ImagineCommunications.GamePlan.Domain.Shared.Products.Objects;
 using ImagineCommunications.GamePlan.Domain.Shared.Programmes.Objects;
+using ImagineCommunications.GamePlan.Domain.Shared.SalesAreas;
 using ImagineCommunications.GamePlan.Domain.SmoothConfigurations;
 using ImagineCommunications.GamePlan.Domain.SmoothConfigurations.Objects;
 using ImagineCommunications.GamePlan.Domain.Spots;
 using ImagineCommunications.GamePlan.Process.Smooth.Dtos;
 using ImagineCommunications.GamePlan.Process.Smooth.Interfaces;
 using ImagineCommunications.GamePlan.Process.Smooth.Models;
-using ImagineCommunications.GamePlan.Process.Smooth.Types;
-using NodaTime;
 using xggameplan.common;
 using xggameplan.Extensions;
 
@@ -31,47 +29,28 @@ namespace ImagineCommunications.GamePlan.Process.Smooth.Services
     {
         private readonly IClashExposureCountService _clashExposureCountService;
         private readonly SponsorshipRestrictionService _sponsorshipRestrictionService;
-        private readonly IReadOnlyCollection<Programme> _allProgrammesForPeriodAndSalesArea;
-        private readonly IImmutableDictionary<string, Clash> _clashesByExternalRef;
-        private readonly IImmutableDictionary<string, Product> _productsByExternalRef;
         private readonly ISmoothConfiguration _smoothConfiguration;
         private readonly ISmoothDiagnostics _smoothDiagnostics;
         private readonly SmoothResources _smoothResources;
-        private readonly SmoothProgramme _smoothProgramme;
-
-        private readonly (DateTime StartDateTime, Duration Duration) _programmeTxDetails;
-
-        private static readonly TimeSpan _defaultSpotDuration = TimeSpan.FromSeconds(30);
 
         private Action<string, Exception> RaiseException { get; }
+
+        private static TimeSpan DefaultSpotDuration => TimeSpan.FromSeconds(30);
 
         public SmoothPassDefaultExecuter(
             ISmoothDiagnostics smoothDiagnostics,
             SmoothResources smoothResources,
-            SmoothProgramme smoothProgramme,
-            SponsorshipRestrictionService sponsorshipRestrictionService,
-            IReadOnlyCollection<Programme> allProgrammesForPeriodAndSalesArea,
             ISmoothConfiguration smoothConfiguration,
             IClashExposureCountService clashExposureCountService,
-            IImmutableDictionary<string, Clash> clashesByExternalRef,
-            IImmutableDictionary<string, Product> productsByExternalRef,
+            SponsorshipRestrictionService sponsorshipRestrictionService,
             Action<string, Exception> raiseException
             )
         {
             _clashExposureCountService = clashExposureCountService;
             _sponsorshipRestrictionService = sponsorshipRestrictionService;
-            _allProgrammesForPeriodAndSalesArea = allProgrammesForPeriodAndSalesArea;
-            _clashesByExternalRef = clashesByExternalRef;
-            _productsByExternalRef = productsByExternalRef;
             _smoothConfiguration = smoothConfiguration;
             _smoothDiagnostics = smoothDiagnostics;
             _smoothResources = smoothResources;
-            _smoothProgramme = smoothProgramme;
-
-            _programmeTxDetails = (
-                _smoothProgramme.Programme.StartDateTime,
-                _smoothProgramme.Programme.Duration
-                );
 
             RaiseException = raiseException;
         }
@@ -86,10 +65,7 @@ namespace ImagineCommunications.GamePlan.Process.Smooth.Services
             IReadOnlyCollection<TimeSpan> spotDurations,
             Spot defaultSpot)
         {
-            bool nothingToProcess = spotDurations.Count == 0
-                || spotsToProcess.Count - 1 < spotDurations.Count;
-
-            if (nothingToProcess)
+            if (spotDurations.Count == 0 || spotsToProcess.Count - 1 < spotDurations.Count)
             {
                 return new List<Spot>();
             }
@@ -101,6 +77,7 @@ namespace ImagineCommunications.GamePlan.Process.Smooth.Services
             {
                 var spotLengthInSeconds = (long)spotToProcess
                     .SpotLength
+                    .ToTimeSpan()
                     .TotalSeconds;
 
                 var (isLengthWeWant, spotDurationIndex) = CheckIfSpotLengthIsOneWeWant(
@@ -115,9 +92,9 @@ namespace ImagineCommunications.GamePlan.Process.Smooth.Services
                 spotsToPlace.Add(spotToProcess);
                 spotDurationsToFind.RemoveAt(spotDurationIndex);
 
-                bool allSpotDurationsFound = spotDurationsToFind.Count == 0;
-                if (allSpotDurationsFound)
+                if (spotDurationsToFind.Count == 0)
                 {
+                    // All spot durations found
                     return spotsToPlace;
                 }
             }
@@ -146,7 +123,9 @@ namespace ImagineCommunications.GamePlan.Process.Smooth.Services
             IReadOnlyCollection<SmoothPassDefaultIteration> smoothPassIterations,
             Spot spotDefault,
             TimeSpan maxSpotLength,
-            IReadOnlyDictionary<Guid, SpotInfo> spotInfos)
+            IReadOnlyDictionary<Guid, SpotInfo> spotInfos,
+            IReadOnlyDictionary<string, Clash> clashesByExternalRef
+            )
         {
             var spotDefaultSpotInfo = spotInfos[spotDefault.Uid];
 
@@ -176,8 +155,7 @@ namespace ImagineCommunications.GamePlan.Process.Smooth.Services
                 LimitOnExposureCount(i) ||
                 i.ProductClashRules == ProductClashRules.NoClashes;
 
-            if (smoothPassIterations.Any(NoProductClashesOrLimitOnExposureCount) &&
-                !String.IsNullOrEmpty(spotDefaultSpotInfo.ProductClashCode))
+            if (smoothPassIterations.Any(NoProductClashesOrLimitOnExposureCount) && !String.IsNullOrEmpty(spotDefaultSpotInfo.ProductClashCode))
             {
                 // Use most restrictive rules
                 SmoothPassDefaultIteration iteration = smoothPassIterations
@@ -196,7 +174,7 @@ namespace ImagineCommunications.GamePlan.Process.Smooth.Services
                         break;
 
                     case ProductClashRules.LimitOnExposureCount:
-                        if (_clashesByExternalRef.TryGetValue(spotDefaultSpotInfo.ProductClashCode, out Clash clash))
+                        if (clashesByExternalRef.TryGetValue(spotDefaultSpotInfo.ProductClashCode, out Clash clash))
                         {
                             int exposureCount = _clashExposureCountService.Calculate(
                                 clash.Differences,
@@ -225,18 +203,15 @@ namespace ImagineCommunications.GamePlan.Process.Smooth.Services
             }
 
             // Include no break request or same break
-            if (smoothPassIterations.Any(spr => spr.BreakPositionRules == SpotPositionRules.Exact) &&
-                !String.IsNullOrEmpty(spotDefault.BreakRequest))
+            if (smoothPassIterations.Any(spr => spr.BreakPositionRules == SpotPositionRules.Exact) && !String.IsNullOrEmpty(spotDefault.BreakRequest))
             {
                 spotFilter.BreakRequests = new List<string>() { null, spotDefault.BreakRequest };
             }
 
             // Exclude for same position in break request
-            if (smoothPassIterations.Any(spr => spr.RequestedPositionInBreakRules == SpotPositionRules.Exact) &&
-                !String.IsNullOrEmpty(spotDefault.RequestedPositioninBreak))
+            if (smoothPassIterations.Any(spr => spr.RequestedPositionInBreakRules == SpotPositionRules.Exact) && !String.IsNullOrEmpty(spotDefault.RequestedPositioninBreak))
             {
-                spotFilter.PositionInBreakRequestsToExclude = PositionInBreakRequests
-                    .GetPositionInBreakRequestsForSamePosition(spotDefault.RequestedPositioninBreak);
+                spotFilter.PositionInBreakRequestsToExclude = PositionInBreakRequests.GetPositionInBreakRequestsForSamePosition(spotDefault.RequestedPositioninBreak);
             }
 
             return spotFilter;
@@ -250,7 +225,9 @@ namespace ImagineCommunications.GamePlan.Process.Smooth.Services
         private List<Spot> GetSpotsToPlace(
             IReadOnlyCollection<SmoothPassDefaultIteration> smoothPassIterations,
             IReadOnlyCollection<Spot> spotsToProcess,
-            IReadOnlyDictionary<Guid, SpotInfo> spotInfos)
+            IReadOnlyDictionary<Guid, SpotInfo> spotInfos,
+            IReadOnlyDictionary<string, Clash> clashesByExternalRef
+            )
         {
             var spotsToPlace = new List<Spot>();
             var spotDefault = spotsToProcess.First();
@@ -273,6 +250,7 @@ namespace ImagineCommunications.GamePlan.Process.Smooth.Services
                         smoothPassIterations,
                         spotsToProcess,
                         spotInfos,
+                        clashesByExternalRef,
                         spotDefault)
                 );
             }
@@ -290,6 +268,7 @@ namespace ImagineCommunications.GamePlan.Process.Smooth.Services
             IReadOnlyCollection<SmoothPassDefaultIteration> smoothPassIterations,
             IReadOnlyCollection<Spot> spotsToProcess,
             IReadOnlyDictionary<Guid, SpotInfo> spotInfos,
+            IReadOnlyDictionary<string, Clash> clashesByExternalRef,
             Spot spotDefault)
         {
             // For the default spot then set durations of other spots to find to
@@ -303,9 +282,9 @@ namespace ImagineCommunications.GamePlan.Process.Smooth.Services
 
             // Need to place default spot + other spots set max spot length to
             // look for.
-            TimeSpan maxSpotLength = spotDefault.SpotLength.TotalSeconds > _defaultSpotDuration.TotalSeconds
-                ? TimeSpan.FromSeconds(2 * _defaultSpotDuration.TotalSeconds)
-                : _defaultSpotDuration;
+            TimeSpan maxSpotLength = spotDefault.SpotLength.ToTimeSpan().TotalSeconds > DefaultSpotDuration.TotalSeconds
+                ? TimeSpan.FromSeconds(2 * DefaultSpotDuration.TotalSeconds)
+                : DefaultSpotDuration;
 
             maxSpotLength -= spotDefault.SpotLength.ToTimeSpan();
 
@@ -314,7 +293,8 @@ namespace ImagineCommunications.GamePlan.Process.Smooth.Services
                 smoothPassIterations,
                 spotDefault,
                 maxSpotLength,
-                spotInfos);
+                spotInfos,
+                clashesByExternalRef);
 
             // Set list of functions to return the spots that we should pass
             // through the spot filter in priority order
@@ -330,8 +310,6 @@ namespace ImagineCommunications.GamePlan.Process.Smooth.Services
                 );
 
             var spotsToPlace = new List<Spot>();
-            var numberOfSpotsToPlaceCountingFromZero = spotsToProcess.Count - 1;
-
             foreach (var getSpotsToFilterFunction in getSpotsToFilterFunctions)
             {
                 // Get spots to consider
@@ -350,7 +328,7 @@ namespace ImagineCommunications.GamePlan.Process.Smooth.Services
                 // For each group of spot lengths then try and find spots of the
                 // required length
                 foreach (TimeSpan[] spotLengths in spotLengthsToFind
-                    .Where(sl => sl.Length >= numberOfSpotsToPlaceCountingFromZero))
+                    .Where(sl => sl.Length >= spotsToProcess.Count - 1))
                 {
                     var spotsOfCorrectLength = GetSpotsToPlaceForSpotDurations(
                         spotsToProcessFiltered,
@@ -385,10 +363,14 @@ namespace ImagineCommunications.GamePlan.Process.Smooth.Services
         /// </summary>
         public SmoothPassResult Execute(
             SmoothPassDefault smoothPass,
-            IReadOnlyCollection<Break> breaksBeingSmoothed,
-            ICollection<Guid> spotIdsUsed,
+            SmoothProgramme smoothProg,
             IReadOnlyCollection<Spot> progSpots,
-            IReadOnlyDictionary<Guid, SpotInfo> spotInfos)
+            IReadOnlyDictionary<Guid, SpotInfo> spotInfos,
+            IReadOnlyDictionary<string, Clash> clashesByExternalRef,
+            IReadOnlyDictionary<string, Product> productsByExternalRef,
+            IReadOnlyCollection<Break> breaksBeingSmoothed,
+            IReadOnlyCollection<Programme> scheduleProgrammes,
+            ICollection<Guid> spotIdsUsed)
         {
             var smoothPassResult = new SmoothPassResult(smoothPass.Sequence);
 
@@ -423,18 +405,18 @@ namespace ImagineCommunications.GamePlan.Process.Smooth.Services
                     // Get spots to process, need to do this on every loop
                     // because spots may have been unplaced and we need to
                     // process them in this pass in the correct preempt level order.
-                    var sortedSpotsToProcess = GetSortedSpotsToPlace(
-                        progSpots,
-                        spotInfos,
-                        spotFilter,
-                        spotIdsProcessed);
+                    IEnumerable<Spot> spots = GetSpots(spotFilter, progSpots, spotInfos)
+                        .Where(s => !spotIdsProcessed.Contains(s.Uid));
 
-                    if (!sortedSpotsToProcess.Any())
+                    var sortedSpots = _smoothConfiguration
+                        .SortSpotsToPlace(spots, smoothProg.Prog);
+
+                    if (!sortedSpots.Any())
                     {
                         break;
                     }
 
-                    List<Spot> spotsToProcess = sortedSpotsToProcess.ToList();
+                    var spotsToProcess = sortedSpots.ToList();
 
                     var smoothPassIterations = _smoothConfiguration
                         .GetSmoothPassDefaultIterations(
@@ -452,27 +434,28 @@ namespace ImagineCommunications.GamePlan.Process.Smooth.Services
 
                     // Get the spots to add to break, a single spot, a pair
                     // of multipart spots or a few short spots
-                    var spotsToPlaceForBreak = GetSpotsToPlace(
+                    var spotsForBreak = GetSpotsToPlace(
                         smoothPassIterations,
                         spotsToProcess,
-                        spotInfos);
+                        spotInfos,
+                        clashesByExternalRef);
 
-                    foreach (Guid spotUid in spotsToPlaceForBreak.Select(s => s.Uid))
+                    foreach (Guid spotUid in spotsForBreak.Select(s => s.Uid))
                     {
                         spotIdsProcessed.AddDistinct(spotUid);
                     }
 
                     // Set whether we can split spots
                     bool canSplitSpotsOverBreaks = true;
-                    bool anyMultipartSpots = spotsToPlaceForBreak.Any(spot => spot.IsMultipartSpot);
+                    bool anyMultipartSpots = spotsForBreak.Any(spot => spot.IsMultipartSpot);
 
                     if (anyMultipartSpots)
                     {
-                        canSplitSpotsOverBreaks = spotsToPlaceForBreak.Count > 1 && smoothPass.CanSplitMultipartSpots;
+                        canSplitSpotsOverBreaks = spotsForBreak.Count > 1 && smoothPass.CanSplitMultipartSpots;
                     }
                     else
                     {
-                        canSplitSpotsOverBreaks = spotsToPlaceForBreak.Count > 1;
+                        canSplitSpotsOverBreaks = spotsForBreak.Count > 1;
                     }
 
                     PlaceSpotsResult placeSpotsResult = null;
@@ -480,18 +463,19 @@ namespace ImagineCommunications.GamePlan.Process.Smooth.Services
                     {
                         placeSpotsResult = PlaceSpots(
                             smoothPass,
+                            scheduleProgrammes,
+                            smoothProg,
                             breaksBeingSmoothed,
-                            spotsToPlaceForBreak,
+                            spotsForBreak,
                             spotInfos,
+                            clashesByExternalRef,
+                            productsByExternalRef,
                             spotIdsUsed,
                             canSplitSpotsOverBreaks);
                     }
                     catch (Exception exception)
                     {
-                        RaiseException(
-                            $"Error placing spot {spotsToPlaceForBreak[0].ExternalSpotRef} " +
-                            $"on pass {smoothPass.Sequence.ToString()}",
-                            exception);
+                        RaiseException($"Error placing spot {spotsForBreak[0].ExternalSpotRef} on pass {smoothPass.Sequence.ToString()}", exception);
 #if DEBUG
                         // Do not hide the exception when debugging.
                         throw;
@@ -503,8 +487,8 @@ namespace ImagineCommunications.GamePlan.Process.Smooth.Services
                         if (placeSpotsResult?.PlacedSpotResults.Count > 0)
                         {
                             _ = spotsToProcess.RemoveAll(stp =>
-                                    placeSpotsResult.PlacedSpotResults.Any(s =>
-                                        s.SpotId == stp.Uid)
+                                    placeSpotsResult.PlacedSpotResults.Any(s
+                                        => s.SpotId == stp.Uid)
                             );
                         }
                         else
@@ -530,20 +514,6 @@ namespace ImagineCommunications.GamePlan.Process.Smooth.Services
             return smoothPassResult;
         }
 
-        private IEnumerable<Spot> GetSortedSpotsToPlace(
-            IReadOnlyCollection<Spot> progSpots,
-            IReadOnlyDictionary<Guid, SpotInfo> spotInfos,
-            SpotFilter spotFilter,
-            HashSet<Guid> spotIdsProcessed)
-        {
-            IEnumerable<Spot> spots = GetSpots(spotFilter, progSpots, spotInfos)
-                .Where(s => !spotIdsProcessed.Contains(s.Uid));
-
-            return spots.Any()
-                ? _smoothConfiguration.SortSpotsToPlace(spots, _programmeTxDetails)
-                : Enumerable.Empty<Spot>();
-        }
-
         /// <summary>
         /// Attempts to place spots, either a single spot or the linked
         /// multipart spots. Positioning rules are respected in the priority
@@ -551,12 +521,18 @@ namespace ImagineCommunications.GamePlan.Process.Smooth.Services
         /// </summary>
         private PlaceSpotsResult PlaceSpots(
             SmoothPassDefault smoothPass,
+            IReadOnlyCollection<Programme> scheduleProgrammes,
+            SmoothProgramme smoothProg,
             IReadOnlyCollection<Break> breaksBeingSmoothed,
             IReadOnlyCollection<Spot> spotsForBreak,
             IReadOnlyDictionary<Guid, SpotInfo> spotInfos,
+            IReadOnlyDictionary<string, Clash> clashesByExternalRef,
+            IReadOnlyDictionary<string, Product> productsByExternalRef,
             ICollection<Guid> spotIdsUsed,
             bool canSplitSpotsOverBreaks)
         {
+            IReadOnlyCollection<SmoothBreak> progSmoothBreaks = smoothProg.ProgSmoothBreaks;
+
             // Default to unplaced
             var placeSpotsResult = new PlaceSpotsResult();
             PlaceSpotsResult firstFailedPlaceSpotsResultForRule = null;
@@ -582,9 +558,13 @@ namespace ImagineCommunications.GamePlan.Process.Smooth.Services
                 // other spots from the break
                 IReadOnlyCollection<SmoothScenario> smoothScenarios =
                     GetSmoothScenariosForSpotsValidForTheBreak(
+                        scheduleProgrammes,
+                        smoothProg,
                         breaksBeingSmoothed,
                         spotsForBreak,
                         spotInfos,
+                        clashesByExternalRef,
+                        progSmoothBreaks,
                         smoothScenarioCreator,
                         smoothPassIteration,
                         canSplitSpotsOverBreaks);
@@ -594,17 +574,22 @@ namespace ImagineCommunications.GamePlan.Process.Smooth.Services
 
                 var (bestSmoothScenario, failedPlaceSpotsResultForRule) = FindBestSmoothScenario(
                     useFirstSpotOnly: false,
-                    smoothPass: smoothPass,
-                    breaksBeingSmoothed: breaksBeingSmoothed,
-                    spotsForBreak: spotsForBreak,
-                    spotInfos: spotInfos,
-                    spotIdsUsed: spotIdsUsed,
-                    smoothScenarioCreator: smoothScenarioCreator,
-                    smoothScenarioExecutor: smoothScenarioExecutor,
-                    smoothPassIteration: smoothPassIteration,
-                    smoothScenarios: smoothScenarios,
-                    spotPlacementResultsByScenarioId: spotPlacementResultsByScenarioId,
-                    canSplitSpotsOverBreaks: canSplitSpotsOverBreaks);
+                    smoothPass,
+                    scheduleProgrammes,
+                    smoothProg,
+                    breaksBeingSmoothed,
+                    spotsForBreak,
+                    spotInfos,
+                    clashesByExternalRef,
+                    productsByExternalRef,
+                    spotIdsUsed,
+                    progSmoothBreaks,
+                    smoothScenarioCreator,
+                    smoothScenarioExecutor,
+                    smoothPassIteration,
+                    smoothScenarios,
+                    spotPlacementResultsByScenarioId,
+                    canSplitSpotsOverBreaks);
 
                 firstFailedPlaceSpotsResultForRule = failedPlaceSpotsResultForRule;
 
@@ -623,13 +608,13 @@ namespace ImagineCommunications.GamePlan.Process.Smooth.Services
                     continue;
                 }
 
-                // Execute best scenario against the actual data (Spots,
-                // Breaks etc). Log spot actions.
+                // Execute best scenario against the actual data (Spots, Breaks
+                // etc). Log spot actions.
                 smoothScenarioExecutor.Execute(
                     smoothPass,
                     smoothPassIteration.Sequence,
                     bestSmoothScenario,
-                    _smoothProgramme.ProgrammeSmoothBreaks,
+                    progSmoothBreaks,
                     spotIdsUsed,
                     logSpotAction: true);
 
@@ -640,11 +625,7 @@ namespace ImagineCommunications.GamePlan.Process.Smooth.Services
                 //
                 // placeSpotsResultForRule.SmoothBreak refers to clone of the
                 // actual break.
-
-                CopySmoothBreakToPlaceSpotsResult(
-                    placeSpotsResultForRule.SmoothBreak,
-                    placeSpotsResult);
-
+                placeSpotsResult.SmoothBreak = progSmoothBreaks.First(b => b.TheBreak.ExternalBreakRef == placeSpotsResultForRule.SmoothBreak.TheBreak.ExternalBreakRef);
                 placeSpotsResult.BestBreakFactorGroupName = placeSpotsResultForRule.BestBreakFactorGroupName;
                 placeSpotsResult.PlacedSpotResults.AddRange(placeSpotsResultForRule.PlacedSpotResults);
                 placeSpotsResult.UnplacedSpotResults.AddRange(placeSpotsResultForRule.UnplacedSpotResults);
@@ -661,12 +642,16 @@ namespace ImagineCommunications.GamePlan.Process.Smooth.Services
                     spotInfos,
                     _sponsorshipRestrictionService);
 
-                LogSpotActionForDiagnostics(
-                    smoothPass,
-                    smoothPassIteration.Sequence,
-                    placeSpotsResult.SmoothBreak,
-                    smoothSpotsAddedToBreak,
-                    "Best break");
+                // Log spot action for diagnostic
+                smoothSpotsAddedToBreak.ForEach(smoothSpot =>
+                    _smoothDiagnostics.LogSpotAction(
+                        smoothPass,
+                        smoothPassIteration.Sequence,
+                        smoothSpot.Spot,
+                        placeSpotsResult.SmoothBreak,
+                        SmoothSpot.SmoothSpotActions.PlaceSpotInBreak,
+                        "Best break")
+                    );
 
                 addedSpots = true;
                 break;
@@ -685,9 +670,13 @@ namespace ImagineCommunications.GamePlan.Process.Smooth.Services
                     // scenario that moves other spots from the break
                     IReadOnlyCollection<SmoothScenario> smoothScenariosSingleSpot =
                         GetSmoothScenariosForSpotsValidForTheBreak(
+                            scheduleProgrammes,
+                            smoothProg,
                             breaksBeingSmoothed,
                             firstSpotForBreak,
                             spotInfos,
+                            clashesByExternalRef,
+                            progSmoothBreaks,
                             smoothScenarioCreator,
                             smoothPassIteration,
                             canSplitSpotsOverBreaks);
@@ -697,17 +686,22 @@ namespace ImagineCommunications.GamePlan.Process.Smooth.Services
 
                     var (bestSmoothScenario, failedPlaceSpotsResultForRule) = FindBestSmoothScenario(
                         useFirstSpotOnly: true,
-                        smoothPass: smoothPass,
-                        breaksBeingSmoothed: breaksBeingSmoothed,
-                        spotsForBreak: spotsForBreak,
-                        spotInfos: spotInfos,
-                        spotIdsUsed: spotIdsUsed,
-                        smoothScenarioCreator: smoothScenarioCreator,
-                        smoothScenarioExecutor: smoothScenarioExecutor,
-                        smoothPassIteration: smoothPassIteration,
-                        smoothScenarios: smoothScenariosSingleSpot,
-                        spotPlacementResultsByScenarioId: spotPlacementResultsByScenarioId,
-                        canSplitSpotsOverBreaks: canSplitSpotsOverBreaks);
+                        smoothPass,
+                        scheduleProgrammes,
+                        smoothProg,
+                        breaksBeingSmoothed,
+                        spotsForBreak,
+                        spotInfos,
+                        clashesByExternalRef,
+                        productsByExternalRef,
+                        spotIdsUsed,
+                        progSmoothBreaks,
+                        smoothScenarioCreator,
+                        smoothScenarioExecutor,
+                        smoothPassIteration,
+                        smoothScenariosSingleSpot,
+                        spotPlacementResultsByScenarioId,
+                        canSplitSpotsOverBreaks);
 
                     firstFailedPlaceSpotsResultForRule = failedPlaceSpotsResultForRule;
 
@@ -731,16 +725,12 @@ namespace ImagineCommunications.GamePlan.Process.Smooth.Services
                         smoothPass,
                         smoothPassIteration.Sequence,
                         bestSmoothScenario,
-                        _smoothProgramme.ProgrammeSmoothBreaks,
+                        progSmoothBreaks,
                         spotIdsUsed,
                         logSpotAction: true);
 
                     // Apply results to return, we only placed one spot
-
-                    CopySmoothBreakToPlaceSpotsResult(
-                        firstSpotPlaceSpotsResultForRule.SmoothBreak,
-                        placeSpotsResult);
-
+                    placeSpotsResult.SmoothBreak = progSmoothBreaks.First(b => b.TheBreak.ExternalBreakRef == firstSpotPlaceSpotsResultForRule.SmoothBreak.TheBreak.ExternalBreakRef);    // placeSpotsResultForRule.SmoothBreak refers to clone of the actual break
                     placeSpotsResult.BestBreakFactorGroupName = firstSpotPlaceSpotsResultForRule.BestBreakFactorGroupName;
                     placeSpotsResult.PlacedSpotResults.AddRange(firstSpotPlaceSpotsResultForRule.PlacedSpotResults);
                     placeSpotsResult.UnplacedSpotResults.AddRange(firstSpotPlaceSpotsResultForRule.UnplacedSpotResults);
@@ -757,12 +747,16 @@ namespace ImagineCommunications.GamePlan.Process.Smooth.Services
                         spotInfos,
                         _sponsorshipRestrictionService);
 
-                    LogSpotActionForDiagnostics(
-                        smoothPass,
-                        smoothPassIteration.Sequence,
-                        firstSpotPlaceSpotsResultForRule.SmoothBreak,
-                        smoothSpotsAddedToBreak,
-                        "Best break (single spot)");
+                    // Log spot action for diagnostic
+                    smoothSpotsAddedToBreak.ForEach(smoothSpot =>
+                        _smoothDiagnostics.LogSpotAction(
+                            smoothPass,
+                            smoothPassIteration.Sequence,
+                            smoothSpot.Spot,
+                            firstSpotPlaceSpotsResultForRule.SmoothBreak,
+                            SmoothSpot.SmoothSpotActions.PlaceSpotInBreak,
+                            "Best break (Single spot)")
+                        );
 
                     addedSpots = true;
                     break;
@@ -770,7 +764,7 @@ namespace ImagineCommunications.GamePlan.Process.Smooth.Services
             }
 
             // If not placed in any break then return first attempt to place spots
-            if (placeSpotsResult.SmoothBreak is null && firstFailedPlaceSpotsResultForRule != null)
+            if (placeSpotsResult.SmoothBreak == null && firstFailedPlaceSpotsResultForRule != null)
             {
                 placeSpotsResult.PlacedSpotResults.AddRange(firstFailedPlaceSpotsResultForRule.PlacedSpotResults);
                 placeSpotsResult.UnplacedSpotResults.AddRange(firstFailedPlaceSpotsResultForRule.UnplacedSpotResults);
@@ -779,43 +773,19 @@ namespace ImagineCommunications.GamePlan.Process.Smooth.Services
             return placeSpotsResult;
         }
 
-        private void CopySmoothBreakToPlaceSpotsResult(
-            SmoothBreak smoothBreak,
-            PlaceSpotsResult placeSpotsResultDestination)
-        {
-            string externalBreakRef = smoothBreak.TheBreak.ExternalBreakRef;
-            placeSpotsResultDestination.SmoothBreak = _smoothProgramme.ProgrammeSmoothBreaks
-                .First(b => b.TheBreak.ExternalBreakRef == externalBreakRef);
-        }
-
-        private void LogSpotActionForDiagnostics(
-            SmoothPassDefault smoothPass,
-            int smoothPassIterationSequence,
-            SmoothBreak smoothBreak,
-            IEnumerable<SmoothSpot> smoothSpotsAddedToBreak,
-            string message)
-        {
-            foreach (var smoothSpot in smoothSpotsAddedToBreak)
-            {
-                _smoothDiagnostics.LogSpotAction(
-                    smoothPass,
-                    smoothPassIterationSequence,
-                    smoothSpot.Spot,
-                    smoothBreak,
-                    SmoothSpot.SmoothSpotActions.PlaceSpotInBreak,
-                    message
-                    );
-            }
-        }
-
         private (SmoothScenario bestSmoothScenario, PlaceSpotsResult firstFailedPlaceSpotsResultForRule)
         FindBestSmoothScenario(
             bool useFirstSpotOnly,
             SmoothPassDefault smoothPass,
+            IReadOnlyCollection<Programme> scheduleProgrammes,
+            SmoothProgramme smoothProg,
             IReadOnlyCollection<Break> breaksBeingSmoothed,
             IReadOnlyCollection<Spot> spotsForBreak,
             IReadOnlyDictionary<Guid, SpotInfo> spotInfos,
+            IReadOnlyDictionary<string, Clash> clashesByExternalRef,
+            IReadOnlyDictionary<string, Product> productsByExternalRef,
             ICollection<Guid> spotIdsUsed,
+            IReadOnlyCollection<SmoothBreak> progSmoothBreaks,
             SmoothScenarioCreator smoothScenarioCreator,
             SmoothScenarioExecutor smoothScenarioExecutor,
             SmoothPassDefaultIteration smoothPassIteration,
@@ -841,7 +811,7 @@ namespace ImagineCommunications.GamePlan.Process.Smooth.Services
 
                 smoothScenarioCreator.CopyScenarioData(
                     spotsForBreak,
-                    _smoothProgramme.ProgrammeSmoothBreaks,
+                    progSmoothBreaks,
                     spotIdsUsed,
                     scenarioSpotsForBreak,
                     scenarioProgSmoothBreaks,
@@ -853,8 +823,12 @@ namespace ImagineCommunications.GamePlan.Process.Smooth.Services
 
                 SpotPlacementResult spotPlacementResult = ExecuteScenarioAndGetSpotPlacement(
                     smoothPass,
+                    scheduleProgrammes,
+                    smoothProg,
                     breaksBeingSmoothed,
                     spotInfos,
+                    clashesByExternalRef,
+                    productsByExternalRef,
                     smoothScenarioExecutor,
                     smoothPassIteration,
                     spotPlacementResultsByScenarioId,
@@ -886,8 +860,12 @@ namespace ImagineCommunications.GamePlan.Process.Smooth.Services
 
         private SpotPlacementResult ExecuteScenarioAndGetSpotPlacement(
             SmoothPassDefault smoothPass,
+            IReadOnlyCollection<Programme> scheduleProgrammes,
+            SmoothProgramme smoothProg,
             IReadOnlyCollection<Break> breaksBeingSmoothed,
             IReadOnlyDictionary<Guid, SpotInfo> spotInfos,
+            IReadOnlyDictionary<string, Clash> clashesByExternalRef,
+            IReadOnlyDictionary<string, Product> productsByExternalRef,
             SmoothScenarioExecutor smoothScenarioExecutor,
             SmoothPassDefaultIteration smoothPassIteration,
             Dictionary<Guid, SpotPlacementResult> spotPlacementResultsByScenarioId,
@@ -909,9 +887,13 @@ namespace ImagineCommunications.GamePlan.Process.Smooth.Services
 
             var validateAddSpotsToBreaksResults = ValidateAddSpotsToBreaks(
                 validateSpotsAndGetSpotPlacement,
+                smoothProg.Prog,
+                smoothProg.SalesArea,
                 scenarioProgSmoothBreaks,
                 breaksBeingSmoothed,
+                scheduleProgrammes,
                 spotInfos,
+                clashesByExternalRef,
                 smoothPassIteration,
                 canSplitSpotsOverBreaks: canSplitSpotsOverBreaks);
 
@@ -920,6 +902,8 @@ namespace ImagineCommunications.GamePlan.Process.Smooth.Services
                 smoothPass,
                 validateSpotsAndGetSpotPlacement,
                 spotInfos,
+                clashesByExternalRef,
+                productsByExternalRef,
                 scenarioProgSmoothBreaks,
                 smoothPassIteration,
                 validateAddSpotsToBreaksResults);
@@ -934,9 +918,13 @@ namespace ImagineCommunications.GamePlan.Process.Smooth.Services
         }
 
         private IReadOnlyCollection<SmoothScenario> GetSmoothScenariosForSpotsValidForTheBreak(
+            IReadOnlyCollection<Programme> scheduleProgrammes,
+            SmoothProgramme smoothProg,
             IReadOnlyCollection<Break> breaksBeingSmoothed,
             IReadOnlyCollection<Spot> spotsForBreak,
             IReadOnlyDictionary<Guid, SpotInfo> spotInfos,
+            IReadOnlyDictionary<string, Clash> clashesByExternalRef,
+            IReadOnlyCollection<SmoothBreak> progSmoothBreaks,
             SmoothScenarioCreator smoothScenarioCreator,
             SmoothPassDefaultIteration smoothPassIteration,
             bool canSplitSpotsOverBreaks)
@@ -948,15 +936,19 @@ namespace ImagineCommunications.GamePlan.Process.Smooth.Services
             // spots from the break.
             var validateAddSpotsToBreaksResults = ValidateAddSpotsToBreaks(
                 spotsForBreak,
-                _smoothProgramme.ProgrammeSmoothBreaks,
+                smoothProg.Prog,
+                smoothProg.SalesArea,
+                progSmoothBreaks,
                 breaksBeingSmoothed,
+                scheduleProgrammes,
                 spotInfos,
+                clashesByExternalRef,
                 smoothPassIteration,
                 canSplitSpotsOverBreaks: canSplitSpotsOverBreaks);
 
             return smoothScenarioCreator.GetSmoothScenarios(
                 spotsForBreak,
-                _smoothProgramme.ProgrammeSmoothBreaks,
+                progSmoothBreaks,
                 validateAddSpotsToBreaksResults,
                 smoothPassIteration.BreakPositionRules,
                 smoothPassIteration.RespectSpotTime);
@@ -968,18 +960,23 @@ namespace ImagineCommunications.GamePlan.Process.Smooth.Services
         /// </summary>
         private List<SmoothFailureMessagesForSpotsCollection> ValidateAddSpotsToBreaks(
             IReadOnlyCollection<Spot> spotsForBreak,
-            IReadOnlyList<SmoothBreak> progSmoothBreaks,
+            Programme programme,
+            SalesArea salesArea,
+            IReadOnlyCollection<SmoothBreak> progSmoothBreaks,
             IReadOnlyCollection<Break> breaksBeingSmoothed,
+            IReadOnlyCollection<Programme> scheduleProgrammes,
             IReadOnlyDictionary<Guid, SpotInfo> spotInfos,
+            IReadOnlyDictionary<string, Clash> clashesByExternalRef,
             SmoothPassDefaultIteration smoothPassIteration,
             bool canSplitSpotsOverBreaks)
         {
             var results = new List<SmoothFailureMessagesForSpotsCollection>();
-            var programme = _smoothProgramme.Programme;
-            var salesArea = _smoothProgramme.SalesArea;
+            int smoothBreaksCount = progSmoothBreaks.Count;
 
             foreach (var smoothBreak in progSmoothBreaks)
             {
+                ICanAddSpot canAddSpotService = new CanAddSpotService(smoothBreak);
+
                 var validationResults = AddSpotsToBreakValidatorService
                     .ValidateAddSpots(
                         smoothBreak,
@@ -987,7 +984,7 @@ namespace ImagineCommunications.GamePlan.Process.Smooth.Services
                         salesArea,
                         spotsForBreak,
                         spotInfos,
-                        progSmoothBreaks,
+                        smoothBreaksCount,
                         smoothPassIteration.ProductClashRules,
                         smoothPassIteration.RespectCampaignClash,
                         smoothPassIteration.RespectSpotTime,
@@ -995,13 +992,14 @@ namespace ImagineCommunications.GamePlan.Process.Smooth.Services
                         smoothPassIteration.RespectClashExceptions,
                         smoothPassIteration.BreakPositionRules,
                         smoothPassIteration.RequestedPositionInBreakRules,
-                        _clashesByExternalRef,
+                        clashesByExternalRef,
                         canSplitSpotsOverBreaks,
                         _smoothResources,
                         breaksBeingSmoothed,
-                        _allProgrammesForPeriodAndSalesArea,
+                        scheduleProgrammes,
                         _clashExposureCountService,
-                        _sponsorshipRestrictionService);
+                        _sponsorshipRestrictionService,
+                        canAddSpotService);
 
                 results.Add(validationResults);
             }
@@ -1015,6 +1013,7 @@ namespace ImagineCommunications.GamePlan.Process.Smooth.Services
         /// </summary>
         /// <param name="smoothPass"></param>
         /// <param name="spotsForBreak"></param>
+        /// <param name="firstSpotOnly"></param>
         /// <param name="spotInfos"></param>
         /// <param name="progSmoothBreaks"></param>
         /// <param name="smoothPassIteration"></param>
@@ -1023,6 +1022,8 @@ namespace ImagineCommunications.GamePlan.Process.Smooth.Services
             SmoothPassDefault smoothPass,
             IReadOnlyCollection<Spot> spotsForBreak,
             IReadOnlyDictionary<Guid, SpotInfo> spotInfos,
+            IReadOnlyDictionary<string, Clash> clashesByExternalRef,
+            IReadOnlyDictionary<string, Product> productsByExternalRef,
             IReadOnlyCollection<SmoothBreak> progSmoothBreaks,
             SmoothPassDefaultIteration smoothPassIteration,
             IReadOnlyList<SmoothFailureMessagesForSpotsCollection> validateAddSpotsToBreakResults
@@ -1142,6 +1143,8 @@ namespace ImagineCommunications.GamePlan.Process.Smooth.Services
                     _smoothResources,
                     _clashExposureCountService);
 
+                BestBreakFactorGroup usedBestBreakFactorGroup = null;
+
                 spotPlacementResult.BestBreakResult = bestBreakEvaluator.GetBestBreak(
                     smoothPass,
                     smoothPassIteration,
@@ -1149,10 +1152,10 @@ namespace ImagineCommunications.GamePlan.Process.Smooth.Services
                     validSmoothBreaks,
                     spotsForBreak,
                     spotInfos,
-                    _clashesByExternalRef,
-                    _productsByExternalRef,
+                    clashesByExternalRef,
+                    productsByExternalRef,
                     progSmoothBreaks,
-                    out BestBreakFactorGroup usedBestBreakFactorGroup);
+                    out usedBestBreakFactorGroup);
 
                 if (usedBestBreakFactorGroup != null)
                 {

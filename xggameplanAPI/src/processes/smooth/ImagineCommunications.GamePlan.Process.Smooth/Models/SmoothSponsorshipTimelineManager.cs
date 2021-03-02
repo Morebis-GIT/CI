@@ -4,7 +4,6 @@ using System.Linq;
 using ImagineCommunications.GamePlan.Domain.Breaks.Objects;
 using ImagineCommunications.GamePlan.Domain.Sponsorships.Enums;
 using ImagineCommunications.GamePlan.Process.Smooth.Dtos;
-using ImagineCommunications.GamePlan.Process.Smooth.Interfaces;
 using ImagineCommunications.GamePlan.Process.Smooth.Services;
 using ImagineCommunications.GamePlan.Process.Smooth.Types;
 
@@ -24,25 +23,25 @@ namespace ImagineCommunications.GamePlan.Process.Smooth.Models
         public SmoothSponsorshipTimeline FindTimelineForSponsoredProduct(
             BreakExternalReference breakExternalReference,
             string sponsoredProduct) =>
-                _timelines.FirstOrDefault(t =>
-                    t.BreakExternalReferences.Contains((string)breakExternalReference) &&
-                    t.SponsoredProducts.Contains(sponsoredProduct));
+            _timelines.FirstOrDefault(t =>
+            t.BreakExternalReferences
+            .Contains((string)breakExternalReference) &&
+            t.SponsoredProducts
+            .Contains(sponsoredProduct));
 
         public SmoothSponsorshipTimeline FindTimelineForCompetitor(
             BreakExternalReference breakExternalReference,
             string advertiserIdentifier,
             string clashExternalReference) =>
-                _timelines.FirstOrDefault(t =>
-                    t.BreakExternalReferences.Contains((string)breakExternalReference) &&
-                    (
-                        t.AdvertiserIdentifiers
-                            .Select(a => a.advertiserIdentifier)
-                            .Contains(advertiserIdentifier) ||
-                        t.ClashExternalReferences
-                            .Select(c => c.clashExternalReference)
-                            .Contains(clashExternalReference)
-                    )
-                );
+            _timelines.FirstOrDefault(t =>
+            t.BreakExternalReferences
+            .Contains((string)breakExternalReference) &&
+            (t.AdvertiserIdentifiers
+            .Select(a => a.advertiserIdentifier)
+            .Contains(advertiserIdentifier) ||
+            t.ClashExternalReferences
+            .Select(c => c.clashExternalReference)
+            .Contains(clashExternalReference)));
 
         public void SetupTimelineRunningTotals(
             IImmutableList<Break> breaks)
@@ -62,7 +61,6 @@ namespace ImagineCommunications.GamePlan.Process.Smooth.Models
                         advertiser.advertiserIdentifier,
                         advertiser.restrictionValue);
                 }
-
                 foreach (var clash in timeline.ClashExternalReferences)
                 {
                     timeline.RunningTotals
@@ -78,14 +76,19 @@ namespace ImagineCommunications.GamePlan.Process.Smooth.Models
 
                 timeline.BreakExternalReferences =
                     breaks.Where(b =>
-                        timeline.DateTimeRange.Overlays(
-                            (
-                            b.ScheduledDate,
-                            b.ScheduledDate.Add(b.Duration.ToTimeSpan())
+                    timeline.DateTimeRange
+                    .Overlays(
+                        (
+                        b.ScheduledDate,
+                        b.ScheduledDate
+                        .Add(
+                            b.Duration.ToTimeSpan()
                             )
-                        ))
-                        .Select(b => b.ExternalBreakRef)
-                        .ToList();
+                        )
+                        )
+                    )
+                    .Select(b => b.ExternalBreakRef)
+                    .ToList();
             }
         }
     }

@@ -11,7 +11,7 @@ namespace ImagineCommunications.GamePlan.Persistence.SqlServer.EntityConfigurati
         {
             builder.ToTable("AutoBookTaskReports");
 
-            builder.Property(x => x.Id).UseSqlServerIdentityColumn();
+            builder.Property(x => x.Id).UseMySqlIdentityColumn();
             builder.Property(x => x.TimeCreated).AsUtc();
             builder.Property(x => x.BinariesVersion).HasMaxLength(64).IsRequired();
             builder.Property(x => x.FullName).HasMaxLength(64).IsRequired();

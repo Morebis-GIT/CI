@@ -4,11 +4,11 @@ using AutoMapper;
 using ImagineCommunications.GamePlan.Domain.Campaigns.Queries;
 using ImagineCommunications.GamePlan.Domain.Generic.DbSequence;
 using ImagineCommunications.GamePlan.Persistence.SqlServer.Core.Interfaces;
+using ImagineCommunications.GamePlan.Persistence.SqlServer.Core.Extensions;
 using ImagineCommunications.GamePlan.Persistence.SqlServer.Dto;
 using ImagineCommunications.GamePlan.Persistence.SqlServer.Entities.Tenant;
 using ImagineCommunications.GamePlan.Persistence.SqlServer.Entities.Tenant.Campaigns;
 using ImagineCommunications.GamePlan.Persistence.SqlServer.Entities.Tenant.Products;
-using ImagineCommunications.GamePlan.Persistence.SqlServer.Interfaces;
 using ImagineCommunications.GamePlan.Persistence.SqlServer.Repositories;
 using ImagineCommunications.GamePlan.Persistence.SqlServer.Views.Tenant;
 using CampaignStatus = ImagineCommunications.GamePlan.Persistence.SqlServer.Entities.CampaignStatus;
@@ -33,10 +33,8 @@ namespace ImagineCommunications.GamePlan.Persistence.SqlServer.Landmark.Features
             ISqlServerLongRunningTenantDbContext dbContext,
             IFullTextSearchConditionBuilder searchConditionBuilder,
             IIdentityGenerator identityGenerator,
-            ISqlServerSalesAreaByIdCacheAccessor salesAreaByIdCache,
-            ISqlServerSalesAreaByNameCacheAccessor salesAreaByNameCache,
             IMapper mapper)
-            : base(dbContext, searchConditionBuilder, identityGenerator, salesAreaByIdCache, salesAreaByNameCache, mapper)
+            : base(dbContext, searchConditionBuilder, identityGenerator, mapper)
         {
             _dbContext = dbContext;
             _searchConditionBuilder = searchConditionBuilder;
@@ -55,7 +53,7 @@ namespace ImagineCommunications.GamePlan.Persistence.SqlServer.Landmark.Features
                 join campaignWithProductRelations in _dbContext.Specific.View<CampaignWithProductRelations>() on
                     campaign.Id equals campaignWithProductRelations.CampaignId
                 join productJoin in _dbContext.Query<Product>() on campaignWithProductRelations.ProductId equals
-                    productJoin.Uid into products
+                    productJoin.Id into products
                 from product in products.DefaultIfEmpty()
                 join demographicJoin in _dbContext.Query<Demographic>() on campaign.Demographic equals demographicJoin
                     .ExternalRef into demographics

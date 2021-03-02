@@ -218,19 +218,18 @@ namespace xggameplan.core.Services
 
                     var prioritySalesAreaNames = prioritySalesAreas.Select(s => s.Name).ToList();
 
-                    DayOfWeek startDayOfWeek = tenantSettingsRepository.GetStartDayOfWeek();
+                    var startDayOfWeek = tenantSettingsRepository.GetStartDayOfWeek();
 
                     RaiseInfo($"Getting the programmes for processing. Current Time - {DateTime.UtcNow.ToString()}");
-                    var programs = scheduleRepository.GetProgrammes(
-                        prioritySalesAreaNames,
-                        run.StartDate.Date.StartAndEndOfWeekDate(startDayOfWeek).startDate,
-                        runEndDate.Date.StartAndEndOfWeekDate(startDayOfWeek).endDate);
+                    var programs = scheduleRepository.GetProgrammes(prioritySalesAreaNames,
+                        run.StartDate.Date.StartAndEndOfWeekDate(startDayOfWeek).Item1, // week start date
+                        runEndDate.Date.StartAndEndOfWeekDate(startDayOfWeek).Item2); // week end date
 
                     var campaignExternalIds = run.Campaigns?.Where(s => !string.IsNullOrWhiteSpace(s.ExternalId))
                         .Select(s => s.ExternalId).ToList();
 
                     RaiseInfo($"Getting the campaigns for processing. Current Time - {DateTime.UtcNow.ToString()}");
-                    List<Campaign> campaigns = campaignRepository.FindByRefs(campaignExternalIds)?.ToList();
+                    var campaigns = campaignRepository.FindByRefs(campaignExternalIds)?.ToList();
                     if (campaigns?.Count == 0)
                     {
                         campaigns.AddRange(campaignRepository.GetAllActive().ToList());
@@ -244,7 +243,6 @@ namespace xggameplan.core.Services
                     errorMessage = "Error generating Break List file";
 
                     RaiseInfo($"Getting the breaks for processing. Current Time - {DateTime.UtcNow.ToString()}");
-
                     _breakSerializer.Serialize(
                         folderName,
                         run,
@@ -935,41 +933,15 @@ namespace xggameplan.core.Services
             ref List<Programme> programs,
             IReadOnlyCollection<ProgrammeDictionary> programmeDictionary)
         {
-            if (programs is null)
+            FilterByDate(ref programs, runStartDate, runEndDate);
+
+            if (programs is null || programs.Count == 0)
             {
-                NoProgrammesAvailable();
-            }
-
-            FilterProgrammesByDate(
-                ref programs,
-                runStartDate.AddDays(-1),
-                runEndDate.AddDays(1));
-
-            if (programs.Count == 0)
-            {
-                NoProgrammesAvailable();
-            }
-
-            _progTxDetailSerializer.Serialize(
-                folderName,
-                programs,
-                programmeDictionary,
-                programmeCategories,
-                allSalesAreas,
-                autoBookDefaultParameters);
-
-            FilterProgrammesByDate(
-                ref programs,
-                runStartDate,
-                runEndDate);
-
-            if (programs.Count == 0)
-            {
-                NoProgrammesAvailable();
-            }
-
-            void NoProgrammesAvailable() =>
                 throw new Exception("No programmes available to export");
+            }
+
+            _progTxDetailSerializer.Serialize(folderName, programs, programmeDictionary,
+                programmeCategories, allSalesAreas, autoBookDefaultParameters);
         }
 
         private void SerializeStandardDayPartGroups(IRepositoryScope scope,
@@ -1361,16 +1333,9 @@ namespace xggameplan.core.Services
             return zipPath;
         }
 
-        private void FilterProgrammesByDate(
-            ref List<Programme> programs,
-            DateTime runStartDateTime,
-            DateTime runEndDateTime)
+        private void FilterByDate(ref List<Programme> programs, DateTime runStartDateTime, DateTime runEndDateTime)
         {
-            programs = programs
-                .Where(p =>
-                    p.StartDateTime >= runStartDateTime &&
-                    p.StartDateTime <= runEndDateTime)
-                .ToList();
+            programs = programs.Where(p => p.StartDateTime >= runStartDateTime && p.StartDateTime <= runEndDateTime).ToList();
         }
 
         private void RemoveInvalidCampaign(ref List<Campaign> campaigns)
@@ -1492,9 +1457,9 @@ namespace xggameplan.core.Services
             while (fromDate <= toDate)
             {
                 var weekrange = fromDate.StartAndEndOfWeekDate(startDayOfWeek);
-                weekset.Add(weekrange.startDate, weekrange.endDate);
+                weekset.Add(weekrange.Item1, weekrange.Item2);
 
-                fromDate = weekrange.startDate.AddDays(7); // iterate to next week
+                fromDate = weekrange.Item1.AddDays(7); // iterate to next week
             }
 
             return weekset;

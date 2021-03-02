@@ -13,7 +13,7 @@ namespace ImagineCommunications.GamePlan.Persistence.SqlServer.EntityConfigurati
             builder.ToTable("SmoothConfigurationSmoothPasses");
             builder.HasKey(x => x.Id);
 
-            builder.Property(x => x.Id).UseSqlServerIdentityColumn();
+            builder.Property(x => x.Id).UseMySqlIdentityColumn();
 
             builder.HasDiscriminator<SmoothPassType>("SmoothPassType")
                 .HasValue<SmoothPassDefault>(SmoothPassType.Default)

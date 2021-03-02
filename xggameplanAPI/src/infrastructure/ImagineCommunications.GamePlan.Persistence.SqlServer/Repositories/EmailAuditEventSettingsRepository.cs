@@ -4,6 +4,7 @@ using AutoMapper;
 using AutoMapper.QueryableExtensions;
 using ImagineCommunications.GamePlan.Persistence.SqlServer.Core.Extensions;
 using ImagineCommunications.GamePlan.Persistence.SqlServer.Core.Interfaces;
+using Microsoft.EntityFrameworkCore;
 using xggameplan.AuditEvents;
 using EmailAuditEventSettingsEntity = ImagineCommunications.GamePlan.Persistence.SqlServer.Entities.Tenant.EmailAuditEventSettings;
 
@@ -24,10 +25,8 @@ namespace ImagineCommunications.GamePlan.Persistence.SqlServer.Repositories
             _dbContext.AddRange(_mapper.Map<EmailAuditEventSettingsEntity[]>(items),
                 post => post.MapToCollection(items), _mapper);
 
-        public List<EmailAuditEventSettings> GetAll() =>
-            _dbContext.Query<EmailAuditEventSettingsEntity>()
-                .ProjectTo<EmailAuditEventSettings>(_mapper.ConfigurationProvider)
-                .ToList();
+        public List<EmailAuditEventSettings> GetAll() => _mapper.Map<List<EmailAuditEventSettings>>(
+            _dbContext.Query<EmailAuditEventSettingsEntity>().Include(p => p.NotificationSettings));
 
         public void Truncate() => _dbContext.Truncate<EmailAuditEventSettingsEntity>();
 

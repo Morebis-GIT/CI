@@ -14,7 +14,7 @@ namespace ImagineCommunications.GamePlan.Persistence.SqlServer.EntityConfigurati
                 .HasValue<CampaignEndBreakRequirementItem>(2);
 
             builder.HasKey(e => e.Id);
-            builder.Property(e => e.Id).UseSqlServerIdentityColumn();
+            builder.Property(e => e.Id).UseMySqlIdentityColumn();
         }
     }
 }

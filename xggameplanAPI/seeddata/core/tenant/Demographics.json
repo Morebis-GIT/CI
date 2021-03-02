@@ -1,0 +1,258 @@
+[
+   {
+      "Id": 1,
+      "ExternalRef": "A2",
+      "Name": "ADULTS 16-24",
+      "ShortName": "AD1624",
+      "DisplayOrder": 1,
+      "Gameplan": true
+   },
+   {
+      "Id": 2,
+      "ExternalRef": "A1",
+      "Name": "ADULTS 25-44",
+      "ShortName": "AD2544",
+      "DisplayOrder": 2,
+      "Gameplan": true
+   },
+   {
+      "Id": 3,
+      "ExternalRef": "A3",
+      "Name": "ADULTS 16-34",
+      "ShortName": "AD1634",
+      "DisplayOrder": 3,
+      "Gameplan": true
+   },
+   {
+      "Id": 4,
+      "ExternalRef": "A4",
+      "Name": "ADULTS 16-44",
+      "ShortName": "AD1644",
+      "DisplayOrder": 4,
+      "Gameplan": true
+   },
+   {
+      "Id": 5,
+      "ExternalRef": "A5",
+      "Name": "ADULTS 16-54",
+      "ShortName": "AD1654",
+      "DisplayOrder": 5,
+      "Gameplan": true
+   },
+   {
+      "Id": 6,
+      "ExternalRef": "A7",
+      "Name": "ADULTS ABC1 16-44",
+      "ShortName": "AA1644",
+      "DisplayOrder": 6,
+      "Gameplan": true
+   },
+   {
+      "Id": 7,
+      "ExternalRef": "AA",
+      "Name": "ADULTS ABC1",
+      "ShortName": "ADABC1",
+      "DisplayOrder": 7,
+      "Gameplan": true
+   },
+   {
+      "Id": 8,
+      "ExternalRef": "AD",
+      "Name": "ADULTS",
+      "ShortName": "ADS",
+      "DisplayOrder": 8,
+      "Gameplan": true
+   },
+   {
+      "Id": 9,
+      "ExternalRef": "CH",
+      "Name": "CHILDREN",
+      "ShortName": "CHD",
+      "DisplayOrder": 9,
+      "Gameplan": true
+   },
+   {
+      "Id": 10,
+      "ExternalRef": "A9",
+      "Name": "ADULTS ABC1 45+",
+      "ShortName": "ADA45+",
+      "DisplayOrder": 10,
+      "Gameplan": true
+   },
+   {
+      "Id": 11,
+      "ExternalRef": "H4",
+      "Name": "HOUSEWIVES 16-44",
+      "ShortName": "HW1644",
+      "DisplayOrder": 11,
+      "Gameplan": true
+   },
+   {
+      "Id": 12,
+      "ExternalRef": "H5",
+      "Name": "HOUSEWIVES 16-54",
+      "ShortName": "HW1654",
+      "DisplayOrder": 12,
+      "Gameplan": true
+   },
+   {
+      "Id": 13,
+      "ExternalRef": "HA",
+      "Name": "HOUSEWIVES ABC1",
+      "ShortName": "HWABC1",
+      "DisplayOrder": 13,
+      "Gameplan": true
+   },
+   {
+      "Id": 14,
+      "ExternalRef": "HC",
+      "Name": "HOUSEWIVES WITH CHILDREN",
+      "ShortName": "HWCH",
+      "DisplayOrder": 14,
+      "Gameplan": true
+   },
+   {
+      "Id": 15,
+      "ExternalRef": "HW",
+      "Name": "HOUSEWIVES",
+      "ShortName": "HWS",
+      "DisplayOrder": 15,
+      "Gameplan": true
+   },
+   {
+      "Id": 16,
+      "ExternalRef": "IN",
+      "Name": "INDIVIDUALS",
+      "ShortName": "IND",
+      "DisplayOrder": 16,
+      "Gameplan": true
+   },
+   {
+      "Id": 17,
+      "ExternalRef": "A8",
+      "Name": "ADULTS 45+",
+      "ShortName": "AD45+",
+      "DisplayOrder": 17,
+      "Gameplan": true
+   },
+   {
+      "Id": 18,
+      "ExternalRef": "M3",
+      "Name": "MEN 16-34",
+      "ShortName": "MN1634",
+      "DisplayOrder": 18,
+      "Gameplan": true
+   },
+   {
+      "Id": 19,
+      "ExternalRef": "M4",
+      "Name": "MEN 16-44",
+      "ShortName": "MN1644",
+      "DisplayOrder": 19,
+      "Gameplan": true
+   },
+   {
+      "Id": 20,
+      "ExternalRef": "M5",
+      "Name": "MEN 16-54",
+      "ShortName": "MN1654",
+      "DisplayOrder": 20,
+      "Gameplan": true
+   },
+   {
+      "Id": 21,
+      "ExternalRef": "C1",
+      "Name": "CHILDREN 4-9",
+      "ShortName": "CHD49",
+      "DisplayOrder": 21,
+      "Gameplan": true
+   },
+   {
+      "Id": 22,
+      "ExternalRef": "MA",
+      "Name": "MEN ABC1",
+      "ShortName": "MNABC1",
+      "DisplayOrder": 22,
+      "Gameplan": true
+   },
+   {
+      "Id": 23,
+      "ExternalRef": "MN",
+      "Name": "MEN",
+      "ShortName": "MEN",
+      "DisplayOrder": 23,
+      "Gameplan": true
+   },
+   {
+      "Id": 24,
+      "ExternalRef": "W3",
+      "Name": "WOMEN 16-34",
+      "ShortName": "WM1634",
+      "DisplayOrder": 24,
+      "Gameplan": true
+   },
+   {
+      "Id": 25,
+      "ExternalRef": "W4",
+      "Name": "WOMEN 16-44",
+      "ShortName": "WM1644",
+      "DisplayOrder": 25,
+      "Gameplan": true
+   },
+   {
+      "Id": 26,
+      "ExternalRef": "W5",
+      "Name": "WOMEN 16-54",
+      "ShortName": "WM1654",
+      "DisplayOrder": 26,
+      "Gameplan": true
+   },
+   {
+      "Id": 27,
+      "ExternalRef": "WA",
+      "Name": "WOMEN ABC1",
+      "ShortName": "WMABC1",
+      "DisplayOrder": 27,
+      "Gameplan": true
+   },
+   {
+      "Id": 28,
+      "ExternalRef": "WM",
+      "Name": "WOMEN",
+      "ShortName": "WMN",
+      "DisplayOrder": 28,
+      "Gameplan": true
+   },
+   {
+      "Id": 29,
+      "ExternalRef": "HO",
+      "Name": "HOMES",
+      "ShortName": "HOMES",
+      "DisplayOrder": 29,
+      "Gameplan": true
+   },
+   {
+      "Id": 30,
+      "ExternalRef": "C2",
+      "Name": "CHILDREN 10-15",
+      "ShortName": "CHD1015",
+      "DisplayOrder": 30,
+      "Gameplan": true
+   },
+   {
+      "Id": 31,
+      "ExternalRef": "W2",
+      "Name": "WOMEN 25-44",
+      "ShortName": "WM2544",
+      "DisplayOrder": 31,
+      "Gameplan": true
+   },
+   {
+      "Id": 32,
+      "ExternalRef": "SD",
+      "Name": "DEMO80PLUS",
+      "ShortName": "DEMO80PLUS",
+      "DisplayOrder": 0,
+      "Gameplan": true
+   }
+]

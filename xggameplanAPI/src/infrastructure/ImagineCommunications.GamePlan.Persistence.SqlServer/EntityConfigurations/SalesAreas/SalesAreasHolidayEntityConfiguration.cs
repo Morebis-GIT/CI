@@ -11,7 +11,8 @@ namespace ImagineCommunications.GamePlan.Persistence.SqlServer.EntityConfigurati
         {
             builder.ToTable("SalesAreasHolidays");
             builder.HasKey(e => e.Id);
-            builder.Property(p => p.Id).UseSqlServerIdentityColumn();
+            builder.Property(p => p.Id).UseMySqlIdentityColumn();
+
             builder.Property(e => e.Type).IsRequired();
             builder.Property(e => e.Start).IsRequired();
             builder.Property(e => e.End).IsRequired();

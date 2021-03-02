@@ -1,9 +1,9 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using AutoMapper;
 using ImagineCommunications.GamePlan.Persistence.SqlServer.Core.Interfaces;
 using ImagineCommunications.GamePlan.Persistence.SqlServer.Entities.Tenant;
 using ImagineCommunications.GamePlan.Persistence.SqlServer.Entities.Tenant.Products;
-using ImagineCommunications.GamePlan.Persistence.SqlServer.Interfaces;
 using ImagineCommunications.GamePlan.Persistence.SqlServer.Repositories;
 using RestrictionEntity = ImagineCommunications.GamePlan.Persistence.SqlServer.Entities.Tenant.Restrictions.Restriction;
 
@@ -20,15 +20,9 @@ namespace ImagineCommunications.GamePlan.Persistence.SqlServer.Landmark.Features
 
         /// <summary>Initializes a new instance of the <see cref="LandmarkRestrictionRepository" /> class.</summary>
         /// <param name="dbContext">The database context.</param>
-        /// <param name="salesAreaByIdCache">SalesArea entity cache assessor.</param>
-        /// <param name="salesAreaByNameCache">SalesArea entity cache assessor.</param>
         /// <param name="mapper">The mapper.</param>
-        public LandmarkRestrictionRepository(
-            ISqlServerLongRunningTenantDbContext dbContext,
-            ISqlServerSalesAreaByIdCacheAccessor salesAreaByIdCache,
-            ISqlServerSalesAreaByNameCacheAccessor salesAreaByNameCache,
-            IMapper mapper)
-            : base(dbContext, salesAreaByIdCache, salesAreaByNameCache, mapper)
+        public LandmarkRestrictionRepository(ISqlServerLongRunningTenantDbContext dbContext, IMapper mapper)
+            : base(dbContext, mapper)
         {
             _dbContext = dbContext;
         }
@@ -42,9 +36,9 @@ namespace ImagineCommunications.GamePlan.Persistence.SqlServer.Landmark.Features
         {
             var advertiserSubQuery =
                 from productAdvertiser in _dbContext.Query<ProductAdvertiser>()
-                join product in _dbContext.Query<Product>() on productAdvertiser.ProductId equals product.Uid
+                join product in _dbContext.Query<Product>() on productAdvertiser.ProductId equals product.Id
                 join restriction in _dbContext.Query<RestrictionEntity>() on product.Externalidentifier equals
-                    restriction.ProductCode.ToString()
+                    restriction.ProductCode
                 join advertiser in _dbContext.Query<Advertiser>() on productAdvertiser.AdvertiserId equals advertiser.Id
                 where productAdvertiser.StartDate <= restriction.StartDate &&
                       productAdvertiser.EndDate > restriction.StartDate
@@ -52,7 +46,7 @@ namespace ImagineCommunications.GamePlan.Persistence.SqlServer.Landmark.Features
 
             return
                 from restriction in _dbContext.Query<RestrictionEntity>()
-                join productJoin in _dbContext.Query<Product>() on restriction.ProductCode.ToString() equals
+                join productJoin in _dbContext.Query<Product>() on restriction.ProductCode equals
                     productJoin
                         .Externalidentifier into products
                 from product in products.DefaultIfEmpty()
@@ -63,7 +57,7 @@ namespace ImagineCommunications.GamePlan.Persistence.SqlServer.Landmark.Features
                 let programme = _dbContext.Query<ProgrammeDictionary>()
                     .FirstOrDefault(x => restriction.ExternalProgRef == x.ExternalReference)
                 let advertiser = advertiserSubQuery
-                    .Where(x => x.ProductId == product.Uid && x.RestrictionId == restriction.Id)
+                    .Where(x => x.ProductId == product.Id && x.RestrictionId == restriction.Id)
                     .Select(x => x.advertiser)
                     .FirstOrDefault()
 
@@ -89,7 +83,7 @@ namespace ImagineCommunications.GamePlan.Persistence.SqlServer.Landmark.Features
                     TimeToleranceMinsAfter = restriction.TimeToleranceMinsAfter,
                     IndexType = restriction.IndexType,
                     IndexThreshold = restriction.IndexThreshold,
-                    ProductCode = restriction.ProductCode,
+                    ProductCode = Convert.ToInt32(restriction.ProductCode),
                     ClashCode = restriction.ClashCode,
                     ClearanceCode = restriction.ClearanceCode,
                     ClockNumber = restriction.ClockNumber,

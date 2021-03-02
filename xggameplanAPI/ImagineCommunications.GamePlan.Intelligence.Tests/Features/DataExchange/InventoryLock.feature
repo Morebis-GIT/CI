@@ -7,6 +7,7 @@ Feature: InventoryLock
 Background:
 	Given GroupTransactionInfo for 1 event sent
 
+
 Scenario: BulkInventoryLockCreated message should successfully save records
 	Given The data from file SalesArea.ExistingSalesAreas exists in database
 	And The data from file InventoryStatus.BulkInventoryLockCreated.Setup exists in database
@@ -14,6 +15,7 @@ Scenario: BulkInventoryLockCreated message should successfully save records
 	When I publish message to message broker
 	Then GamePlanIntelligence consumes message
 	And the InventoryLocks data in GamePlan database is updated as the data from the following file InventoryStatus.BulkInventoryLockCreated.Result
+
 
 Scenario: BulkInventoryLockCreated message should throw exception when sales area is not found
 	Given The data from file SalesArea.ExistingSalesAreas exists in database

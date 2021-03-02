@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Data.SqlClient;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
@@ -12,6 +11,7 @@ using Microsoft.EntityFrameworkCore.ChangeTracking;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Internal;
 using Microsoft.EntityFrameworkCore.Metadata;
+using MySql.Data.MySqlClient;
 
 namespace ImagineCommunications.GamePlan.Persistence.SqlServer.Core.DbContext
 {
@@ -45,8 +45,7 @@ namespace ImagineCommunications.GamePlan.Persistence.SqlServer.Core.DbContext
                 .Relational()?.ColumnName;
 
             var query = new RawSqlString(
-                $"DELETE FROM {_dbContext.Model.GetFullTableName<TEntity>()} WHERE [{pkName}] IN ({string.Join(",", ids.Select(formatKeyValueFunc))})");
-
+                $"DELETE FROM {_dbContext.Model.GetFullTableName<TEntity>()} WHERE {pkName} IN ({string.Join(",", ids.Select(formatKeyValueFunc))})");
             return _dbContext.Database.ExecuteSqlCommand(query);
         }
 
@@ -122,7 +121,7 @@ namespace ImagineCommunications.GamePlan.Persistence.SqlServer.Core.DbContext
 
         public DbQuery<T> View<T>() where T : class => _dbContext.Query<T>();
 
-        public IQueryable<T> StoredProcedure<T>(params SqlParameter[] parameters) where T : class
+        public IQueryable<T> StoredProcedure<T>(params MySqlParameter[] parameters) where T : class
         {
             var annotation = _dbContext.Model.GetEntityType<T>().FindAnnotation(StoredProcAnnotationName);
 
@@ -140,8 +139,7 @@ namespace ImagineCommunications.GamePlan.Persistence.SqlServer.Core.DbContext
             }
 
             var prms = string.Join(" ", parameters.Select(x => x.ParameterName));
-
-            return dbSet.FromSql(new RawSqlString($"{spName} {prms}"), parameters.Cast<object>().ToArray());
+            return dbSet.FromSql(new RawSqlString($"CALL {spName} ({prms})"), parameters.Cast<object>().ToArray());
         }
     }
 }

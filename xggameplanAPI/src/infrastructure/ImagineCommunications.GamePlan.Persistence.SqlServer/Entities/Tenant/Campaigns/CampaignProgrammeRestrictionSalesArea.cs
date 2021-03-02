@@ -1,6 +1,4 @@
-﻿using System;
-using ImagineCommunications.GamePlan.Persistence.SqlServer.Core.Interfaces;
-using ImagineCommunications.GamePlan.Persistence.SqlServer.Entities.Tenant.SalesAreas;
+﻿using ImagineCommunications.GamePlan.Persistence.SqlServer.Core.Interfaces;
 
 namespace ImagineCommunications.GamePlan.Persistence.SqlServer.Entities.Tenant.Campaigns
 {
@@ -8,8 +6,6 @@ namespace ImagineCommunications.GamePlan.Persistence.SqlServer.Entities.Tenant.C
     {
         public int Id { get; set; }
         public int CampaignProgrammeRestrictionId { get; set; }
-        public Guid SalesAreaId { get; set; }
-
-        public SalesArea SalesArea { get; set; }
+        public string Name { get; set; }
     }
 }

@@ -8,14 +8,10 @@ namespace ImagineCommunications.GamePlan.Persistence.Memory.Repositories
         MemoryRepositoryBase<TenantSettings>,
         ITenantSettingsRepository
     {
-        public MemoryTenantSettingsRepository()
-        {
-        }
+        public MemoryTenantSettingsRepository() { }
 
-        public void AddOrUpdate(TenantSettings item)
-        {
-            InsertOrReplaceItem(item, item.Id.ToString());
-        }
+        public void AddOrUpdate(TenantSettings item) =>
+            UpdateOrInsertItem(item, item.Id.ToString());
 
         public TenantSettings Get() =>
             GetAllItems().FirstOrDefault();
@@ -26,9 +22,7 @@ namespace ImagineCommunications.GamePlan.Persistence.Memory.Repositories
 
         public DayOfWeek GetStartDayOfWeek() => throw new NotImplementedException();
 
-        public void SaveChanges()
-        {
-        }
+        public void SaveChanges() { }
 
         public void Truncate()
         {

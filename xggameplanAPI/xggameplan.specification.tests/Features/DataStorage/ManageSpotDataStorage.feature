@@ -7,22 +7,14 @@ Feature: ManageSpotsDataStorage
 
 Background: 
 	Given there is a Spots repository
-	And predefined Spots.SalesAreas.json data
-	And predefined data imported
 
 Scenario: Add new Spot
-	When I create the following documents:
-		| Uid                                  | ExternalCampaignNumber | SalesArea | ExternalSpotRef | StartDateTime       |
-		| D43383EB-82AD-4A41-9F08-817FAE6D54B3 | GRID                   | TCN91     | G75669243       | 2019-03-10 11:00:00 |
+	When I create a document
 	And I get all documents
 	Then there should be 1 documents returned
 	
 Scenario: Add new Spots
-	When I create the following documents:
-		| Uid                                  | ExternalCampaignNumber | SalesArea | ExternalSpotRef | StartDateTime       |
-		| D43383EB-82AD-4A41-9F08-817FAE6D54B3 | GRID                   | TCN91     | G75669243       | 2019-03-10 11:00:00 |
-		| 57AC239E-C6D7-45BF-BDC8-01B35E93EC9D | GRID                   | TCN91     | G75669239       | 2019-03-10 11:00:00 |
-		| 4C5AAB5E-EFDF-476A-ADC1-C89D66CDBB2A | GRID                   | TCN91     | G75669235       | 2019-03-10 11:00:00 |
+	When I create 3 documents
 	And I get all documents
 	Then there should be 3 documents returned
 

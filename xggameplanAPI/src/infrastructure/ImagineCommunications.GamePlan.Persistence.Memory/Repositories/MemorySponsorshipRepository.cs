@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using ImagineCommunications.GamePlan.Domain.Sponsorships;
 using ImagineCommunications.GamePlan.Domain.Sponsorships.Objects;
@@ -10,9 +11,7 @@ namespace ImagineCommunications.GamePlan.Persistence.Memory.Repositories
         ISponsorshipRepository
 
     {
-        public MemorySponsorshipRepository()
-        {
-        }
+        public MemorySponsorshipRepository() { }
 
         public Sponsorship Get(string externalReferenceId) => GetItemById(externalReferenceId);
 
@@ -20,12 +19,13 @@ namespace ImagineCommunications.GamePlan.Persistence.Memory.Repositories
 
         public void Add(Sponsorship item)
         {
-            InsertOrReplaceItem(item, item.ExternalReferenceId);
+            var items = new List<Sponsorship>() { item };
+            InsertItems(items, items.Select(i => i.ExternalReferenceId).ToList());
         }
 
         public void Update(Sponsorship item)
         {
-            InsertOrReplaceItem(item, item.ExternalReferenceId);
+            UpdateOrInsertItem(item, item.ExternalReferenceId);
         }
 
         public void Delete(string externalReferenceId)
@@ -33,13 +33,11 @@ namespace ImagineCommunications.GamePlan.Persistence.Memory.Repositories
             DeleteItem(externalReferenceId);
         }
 
-        public void SaveChanges()
-        {
-        }
+        public void SaveChanges() { }
 
         public bool Exists(string externalReferenceId) => GetItemById(externalReferenceId) != null;
 
-        public void Truncate()
+        private void Truncate()
         {
             DeleteAllItems();
         }
@@ -47,7 +45,7 @@ namespace ImagineCommunications.GamePlan.Persistence.Memory.Repositories
         public Task TruncateAsync()
         {
             Truncate();
-            return Task.CompletedTask;
+            return Task.FromResult(true);
         }
     }
 }

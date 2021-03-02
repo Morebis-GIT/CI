@@ -11,9 +11,9 @@
           "End": "2019-06-07T00:00:00.0000000Z"
         }
       ],
-      "CustomId": 1,
-      "Name": "NM1",
-      "ShortName": "GTV 10",
+      "CustomId": 10,
+      "Name": "GTV91",
+      "ShortName": "GTV 9",
       "CurrencyCode": "GE",
       "TargetAreaName": "GTV_Edited",
       "BaseDemographic1": "BD2",
@@ -23,4 +23,4 @@
       "DayDuration": "00:00:00.0000015"
     }
   ]
-}
+} 

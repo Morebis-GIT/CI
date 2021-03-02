@@ -4,7 +4,6 @@ using System.Collections.Immutable;
 using System.Linq;
 using System.Linq.Expressions;
 using AutoMapper;
-using ImagineCommunications.GamePlan.Domain.BusinessRules.Clashes;
 using ImagineCommunications.GamePlan.Domain.BusinessRules.Clashes.Objects;
 using ImagineCommunications.GamePlan.Domain.BusinessRules.ClashExceptions;
 using ImagineCommunications.GamePlan.Domain.BusinessRules.ClashExceptions.Objects;
@@ -367,7 +366,7 @@ namespace ImagineCommunications.GamePlan.Persistence.RavenDb.Repositories
             var clashes = _session.GetAll<Clash>(currentItem => currentItem.Externalref.In(clashExternalRefs));
 
             return clashExternalRefs.Any()
-                ? clashes.IndexListByExternalRef()
+                ? Clash.IndexListByExternalRef(clashes)
                 : ImmutableDictionary<string, Clash>.Empty;
         }
 

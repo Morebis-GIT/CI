@@ -8,13 +8,11 @@ namespace ImagineCommunications.GamePlan.Persistence.SqlServer.EntityConfigurati
     {
         public void Configure(EntityTypeBuilder<SpotBookingRuleSalesArea> builder)
         {
-            _ = builder.ToTable("SpotBookingRuleSalesAreas");
-            _ = builder.HasKey(e => e.Id);
-            _ = builder.Property(p => p.Id).UseSqlServerIdentityColumn();
-            _ = builder.Property(x => x.SalesAreaId);
-
-            _ = builder.HasIndex(e => e.SpotBookingRuleId);
-            _ = builder.HasIndex(x => x.SalesAreaId);
+            builder.ToTable("SpotBookingRuleSalesAreas");
+            builder.HasKey(e => e.Id);
+            builder.Property(p => p.Id).UseMySqlIdentityColumn();
+            builder.Property(x => x.Name).HasMaxLength(512).IsRequired();
+            builder.HasIndex(e => e.SpotBookingRuleId);
         }
     }
 }

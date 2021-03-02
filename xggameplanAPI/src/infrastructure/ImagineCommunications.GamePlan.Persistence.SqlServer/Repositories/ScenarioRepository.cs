@@ -62,7 +62,6 @@ namespace ImagineCommunications.GamePlan.Persistence.SqlServer.Repositories
                 _dbContext.BulkInsertEngine.BulkInsert(entities, new BulkInsertOptions { PreserveInsertOrder = true });
 
                 BulkInsertNestedEntities(entities);
-
                 transaction.Commit();
 
                 var actionBuilder = new BulkInsertActionBuilder<ScenarioEntity>(entities, _mapper);

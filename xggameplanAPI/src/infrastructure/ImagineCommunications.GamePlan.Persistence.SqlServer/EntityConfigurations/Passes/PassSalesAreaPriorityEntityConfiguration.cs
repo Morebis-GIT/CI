@@ -8,18 +8,14 @@ namespace ImagineCommunications.GamePlan.Persistence.SqlServer.EntityConfigurati
     {
         public void Configure(EntityTypeBuilder<PassSalesAreaPriority> builder)
         {
-            _ = builder.ToTable("PassSalesAreaPriorities");
+            builder.ToTable("PassSalesAreaPriorities");
 
-            _ = builder.HasKey(e => e.Id);
-            _ = builder.Property(e => e.Id).UseSqlServerIdentityColumn();
+            builder.HasKey(e => e.Id);
+            builder.Property(e => e.Id).UseMySqlIdentityColumn();
 
-            _ = builder.HasOne(x => x.SalesArea)
-                .WithMany()
-                .HasForeignKey(x => x.SalesAreaId)
-                .OnDelete(DeleteBehavior.Restrict);
+            builder.Property(e => e.SalesArea).IsRequired().HasMaxLength(64);
 
-            _ = builder.HasIndex(x => x.SalesAreaId);
-            _ = builder.HasIndex(x => x.PassSalesAreaPriorityCollectionId);
+            builder.HasIndex(x => x.PassSalesAreaPriorityCollectionId);
         }
     }
 }

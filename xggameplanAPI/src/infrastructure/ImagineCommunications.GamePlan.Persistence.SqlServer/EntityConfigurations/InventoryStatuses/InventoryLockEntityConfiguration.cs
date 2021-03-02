@@ -1,5 +1,6 @@
 ﻿using ImagineCommunications.GamePlan.Persistence.SqlServer.Entities.Tenant.InventoryStatuses;
 using ImagineCommunications.GamePlan.Persistence.SqlServer.Extensions;
+
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
@@ -11,7 +12,7 @@ namespace ImagineCommunications.GamePlan.Persistence.SqlServer.EntityConfigurati
         {
             _ = builder.ToTable("InventoryLocks");
             _ = builder.HasKey(e => e.Id);
-            _ = builder.Property(e => e.Id).UseSqlServerIdentityColumn();
+            _ = builder.Property(e => e.Id).UseMySqlIdentityColumn();
             _ = builder.Property(e => e.InventoryCode).HasColumnType("NCHAR(10)").IsRequired();
             _ = builder.Property(e => e.StartDate).AsUtc();
             _ = builder.Property(e => e.EndDate).AsUtc();

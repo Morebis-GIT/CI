@@ -31,20 +31,19 @@ namespace xggameplan.specification.tests.Infrastructure
         [BeforeFeature("ManageDataStorage")]
         public static void BeforeFeature(IObjectContainer objectContainer, RepositoryTestDependencyRegistration dependencyRegistration)
         {
-            objectContainer.ResolveFeatureDependencies()
-                .ToList()
+            objectContainer.ResolveFeatureDependencies().ToList()
                 .ForEach(dependency => dependency.Register(objectContainer));
 
             var environmentSettings = objectContainer.Resolve<IEnvironmentSettings>();
+            var featureContext = objectContainer.Resolve<FeatureContext>();
 
-            using var featureContext = objectContainer.Resolve<FeatureContext>();
             IgnoreDataProviderSpecificFeature(featureContext, environmentSettings);
         }
 
         private static void IgnoreDataProviderSpecificFeature(FeatureContext featureContext, IEnvironmentSettings environmentSettings)
         {
             var dataProvider = environmentSettings.GetDataProvider();
-            if (dataProvider is null)
+            if (dataProvider == null)
             {
                 featureContext.IgnoreFeature("DataProvider is not defined");
             }
@@ -85,11 +84,8 @@ namespace xggameplan.specification.tests.Infrastructure
         [BeforeScenario]
         public void BeforeScenario(IObjectContainer objectContainer)
         {
-            using var context = objectContainer.Resolve<FeatureContext>();
-            context.FeatureContainer
-                    .ResolveScenarioDependencies()
-                    .ToList()
-                    .ForEach(dependency => dependency.Register(objectContainer));
+            objectContainer.Resolve<FeatureContext>().FeatureContainer.ResolveScenarioDependencies().ToList()
+                .ForEach(dependency => dependency.Register(objectContainer));
         }
 
         [AfterScenario]
@@ -101,7 +97,7 @@ namespace xggameplan.specification.tests.Infrastructure
             }
         }
 
-        [StepArgumentTransformation("(try to |)")]
+        [StepArgumentTransformation(@"(try to |)")]
         public bool ThrowException(string tryTo)
         {
             return !"try to ".Equals(tryTo, StringComparison.OrdinalIgnoreCase);

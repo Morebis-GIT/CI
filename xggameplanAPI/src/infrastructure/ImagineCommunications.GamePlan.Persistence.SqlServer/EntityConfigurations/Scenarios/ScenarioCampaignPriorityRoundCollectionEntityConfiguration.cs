@@ -11,7 +11,7 @@ namespace ImagineCommunications.GamePlan.Persistence.SqlServer.EntityConfigurati
             builder.ToTable("ScenarioCampaignPriorityRoundCollections");
 
             builder.HasKey(e => e.Id);
-            builder.Property(e => e.Id).UseSqlServerIdentityColumn();
+            builder.Property(e => e.Id).UseMySqlIdentityColumn();
 
             builder.HasMany(e => e.Rounds).WithOne()
                 .HasForeignKey(e => e.ScenarioCampaignPriorityRoundCollectionId)

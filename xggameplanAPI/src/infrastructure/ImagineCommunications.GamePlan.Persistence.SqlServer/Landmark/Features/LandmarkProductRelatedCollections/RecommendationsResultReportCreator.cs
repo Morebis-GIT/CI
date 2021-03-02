@@ -12,10 +12,8 @@ using ImagineCommunications.GamePlan.Domain.Shared.Products.Objects;
 using ImagineCommunications.GamePlan.Domain.Shared.SalesAreas;
 using ImagineCommunications.GamePlan.Domain.Shared.System.Tenants;
 using ImagineCommunications.GamePlan.Persistence.SqlServer.Core.Interfaces;
-using ImagineCommunications.GamePlan.Persistence.SqlServer.Interfaces;
 using ImagineCommunications.GamePlan.Persistence.SqlServer.Views.Tenant;
 using Microsoft.EntityFrameworkCore;
-using xggameplan.core.Extensions.AutoMapper;
 using xggameplan.core.ReportGenerators.ScenarioCampaignResults;
 using AgencyEntity = ImagineCommunications.GamePlan.Persistence.SqlServer.Entities.Tenant.Agency;
 using CampaignEntity = ImagineCommunications.GamePlan.Persistence.SqlServer.Entities.Tenant.Campaigns.Campaign;
@@ -33,7 +31,6 @@ namespace ImagineCommunications.GamePlan.Persistence.SqlServer.Landmark.Features
         private readonly ISqlServerDbContextFactory<ISqlServerTenantDbContext> _dbContextFactory;
         private readonly IRepositoryFactory _repositoryFactory;
         private readonly IMapper _mapper;
-        private readonly ISqlServerSalesAreaByIdCacheAccessor _salesAreaByIdCache;
 
         private IDictionary<string, SalesArea> _salesAreas;
         private IDictionary<string, Demographic> _demographics;
@@ -52,13 +49,11 @@ namespace ImagineCommunications.GamePlan.Persistence.SqlServer.Landmark.Features
         public RecommendationsResultReportCreator(
             ISqlServerDbContextFactory<ISqlServerTenantDbContext> dbContextFactory,
             IRepositoryFactory repositoryFactory,
-            ISqlServerSalesAreaByIdCacheAccessor salesAreaByIdCache,
             IMapper mapper)
             : base(mapper)
         {
             _dbContextFactory = dbContextFactory;
             _repositoryFactory = repositoryFactory;
-            _salesAreaByIdCache = salesAreaByIdCache;
             _mapper = mapper;
         }
 
@@ -89,7 +84,7 @@ namespace ImagineCommunications.GamePlan.Persistence.SqlServer.Landmark.Features
                          .Include(x => x.SalesAreaCampaignTargets)
                          .ThenInclude(x => x.SalesAreaGroup)
                      on campaignWithProductRelations.CampaignId equals campaign.Id
-                 join productJoin in dbContext.Query<ProductEntity>() on campaignWithProductRelations.ProductId equals productJoin.Uid into pJoin
+                 join productJoin in dbContext.Query<ProductEntity>() on campaignWithProductRelations.ProductId equals productJoin.Id into pJoin
                  from product in pJoin.DefaultIfEmpty()
                  join agencyJoin in dbContext.Query<AgencyEntity>() on campaignWithProductRelations.AgencyId equals agencyJoin.Id into agJoin
                  from agency in agJoin.DefaultIfEmpty()
@@ -103,7 +98,7 @@ namespace ImagineCommunications.GamePlan.Persistence.SqlServer.Landmark.Features
                 .AsNoTracking()
                 .ToDictionary(x => x.Campaign.ExternalId, x => new ProductLinkDomain
                 {
-                    Campaign = _mapper.Map<Campaign>(x.Campaign, opts => opts.UseEntityCache(_salesAreaByIdCache)),
+                    Campaign = _mapper.Map<Campaign>(x.Campaign),
                     Product = x.Product is null ? null : new Product
                     {
                         Externalidentifier = x.Product.Externalidentifier,

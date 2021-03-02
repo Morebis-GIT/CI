@@ -10,24 +10,19 @@ namespace ImagineCommunications.GamePlan.Persistence.SqlServer.EntityConfigurati
     {
         public void Configure(EntityTypeBuilder<PassBreakExclusion> builder)
         {
-            _ = builder.ToTable("PassBreakExclusions");
+            builder.ToTable("PassBreakExclusions");
 
-            _ = builder.HasKey(e => e.Id);
-            _ = builder.Property(e => e.Id).UseSqlServerIdentityColumn();
+            builder.HasKey(e => e.Id);
+            builder.Property(e => e.Id).UseMySqlIdentityColumn();
 
-            _ = builder.Property(e => e.StartDate).AsUtc();
-            _ = builder.Property(e => e.EndDate).AsUtc();
-            _ = builder.Property(e => e.StartTime).AsTicks();
-            _ = builder.Property(e => e.EndTime).AsTicks();
-            _ = builder.Property(e => e.SelectableDays).AsStringPattern(DayOfWeek.Sunday);
+            builder.Property(e => e.SalesArea).IsRequired(true).HasMaxLength(64);
+            builder.Property(e => e.StartDate).AsUtc();
+            builder.Property(e => e.EndDate).AsUtc();
+            builder.Property(e => e.StartTime).AsTicks();
+            builder.Property(e => e.EndTime).AsTicks();
+            builder.Property(e => e.SelectableDays).AsStringPattern(DayOfWeek.Sunday);
 
-            _ = builder.HasOne(x => x.SalesArea)
-                .WithMany()
-                .HasForeignKey(x => x.SalesAreaId)
-                .OnDelete(DeleteBehavior.Restrict);
-
-            _ = builder.HasIndex(x => x.PassId);
-            _ = builder.HasIndex(x => x.SalesAreaId);
+            builder.HasIndex(x => x.PassId);
         }
     }
 }

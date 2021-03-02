@@ -8,23 +8,22 @@ namespace ImagineCommunications.GamePlan.Persistence.SqlServer.EntityConfigurati
     {
         public void Configure(EntityTypeBuilder<Entities.Tenant.Sponsorships.SponsorshipItem> builder)
         {
-            _ = builder.ToTable("SponsorshipItems");
+            builder.ToTable("SponsorshipItems");
 
-            _ = builder.HasKey(e => e.Id);
-            _ = builder.Property(e => e.Id).UseSqlServerIdentityColumn();
+            builder.HasKey(e => e.Id);
+            builder.Property(e => e.Id).UseMySqlIdentityColumn();
 
-            _ = builder.Property(e => e.SponsoredItemId);
-            _ = builder.Property(e => e.StartDate).AsUtc();
-            _ = builder.Property(e => e.EndDate).AsUtc();
-            _ = builder.Property(e => e.ProgrammeName).HasMaxLength(128);
+            builder.Property(e => e.SponsoredItemId);
+            builder.Property(e => e.StartDate).AsUtc();
+            builder.Property(e => e.EndDate).AsUtc();
+            builder.Property(e => e.ProgrammeName).HasMaxLength(128);
+            builder.Property(e => e.SalesAreas).AsDelimitedString();
 
-            _ = builder.HasMany(e => e.DayParts).WithOne()
+            builder.HasMany(e => e.DayParts).WithOne()
                 .HasForeignKey(e => e.SponsorshipItemId)
                 .OnDelete(DeleteBehavior.Cascade);
 
-            _ = builder.HasMany(e => e.SalesAreas).WithOne(e => e.SponsorshipItem);
-
-            _ = builder.HasIndex(x => x.SponsoredItemId);
+            builder.HasIndex(x => x.SponsoredItemId);
         }
     }
 }

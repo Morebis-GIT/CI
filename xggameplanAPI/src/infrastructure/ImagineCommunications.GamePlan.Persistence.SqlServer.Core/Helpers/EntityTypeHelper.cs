@@ -9,8 +9,8 @@ namespace ImagineCommunications.GamePlan.Persistence.SqlServer.Core.Helpers
         {
             var entityTypeInfo = entityType?.Relational();
             return entityTypeInfo is null ? null :
-                (!string.IsNullOrEmpty(entityTypeInfo.Schema) ? $"[{entityTypeInfo.Schema}]." : string.Empty) +
-                $"[{entityTypeInfo.TableName}]";
+                (!string.IsNullOrEmpty(entityTypeInfo.Schema) ? $"{entityTypeInfo.Schema}." : string.Empty) +
+                $"{entityTypeInfo.TableName}";
         }
     }
 }

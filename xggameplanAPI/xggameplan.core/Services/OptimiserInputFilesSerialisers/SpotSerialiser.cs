@@ -7,7 +7,6 @@ using System.Linq;
 using System.Threading.Tasks;
 using ImagineCommunications.GamePlan.Domain.AutoBookApi.DefaultParameters.Objects;
 using ImagineCommunications.GamePlan.Domain.Breaks.Objects;
-using ImagineCommunications.GamePlan.Domain.BusinessRules.Clashes;
 using ImagineCommunications.GamePlan.Domain.BusinessRules.Clashes.Objects;
 using ImagineCommunications.GamePlan.Domain.BusinessTypes.Objects;
 using ImagineCommunications.GamePlan.Domain.Campaigns.Objects;
@@ -92,7 +91,7 @@ namespace xggameplan.core.Services.OptimiserInputFilesSerialisers
                 .ToDictionary(bt => bt.Code, bt => bt.IncludeConversionIndex);
             Dictionary<string, BreakWithProgramme> breaksWithProgrammeBySalesAreaAndExternalBreakRef = BreakWithProgramme.IndexListBySalesAreaAndExternalBreakRef(breaks);
             IImmutableDictionary<string, Product> productByExternalId = products.IndexListByExternalID();
-            IImmutableDictionary<string, Clash> clashByExternalRef = clashes.IndexListByExternalRef();
+            IImmutableDictionary<string, Clash> clashByExternalRef = Clash.IndexListByExternalRef(clashes);
 
             var clashRoots = ClashHelper.CalculateClashTopParents(clashByExternalRef);
 

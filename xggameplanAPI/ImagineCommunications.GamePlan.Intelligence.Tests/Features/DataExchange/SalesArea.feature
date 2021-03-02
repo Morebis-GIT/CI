@@ -24,6 +24,7 @@ Scenario: BulkSalesAreaCreatedOrUpdated message should throw validation exceptio
 		| Data[0].DayDuration      |
 		| Data[0].Demographics     |
 
+
 Scenario: BulkSalesAreaCreatedOrUpdated message should successfully save record in the database
 	Given The data from file SalesArea.Setup exists in database
 	And I have BulkSalesAreaCreatedOrUpdated message from file SalesArea.BulkSalesAreaCreatedOrUpdated.SuccessCreate_Request to publish
@@ -32,11 +33,13 @@ Scenario: BulkSalesAreaCreatedOrUpdated message should successfully save record 
 	And the SalesAreas data in GamePlan database is updated as the data from the following file SalesArea.BulkSalesAreaCreatedOrUpdated.SuccessCreate_Result
 
 #UPDATE
+
 Scenario: BulkSalesAreaCreatedOrUpdated message should throw exception when demographic is not found
 	Given The data from file SalesArea.Setup exists in database
 	And I have BulkSalesAreaCreatedOrUpdated message from file SalesArea.BulkSalesAreaCreatedOrUpdated.InvalidDemographic_Request to publish
 	When I publish message to message broker
 	Then GamePlanIntelligence throws exception with the code: DemographicNotFound
+
 
 Scenario: BulkSalesAreaCreatedOrUpdated message should successfully update record in the database
 	Given The data from file SalesArea.Setup exists in database
@@ -66,11 +69,13 @@ Scenario: SalesAreaUpdated message should throw exception when sales area is not
 	When I publish message to message broker
 	Then GamePlanIntelligence throws exception with the code: SalesAreaNotFound
 
+
 Scenario: SalesAreaUpdated message should throw exception when demographic is not found
 	Given The data from file SalesArea.Setup exists in database
 	And I have SalesAreaUpdated message from file SalesArea.SalesAreaUpdated.InvalidDemographic_Request to publish
 	When I publish message to message broker
 	Then GamePlanIntelligence throws exception with the code: DemographicNotFound
+
 
 Scenario: SalesAreaUpdated message should successfully update record in the database
 	Given The data from file SalesArea.Setup exists in database
@@ -87,6 +92,7 @@ Scenario: BulkSalesAreaDeleted message should throw validation exception for emp
 	Then GamePlanIntelligence throws ContractValidation exception for following properties
 		| PropertyName      |
 		| Data[0].ShortName |
+
 
 Scenario: BulkSalesAreaDeleted message should delete record with specified short name from the database
 	Given The data from file SalesArea.Setup exists in database

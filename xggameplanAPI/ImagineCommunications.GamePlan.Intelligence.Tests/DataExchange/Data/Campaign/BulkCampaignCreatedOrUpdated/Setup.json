@@ -48,12 +48,12 @@
       ],
       "SalesAreaCampaignTarget": [
         {
-          "SalesArea": "GTV93",
+          "SalesArea": null,
           "StopBooking": true,
           "SalesAreaGroup": {
-            "GroupName": "GTV93",
+            "GroupName": "TCN93",
             "SalesAreas": [
-              "GTV93"
+              "TCN93"
             ]
           },
           "Multiparts": [
@@ -374,6 +374,29 @@
       "Name": "OTHER",
       "ExternalRef": "",
       "ParentExternalRef": ""
+    }
+  ],
+  "SalesAreas": [
+    {
+      "ChannelGroup": [
+        "GTV91"
+      ],
+      "PublicHolidays": [],
+      "SchoolHolidays": [
+        {
+          "Start": "2019-06-03T00:00:00.0000000Z",
+          "End": "2019-06-07T00:00:00.0000000Z"
+        }
+      ],
+      "CustomId": 1,
+      "Name": "GTV91",
+      "ShortName": "GTV 9",
+      "CurrencyCode": "AUD",
+      "BaseDemographic1": "2",
+      "BaseDemographic2": "509",
+      "UniverseId": 0,
+      "StartOffset": "01:00:00",
+      "DayDuration": "01:00:00"
     }
   ]
 }

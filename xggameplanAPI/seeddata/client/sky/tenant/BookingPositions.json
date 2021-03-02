@@ -1,0 +1,38 @@
+[
+  {
+    "Id": 1,
+    "Position": 1,
+    "Abbreviation": "FST",
+    "BookingOrder": 1
+  },
+  {
+    "Id": 2,
+    "Position": 2,
+    "Abbreviation": "SND",
+    "BookingOrder": 3
+  },
+  {
+    "Id": 3,
+    "Position": 3,
+    "Abbreviation": "THD",
+    "BookingOrder": 5
+  },
+  {
+    "Id": 4,
+    "Position": 97,
+    "Abbreviation": "APN",
+    "BookingOrder": 6
+  },
+  {
+    "Id": 5,
+    "Position": 98,
+    "Abbreviation": "PEN",
+    "BookingOrder": 4
+  },
+  {
+    "Id": 6,
+    "Position": 99,
+    "Abbreviation": "LST",
+    "BookingOrder": 2
+  }
+]

@@ -12,9 +12,6 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "common", "common", "{C49F1040-7E6D-4302-BD44-EC2CC3F09152}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{BDC2FB71-9477-453F-A36D-058D3EDB96A6}"
-	ProjectSection(SolutionItems) = preProject
-		README.txt = README.txt
-	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "infrastructure", "infrastructure", "{F1FD6DB4-6A79-4065-9A0A-68C04026DA51}"
 EndProject
@@ -27,6 +24,8 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "processes", "processes", "{FDE3985E-C5E5-4334-9DA2-92FE695255F3}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "smooth", "smooth", "{366E1B44-FD6A-49E9-BF1F-BD05655FAB25}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{0C5FA90D-EDBF-473C-ABF0-A08A99D467FD}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "xggameplan", "xggameplan\xggameplan.csproj", "{60A6A3D4-CB6D-40AC-A14F-D28F82B0DE64}"
 EndProject
@@ -58,6 +57,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ImagineCommunications.GameP
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ImagineCommunications.GamePlan.Domain", "src\domain\ImagineCommunications.GamePlan.Domain\ImagineCommunications.GamePlan.Domain.csproj", "{3099D7DC-BC6E-4D9F-9668-C5798BD7F37C}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ImagineCommunications.GamePlan.Domain.Tests", "src\domain\ImagineCommunications.GamePlan.Domain.Tests\ImagineCommunications.GamePlan.Domain.Tests.csproj", "{860E56DC-5068-4FA8-8D55-03CEBBEEF9EA}"
+EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ImagineCommunications.GamePlan.Persistence.RavenDb.Core", "src\infrastructure\ImagineCommunications.GamePlan.Persistence.RavenDb.Core\ImagineCommunications.GamePlan.Persistence.RavenDb.Core.csproj", "{75E54B40-26AA-4A07-9E6F-4CE9BA0AB753}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ImagineCommunications.GamePlan.Persistence.SqlServer.Core", "src\infrastructure\ImagineCommunications.GamePlan.Persistence.SqlServer.Core\ImagineCommunications.GamePlan.Persistence.SqlServer.Core.csproj", "{DDE95361-0663-41B3-BFBE-85F91A8769F3}"
@@ -88,7 +89,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ImagineCommunications.GameP
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ImagineCommunications.GamePlan.Persistence.File", "src\infrastructure\ImagineCommunications.GamePlan.Persistence.File\ImagineCommunications.GamePlan.Persistence.File.csproj", "{03689E61-5D61-4A84-B6C0-4C483EEA9E5A}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ImagineCommunications.GamePlan.Process.Smooth.Tests", "test\ImagineCommunications.GamePlan.Process.Smooth.Tests\ImagineCommunications.GamePlan.Process.Smooth.Tests.csproj", "{68BF9439-EDDB-4E98-8423-30638A6B174F}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ImagineCommunications.GamePlan.Process.Smooth.Tests", "src\processes\smooth\ImagineCommunications.GamePlan.Process.Smooth.Tests\ImagineCommunications.GamePlan.Process.Smooth.Tests.csproj", "{68BF9439-EDDB-4E98-8423-30638A6B174F}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ImagineCommunications.BusClient.Domain", "src\integration\ImagineCommunications.BusClient.Domain\ImagineCommunications.BusClient.Domain.csproj", "{429C5248-CD64-4D3E-8A3D-8819BA2C5E3D}"
 EndProject
@@ -119,8 +120,6 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ImagineCommunications.GamePlan.Utils.DataPurging", "src\infrastructure\ImagineCommunications.GamePlan.Utils.DataPurging\ImagineCommunications.GamePlan.Utils.DataPurging.csproj", "{89AEDDE5-B58B-46EB-A1F3-48767EA589F4}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ImagineCommunications.GamePlan.Integration.Tests", "src\integration\ImagineCommunications.GamePlan.Integration.Tests\ImagineCommunications.GamePlan.Integration.Tests.csproj", "{F7AADAB9-9115-4B67-B4F6-7AB172FBD392}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ImagineCommunications.GamePlan.Domain.XUnit.Tests", "test\ImagineCommunications.GamePlan.Domain.XUnit.Tests\ImagineCommunications.GamePlan.Domain.XUnit.Tests.csproj", "{DE059786-B1FE-4063-A3F1-D7D6A9643F00}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -188,6 +187,10 @@ Global
 		{3099D7DC-BC6E-4D9F-9668-C5798BD7F37C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3099D7DC-BC6E-4D9F-9668-C5798BD7F37C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3099D7DC-BC6E-4D9F-9668-C5798BD7F37C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{860E56DC-5068-4FA8-8D55-03CEBBEEF9EA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{860E56DC-5068-4FA8-8D55-03CEBBEEF9EA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{860E56DC-5068-4FA8-8D55-03CEBBEEF9EA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{860E56DC-5068-4FA8-8D55-03CEBBEEF9EA}.Release|Any CPU.Build.0 = Release|Any CPU
 		{75E54B40-26AA-4A07-9E6F-4CE9BA0AB753}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{75E54B40-26AA-4A07-9E6F-4CE9BA0AB753}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{75E54B40-26AA-4A07-9E6F-4CE9BA0AB753}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -292,10 +295,6 @@ Global
 		{F7AADAB9-9115-4B67-B4F6-7AB172FBD392}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F7AADAB9-9115-4B67-B4F6-7AB172FBD392}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F7AADAB9-9115-4B67-B4F6-7AB172FBD392}.Release|Any CPU.Build.0 = Release|Any CPU
-		{DE059786-B1FE-4063-A3F1-D7D6A9643F00}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{DE059786-B1FE-4063-A3F1-D7D6A9643F00}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{DE059786-B1FE-4063-A3F1-D7D6A9643F00}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{DE059786-B1FE-4063-A3F1-D7D6A9643F00}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -307,6 +306,7 @@ Global
 		{AF415EEE-343D-4429-A05B-60A2B86D2444} = {F1FD6DB4-6A79-4065-9A0A-68C04026DA51}
 		{53D98031-AB93-4E8C-9CB4-1DC0168EA451} = {7C1BF26A-5EC2-4471-B025-D26B2E85C767}
 		{366E1B44-FD6A-49E9-BF1F-BD05655FAB25} = {FDE3985E-C5E5-4334-9DA2-92FE695255F3}
+		{0C5FA90D-EDBF-473C-ABF0-A08A99D467FD} = {366E1B44-FD6A-49E9-BF1F-BD05655FAB25}
 		{60A6A3D4-CB6D-40AC-A14F-D28F82B0DE64} = {94528DDF-D5F1-462F-A8CB-0FFBFA816CC5}
 		{EFC37031-75BD-4C4B-B760-E1D3ABA0A734} = {C49F1040-7E6D-4302-BD44-EC2CC3F09152}
 		{1A6ED508-D9A1-42F8-8479-573DE3809266} = {F1FD6DB4-6A79-4065-9A0A-68C04026DA51}
@@ -322,6 +322,7 @@ Global
 		{196AEB89-0078-4F0D-9A86-354B0AE02625} = {F1FD6DB4-6A79-4065-9A0A-68C04026DA51}
 		{E4E13375-E595-4DF3-81D4-C14314BACDFB} = {CE3C1A24-4F20-4AA0-A3A4-E9EEA3C2B768}
 		{3099D7DC-BC6E-4D9F-9668-C5798BD7F37C} = {CE3C1A24-4F20-4AA0-A3A4-E9EEA3C2B768}
+		{860E56DC-5068-4FA8-8D55-03CEBBEEF9EA} = {BDC2FB71-9477-453F-A36D-058D3EDB96A6}
 		{75E54B40-26AA-4A07-9E6F-4CE9BA0AB753} = {F1FD6DB4-6A79-4065-9A0A-68C04026DA51}
 		{DDE95361-0663-41B3-BFBE-85F91A8769F3} = {F1FD6DB4-6A79-4065-9A0A-68C04026DA51}
 		{D11F0978-3E0E-4739-AB1F-5EAB7BC83DF2} = {F1FD6DB4-6A79-4065-9A0A-68C04026DA51}
@@ -337,7 +338,7 @@ Global
 		{A6420DC4-B4DE-4FA4-B627-F18F1B42BF51} = {AF415EEE-343D-4429-A05B-60A2B86D2444}
 		{51AAB30E-1451-46E7-A564-E3AE0C11F064} = {F1FD6DB4-6A79-4065-9A0A-68C04026DA51}
 		{03689E61-5D61-4A84-B6C0-4C483EEA9E5A} = {F1FD6DB4-6A79-4065-9A0A-68C04026DA51}
-		{68BF9439-EDDB-4E98-8423-30638A6B174F} = {842C5CA7-5CCC-4F41-8E41-F6AD60BA6A2D}
+		{68BF9439-EDDB-4E98-8423-30638A6B174F} = {0C5FA90D-EDBF-473C-ABF0-A08A99D467FD}
 		{429C5248-CD64-4D3E-8A3D-8819BA2C5E3D} = {7C1BF26A-5EC2-4471-B025-D26B2E85C767}
 		{82D290EB-70B1-4E1C-8B1C-D4DBF66185CA} = {F1FD6DB4-6A79-4065-9A0A-68C04026DA51}
 		{92BC7817-AF28-423B-BBA0-A305DBC4133B} = {7C1BF26A-5EC2-4471-B025-D26B2E85C767}
@@ -348,7 +349,6 @@ Global
 		{0C9C1259-6948-4621-A532-FBCCC56AEC5D} = {842C5CA7-5CCC-4F41-8E41-F6AD60BA6A2D}
 		{89AEDDE5-B58B-46EB-A1F3-48767EA589F4} = {F1FD6DB4-6A79-4065-9A0A-68C04026DA51}
 		{F7AADAB9-9115-4B67-B4F6-7AB172FBD392} = {53D98031-AB93-4E8C-9CB4-1DC0168EA451}
-		{DE059786-B1FE-4063-A3F1-D7D6A9643F00} = {842C5CA7-5CCC-4F41-8E41-F6AD60BA6A2D}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {6898C68B-BCA5-4570-AAED-03B719BC942C}

@@ -54,7 +54,7 @@ namespace xggameplan.AuditEvents
 
                 _ = values
                         .Append(auditEventValue.TypeID.ToString())
-                        .Append(_delimiter);
+                        .Append(_delimiter.ToString());
 
                 countValuesDone++;
 
@@ -73,15 +73,7 @@ namespace xggameplan.AuditEvents
                 _ = values.Append(_delimiter);
             }
 
-            return String.Format(
-                "{1}{0}{2}{0}{3}{0}{4}{0}{5}{0}{6}",
-                _delimiter,
-                auditEvent.TimeCreated.ToString("o"),
-                auditEvent.TenantID,
-                auditEvent.UserID,
-                auditEvent.Source,
-                auditEvent.EventTypeID,
-                values.ToString());
+            return string.Format("{1}{0}{2}{0}{3}{0}{4}{0}{5}{0}{6}{0}{7}", _delimiter, auditEvent.ID, auditEvent.TimeCreated.ToString("o"), auditEvent.TenantID, auditEvent.UserID, auditEvent.Source, auditEvent.EventTypeID, values.ToString());
         }
 
         public void Insert(AuditEvent auditEvent)
@@ -149,7 +141,7 @@ namespace xggameplan.AuditEvents
         private static void WriteHeader(TextWriter syncTextWriter, StringBuilder valuesHeader)
         {
             syncTextWriter.WriteLine(
-                $"Time{_delimiter}TenantID{_delimiter}UserID{_delimiter}Source{_delimiter}EventTypeID{_delimiter}{valuesHeader}"
+                $"ID{_delimiter}Time{_delimiter}TenantID{_delimiter}UserID{_delimiter}Source{_delimiter}EventTypeID{_delimiter}{valuesHeader}"
                 );
         }
 
@@ -185,7 +177,7 @@ namespace xggameplan.AuditEvents
         /// Returns the time range for all audit events in the system.
         /// </summary>
         /// <returns></returns>
-        private DateTime[] GetAuditEventTimeRangeFromLogs()
+        private DateTime[] GetAuditEventTimeRangeFromLogs(AuditEventFilter auditEventFilter)
         {
             if (!Directory.Exists(_folder))
             {
@@ -232,19 +224,19 @@ namespace xggameplan.AuditEvents
         /// If we don't return a range then the system will use the default.
         /// </summary>
         /// <returns></returns>
-        private DateTime[] GetAuditEventTimeRangeFromRun() =>
+        private DateTime[] GetAuditEventTimeRangeFromRun(AuditEventFilter auditEventFilter) =>
             Array.Empty<DateTime>();
 
         /// <summary>
         /// Returns the time range for all audit events in the system
         /// </summary>
         /// <returns></returns>
-        private DateTime[] GetAuditEventTimeRange()
+        private DateTime[] GetAuditEventTimeRange(AuditEventFilter auditEventFilter)
         {
-            DateTime[] timeRange = GetAuditEventTimeRangeFromRun();
+            DateTime[] timeRange = GetAuditEventTimeRangeFromRun(auditEventFilter);
             if (timeRange.Length == 0)
             {
-                timeRange = GetAuditEventTimeRangeFromLogs();
+                timeRange = GetAuditEventTimeRangeFromLogs(auditEventFilter);
             }
             return timeRange;
         }
@@ -256,7 +248,7 @@ namespace xggameplan.AuditEvents
         /// <returns></returns>
         public List<AuditEvent> Get(AuditEventFilter auditEventFilter)
         {
-            var auditEvents = new List<AuditEvent>();
+            List<AuditEvent> auditEvents = new List<AuditEvent>();
 
             if (String.IsNullOrEmpty(_folder))
             {
@@ -264,36 +256,30 @@ namespace xggameplan.AuditEvents
             }
 
             // Get time range of events in system
-            DateTime[] timeRange = GetAuditEventTimeRange();
-            if (timeRange.Length == 0)
+            DateTime[] timeRange = GetAuditEventTimeRange(auditEventFilter);
+            if (timeRange.Length > 0)     // Has events
             {
-                return auditEvents;
-            }
+                // If their range is wider than the events in the system then reduce range so that we check list files
+                DateTime minTimeCreated = auditEventFilter.MinTimeCreated.GetValueOrDefault(DateTime.MinValue.Date);
+                DateTime maxTimeCreated = auditEventFilter.MaxTimeCreated.GetValueOrDefault(DateTime.MaxValue.Date);
+                if (minTimeCreated < timeRange[0])
+                {
+                    minTimeCreated = timeRange[0];
+                }
+                if (maxTimeCreated > timeRange[1])
+                {
+                    maxTimeCreated = timeRange[1];
+                }
 
-            // If their range is wider than the events in the system then reduce range so that we check list files
-            DateTime minTimeCreated = auditEventFilter.MinTimeCreated.GetValueOrDefault(DateTime.MinValue.Date);
-            DateTime maxTimeCreated = auditEventFilter.MaxTimeCreated.GetValueOrDefault(DateTime.MaxValue.Date);
-            if (minTimeCreated < timeRange[0])
-            {
-                minTimeCreated = timeRange[0];
+                minTimeCreated = minTimeCreated.AddDays(-1).Date;
+                do
+                {
+                    minTimeCreated = minTimeCreated.AddDays(1);
+                    string auditEventLog = GetFile(minTimeCreated);
+                    Get(auditEventFilter, auditEventLog).ForEach(auditEvent => auditEvents.Add(auditEvent));
+                } while (minTimeCreated < maxTimeCreated);
             }
-            if (maxTimeCreated > timeRange[1])
-            {
-                maxTimeCreated = timeRange[1];
-            }
-
-            minTimeCreated = minTimeCreated.AddDays(-1).Date;
-            do
-            {
-                minTimeCreated = minTimeCreated.AddDays(1);
-                string auditEventLog = GetFile(minTimeCreated);
-                Get(auditEventFilter, auditEventLog).ForEach(auditEvent => auditEvents.Add(auditEvent));
-            } while (minTimeCreated < maxTimeCreated);
-
-            return auditEvents.OrderBy(x => x.TimeCreated)
-                .ThenBy(x => x.TenantID)
-                .ThenBy(x => x.UserID)
-                .ToList();
+            return auditEvents.OrderBy(x => x.TimeCreated).ThenBy(x => x.TenantID).ThenBy(x => x.UserID).ToList();
         }
 
         /// <summary>
@@ -310,34 +296,32 @@ namespace xggameplan.AuditEvents
             }
 
             // Get time range of events in system
-            DateTime[] timeRange = GetAuditEventTimeRange();
-            if (timeRange.Length == 0)
+            DateTime[] timeRange = GetAuditEventTimeRange(auditEventFilter);
+            if (timeRange.Length > 0)     // Has events
             {
-                return;
-            }
-
-            // If their range is wider than the events in the system then reduce range so that we check list files
-            DateTime minTimeCreated = auditEventFilter.MinTimeCreated.GetValueOrDefault(DateTime.MinValue.Date);
-            DateTime maxTimeCreated = auditEventFilter.MaxTimeCreated.GetValueOrDefault(DateTime.MaxValue.Date);
-            if (minTimeCreated < timeRange[0])
-            {
-                minTimeCreated = timeRange[0];
-            }
-            if (maxTimeCreated > timeRange[1])
-            {
-                maxTimeCreated = timeRange[1];
-            }
-
-            minTimeCreated = minTimeCreated.AddDays(-1).Date;
-            do
-            {
-                minTimeCreated = minTimeCreated.AddDays(1);
-                string auditEventLog = GetFile(minTimeCreated);
-                if (File.Exists(auditEventLog))
+                // If their range is wider than the events in the system then reduce range so that we check list files
+                DateTime minTimeCreated = auditEventFilter.MinTimeCreated.GetValueOrDefault(DateTime.MinValue.Date);
+                DateTime maxTimeCreated = auditEventFilter.MaxTimeCreated.GetValueOrDefault(DateTime.MaxValue.Date);
+                if (minTimeCreated < timeRange[0])
                 {
-                    File.Delete(auditEventLog);
+                    minTimeCreated = timeRange[0];
                 }
-            } while (minTimeCreated < maxTimeCreated);
+                if (maxTimeCreated > timeRange[1])
+                {
+                    maxTimeCreated = timeRange[1];
+                }
+
+                minTimeCreated = minTimeCreated.AddDays(-1).Date;
+                do
+                {
+                    minTimeCreated = minTimeCreated.AddDays(1);
+                    string auditEventLog = GetFile(minTimeCreated);
+                    if (File.Exists(auditEventLog))
+                    {
+                        File.Delete(auditEventLog);
+                    }
+                } while (minTimeCreated < maxTimeCreated);
+            }
         }
 
         /// <summary>
@@ -353,76 +337,70 @@ namespace xggameplan.AuditEvents
 
             string[] delimiter = new[] { _delimiter };
 
-            if (!File.Exists(auditEventLog))
+            if (File.Exists(auditEventLog))
             {
-                return auditEvents;
-            }
-
-            do
-            {
-                attempts++;
-                try
+                do
                 {
-                    auditEvents.Clear();
-
-                    using StreamReader reader = new StreamReader(auditEventLog);
+                    attempts++;
                     try
                     {
-                        string[] headers = new string[0];
-                        int lineCount = 0;
-
-                        while (!reader.EndOfStream)
+                        auditEvents.Clear();
+                        using (StreamReader reader = new StreamReader(auditEventLog))
                         {
-                            string[] values = reader.ReadLine().Split(delimiter, StringSplitOptions.None);
-                            lineCount++;
-                            if (lineCount == 1)
-                            {
-                                headers = values;
-                                continue;
-                            }
-
-                            // Deserialise audit event, check if meets criteria. For optimization
-                            // then DeserializeAuditEvent returns null if the audit event header
-                            // doesn't meet the filter criteria.
                             try
                             {
-                                AuditEvent auditEvent = DeserializeAuditEvent(headers, values, auditEventFilter);
-                                if (auditEvent != null)
+                                string[] headers = new string[0];
+                                int lineCount = 0;
+                                while (!reader.EndOfStream)
                                 {
-                                    if (IsAuditEventMeetsCriteria(auditEvent, auditEventFilter))
+                                    string[] values = reader.ReadLine().Split(delimiter, StringSplitOptions.None);
+                                    lineCount++;
+                                    if (lineCount == 1)   // Headers
                                     {
-                                        if (!auditEventFilter.IncludeValues)
+                                        headers = values;
+                                    }
+                                    else
+                                    {
+                                        // Deserialise audit event, check if meets criteria. For optimization then DeserializeAuditEvent returns null if the audit
+                                        // event header doesn't meet the filter criteria.
+                                        try
                                         {
-                                            auditEvent.Values.Clear();
+                                            AuditEvent auditEvent = DeserializeAuditEvent(headers, values, auditEventFilter);
+                                            if (auditEvent != null)
+                                            {
+                                                if (IsAuditEventMeetsCriteria(auditEvent, auditEventFilter))
+                                                {
+                                                    if (!auditEventFilter.IncludeValues)
+                                                    {
+                                                        auditEvent.Values.Clear();
+                                                    }
+                                                    auditEvents.Add(auditEvent);
+                                                }
+                                            }
                                         }
-                                        auditEvents.Add(auditEvent);
+                                        catch { }  // Ignore error
                                     }
                                 }
+                                attempts = -1;  // Done
                             }
-                            catch { }  // Ignore error
+                            catch
+                            {
+                                throw;
+                            }
+                            finally
+                            {
+                                reader.Close();     // Close now, not when GC decides
+                            }
                         }
-
-                        attempts = -1;  // Done
                     }
-                    catch
+                    catch (Exception exception) when (IsExceptionForFileInUse(exception) && attempts < 20)
                     {
-                        throw;
+                        Thread.Sleep(100);
                     }
-                    finally
-                    {
-                        reader.Close();     // Close now, not when GC decides
-                    }
-                }
-                catch (Exception exception) when (IsExceptionForFileInUse(exception) && attempts < 20)
-                {
-                    Thread.Sleep(100);
-                }
-            } while (attempts != -1);
+                } while (attempts != -1);
+            }
 
-            return auditEvents.OrderBy(x => x.TimeCreated)
-                .ThenBy(x => x.TenantID)
-                .ThenBy(x => x.UserID)
-                .ToList();
+            return auditEvents.OrderBy(x => x.TimeCreated).ThenBy(x => x.TenantID).ThenBy(x => x.UserID).ToList();
         }
 
         /// <summary>
@@ -435,7 +413,7 @@ namespace xggameplan.AuditEvents
         {
             if ((auditEvent.TenantID == auditEventFilter.TenantID.GetValueOrDefault(0) || auditEventFilter.TenantID.GetValueOrDefault(0) == 0) &&
                (auditEvent.UserID == auditEventFilter.UserID.GetValueOrDefault(0) || auditEventFilter.UserID.GetValueOrDefault(0) == 0) &&
-               (String.IsNullOrEmpty(auditEvent.Source) || String.IsNullOrEmpty(auditEventFilter.Source) || auditEvent.Source.Equals(auditEventFilter.Source, StringComparison.OrdinalIgnoreCase)) &&
+               (String.IsNullOrEmpty(auditEvent.Source) || String.IsNullOrEmpty(auditEventFilter.Source) || auditEvent.Source.ToUpper() == auditEventFilter.Source.ToUpper()) &&
                (auditEvent.TimeCreated >= auditEventFilter.MinTimeCreated.GetValueOrDefault(DateTime.MinValue.Date)) &&
                (auditEvent.TimeCreated <= auditEventFilter.MaxTimeCreated.GetValueOrDefault(DateTime.MaxValue.Date)) &&
                (auditEventFilter.EventTypeIds == null || auditEventFilter.EventTypeIds.Count == 0 || auditEventFilter.EventTypeIds.Contains(auditEvent.EventTypeID)))
@@ -489,12 +467,10 @@ namespace xggameplan.AuditEvents
 
         /// <summary>
         /// <para>
-        /// Deserializes AuditEvent from CSV values. As a performance optimization
-        /// then, if AuditEventFilter is passed, we check that the header meets
-        /// the filter criteria and only load the values if it does.
+        /// Deserializes AuditEvent from CSV values. As a performance optimization then, if AuditEventFilter is passed, we check that the
+        /// header meets the filter criteria and only load the values if it does.
         /// </para>
-        /// <para>NOTE: We do not currently deserialize complex objects, just
-        /// return as serialized string.</para>
+        /// <para>NOTE: We do not currently deserialize complex objects, just return as serialized string.</para>
         /// </summary>
         /// <param name="headers"></param>
         /// <param name="values"></param>
@@ -510,8 +486,9 @@ namespace xggameplan.AuditEvents
             }
 
             // Deserialize
-            var auditEvent = new AuditEvent
+            AuditEvent auditEvent = new AuditEvent()
             {
+                ID = valuesKeyed["ID"],
                 TimeCreated = DateTimeOffset.Parse(valuesKeyed["Time"]).UtcDateTime,
                 TenantID = Convert.ToInt32(valuesKeyed["TenantID"]),
                 UserID = Convert.ToInt32(valuesKeyed["UserID"]),
@@ -545,7 +522,7 @@ namespace xggameplan.AuditEvents
         /// <returns></returns>
         private string SerializeValue(AuditEventValue auditEventValue)
         {
-            if (auditEventValue.Value is null)
+            if (auditEventValue.Value == null)
             {
                 return "null";
             }
@@ -554,7 +531,7 @@ namespace xggameplan.AuditEvents
             AuditEventValueConverter converter = _valueConverters.Find(current => current.Handles(auditEventValue.TypeID));
             if (converter != null)
             {
-                return converter.ValueConverter.Convert(auditEventValue.Value, valueType.Type, typeof(string)).ToString();
+                return converter.ValueConverter.Convert(auditEventValue.Value, valueType.Type, typeof(String)).ToString();
             }
             return auditEventValue.Value.ToString();
         }
@@ -581,7 +558,7 @@ namespace xggameplan.AuditEvents
 
         private bool Handles(AuditEvent auditEvent)
         {
-            if (_csvAuditEventSettingsList is null)     // Repo not implemented yet, log it
+            if (_csvAuditEventSettingsList == null)     // Repo not implemented yet, log it
             {
                 return true;
             }

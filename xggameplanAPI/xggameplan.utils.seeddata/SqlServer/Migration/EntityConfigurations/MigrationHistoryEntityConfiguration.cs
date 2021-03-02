@@ -12,7 +12,7 @@ namespace xggameplan.utils.seeddata.SqlServer.Migration.EntityConfigurations
             _ = builder.ToTable("__RavenMigrationHistory");
 
             _ = builder.HasKey(e => e.Id);
-            _ = builder.Property(e => e.Id).UseSqlServerIdentityColumn();
+            _ = builder.Property(e => e.Id).UseMySqlIdentityColumn();
             _ = builder.Property(e => e.CollectionName).HasMaxLength(128).IsRequired();
             _ = builder.Property(e => e.Date).AsUtc();
 

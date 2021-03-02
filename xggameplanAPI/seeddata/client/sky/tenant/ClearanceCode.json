@@ -1,0 +1,298 @@
+[
+  {
+    "code": "101",
+    "description": "Features plane or holiday setting"
+  },
+  {
+    "code": "21",
+    "description": "Muted sound"
+  },
+  {
+    "code": "23",
+    "description": "Features sound distortion/interference"
+  },
+  {
+    "code": "24",
+    "description": "Features visual distortion/interference"
+  },
+  {
+    "code": "25",
+    "description": "Features simulated transmission failure"
+  },
+  {
+    "code": "28",
+    "description": "Not in English"
+  },
+  {
+    "code": "29",
+    "description": "Features unlinked comms back to back or 2+ prods"
+  },
+  {
+    "code": "29A",
+    "description": "XXFeatures 2 or more products linked together(old)"
+  },
+  {
+    "code": "30",
+    "description": "Features explosions"
+  },
+  {
+    "code": "31",
+    "description": "Features firearms"
+  },
+  {
+    "code": "32",
+    "description": "Niche Children's (new)"
+  },
+  {
+    "code": "33",
+    "description": "Includes competition mechanic"
+  },
+  {
+    "code": "48",
+    "description": "Features Nazi footage"
+  },
+  {
+    "code": "49A",
+    "description": "XXNiche Children's (old)"
+  },
+  {
+    "code": "53",
+    "description": "Legal Text"
+  },
+  {
+    "code": "54",
+    "description": "Gaming"
+  },
+  {
+    "code": "55",
+    "description": "Betting"
+  },
+  {
+    "code": "56",
+    "description": "Website with links to gaming"
+  },
+  {
+    "code": "57",
+    "description": "Gambling. Not in Northern Ireland."
+  },
+  {
+    "code": "58",
+    "description": "Includes a competitor broadcaster or provider."
+  },
+  {
+    "code": "59",
+    "description": "Betting or Bingo inc sign up offer; Post 2100 only"
+  },
+  {
+    "code": "911",
+    "description": "44085"
+  },
+  {
+    "code": "AA",
+    "description": "Artist"
+  },
+  {
+    "code": "AP",
+    "description": "Not during a General, European or by-election"
+  },
+  {
+    "code": "BE",
+    "description": "Not first or last in break"
+  },
+  {
+    "code": "BEA",
+    "description": "Beach / Sea / Waves"
+  },
+  {
+    "code": "BF",
+    "description": "Not first in break"
+  },
+  {
+    "code": "BL",
+    "description": "Not last in break"
+  },
+  {
+    "code": "CAR",
+    "description": "Cars / Coaches"
+  },
+  {
+    "code": "CE",
+    "description": "Certificate 18"
+  },
+  {
+    "code": "CF",
+    "description": "Certificate 15"
+  },
+  {
+    "code": "CG",
+    "description": "Certificate G"
+  },
+  {
+    "code": "CH",
+    "description": "Not in and around progs feat appeals for donations"
+  },
+  {
+    "code": "COM",
+    "description": "Competitor"
+  },
+  {
+    "code": "CP",
+    "description": "Certificate PG"
+  },
+  {
+    "code": "CS",
+    "description": "Certificate 16"
+  },
+  {
+    "code": "CT",
+    "description": "Certificate 12"
+  },
+  {
+    "code": "CU",
+    "description": "Certificate U"
+  },
+  {
+    "code": "CY",
+    "description": "Not in or adjacent to kids and under 18's"
+  },
+  {
+    "code": "DC",
+    "description": "Alcohol - no kids, under 18's, religious programme"
+  },
+  {
+    "code": "EC",
+    "description": "Not adj to parliamentary/party conference coverage"
+  },
+  {
+    "code": "EG",
+    "description": "Not during General or European election"
+  },
+  {
+    "code": "EI",
+    "description": "Not to be transmitted during an industrial dispute"
+  },
+  {
+    "code": "EP",
+    "description": "Not adjacent to any party political broadcast"
+  },
+  {
+    "code": "EXW",
+    "description": "Extreme Weather / Earthquakes / Tsunami / Flooding"
+  },
+  {
+    "code": "FH",
+    "description": "HFSS product"
+  },
+  {
+    "code": "FIR",
+    "description": "Fire"
+  },
+  {
+    "code": "FL",
+    "description": "Non-HFSS product"
+  },
+  {
+    "code": "GG",
+    "description": "Betting, Gaming or Bingo"
+  },
+  {
+    "code": "HFU",
+    "description": "Hospital / People Dying / Funeral"
+  },
+  {
+    "code": "HOL",
+    "description": "Holidays / Compare website"
+  },
+  {
+    "code": "HOS",
+    "description": "Hostage"
+  },
+  {
+    "code": "KA",
+    "description": "Sanpro / condom.  No kids under 10."
+  },
+  {
+    "code": "KB",
+    "description": "Not in or adjacent to under 16s programmes (KB)."
+  },
+  {
+    "code": "KC",
+    "description": "Not in or adjacent to under 16s programmes (KC)."
+  },
+  {
+    "code": "KNI",
+    "description": "Knives / Swords / Blades"
+  },
+  {
+    "code": "LID",
+    "description": "Lidl Ireland Part Alcohol Restriction (0600-1000)"
+  },
+  {
+    "code": "MOV",
+    "description": "Not in Movies"
+  },
+  {
+    "code": "PA",
+    "description": "Not in breaks adjacent to <programme>"
+  },
+  {
+    "code": "PE",
+    "description": "Not within/before but ok after if not first in brk"
+  },
+  {
+    "code": "PK",
+    "description": "Not in or adjacent to kids programmes"
+  },
+  {
+    "code": "PLA",
+    "description": "Planes"
+  },
+  {
+    "code": "PN",
+    "description": "Not adjacent to news programmes"
+  },
+  {
+    "code": "PP",
+    "description": "To be transmitted at least 2 hrs away from <prog>"
+  },
+  {
+    "code": "PR",
+    "description": "Not in religious programmes"
+  },
+  {
+    "code": "SCH",
+    "description": "School / Adventure Parks / Kids"
+  },
+  {
+    "code": "SKY",
+    "description": "Not in Sky wholly owned channels"
+  },
+  {
+    "code": "SPO",
+    "description": "Not in Sports"
+  },
+  {
+    "code": "TL",
+    "description": "Post 2300"
+  },
+  {
+    "code": "TN",
+    "description": "Post 2100"
+  },
+  {
+    "code": "TRA",
+    "description": "Trains"
+  },
+  {
+    "code": "TS",
+    "description": "Post 1930"
+  },
+  {
+    "code": "TT",
+    "description": "Post 2200"
+  },
+  {
+    "code": "Z-Q",
+    "description": "Fully Approved"
+  }
+]

@@ -30,6 +30,7 @@ Scenario: BulkProductCreatedOrUpdated successfully creates Product
 	Then GamePlanIntelligence consumes message
 	And the Products data in GamePlan database is updated as the data from the following file Product.BulkProductCreatedOrUpdated.CreateSuccess_Result
 
+
 Scenario: BulkProductCreatedOrUpdated successfully updates Product
 	Given The data from file Product.Setup exists in database
 	And I have BulkProductCreatedOrUpdated message from file Product.BulkProductCreatedOrUpdated.UpdateSuccess_Request to publish
@@ -45,6 +46,7 @@ Scenario: BulkProductDeleted invalid model
 	Then GamePlanIntelligence throws ContractValidation exception for following properties
 		| PropertyName       |
 		| Data[0].Externalidentifier |
+
 
 Scenario: BulkProductDeleted successfully deletes Product
 	Given The data from file Product.Setup exists in database

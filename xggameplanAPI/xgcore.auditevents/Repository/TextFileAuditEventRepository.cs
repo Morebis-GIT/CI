@@ -11,15 +11,16 @@ namespace xggameplan.AuditEvents
     /// </summary>
     public class TextFileAuditEventRepository : IAuditEventRepository
     {
-        private readonly string _folder;
-        private readonly IAuditEventTypeRepository _auditEventTypeRepository;
-        private readonly List<ITextFileAuditEventFormatter> _formatters;
+        private string _folder;
+        private IAuditEventTypeRepository _auditEventTypeRepository;
+        private List<ITextFileAuditEventFormatter> _formatters;
 
         public TextFileAuditEventRepository(IAuditEventTypeRepository auditEventTypeRepository, List<ITextFileAuditEventFormatter> formatters, string folder)
         {
             _auditEventTypeRepository = auditEventTypeRepository;
             _formatters = formatters;
             _folder = folder;
+
         }
 
         public void Insert(AuditEvent auditEvent)

@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using ImagineCommunications.GamePlan.Domain.SmoothFailureMessages;
 
 namespace ImagineCommunications.GamePlan.Persistence.Memory.Repositories
@@ -11,18 +12,13 @@ namespace ImagineCommunications.GamePlan.Persistence.Memory.Repositories
         {
         }
 
-        public void Dispose()
-        {
-        }
+        public void Dispose() { }
 
         public IEnumerable<SmoothFailureMessage> GetAll() => GetAllItems();
 
         public void Add(IEnumerable<SmoothFailureMessage> items)
         {
-            foreach (var item in items)
-            {
-                InsertOrReplaceItem(item, item.Id.ToString());
-            }
+            InsertItems(items.ToList(), items.Select(i => i.Id.ToString()).ToList<string>());
         }
 
         public void Truncate()
@@ -30,8 +26,6 @@ namespace ImagineCommunications.GamePlan.Persistence.Memory.Repositories
             DeleteAllItems();
         }
 
-        public void SaveChanges()
-        {
-        }
+        public void SaveChanges() { }
     }
 }

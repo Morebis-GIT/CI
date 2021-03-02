@@ -347,7 +347,7 @@ namespace xggameplan.AutoGen.AgDataPopulation
             /**
              * 0xCAFEF00D : Move this into another class
             **/
-            IEnumerable<AgProgRestriction> MapProgrammeCategory(
+            List<AgProgRestriction> MapProgrammeCategory(
                 ProgrammeRestriction programmeRestriction,
                 int campaignCustomid,
                 AgProgRestriction agProgRestriction)
@@ -362,18 +362,13 @@ namespace xggameplan.AutoGen.AgDataPopulation
                     mappedSalesAreas = salesAreas.Where(s => programmeRestriction.SalesAreas.Contains(s.Name)).ToList();
                 }
 
-                var categories = (programmeRestriction.IsIncludeOrExclude == "I"
-                    ? programmeRestriction.CategoryOrProgramme?.Select(x =>
-                        programmeCategories.FirstOrDefault(pc =>
-                            pc.Name.Equals(x, StringComparison.OrdinalIgnoreCase)))
-                    : programmeRestriction.CategoryOrProgramme?.Select(x =>
-                        programmeCategories.FirstOrDefault(pc =>
-                            pc.Name.Equals(x, StringComparison.OrdinalIgnoreCase)))
-                    .Where(x => !(x is null)))?.ToArray() ?? Array.Empty<ProgrammeCategoryHierarchy>();
+                var categories = programmeCategories
+                    .Where(c => programmeRestriction.CategoryOrProgramme.Any(p => p.Equals(c.Name, StringComparison.OrdinalIgnoreCase)))
+                    ?.ToList();
 
-                if (categories.Length == 0)
+                if (categories.Count == 0)
                 {
-                    return Enumerable.Empty<AgProgRestriction>();
+                    return null;
                 }
 
                 return mappedSalesAreas
@@ -385,36 +380,31 @@ namespace xggameplan.AutoGen.AgDataPopulation
 
                             agProgRestrictionClone.CampaignNo = campaignCustomid;
                             agProgRestrictionClone.SalesAreaNo = salesArea?.CustomId ?? 0;
-                            agProgRestrictionClone.PrgcNo = category?.Id ?? 999999;
+                            agProgRestrictionClone.PrgcNo = category.Id;
                             agProgRestrictionClone.IncludeExcludeFlag = programmeRestriction.IsIncludeOrExclude?.ToUpperInvariant();
 
                             return agProgRestrictionClone;
-                        });
-                    });
+                        }).ToList();
+                    }).ToList();
             }
 
             /**
              * 0xCAFEF00D : Move this into another class
             **/
 
-            IEnumerable<AgProgRestriction> MapProgrammeDictionary(
+            List<AgProgRestriction> MapProgrammeDictionary(
                 ProgrammeRestriction programmeRestriction,
                 int campaignCustomid,
                 AgProgRestriction agProgRestriction,
                 List<ProgrammeEpisode> programmeEpisodes)
             {
-                var programmes = (programmeRestriction.IsIncludeOrExclude == "I"
-                    ? programmeRestriction.CategoryOrProgramme?.Select(x =>
-                        programmeDictionaries.FirstOrDefault(pd =>
-                            pd.ExternalReference.Equals(x, StringComparison.OrdinalIgnoreCase)))
-                    : programmeRestriction.CategoryOrProgramme?.Select(x =>
-                            programmeDictionaries.FirstOrDefault(pd =>
-                                pd.ExternalReference.Equals(x, StringComparison.OrdinalIgnoreCase)))
-                        .Where(x => !(x is null)))?.ToArray() ?? Array.Empty<ProgrammeDictionary>();
+                var programmes = programmeDictionaries
+                    .Where(c => programmeRestriction.CategoryOrProgramme.Any(p => p.Equals(c.ExternalReference.ToString(), StringComparison.OrdinalIgnoreCase)))
+                    ?.ToList();
 
-                if (programmes.Length == 0)
+                if (programmes.Count == 0)
                 {
-                    return Enumerable.Empty<AgProgRestriction>();
+                    return null;
                 }
 
                 return salesAreas
@@ -422,10 +412,7 @@ namespace xggameplan.AutoGen.AgDataPopulation
                     {
                         return programmes.SelectMany(program =>
                         {
-                            var episodes = program is null
-                                ? Enumerable.Empty<ProgrammeEpisode>()
-                                : programmeEpisodes.Where(
-                                    e => e.ProgrammeExternalReference == program.ExternalReference);
+                            var episodes = programmeEpisodes.Where(e => e.ProgrammeExternalReference == program.ExternalReference);
 
                             return episodes.DefaultIfEmpty().Select(ep =>
                                 {
@@ -433,14 +420,14 @@ namespace xggameplan.AutoGen.AgDataPopulation
 
                                     agProgRestrictionClone.CampaignNo = campaignCustomid;
                                     agProgRestrictionClone.SalesAreaNo = salesArea?.CustomId ?? 0;
-                                    agProgRestrictionClone.ProgNo = program?.Id ?? 999999;
+                                    agProgRestrictionClone.ProgNo = program.Id;
                                     agProgRestrictionClone.IncludeExcludeFlag = programmeRestriction.IsIncludeOrExclude?.ToUpperInvariant();
                                     agProgRestrictionClone.EpisNo = ep?.Number ?? 0;
 
                                     return agProgRestrictionClone;
-                                });
-                        });
-                    });
+                                }).ToList();
+                        }).ToList();
+                    }).ToList();
             }
 
             var agProgrammeRestrictions = campaigns
@@ -457,7 +444,7 @@ namespace xggameplan.AutoGen.AgDataPopulation
                 })
                 .ToList();
 
-            if (agProgrammeRestrictions.Count > 0)
+            if (agProgrammeRestrictions.Any())
             {
                 var serialization = new AgProgRestrictionsSerialisation();
                 return serialization.MapFrom(agProgrammeRestrictions);
@@ -1302,14 +1289,14 @@ namespace xggameplan.AutoGen.AgDataPopulation
             var indexedDemographics = demographics.ToDictionary(x => x.ExternalRef.ToLowerInvariant());
 
             var agTotalRatings = totalRatings.Select(totalRating => new AgTotalRating
-            {
-                SalesAreaNo = indexedSalesAreas.TryGetValue(totalRating.SalesArea, out var salesArea) ? salesArea.CustomId : 0,
-                DemographNo = indexedDemographics.TryGetValue(totalRating.Demograph.ToLowerInvariant(), out var demographic) ? demographic.Id : 0,
-                DaypartGroupNo = totalRating.DaypartGroup,
-                DaypartNo = totalRating.Daypart,
-                Date = AgConversions.ToAgDateYYYYMMDDAsString(totalRating.Date),
-                TotalRatings = totalRating.TotalRatings
-            })
+                {
+                    SalesAreaNo = indexedSalesAreas.TryGetValue(totalRating.SalesArea, out var salesArea) ? salesArea.CustomId : 0,
+                    DemographNo = indexedDemographics.TryGetValue(totalRating.Demograph.ToLowerInvariant(), out var demographic) ? demographic.Id : 0,
+                    DaypartGroupNo = totalRating.DaypartGroup,
+                    DaypartNo = totalRating.Daypart,
+                    Date = AgConversions.ToAgDateYYYYMMDDAsString(totalRating.Date),
+                    TotalRatings = totalRating.TotalRatings
+                })
                 .ToList();
 
             var serializationObj = new AgTotalRatingsSerialization();
@@ -1557,7 +1544,7 @@ namespace xggameplan.AutoGen.AgDataPopulation
         public static AgCampaignBreakRequirementsSerialization ToAgCampaignBreakRequirement(this IEnumerable<Campaign> campaigns, List<SalesArea> salesAreas)
         {
             var agCampaignBreakRequirements = campaigns
-                .Where(x => x.BreakRequirement != null)
+                .Where(x => (x.BreakRequirement?.CentreBreakRequirement != null && x.BreakRequirement?.EndBreakRequirement != null))
                 .Select(x =>
                 {
                     var centreBreakRequirement = x.BreakRequirement.CentreBreakRequirement;

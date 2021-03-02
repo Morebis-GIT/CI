@@ -1,7 +1,6 @@
-﻿using AutoMapper;
-using ImagineCommunications.GamePlan.Persistence.SqlServer.Entities.Tenant.SalesAreas;
+﻿using System.Linq;
+using AutoMapper;
 using ImagineCommunications.GamePlan.Persistence.SqlServer.Entities.Tenant.SpotBookingRules;
-using xggameplan.core.Extensions.AutoMapper;
 
 namespace ImagineCommunications.GamePlan.Persistence.SqlServer.Mapping
 {
@@ -9,26 +8,19 @@ namespace ImagineCommunications.GamePlan.Persistence.SqlServer.Mapping
     {
         public SpotBookingRuleProfile()
         {
-            
-            CreateMap<string, SpotBookingRuleSalesArea>()
-                .ForMember(dest => dest.SalesAreaId,
-                    opts => opts.FromEntityCache(opt => opt.Entity<SalesArea>(x => x.Id)))
-                .ReverseMap()
-                .FromEntityCache(x => x.SalesAreaId, opt => opt.Entity<SalesArea>(x => x.Name));
-
-            _ = CreateMap<Domain.SpotBookingRules.SpotBookingRule, SpotBookingRule>()
+            CreateMap<Domain.SpotBookingRules.SpotBookingRule, SpotBookingRule>()
                 .ForMember(dest => dest.SalesAreas,
                     opt =>
                     {
                         opt.PreCondition(s => (s.SalesAreas != null));
-                        opt.MapFrom(x => x.SalesAreas);
+                        opt.MapFrom(s => s.SalesAreas.Select(sa => new SpotBookingRuleSalesArea() { Name = sa }));
                     })
                 .ReverseMap()
                 .ForMember(dest => dest.SalesAreas,
                     opt =>
                     {
                         opt.PreCondition(s => s.SalesAreas != null);
-                        opt.MapFrom(x => x.SalesAreas);
+                        opt.MapFrom(s => s.SalesAreas.Select(sa => sa.Name));
                     });
         }
     }

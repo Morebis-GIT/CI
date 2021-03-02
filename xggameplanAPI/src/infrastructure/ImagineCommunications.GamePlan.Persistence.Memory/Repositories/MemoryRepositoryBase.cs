@@ -61,7 +61,7 @@ namespace ImagineCommunications.GamePlan.Persistence.Memory.Repositories
         }
 
         /// <summary>
-        /// Returns internal key, unique for item.
+        /// Returns internal key, unique for item
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
@@ -69,33 +69,39 @@ namespace ImagineCommunications.GamePlan.Persistence.Memory.Repositories
         private string GetInternalKey(string id) =>
             CompartmentKeyPrefix + (id ?? throw new ArgumentNullException(nameof(id)));
 
-        private bool IsKeyForCompartment(string key) =>
-            key.StartsWith(CompartmentKeyPrefix, StringComparison.Ordinal);
+        private bool KeyIsForCompartment(string key) =>
+            key.StartsWith(CompartmentKeyPrefix);
 
-        private void RemoveFromCacheByKey(string key)
-        {
-            var obj = _cache.Remove(key);
-            if (obj is IDisposable dobj)
-            {
-                dobj.Dispose();
-            }
-        }
-
-        protected void InsertOrReplaceItem(
+        protected void UpdateOrInsertItem(
             T1 item,
             string id,
             DateTimeOffset? absoluteExpiration = null)
         {
             string key = GetInternalKey(id);
-            RemoveFromCacheByKey(key);
+            _ = _cache.Remove(key);
 
-            _ = _cache.Add(key, item,
+            _ = _cache.Add(
+                new CacheItem(key, item),
                 new CacheItemPolicy()
                 {
                     Priority = CacheItemPriority.Default,
                     AbsoluteExpiration = absoluteExpiration ?? AbsoluteObjectTTL
-                }
-            );
+                });
+        }
+
+        protected void InsertItems(IList<T1> items, IList<string> ids)
+        {
+            if (items.Count == 0 || ids.Count == 0)
+            {
+                return;
+            }
+
+            var absoluteExpirationValue = AbsoluteObjectTTL;
+
+            for (int index = 0; index < items.Count; index++)
+            {
+                UpdateOrInsertItem(items[index], ids[index], absoluteExpirationValue);
+            }
         }
 
         protected T1 GetItemById(string id)
@@ -109,117 +115,141 @@ namespace ImagineCommunications.GamePlan.Persistence.Memory.Repositories
 
         protected void DeleteItem(string id)
         {
-            RemoveFromCacheByKey(GetInternalKey(id));
+            string key = GetInternalKey(id);
+            _ = _cache.Remove(key);
         }
 
         protected void DeleteAllItems()
         {
-            List<string> keys = _cache
-                .Select(i => i.Key)
-                .Where(key => IsKeyForCompartment(key) && _cache[key] is T1)
-                .ToList();
+            var keys = new List<string>();
+            Type type = typeof(T1);
 
-            int idx = keys.Count;
-            while (idx > 0)
+            foreach (var item in _cache.Where(i => KeyIsForCompartment(i.Key)))
             {
-                RemoveFromCacheByKey(keys[--idx]);
+                if (_cache[item.Key].GetType() == type)
+                {
+                    keys.Add(item.Key);
+                }
+            }
+
+            while (keys.Count > 0)
+            {
+                string key = keys[0];
+                keys.RemoveAt(0);
+                _ = _cache.Remove(key);
             }
         }
 
         protected void DeleteAllItems(Expression<Func<T1, bool>> filter)
         {
             var keys = new List<string>();
-            var itemsToFilter = new List<T1>(1);
+            Type type = typeof(T1);
 
-            foreach (string itemKey in _cache
-                .Select(i => i.Key)
-                .Where(key => IsKeyForCompartment(key) && _cache[key] is T1))
+            foreach (var item in _cache.Where(i => KeyIsForCompartment(i.Key)))
             {
-                itemsToFilter.Add((T1)_cache[itemKey]);
-
-                var result = itemsToFilter
-                    .AsQueryable<T1>()
-                    .Any(filter);
-
-                if (result)
+                if (_cache[item.Key].GetType() != type)
                 {
-                    keys.Add(itemKey);
+                    continue;
                 }
 
-                itemsToFilter.Clear();
+                var itemsToFilter = new[] { (T1)_cache[item.Key] };
+
+                var results = itemsToFilter
+                    .AsQueryable<T1>()
+                    .Where(filter);
+
+                if (results.Any())
+                {
+                    keys.Add(item.Key);
+                }
             }
 
-            int idx = keys.Count;
-            while (idx > 0)
+            while (keys.Count > 0)
             {
-                RemoveFromCacheByKey(keys[--idx]);
+                string key = keys[0];
+                keys.RemoveAt(0);
+                _ = _cache.Remove(key);
             }
         }
 
         protected List<T1> GetAllItems()
         {
-            var cacheItems = _cache
-                .Select(i => i.Key)
-                .Where(key => IsKeyForCompartment(key) && _cache[key] is T1)
-                .Select(key => (T1)_cache[key]);
-
-            return new List<T1>(cacheItems);
-        }
-
-        protected List<T1> GetAllItems(Expression<Func<T1, bool>> filter)
-        {
             var items = new List<T1>();
-            var itemsToFilter = new List<T1>(1);
+            Type type = typeof(T1);
 
-            foreach (string itemKey in _cache
-                .Select(i => i.Key)
-                .Where(key => IsKeyForCompartment(key) && _cache[key] is T1))
+            foreach (var item in _cache.Where(i => KeyIsForCompartment(i.Key)))
             {
-                var itemToAdd = (T1)_cache[itemKey];
-                itemsToFilter.Add(itemToAdd);
-
-                var result = itemsToFilter
-                    .AsQueryable<T1>()
-                    .Any(filter);
-
-                if (result)
+                if (_cache[item.Key].GetType() == type)
                 {
-                    items.Add(itemToAdd);
+                    items.Add((T1)_cache[item.Key]);
                 }
-
-                itemsToFilter.Clear();
             }
 
             return items;
         }
 
-        protected int GetCount() =>
-            _cache
-                .Where(i => IsKeyForCompartment(i.Key))
-                .Count(i => _cache[i.Key].GetType() is T1);
+        protected List<T1> GetAllItems(Expression<Func<T1, bool>> filter)
+        {
+            var items = new List<T1>();
+            Type type = typeof(T1);
+
+            foreach (var item in _cache.Where(i => KeyIsForCompartment(i.Key)))
+            {
+                if (_cache[item.Key].GetType() != type)
+                {
+                    continue;
+                }
+
+                var itemsToFilter = new[] { (T1)_cache[item.Key] };
+
+                var results = itemsToFilter
+                    .AsQueryable<T1>()
+                    .Where(filter);
+
+                items.AddRange(results);
+            }
+
+            return items;
+        }
+
+        protected int GetCount()
+        {
+            int count = 0;
+            Type type = typeof(T1);
+
+            foreach (var item in _cache.Where(i => KeyIsForCompartment(i.Key)))
+            {
+                if (_cache[item.Key].GetType() == type)
+                {
+                    count++;
+                }
+            }
+
+            return count;
+        }
 
         protected int GetCount(Expression<Func<T1, bool>> filter)
         {
             int count = 0;
-            var itemsToFilter = new List<T1>(1);
+            Type type = typeof(T1);
 
-            foreach (T1 cacheItem in _cache
-                .Select(i => i.Key)
-                .Where(key => IsKeyForCompartment(key) && _cache[key] is T1)
-                .Select(key => (T1)_cache[key]))
+            foreach (var item in _cache.Where(i => KeyIsForCompartment(i.Key)))
             {
-                itemsToFilter.Add(cacheItem);
+                if (_cache[item.Key].GetType() != type)
+                {
+                    continue;
+                }
 
-                var result = itemsToFilter
+                var itemsToFilter = new[] { (T1)_cache[item.Key] };
+
+                var results = itemsToFilter
                     .AsQueryable<T1>()
-                    .Any(filter);
+                    .Where(filter);
 
-                if (result)
+                if (results.Any())
                 {
                     count++;
                 }
-
-                itemsToFilter.Clear();
             }
 
             return count;

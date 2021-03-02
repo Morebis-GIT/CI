@@ -8,9 +8,7 @@ using ImagineCommunications.GamePlan.Domain.Passes;
 using ImagineCommunications.GamePlan.Domain.Scenarios;
 using ImagineCommunications.GamePlan.Domain.Shared.Metadatas;
 using ImagineCommunications.GamePlan.Persistence.SqlServer.Core.Interfaces;
-using ImagineCommunications.GamePlan.Persistence.SqlServer.Interfaces;
 using Microsoft.EntityFrameworkCore;
-using xggameplan.core.Extensions.AutoMapper;
 using xggameplan.core.Interfaces;
 using xggameplan.core.Services;
 using CampaignDbObject = ImagineCommunications.GamePlan.Domain.Campaigns.Objects.Campaign;
@@ -24,8 +22,6 @@ namespace ImagineCommunications.Gameplan.Integration.Handlers.EventHandlers.Camp
         private readonly ICampaignCleaner _campaignCleaner;
         private readonly IMapper _mapper;
         private readonly ICampaignPassPrioritiesService _campaignPassPrioritiesService;
-        private readonly ISqlServerSalesAreaByNullableIdCacheAccessor _salesAreaByIdCache;
-        private readonly ISqlServerSalesAreaByNameCacheAccessor _salesAreaByNameCache;
 
         private IReadOnlyCollection<string> _existingSalesAreas;
         private ImmutableHashSet<string> _existingDemographics;
@@ -39,10 +35,7 @@ namespace ImagineCommunications.Gameplan.Integration.Handlers.EventHandlers.Camp
             IMapper mapper,
             IScenarioRepository scenarioRepository,
             IPassRepository passRepository,
-            ISqlServerDbContextFactory<ISqlServerTenantDbContext> dbContextFactory,
-            ISqlServerSalesAreaByNullableIdCacheAccessor salesAreaByIdCache,
-            ISqlServerSalesAreaByNameCacheAccessor salesAreaByNameCache
-            )
+            ISqlServerDbContextFactory<ISqlServerTenantDbContext> dbContextFactory)
         {
             _campaignCleaner = campaignCleaner;
             _mapper = mapper;
@@ -52,8 +45,6 @@ namespace ImagineCommunications.Gameplan.Integration.Handlers.EventHandlers.Camp
                 mapper,
                 passRepository,
                 scenarioRepository);
-            _salesAreaByIdCache = salesAreaByIdCache;
-            _salesAreaByNameCache = salesAreaByNameCache;
         }
 
         public void Handle(IBulkCampaignCreatedOrUpdated command)
@@ -152,7 +143,7 @@ namespace ImagineCommunications.Gameplan.Integration.Handlers.EventHandlers.Camp
             {
                 Validator.ValidateCampaign(item, validateContext);
 
-                var newCampaign = _mapper.Map<CampaignDbObject>(item, opts => opts.UseEntityCache(_salesAreaByIdCache));
+                var newCampaign = _mapper.Map<CampaignDbObject>(item);
                 AdjustCampaignPassPriority(newCampaign);
                 newCampaign.UpdateDerivedKPIs();
 
@@ -161,7 +152,7 @@ namespace ImagineCommunications.Gameplan.Integration.Handlers.EventHandlers.Camp
 
             using (var dbContext = _dbContextFactory.Create())
             {
-                dbContext.AddRange(_mapper.Map<GamePlan.Persistence.SqlServer.Entities.Tenant.Campaigns.Campaign[]>(campaigns, opts => opts.UseEntityCache(_salesAreaByNameCache)));
+                dbContext.AddRange(_mapper.Map<GamePlan.Persistence.SqlServer.Entities.Tenant.Campaigns.Campaign[]>(campaigns));
                 dbContext.SaveChanges();
             }
         }

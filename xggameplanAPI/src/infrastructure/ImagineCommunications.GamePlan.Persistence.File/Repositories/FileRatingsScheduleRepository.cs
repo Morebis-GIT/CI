@@ -13,10 +13,12 @@ namespace ImagineCommunications.GamePlan.Persistence.File.Repositories
         public FileRatingsScheduleRepository(string folder)
             : base(folder, "ratings_schedules")
         {
+
         }
 
         public void Dispose()
         {
+
         }
 
         public IEnumerable<RatingsPredictionSchedule> GetAll()
@@ -24,11 +26,17 @@ namespace ImagineCommunications.GamePlan.Persistence.File.Repositories
             return GetAllByType<RatingsPredictionSchedule>(_folder, _type);
         }
 
-        public int CountAll => CountAll(_folder, _type);
+        public int CountAll
+        {
+            get
+            {
+                return CountAll<RatingsPredictionSchedule>(_folder, _type);
+            }
+        }
 
         private string GetID(string salesArea, DateTime scheduleDate)
         {
-            return String.Format("{0}.{1}", salesArea, scheduleDate.ToString("yyyy-MM-dd"));
+            return string.Format("{0}.{1}", salesArea, scheduleDate.ToString("yyyy-MM-dd"));
         }
 
         /// <summary>
@@ -38,7 +46,7 @@ namespace ImagineCommunications.GamePlan.Persistence.File.Repositories
         public void Add(RatingsPredictionSchedule item)
         {
             List<RatingsPredictionSchedule> items = new List<RatingsPredictionSchedule>() { item };
-            InsertItems(_folder, _type, items, items.ConvertAll(i => GetID(i.SalesArea, i.ScheduleDay)));
+            InsertItems(_folder, _type, items, items.Select(i => GetID(i.SalesArea, i.ScheduleDay)).ToList());
         }
 
         public void Update(RatingsPredictionSchedule item)
@@ -48,12 +56,12 @@ namespace ImagineCommunications.GamePlan.Persistence.File.Repositories
 
         public void Insert(List<RatingsPredictionSchedule> items, bool setIdentity = true)
         {
-            InsertItems(_folder, _type, items.ToList(), items.ConvertAll(i => GetID(i.SalesArea, i.ScheduleDay)));
+            InsertItems(_folder, _type, items.ToList(), items.Select(i => GetID(i.SalesArea, i.ScheduleDay)).ToList());
         }
 
         public void Remove(RatingsPredictionSchedule item)
         {
-            DeleteItem(_folder, _type, GetID(item.SalesArea, item.ScheduleDay));
+            DeleteItem<RatingsPredictionSchedule>(_folder, _type, GetID(item.SalesArea, item.ScheduleDay));
         }
 
         public void DeleteRange(IEnumerable<int> ids)
@@ -69,9 +77,7 @@ namespace ImagineCommunications.GamePlan.Persistence.File.Repositories
         /// <returns></returns>
         public RatingsPredictionSchedule GetSchedule(DateTime date, string salesarea)
         {
-            return
-                GetAllByType<RatingsPredictionSchedule>(_folder, _type, s => s.SalesArea == salesarea && s.ScheduleDay == date)
-                .FirstOrDefault();
+            return GetAllByType<RatingsPredictionSchedule>(_folder, _type, s => s.SalesArea == salesarea && s.ScheduleDay == date).FirstOrDefault();
         }
 
         /// <summary>
@@ -83,23 +89,22 @@ namespace ImagineCommunications.GamePlan.Persistence.File.Repositories
         /// <returns></returns>
         public List<RatingsPredictionSchedule> GetSchedules(DateTime fromDateTime, DateTime toDateTime, string salesarea)
         {
-            return GetAllByType<RatingsPredictionSchedule>(_folder, _type, p => p.ScheduleDay <= toDateTime.Date && p.ScheduleDay >= fromDateTime.Date && p.SalesArea == salesarea);
+            var items = GetAllByType<RatingsPredictionSchedule>(_folder, _type, p => p.ScheduleDay <= toDateTime.Date && p.ScheduleDay >= fromDateTime.Date && p.SalesArea == salesarea);
+            return items;
         }
 
         public void Truncate()
         {
-            DeleteAllItems(_folder, _type);
+            DeleteAllItems<RatingsPredictionSchedule>(_folder, _type);
         }
 
         public Task TruncateAsync()
         {
             Truncate();
-            return Task.CompletedTask;
+            return Task.FromResult(true);
         }
 
-        public void SaveChanges()
-        {
-        }
+        public void SaveChanges() { }
 
         public List<RatingsPredictionValidationMessage> Validate_RatingsPredictionSchedules(
             DateTime fromDateTime,

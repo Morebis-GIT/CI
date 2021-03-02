@@ -22,12 +22,17 @@ namespace ImagineCommunications.GamePlan.Process.Smooth.Services
             )
             where T : class
         {
-            return source switch
+            switch (source)
             {
-                IReadOnlyCollection<Break> breaks => (IReadOnlyCollection<T>)GetProgrammeBreaks(programmeDateTimes, breaks),
-                IReadOnlyCollection<Spot> spots => (IReadOnlyCollection<T>)GetProgrammeSpots(programmeDateTimes, spots),
-                _ => throw new InvalidOperationException("Only breaks and spots are currently valid."),
-            };
+                case IReadOnlyCollection<Break> breaks:
+                    return (IReadOnlyCollection<T>)GetProgrammeBreaks(programmeDateTimes, breaks);
+
+                case IReadOnlyCollection<Spot> spots:
+                    return (IReadOnlyCollection<T>)GetProgrammeSpots(programmeDateTimes, spots);
+
+                default:
+                    throw new InvalidOperationException("Only breaks and spots are currently valid.");
+            }
         }
 
         private static IReadOnlyCollection<Break> GetProgrammeBreaks(

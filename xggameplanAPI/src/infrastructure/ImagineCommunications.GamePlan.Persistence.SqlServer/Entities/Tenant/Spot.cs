@@ -1,15 +1,14 @@
 ﻿using System;
 using ImagineCommunications.GamePlan.Persistence.SqlServer.Core.Interfaces;
-using ImagineCommunications.GamePlan.Persistence.SqlServer.Entities.Tenant.SalesAreas;
 
 namespace ImagineCommunications.GamePlan.Persistence.SqlServer.Entities.Tenant
 {
     public class Spot : IIdentityPrimaryKey
     {
         public int Id { get; set; }
-        public Guid Uid { get; set; }
+        public Guid Uid { get; set; }        
         public string ExternalCampaignNumber { get; set; }
-        public Guid SalesAreaId { get; set; }
+        public string SalesArea { get; set; }
         public string GroupCode { get; set; }
         public string ExternalSpotRef { get; set; }
         public DateTime StartDateTime { get; set; }
@@ -33,6 +32,5 @@ namespace ImagineCommunications.GamePlan.Persistence.SqlServer.Entities.Tenant
         public string IndustryCode { get; set; }
         public string ClearanceCode { get; set; }
         public decimal NominalPrice { get; set; }
-        public SalesArea SalesArea { get; set; }
     }
 }

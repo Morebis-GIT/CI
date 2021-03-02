@@ -10,7 +10,7 @@ namespace ImagineCommunications.GamePlan.Persistence.SqlServer.EntityConfigurati
         {
             builder.ToTable("ProgrammeCategoryHierarchy");
             builder.HasKey(e => e.Id);
-            builder.Property(e => e.Id).UseSqlServerIdentityColumn();
+            builder.Property(e => e.Id).UseMySqlIdentityColumn();
             builder.Property(e => e.Name).HasMaxLength(64).IsRequired();
             builder.Property(e => e.ExternalRef).HasMaxLength(64);
             builder.Property(e => e.ParentExternalRef).HasMaxLength(64);

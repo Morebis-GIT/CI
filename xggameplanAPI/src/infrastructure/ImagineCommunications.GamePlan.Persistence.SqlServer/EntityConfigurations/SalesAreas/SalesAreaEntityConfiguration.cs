@@ -13,13 +13,12 @@ namespace ImagineCommunications.GamePlan.Persistence.SqlServer.EntityConfigurati
             builder.ToTable("SalesAreas");
 
             builder.HasKey(e => e.Id);
-            builder.Property(e => e.Id).HasDefaultValueSql("newid()");
+            builder.Property(e => e.Id);
 
             builder.Property(e => e.CustomId).Metadata.AfterSaveBehavior = PropertySaveBehavior.Ignore;
             builder.HasIndex(e => e.CustomId).IsUnique();
-            builder.Property(e => e.Name).HasMaxLength(512);
-            builder.HasIndex(e => e.Name).IsUnique();
-            builder.Property(e => e.ShortName).HasMaxLength(256);
+            builder.Property(e => e.Name).HasMaxLength(255);
+            builder.Property(e => e.ShortName).HasMaxLength(255);
             builder.HasIndex(e => e.ShortName).IsUnique();
             builder.Property(e => e.CurrencyCode).HasMaxLength(64);
             builder.Property(e => e.TargetAreaName).HasMaxLength(512);

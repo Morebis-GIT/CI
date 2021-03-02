@@ -13,6 +13,7 @@ namespace xggameplan.Repository.File
         public FileEmailAuditEventSettingsRepository(string folder)
             : base(folder, "email_audit_event_settings")
         {
+
         }
 
         public void AddRange(IEnumerable<EmailAuditEventSettings> items)
@@ -37,16 +38,18 @@ namespace xggameplan.Repository.File
 
         public void Delete(int eventTypeid)
         {
-            DeleteItem(_folder, _type, eventTypeid.ToString());
+            DeleteItem<EmailAuditEventSettings>(_folder, _type, eventTypeid.ToString());
         }
 
         public void Truncate()
         {
-            DeleteAllItems(_folder, _type);
+            DeleteAllItems<EmailAuditEventSettings>(_folder, _type);
         }
 
         public void SaveChanges()
         {
+
         }
+
     }
 }

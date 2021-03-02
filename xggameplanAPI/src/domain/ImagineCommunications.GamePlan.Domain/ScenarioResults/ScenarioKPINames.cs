@@ -11,7 +11,6 @@
         public const string AvgSpotsPerDay = "averageSpotsDeliveredPerDay";
         public const string BaseDemographicRatings = "baseDemographRatings";
         public const string ConversionEfficiencyByDemo = "conversionEfficiency";
-        public const string ConversionEfficiencyTotal = "conversionEfficiencyTotal";
         public const string DifferenceValue = "differenceValue";
         public const string DifferenceValuePercentage = "differenceValuePercentage";
         public const string DifferenceValueWithPayback = "differenceValueWithPayback";

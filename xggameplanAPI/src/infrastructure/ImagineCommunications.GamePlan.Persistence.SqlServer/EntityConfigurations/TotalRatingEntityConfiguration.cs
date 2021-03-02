@@ -9,15 +9,13 @@ namespace ImagineCommunications.GamePlan.Persistence.SqlServer.EntityConfigurati
     {
         public void Configure(EntityTypeBuilder<TotalRating> builder)
         {
-            _ = builder.ToTable("TotalRatings");
-            _ = builder.HasKey(k => k.Id);
-            _ = builder.Property(e => e.Id).UseSqlServerIdentityColumn();
-            _ = builder.Property(e => e.Demograph).HasMaxLength(64).IsRequired();
-            _ = builder.Property(e => e.Date).AsUtc();
-            _ = builder.Property(e => e.TotalRatings).IsRequired();
-            _ = builder.HasOne(x => x.SalesArea).WithMany().HasForeignKey(x => x.SalesAreaId)
-                .OnDelete(DeleteBehavior.Restrict);
-            _ = builder.HasIndex(x => x.SalesAreaId);
+            builder.ToTable("TotalRatings");
+            builder.HasKey(k => k.Id);
+            builder.Property(e => e.Id).UseMySqlIdentityColumn();
+            builder.Property(e => e.SalesArea).HasMaxLength(512).IsRequired();
+            builder.Property(e => e.Demograph).HasMaxLength(64).IsRequired();
+            builder.Property(e => e.Date).AsUtc();
+            builder.Property(e => e.TotalRatings).IsRequired();
         }
     }
 }

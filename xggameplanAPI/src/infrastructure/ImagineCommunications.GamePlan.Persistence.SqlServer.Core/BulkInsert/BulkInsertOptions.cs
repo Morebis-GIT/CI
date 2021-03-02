@@ -1,8 +1,8 @@
-﻿using EFCore.BulkExtensions;
+﻿using System.Collections.Generic;
 
 namespace ImagineCommunications.GamePlan.Persistence.SqlServer.Core.BulkInsert
 {
-    public class BulkInsertOptions : BulkConfig
+    public class BulkInsertOptions
     {
         /// <summary>
         /// Indicates whether the order of entities is prepared for bulk insert.
@@ -15,5 +15,10 @@ namespace ImagineCommunications.GamePlan.Persistence.SqlServer.Core.BulkInsert
         /// in case they have HasDefaultValueSql("newid()") declaration in their entity configuration;
         /// </summary>
         public bool GenerateValueForEmptyGuidPk { get; set; } = true;
+        public bool PreserveInsertOrder { get; set; }
+        public int BatchSize { get; set; }
+        public int BulkCopyTimeout { get; set; }
+        public List<string> PropertiesToInclude { get; set; }
+        public bool SetOutputIdentity { get; set; }
     }
 }

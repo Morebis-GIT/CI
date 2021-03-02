@@ -1,5 +1,6 @@
 ﻿using ImagineCommunications.GamePlan.Persistence.SqlServer.Entities.Tenant;
 using ImagineCommunications.GamePlan.Persistence.SqlServer.Extensions;
+
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
@@ -13,7 +14,7 @@ namespace ImagineCommunications.GamePlan.Persistence.SqlServer.EntityConfigurati
 
             _ = builder.HasKey(e => e.Id);
 
-            _ = builder.Property(e => e.Id).UseSqlServerIdentityColumn();
+            _ = builder.Property(e => e.Id).UseMySqlIdentityColumn();
             _ = builder.Property(e => e.Duration).AsTicks();
 
             _ = builder.HasOne(x => x.SalesArea).WithMany().HasForeignKey(x => x.SalesAreaId)

@@ -11,9 +11,9 @@ namespace ImagineCommunications.GamePlan.Persistence.SqlServer.EntityConfigurati
             builder.ToTable("FlexibilityLevels");
 
             builder.HasKey(e => e.Id);
-            builder.Property(e => e.Id).UseSqlServerIdentityColumn();
+            builder.Property(e => e.Id).UseMySqlIdentityColumn();
 
-            builder.Property(e => e.Name).HasMaxLength(256).IsRequired();
+            builder.Property(e => e.Name).HasMaxLength(255).IsRequired();
 
             builder.HasIndex(e => e.Name).IsUnique();
         }

@@ -53,7 +53,7 @@ namespace ImagineCommunications.GamePlan.Persistence.SqlServer.Landmark.Features
                         .View<SpotWithCampaignAndProductRelations>()
                  join productJoin in _dbContext.Query<ProductEntity>() on spotWithCampaignAndProductRelations
                          .ProductId
-                     equals productJoin.Uid into pJoin
+                     equals productJoin.Id into pJoin
                  from product in pJoin.DefaultIfEmpty()
                  join productAdvertiserJoin in _dbContext.Query<ProductAdvertiser>() on
                      spotWithCampaignAndProductRelations.ProductAdvertiserId equals productAdvertiserJoin.Id
@@ -90,7 +90,7 @@ namespace ImagineCommunications.GamePlan.Persistence.SqlServer.Landmark.Features
                          ? null
                          : new ProductDto
                          {
-                             Uid = product.Uid,
+                             Uid = product.Id,
                              Name = product.Name,
                              Externalidentifier = product.Externalidentifier,
                              ParentExternalidentifier = product.ParentExternalidentifier,

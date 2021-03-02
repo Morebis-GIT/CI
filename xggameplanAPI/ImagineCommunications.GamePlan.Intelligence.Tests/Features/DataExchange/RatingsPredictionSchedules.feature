@@ -26,15 +26,14 @@ Scenario: BulkRatingsPredictionSchedulesCreated message should throw validation 
 		| Data[0].ScheduleDay |
 
 Scenario: BulkRatingsPredictionSchedulesCreated message should be successfully saved to the database
-	Given The data from file SalesArea.ExistingSalesAreas exists in database
-	And I have BulkRatingsPredictionScheduleCreated message to publish
+	Given I have BulkRatingsPredictionScheduleCreated message to publish
 		| SalesArea | ScheduleDay              | Ratings |
-		| GTV91     | 2019-09-19T09:52:23.192Z |         |
+		| SAT1      | 2019-09-19T09:52:23.192Z |         |
 	When I publish message to message broker
 	Then GamePlanIntelligence consumes message
 	And  the RatingsPredictionSchedules data in GamePlan database is updated as following
 		| SalesArea | ScheduleDay              | Ratings |
-		| GTV91     | 2019-09-19T09:52:23.192Z |         |
+		| SAT1      | 2019-09-19T09:52:23.192Z |         |
 
 Scenario:BulkRatingsPredictionSchedulesDeleted message should throw validation exception for empty properties
 	Given I have BulkRatingsPredictionSchedulesDeleted message to publish
@@ -53,8 +52,7 @@ Scenario:BulkRatingsPredictionSchedulesDeleted message should throw validation e
 		| Data[3].DateFromLessOrEqualThanDateTo |
 
 Scenario: Published BulkRatingsPredictionSchedulesDeleted message should be successfully sent to xgGamePlan and delete the existing records
-	Given The data from file SalesArea.ExistingSalesAreas exists in database
-	And The data from file RatingsPredictionSchedule.BulkRatingsPredictionSchedulesDeleted.Setup exists in database
+	Given The data from file RatingsPredictionSchedule.BulkRatingsPredictionSchedulesDeleted.Setup exists in database
 	And I have BulkRatingsPredictionSchedulesDeleted message to publish
 		| DateTimeFrom                 | DateTimeTo                   | SalesArea |
 		| 2019-05-07T00:00:00.0000000Z | 2019-05-09T00:00:00.0000000Z | GTV91     |

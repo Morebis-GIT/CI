@@ -6,29 +6,26 @@ Feature: Manage RatingsSchedule data storage
 	I want to store ratings schedule via RatingsSchedule repository
 
 Background:
-    Given there is a RatingsSchedule repository	
+    Given there is a RatingsSchedule repository
+	And predefined RatingsPredictionSchedules data
 
 Scenario: Add new RatingsSchedule
-	Given predefined RatingsPredictionSchedules data
     When I create a document
     And I get all documents
     Then there should be 1 documents returned
 
 Scenario: Add new RatingsSchedules
-	Given predefined RatingsPredictionSchedules data
     When I create 3 documents
     And I get all documents
     Then there should be 3 documents returned
 
 Scenario: Get all RatingsSchedule
-	Given predefined RatingsPredictionSchedules data
-    And 3 documents created
+    Given 3 documents created
     When I get all documents
     Then there should be 3 documents returned
 
 Scenario: Counting all RatingsSchedule
-	Given predefined RatingsPredictionSchedules data
-    And 3 documents created
+    Given 3 documents created
     When I count the number of documents
     Then there should be 3 documents counted
 
@@ -39,9 +36,7 @@ Scenario: Truncating RatingsSchedule documents
     Then no documents should be returned
 
 Scenario: Get RatingsSchedule by date and sales area
-	Given predefined Campaigns.SalesAreas.json data 
-	And predefined data imported
-	And the following documents created:
+	Given the following documents created:
 		| SalesArea | ScheduleDay |
 		| QTQ91     | 2019-01-01  |
 		| GTV93     | 2019-01-01  |
@@ -59,9 +54,7 @@ Scenario: Get RatingsSchedule by date and sales area
 		| ScheduleDay | 2019-01-01 |
 
 Scenario: Delete RatingsSchedule
-	Given predefined Campaigns.SalesAreas.json data 
-	And predefined data imported
-	And the following documents created:
+	Given the following documents created:
 		| SalesArea | ScheduleDay |
 		| QTQ91     | 2019-01-01  |
 		| GTV93     | 2019-01-01  |
@@ -74,9 +67,7 @@ Scenario: Delete RatingsSchedule
 	Then there should be 2 documents returned
 
 Scenario Outline: Get RatingsSchedule by date range and sales area
-	Given predefined Campaigns.SalesAreas.json data 
-	And predefined data imported
-	And the following documents created:
+	Given the following documents created:
 		| SalesArea | ScheduleDay |
 		| QTQ91     | 2019-01-01  |
 		| GTV93     | 2019-01-01  |
@@ -107,9 +98,7 @@ Scenario Outline: Get RatingsSchedule by date range and sales area
 	| 2020-01-01   | 2021-01-01 | STW92     | 0                   |
 
 Scenario Outline: Validate RatingsSchedule by date range, sales areas and demographics
-	Given predefined Campaigns.SalesAreas.json data 
-	And predefined RatingsPredictionSchedules data
-	And predefined data imported
+	Given predefined data imported
 	When I call Validate_RatingsPredictionSchedules method with parameters:
 		| Parameter                                   | Value                   |
 		| fromDateTime                                | <FromDateTime>          |
@@ -121,9 +110,9 @@ Scenario Outline: Validate RatingsSchedule by date range, sales areas and demogr
 
 	Examples:
 	| FromDateTime | ToDateTime | SalesAreaNames | DemographicsExtRefs | NoOfRatingPredictions | ExpectedReturnCount |
-	| 2019-10-23   | 2019-10-23 | GTV93          | 2, 3, 4             | 8                     | 0                   |
+	| 2019-10-23   | 2019-10-23 | TCN93          | 2, 3, 4             | 8                     | 0                   |
 	| 2019-10-23   | 2019-10-25 | TCN93          | 2, 3, 4             | 8                     | 1                   |
-	| 2019-10-23   | 2019-10-24 | GTV93          | 2, 3                | 128                   | 3                   |
+	| 2019-10-23   | 2019-10-24 | TCN93          | 2, 3                | 128                   | 3                   |
 	| 2019-10-23   | 2019-10-24 | TCN91          | 4, 5                | 18                    | 1                   |
 	| 2019-10-23   | 2019-10-24 | TCN91          | 2, 3                | 18                    | 1                   |
 	| 2020-10-23   | 2021-10-24 | TCN93          | 2, 3                | 18                    | 1                   |

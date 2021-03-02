@@ -4,60 +4,43 @@ using System.Globalization;
 using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
+using AutoMapper.QueryableExtensions;
 using ImagineCommunications.GamePlan.Domain.RatingSchedules;
 using ImagineCommunications.GamePlan.Persistence.SqlServer.Core.BulkInsert;
 using ImagineCommunications.GamePlan.Persistence.SqlServer.Core.Extensions;
 using ImagineCommunications.GamePlan.Persistence.SqlServer.Core.Interfaces;
 using ImagineCommunications.GamePlan.Persistence.SqlServer.Core.PostProcessing.Builders;
 using ImagineCommunications.GamePlan.Persistence.SqlServer.Entities.Tenant.PredictionSchedules;
-using ImagineCommunications.GamePlan.Persistence.SqlServer.Interfaces;
 using Microsoft.EntityFrameworkCore;
-using xggameplan.core.Extensions.AutoMapper;
 
 namespace ImagineCommunications.GamePlan.Persistence.SqlServer.Repositories
 {
     public class RatingsScheduleRepository : IRatingsScheduleRepository
     {
         private readonly ISqlServerDbContext _dbContext;
-        private readonly ISqlServerSalesAreaByIdCacheAccessor _salesAreaByIdCache;
-        private readonly ISqlServerSalesAreaByNameCacheAccessor _salesAreaByNameCache;
         private readonly IMapper _mapper;
 
-        private IQueryable<PredictionSchedule> PredictionScheduleQuery =>
-            _dbContext.Query<PredictionSchedule>()
-                .Include(o => o.Ratings);
-
-        public RatingsScheduleRepository(
-            ISqlServerDbContext dbContext,
-            ISqlServerSalesAreaByIdCacheAccessor salesAreaByIdCache,
-            ISqlServerSalesAreaByNameCacheAccessor salesAreaByNameCache,
-            IMapper mapper
-            )
+        public RatingsScheduleRepository(ISqlServerDbContext dbContext, IMapper mapper)
         {
             _dbContext = dbContext;
-            _salesAreaByIdCache = salesAreaByIdCache;
-            _salesAreaByNameCache = salesAreaByNameCache;
             _mapper = mapper;
         }
 
         public int CountAll => _dbContext.Query<PredictionSchedule>().Count();
 
         public RatingsPredictionSchedule GetSchedule(DateTime fromDateTime, string salesarea) =>
-            _mapper.Map<RatingsPredictionSchedule>(
-                PredictionScheduleQuery
-                .FirstOrDefault(x => x.SalesArea.Name == salesarea && x.ScheduleDay == fromDateTime),
-                opts => opts.UseEntityCache(_salesAreaByIdCache));
+            _dbContext.Query<PredictionSchedule>()
+                .ProjectTo<RatingsPredictionSchedule>(_mapper.ConfigurationProvider)
+                .FirstOrDefault(x => x.SalesArea == salesarea && x.ScheduleDay == fromDateTime);
 
         public List<RatingsPredictionSchedule> GetSchedules(DateTime fromDateTime, DateTime toDateTime, string salesarea) =>
-            _mapper.Map<List<RatingsPredictionSchedule>>(
-                PredictionScheduleQuery
-                .Where(x => x.ScheduleDay <= toDateTime.Date && x.ScheduleDay >= fromDateTime.Date && x.SalesArea.Name == salesarea).AsNoTracking(),
-                opts => opts.UseEntityCache(_salesAreaByIdCache));
+            _dbContext.Query<PredictionSchedule>()
+                .Where(x => x.ScheduleDay <= toDateTime.Date && x.ScheduleDay >= fromDateTime.Date && x.SalesArea == salesarea)
+                .ProjectTo<RatingsPredictionSchedule>(_mapper.ConfigurationProvider)
+                .ToList();
 
         public IEnumerable<RatingsPredictionSchedule> GetAll() =>
-            _mapper.Map<List<RatingsPredictionSchedule>>(
-                PredictionScheduleQuery.AsNoTracking(),
-                opts => opts.UseEntityCache(_salesAreaByIdCache));
+            _dbContext.Query<PredictionSchedule>().ProjectTo<RatingsPredictionSchedule>(_mapper.ConfigurationProvider).ToList();
 
         public void Add(RatingsPredictionSchedule item)
         {
@@ -70,14 +53,12 @@ namespace ImagineCommunications.GamePlan.Persistence.SqlServer.Repositories
                 find => find.IncludeCollection(pb => pb.Ratings));
             if (entity == null)
             {
-                _ = _dbContext.Add(
-                    _mapper.Map<PredictionSchedule>(item, opts => opts.UseEntityCache(_salesAreaByNameCache)),
-                    post => post.MapTo(item, mappingOptions => mappingOptions.UseEntityCache(_salesAreaByIdCache)), _mapper);
+                _dbContext.Add(_mapper.Map<PredictionSchedule>(item), post => post.MapTo(item), _mapper);
             }
             else
             {
-                _ = _mapper.Map(item, entity, opts => opts.UseEntityCache(_salesAreaByNameCache));
-                _ = _dbContext.Update(entity, post => post.MapTo(item, mappingOptions => mappingOptions.UseEntityCache(_salesAreaByIdCache)), _mapper);
+                _mapper.Map(item, entity);
+                _dbContext.Update(entity, post => post.MapTo(item), _mapper);
             }
         }
 
@@ -93,7 +74,7 @@ namespace ImagineCommunications.GamePlan.Persistence.SqlServer.Repositories
                 return;
             }
 
-            var entities = _mapper.Map<List<PredictionSchedule>>(items, opts => opts.UseEntityCache(_salesAreaByNameCache));
+            var entities = _mapper.Map<List<PredictionSchedule>>(items);
             using var transaction = _dbContext.Specific.Database.BeginTransaction();
 
             _dbContext.BulkInsertEngine.BulkInsert(entities,
@@ -116,7 +97,7 @@ namespace ImagineCommunications.GamePlan.Persistence.SqlServer.Repositories
             if (setIdentity)
             {
                 var actionBuilder = new BulkInsertActionBuilder<PredictionSchedule>(entities, _mapper);
-                actionBuilder.TryToUpdate(items, mappingOptions => mappingOptions.UseEntityCache(_salesAreaByIdCache));
+                actionBuilder.TryToUpdate(items);
                 actionBuilder.Build()?.Execute();
             }
         }
@@ -159,12 +140,12 @@ namespace ImagineCommunications.GamePlan.Persistence.SqlServer.Repositories
                 .Include(x => x.PredictionSchedule)
                 .Where(r => r.PredictionSchedule.ScheduleDay >= fromDateTime.Date &&
                     r.PredictionSchedule.ScheduleDay <= toDateTime.Date.AddDays(1) &&
-                    salesAreaNames.Contains(r.PredictionSchedule.SalesArea.Name) &&
+                    salesAreaNames.Contains(r.PredictionSchedule.SalesArea) &&
                     demographics.Contains(r.Demographic))
-                .GroupBy(r => new { r.PredictionSchedule.SalesArea.Name, r.PredictionSchedule.ScheduleDay, r.Demographic })
+                .GroupBy(r => new { r.PredictionSchedule.SalesArea, r.PredictionSchedule.ScheduleDay, r.Demographic })
                 .Select(g => new
                 {
-                    SalesAreaName = g.Key.Name,
+                    g.Key.SalesArea,
                     g.Key.ScheduleDay,
                     g.Key.Demographic,
                     Count = g.Count()
@@ -176,11 +157,8 @@ namespace ImagineCommunications.GamePlan.Persistence.SqlServer.Repositories
                 .Where(r => r.Count != noOfRatingPredictionsPerScheduleDayAreaDemo).ToList();
             foreach (var item in incorrectRatings)
             {
-                messages.Add(new RatingsPredictionValidationMessage
-                {
-                    Message = $"Count: {item.Count} for Demographic: {item.Demographic}, incorrect in Sales Area: " +
-                    $"{item.SalesAreaName}, in Schedule Day: {item.ScheduleDay.ToString("yyyy-MM-dd", CultureInfo.InvariantCulture)}"
-                });
+                messages.Add(new RatingsPredictionValidationMessage { Message = $"Count: {item.Count} for Demographic: {item.Demographic}, incorrect in Sales Area: " +
+                    $"{item.SalesArea}, in Schedule Day: {item.ScheduleDay.ToString("yyyy-MM-dd", CultureInfo.InvariantCulture)}"});
             }
 
             // check for missing whole documents by date and sales area from the above in memory collection
@@ -190,7 +168,7 @@ namespace ImagineCommunications.GamePlan.Persistence.SqlServer.Repositories
                 for (int i = 0; i < noOfDaysInRun; i++)
                 {
                     var ratingsScheduleForThisDay = allRatingsScheduleForDemographicsEnabled.Where(r =>
-                        r.SalesAreaName == salesAreaName
+                        r.SalesArea == salesAreaName
                         && r.ScheduleDay == fromDateTime.Date.AddDays(i)).ToList();
 
                     if (ratingsScheduleForThisDay.Count == 0)

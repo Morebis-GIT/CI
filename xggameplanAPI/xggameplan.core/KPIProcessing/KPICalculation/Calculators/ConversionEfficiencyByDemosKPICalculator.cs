@@ -21,8 +21,6 @@ namespace xggameplan.KPIProcessing.KPICalculation.Calculators
         {
             var kpis = new List<KPI>();
 
-            const int zero = 0;
-
             foreach (var demoShortName in _calculationContext.ConversionEfficiencyDemos)
             {
                 var demographic = _calculationContext.Snapshot.AllDemographics.Value
@@ -33,7 +31,9 @@ namespace xggameplan.KPIProcessing.KPICalculation.Calculators
                     continue;
                 }
 
-                var kpiValue = GetConversionEfficiencyByDemographicId(demographic.Id);
+                var kpiValue = Math.Round(_calculationContext.ConversionEfficiencies
+                    .Where(conversionEfficiency => conversionEfficiency.DemographicNumber == demographic.Id)
+                    .Sum(conversionEfficiency => conversionEfficiency.ConversionEfficiencyIndex), 2, MidpointRounding.AwayFromZero);
 
                 kpis.Add(new KPI
                 {
@@ -43,19 +43,7 @@ namespace xggameplan.KPIProcessing.KPICalculation.Calculators
                 });
             }
 
-            kpis.Add(new KPI
-            {
-                Name = ScenarioKPINames.ConversionEfficiencyTotal,
-                Displayformat = KPICalculationHelpers.DisplayFormats.LargeNumber,
-                Value = GetConversionEfficiencyByDemographicId(zero)
-            });
-
             return kpis;
         }
-
-        private double GetConversionEfficiencyByDemographicId(int demographicId) =>
-            Math.Round(_calculationContext.ConversionEfficiencies
-                    .Where(conversionEfficiency => conversionEfficiency.DemographicNumber == demographicId)
-                    .Sum(conversionEfficiency => conversionEfficiency.ConversionEfficiencyIndex), 2, MidpointRounding.AwayFromZero);
     }
 }

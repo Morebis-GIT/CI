@@ -7,8 +7,6 @@ Feature: Manage StandardDayPartGroups data storage
 
 Background:
 	Given there is a StandardDayPartGroups repository
-	And predefined StandardDayPartGroups.SalesAreas.json data
-	And predefined data imported
 
 Scenario: Add new standardDayPartGroups
 	When I create the following documents:

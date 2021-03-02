@@ -11,7 +11,7 @@ namespace ImagineCommunications.GamePlan.Persistence.SqlServer.EntityConfigurati
         {
             builder.ToTable("StandardDayPartTimeslices");
             builder.HasKey(k => k.Id);
-            builder.Property(e => e.Id).UseSqlServerIdentityColumn();
+            builder.Property(e => e.Id).UseMySqlIdentityColumn();
             builder.Property(e => e.StartTime).AsTicks();
             builder.Property(e => e.EndTime).AsTicks();
         }

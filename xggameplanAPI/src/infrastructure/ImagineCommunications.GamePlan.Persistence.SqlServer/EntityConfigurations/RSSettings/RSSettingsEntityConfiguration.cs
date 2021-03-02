@@ -7,23 +7,22 @@ namespace ImagineCommunications.GamePlan.Persistence.SqlServer.EntityConfigurati
     {
         public void Configure(EntityTypeBuilder<Entities.Tenant.RSSettings.RSSettings> builder)
         {
-            _ = builder.ToTable("RSSettings");
+            builder.ToTable("RSSettings");
 
-            _ = builder.HasKey(e => e.Id);
-            _ = builder.Property(e => e.Id).UseSqlServerIdentityColumn();
+            builder.HasKey(e => e.Id);
+            builder.Property(e => e.Id).UseMySqlIdentityColumn();
 
-            _ = builder.HasMany(e => e.DemographicsSettings).WithOne()
+            builder.Property(e => e.SalesArea).HasMaxLength(64);
+
+            builder.HasMany(e => e.DemographicsSettings).WithOne()
                 .HasForeignKey(e => e.RSSettingId)
                 .OnDelete(DeleteBehavior.Cascade);
 
-            _ = builder.HasMany(e => e.DefaultDeliverySettingsList).WithOne()
+            builder.HasMany(e => e.DefaultDeliverySettingsList).WithOne()
                 .HasForeignKey(e => e.RSSettingId)
                 .OnDelete(DeleteBehavior.Cascade);
 
-            _ = builder.HasOne(x => x.SalesArea).WithMany().HasForeignKey(x => x.SalesAreaId)
-                .OnDelete(DeleteBehavior.Restrict);
-
-            _ = builder.HasIndex(x => x.SalesAreaId);
+            builder.HasIndex(x => x.SalesArea);
         }
     }
 }

@@ -169,8 +169,6 @@
     <Compile Include="UpdateXGGT1785\UpdateStepXGGT1785_AddFuncationalAreaCampaignFaultTypes.cs" />
     <Compile Include="UpdateXGGT18176\UpdateStepXGGT18176_AddCampaignLevelScenarioCampaignResultsFacility.cs" />
     <Compile Include="UpdateXGGT18176\UpdateXGGT18176.cs" />
-    <Compile Include="UpdateXGGT18424\UpdateStepXGGT18424_FailuresAreShownWithoutNames.cs" />
-    <Compile Include="UpdateXGGT18424\UpdateXGGT18424.cs" />
     <Compile Include="UpdateXGGT1888\UpdateStepXGGT1888_AddingDefaultAutopilotSettings.cs" />
     <Compile Include="UpdateXGGT1888\UpdateXGGT1888.cs" />
     <Compile Include="UpdateXGGT1753\UpdateStepXGGT1753_AddingRulesRepositories.cs" />

@@ -2,13 +2,12 @@
 using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
+using AutoMapper.QueryableExtensions;
 using ImagineCommunications.GamePlan.Domain.Sponsorships;
 using ImagineCommunications.GamePlan.Domain.Sponsorships.Objects;
-using ImagineCommunications.GamePlan.Persistence.SqlServer.Core.Extensions;
 using ImagineCommunications.GamePlan.Persistence.SqlServer.Core.Interfaces;
-using ImagineCommunications.GamePlan.Persistence.SqlServer.Interfaces;
+using ImagineCommunications.GamePlan.Persistence.SqlServer.Core.Extensions;
 using Microsoft.EntityFrameworkCore;
-using xggameplan.core.Extensions.AutoMapper;
 using SponsorshipEntity = ImagineCommunications.GamePlan.Persistence.SqlServer.Entities.Tenant.Sponsorships.Sponsorship;
 
 namespace ImagineCommunications.GamePlan.Persistence.SqlServer.Repositories
@@ -16,53 +15,47 @@ namespace ImagineCommunications.GamePlan.Persistence.SqlServer.Repositories
     public class SponsorshipRepository : ISponsorshipRepository
     {
         private readonly ISqlServerTenantDbContext _dbContext;
-        private readonly ISqlServerSalesAreaByIdCacheAccessor _salesAreaByIdCache;
-        private readonly ISqlServerSalesAreaByNameCacheAccessor _salesAreaByNameCache;
         private readonly IMapper _mapper;
 
-        public SponsorshipRepository(ISqlServerTenantDbContext dbContext,
-            ISqlServerSalesAreaByIdCacheAccessor salesAreaByIdCache,
-            ISqlServerSalesAreaByNameCacheAccessor salesAreaByNameCache, IMapper mapper)
+        public SponsorshipRepository(ISqlServerTenantDbContext dbContext, IMapper mapper)
         {
             _dbContext = dbContext;
-            _salesAreaByIdCache = salesAreaByIdCache;
-            _salesAreaByNameCache = salesAreaByNameCache;
             _mapper = mapper;
         }
 
         public Sponsorship Get(string externalReferenceId) =>
-            _mapper.Map<Sponsorship>(SponsorshipQuery()
-                    .FirstOrDefault(x => x.ExternalReferenceId == externalReferenceId),
-                opts => opts.UseEntityCache(_salesAreaByIdCache));
+            _dbContext.Query<SponsorshipEntity>()
+                .ProjectTo<Sponsorship>(_mapper.ConfigurationProvider)
+                .FirstOrDefault(x => x.ExternalReferenceId == externalReferenceId);
 
         public IEnumerable<Sponsorship> GetAll() =>
-            _mapper.Map<List<Sponsorship>>(SponsorshipQuery().AsNoTracking(), opts => opts.UseEntityCache(_salesAreaByIdCache));
+            _dbContext.Query<SponsorshipEntity>()
+                .ProjectTo<Sponsorship>(_mapper.ConfigurationProvider)
+                .ToList();
 
         public void Add(Sponsorship sponsorship)
         {
-            var entity =
-                _mapper.Map<SponsorshipEntity>(sponsorship, opts => opts.UseEntityCache(_salesAreaByNameCache));
-            _ = _dbContext.Add(entity,
-                post =>
-                    post.MapTo(sponsorship,
-                        opts => opts.UseEntityCache(_salesAreaByIdCache)), _mapper);
+            var entity = _mapper.Map<SponsorshipEntity>(sponsorship);
+            _dbContext.Add(entity,
+                post => post.MapTo(sponsorship), _mapper);
         }
 
         public void Update(Sponsorship sponsorship)
         {
-            var entity = SponsorshipQuery()
+            var entity = _dbContext.Query<SponsorshipEntity>()
+                .Include(x => x.SponsoredItems)
+                    .ThenInclude(x => x.AdvertiserExclusivities)
+                .Include(x => x.SponsoredItems)
+                    .ThenInclude(x => x.ClashExclusivities)
+                .Include(x => x.SponsoredItems)
+                    .ThenInclude(x => x.SponsorshipItems)
+                        .ThenInclude(x => x.DayParts)
                 .FirstOrDefault(x => x.Id == sponsorship.Id);
 
             if (entity != null)
             {
-                _ = _mapper.Map(sponsorship,
-                    entity,
-                    opts => opts.UseEntityCache(_salesAreaByNameCache));
-
-                _ = _dbContext.Update(entity,
-                    post =>
-                        post.MapTo(sponsorship,
-                            opts => opts.UseEntityCache(_salesAreaByIdCache)), _mapper);
+                _mapper.Map(sponsorship, entity);
+                _dbContext.Update(entity, post => post.MapTo(sponsorship), _mapper);
             }
         }
 
@@ -88,20 +81,5 @@ namespace ImagineCommunications.GamePlan.Persistence.SqlServer.Repositories
 
         private void Truncate() =>
             _dbContext.Truncate<SponsorshipEntity>();
-
-        private IQueryable<SponsorshipEntity> SponsorshipQuery()
-        {
-            return _dbContext.Query<SponsorshipEntity>()
-                .Include(x => x.SponsoredItems)
-                .ThenInclude(x => x.AdvertiserExclusivities)
-                .Include(x => x.SponsoredItems)
-                .ThenInclude(x => x.ClashExclusivities)
-                .Include(x => x.SponsoredItems)
-                .ThenInclude(x => x.SponsorshipItems)
-                .ThenInclude(x => x.DayParts)
-                .Include(x => x.SponsoredItems)
-                .ThenInclude(x => x.SponsorshipItems)
-                .ThenInclude(x => x.SalesAreas);
-        }
     }
 }

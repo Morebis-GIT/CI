@@ -1,8 +1,8 @@
 {
   "ConnectionStrings": {
-    "MasterDb": "Data Source=.;Initial Catalog=XGGMaster;Integrated Security=True",
-    "TenantDb": "Data Source=.;Initial Catalog=ImagineDev;Integrated Security=True",
-    "IntelligenceDb": "Data Source=.;Initial Catalog=ImagineDev;Integrated Security=True"
+    "MasterDb": "server=localhost;port=3306;user=xxxxx;password=xxxxx;database=xggpmaster",
+    "TenantDb": "server=localhost;port=3306;user=xxxxx;password=xxxxx;database=xggptenant",
+    "IntelligenceDb": "server=localhost;port=3306;user=xxxxx;password=xxxxx;database=xggptenant"
   },
   "TimeoutSettings": {
     "MasterMigrationDbContext": "900",

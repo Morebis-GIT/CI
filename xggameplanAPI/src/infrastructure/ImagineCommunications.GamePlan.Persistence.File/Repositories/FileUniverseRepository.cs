@@ -10,11 +10,12 @@ namespace ImagineCommunications.GamePlan.Persistence.File.Repositories
     {
         public FileUniverseRepository(string folder) : base(folder, "universe")
         {
+
         }
 
         public void Dispose()
         {
-            DeleteAllItems(_folder, _type);
+            DeleteAllItems<Universe>(_folder, _type);
         }
 
         public IEnumerable<Universe> GetAll()
@@ -54,19 +55,18 @@ namespace ImagineCommunications.GamePlan.Persistence.File.Repositories
 
         public void Remove(Guid id)
         {
-            DeleteItem(_folder, _type, id.ToString());
+            DeleteItem<Universe>(_folder, _type, id.ToString());
         }
 
         public void Truncate()
         {
-            DeleteAllItems(_folder, _type);
+            DeleteAllItems<Universe>(_folder, _type);
         }
 
         public void DeleteByCombination(string salesArea, string demographic, DateTime? startDate, DateTime? endDate)
         {
             throw new NotImplementedException();
         }
-
         public void SaveChanges()
         {
             throw new NotImplementedException();

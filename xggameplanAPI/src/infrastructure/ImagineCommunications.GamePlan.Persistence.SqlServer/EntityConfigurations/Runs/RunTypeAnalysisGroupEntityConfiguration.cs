@@ -11,8 +11,7 @@ namespace ImagineCommunications.GamePlan.Persistence.SqlServer.EntityConfigurati
             builder.ToTable("RunTypeAnalysisGroups");
 
             builder.HasKey(k => k.Id);
-            builder.Property(e => e.Id).UseSqlServerIdentityColumn();
-
+            builder.Property(e => e.Id).UseMySqlIdentityColumn();
             builder.Property(x => x.KPI).IsRequired().HasMaxLength(128);
 
             builder.HasOne(p => p.RunType).WithMany(p => p.RunTypeAnalysisGroups).HasForeignKey(p => p.RunTypeId)

@@ -10,7 +10,7 @@ namespace ImagineCommunications.GamePlan.Persistence.SqlServer.EntityConfigurati
         {
             builder.ToTable("Facilities");
             builder.HasKey(k => k.Id);
-            builder.Property(p => p.Id).UseSqlServerIdentityColumn();
+            builder.Property(p => p.Id).UseMySqlIdentityColumn();
             builder.Property(p => p.Code).HasMaxLength(32).IsRequired();
             builder.Property(p => p.Description).HasMaxLength(64);
         }

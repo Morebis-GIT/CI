@@ -12,8 +12,8 @@ namespace ImagineCommunications.GamePlan.Persistence.SqlServer.EntityConfigurati
             builder.ToTable("AgCampaignProgrammes");
 
             builder.HasKey(e => e.Id);
-            builder.Property(e => e.Id).UseSqlServerIdentityColumn();
-
+            builder.Property(e => e.Id).UseMySqlIdentityColumn();
+ 
             builder.Property(e => e.StartDate).HasMaxLength(32);
             builder.Property(e => e.EndDate).HasMaxLength(32);
 

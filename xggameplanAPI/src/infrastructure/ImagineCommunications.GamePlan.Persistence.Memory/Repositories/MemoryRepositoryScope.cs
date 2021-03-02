@@ -31,7 +31,7 @@ namespace ImagineCommunications.GamePlan.Persistence.Memory.Repositories
     /// </summary>
     public class MemoryRepositoryScope : IRepositoryScope
     {
-        static MemoryRepositoryScope() => _repositoryDetails = CreateRepositoryDetails();
+        static MemoryRepositoryScope() => RepositoryDetails = CreateRepositoryDetails();
 
         public MemoryRepositoryScope(Guid repositorySegmentationSalt) =>
             _repositorySegmentationSalt = repositorySegmentationSalt;
@@ -45,8 +45,8 @@ namespace ImagineCommunications.GamePlan.Persistence.Memory.Repositories
             {
                 new RepositoryDetailInfo(typeof(IBreakRepository), typeof(MemoryBreakRepository)),
                 new RepositoryDetailInfo(typeof(ICampaignRepository), typeof(MemoryCampaignRepository)),
-                new RepositoryDetailInfo(typeof(IClashExceptionRepository), typeof(MemoryClashExceptionRepository)),
                 new RepositoryDetailInfo(typeof(IClashRepository), typeof(MemoryClashRepository)),
+                new RepositoryDetailInfo(typeof(IClashExceptionRepository), typeof(MemoryClashExceptionRepository)),
                 new RepositoryDetailInfo(typeof(IDemographicRepository), typeof(MemoryDemographicRepository)),
                 new RepositoryDetailInfo(typeof(IIndexTypeRepository), typeof(MemoryIndexTypeRepository)),
                 new RepositoryDetailInfo(typeof(IProductRepository), typeof(MemoryProductRepository)),
@@ -57,8 +57,8 @@ namespace ImagineCommunications.GamePlan.Persistence.Memory.Repositories
                 new RepositoryDetailInfo(typeof(ISalesAreaRepository), typeof(MemorySalesAreaRepository)),
                 new RepositoryDetailInfo(typeof(IScheduleRepository), typeof(MemoryScheduleRepository)),
                 new RepositoryDetailInfo(typeof(ISmoothConfigurationRepository), typeof(MemorySmoothConfigurationRepository)),
-                new RepositoryDetailInfo(typeof(ISmoothFailureMessageRepository), typeof(MemorySmoothFailureMessageRepository)),
                 new RepositoryDetailInfo(typeof(ISmoothFailureRepository), typeof(MemorySmoothFailureRepository)),
+                new RepositoryDetailInfo(typeof(ISmoothFailureMessageRepository), typeof(MemorySmoothFailureMessageRepository)),
                 new RepositoryDetailInfo(typeof(ISponsorshipRepository), typeof(MemorySponsorshipRepository)),
                 new RepositoryDetailInfo(typeof(ISpotPlacementRepository), typeof(MemorySpotPlacementRepository)),
                 new RepositoryDetailInfo(typeof(ISpotRepository), typeof(MemorySpotRepository)),
@@ -67,7 +67,7 @@ namespace ImagineCommunications.GamePlan.Persistence.Memory.Repositories
             };
         }
 
-        private static readonly RepositoryDetailInfo[] _repositoryDetails;
+        private static readonly RepositoryDetailInfo[] RepositoryDetails;
         private readonly Guid _repositorySegmentationSalt;
         private readonly double _objectTTL;
 
@@ -107,7 +107,7 @@ namespace ImagineCommunications.GamePlan.Persistence.Memory.Repositories
 
             foreach (Type repositoryType in repositoryTypes)
             {
-                var repositoryDetails = Array.Find(_repositoryDetails, ri =>
+                var repositoryDetails = Array.Find(RepositoryDetails, ri =>
                     ri.InterfaceType == repositoryType || ri.ImplementationType == repositoryType);
 
                 if (repositoryDetails is null)

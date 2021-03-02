@@ -1,0 +1,278 @@
+[
+  {
+    "EventTypeId": 27,
+    "EmailCreatorId": "Default",
+    "NotificationSettings": {
+      "Enabled": false,
+      "SenderAddress": "nextgen@imaginecommunications.com",
+      "RecipientAddresses": [
+        "nextgen@imaginecommunications.com"
+      ],
+      "CCAddresses": null
+    }
+  },
+  {
+    "EventTypeId": 28,
+    "EmailCreatorId": "Default",
+    "NotificationSettings": {
+      "Enabled": false,
+      "SenderAddress": "nextgen@imaginecommunications.com",
+      "RecipientAddresses": [
+        "nextgen@imaginecommunications.com"
+      ],
+      "CCAddresses": null
+    }
+  },
+  {
+    "EventTypeId": 33,
+    "EmailCreatorId": "Run",
+    "NotificationSettings": {
+      "Enabled": false,
+      "SenderAddress": "nextgen@imaginecommunications.com",
+      "RecipientAddresses": [
+        "nextgen@imaginecommunications.com"
+      ],
+      "CCAddresses": null
+    }
+  },
+  {
+    "EventTypeId": 31,
+    "EmailCreatorId": "Run",
+    "NotificationSettings": {
+      "Enabled": false,
+      "SenderAddress": "nextgen@imaginecommunications.com",
+      "RecipientAddresses": [
+        "nextgen@imaginecommunications.com"
+      ],
+      "CCAddresses": null
+    }
+  },
+  {
+    "EventTypeId": 32,
+    "EmailCreatorId": "Run",
+    "NotificationSettings": {
+      "Enabled": false,
+      "SenderAddress": "nextgen@imaginecommunications.com",
+      "RecipientAddresses": [
+        "nextgen@imaginecommunications.com"
+      ],
+      "CCAddresses": null
+    }
+  },
+  {
+    "EventTypeId": 29,
+    "EmailCreatorId": "Run",
+    "NotificationSettings": {
+      "Enabled": false,
+      "SenderAddress": "nextgen@imaginecommunications.com",
+      "RecipientAddresses": [
+        "nextgen@imaginecommunications.com"
+      ],
+      "CCAddresses": null
+    }
+  },
+  {
+    "EventTypeId": 30,
+    "EmailCreatorId": "Default",
+    "NotificationSettings": {
+      "Enabled": false,
+      "SenderAddress": "nextgen@imaginecommunications.com",
+      "RecipientAddresses": [
+        "nextgen@imaginecommunications.com"
+      ],
+      "CCAddresses": null
+    }
+  },
+  {
+    "EventTypeId": 1,
+    "EmailCreatorId": "Default",
+    "NotificationSettings": {
+      "Enabled": false,
+      "SenderAddress": "nextgen@imaginecommunications.com",
+      "RecipientAddresses": [
+        "nextgen@imaginecommunications.com"
+      ],
+      "CCAddresses": null
+    }
+  },
+  {
+    "EventTypeId": 2,
+    "EmailCreatorId": "Default",
+    "NotificationSettings": {
+      "Enabled": false,
+      "SenderAddress": "nextgen@imaginecommunications.com",
+      "RecipientAddresses": [
+        "nextgen@imaginecommunications.com"
+      ],
+      "CCAddresses": null
+    }
+  },
+  {
+    "EventTypeId": 23,
+    "EmailCreatorId": "Default",
+    "NotificationSettings": {
+      "Enabled": false,
+      "SenderAddress": "nextgen@imaginecommunications.com",
+      "RecipientAddresses": [
+        "nextgen@imaginecommunications.com"
+      ],
+      "CCAddresses": null
+    }
+  },
+  {
+    "EventTypeId": 34,
+    "EmailCreatorId": "Default",
+    "NotificationSettings": {
+      "Enabled": false,
+      "SenderAddress": "nextgen@imaginecommunications.com",
+      "RecipientAddresses": [
+        "nextgen@imaginecommunications.com"
+      ],
+      "CCAddresses": null
+    }
+  },
+  {
+    "EventTypeId": 24,
+    "EmailCreatorId": "Run",
+    "NotificationSettings": {
+      "Enabled": false,
+      "SenderAddress": "nextgen@imaginecommunications.com",
+      "RecipientAddresses": [
+        "nextgen@imaginecommunications.com"
+      ],
+      "CCAddresses": null
+    }
+  },
+  {
+    "EventTypeId": 25,
+    "EmailCreatorId": "Run",
+    "NotificationSettings": {
+      "Enabled": false,
+      "SenderAddress": "nextgen@imaginecommunications.com",
+      "RecipientAddresses": [
+        "nextgen@imaginecommunications.com"
+      ],
+      "CCAddresses": null
+    }
+  },
+  {
+    "EventTypeId": 26,
+    "EmailCreatorId": "Run",
+    "NotificationSettings": {
+      "Enabled": false,
+      "SenderAddress": "nextgen@imaginecommunications.com",
+      "RecipientAddresses": [
+        "nextgen@imaginecommunications.com"
+      ],
+      "CCAddresses": null
+    }
+  },
+  {
+    "EventTypeId": 35,
+    "EmailCreatorId": "Default",
+    "NotificationSettings": {
+      "Enabled": false,
+      "SenderAddress": "nextgen@imaginecommunications.com",
+      "RecipientAddresses": [
+        "nextgen@imaginecommunications.com"
+      ],
+      "CCAddresses": null
+    }
+  },
+  {
+    "EventTypeId": 3,
+    "EmailCreatorId": "Default",
+    "NotificationSettings": {
+      "Enabled": false,
+      "SenderAddress": "nextgen@imaginecommunications.com",
+      "RecipientAddresses": [
+        "nextgen@imaginecommunications.com"
+      ],
+      "CCAddresses": null
+    }
+  },
+  {
+    "EventTypeId": 4,
+    "EmailCreatorId": "Default",
+    "NotificationSettings": {
+      "Enabled": false,
+      "SenderAddress": "nextgen@imaginecommunications.com",
+      "RecipientAddresses": [
+        "nextgen@imaginecommunications.com"
+      ],
+      "CCAddresses": null
+    }
+  },
+  {
+    "EventTypeId": 5,
+    "EmailCreatorId": "Default",
+    "NotificationSettings": {
+      "Enabled": false,
+      "SenderAddress": "nextgen@imaginecommunications.com",
+      "RecipientAddresses": [
+        "nextgen@imaginecommunications.com"
+      ],
+      "CCAddresses": null
+    }
+  },
+  {
+    "EventTypeId": 6,
+    "EmailCreatorId": "Default",
+    "NotificationSettings": {
+      "Enabled": false,
+      "SenderAddress": "nextgen@imaginecommunications.com",
+      "RecipientAddresses": [
+        "nextgen@imaginecommunications.com"
+      ],
+      "CCAddresses": null
+    }
+  },
+  {
+    "EventTypeId": 7,
+    "EmailCreatorId": "Default",
+    "NotificationSettings": {
+      "Enabled": false,
+      "SenderAddress": "nextgen@imaginecommunications.com",
+      "RecipientAddresses": [
+        "nextgen@imaginecommunications.com"
+      ],
+      "CCAddresses": null
+    }
+  },
+  {
+    "EventTypeId": 11,
+    "EmailCreatorId": "Default",
+    "NotificationSettings": {
+      "Enabled": false,
+      "SenderAddress": "nextgen@imaginecommunications.com",
+      "RecipientAddresses": [
+        "nextgen@imaginecommunications.com"
+      ],
+      "CCAddresses": null
+    }
+  },
+  {
+    "EventTypeId": 12,
+    "EmailCreatorId": "Default",
+    "NotificationSettings": {
+      "Enabled": false,
+      "SenderAddress": "nextgen@imaginecommunications.com",
+      "RecipientAddresses": [
+        "nextgen@imaginecommunications.com"
+      ],
+      "CCAddresses": null
+    }
+  },
+  {
+    "EventTypeId": 15,
+    "EmailCreatorId": "Default",
+    "NotificationSettings": {
+      "Enabled": false,
+      "SenderAddress": "nextgen@imaginecommunications.com",
+      "RecipientAddresses": [
+        "nextgen@imaginecommunications.com"
+      ],
+      "CCAddresses": null
+    }
+  }
+]

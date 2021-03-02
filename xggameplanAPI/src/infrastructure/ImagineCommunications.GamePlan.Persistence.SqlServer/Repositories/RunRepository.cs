@@ -16,11 +16,8 @@ using ImagineCommunications.GamePlan.Persistence.SqlServer.Core.Interfaces;
 using ImagineCommunications.GamePlan.Persistence.SqlServer.Dto.Internal;
 using ImagineCommunications.GamePlan.Persistence.SqlServer.Entities;
 using ImagineCommunications.GamePlan.Persistence.SqlServer.Entities.Tenant.Passes;
-using ImagineCommunications.GamePlan.Persistence.SqlServer.Extensions;
-using ImagineCommunications.GamePlan.Persistence.SqlServer.Interfaces;
 using Microsoft.EntityFrameworkCore;
 using xggameplan.core.Extensions;
-using xggameplan.core.Extensions.AutoMapper;
 using RunScenarioEntity = ImagineCommunications.GamePlan.Persistence.SqlServer.Entities.Tenant.Runs.RunScenario;
 using RunStatus = ImagineCommunications.GamePlan.Domain.Runs.RunStatus;
 
@@ -46,43 +43,22 @@ namespace ImagineCommunications.GamePlan.Persistence.SqlServer.Repositories
 
         private readonly ISqlServerTenantDbContext _dbContext;
         private readonly IFullTextSearchConditionBuilder _searchConditionBuilder;
-        private readonly ISqlServerSalesAreaByIdCacheAccessor _salesAreaByIdCache;
-        private readonly ISqlServerSalesAreaByNameCacheAccessor _salesAreaByNameCache;
         private readonly IMapper _mapper;
 
-        private IQueryable<Entities.Tenant.Runs.Run> RunQuery =>
-            _dbContext.Query<Entities.Tenant.Runs.Run>()
-                .Include(x => x.AnalysisGroupTargets)
-                .Include(x => x.Author)
-                .Include(x => x.CampaignsProcessesSettings)
-                .Include(x => x.Campaigns)
-                .Include(x => x.ExcludedInventoryStatuses)
-                .Include(x => x.InventoryLock)
-                .Include(x => x.SalesAreaPriorities)
-                .Include(x => x.ScheduleSettings)
-                .Include(x => x.Scenarios)
-                .ThenInclude(x => x.ExternalRunInfo);
-
-        public RunRepository(ISqlServerTenantDbContext dbContext,
-            IFullTextSearchConditionBuilder searchConditionBuilder,
-            ISqlServerSalesAreaByIdCacheAccessor salesAreaByIdCache,
-            ISqlServerSalesAreaByNameCacheAccessor salesAreaByNameCache,
-            IMapper mapper)
+        public RunRepository(ISqlServerTenantDbContext dbContext, IFullTextSearchConditionBuilder searchConditionBuilder, IMapper mapper)
         {
             _dbContext = dbContext;
             _searchConditionBuilder = searchConditionBuilder;
-            _salesAreaByIdCache = salesAreaByIdCache;
-            _salesAreaByNameCache = salesAreaByNameCache;
             _mapper = mapper;
         }
 
-        private IQueryable<Entities.Tenant.Runs.Run> GetRunByExpression(Expression<Func<Entities.Tenant.Runs.Run, bool>> expression) =>
-            RunQuery.Where(expression);
+        private IQueryable<Run> GetRunByExpression(Expression<Func<Entities.Tenant.Runs.Run, bool>> expression) =>
+            _dbContext.Query<Entities.Tenant.Runs.Run>()
+                .Where(expression)
+                .ProjectTo<Run>(_mapper.ConfigurationProvider);
 
         public Run Find(Guid id) =>
-            _mapper.Map<Run>(
-                RunQuery.FirstOrDefault(x => x.Id == id),
-                opt => opt.UseEntityCache(_salesAreaByIdCache));
+            _dbContext.Query<Entities.Tenant.Runs.Run>().ProjectTo<Run>(_mapper.ConfigurationProvider).FirstOrDefault(x => x.Id == id);
 
         public Guid GetRunIdForScenario(Guid scenarioId) =>
             _dbContext.Query<Entities.Tenant.Runs.Run>()
@@ -91,33 +67,28 @@ namespace ImagineCommunications.GamePlan.Persistence.SqlServer.Repositories
                 .FirstOrDefault();
 
         public IEnumerable<Run> FindByIds(IEnumerable<Guid> ids) =>
-            _mapper.Map<List<Run>>(
-                GetRunByExpression(r => ids.Contains(r.Id)).AsNoTracking(),
-                opt => opt.UseEntityCache(_salesAreaByIdCache));
+            _dbContext.Query<Entities.Tenant.Runs.Run>().Where(r => ids.Contains(r.Id))
+                .ProjectTo<Run>(_mapper.ConfigurationProvider).ToList();
 
         public Run FindByScenarioId(Guid scenarioId) =>
-            _mapper.Map<Run>(
-                GetRunByExpression(x => x.Scenarios.Any(s => s.ScenarioId == scenarioId)).AsNoTracking().FirstOrDefault(),
-                opt => opt.UseEntityCache(_salesAreaByIdCache));
+            _dbContext.Query<Entities.Tenant.Runs.Run>()
+                .Where(x => x.Scenarios.Any(s => s.ScenarioId == scenarioId)).ProjectTo<Run>(_mapper.ConfigurationProvider).FirstOrDefault();
 
         public IEnumerable<Run> GetByScenarioId(Guid scenarioId) =>
-            _mapper.Map<List<Run>>(
-                GetRunByExpression(x => x.Scenarios.Any(s => s.ScenarioId == scenarioId)).AsNoTracking(),
-                opt => opt.UseEntityCache(_salesAreaByIdCache));
+            _dbContext.Query<Entities.Tenant.Runs.Run>()
+                .Where(x => x.Scenarios.Any(s => s.ScenarioId == scenarioId)).ProjectTo<Run>(_mapper.ConfigurationProvider).ToList();
 
         public IEnumerable<Run> GetAll() =>
-            _mapper.Map<List<Run>>(
-                RunQuery.AsNoTracking(),
-                opt => opt.UseEntityCache(_salesAreaByIdCache));
+            _dbContext.Query<Entities.Tenant.Runs.Run>().ProjectTo<Run>(_mapper.ConfigurationProvider).ToList();
 
         public IEnumerable<Run> GetAllActive()
         {
             var recent = DateTime.UtcNow.AddHours(-48);
-
-            return _mapper.Map<List<Run>>(
-                 GetRunByExpression(r => r.ExecuteStartedDateTime >= recent &&
-                     r.Scenarios.Any(s => _scheduledOrRunningStatuses.Contains(s.Status))).AsNoTracking(),
-                 opt => opt.UseEntityCache(_salesAreaByIdCache));
+            return _dbContext.Query<Entities.Tenant.Runs.Run>()
+                .Where(r => r.ExecuteStartedDateTime >= recent &&
+                    r.Scenarios.Any(s => _scheduledOrRunningStatuses.Contains(s.Status)))
+                .ProjectTo<Run>(_mapper.ConfigurationProvider)
+                .ToList();
         }
 
         public IEnumerable<RunsWithScenarioIdTransformerResult> GetRunsWithScenarioId() =>
@@ -128,58 +99,43 @@ namespace ImagineCommunications.GamePlan.Persistence.SqlServer.Repositories
                     ScenarioId = x.ScenarioId
                 }).ToList();
 
+        public Run FindByExternalRunId(Guid externalRunId) =>
+            GetRunByExpression(x => x.Scenarios.Any(s => s.ExternalRunInfo != null && s.ExternalRunInfo.ExternalRunId == externalRunId))
+                .SingleOrDefault();
+
         public IEnumerable<Run> FindTriggeredInLandmark() =>
-             _mapper.Map<List<Run>>(
-                 GetRunByExpression(x => x.Scenarios.Any(s =>
-                    s.ExternalRunInfo != null &&
-                    _triggeredInLandmarkStatuses.Contains(s.ExternalRunInfo.ExternalStatus))).AsNoTracking(),
-                opt => opt.UseEntityCache(_salesAreaByIdCache));
+            GetRunByExpression(x => x.Scenarios.Any(s =>
+                s.ExternalRunInfo != null &&
+                _triggeredInLandmarkStatuses.Contains(s.ExternalRunInfo.ExternalStatus)));
 
         public IEnumerable<Run> FindLandmarkRuns() =>
-             _mapper.Map<List<Run>>(
-                GetRunByExpression(x => x.Scenarios.Any(s => s.ExternalRunInfo != null)).AsNoTracking(),
-                opt => opt.UseEntityCache(_salesAreaByIdCache));
+            GetRunByExpression(x => x.Scenarios.Any(s => s.ExternalRunInfo != null));
 
         public void Add(Run run)
         {
-            var entity = _mapper.Map<Entities.Tenant.Runs.Run>(
-                run,
-                opt => opt.UseEntityCache(_salesAreaByNameCache));
+            var entity = _mapper.Map<Entities.Tenant.Runs.Run>(run);
             ApplyScenariosOrder(entity.Scenarios);
 
-            _ = _dbContext.Add(
-                 entity,
-                 post =>
-                 post.MapTo(
-                     run,
-                     opt => opt.UseEntityCache(_salesAreaByIdCache)),
-                 _mapper);
+            _dbContext.Add(entity, post => post.MapTo(run), _mapper);
         }
 
         public void Update(Run run)
         {
-            var entity = RunQuery.FirstOrDefault(x => x.Id == run.Id);
+            var entity = GetQueryWithAllIncludes()
+                .FirstOrDefault(x => x.Id == run.Id);
 
             if (entity != null)
             {
-                _ = _mapper.Map(
-                    run,
-                    entity,
-                    opt => opt.UseEntityCache(_salesAreaByNameCache));
+                _mapper.Map(run, entity);
                 ApplyScenariosOrder(entity.Scenarios);
 
-                _ = _dbContext.Update(
-                    entity,
-                    post => post.MapTo(
-                        run,
-                        opt => opt.UseEntityCache(_salesAreaByIdCache)),
-                    _mapper);
+                _dbContext.Update(entity, post => post.MapTo(run), _mapper);
             }
         }
 
         public void UpdateRange(IEnumerable<Run> runs)
         {
-            var entities = RunQuery
+            var entities = GetQueryWithAllIncludes()
                 .Where(x => runs.Any(y => y.Id == x.Id))
                 .ToArray();
 
@@ -194,20 +150,11 @@ namespace ImagineCommunications.GamePlan.Persistence.SqlServer.Repositories
 
                 if (run != null)
                 {
-                    _ = _mapper.Map(
-                        run,
-                        entity,
-                        opt => opt.UseEntityCache(_salesAreaByNameCache));
+                    _mapper.Map(run, entity);
                 }
             }
 
-            _dbContext.UpdateRange(
-                entities,
-                post =>
-                post.MapToCollection(
-                    runs,
-                    opt => opt.UseEntityCache(_salesAreaByIdCache)),
-                _mapper);
+            _dbContext.UpdateRange(entities, post => post.MapToCollection(runs), _mapper);
         }
 
         public bool Exists(Guid id) =>
@@ -247,17 +194,17 @@ namespace ImagineCommunications.GamePlan.Persistence.SqlServer.Repositories
 
             var query =
                 (from run in _dbContext.Query<Entities.Tenant.Runs.Run>()
-                 join rsj in _dbContext.Query<Entities.Tenant.Runs.RunScenario>() on run.Id equals rsj.RunId
-                 join sj in _dbContext.Query<Entities.Tenant.Scenarios.Scenario>() on rsj.ScenarioId equals sj.Id
-                     into scenarios
-                 from s in scenarios.DefaultIfEmpty()
-                 join prj in _dbContext.Query<Entities.Tenant.Scenarios.ScenarioPassReference>() on s.Id equals prj.ScenarioId
-                     into passReferences
-                 from pr in passReferences.DefaultIfEmpty()
-                 join pj in _dbContext.Query<Pass>() on pr.PassId equals pj.Id
-                    into passes
-                 from p in passes.DefaultIfEmpty()
-                 select new { run, s, p }).AsQueryable();
+                    join rsj in _dbContext.Query<Entities.Tenant.Runs.RunScenario>() on run.Id equals rsj.RunId
+                    join sj in _dbContext.Query<Entities.Tenant.Scenarios.Scenario>() on rsj.ScenarioId equals sj.Id
+                        into scenarios
+                    from s in scenarios.DefaultIfEmpty()
+                    join prj in _dbContext.Query<Entities.Tenant.Scenarios.ScenarioPassReference>() on s.Id equals prj.ScenarioId
+                        into passReferences
+                     from pr in passReferences.DefaultIfEmpty()
+                     join pj in _dbContext.Query<Pass>() on pr.PassId equals pj.Id
+                        into passes
+                    from p in passes.DefaultIfEmpty()
+                    select new { run, s, p}).AsQueryable();
 
             if (queryModel.RunPeriodStartDate.HasValue && queryModel.RunPeriodEndDate.HasValue)
             {
@@ -282,15 +229,35 @@ namespace ImagineCommunications.GamePlan.Persistence.SqlServer.Repositories
                 query = query.Where(x => entityStatuses.Contains(x.run.RunStatus));
             }
 
+            /* redundant code that should be reviewed. all operations with searching by description are done in the ApplyFreeTextMatchRules method that is called at the end of these method */
+            
+
+
             if (!string.IsNullOrEmpty(queryModel.Description))
             {
-                var condition = _searchConditionBuilder.StartAnyWith(queryModel.Description.Split(new[] { ' ' })).Build();
                 query = query.Where(q =>
-                    EF.Functions.Contains(EF.Property<string>(q.run, Entities.Tenant.Runs.Run.SearchField), condition) ||
-                    EF.Functions.Contains(q.run.Author.Name, condition) ||
-                    EF.Functions.Contains(EF.Property<string>(q.s, Entities.Tenant.Scenarios.Scenario.SearchField), condition) ||
-                    EF.Functions.Contains(EF.Property<string>(q.p, Entities.Tenant.Passes.Pass.SearchField), condition));
+                    q.run.Id.ToString().Contains(queryModel.Description)
+                    || q.run.Description.Contains(queryModel.Description)
+                    || q.run.Author.Name.Contains(queryModel.Description)
+                    || q.s.Id.ToString().Contains(queryModel.Description)
+                    || q.s.Name.Contains(queryModel.Description)
+                    || q.p.Id.ToString().Contains(queryModel.Description)
+                    || q.p.Name.Contains(queryModel.Description));
+                if (freeTextMatchRules.HowManyWordsToMatch == StringMatchHowManyWordsToMatch.AllWords)
+                {
+                    query = query.MakeContainsAll();
+                }
+                if (freeTextMatchRules.HowManyWordsToMatch == StringMatchHowManyWordsToMatch.AnyWord)
+                {
+                    query = query.MakeContainsAny();
+                }
+                if (!freeTextMatchRules.CaseSensitive)
+                {
+                    query = query.MakeCaseInsensitive();
+                }
             }
+
+
 
             var filteredQuery = query.Select(x => new
             {
@@ -386,18 +353,19 @@ namespace ImagineCommunications.GamePlan.Persistence.SqlServer.Repositories
 
         public IEnumerable<Run> GetRunsByCampaignExternalIdsAndStatus(IEnumerable<string> externalIds, RunStatus runStatus)
         {
-            var entityRunStatus = (Entities.RunStatus)runStatus;
-
-            return _mapper.Map<List<Run>>(
-                            GetRunByExpression(x => x.RunStatus == entityRunStatus &&
-                                (!x.Campaigns.Any() || x.Campaigns.Any(c => externalIds.Contains(c.ExternalId)))),
-                            opt => opt.UseEntityCache(_salesAreaByIdCache));
+            var entityRunStatus = (Entities.RunStatus) runStatus;
+            return _dbContext.Query<Entities.Tenant.Runs.Run>()
+                .Where(x => x.RunStatus == entityRunStatus &&
+                    (!x.Campaigns.Any() || x.Campaigns.Any(c => externalIds.Contains(c.ExternalId))))
+                .ProjectTo<Run>(_mapper.ConfigurationProvider)
+                .ToList();
         }
 
         public IEnumerable<Run> GetRunsByDeliveryCappingGroupId(int id) =>
-            _mapper.Map<List<Run>>(
-                GetRunByExpression(x => x.CampaignsProcessesSettings.Any(y => y.DeliveryCappingGroupId == id)).AsNoTracking(),
-                opt => opt.UseEntityCache(_salesAreaByIdCache));
+            _dbContext.Query<Entities.Tenant.Runs.Run>()
+                .Where(x => x.CampaignsProcessesSettings.Any(y => y.DeliveryCappingGroupId == id))
+                .ProjectTo<Run>(_mapper.ConfigurationProvider)
+                .ToList();
 
         private List<RunExtendedSearchModel> ApplyFreeTextMatchRules(List<RunExtendedSearchModel> runs, StringMatchRules freeTextMatchRules, string description)
         {
@@ -421,5 +389,17 @@ namespace ImagineCommunications.GamePlan.Persistence.SqlServer.Repositories
                 pr.Order = order++;
             }
         }
+
+        private IQueryable<Entities.Tenant.Runs.Run> GetQueryWithAllIncludes() =>
+            _dbContext.Query<Entities.Tenant.Runs.Run>()
+                .Include(x => x.Author)
+                .Include(x => x.Campaigns)
+                .Include(x => x.Scenarios)
+                .Include(x => x.CampaignsProcessesSettings)
+                .Include(x => x.InventoryLock)
+                .Include(x => x.ExcludedInventoryStatuses)
+                .Include(x => x.SalesAreaPriorities)
+                .Include(x => x.AnalysisGroupTargets)
+                .Include(x => x.ScheduleSettings);
     }
 }

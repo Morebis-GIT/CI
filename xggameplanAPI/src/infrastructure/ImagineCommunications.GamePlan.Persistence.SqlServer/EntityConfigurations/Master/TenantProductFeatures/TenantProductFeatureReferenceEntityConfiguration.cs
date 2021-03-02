@@ -11,7 +11,7 @@ namespace ImagineCommunications.GamePlan.Persistence.SqlServer.EntityConfigurati
             builder.ToTable("TenantProductFeatureReferences");
 
             builder.HasKey(f => f.Id);
-            builder.Property(f => f.Id).UseSqlServerIdentityColumn();
+            builder.Property(f => f.Id).UseMySqlIdentityColumn();
 
             builder.Property(f => f.TenantProductFeatureChildId).IsRequired();
             builder.Property(f => f.TenantProductFeatureParentId).IsRequired();

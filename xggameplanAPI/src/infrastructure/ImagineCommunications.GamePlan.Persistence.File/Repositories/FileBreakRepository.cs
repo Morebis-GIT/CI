@@ -73,19 +73,22 @@ namespace ImagineCommunications.GamePlan.Persistence.File.Repositories
             return GetItemByID<Break>(_folder, _type, id.ToString());
         }
 
-        public IEnumerable<Break> GetAll() => GetAllByType<Break>(_folder, _type);
+        public IEnumerable<Break> GetAll()
+        {
+            return GetAllByType<Break>(_folder, _type);
+        }
 
         [Obsolete("Use Count()")]
         public int CountAll => Count();
 
-        public int Count() => CountAll(_folder, _type);
+        public int Count() => CountAll<Break>(_folder, _type);
 
         [Obsolete("Use Delete()")]
         public void Remove(Guid id) => Delete(id);
 
         public void Delete(Guid id)
         {
-            DeleteItem(_folder, _type, id.ToString());
+            DeleteItem<Break>(_folder, _type, id.ToString());
         }
 
         public void Delete(IEnumerable<Guid> ids)
@@ -96,7 +99,7 @@ namespace ImagineCommunications.GamePlan.Persistence.File.Repositories
         [Obsolete("Try to use TruncateAsync() as it is more reliable.")]
         public void Truncate()
         {
-            DeleteAllItems(_folder, _type);
+            DeleteAllItems<Break>(_folder, _type);
         }
 
         public Task TruncateAsync()

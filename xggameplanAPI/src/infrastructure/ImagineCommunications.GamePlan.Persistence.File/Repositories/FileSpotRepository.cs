@@ -11,9 +11,7 @@ namespace ImagineCommunications.GamePlan.Persistence.File.Repositories
     public class FileSpotRepository
         : FileRepositoryBase, ISpotRepository
     {
-        public FileSpotRepository(string folder) : base(folder, "spot")
-        {
-        }
+        public FileSpotRepository(string folder) : base(folder, "spot") { }
 
         public void Add(IEnumerable<Spot> items)
         {
@@ -27,7 +25,7 @@ namespace ImagineCommunications.GamePlan.Persistence.File.Repositories
         public void Add(Spot item)
         {
             List<Spot> items = new List<Spot>() { item };
-            InsertItems(_folder, _type, items, items.ConvertAll(i => i.Uid.ToString()));
+            InsertItems(_folder, _type, items, items.Select(i => i.Uid.ToString()).ToList());
         }
 
         public void Update(Spot item)
@@ -55,8 +53,10 @@ namespace ImagineCommunications.GamePlan.Persistence.File.Repositories
 
         public IEnumerable<Spot> Search(DateTime datefrom, DateTime dateto, List<string> salesareas)
         {
-            return GetAllByType<Spot>(_folder, _type, s =>
+            var items = GetAllByType<Spot>(_folder, _type, s =>
                 s.StartDateTime >= datefrom && s.StartDateTime <= dateto && salesareas.Contains(s.SalesArea));
+
+            return items;
         }
 
         public Spot Find(Guid id)
@@ -74,11 +74,17 @@ namespace ImagineCommunications.GamePlan.Persistence.File.Repositories
         public IEnumerable<Spot> GetAllByCampaign(string campaignExternalId) =>
             GetAllByType<Spot>(_folder, _type, s => s.ExternalCampaignNumber == campaignExternalId);
 
-        public int CountAll => CountAll(_folder, _type);
+        public int CountAll
+        {
+            get
+            {
+                return CountAll<Spot>(_folder, _type);
+            }
+        }
 
         public void Remove(Guid uid)
         {
-            DeleteItem(_folder, _type, uid.ToString());
+            DeleteItem<Spot>(_folder, _type, uid.ToString());
         }
 
         public void Delete(IEnumerable<Guid> ids)
@@ -88,13 +94,13 @@ namespace ImagineCommunications.GamePlan.Persistence.File.Repositories
 
         public void Truncate()
         {
-            DeleteAllItems(_folder, _type);
+            DeleteAllItems<Spot>(_folder, _type);
         }
 
         public Task TruncateAsync()
         {
             Truncate();
-            return Task.CompletedTask;
+            return Task.FromResult(true);
         }
 
         public IEnumerable<Spot> FindByExternal(List<string> externalRef)
@@ -109,10 +115,12 @@ namespace ImagineCommunications.GamePlan.Persistence.File.Repositories
 
         public void SaveChanges()
         {
+
         }
 
         public void Dispose()
         {
+
         }
 
         public int Count(Expression<Func<Spot, bool>> query)

@@ -4,7 +4,6 @@ using ImagineCommunications.GamePlan.Domain.LengthFactors;
 using ImagineCommunications.GamePlan.Persistence.SqlServer.Core.Extensions;
 using ImagineCommunications.GamePlan.Persistence.SqlServer.Core.Interfaces;
 using ImagineCommunications.GamePlan.Persistence.SqlServer.Interfaces;
-using Microsoft.EntityFrameworkCore;
 using xggameplan.core.Extensions.AutoMapper;
 
 namespace ImagineCommunications.GamePlan.Persistence.SqlServer.Repositories
@@ -46,7 +45,7 @@ namespace ImagineCommunications.GamePlan.Persistence.SqlServer.Repositories
                 opts => opts.UseEntityCache(_salesAreaByIdCache));
 
         public IEnumerable<LengthFactor> GetAll() =>
-            _mapper.Map<List<LengthFactor>>(_dbContext.Query<Entities.Tenant.LengthFactor>().AsNoTracking(),
+            _mapper.Map<List<LengthFactor>>(_dbContext.Query<Entities.Tenant.LengthFactor>(),
                 opts => opts.UseEntityCache(_salesAreaByIdCache));
 
         public void SaveChanges()

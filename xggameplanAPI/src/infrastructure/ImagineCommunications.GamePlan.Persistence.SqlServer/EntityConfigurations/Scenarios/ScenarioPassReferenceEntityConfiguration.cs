@@ -11,7 +11,8 @@ namespace ImagineCommunications.GamePlan.Persistence.SqlServer.EntityConfigurati
             builder.ToTable("ScenarioPassReferences");
 
             builder.HasKey(e => e.Id);
-            builder.Property(e => e.Id).UseSqlServerIdentityColumn();
+            builder.Property(e => e.Id).UseMySqlIdentityColumn();
+            
             builder.Property(x => x.Order).IsRequired().HasDefaultValue(1);
 
             builder.HasIndex(e => e.PassId);

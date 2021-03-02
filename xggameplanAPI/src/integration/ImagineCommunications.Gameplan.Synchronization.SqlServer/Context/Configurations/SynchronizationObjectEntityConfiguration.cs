@@ -10,7 +10,7 @@ namespace ImagineCommunications.Gameplan.Synchronization.SqlServer.Context.Confi
         {
             builder.ToTable("SynchronizationObjects");
             builder.HasKey(e => e.Id);
-            builder.Property(e => e.RowVersion).IsRowVersion();
+            builder.Property(e => e.RowVersion).HasColumnType("Varbinary(16)");
             builder.Property(e => e.OwnerCount).IsRequired().HasDefaultValue(0);
 
             builder.HasMany(e => e.Owners)

@@ -7,6 +7,7 @@ Feature: Clash
 Background:
 	Given GroupTransactionInfo for 1 event sent
 
+
 Scenario: BulkClashCreatedOrUpdated successfully received and saved to empty Clash table
 	Given I have BulkClashCreatedOrUpdated message to publish
 		| ParentExternalIdentifier | Description | ExposureCount | ExternalRef |
@@ -16,6 +17,7 @@ Scenario: BulkClashCreatedOrUpdated successfully received and saved to empty Cla
 	And the Clashes data in GamePlan database is updated as following
 		| ParentExternalIdentifier | Description | DefaultOffPeakExposureCount | ExternalRef |
 		|                          | BASE        | 5423                        | asdas       |
+
 
 Scenario: BulkClashCreatedOrUpdated successfully received and saved to empty Clash table linked Clashes
 	Given I have BulkClashCreatedOrUpdated message to publish
@@ -28,6 +30,7 @@ Scenario: BulkClashCreatedOrUpdated successfully received and saved to empty Cla
 		| ParentExternalIdentifier | Description | DefaultOffPeakExposureCount | ExternalRef |
 		|                          | PARENT      | 5424                        | asdas       |
 		| asdas                    | BASE        | 5423                        | ref         |
+
 
 Scenario: BulkClashCreatedOrUpdated successfully received and Clashes table updated with new data
 	Given The Clashes data exists in GamePlan database
@@ -82,6 +85,7 @@ Scenario: BulkClashCreatedOrUpdated model property validations failed
 		| Data[6].SameParentExternalRef |
 		| DuplicateExternalRefs         |
 
+
 Scenario: BulkClashCreatedOrUpdated published with valid data
 	Given The Clashes data exists in GamePlan database
 		| Uid                                  | ParentExternalIdentifier | Description  | DefaultOffPeakExposureCount | ExternalRef |
@@ -120,6 +124,7 @@ Scenario: BulkClashCreatedOrUpdated validation fails same externalRef
 		| Data[0].ExposureCount         |
 		| Data[0].Description           |
 		| Data[0].SameParentExternalRef |
+
 
 Scenario: BulkClashCreatedOrUpdated published with non-existing ExternalRef and existing ExternalRef
 	Given The Clashes data exists in GamePlan database

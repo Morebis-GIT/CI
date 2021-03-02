@@ -9,23 +9,21 @@ namespace ImagineCommunications.GamePlan.Persistence.SqlServer.EntityConfigurati
     {
         public void Configure(EntityTypeBuilder<Universe> builder)
         {
-            _ = builder.ToTable("Universes");
+            builder.ToTable("Universes");
 
-            _ = builder.HasKey(k => k.Id);
-            _ = builder.Property(p => p.Id).HasDefaultValueSql("NEWID()");
+            builder.HasKey(k => k.Id);
+            builder.Property(p => p.Id);
 
-            _ = builder.Property(p => p.Demographic).HasMaxLength(64);
-            _ = builder.Property(p => p.StartDate).AsUtc();
-            _ = builder.Property(p => p.EndDate).AsUtc();
-            _ = builder.Property(p => p.UniverseValue).IsRequired();
+            builder.Property(p => p.SalesArea).HasMaxLength(64);
+            builder.Property(p => p.Demographic).HasMaxLength(64);
+            builder.Property(p => p.StartDate).AsUtc();
+            builder.Property(p => p.EndDate).AsUtc();
+            builder.Property(p => p.UniverseValue).IsRequired();
 
-            _ = builder.HasOne(x => x.SalesArea).WithMany().HasForeignKey(x => x.SalesAreaId)
-                .OnDelete(DeleteBehavior.Restrict);
-
-            _ = builder.HasIndex(p => p.SalesAreaId);
-            _ = builder.HasIndex(p => p.Demographic);
-            _ = builder.HasIndex(p => p.StartDate);
-            _ = builder.HasIndex(p => p.EndDate);
+            builder.HasIndex(p => p.SalesArea);
+            builder.HasIndex(p => p.Demographic);
+            builder.HasIndex(p => p.StartDate);
+            builder.HasIndex(p => p.EndDate);
         }
     }
 }

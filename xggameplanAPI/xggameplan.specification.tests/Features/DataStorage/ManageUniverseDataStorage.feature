@@ -7,26 +7,15 @@ Feature: ManageUniverseDataStorage
 
 Background:
 	Given there is a Universes repository
-	And predefined Universe.SalesAreas.json data
-	And predefined data imported
 
 Scenario: Add new universes
-	Given the following documents created:
-		| Id                                   | SalesArea | Demographic | StartDate | EndDate   | UniverseValue |
-		| 3D71B599-B981-4C4D-B528-358112A37C04 | 7         | 3           | 2018-3-5  | 2018-9-7  | 16            |
-	When I create the following documents:
-		| Id                                   | SalesArea | Demographic | StartDate | EndDate   | UniverseValue |
-		| 13BE3EDC-F1EF-4818-9D71-67E87AD490D7 | 9         | 6           | 2018-2-17 | 2018-5-19 | 21            |
-		| ED40849D-DB1A-4CA6-84FA-6FDBB8A15849 | 12        | 9           | 2018-6-12 | 2018-10-3 | 315           |
+	Given 1 documents created
+	When I create 2 documents
 	And I get all documents
 	Then there should be 3 documents returned
 
 Scenario: Get all universes
-	Given the following documents created:
-		| Id                                   | SalesArea | Demographic | StartDate | EndDate   | UniverseValue |
-		| 3D71B599-B981-4C4D-B528-358112A37C04 | 7         | 3           | 2018-3-5  | 2018-9-7  | 16            |
-		| 13BE3EDC-F1EF-4818-9D71-67E87AD490D7 | 9         | 6           | 2018-2-17 | 2018-5-19 | 21            |
-		| ED40849D-DB1A-4CA6-84FA-6FDBB8A15849 | 12        | 9           | 2018-6-12 | 2018-10-3 | 315           |
+	Given 3 documents created
 	When I get all documents
 	Then there should be 3 documents returned
 
@@ -41,11 +30,11 @@ Scenario: Get universe by id
 
 Scenario: Get a non-existing universe by id
 	Given the following documents created:
-		| Id                                   | SalesArea |
-		| 720906C7-EB98-4057-9175-962AF459EA55 | 7         |
-		| 2259294C-24E6-45B7-B1EF-2BAA53CF4278 | 9         |
-		| 6D5304D7-5848-4577-8F31-65305E8DA0BD | 12        |
-	When I get document with id 'DA60CF83-C553-41EB-BFDE-344DA2020FFD'
+		| Id                                   |
+		| 720906C7-EB98-4057-9175-962AF459EA55 |
+		| 2259294C-24E6-45B7-B1EF-2BAA53CF4278 |
+		| 6D5304D7-5848-4577-8F31-65305E8DA0BD |
+	When I get document with id '00000000-0000-0000-0000-000000000000'
 	Then no documents should be returned
 
 Scenario: Delete universe by id

@@ -17,24 +17,20 @@ namespace ImagineCommunications.GamePlan.Persistence.Memory.Repositories
 
         public void Add(IEnumerable<Spot> items)
         {
-            foreach (var item in items)
-            {
-                Add(item);
-            }
+            var spots = items.ToList();
+            InsertItems(spots, spots.Select(i => i.Uid.ToString()).ToList());
         }
 
         public void Add(Spot item)
         {
-            InsertOrReplaceItem(item, item.Uid.ToString());
+            var items = new List<Spot>() { item };
+            InsertItems(items, items.Select(i => i.Uid.ToString()).ToList());
         }
 
         public void Update(Spot item)
         {
-            InsertOrReplaceItem(item, item.Uid.ToString());
+            UpdateOrInsertItem(item, item.Uid.ToString());
         }
-
-        // Apparently, some nasty hotfix to make a RavenDB test pass...
-        public void InsertOrReplace(IEnumerable<Spot> items) => throw new NotImplementedException();
 
         public IEnumerable<Spot> FindByExternal(string campref)
         {
@@ -95,15 +91,13 @@ namespace ImagineCommunications.GamePlan.Persistence.Memory.Repositories
         public Task TruncateAsync()
         {
             Truncate();
-            return Task.CompletedTask;
+            return Task.FromResult(true);
         }
 
         public IEnumerable<Spot> FindByExternal(List<string> externalRef) =>
             GetAllItems(s => externalRef.Contains(s.ExternalSpotRef));
 
-        public void SaveChanges()
-        {
-        }
+        public void SaveChanges() { }
 
         public int Count(Expression<Func<Spot, bool>> query) => GetCount(query);
 
@@ -111,8 +105,8 @@ namespace ImagineCommunications.GamePlan.Persistence.Memory.Repositories
             GetAllItems(s => s.ExternalCampaignNumber == campaignExternalId && s.ClientPicked == false && s.IsUnplaced == false)
                 .Sum(s => s.NominalPrice);
 
-        public void Dispose()
-        {
-        }
+        public void Dispose() { }
+
+        public void InsertOrReplace(IEnumerable<Spot> items) => throw new NotImplementedException();
     }
 }

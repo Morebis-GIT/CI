@@ -20,7 +20,8 @@ namespace ImagineCommunications.GamePlan.Persistence.SqlServer.EntityConfigurati
             _ = builder.HasOne(x => x.Schedule).WithMany(x => x.Programmes)
                 .OnDelete(DeleteBehavior.Cascade);
 
-            _ = builder.HasIndex(e => e.ScheduleId).ForSqlServerInclude(nameof(ScheduleProgramme.ProgrammeId))
+            _ = builder.HasIndex(e => e.ScheduleId)
+                //.ForSqlServerInclude(nameof(ScheduleProgramme.ProgrammeId))
                 .HasName("IX_ScheduleProgrammes_ScheduleId");
         }
     }

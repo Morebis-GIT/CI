@@ -20,10 +20,7 @@ namespace ImagineCommunications.GamePlan.Persistence.Memory.Repositories
 
         public void Insert(IEnumerable<Recommendation> recommendations, bool setIdentity = true)
         {
-            foreach (var item in recommendations)
-            {
-                InsertOrReplaceItem(item, item.Id.ToString());
-            }
+            InsertItems(recommendations.ToList(), recommendations.Select(i => i.Id.ToString()).ToList<string>());
         }
 
         public IEnumerable<Recommendation> GetByScenarioId(Guid scenarioId)
@@ -68,11 +65,6 @@ namespace ImagineCommunications.GamePlan.Persistence.Memory.Repositories
 
         public void SaveChanges()
         {
-        }
-
-        public void Truncate()
-        {
-            DeleteAllItems();
         }
     }
 }

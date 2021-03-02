@@ -18,12 +18,17 @@ namespace ImagineCommunications.GamePlan.Process.Smooth.Types
 
         public override readonly bool Equals(object obj)
         {
-            return obj switch
+            switch (obj)
             {
-                ProductExternalReference ber => _productExternalReference.Equals(ber._productExternalReference),
-                string str => _productExternalReference.Equals(str),
-                _ => false,
-            };
+                case ProductExternalReference ber:
+                    return _productExternalReference.Equals(ber._productExternalReference);
+
+                case string str:
+                    return _productExternalReference.Equals(str);
+
+                default:
+                    return false;
+            }
         }
 
         public override readonly int GetHashCode() =>
