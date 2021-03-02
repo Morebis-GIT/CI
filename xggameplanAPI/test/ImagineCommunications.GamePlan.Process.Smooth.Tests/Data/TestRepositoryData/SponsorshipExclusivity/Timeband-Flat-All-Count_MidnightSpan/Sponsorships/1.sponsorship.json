@@ -1,0 +1,47 @@
+{
+  "externalReferenceId": "Timeband-Flat-All-MidnightSpan",
+  "restrictionLevel": "Timeband",
+  "sponsoredItems": [
+    {
+      "sponsorshipItems": [
+        {
+          "salesAreas": [
+            "NWS91"
+          ],
+          "startDate": "2020-06-09T00:00:00",
+          "endDate": "2020-06-10T00:00:00",
+          "dayParts": [
+            {
+              "startTime": "23:00:00",
+              "endTime": "02:00:00",
+              "daysOfWeek": [
+                "Monday",
+                "Tuesday",
+                "Wednesday",
+                "Thursday",
+                "Friday",
+                "Saturday",
+                "Sunday"
+
+              ]
+            }
+          ],
+          "programmeName": null
+        }
+      ],
+      "clashExclusivities": [
+        {
+          "clashExternalRef": "P475"
+        }
+      ],
+      "advertiserExclusivities": [],
+      "products": [
+        "142599"
+      ],
+      "calculationType": "Flat",
+      "restrictionType": "SpotCount",
+      "restrictionValue": 1,
+      "applicability": "AllCompetitors"
+    }
+  ]
+}

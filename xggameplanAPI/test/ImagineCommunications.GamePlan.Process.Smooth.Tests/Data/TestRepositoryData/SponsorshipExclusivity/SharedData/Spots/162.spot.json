@@ -1,0 +1,27 @@
+{
+  "Uid": "00000062-ab2c-455c-b793-00161d859d36",
+  "CustomId": 101,
+  "ExternalCampaignNumber": "15G1554944",
+  "SalesArea": "NWS91",
+  "GroupCode": null,
+  "ExternalSpotRef": "162-P1-B3-Dell_XPS17",
+  "StartDateTime": "2018-07-30T19:28:20Z",
+  "EndDateTime": "0001-01-01T00:00:00",
+  "SpotLength": {
+    "ticks": 150000000
+  },
+  "BreakType": "BASE",
+  "Product": "Dell_XPS17",
+  "Demographic": "121",
+  "ClientPicked": true,
+  "MultipartSpot": null,
+  "MultipartSpotPosition": null,
+  "MultipartSpotRef": null,
+  "RequestedPositioninBreak": null,
+  "ActualPositioninBreak": null,
+  "BreakRequest": "Prog1-break3",
+  "ExternalBreakNo": null,
+  "Sponsored": false,
+  "Preemptable": true,
+  "Preemptlevel": 41
+}

@@ -1,0 +1,252 @@
+{
+  "externalReferenceId": "Dates",
+  "restrictionLevel": "Timeband",
+  "sponsoredItems": [
+    {
+      "sponsorshipItems": [
+        {
+          "salesAreas": [
+            "GTV94"
+          ],
+          "startDate": "2020-04-22T00:00:00",
+          "endDate": "2020-04-22T00:00:00",
+          "dayParts": [
+            {
+              "startTime": "19:30:00",
+              "endTime": "19:59:59",
+              "daysOfWeek": [
+                "Mon",
+                "Tue",
+                "Wed",
+                "Thu",
+                "Fri"
+              ]
+            },
+            {
+              "startTime": "08:00:00",
+              "endTime": "18:59:59",
+              "daysOfWeek": [
+                "Sat",
+                "Sun"
+              ]
+            }
+          ],
+          "programmeName": "Eastenders"
+        },
+        {
+          "salesAreas": [
+            "GTV94"
+          ],
+          "startDate": "2020-04-22T00:00:00",
+          "endDate": "2020-04-22T00:00:00",
+          "dayParts": [
+            {
+              "startTime": "19:00:00",
+              "endTime": "19:29:59",
+              "daysOfWeek": [
+                "Mon",
+                "Tue",
+                "Wed",
+                "Fri",
+                "Sat",
+                "Sun"
+              ]
+            }
+          ],
+          "programmeName": "News"
+        }
+      ],
+      "clashExclusivities": [
+        {
+          "clashExternalRef": "P113",
+          "restrictionType": null,
+          "restrictionValue": null
+        },
+        {
+          "clashExternalRef": "P25",
+          "restrictionType": null,
+          "restrictionValue": null
+        },
+        {
+          "clashExternalRef": "P435",
+          "restrictionType": null,
+          "restrictionValue": null
+        }
+      ],
+      "advertiserExclusivities": [],
+      "products": [
+        "145662"
+      ],
+      "calculationType": "None",
+      "restrictionType": null,
+      "restrictionValue": null,
+      "applicability": null
+    },
+    {
+      "sponsorshipItems": [
+        {
+          "salesAreas": [
+            "GTV94"
+          ],
+          "startDate": "2020-04-22T00:00:00",
+          "endDate": "2020-04-22T00:00:00",
+          "dayParts": [
+            {
+              "startTime": "06:00:00",
+              "endTime": "6:59:59",
+              "daysOfWeek": [
+                "Mon",
+                "Tue",
+                "Wed",
+                "Thu",
+                "Fri"
+              ]
+            }
+          ],
+          "programmeName": "Transformers"
+        },
+        {
+          "salesAreas": [
+            "GTV94"
+          ],
+          "startDate": "2020-04-22T00:00:00",
+          "endDate": "2020-04-22T00:00:00",
+          "dayParts": [
+            {
+              "startTime": "7:00:00",
+              "endTime": "7:59:59",
+              "daysOfWeek": [
+                "Mon",
+                "Tue",
+                "Wed",
+                "Fri",
+                "Sat",
+                "Sun"
+              ]
+            }
+          ],
+          "programmeName": "Pokemon"
+        }
+      ],
+      "clashExclusivities": [
+        {
+          "clashExternalRef": "P113",
+          "restrictionType": null,
+          "restrictionValue": null
+        },
+        {
+          "clashExternalRef": "P25",
+          "restrictionType": null,
+          "restrictionValue": null
+        },
+        {
+          "clashExternalRef": "P435",
+          "restrictionType": null,
+          "restrictionValue": null
+        }
+      ],
+      "advertiserExclusivities": [],
+      "products": [
+        "145662"
+      ],
+      "calculationType": "None",
+      "restrictionType": null,
+      "restrictionValue": null,
+      "applicability": null
+    },
+    {
+      "sponsorshipItems": [
+        {
+          "salesAreas": [
+            "GTV94"
+          ],
+          "startDate": "2020-04-22T00:00:00",
+          "endDate": "2020-04-22T00:00:00",
+          "dayParts": [
+            {
+              "startTime": "08:00:00",
+              "endTime": "13:59:59",
+              "daysOfWeek": [
+                "Mon",
+                "Tue",
+                "Wed",
+                "Thu",
+                "Fri"
+              ]
+            }
+          ],
+          "programmeName": "Judge Judy"
+        },
+        {
+          "salesAreas": [
+            "GTV94"
+          ],
+          "startDate": "2020-04-22T00:00:00",
+          "endDate": "2020-04-22T00:00:00",
+          "dayParts": [
+            {
+              "startTime": "14:00:00",
+              "endTime": "18:59:59",
+              "daysOfWeek": [
+                "Mon",
+                "Tue",
+                "Wed",
+                "Fri",
+                "Sat",
+                "Sun"
+              ]
+            }
+          ],
+          "programmeName": "Jeremy Kyle Show"
+        },
+        {
+          "salesAreas": [
+            "GTV94"
+          ],
+          "startDate": "2020-04-22T00:00:00",
+          "endDate": "2020-04-22T00:00:00",
+          "dayParts": [
+            {
+              "startTime": "20:00:00",
+              "endTime": "23:59:59",
+              "daysOfWeek": [
+                "Mon",
+                "Tue",
+                "Wed",
+                "Fri",
+                "Sat",
+                "Sun"
+              ]
+            }
+          ],
+          "programmeName": "9 o'clock film"
+        }
+      ],
+      "clashExclusivities": [
+        {
+          "clashExternalRef": "P113",
+          "restrictionType": null,
+          "restrictionValue": null
+        },
+        {
+          "clashExternalRef": "P25",
+          "restrictionType": null,
+          "restrictionValue": null
+        },
+        {
+          "clashExternalRef": "P435",
+          "restrictionType": null,
+          "restrictionValue": null
+        }
+      ],
+      "advertiserExclusivities": [],
+      "products": [
+        "145662"
+      ],
+      "calculationType": "None",
+      "restrictionType": null,
+      "restrictionValue": null,
+      "applicability": null
+    }
+  ]
+}

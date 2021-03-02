@@ -1,0 +1,9 @@
+{
+  "Uid": "bd643c08-844a-4947-b740-709113452614",
+  "Externalref": "MobilePhone",
+  "ParentExternalidentifier": "_Electronics",
+  "Description": "Mobile Phone",
+  "DefaultOffPeakExposureCount": 2,
+  "DefaultPeakExposureCount": 5,
+  "Differences": []
+}

@@ -1,0 +1,17 @@
+{
+  "Uid": "056b4b06-e75c-442d-96c4-a9e3bdf58cc1",
+  "Externalidentifier": "EE_Iphone11",
+  "ParentExternalidentifier": null,
+  "Name": "Iphone 11",
+  "EffectiveStartDate": "1990-02-23T00:01:00.0000000Z",
+  "EffectiveEndDate": "2090-02-22T23:59:00.0000000Z",
+  "ClashCode": "MobilePhone",
+  "AdvertiserIdentifier": "EE",
+  "AdvertiserName": "EE",
+  "AdvertiserLinkStartDate": "0001-01-01T00:00:00.0000000",
+  "AdvertiserLinkEndDate": "0001-01-01T00:00:00.0000000",
+  "AgencyIdentifier": null,
+  "AgencyName": null,
+  "AgencyStartDate": "0001-01-01T00:00:00.0000000",
+  "AgencyLinkEndDate": "0001-01-01T00:00:00.0000000"
+}

@@ -1,0 +1,60 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFrameworks>net472;netcoreapp3.1;net5.0</TargetFrameworks>
+    <LangVersion>8.0</LangVersion>
+    <IsPackable>false</IsPackable>
+    <EnableNETAnalyzers>true</EnableNETAnalyzers>
+    <Copyright>Copyright © Imagine Communications</Copyright>
+    <Product>xG GamePlan</Product>
+    <Company>Imagine Communications</Company>
+    <Authors>Imagine Communications</Authors>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net472|AnyCPU'">
+    <PlatformTarget>x64</PlatformTarget>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="AutoFixture" Version="4.15.0" />
+    <PackageReference Include="FluentAssertions" Version="5.10.3" />
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.8.3" />
+    <PackageReference Include="Moq" Version="4.15.2" />
+    <PackageReference Include="xunit" Version="2.4.1" />
+    <PackageReference Include="xunit.runner.visualstudio" Version="2.4.3">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Xunit.SkippableFact" Version="1.4.13" />
+    <PackageReference Include="coverlet.collector" Version="1.3.0">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\src\infrastructure\ImagineCommunications.GamePlan.Persistence.File\ImagineCommunications.GamePlan.Persistence.File.csproj" />
+    <ProjectReference Include="..\..\src\infrastructure\ImagineCommunications.GamePlan.Persistence.Memory\ImagineCommunications.GamePlan.Persistence.Memory.csproj" />
+    <ProjectReference Include="..\..\src\processes\smooth\ImagineCommunications.GamePlan.Process.Smooth\ImagineCommunications.GamePlan.Process.Smooth.csproj" />
+    <ProjectReference Include="..\ImagineCommunications.GamePlan.CommonTestsHelpers\ImagineCommunications.GamePlan.CommonTestsHelpers.csproj" />
+  </ItemGroup>
+  
+  <Target Name="CopyDataForVSUnitTests" AfterTargets="AfterBuild">
+    <ItemGroup>
+      <JsonTestData Include="$(MSBuildProjectDirectory)\Data\**\*.json" />
+      <CsvTestData Include="$(MSBuildProjectDirectory)\Data\**\*.csv" />
+    </ItemGroup>
+    <Copy SkipUnchangedFiles="true" SourceFiles="@(JsonTestData)" DestinationFiles="@(JsonTestData->'$(BaseOutputPath)Data\%(RecursiveDir)%(Filename).json')" />
+    <Copy SkipUnchangedFiles="true" SourceFiles="@(CsvTestData)" DestinationFiles="@(CsvTestData->'$(BaseOutputPath)Data\%(RecursiveDir)%(Filename).csv')" />
+  </Target>
+  
+  <Target Name="CopyDataForVSLiveUnitTests" AfterTargets="AfterBuild" Condition="'$(BuildingForLiveUnitTesting)' == 'true'">
+    <ItemGroup>
+      <JsonTestData Include="$(MSBuildProjectDirectory)\Data\**\*.json" />
+      <CsvTestData Include="$(MSBuildProjectDirectory)\Data\**\*.csv" />
+    </ItemGroup>
+    <Copy SkipUnchangedFiles="true" SourceFiles="@(JsonTestData)" DestinationFiles="@(JsonTestData->'$(BaseOutputPath)..\src\processes\smooth\$(MSBuildProjectName)\Data\%(RecursiveDir)%(Filename).json')" />
+    <Copy SkipUnchangedFiles="true" SourceFiles="@(CsvTestData)" DestinationFiles="@(CsvTestData->'$(BaseOutputPath)..\src\processes\smooth\$(MSBuildProjectName)\Data\%(RecursiveDir)%(Filename).csv')" />
+  </Target>
+</Project>

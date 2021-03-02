@@ -1,0 +1,9 @@
+{
+  "Uid": "bd643c08-844a-4947-b740-709113452615",
+  "Externalref": "Pet",
+  "ParentExternalidentifier": null,
+  "Description": "Pet",
+  "DefaultOffPeakExposureCount": 2,
+  "DefaultPeakExposureCount": 5,
+  "Differences": []
+}

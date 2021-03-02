@@ -1,0 +1,18 @@
+{
+  "Id": "00000039-0000-0000-0000-000000000000",
+  "PrgtNo": 39,
+  "SalesArea": "NWS91",
+  "StartDateTime": "2020-06-09T23:30:00.0000000Z",
+  "Duration": {
+    "ticks": 18000000000
+  },
+  "ExternalReference": "HOHUIN",
+  "ProgrammeName": "IgvzHX7rxAidZPFENw4KAtlMINGcdt7zbkTdEfQtfOU=",
+  "Description": null,
+  "ProgrammeCategories": [
+    "OTHER"
+  ],
+  "Episode": null,
+  "Classification": "G",
+  "LiveBroadcast": false
+}

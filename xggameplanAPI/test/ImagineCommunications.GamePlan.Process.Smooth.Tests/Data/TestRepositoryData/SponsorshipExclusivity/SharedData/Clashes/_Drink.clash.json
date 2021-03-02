@@ -1,0 +1,9 @@
+{
+  "Uid": "a38ef760-8eda-4d81-b158-9f48a737fa41",
+  "Externalref": "_Drink",
+  "ParentExternalidentifier": null,
+  "Description": "Drink industry",
+  "DefaultOffPeakExposureCount": 4,
+  "DefaultPeakExposureCount": 5,
+  "Differences": []
+}

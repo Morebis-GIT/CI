@@ -1,0 +1,17 @@
+{
+  "Uid": "9dcfe9cd-9fe8-472f-b38c-9c6ba7f49321",
+  "Externalidentifier": "Apple_MacBookPro13",
+  "ParentExternalidentifier": null,
+  "Name": "Mac Book Pro 13",
+  "EffectiveStartDate": "1990-02-23T00:01:00.0000000Z",
+  "EffectiveEndDate": "2090-02-22T23:59:00.0000000Z",
+  "ClashCode": "Laptop",
+  "AdvertiserIdentifier": "Apple",
+  "AdvertiserName": "Apple",
+  "AdvertiserLinkStartDate": "0001-01-01T00:00:00.0000000",
+  "AdvertiserLinkEndDate": "0001-01-01T00:00:00.0000000",
+  "AgencyIdentifier": null,
+  "AgencyName": null,
+  "AgencyStartDate": "0001-01-01T00:00:00.0000000",
+  "AgencyLinkEndDate": "0001-01-01T00:00:00.0000000"
+}

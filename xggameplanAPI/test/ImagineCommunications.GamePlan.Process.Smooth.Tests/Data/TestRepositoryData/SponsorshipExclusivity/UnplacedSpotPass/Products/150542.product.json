@@ -1,0 +1,17 @@
+{
+  "Uid": "00150542-0000-0000-0000-000000000000",
+  "Externalidentifier": "Product_150542",
+  "ParentExternalidentifier": null,
+  "Name": "Product 150542",
+  "EffectiveStartDate": "2000-01-01T00:01:00Z",
+  "EffectiveEndDate": "2099-12-31T23:59:00Z",
+  "ClashCode": "Clash_P445",
+  "AdvertiserIdentifier": "Advertiser_1",
+  "AdvertiserName": "Advertiser 1",
+  "AdvertiserLinkStartDate": "0001-01-01T00:00:00",
+  "AdvertiserLinkEndDate": "0001-01-01T00:00:00",
+  "AgencyIdentifier": null,
+  "AgencyName": null,
+  "AgencyStartDate": "0001-01-01T00:00:00",
+  "AgencyLinkEndDate": "0001-01-01T00:00:00"
+}

@@ -1,0 +1,7 @@
+﻿{
+    "name": "#{xGGamePlan.Common.Name}",
+    "accessToken": "#{xGGamePlan.API.ApiAccessToken}",
+    "username": "",
+    "password": "",
+    "baseUrl": "#{xGGamePlan.API.Url.Private}"
+  }

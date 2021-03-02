@@ -1,0 +1,17 @@
+{
+  "Uid": "00146046-0000-0000-0000-000000000000",
+  "Externalidentifier": "146046",
+  "ParentExternalidentifier": null,
+  "Name": "Product 146046",
+  "EffectiveStartDate": "2000-01-01T00:01:00Z",
+  "EffectiveEndDate": "2099-12-31T23:59:00Z",
+  "ClashCode": "P475",
+  "AdvertiserIdentifier": "108300",
+  "AdvertiserName": "Advertiser 108300",
+  "AdvertiserLinkStartDate": "0001-01-01T00:00:00",
+  "AdvertiserLinkEndDate": "0001-01-01T00:00:00",
+  "AgencyIdentifier": null,
+  "AgencyName": null,
+  "AgencyStartDate": "0001-01-01T00:00:00",
+  "AgencyLinkEndDate": "0001-01-01T00:00:00"
+}

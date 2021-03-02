@@ -1,0 +1,24 @@
+{
+  "Id": "00000002-e4c6-433d-891f-af9a18e3ddc8",
+  "CustomId": 8,
+  "ScheduledDate": "2018-07-30T19:18:20Z",
+  "SalesArea": "NWS91",
+  "BreakType": "BASE",
+  "Duration": {
+    "ticks": 1200000000
+  },
+  "Avail": {
+    "ticks": 1200000000
+  },
+  "OptimizerAvail": {
+    "ticks": 1200000000
+  },
+  "Optimize": true,
+  "ExternalBreakRef": "Prog1-break2",
+  "Description": null,
+  "ExternalProgRef": null,
+  "PositionInProg": "C",
+  "SpotReferencesList": null,
+  "BreakEfficiencyList": null
+}
+

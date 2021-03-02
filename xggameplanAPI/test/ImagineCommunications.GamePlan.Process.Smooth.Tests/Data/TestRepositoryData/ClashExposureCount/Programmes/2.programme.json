@@ -1,0 +1,15 @@
+{
+  "Id": "deadbeef-ad04-4a49-a294-52bbe1bf30c2",
+  "PrgtNo": 10,
+  "SalesArea": "CEC01",
+  "StartDateTime": "2020-03-09T18:00:00.0000000Z",
+  "Duration": {
+    "ticks": 36000000000
+  },
+  "ExternalReference": "LASH",
+  "ProgrammeName": "Prog deadbeef-ad04-4a49-a294-52bbe1bf30c2",
+  "Description": null,
+  "ProgrammeCategories": [],
+  "Classification": "M",
+  "LiveBroadcast": false
+}

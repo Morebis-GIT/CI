@@ -1,0 +1,681 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{60A6A3D4-CB6D-40AC-A14F-D28F82B0DE64}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>xggameplan</RootNamespace>
+    <AssemblyName>xggameplan</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <MvcBuildViews>false</MvcBuildViews>
+    <UseIISExpress>true</UseIISExpress>
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+    <UseGlobalApplicationHostFile />
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+    <Use64BitIISExpress>
+    </Use64BitIISExpress>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>0</WarningLevel>
+    <DocumentationFile>bin\xggameplan.xml</DocumentationFile>
+    <NoWarn>1591</NoWarn>
+    <CodeAnalysisRuleSet>
+    </CodeAnalysisRuleSet>
+    <RunCodeAnalysis>false</RunCodeAnalysis>
+    <LangVersion>latest</LangVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <CodeAnalysisRuleSet>
+    </CodeAnalysisRuleSet>
+    <RunCodeAnalysis>false</RunCodeAnalysis>
+    <LangVersion>latest</LangVersion>
+    <DocumentationFile>App_Data\xggameplan.xml</DocumentationFile>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="PresentationCore" />
+    <Reference Include="System" />
+    <Reference Include="System.Runtime" />
+    <Reference Include="System.Numerics" />
+    <!--
+     <Reference Include="System.Buffers, Version=4.0.2.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Buffers.4.4.0\lib\netstandard2.0\System.Buffers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Numerics.Vectors, Version=4.1.4.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Numerics.Vectors.4.5.0\lib\net46\System.Numerics.Vectors.dll</HintPath>
+    </Reference>
+    -->
+    <Reference Include="System.ComponentModel.Composition" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.IO.Compression" />
+    <Reference Include="System.IO.Compression.FileSystem" />
+    <Reference Include="System.Net" />
+    <Reference Include="System.Runtime.InteropServices" />
+    <Reference Include="System.Runtime.Remoting" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Threading.Thread" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Abstractions" />
+    <Reference Include="System.Web.Routing" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Net.Http">
+    </Reference>
+    <Reference Include="System.Net.Http.WebRequest">
+    </Reference>
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Areas\System\Tests\HealthCheckController.cs" />
+    <Compile Include="Areas\System\Users\CurrentUserController.cs" />
+    <Compile Include="Areas\System\Users\Models\CurrentUserModel.cs" />
+    <Compile Include="Contexts\SystemContext.cs" />
+    <Compile Include="Controllers\AnalysisGroupsController.cs" />
+    <Compile Include="Controllers\BreaksController\BreaksCalculateAvailabilityController.cs" />
+    <Compile Include="Controllers\BRSIndicatorController.cs" />
+    <Compile Include="Controllers\CampaignController\CampaignsController.BusinessLogic.cs" />
+    <Compile Include="Controllers\DataSyncStatusController.cs" />
+    <Compile Include="Controllers\FeatureFlagsController.cs" />
+    <Compile Include="Controllers\RecommendationsController\RecommendationsController.cs" />
+    <Compile Include="Databases\Database.cs" />
+    <Compile Include="Databases\Filtering\IOutputFileFilter.cs" />
+    <Compile Include="Databases\Filtering\SQL\SQLOutputFileFilter.cs" />
+    <Compile Include="Databases\Filtering\SQL\SQLOutputFileFilterSettings.cs" />
+    <Compile Include="Databases\OdbcDatabase.cs" />
+    <Compile Include="Databases\OleDbDatabase.cs" />
+    <Compile Include="Controllers\PipelineEventController\PipelineEventsController.cs" />
+    <Compile Include="Controllers\RunTypesController.cs" />
+    <Compile Include="Controllers\ScenarioResultsController\ScenarioResultsController.BusinessLogic.cs" />
+    <Compile Include="Controllers\InventoryTypesController.cs" />
+    <Compile Include="Controllers\BRSTemplatesController.cs" />
+    <Compile Include="Controllers\KPIPrioritiesController.cs" />
+    <Compile Include="Extensions\HttpContextExtensions.cs" />
+    <Compile Include="Extensions\ProductExtensions.cs" />
+    <Compile Include="Filters\AuthenticationRequestFilter.cs" />
+    <Compile Include="Filters\FeatureFilterAttribute.cs" />
+    <Compile Include="Hubs\InfoMessageNotificationHub.cs" />
+    <Compile Include="Hubs\LandmarkRunStatusNotificationHub.cs" />
+    <Compile Include="Hubs\ReportExportNotificationHub.cs" />
+    <Compile Include="Hubs\ScenarioNotificationHub.cs" />
+    <Compile Include="Hubs\RunNotificationHub.cs" />
+    <Compile Include="Hubs\HubNotification.cs" />
+    <Compile Include="Jobs\LandmarkTriggerRunJob.cs" />
+    <Compile Include="Reports\Models\ExcelColumnDefinition.cs" />
+    <Compile Include="SchedulerTasks\Attributes\ScopeJobAttribute.cs" />
+    <Compile Include="SchedulerTasks\JobScopeType.cs" />
+    <Compile Include="SchedulerTasks\MvcJobFactory.cs" />
+    <Compile Include="SchedulerTasks\MvcApplicationScopeJobRunner.cs" />
+    <Compile Include="SchedulerTasks\MvcTenantScopeJobRunner.cs" />
+    <Compile Include="SchedulerTasks\Jobs\RunStatusChecker.cs" />
+    <Compile Include="SchedulerTasks\SchedulerTasksExtensions.cs" />
+    <Compile Include="Services\VersionService.cs" />
+    <Compile Include="Validations\AnalysisGroups\CreateAnalysisGroupModelValidation.cs" />
+    <Compile Include="Validations\AnalysisGroups\CreateAnalysisGroupModelValidator.cs" />
+    <Compile Include="Validations\BodyModelValidator.cs" />
+    <Compile Include="ApplicationModulesLoader.cs" />
+    <Compile Include="App_Start\BundleConfig.cs" />
+    <Compile Include="Helpers\CommaDelimitedToIEnumerableStringParameterBinder.cs" />
+    <Compile Include="App_Start\FilterConfig.cs" />
+    <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Areas\System\Auth\AccessTokensController.cs" />
+    <Compile Include="Areas\System\Auth\AuthenticationManager.cs" />
+    <Compile Include="Areas\System\Auth\AuthorizationManager.cs" />
+    <Compile Include="Areas\System\Auth\IAuthenticationManager.cs" />
+    <Compile Include="Areas\System\Auth\IAuthorizationManager.cs" />
+    <Compile Include="Areas\System\Auth\Models\AccessTokenModel.cs" />
+    <Compile Include="Areas\System\Tenants\Models\CreateTenantModel.cs" />
+    <Compile Include="Areas\System\Tenants\TenantController.cs" />
+    <Compile Include="Areas\System\Tenants\Models\TenantModel.cs" />
+    <Compile Include="Areas\System\Tenants\TenantPreviewController.cs" />
+    <Compile Include="Areas\System\Users\Models\CreateUserModel.cs" />
+    <Compile Include="Areas\System\Auth\Models\GetAccessTokenModel.cs" />
+    <Compile Include="Areas\System\Users\Models\UpdatePasswordModel.cs" />
+    <Compile Include="Areas\System\Users\Models\UserSettingsModel.cs" />
+    <Compile Include="Areas\System\Users\UsersController.cs" />
+    <Compile Include="Areas\System\Users\UserSettingsController.cs" />
+    <Compile Include="Areas\System\Users\UsersPreviewController.cs" />
+    <Compile Include="Controllers\ClashController\ClashController.BusinessLogic.cs" />
+    <Compile Include="Controllers\AutopilotSettingsController.cs" />
+    <Compile Include="Controllers\ClashExceptionController\ClashException.BusinessLogic.cs" />
+    <Compile Include="Controllers\ClashExceptionController\ClashExceptionController.cs" />
+    <Compile Include="Controllers\ClearanceController.cs" />
+    <Compile Include="Controllers\FlexibilityLevelsController.cs" />
+    <Compile Include="Areas\System\Database\MasterDatabaseController.cs" />
+    <Compile Include="Controllers\PassesController.cs" />
+    <Compile Include="Controllers\DeliveryCappingGroupController.cs" />
+    <Compile Include="Controllers\ProgrammeCategoryController.cs" />
+    <Compile Include="Controllers\ProgrammeClassificationsController.cs" />
+    <Compile Include="Controllers\LibrarySalesAreaPassPrioritiesController.cs" />
+    <Compile Include="Controllers\SponsorshipsController.cs" />
+    <Compile Include="Controllers\SpotsController\SpotsController.BusinessLogic.cs" />
+    <Compile Include="Controllers\TestEnvironmentMaintenanceController.cs" />
+    <Compile Include="CustomHttpResults\ContentStreamActionResult.cs" />
+    <Compile Include="CustomHttpResults\UnprocessableEntityResult.cs" />
+    <Compile Include="Controllers\ScenariosController.cs" />
+    <Compile Include="Controllers\SystemMessagesController.cs" />
+    <Compile Include="Controllers\SystemTasksController.cs" />
+    <Compile Include="Controllers\RestrictionController.cs" />
+    <Compile Include="Controllers\HolidayController.cs" />
+    <Compile Include="Controllers\AuditEventsController.cs" />
+    <Compile Include="Controllers\DemographicController.cs" />
+    <Compile Include="Controllers\LogController.cs" />
+    <Compile Include="Controllers\RatingsPredictionSchedulesController.cs" />
+    <Compile Include="Areas\System\SystemController.cs" />
+    <Compile Include="Controllers\SystemTestsController.cs" />
+    <Compile Include="Controllers\UniversesController.cs" />
+    <Compile Include="Areas\System\Tests\TestVerbController.cs" />
+    <Compile Include="Controllers\UpdatesController.cs" />
+    <Compile Include="Errors\ApiControllerErrorExtensions.cs" />
+    <Compile Include="Errors\ApiControllerErrorResponseCreator.cs" />
+    <Compile Include="Errors\ErrorResponseRequestExtensions.cs" />
+    <Compile Include="Extensions\RepositoryExtensions.cs" />
+    <Compile Include="Extensions\SpotExtensions.cs" />
+    <Compile Include="Filters\AuthorizeRequestAttribute.cs" />
+    <Compile Include="Filters\TestEnvironmentPerformanceLogApiFilter.cs" />
+    <Compile Include="Filters\TestEnvironmentWaitForIndexesApiFilter.cs" />
+    <Compile Include="Filters\TestEnvironmentExceptionFilter.cs" />
+    <Compile Include="Filters\DefaultExceptionHandler.cs" />
+    <Compile Include="Filters\TestEnvironmentAttribute.cs" />
+    <Compile Include="Helpers\AutoBookHelper.cs" />
+    <Compile Include="Hubs\Startup.cs" />
+    <Compile Include="Jobs\AutoBookDeleteBackgroundJob.cs" />
+    <Compile Include="Jobs\AutoBookCreateBackgroundJob.cs" />
+    <Compile Include="Jobs\RunCompletionBackgroundJob.cs" />
+    <Compile Include="Jobs\GenerateRecommendationsReportBackgroundJob.cs" />
+    <Compile Include="Logging\DefaultExceptionLogger.cs" />
+    <Compile Include="Controllers\FunctionalAreasController.cs" />
+    <Compile Include="Controllers\LanguagesController.cs" />
+    <Compile Include="Controllers\OutputFilesController.cs" />
+    <Compile Include="Controllers\ScenarioResultsController\ScenarioResultsController.cs" />
+    <Compile Include="Controllers\ChannelController.cs" />
+    <Compile Include="Controllers\MetaDataController.cs" />
+    <Compile Include="Controllers\SmoothController.cs" />
+    <Compile Include="Logging\RequestInfo.cs" />
+    <Compile Include="Logging\RequestLogger.cs" />
+    <Compile Include="Logging\RequestLoggerCSV.cs" />
+    <Compile Include="Logging\RequestLoggerDebug.cs" />
+    <Compile Include="Logging\RequestLoggerJSON.cs" />
+    <Compile Include="Logging\ResponseInfo.cs" />
+    <Compile Include="Logging\PerformanceLogCorrelationIdLogEventEnricher.cs" />
+    <Compile Include="Modules\PersistenceAutofacModule.cs" />
+    <Compile Include="Modules\TestEnvAutofacModule.cs" />
+    <Compile Include="Reports\Models\ExcelReportSmoothFailuresModel.cs" />
+    <Compile Include="TestEnv\ITestEnvironment.cs" />
+    <Compile Include="TestEnv\PerformanceLog.cs" />
+    <Compile Include="Modules\ValidationAutofacModule.cs" />
+    <Compile Include="PersistenceAttributes\RavenSessionManagementAttribute.cs" />
+    <Compile Include="Reports\Common\IReportColumnFormatter.cs" />
+    <Compile Include="Reports\Common\IReportGenerator.cs" />
+    <Compile Include="Reports\Common\ReportColumnFormatter.cs" />
+    <Compile Include="Reports\DataAdapters\IRunExcelReportDataAdapter.cs" />
+    <Compile Include="Reports\DataAdapters\RunExcelReportDataAdapter.cs" />
+    <Compile Include="Reports\ExcelReportGenerator.cs" />
+    <Compile Include="Reports\ExcelReports\Campaigns\CampaignExcelReportGenerator.cs" />
+    <Compile Include="Reports\ExcelReports\Campaigns\ICampaignExcelReportGenerator.cs" />
+    <Compile Include="Reports\IExcelReportGenerator.cs" />
+    <Compile Include="Reports\Models\ColumnStatusModel.cs" />
+    <Compile Include="Reports\Models\ExcelReportCell.cs" />
+    <Compile Include="Reports\Models\ExcelReportGrid.cs" />
+    <Compile Include="Reports\Models\ExcelReportRow.cs" />
+    <Compile Include="Reports\Models\ExcelReportRunModel.cs" />
+    <Compile Include="Reports\Models\ExcelReportScenario.cs" />
+    <Compile Include="Services\AccessTokenExtractor\AuthorizationHeaderAccessTokenExtractor.cs" />
+    <Compile Include="Services\AccessTokenExtractor\IAccessTokenExtractor.cs" />
+    <Compile Include="Services\HostingBackgroundJobManager.cs" />
+    <Compile Include="Services\Compression\CompressedHandler.cs" />
+    <Compile Include="Services\Compression\CompressedContent.cs" />
+    <Compile Include="Configuration\AutofacConfig.cs" />
+    <Compile Include="Configuration\SwaggerConfig.cs" />
+    <Compile Include="Extensions\ApiControllerExtensions.cs" />
+    <Compile Include="Controllers\AutoBooksController.cs" />
+    <Compile Include="Controllers\CompareController.cs" />
+    <Compile Include="Controllers\ProductController.cs" />
+    <Compile Include="Controllers\ClashController\ClashController.cs" />
+    <Compile Include="Controllers\BreaksController\BreaksController.cs" />
+    <Compile Include="Controllers\CampaignController\CampaignsController.cs" />
+    <Compile Include="Controllers\ProgrammesController.cs" />
+    <Compile Include="Controllers\RuleTypesController.cs" />
+    <Compile Include="Controllers\RunsController.cs" />
+    <Compile Include="Controllers\SalesAreasController.cs" />
+    <Compile Include="Controllers\SchedulesController.cs" />
+    <Compile Include="Controllers\SpotsController\SpotsController.cs" />
+    <Compile Include="Areas\System\Database\TenantDatabaseController.cs" />
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Modules\TenantAutofacModule.cs" />
+    <Compile Include="PersistenceAttributes\SqlServerDbContextManagementAttribute.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="PersistenceAttributes\RavenMasterSessionManagementAttribute.cs" />
+    <Compile Include="TestEnv\AutoBook\AWSAutoBooksAPIStub.cs" />
+    <Compile Include="TestEnv\AutoBook\TestEnvironmentAWSAutoBooks.cs" />
+    <Compile Include="TestEnv\AutoBook\AWSAutoBookAPIStub.cs" />
+    <Compile Include="TestEnv\AutoBook\IAutoBooksTestHandler.cs" />
+    <Compile Include="TestEnv\TestEnvironment.cs" />
+    <Compile Include="TestEnv\TestEnvironmentFeatures.cs" />
+    <Compile Include="TestEnv\TestEnvironmentFeature.cs" />
+    <Compile Include="TestEnv\TestEnvironmentOptions.cs" />
+    <Compile Include="Services\TenantIdentificationStrategy.cs" />
+    <Compile Include="Validations\Autopilot\AutopilotScenarioEngageModelValidation.cs" />
+    <Compile Include="Validations\Autopilot\AutopilotEngageModelValidation.cs" />
+    <Compile Include="Validations\Autopilot\AutopilotSettingsModelValidation.cs" />
+    <Compile Include="Validations\Autopilot\AutopilotEngageModelValidator.cs" />
+    <Compile Include="Validations\Autopilot\AutopilotSettingsModelValidator.cs" />
+    <Compile Include="Validations\DeliveryCappingGroup\DeliveryCappingGroupValidation.cs" />
+    <Compile Include="Validations\DeliveryCappingGroup\DeliveryCappingGroupValidationAutofacRegistration.cs" />
+    <Compile Include="Validations\DeliveryCappingGroup\DeliveryCappingGroupValidator.cs" />
+    <Compile Include="Validations\Landmark\ScheduledRunSettingsModelValidation.cs" />
+    <Compile Include="Validations\Landmark\LandmarkRunTriggerModelValidation.cs" />
+    <Compile Include="Validations\Landmark\ScheduledRunSettingsModelValidator.cs" />
+    <Compile Include="Validations\Landmark\LandmarkRunTriggerModelValidator.cs" />
+    <Compile Include="Validations\BRS\CreateOrUpdateBRSConfigurationTemplateValidation.cs" />
+    <Compile Include="Validations\BRS\CreateOrUpdateBRSConfigurationTemplateValidator.cs" />
+    <Compile Include="Validations\LibrarySalesAreaPassPriorities\CreateLibrarySalesAreaPassPriorityModelValidation.cs" />
+    <Compile Include="Validations\LibrarySalesAreaPassPriorities\CreateLibrarySalesAreaPassPriorityModelValidator.cs" />
+    <Compile Include="Validations\common\IModelDataValidator.cs" />
+    <Compile Include="Validations\LibrarySalesAreaPassPriorities\LibrarySalesAreaPassPriorityModelValidationBase.cs" />
+    <Compile Include="Services\Mappings.cs" />
+    <Compile Include="Modules\WebAutofacModule.cs" />
+    <Compile Include="Filters\SwaggerDocumentFilter.cs" />
+    <Compile Include="Validations\common\ModelDataValidatorBase.cs" />
+    <Compile Include="Validations\LibrarySalesAreaPassPriorities\UpdateLibrarySalesAreaPassPriorityModelValidator.cs" />
+    <Compile Include="Validations\LibrarySalesAreaPassPriorities\UpdateSalesAreaPassPriorityModelValidation.cs" />
+    <Compile Include="SystemTasks\DeleteAccessTokensTask.cs" />
+    <Compile Include="SystemTasks\DeleteLogsTask.cs" />
+    <Compile Include="SystemTasks\DeleteRunsTask.cs" />
+    <Compile Include="SystemTasks\ISystemTask.cs" />
+    <Compile Include="SystemTasks\ISystemTasksManager.cs" />
+    <Compile Include="SystemTasks\SmoothDataTask.cs" />
+    <Compile Include="SystemTasks\CrashedRunsTask.cs" />
+    <Compile Include="SystemTasks\SystemTaskResult.cs" />
+    <Compile Include="SystemTasks\SystemTasksManager.cs" />
+    <Compile Include="SystemTests\AuditEventTest.cs" />
+    <Compile Include="SystemTests\AutoBookTest.cs" />
+    <Compile Include="SystemTests\CloudTest.cs" />
+    <Compile Include="SystemTests\DatabaseConnectivityTest.cs" />
+    <Compile Include="SystemTests\EmailTest.cs" />
+    <Compile Include="SystemTests\ISystemTest.cs" />
+    <Compile Include="SystemTests\ISystemTestsManager.cs" />
+    <Compile Include="SystemTests\RunExecuteTest.cs" />
+    <Compile Include="SystemTests\RunHistoryTest.cs" />
+    <Compile Include="SystemTests\RunNotificationTest.cs" />
+    <Compile Include="SystemTests\RunOutputTest.cs" />
+    <Compile Include="SystemTests\ScenarioPassLibraryTest.cs" />
+    <Compile Include="SystemTests\ScheduleDataTest.cs" />
+    <Compile Include="SystemTests\StaticDataTest.cs" />
+    <Compile Include="SystemTests\SystemTestResult.cs" />
+    <Compile Include="SystemTests\SystemTestsManager.cs" />
+    <Compile Include="SystemTests\TaskExecutorTest.cs" />
+    <Compile Include="SystemTests\ComponentVersionTest.cs" />
+    <Compile Include="Validations\Passes\BreakExclusionsValidations.cs" />
+    <Compile Include="Validations\Products\CreateProductValidation.cs" />
+    <Compile Include="Validations\Products\CreateProductValidator.cs" />
+    <Compile Include="Validations\Runs\Interfaces\IRunsValidator.cs" />
+    <Compile Include="Validations\Runs\RunsValidations.cs" />
+    <Compile Include="Validations\Runs\RunsValidator.cs" />
+    <Compile Include="Validations\RunTypes\RunTypesValidations.cs" />
+    <Compile Include="Validations\Scenarios\CampaignPriorityRoundsModelValidation.cs" />
+    <Compile Include="Validations\Scenarios\CampaignPriorityRoundsModelValidations.cs" />
+    <Compile Include="Validations\Scenarios\CampaignPriorityRoundsModelValidator.cs" />
+    <Compile Include="Validations\Sponsorships\AdvertiserExclusivityModelBaseValidation.cs" />
+    <Compile Include="Validations\Sponsorships\ClashExclusivityModelBaseValidation.cs" />
+    <Compile Include="Validations\Sponsorships\CreateSponsorshipItemModelValidation.cs" />
+    <Compile Include="Validations\Sponsorships\CreateSponsorshipModelValidator.cs" />
+    <Compile Include="Validations\Sponsorships\CreateSponsorshipsModelValidation.cs" />
+    <Compile Include="Validations\Sponsorships\CreateSponsorshipsModelValidator.cs" />
+    <Compile Include="Validations\Sponsorships\SponsoredDayPartModelValidation.cs" />
+    <Compile Include="Validations\Sponsorships\SponsorshipItemModelBaseValidation.cs" />
+    <Compile Include="Validations\Sponsorships\CreateAdvertiserExclusivityModelValidation.cs" />
+    <Compile Include="Validations\Sponsorships\CreateClashExclusivityModelValidation.cs" />
+    <Compile Include="Validations\Sponsorships\CreateSponsoredItemModelValidation.cs" />
+    <Compile Include="Validations\Sponsorships\CreateSponsorshipModelValidation.cs" />
+    <Compile Include="Validations\Sponsorships\ExclusivityModelBaseValidation.cs" />
+    <Compile Include="Validations\Sponsorships\SponsoredItemModelBaseValidation.cs" />
+    <Compile Include="Validations\Sponsorships\SponsorshipModelBaseValidation.cs" />
+    <Compile Include="Validations\Sponsorships\UpdateSponsorshipModelValidation.cs" />
+    <Compile Include="Validations\Sponsorships\UpdateSponsorshipModelValidator.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Configuration\SwaggerAPIKey.js" />
+    <Content Include="favicon.ico" />
+    <Content Include="Global.asax" />
+    <Content Include="App_Data\config.json" />
+    <EmbeddedResource Include="version.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <Content Include="Scripts\**" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ImagineCommunications.Gameplan.Integration.Data\ImagineCommunications.Gameplan.Integration.Data.csproj">
+      <Project>{8A263084-4933-4CB3-91AF-9A8645EEEE35}</Project>
+      <Name>ImagineCommunications.Gameplan.Integration.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ImagineCommunications.GamePlan.ReportSystem\ImagineCommunications.GamePlan.ReportSystem.csproj">
+      <Project>{370238fb-d8b4-498e-aaa3-a2e5a7864761}</Project>
+      <Name>ImagineCommunications.GamePlan.ReportSystem</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\src\domain\ImagineCommunications.GamePlan.Domain.Generic\ImagineCommunications.GamePlan.Domain.Generic.csproj">
+      <Project>{e4e13375-e595-4df3-81d4-c14314bacdfb}</Project>
+      <Name>ImagineCommunications.GamePlan.Domain.Generic</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\src\domain\ImagineCommunications.GamePlan.Domain\ImagineCommunications.GamePlan.Domain.csproj">
+      <Project>{3099d7dc-bc6e-4d9f-9668-c5798bd7f37c}</Project>
+      <Name>ImagineCommunications.GamePlan.Domain</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\src\infrastructure\ImagineCommunications.GamePlan.Infrastructure.Json.Core\ImagineCommunications.GamePlan.Infrastructure.Json.Core.csproj">
+      <Project>{05EC5153-1DCC-4B7A-A46D-0781F6CAC94F}</Project>
+      <Name>ImagineCommunications.GamePlan.Infrastructure.Json.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\src\infrastructure\ImagineCommunications.GamePlan.Persistence.RavenDb.Core\ImagineCommunications.GamePlan.Persistence.RavenDb.Core.csproj">
+      <Project>{75E54B40-26AA-4A07-9E6F-4CE9BA0AB753}</Project>
+      <Name>ImagineCommunications.GamePlan.Persistence.RavenDb.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\src\infrastructure\ImagineCommunications.GamePlan.Persistence.RavenDb\ImagineCommunications.GamePlan.Persistence.RavenDb.csproj">
+      <Project>{196aeb89-0078-4f0d-9a86-354b0ae02625}</Project>
+      <Name>ImagineCommunications.GamePlan.Persistence.RavenDb</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\src\infrastructure\ImagineCommunications.GamePlan.Persistence.SqlServer.Core\ImagineCommunications.GamePlan.Persistence.SqlServer.Core.csproj">
+      <Project>{DDE95361-0663-41B3-BFBE-85F91A8769F3}</Project>
+      <Name>ImagineCommunications.GamePlan.Persistence.SqlServer.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\src\infrastructure\ImagineCommunications.GamePlan.Persistence.SqlServer\ImagineCommunications.GamePlan.Persistence.SqlServer.csproj">
+      <Project>{d11f0978-3e0e-4739-ab1f-5eab7bc83df2}</Project>
+      <Name>ImagineCommunications.GamePlan.Persistence.SqlServer</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\src\integration\ImagineCommunications.BusClient.Domain\ImagineCommunications.BusClient.Domain.csproj">
+      <Project>{429C5248-CD64-4D3E-8A3D-8819BA2C5E3D}</Project>
+      <Name>ImagineCommunications.BusClient.Domain</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\src\integration\ImagineCommunications.Gameplan.Synchronization.SqlServer\ImagineCommunications.Gameplan.Synchronization.SqlServer.csproj">
+      <Project>{6ac8ed8a-4e31-47c9-ba57-5abdda169f44}</Project>
+      <Name>ImagineCommunications.Gameplan.Synchronization.SqlServer</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\src\integration\ImagineCommunications.Gameplan.Synchronization\ImagineCommunications.Gameplan.Synchronization.csproj">
+      <Project>{92bc7817-af28-423b-bba0-a305dbc4133b}</Project>
+      <Name>ImagineCommunications.Gameplan.Synchronization</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\src\processes\smooth\ImagineCommunications.GamePlan.Process.Smooth\ImagineCommunications.GamePlan.Process.Smooth.csproj">
+      <Project>{FBB5923B-27AA-4A77-B3C6-9FE8A9BBDDDE}</Project>
+      <Name>ImagineCommunications.GamePlan.Process.Smooth</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\xgcore.auditevents\xgcore.auditevents.csproj">
+      <Project>{ea7d70f9-a8d0-4fbb-a3b9-a00c177f6904}</Project>
+      <Name>xgcore.auditevents</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\xggameplan.cloudaccess\xggameplan.cloudaccess.csproj">
+      <Project>{1a6ed508-d9a1-42f8-8479-573de3809266}</Project>
+      <Name>xggameplan.cloudaccess</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\xggameplan.common\xggameplan.common.csproj">
+      <Project>{efc37031-75bd-4c4b-b760-e1d3aba0a734}</Project>
+      <Name>xggameplan.common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\xggameplan.core\xggameplan.core.csproj">
+      <Project>{24373e36-c0e4-4550-b1e9-b59ef7094c1f}</Project>
+      <Name>xggameplan.core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\xggameplan.model\xggameplan.model.csproj">
+      <Project>{219a7aa0-38b0-44c5-b6c0-e77374ee9bbc}</Project>
+      <Name>xggameplan.model</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\xggameplan.taskexecutor\xggameplan.taskexecutor.csproj">
+      <Project>{008e0b69-f3f6-4edf-8664-c4b029f3d1ba}</Project>
+      <Name>xggameplan.taskexecutor</Name>
+    </ProjectReference>
+      <ProjectReference Include="..\xggameplan.updates\xggameplan.updates.csproj">
+        <Project>{7550f493-756c-4f53-9412-10ac3a7a4a49}</Project>
+        <Name>xggameplan.updates</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="App_Data\config.octopus.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="App_Data\EnvironmentSettings.octopus.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="TestEnv\OutputFiles\BASE_RTGS.out" />
+    <EmbeddedResource Include="TestEnv\OutputFiles\EFFE.out" />
+    <EmbeddedResource Include="TestEnv\OutputFiles\LMKII_BKPO_REQM.out" />
+    <EmbeddedResource Include="TestEnv\OutputFiles\LMKII_CAMP_REQM.out" />
+    <EmbeddedResource Include="TestEnv\OutputFiles\LMKII_CEND_REQM.out" />
+    <EmbeddedResource Include="TestEnv\OutputFiles\LMKII_DCDP_REQM.out" />
+    <EmbeddedResource Include="TestEnv\OutputFiles\LMKII_DCDP_SSLG_REQM.out" />
+    <EmbeddedResource Include="TestEnv\OutputFiles\LMKII_DDPD_REQM.out" />
+    <EmbeddedResource Include="TestEnv\OutputFiles\LMKII_DDPD_SSLG_REQM.out" />
+    <EmbeddedResource Include="TestEnv\OutputFiles\LMKII_FAIL_REPT.out" />
+    <EmbeddedResource Include="TestEnv\OutputFiles\LMKII_PART_REQM.out" />
+    <EmbeddedResource Include="TestEnv\OutputFiles\LMKII_PART_SSLG_REQM.out" />
+    <EmbeddedResource Include="TestEnv\OutputFiles\LMKII_SARE_REQM.out" />
+    <EmbeddedResource Include="TestEnv\OutputFiles\LMKII_SPOT_REQM.out" />
+    <EmbeddedResource Include="TestEnv\OutputFiles\LMKII_SSLG_REQM.out" />
+    <EmbeddedResource Include="TestEnv\OutputFiles\SDIS.out" />
+    <EmbeddedResource Include="TestEnv\OutputFiles\SPOT.out" />
+    <EmbeddedResource Include="TestEnv\OutputFiles\SPRG.out" />
+    <EmbeddedResource Include="TestEnv\OutputFiles\SPSP.out" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Autofac">
+      <Version>5.2.0</Version>
+    </PackageReference>
+    <PackageReference Include="Autofac.Multitenant">
+      <Version>5.0.1</Version>
+    </PackageReference>
+    <PackageReference Include="Autofac.WebApi2">
+      <Version>5.0.0</Version>
+    </PackageReference>
+    <PackageReference Include="AutoMapper">
+      <Version>9.0.0</Version>
+    </PackageReference>
+    <PackageReference Include="Common.Logging">
+      <Version>3.3.1</Version>
+    </PackageReference>
+    <PackageReference Include="CsvHelper">
+      <Version>12.2.1</Version>
+    </PackageReference>
+    <PackageReference Include="EPPlus">
+      <Version>4.5.3.2</Version>
+    </PackageReference>
+    <PackageReference Include="FluentValidation.WebApi">
+      <Version>7.2.1</Version>
+    </PackageReference>
+    <PackageReference Include="JetBrains.Annotations">
+      <Version>2019.1.3</Version>
+    </PackageReference>
+    <PackageReference Include="Microsoft.AspNet.Mvc">
+      <Version>5.2.3</Version>
+    </PackageReference>
+    <PackageReference Include="Microsoft.AspNet.SignalR.SystemWeb">
+      <Version>2.4.1</Version>
+    </PackageReference>
+    <PackageReference Include="Microsoft.AspNet.Web.Optimization">
+      <Version>1.1.3</Version>
+    </PackageReference>
+    <PackageReference Include="Microsoft.AspNet.WebApi.Client">
+      <Version>5.2.7</Version>
+    </PackageReference>
+    <PackageReference Include="Microsoft.AspNet.WebApi.Cors">
+      <Version>5.2.3</Version>
+    </PackageReference>
+    <PackageReference Include="Microsoft.AspNetCore.Http.Abstractions">
+      <Version>2.2.0</Version>
+    </PackageReference>
+    <PackageReference Include="Microsoft.CodeAnalysis.FxCopAnalyzers">
+      <Version>2.9.8</Version>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+      <PrivateAssets>all</PrivateAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.Extensions.Configuration.Json">
+      <Version>3.1.10</Version>
+    </PackageReference>
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection">
+      <Version>3.1.10</Version>
+    </PackageReference>
+    <PackageReference Include="Microsoft.Extensions.Logging.Abstractions">
+      <Version>3.1.10</Version>
+    </PackageReference>
+    <PackageReference Include="Microsoft.Extensions.Logging.Debug">
+      <Version>3.1.10</Version>
+    </PackageReference>
+    <PackageReference Include="Microsoft.Extensions.Options">
+      <Version>3.1.10</Version>
+    </PackageReference>
+    <PackageReference Include="Microsoft.Owin.Cors">
+      <Version>4.0.0</Version>
+    </PackageReference>
+    <PackageReference Include="Microsoft.Owin.Host.SystemWeb">
+      <Version>4.0.0</Version>
+    </PackageReference>
+    <PackageReference Include="Microsoft.Owin.Security">
+      <Version>4.0.1</Version>
+    </PackageReference>
+    <PackageReference Include="Newtonsoft.Json">
+      <Version>12.0.3</Version>
+    </PackageReference>
+    <PackageReference Include="NodaTime">
+      <Version>2.4.7</Version>
+    </PackageReference>
+    <PackageReference Include="NodaTime.Serialization.JsonNet">
+      <Version>2.2.0</Version>
+    </PackageReference>
+    <PackageReference Include="OctoPack">
+      <Version>3.6.3</Version>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+      <PrivateAssets>all</PrivateAssets>
+    </PackageReference>
+    <PackageReference Include="Quartz">
+      <Version>3.0.7</Version>
+    </PackageReference>
+    <PackageReference Include="Serilog">
+      <Version>2.9.0</Version>
+    </PackageReference>
+    <PackageReference Include="Serilog.Extensions.Logging">
+      <Version>3.0.1</Version>
+    </PackageReference>
+    <PackageReference Include="Serilog.Extensions.Logging.File">
+      <Version>1.1.0</Version>
+    </PackageReference>
+    <PackageReference Include="Serilog.Formatting.Compact">
+      <Version>1.1.0</Version>
+    </PackageReference>
+    <PackageReference Include="Serilog.Sinks.Async">
+      <Version>1.4.0</Version>
+    </PackageReference>
+    <PackageReference Include="Serilog.Sinks.File">
+      <Version>4.1.0</Version>
+    </PackageReference>
+    <PackageReference Include="SerilogWeb.Classic">
+      <Version>5.0.52</Version>
+    </PackageReference>
+    <PackageReference Include="SerilogWeb.Classic.WebApi">
+      <Version>4.0.5</Version>
+    </PackageReference>
+    <PackageReference Include="Swashbuckle">
+      <Version>5.6.0</Version>
+    </PackageReference>
+    <PackageReference Include="System.Collections.Immutable">
+      <Version>1.6.0</Version>
+    </PackageReference>
+    <PackageReference Include="System.Drawing.Common">
+      <Version>4.6.1</Version>
+    </PackageReference>
+    <PackageReference Include="System.Linq.Dynamic.Core">
+      <Version>1.2.2</Version>
+    </PackageReference>
+    <PackageReference Include="System.Threading.Tasks.Extensions">
+      <Version>4.5.4</Version>
+    </PackageReference>
+  </ItemGroup>
+  <ItemGroup />
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <PropertyGroup>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <Target Name="MvcBuildViews" AfterTargets="AfterBuild" Condition="'$(MvcBuildViews)'=='true'">
+    <AspNetCompiler VirtualPath="temp" PhysicalPath="$(WebProjectOutputDir)" />
+  </Target>
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>False</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>65030</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost:65030/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+  </Target>
+  <PropertyGroup>
+    <PreBuildEvent>
+    </PreBuildEvent>
+  </PropertyGroup>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target> -->
+</Project>

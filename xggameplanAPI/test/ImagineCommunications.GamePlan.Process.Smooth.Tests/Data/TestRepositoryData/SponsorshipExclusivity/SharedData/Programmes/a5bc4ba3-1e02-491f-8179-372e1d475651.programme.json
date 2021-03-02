@@ -1,0 +1,15 @@
+{
+  "Id": "a5bc4ba3-1e02-491f-8179-372e1d475651",
+  "PrgtNo": 1,
+  "SalesArea": "NWS91",
+  "StartDateTime": "2018-07-30T19:00:00Z",
+  "Duration": {
+    "ticks": 36000000000
+  },
+  "ExternalReference": "Prog1",
+  "ProgrammeName": "Prog1",
+  "Description": null,
+  "ProgrammeCategories": [],
+  "Classification": "M",
+  "LiveBroadcast": false
+}

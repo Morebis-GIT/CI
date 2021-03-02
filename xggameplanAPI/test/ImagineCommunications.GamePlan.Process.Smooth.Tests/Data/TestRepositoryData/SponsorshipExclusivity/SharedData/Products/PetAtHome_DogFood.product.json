@@ -1,0 +1,17 @@
+{
+  "Uid": "6202463a-9c87-4621-a741-eb0efc94dc3f",
+  "Externalidentifier": "PetAtHome_DogFood",
+  "ParentExternalidentifier": null,
+  "Name": "Dog Food",
+  "EffectiveStartDate": "1990-02-23T00:01:00.0000000Z",
+  "EffectiveEndDate": "2090-02-22T23:59:00.0000000Z",
+  "ClashCode": "Pet",
+  "AdvertiserIdentifier": "PetAtHome",
+  "AdvertiserName": "PetAtHome",
+  "AdvertiserLinkStartDate": "0001-01-01T00:00:00.0000000",
+  "AdvertiserLinkEndDate": "0001-01-01T00:00:00.0000000",
+  "AgencyIdentifier": null,
+  "AgencyName": null,
+  "AgencyStartDate": "0001-01-01T00:00:00.0000000",
+  "AgencyLinkEndDate": "0001-01-01T00:00:00.0000000"
+}

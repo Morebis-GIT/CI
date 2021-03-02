@@ -1,0 +1,17 @@
+{
+  "Uid": "753e9779-a54c-400b-802f-6c20ae26626f",
+  "Externalidentifier": "Dell_XPS15",
+  "ParentExternalidentifier": null,
+  "Name": "XPS 15",
+  "EffectiveStartDate": "1990-02-23T00:01:00.0000000Z",
+  "EffectiveEndDate": "2090-02-22T23:59:00.0000000Z",
+  "ClashCode": "Laptop",
+  "AdvertiserIdentifier": "Dell",
+  "AdvertiserName": "Dell",
+  "AdvertiserLinkStartDate": "0001-01-01T00:00:00.0000000",
+  "AdvertiserLinkEndDate": "0001-01-01T00:00:00.0000000",
+  "AgencyIdentifier": null,
+  "AgencyName": null,
+  "AgencyStartDate": "0001-01-01T00:00:00.0000000",
+  "AgencyLinkEndDate": "0001-01-01T00:00:00.0000000"
+}

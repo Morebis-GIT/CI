@@ -1,0 +1,1 @@
+RestrictionLevel is set to 'Programme' and the program value is 'Prog2'. Time range covers the 'Prog3'

@@ -1,0 +1,58 @@
+{
+  "externalReferenceId": "None 1130",
+  "restrictionLevel": "TimeBand",
+  "sponsoredItems": [
+    {
+      "sponsorshipItems": [
+        {
+          "salesAreas": [
+            "NWS91"
+          ],
+          "startDate": "2018-07-30T00:00:00",
+          "endDate": "2018-07-30T00:00:00",
+          "dayParts": [
+            {
+              "startTime": "06:00:00",
+              "endTime": "22:59:59",
+              "daysOfWeek": [
+                "Mon",
+                "Tue",
+                "Wed",
+                "Thu",
+                "Fri",
+                "Sat",
+                "Sun"
+              ]
+            }
+          ],
+          "programmeName": null
+        }
+      ],
+      "clashExclusivities": [
+        {
+          "clashExternalRef": "Clash_P475",
+          "restrictionType": null,
+          "restrictionValue": null
+        },
+        {
+          "clashExternalRef": "Clash_P423",
+          "restrictionType": null,
+          "restrictionValue": null
+        }
+      ],
+      "advertiserExclusivities": [],
+      "products": [
+        "Product_115799",
+        "Product_118049",
+        "Product_151159"
+      ],
+      "calculationType": "None",
+      "restrictionType": null,
+      "restrictionValue": null,
+      "applicability": null
+    }
+  ],
+  "uid": "d63e7ef1-72a8-46a9-97bd-6149f75912cc",
+  "dateCreated": "2020-05-14T08:06:08.3802964Z",
+  "dateModified": "2020-05-14T08:06:08.3802964Z"
+}

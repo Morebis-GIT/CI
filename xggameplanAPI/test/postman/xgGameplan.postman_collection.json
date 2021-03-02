@@ -1,0 +1,1020 @@
+{
+	"info": {
+		"_postman_id": "079dee29-7549-4e9a-bab4-1c1ea9c62888",
+		"name": "xgGameplan",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Input file generation",
+			"item": [
+				{
+					"name": "Generator input files (debug version)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "6e7314ff-76dd-4dcb-b914-df9a58820028",
+								"exec": [
+									"",
+									"pm.test(\"response should be okay to process\", function () { ",
+									"    pm.response.to.not.be.error; ",
+									"    pm.response.to.be.json;",
+									"    pm.response.to.not.have.jsonBody(\"errorCode\"); ",
+									"    pm.response.to.not.have.jsonBody(\"errorMessage\"); ",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "content-type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://{{host}}:{{port}}/Runs/{{run_id}}/devtests/createinputfiles",
+							"protocol": "http",
+							"host": [
+								"{{host}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"Runs",
+								"{{run_id}}",
+								"devtests",
+								"createinputfiles"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Recommendations",
+			"item": [
+				{
+					"name": "Download extended recommendations",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "6d18d669-cabb-4b3c-bf31-3bc86108d5ea",
+								"exec": [
+									"pm.test(\"response should be okay to process\", function () { ",
+									"    pm.response.to.not.be.error; ",
+									"    pm.response.to.be.json;",
+									"    pm.response.to.not.have.jsonBody(\"errorCode\"); ",
+									"    pm.response.to.not.have.jsonBody(\"errorMessage\"); ",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://{{host}}:{{port}}/ScenarioResults/{{scenario_id}}/recommendations/extended/export",
+							"protocol": "http",
+							"host": [
+								"{{host}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"ScenarioResults",
+								"{{scenario_id}}",
+								"recommendations",
+								"extended",
+								"export"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Smooth",
+			"item": [
+				{
+					"name": "1 day",
+					"item": [
+						{
+							"name": "1 day - Smooth Only",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "5f62d0d0-b488-42d9-a8c0-bbc2d32f7d7c",
+										"exec": [
+											"",
+											"pm.test(\"response should be okay to process\", function () { ",
+											"    pm.response.to.not.be.error; ",
+											"    pm.response.to.be.json;",
+											"    pm.response.to.not.have.jsonBody(\"errorCode\"); ",
+											"    pm.response.to.not.have.jsonBody(\"errorMessage\"); ",
+											"});",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "content-type",
+										"type": "text",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"addDefaultScenario\": true,\n    \"description\": \"Smooth - XGGT-3969\",\n    \"startDate\": \"2030-01-14T06:00:00.000Z\",\n    \"endDate\": \"2030-01-15T05:59:59.000Z\",\n    \"real\": true,\n    \"smooth\": true,\n    \"isr\": false,\n    \"optimisation\": false,\n    \"rightSizer\": false,\n    \"spreadProgramming\": true,\n    \"isLocked\": false,\n    \"objectives\": null,\n    \"campaignPassPriorities\": [],\n    \"status\": \"Pending\",\n    \"author\": {\n        \"id\": 777,\n        \"name\": \"Postman\"\n    }\n}"
+								},
+								"url": {
+									"raw": "http://{{host}}:80/runs",
+									"protocol": "http",
+									"host": [
+										"{{host}}"
+									],
+									"port": "80",
+									"path": [
+										"runs"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "1 day - 100% Smooth",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "5f62d0d0-b488-42d9-a8c0-bbc2d32f7d7c",
+										"exec": [
+											"",
+											"pm.test(\"response should be okay to process\", function () { ",
+											"    pm.response.to.not.be.error; ",
+											"    pm.response.to.be.json;",
+											"    pm.response.to.not.have.jsonBody(\"errorCode\"); ",
+											"    pm.response.to.not.have.jsonBody(\"errorMessage\"); ",
+											"});",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "content-type",
+										"type": "text",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"addDefaultScenario\": true,\n    \"description\": \"Performance - 1 day (100% Smooth)\",\n    \"startDate\": \"2030-02-12T06:00:00.000Z\",\n    \"endDate\": \"2030-02-13T05:59:59.000Z\",\n    \"real\": true,\n    \"smooth\": true,\n    \"isr\": true,\n    \"optimisation\": true,\n    \"rightSizer\": true,\n    \"spreadProgramming\": true,\n    \"isLocked\": false,\n    \"objectives\": null,\n    \"campaignPassPriorities\": [],\n    \"status\": \"Pending\",\n    \"author\": {\n        \"id\": 777,\n        \"name\": \"Postman\"\n    }\n}"
+								},
+								"url": {
+									"raw": "http://{{host}}:80/runs",
+									"protocol": "http",
+									"host": [
+										"{{host}}"
+									],
+									"port": "80",
+									"path": [
+										"runs"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "1 day - Optimiser Only",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "5f62d0d0-b488-42d9-a8c0-bbc2d32f7d7c",
+										"exec": [
+											"",
+											"pm.test(\"response should be okay to process\", function () { ",
+											"    pm.response.to.not.be.error; ",
+											"    pm.response.to.be.json;",
+											"    pm.response.to.not.have.jsonBody(\"errorCode\"); ",
+											"    pm.response.to.not.have.jsonBody(\"errorMessage\"); ",
+											"});",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"addDefaultScenario\": true,\n    \"description\": \"1 day (Optimiser)\",\n    \"startDate\": \"2030-01-12T06:00:00.000Z\",\n    \"endDate\": \"2030-01-13T05:59:59.000Z\",\n    \"real\": true,\n    \"smooth\": false,\n    \"isr\": true,\n    \"optimisation\": true,\n    \"rightSizer\": true,\n    \"spreadProgramming\": true,\n    \"isLocked\": false,\n    \"objectives\": null,\n    \"campaignPassPriorities\": [],\n    \"status\": \"Pending\",\n    \"author\": {\n        \"id\": 777,\n        \"name\": \"Postman\"\n    }\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://{{host}}:80/runs",
+									"protocol": "http",
+									"host": [
+										"{{host}}"
+									],
+									"port": "80",
+									"path": [
+										"runs"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"protocolProfileBehavior": {},
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "7 days",
+					"item": [
+						{
+							"name": "7 day - 100% Smooth Only",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "5f62d0d0-b488-42d9-a8c0-bbc2d32f7d7c",
+										"exec": [
+											"",
+											"pm.test(\"response should be okay to process\", function () { ",
+											"    pm.response.to.not.be.error; ",
+											"    pm.response.to.be.json;",
+											"    pm.response.to.not.have.jsonBody(\"errorCode\"); ",
+											"    pm.response.to.not.have.jsonBody(\"errorMessage\"); ",
+											"});",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "content-type",
+										"type": "text",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"addDefaultScenario\": true,\n    \"description\": \"Performance - 7 day (100% Smooth)\",\n    \"startDate\": \"2030-02-03T06:00:00.000Z\",\n    \"endDate\": \"2030-02-11T05:59:59.000Z\",\n    \"real\": true,\n    \"smooth\": true,\n    \"isr\": false,\n    \"optimisation\": false,\n    \"rightSizer\": false,\n    \"spreadProgramming\": false,\n    \"isLocked\": false,\n    \"objectives\": null,\n    \"campaignPassPriorities\": [],\n    \"status\": \"Pending\",\n    \"author\": {\n        \"id\": 777,\n        \"name\": \"Postman\"\n    }\n}"
+								},
+								"url": {
+									"raw": "http://{{host}}:{{port}}/runs",
+									"protocol": "http",
+									"host": [
+										"{{host}}"
+									],
+									"port": "{{port}}",
+									"path": [
+										"runs"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "7 day - 10% Smooth",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "5f62d0d0-b488-42d9-a8c0-bbc2d32f7d7c",
+										"exec": [
+											"",
+											"pm.test(\"response should be okay to process\", function () { ",
+											"    pm.response.to.not.be.error; ",
+											"    pm.response.to.be.json;",
+											"    pm.response.to.not.have.jsonBody(\"errorCode\"); ",
+											"    pm.response.to.not.have.jsonBody(\"errorMessage\"); ",
+											"});",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "content-type",
+										"type": "text",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"addDefaultScenario\": true,\n    \"description\": \"Performance - 7 day (10% Smooth)\",\n    \"startDate\": \"2030-02-03T06:00:00.000Z\",\n    \"endDate\": \"2030-02-11T05:59:59.000Z\",\n    \"real\": true,\n    \"smooth\": true,\n    \"isr\": true,\n    \"optimisation\": true,\n    \"rightSizer\": true,\n    \"spreadProgramming\": true,\n    \"isLocked\": false,\n    \"objectives\": null,\n    \"campaignPassPriorities\": [],\n    \"status\": \"Pending\",\n    \"author\": {\n        \"id\": 777,\n        \"name\": \"Postman\"\n    }\n}"
+								},
+								"url": {
+									"raw": "http://{{host}}:{{port}}/runs",
+									"protocol": "http",
+									"host": [
+										"{{host}}"
+									],
+									"port": "{{port}}",
+									"path": [
+										"runs"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "7 day - 100% Smooth Only (Small Dataset)",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "5f62d0d0-b488-42d9-a8c0-bbc2d32f7d7c",
+										"exec": [
+											"",
+											"pm.test(\"response should be okay to process\", function () { ",
+											"    pm.response.to.not.be.error; ",
+											"    pm.response.to.be.json;",
+											"    pm.response.to.not.have.jsonBody(\"errorCode\"); ",
+											"    pm.response.to.not.have.jsonBody(\"errorMessage\"); ",
+											"});",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "content-type",
+										"type": "text",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"addDefaultScenario\": true,\n    \"description\": \"Smooth Test - 7 day (100% Smooth)\",\n    \"startDate\": \"2019-12-01T06:00:00.000Z\",\n    \"endDate\": \"2019-12-08T05:59:59.000Z\",\n    \"real\": true,\n    \"smooth\": true,\n    \"isr\": false,\n    \"optimisation\": false,\n    \"rightSizer\": false,\n    \"spreadProgramming\": false,\n    \"isLocked\": false,\n    \"objectives\": null,\n    \"campaignPassPriorities\": [],\n    \"status\": \"Pending\",\n    \"author\": {\n        \"id\": 777,\n        \"name\": \"Postman\"\n    }\n}"
+								},
+								"url": {
+									"raw": "http://{{host}}:{{port}}/runs",
+									"protocol": "http",
+									"host": [
+										"{{host}}"
+									],
+									"port": "{{port}}",
+									"path": [
+										"runs"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"protocolProfileBehavior": {},
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "30 days",
+					"item": [
+						{
+							"name": "30 day - 100% Smooth",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "5f62d0d0-b488-42d9-a8c0-bbc2d32f7d7c",
+										"exec": [
+											"",
+											"pm.test(\"response should be okay to process\", function () { ",
+											"    pm.response.to.not.be.error; ",
+											"    pm.response.to.be.json;",
+											"    pm.response.to.not.have.jsonBody(\"errorCode\"); ",
+											"    pm.response.to.not.have.jsonBody(\"errorMessage\"); ",
+											"});",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "content-type",
+										"type": "text",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"addDefaultScenario\": true,\n    \"description\": \"Performance - 30 day (100% Smooth)\",\n    \"startDate\": \"2030-01-11T06:00:00.000Z\",\n    \"endDate\": \"2030-02-10T05:59:59.000Z\",\n    \"real\": true,\n    \"smooth\": true,\n    \"isr\": false,\n    \"optimisation\": false,\n    \"rightSizer\": false,\n    \"spreadProgramming\": false,\n    \"isLocked\": false,\n    \"objectives\": null,\n    \"campaignPassPriorities\": [],\n    \"status\": \"Pending\",\n    \"author\": {\n        \"id\": 777,\n        \"name\": \"Mundairson\"\n    }\n}"
+								},
+								"url": {
+									"raw": "http://{{host}}:{{port}}/runs",
+									"protocol": "http",
+									"host": [
+										"{{host}}"
+									],
+									"port": "{{port}}",
+									"path": [
+										"runs"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "30 day - 10% Smooth Only",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "5f62d0d0-b488-42d9-a8c0-bbc2d32f7d7c",
+										"exec": [
+											"",
+											"pm.test(\"response should be okay to process\", function () { ",
+											"    pm.response.to.not.be.error; ",
+											"    pm.response.to.be.json;",
+											"    pm.response.to.not.have.jsonBody(\"errorCode\"); ",
+											"    pm.response.to.not.have.jsonBody(\"errorMessage\"); ",
+											"});",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"type": "text",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"addDefaultScenario\": true,\n    \"description\": \"Performance - 30 day (10% Smooth Only)\",\n    \"startDate\": \"2030-01-14T06:00:00.000Z\",\n    \"endDate\": \"2030-02-13T05:59:59.000Z\",\n    \"real\": true,\n    \"smooth\": true,\n    \"isr\": false,\n    \"optimisation\": false,\n    \"rightSizer\": false,\n    \"spreadProgramming\": false,\n    \"isLocked\": false,\n    \"objectives\": null,\n    \"campaignPassPriorities\": [],\n    \"status\": \"Pending\",\n    \"author\": {\n        \"id\": 777,\n        \"name\": \"Postman\"\n    }\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://{{host}}:80/runs",
+									"protocol": "http",
+									"host": [
+										"{{host}}"
+									],
+									"port": "80",
+									"path": [
+										"runs"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "30 day - Optimiser Only",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "5f62d0d0-b488-42d9-a8c0-bbc2d32f7d7c",
+										"exec": [
+											"",
+											"pm.test(\"response should be okay to process\", function () { ",
+											"    pm.response.to.not.be.error; ",
+											"    pm.response.to.be.json;",
+											"    pm.response.to.not.have.jsonBody(\"errorCode\"); ",
+											"    pm.response.to.not.have.jsonBody(\"errorMessage\"); ",
+											"});",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "content-type",
+										"type": "text",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"addDefaultScenario\": true,\n    \"description\": \"Performance - 30 day (Optimiser)\",\n    \"startDate\": \"2030-01-11T06:00:00.000Z\",\n    \"endDate\": \"2030-02-10T05:59:59.000Z\",\n    \"real\": true,\n    \"smooth\": false,\n    \"isr\": true,\n    \"optimisation\": true,\n    \"rightSizer\": true,\n    \"spreadProgramming\": true,\n    \"isLocked\": false,\n    \"objectives\": null,\n    \"campaignPassPriorities\": [],\n    \"status\": \"Pending\",\n    \"author\": {\n        \"id\": 777,\n        \"name\": \"Postman\"\n    }\n}"
+								},
+								"url": {
+									"raw": "http://{{host}}:80/runs",
+									"protocol": "http",
+									"host": [
+										"{{host}}"
+									],
+									"port": "80",
+									"path": [
+										"runs"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "30 day - 100% Smooth Only (Small dataset)",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "5f62d0d0-b488-42d9-a8c0-bbc2d32f7d7c",
+										"exec": [
+											"",
+											"pm.test(\"response should be okay to process\", function () { ",
+											"    pm.response.to.not.be.error; ",
+											"    pm.response.to.be.json;",
+											"    pm.response.to.not.have.jsonBody(\"errorCode\"); ",
+											"    pm.response.to.not.have.jsonBody(\"errorMessage\"); ",
+											"});",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "content-type",
+										"type": "text",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"addDefaultScenario\": true,\n    \"description\": \"Smooth Test - 30 day (100% Smooth)\",\n    \"startDate\": \"2019-12-01T06:00:00.000Z\",\n    \"endDate\": \"2019-12-31T05:59:59.000Z\",\n    \"real\": true,\n    \"smooth\": true,\n    \"isr\": false,\n    \"optimisation\": false,\n    \"rightSizer\": false,\n    \"spreadProgramming\": false,\n    \"isLocked\": false,\n    \"objectives\": null,\n    \"campaignPassPriorities\": [],\n    \"status\": \"Pending\",\n    \"author\": {\n        \"id\": 777,\n        \"name\": \"Postman\"\n    }\n}"
+								},
+								"url": {
+									"raw": "http://{{host}}:80/runs",
+									"protocol": "http",
+									"host": [
+										"{{host}}"
+									],
+									"port": "80",
+									"path": [
+										"runs"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "30 day - 10% Smooth",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "5f62d0d0-b488-42d9-a8c0-bbc2d32f7d7c",
+										"exec": [
+											"",
+											"pm.test(\"response should be okay to process\", function () { ",
+											"    pm.response.to.not.be.error; ",
+											"    pm.response.to.be.json;",
+											"    pm.response.to.not.have.jsonBody(\"errorCode\"); ",
+											"    pm.response.to.not.have.jsonBody(\"errorMessage\"); ",
+											"});",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"addDefaultScenario\": true,\n    \"description\": \"Performance - 30 day (10% Smooth)\",\n    \"startDate\": \"2030-01-14T06:00:00.000Z\",\n    \"endDate\": \"2030-02-13T05:59:59.000Z\",\n    \"real\": true,\n    \"smooth\": true,\n    \"isr\": true,\n    \"optimisation\": true,\n    \"rightSizer\": true,\n    \"spreadProgramming\": true,\n    \"isLocked\": false,\n    \"objectives\": null,\n    \"campaignPassPriorities\": [],\n    \"status\": \"Pending\",\n    \"author\": {\n        \"id\": 777,\n        \"name\": \"Postman\"\n    }\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://{{host}}:{{port}}/runs",
+									"protocol": "http",
+									"host": [
+										"{{host}}"
+									],
+									"port": "{{port}}",
+									"path": [
+										"runs"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"protocolProfileBehavior": {},
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "90 days",
+					"item": [
+						{
+							"name": "90 day - 10% Smooth",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "5f62d0d0-b488-42d9-a8c0-bbc2d32f7d7c",
+										"exec": [
+											"",
+											"pm.test(\"response should be okay to process\", function () { ",
+											"    pm.response.to.not.be.error; ",
+											"    pm.response.to.be.json;",
+											"    pm.response.to.not.have.jsonBody(\"errorCode\"); ",
+											"    pm.response.to.not.have.jsonBody(\"errorMessage\"); ",
+											"});",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "content-type",
+										"type": "text",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"addDefaultScenario\": true,\n    \"description\": \"Performance - 90 day (10% Smooth)\",\n    \"startDate\": \"2030-01-21T06:00:00.000Z\",\n    \"endDate\": \"2030-04-21T05:59:59.000Z\",\n    \"real\": true,\n    \"smooth\": true,\n    \"isr\": true,\n    \"optimisation\": true,\n    \"rightSizer\": true,\n    \"spreadProgramming\": true,\n    \"isLocked\": false,\n    \"objectives\": null,\n    \"campaignPassPriorities\": [],\n    \"status\": \"Pending\",\n    \"author\": {\n        \"id\": 777,\n        \"name\": \"Postman\"\n    }\n}"
+								},
+								"url": {
+									"raw": "http://{{host}}:{{port}}/runs",
+									"protocol": "http",
+									"host": [
+										"{{host}}"
+									],
+									"port": "{{port}}",
+									"path": [
+										"runs"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "90 day - 100% Smooth",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "5f62d0d0-b488-42d9-a8c0-bbc2d32f7d7c",
+										"exec": [
+											"",
+											"pm.test(\"response should be okay to process\", function () { ",
+											"    pm.response.to.not.be.error; ",
+											"    pm.response.to.be.json;",
+											"    pm.response.to.not.have.jsonBody(\"errorCode\"); ",
+											"    pm.response.to.not.have.jsonBody(\"errorMessage\"); ",
+											"});",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "content-type",
+										"type": "text",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"addDefaultScenario\": true,\n    \"description\": \"Performance - 90 day (100% Smooth)\",\n    \"startDate\": \"2030-01-04T06:00:00.000Z\",\n    \"endDate\": \"2030-04-04T05:59:59.000Z\",\n    \"real\": true,\n    \"smooth\": true,\n    \"isr\": false,\n    \"optimisation\": false,\n    \"rightSizer\": false,\n    \"spreadProgramming\": false,\n    \"isLocked\": false,\n    \"objectives\": null,\n    \"campaignPassPriorities\": [],\n    \"status\": \"Pending\",\n    \"author\": {\n        \"id\": 777,\n        \"name\": \"Mundairson\"\n    }\n}"
+								},
+								"url": {
+									"raw": "http://{{host}}:{{port}}/runs",
+									"protocol": "http",
+									"host": [
+										"{{host}}"
+									],
+									"port": "{{port}}",
+									"path": [
+										"runs"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "90 day - Optimiser Only",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "5f62d0d0-b488-42d9-a8c0-bbc2d32f7d7c",
+										"exec": [
+											"",
+											"pm.test(\"response should be okay to process\", function () { ",
+											"    pm.response.to.not.be.error; ",
+											"    pm.response.to.be.json;",
+											"    pm.response.to.not.have.jsonBody(\"errorCode\"); ",
+											"    pm.response.to.not.have.jsonBody(\"errorMessage\"); ",
+											"});",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "content-type",
+										"type": "text",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"addDefaultScenario\": true,\n    \"description\": \"Performance - 90 day (Optimiser)\",\n    \"startDate\": \"2030-01-12T06:00:00.000Z\",\n    \"endDate\": \"2030-04-12T05:59:59.000Z\",\n    \"real\": true,\n    \"smooth\": false,\n    \"isr\": true,\n    \"optimisation\": true,\n    \"rightSizer\": true,\n    \"spreadProgramming\": true,\n    \"isLocked\": false,\n    \"objectives\": null,\n    \"campaignPassPriorities\": [],\n    \"status\": \"Pending\",\n    \"author\": {\n        \"id\": 777,\n        \"name\": \"Postman\"\n    }\n}"
+								},
+								"url": {
+									"raw": "http://{{host}}:80/runs",
+									"protocol": "http",
+									"host": [
+										"{{host}}"
+									],
+									"port": "80",
+									"path": [
+										"runs"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"protocolProfileBehavior": {},
+					"_postman_isSubFolder": true
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Spots",
+			"item": [
+				{
+					"name": "Delete spot by date and sales area",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "content-type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://{{host}}:{{port}}/spots?dateRangeStart=2030-06-14T00:05:51.0000000Z&dateRangeEnd=2030-06-14T00:05:55.0000000Z&salesAreaNames=STW94",
+							"protocol": "http",
+							"host": [
+								"{{host}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"spots"
+							],
+							"query": [
+								{
+									"key": "dateRangeStart",
+									"value": "2030-06-14T00:05:51.0000000Z"
+								},
+								{
+									"key": "dateRangeEnd",
+									"value": "2030-06-14T00:05:55.0000000Z"
+								},
+								{
+									"key": "salesAreaNames",
+									"value": "STW94"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Execute Run",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "5f62d0d0-b488-42d9-a8c0-bbc2d32f7d7c",
+						"exec": [
+							"",
+							"pm.test(\"response should be okay to process\", function () { ",
+							"    pm.response.to.not.be.error; ",
+							"    pm.response.to.be.json;",
+							"    pm.response.to.not.have.jsonBody(\"errorCode\"); ",
+							"    pm.response.to.not.have.jsonBody(\"errorMessage\"); ",
+							"});",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "content-type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://{{host}}:{{port}}/runs/{{run_id}}/execute",
+					"protocol": "http",
+					"host": [
+						"{{host}}"
+					],
+					"port": "{{port}}",
+					"path": [
+						"runs",
+						"{{run_id}}",
+						"execute"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Apply DB update ",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "bcf07d9a-9bbf-4817-8578-643acb9c7924",
+						"exec": [
+							"",
+							"pm.test(\"response should be okay to process\", function () { ",
+							"    pm.response.to.not.be.error; ",
+							"    pm.response.to.be.json;",
+							"    pm.response.to.not.have.jsonBody(\"errorCode\"); ",
+							"    pm.response.to.not.have.jsonBody(\"errorMessage\"); ",
+							"});",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "http://{{host}}:{{port}}/Updates/40eaa147-23b7-4c44-ba04-0dac23e49864/Apply",
+					"protocol": "http",
+					"host": [
+						"{{host}}"
+					],
+					"port": "{{port}}",
+					"path": [
+						"Updates",
+						"40eaa147-23b7-4c44-ba04-0dac23e49864",
+						"Apply"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"auth": {
+		"type": "bearer",
+		"bearer": [
+			{
+				"key": "token",
+				"value": "{{api_token}}",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "9b9df558-7764-4791-93b1-5110b1059fc5",
+				"type": "text/javascript",
+				"exec": [
+					"if (!postman.getEnvironmentVariable(\"api_token\")) {",
+					"    // No api token has been set for environment so lets try and get one!",
+					"    pm.sendRequest({",
+					"        url: 'http://' + pm.environment.get(\"host\") + ':80/accesstokens',",
+					"        method: 'POST',",
+					"        header: {",
+					"            'Content-type': 'application/json'",
+					"        },",
+					"        body: {",
+					"            mode: 'raw',",
+					"            raw: JSON.stringify({",
+					"                'email': pm.variables.get(\"auth_email\"),",
+					"                'password': pm.variables.get(\"auth_password\")",
+					"            })",
+					"        }",
+					"    }, function (err, res) {",
+					"        pm.environment.set(\"api_token\", res.json().token);",
+					"    });",
+					"}",
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "bc5d6a19-c7d9-4c2d-929d-6ced2fbc242a",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"protocolProfileBehavior": {}
+}

@@ -1,0 +1,27 @@
+{
+  "Uid": "00000012-ab2c-455c-b793-00161d859d36",
+  "CustomId": 101,
+  "ExternalCampaignNumber": "15G1554944",
+  "SalesArea": "NWS91",
+  "GroupCode": null,
+  "ExternalSpotRef": "112-P1-B1-Pepsi_CherryPepsi",
+  "StartDateTime": "2018-07-30T19:08:20Z",
+  "EndDateTime": "0001-01-01T00:00:00",
+  "SpotLength": {
+    "ticks": 150000000
+  },
+  "BreakType": "BASE",
+  "Product": "Pepsi_CherryPepsi",
+  "Demographic": "121",
+  "ClientPicked": true,
+  "MultipartSpot": null,
+  "MultipartSpotPosition": null,
+  "MultipartSpotRef": null,
+  "RequestedPositioninBreak": null,
+  "ActualPositioninBreak": null,
+  "BreakRequest": "Prog1-break1",
+  "ExternalBreakNo": null,
+  "Sponsored": false,
+  "Preemptable": true,
+  "Preemptlevel": 67
+}

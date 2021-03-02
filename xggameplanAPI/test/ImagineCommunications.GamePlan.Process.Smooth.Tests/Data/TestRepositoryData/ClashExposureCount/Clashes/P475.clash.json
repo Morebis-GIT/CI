@@ -1,0 +1,31 @@
+{
+  "Uid": "D8DFBBD0-D413-4300-AADF-50F7C3719CB1",
+  "Externalref": "P475",
+  "ParentExternalidentifier": "I41",
+  "Description": "Electrical/Electronic Retail",
+  "DefaultOffPeakExposureCount": 2,
+  "DefaultPeakExposureCount": 2,
+  "Differences": [
+    {
+      "SalesArea": "CEC01",
+      "StartDate": "2020-03-06T00:00:00.0000000Z",
+      "EndDate": "2020-03-23T00:00:00.0000000Z",
+      "TimeAndDow": {
+        "StartTime": "06:00:00",
+        "EndTime": "05:59:59",
+        "DaysOfWeek": [
+          "Monday",
+          "Tuesday",
+          "Wednesday",
+          "Thursday",
+          "Friday",
+          "Saturday",
+          "Sunday"
+        ],
+        "DaysOfWeekBinary": "1111111"
+      },
+      "PeakExposureCount": 3,
+      "OffPeakExposureCount": 4
+    }
+  ]
+}

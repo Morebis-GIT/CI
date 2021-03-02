@@ -1,0 +1,17 @@
+{
+  "Id": 1,
+  "StartDate": "2020-02-13T00:00:00.0000000Z",
+  "EndDate": "2020-04-12T00:00:00.0000000Z",
+  "FromType": "Advertiser",
+  "ToType": "Advertiser",
+  "IncludeOrExclude": "E",
+  "FromValue": "48202",
+  "ToValue": "48202",
+  "TimeAndDows": [
+    {
+      "StartTime": null,
+      "EndTime": null,
+      "DaysOfWeek": "1111111"
+    }
+  ]
+}

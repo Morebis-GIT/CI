@@ -1,0 +1,56 @@
+{
+  "externalReferenceId": "BigOne5",
+  "restrictionLevel": "Timeband",
+  "sponsoredItems": [
+    {
+      "sponsorshipItems": [
+        {
+          "salesAreas": [
+            "GTV94"
+          ],
+          "startDate": "2020-04-20T00:00:00",
+          "endDate": "2020-04-26T00:00:00",
+          "dayParts": [
+            {
+              "startTime": "21:00:00",
+              "endTime": "23:04:59",
+              "daysOfWeek": [
+                "Mon",
+                "Tue",
+                "Wed",
+                "Thu",
+                "Sun"
+              ]
+            }
+          ],
+          "programmeName": "9 o'clock film"
+        }
+      ],
+      "clashExclusivities": [
+        {
+          "clashExternalRef": "P113",
+          "restrictionType": null,
+          "restrictionValue": null
+        },
+        {
+          "clashExternalRef": "P25",
+          "restrictionType": null,
+          "restrictionValue": null
+        },
+        {
+          "clashExternalRef": "P435",
+          "restrictionType": null,
+          "restrictionValue": null
+        }
+      ],
+      "advertiserExclusivities": [],
+      "products": [
+        "145662"
+      ],
+      "calculationType": "None",
+      "restrictionType": null,
+      "restrictionValue": null,
+      "applicability": null
+    }
+  ]
+}

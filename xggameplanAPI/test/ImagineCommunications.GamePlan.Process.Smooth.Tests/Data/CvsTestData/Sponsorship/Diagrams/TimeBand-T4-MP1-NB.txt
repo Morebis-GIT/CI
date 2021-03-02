@@ -1,0 +1,1 @@
+RestrictionLevel is set to 'TimeBand'. The time range covers part of the 'Prog1' but not including any breaks

@@ -1,0 +1,23 @@
+{
+  "Id": "00000003-0000-0000-0000-000000000000",
+  "CustomId": 3,
+  "ScheduledDate": "2020-06-10T00:22:06.0000000Z",
+  "SalesArea": "NWS91",
+  "BreakType": "BASE",
+  "Duration": {
+    "ticks": 1200000000
+  },
+  "Avail": {
+    "ticks": 1200000000
+  },
+  "OptimizerAvail": {
+    "ticks": 900000000
+  },
+  "Optimize": true,
+  "ExternalBreakRef": "2933749-3",
+  "Description": null,
+  "ExternalProgRef": null,
+  "PositionInProg": "C",
+  "SpotReferencesList": null,
+  "BreakEfficiencyList": null
+}

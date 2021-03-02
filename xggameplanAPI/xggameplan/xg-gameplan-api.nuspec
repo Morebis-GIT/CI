@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+  <metadata>
+    <id>xg-gameplan-api</id>
+    <version>$version$</version>
+    <title>xG GamePlan</title>
+    <authors>Imagine Communications</authors>
+    <description>xG GamePlan API</description>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+  </metadata>
+</package>

@@ -1,0 +1,1 @@
+RestrictionLevel is set to 'Programme' and the program value is 'ProgNotExit'. Time range covers the 'Prog2' from the middle of 'Break2' to the middle of 'Break3'

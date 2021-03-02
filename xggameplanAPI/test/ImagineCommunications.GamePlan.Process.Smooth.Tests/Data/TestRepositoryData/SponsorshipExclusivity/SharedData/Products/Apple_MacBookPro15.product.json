@@ -1,0 +1,17 @@
+{
+  "Uid": "8858fe92-091b-454f-b2c3-cb338d8d4a10",
+  "Externalidentifier": "Apple_MacBookPro15",
+  "ParentExternalidentifier": null,
+  "Name": "Mac Book Pro 15",
+  "EffectiveStartDate": "1990-02-23T00:01:00.0000000Z",
+  "EffectiveEndDate": "2090-02-22T23:59:00.0000000Z",
+  "ClashCode": "Laptop",
+  "AdvertiserIdentifier": "Apple",
+  "AdvertiserName": "Apple",
+  "AdvertiserLinkStartDate": "0001-01-01T00:00:00.0000000",
+  "AdvertiserLinkEndDate": "0001-01-01T00:00:00.0000000",
+  "AgencyIdentifier": null,
+  "AgencyName": null,
+  "AgencyStartDate": "0001-01-01T00:00:00.0000000",
+  "AgencyLinkEndDate": "0001-01-01T00:00:00.0000000"
+}

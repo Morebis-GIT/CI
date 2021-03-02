@@ -1,0 +1,27 @@
+{
+  "Uid": "00000147-ab2c-455c-b793-00161d859d36",
+  "CustomId": 101,
+  "ExternalCampaignNumber": "15G1554944",
+  "SalesArea": "NWS91",
+  "GroupCode": null,
+  "ExternalSpotRef": "247-P3-B1-KFC_chickenWings",
+  "StartDateTime": "2018-07-30T21:08:20Z",
+  "EndDateTime": "0001-01-01T00:00:00",
+  "SpotLength": {
+    "ticks": 150000000
+  },
+  "BreakType": "BASE",
+  "Product": "KFC_chickenWings",
+  "Demographic": "121",
+  "ClientPicked": true,
+  "MultipartSpot": null,
+  "MultipartSpotPosition": null,
+  "MultipartSpotRef": null,
+  "RequestedPositioninBreak": null,
+  "ActualPositioninBreak": null,
+  "BreakRequest": "Prog3-break1",
+  "ExternalBreakNo": null,
+  "Sponsored": false,
+  "Preemptable": true,
+  "Preemptlevel": 58
+}

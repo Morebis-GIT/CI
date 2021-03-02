@@ -1,0 +1,28 @@
+{
+  "Uid": "87b70968-6731-4126-b39a-a743a2b162aa",
+  "ExternalCampaignNumber": "H1587211",
+  "SalesArea": "CEC01",
+  "GroupCode": null,
+  "ExternalSpotRef": "225059161",
+  "StartDateTime": "2020-03-09T18:00:00.0000000Z",
+  "EndDateTime": "2020-03-09T19:00:00.0000000Z",
+  "SpotLength": {
+    "ticks": 150000000
+  },
+  "BreakType": "PREMIUM",
+  "Product": "12658",
+  "Demographic": "656",
+  "ClientPicked": true,
+  "MultipartSpot": null,
+  "MultipartSpotPosition": null,
+  "MultipartSpotRef": null,
+  "RequestedPositioninBreak": null,
+  "ActualPositioninBreak": null,
+  "BreakRequest": null,
+  "ExternalBreakNo": null,
+  "Sponsored": false,
+  "Preemptable": true,
+  "Preemptlevel": 1029,
+  "IndustryCode": null,
+  "ClearanceCode": null
+}

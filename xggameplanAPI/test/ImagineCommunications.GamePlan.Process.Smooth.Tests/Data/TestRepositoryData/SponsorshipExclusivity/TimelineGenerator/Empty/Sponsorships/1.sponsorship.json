@@ -1,0 +1,56 @@
+{
+  "externalReferenceId": "Empty1",
+  "restrictionLevel": "Programme",
+  "sponsoredItems": [
+    {
+      "sponsorshipItems": [
+        {
+          "salesAreas": [
+            "GTV94"
+          ],
+          "startDate": "2020-04-16T00:00:00",
+          "endDate": "2020-04-16T00:00:00",
+          "dayParts": [
+            {
+              "startTime": "06:00:00",
+              "endTime": "23:59:59",
+              "daysOfWeek": [
+                "Mon",
+                "Tue",
+                "Wed",
+                "Thu",
+                "Fri",
+                "Sat",
+                "Sun"
+              ]
+            }
+          ],
+          "programmeName": "IgvzHX7rxAidZPFENw4KAtlMINGcdt7zbkTdEfQtfOU="
+        }
+      ],
+      "clashExclusivities": [
+        {
+          "clashExternalRef": "P113",
+          "restrictionType": "SpotCount",
+          "restrictionValue": "2"
+        },
+        {
+          "clashExternalRef": "P25",
+          "restrictionType": "SpotCount",
+          "restrictionValue": "2"
+        },
+        {
+          "clashExternalRef": "P435",
+          "restrictionType": "SpotCount",
+          "restrictionValue": "2"
+        }
+      ],
+      "advertiserExclusivities": [],
+      "products": [
+        "145662"
+      ],
+      "calculationType": "Flat",
+      "applicability": "EachCompetitor"
+    }
+  ]
+}

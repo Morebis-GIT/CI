@@ -1,0 +1,27 @@
+{
+  "Uid": "00000012-0000-0000-0000-000000000000",
+  "CustomId": 12,
+  "ExternalCampaignNumber": "H1585023",
+  "SalesArea": "NWS91",
+  "GroupCode": null,
+  "ExternalSpotRef": "Spot_12",
+  "StartDateTime": "2018-07-30T21:18:20Z",
+  "EndDateTime": "0001-01-01T00:00:00",
+  "SpotLength": {
+    "ticks": 150000000
+  },
+  "BreakType": "BASE",
+  "Product": "Product_115799",
+  "Demographic": "121",
+  "ClientPicked": true,
+  "MultipartSpot": null,
+  "MultipartSpotPosition": null,
+  "MultipartSpotRef": null,
+  "RequestedPositioninBreak": null,
+  "ActualPositioninBreak": null,
+  "BreakRequest": null,
+  "ExternalBreakNo": "Break_2",
+  "Sponsored": true,
+  "Preemptable": true,
+  "Preemptlevel": 1029
+}

@@ -1,0 +1,95 @@
+﻿{
+  "Environment": {
+    "Id": "#{xGGamePlan.Common.Name}",
+    "TestEnvironmentMode": "#{xGGamePlan.API.TestEnvironmentMode}",
+    "TaskInstanceTimeout": "#{xGGamePlan.API.TaskInstanceTimeout}",
+    "AutoBookTimeout": "#{xGGamePlan.API.AutoBookTimeout}"
+  },
+  "db": {
+    "master": {
+      "provider": "#{xGGamePlan.API.DbProvider}",
+      "connectionString": "#{xGGamePlan.API.DbConnectionString}"
+    },
+    "tempTenant": { // THIS IS TEMPORARY UNTIL WE CAN READ IT FROM TENANT IN RAVEN
+      "connectionString": "#{xGGamePlan.API.DbTmpConnectionString}"
+    }
+  },
+  "SqlServerDb": {
+    "LongRunningCommandsTimeout": "#{xGGamePlan.DB.SQL.LongRunningCommandsTimeout}"
+  },
+  "Frontend": {
+    "Url": "#{xGGamePlan.UI.Url}"
+  },
+  "swagger": {
+    "enabled": #{xGGamePlan.API.SwaggerEnabled}
+  },
+  "cors": {
+    "allowedOrigins": "#{xGGamePlan.API.Cors.AllowedOrigins}" // domains can be comma separated. A protocol (http/https) needs to be specified as well. * can be used if access from everywhere should be allowed.
+  },
+  "debug": {
+    "sendDetailedErrors": #{xGGamePlan.API.DebugSendDetail},
+    "enableInternalController": #{xGGamePlan.API.DebugEnable}
+  },
+  "Logging": {
+    "LogRequests": #{xGGamePlan.API.LogRequests},
+    "IncludeScopes": #{xGGamePlan.API.LogIncludeScopes},
+    "LogLevel": {
+      "Default": "#{xGGamePlan.API.LogLevelDefault}"
+    }
+  },
+  "AWS": {
+    "Profile": "",
+    "ProfilesLocation": "",
+    "Region": "#{AWS.Region}"
+  },
+  "CloudAccessType": {
+    "Type": "#{xGGamePlan.API.CloudAccessType}"
+  },
+  "Email": {
+    // AWS Imagine settings
+    "Connection": {
+      "Type": "#{xGGamePlan.Common.Email.Provider}",
+      "APIKey": "#{xGGamePlan.Common.Email.Provider.APIKey}"
+    }
+  },
+  "AutoBooks": {
+    "AWSSettings": {
+      "S3Bucket": "#{xGGamePlan.AB.ResourcePrefix}-data"
+    },
+    "UseDefaultSalesAreaOnly": "#{xGGamePlan.AB.UseDefaultSalesAreaOnly}",
+    "ExcludeBreakType": "#{xGGamePlan.AB.ExcludeBreakType}",
+    "ExportExposureDetails": #{xGGamePlan.AB.ExportExposureDetails},
+    "AutobookProviderApiAccessToken": "#{xGGamePlan.ABP.ApiAccessToken}"
+  },
+  "LandmarkApi": {
+    "HttpPolicyOptions": {
+      "TimeoutPerRequest": "#{xGGamePlan.LMK.RequestTimeout}",
+      "MaxAttemptsPerInstance": "#{xGGamePlan.LMK.MaxAttemptsPerInstance}",
+      "CircuitBreakDuration": "#{xGGamePlan.LMK.CircuitBreakDuration}"
+    },
+    "Primary": {
+      "BaseUri": "#{xGGamePlan.LMK.BaseUri}",
+      "OrganizationCode": "#{xGGamePlan.LMK.OrganizationCode}",
+      "PositionCode": "#{xGGamePlan.LMK.PositionCode}",
+      "LmkApiKey": "#{xGGamePlan.LMK.ApiKey}",
+      "LmkEnvironment": "#{xGGamePlan.LMK.EnvironmentKey}",
+      "Timezone": "#{xGGameplan.LMK.Timezone}",
+      "ProbePort": "#{xGGameplan.LMK.ProbePort}"
+    },
+    "Secondary": {
+      "BaseUri": "#{xGGamePlan.LMK.DR.BaseUri}",
+      "OrganizationCode": "#{xGGamePlan.LMK.DR.OrganizationCode}",
+      "PositionCode": "#{xGGamePlan.LMK.DR.PositionCode}",
+      "LmkApiKey": "#{xGGamePlan.LMK.DR.ApiKey}",
+      "LmkEnvironment": "#{xGGamePlan.LMK.DR.EnvironmentKey}",
+      "Timezone": "#{xGGameplan.LMK.DR.Timezone}",
+      "ProbePort": "#{xGGameplan.LMK.DR.ProbePort}"
+    },
+    "GenerateLocalInputFiles": "#{xGGamePlan.LMK.UseLocalInputFiles}"
+  },
+  "Security": {
+    "Tokens": {
+      "DurationInMinutes": 10080
+    }
+  }
+}

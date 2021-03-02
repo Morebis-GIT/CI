@@ -1,0 +1,23 @@
+{
+  "Id": "00000004-1686-4d03-ba62-987a5022fa37",
+  "CustomId": 4,
+  "ScheduledDate": "2018-07-30T21:39:20Z",
+  "SalesArea": "NWS91",
+  "BreakType": "PR-PROMO",
+  "Duration": {
+    "ticks": 120000000
+  },
+  "Avail": {
+    "ticks": 120000000
+  },
+  "OptimizerAvail": {
+    "ticks": 120000000
+  },
+  "Optimize": true,
+  "ExternalBreakRef": "Break_4",
+  "Description": null,
+  "ExternalProgRef": null,
+  "PositionInProg": "C",
+  "SpotReferencesList": null,
+  "BreakEfficiencyList": null
+}

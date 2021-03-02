@@ -1,0 +1,17 @@
+{
+  "Uid": "ba26e030-2978-495c-a203-4ed9ab98db8a",
+  "Externalidentifier": "Coca Cola_NormalCoke",
+  "ParentExternalidentifier": null,
+  "Name": "Normal-Coke",
+  "EffectiveStartDate": "1990-02-23T00:01:00.0000000Z",
+  "EffectiveEndDate": "2090-02-22T23:59:00.0000000Z",
+  "ClashCode": "FizzyDrink",
+  "AdvertiserIdentifier": "Coca Cola",
+  "AdvertiserName": "Coca Cola",
+  "AdvertiserLinkStartDate": "0001-01-01T00:00:00.0000000",
+  "AdvertiserLinkEndDate": "0001-01-01T00:00:00.0000000",
+  "AgencyIdentifier": null,
+  "AgencyName": null,
+  "AgencyStartDate": "0001-01-01T00:00:00.0000000",
+  "AgencyLinkEndDate": "0001-01-01T00:00:00.0000000"
+}

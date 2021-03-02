@@ -1,0 +1,96 @@
+﻿{
+  "Environment": {
+    "Id": "Dev",
+    "TestEnvironmentMode": "None", // "AutomationTests+PerformanceTests+WaitForIndexes+ExceptionFilter+PerformanceLog+AutoBookStub",
+    "TaskInstanceTimeout": 300,
+    "AutoBookTimeout": 10
+  },
+  "db": {
+    "master": {
+      "provider": "RavenDb",
+      "connectionString": "Url = http://localhost:8080;Database=XGGRavenMaster"
+      //"connectionString": "Data Source=localhost;Initial Catalog=XGGMaster;Integrated Security=True;MultipleActiveResultSets=True"
+    },
+    "tempTenant": {
+      "connectionString": "Url = http://localhost:8080;Database=ImagineDev"
+    }
+  },
+  "SqlServerDb": {
+    "LongRunningCommandsTimeout": 600
+  },
+  "Frontend": {
+    "Url": "http://dev.xggameplan.com"
+  },
+  "swagger": {
+    "enabled": true
+  },
+  "cors": {
+    "allowedOrigins": "*" // domains can be comma separated. A protocol (http/https) needs to be specified as well. * can be used if access from everywhere should be allowed.
+  },
+  "debug": {
+    "sendDetailedErrors": true,
+    "enableInternalController": true
+  },
+  "Logging": {
+    "LogRequests": false,
+    "IncludeScopes": false,
+    "LogLevel": {
+      "Default": "Warning"
+    }
+  },
+  "AWS": {
+    "Profile": "default",
+    "ProfilesLocation": "C:\\inetpub\\wwwroot\\App_Data\\.aws\\credentials.ini",
+    "Region": "eu-west-1"
+  },
+  "CloudAccessType": {
+    "Type": "S3"
+  },
+  "Email": {
+    // AWS Imagine settings
+    "Connection": {
+      "Type": "HTTPSendGrid",
+      "APIKey": ""
+    }
+  },
+  "AutoBooks": {
+    "AWSSettings": {
+      "S3Bucket": "xggameplan"
+    },
+    "UseDefaultSalesAreaOnly": "",
+    "ExcludeBreakType": "",
+    "ExportExposureDetails": true,
+    "AutobookProviderApiAccessToken": ""
+  },
+  "LandmarkApi": {
+    "HttpPolicyOptions": {
+      "TimeoutPerRequest": "00:10:00",
+      "MaxAttemptsPerInstance": 3,
+      "CircuitBreakDuration": "00:30:00"
+    },
+    "Primary": {
+      "BaseUri": "http://localhost:80",
+      "OrganizationCode": "-",
+      "PositionCode": "-",
+      "LmkApiKey": "-",
+      "LmkEnvironment": "-",
+      "Timezone": "GMT Standard Time",
+      "ProbePort": null
+    },
+    "Secondary": {
+      "BaseUri": "http://localhost:80",
+      "OrganizationCode": "",
+      "PositionCode": "",
+      "LmkApiKey": "-",
+      "LmkEnvironment": "-",
+      "Timezone": "",
+      "ProbePort": null
+    },
+    "GenerateLocalInputFiles": false
+  },
+  "Security": {
+    "Tokens": {
+      "DurationInMinutes": 10080
+    }
+  }
+}

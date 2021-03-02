@@ -1,0 +1,17 @@
+{
+  "Uid": "c8c46130-3c58-4ec3-8dc6-9212184987d3",
+  "Externalidentifier": "KFC_FilletBurger",
+  "ParentExternalidentifier": null,
+  "Name": "Fillet Burger",
+  "EffectiveStartDate": "1990-02-23T00:01:00.0000000Z",
+  "EffectiveEndDate": "2090-02-22T23:59:00.0000000Z",
+  "ClashCode": "FastFood",
+  "AdvertiserIdentifier": "KFC",
+  "AdvertiserName": "KFC",
+  "AdvertiserLinkStartDate": "0001-01-01T00:00:00.0000000",
+  "AdvertiserLinkEndDate": "0001-01-01T00:00:00.0000000",
+  "AgencyIdentifier": null,
+  "AgencyName": null,
+  "AgencyStartDate": "0001-01-01T00:00:00.0000000",
+  "AgencyLinkEndDate": "0001-01-01T00:00:00.0000000"
+}
