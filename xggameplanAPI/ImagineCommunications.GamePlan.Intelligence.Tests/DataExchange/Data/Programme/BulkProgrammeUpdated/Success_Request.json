@@ -1,0 +1,18 @@
+{
+  "Data": [
+    {
+      "ExternalReference": "externalReference1",
+      "ProgrammeName": "programmeName1",
+      "Description": "description1",
+      "Classification": "classification1",
+      "LiveBroadcast": true
+    },
+    {
+      "ExternalReference": "externalReference2",
+      "ProgrammeName": "programmeName2",
+      "Description": "description2",
+      "Classification": "classification2",
+      "LiveBroadcast": true
+    }
+  ]
+}

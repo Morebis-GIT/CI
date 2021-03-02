@@ -1,0 +1,31 @@
+{
+  "InventoryLocks": [
+    {
+      "Id": 1,
+      "SalesArea": "GTV91",
+      "InventoryCode": "Code1",
+      "StartDate": "2019-10-15T10:37:04.177Z",
+      "EndDate": "2019-10-15T10:37:04.177Z",
+      "StartTime": "1.00:00:00",
+      "EndTime": "1.00:00:00"
+    },
+    {
+      "Id": 2,
+      "SalesArea": "GTV93",
+      "InventoryCode": "Code2",
+      "StartDate": "2019-10-15T10:37:04.177Z",
+      "EndDate": "2019-10-15T10:37:04.177Z",
+      "StartTime": "1.00:00:00",
+      "EndTime": "1.00:00:00"
+    },
+    {
+      "Id": 3,
+      "SalesArea": "GTV93",
+      "InventoryCode": "Code3",
+      "StartDate": "2019-10-15T10:37:04.177Z",
+      "EndDate": "2019-10-15T10:37:04.177Z",
+      "StartTime": "1.00:00:00",
+      "EndTime": "1.00:00:00"
+    }
+  ]
+}

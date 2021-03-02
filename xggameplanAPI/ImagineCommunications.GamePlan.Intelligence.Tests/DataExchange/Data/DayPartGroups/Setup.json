@@ -1,0 +1,34 @@
+{
+  "Demographics": [
+    {
+      "ExternalRef": "Demo1",
+      "Name": "SHOPPER 25-54",
+      "ShortName": "Demo1",
+      "DisplayOrder": 178,
+      "Gameplan": true
+    },
+    {
+      "ExternalRef": "BD2",
+      "Name": "SHOPPER 25-54",
+      "ShortName": "S25-54",
+      "DisplayOrder": 179,
+      "Gameplan": true
+    }
+  ],
+  "StandardDayParts": [
+    {
+      "DayPartId": 2,
+      "SalesArea": "Area 1",
+      "Name": "Test",
+      "Order": 1,
+      "Timeslices": [
+        {
+          "StartDay": 0,
+          "EndDay": 0,
+          "StartTime": "1.00:00:00",
+          "EndTime": "2.00:00:00"
+        }
+      ]
+    }
+  ]
+}

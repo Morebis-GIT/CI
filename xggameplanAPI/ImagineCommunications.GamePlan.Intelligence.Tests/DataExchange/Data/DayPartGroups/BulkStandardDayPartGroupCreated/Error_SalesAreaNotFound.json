@@ -1,0 +1,18 @@
+{
+  "Data": [
+    {
+      "GroupId": 1,
+      "SalesArea": "Bad area",
+      "Demographic": "Demo1",
+      "Optimizer": true,
+      "Policy": true,
+      "RatingReplacement": true,
+      "Splits": [
+        {
+          "DayPartId": 2,
+          "Split": 28.5
+        }
+      ]
+    }
+  ]
+}

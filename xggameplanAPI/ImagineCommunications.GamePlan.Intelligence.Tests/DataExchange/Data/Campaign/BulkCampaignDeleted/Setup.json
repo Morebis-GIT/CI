@@ -1,0 +1,454 @@
+﻿{
+  "Campaigns": [
+    {
+      "CustomId": 9701,
+      "ExternalId": "15G1558624",
+      "Name": "2wTOtBPza8moXqSfvQ+smw==",
+      "DemoGraphic": "3",
+      "StartDateTime": "2019-04-10T00:00:00.0000000Z",
+      "EndDateTime": "2019-05-21T00:00:00.0000000Z",
+      "Product": "131404",
+      "RevenueBudget": 0,
+      "TargetRatings": 1279636,
+      "ActualRatings": 1662652,
+      "CampaignGroup": null,
+      "IsPercentage": false,
+      "Status": "A",
+      "BusinessType": "Dynamic",
+      "IncludeOptimisation": true,
+      "TargetZeroRatedBreaks": false,
+      "InefficientSpotRemoval": true,
+      "IncludeRightSizer": true,
+      "RightSizerLevel": "CampaignLevel",
+      "ExpectedClearanceCode": null,
+      "CampaignPassPriority": 3,
+      "BookingPositionGroups": [],
+      "BreakType": [
+        "Base"
+      ],
+      "searchfields": null,
+      "TimeRestrictions": [],
+      "ProgrammeRestrictions": [
+        {
+          "SalesAreas": null,
+          "CategoryOrProgramme": [
+            "AUHU"
+          ],
+          "IsCategoryOrProgramme": "P",
+          "IsIncludeOrExclude": "E"
+        }
+      ],
+      "SalesAreaCampaignTarget": [
+        {
+          "SalesArea": "GTV93",
+          "SalesAreaGroup": {
+            "GroupName": "GTV93",
+            "SalesAreas": [
+              "GTV93"
+            ]
+          },
+          "Multiparts": [
+            {
+              "MultipartNumber": 0,
+              "Lengths": [
+                {
+                  "Length": "01:00:00",
+                  "BookingPosition": 0,
+                  "Sequencing": 0
+                }
+              ],
+              "DesiredPercentageSplit": 469302,
+              "CurrentPercentageSplit": 655302
+            }
+          ],
+          "CampaignTargets": [
+            {
+              "StrikeWeights": [
+                {
+                  "StartDate": "2019-04-17T00:00:00.0000000Z",
+                  "EndDate": "2019-04-23T00:00:00.0000000Z",
+                  "DesiredPercentageSplit": 61055,
+                  "CurrentPercentageSplit": 30200,
+                  "Lengths": [
+                    {
+                      "MultipartNumber": 0,
+                      "length": "01:00:00",
+                      "DesiredPercentageSplit": 61055,
+                      "CurrentPercentageSplit": 30200
+                    }
+                  ],
+                  "DayParts": [
+                    {
+                      "DesiredPercentageSplit": 61055,
+                      "CurrentPercentageSplit": 30200,
+                      "Timeslices": [
+                        {
+                          "FromTime": "06:00",
+                          "ToTime": "17:59",
+                          "DowPattern": [
+                            "Sun",
+                            "Mon",
+                            "Tue",
+                            "Wed",
+                            "Thu",
+                            "Fri",
+                            "Sat"
+                          ]
+                        },
+                        {
+                          "FromTime": "22:30",
+                          "ToTime": "23:59",
+                          "DowPattern": [
+                            "Sun",
+                            "Mon",
+                            "Tue",
+                            "Wed",
+                            "Thu",
+                            "Fri",
+                            "Sat"
+                          ]
+                        }
+                      ],
+                      "Lengths": null,
+                      "SpotMaxRatings": 0
+                    }
+                  ],
+                  "SpotMaxRatings": 0
+                },
+                {
+                  "StartDate": "2019-04-24T00:00:00.0000000Z",
+                  "EndDate": "2019-04-30T00:00:00.0000000Z",
+                  "DesiredPercentageSplit": 50879,
+                  "CurrentPercentageSplit": 67500,
+                  "Lengths": [
+                    {
+                      "MultipartNumber": 0,
+                      "length": "01:00:00",
+                      "DesiredPercentageSplit": 50879,
+                      "CurrentPercentageSplit": 67500
+                    }
+                  ],
+                  "DayParts": [
+                    {
+                      "DesiredPercentageSplit": 50879,
+                      "CurrentPercentageSplit": 67500,
+                      "Timeslices": [
+                        {
+                          "FromTime": "06:00",
+                          "ToTime": "17:59",
+                          "DowPattern": [
+                            "Sun",
+                            "Mon",
+                            "Tue",
+                            "Wed",
+                            "Thu",
+                            "Fri",
+                            "Sat"
+                          ]
+                        },
+                        {
+                          "FromTime": "22:30",
+                          "ToTime": "23:59",
+                          "DowPattern": [
+                            "Sun",
+                            "Mon",
+                            "Tue",
+                            "Wed",
+                            "Thu",
+                            "Fri",
+                            "Sat"
+                          ]
+                        }
+                      ],
+                      "Lengths": null,
+                      "SpotMaxRatings": 0
+                    }
+                  ],
+                  "SpotMaxRatings": 0
+                },
+                {
+                  "StartDate": "2019-05-08T00:00:00.0000000Z",
+                  "EndDate": "2019-05-14T00:00:00.0000000Z",
+                  "DesiredPercentageSplit": 109435,
+                  "CurrentPercentageSplit": 298996,
+                  "Lengths": [
+                    {
+                      "MultipartNumber": 0,
+                      "length": "01:00:00",
+                      "DesiredPercentageSplit": 109435,
+                      "CurrentPercentageSplit": 298996
+                    }
+                  ],
+                  "DayParts": [
+                    {
+                      "DesiredPercentageSplit": 109435,
+                      "CurrentPercentageSplit": 298996,
+                      "Timeslices": [
+                        {
+                          "FromTime": "06:00",
+                          "ToTime": "17:59",
+                          "DowPattern": [
+                            "Sun",
+                            "Mon",
+                            "Tue",
+                            "Wed",
+                            "Thu",
+                            "Fri",
+                            "Sat"
+                          ]
+                        },
+                        {
+                          "FromTime": "22:30",
+                          "ToTime": "23:59",
+                          "DowPattern": [
+                            "Sun",
+                            "Mon",
+                            "Tue",
+                            "Wed",
+                            "Thu",
+                            "Fri",
+                            "Sat"
+                          ]
+                        }
+                      ],
+                      "Lengths": null,
+                      "SpotMaxRatings": 0
+                    }
+                  ],
+                  "SpotMaxRatings": 0
+                },
+                {
+                  "StartDate": "2019-05-15T00:00:00.0000000Z",
+                  "EndDate": "2019-05-21T00:00:00.0000000Z",
+                  "DesiredPercentageSplit": 247933,
+                  "CurrentPercentageSplit": 258606,
+                  "Lengths": [
+                    {
+                      "MultipartNumber": 0,
+                      "length": "01:00:00",
+                      "DesiredPercentageSplit": 247933,
+                      "CurrentPercentageSplit": 258606
+                    }
+                  ],
+                  "DayParts": [
+                    {
+                      "DesiredPercentageSplit": 247933,
+                      "CurrentPercentageSplit": 258606,
+                      "Timeslices": [
+                        {
+                          "FromTime": "06:00",
+                          "ToTime": "17:59",
+                          "DowPattern": [
+                            "Sun",
+                            "Mon",
+                            "Tue",
+                            "Wed",
+                            "Thu",
+                            "Fri",
+                            "Sat"
+                          ]
+                        },
+                        {
+                          "FromTime": "22:30",
+                          "ToTime": "23:59",
+                          "DowPattern": [
+                            "Sun",
+                            "Mon",
+                            "Tue",
+                            "Wed",
+                            "Thu",
+                            "Fri",
+                            "Sat"
+                          ]
+                        }
+                      ],
+                      "Lengths": null,
+                      "SpotMaxRatings": 0
+                    }
+                  ],
+                  "SpotMaxRatings": 0
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "CampaignSpotMaxRatings": 0
+    }
+  ],
+  "Scenarios": [
+    {
+      "Id": "8d3c076a-ddaf-4724-a12e-e74ae3747d29",
+      "Passes": [
+        {
+          "Id": 4162
+        }
+      ],
+      "CampaignPassPriorities": [
+        {
+          "Campaign": {
+            "Uid": "af842796-8760-4b6b-8d3a-b787e43a91d6",
+            "CustomId": 9422,
+            "Status": "Active",
+            "Name": "/bc8oNp07QS4nSQnyIF1/Q==",
+            "ExternalId": "15G1558624",
+            "CampaignGroup": null,
+            "StartDateTime": "2019-05-29T00:00:00.0000000Z",
+            "EndDateTime": "2019-06-11T00:00:00.0000000Z",
+            "ProductExternalRef": "3723",
+            "ProductName": "/bc8oNp07QS4nSQnyIF1/Q==",
+            "AdvertiserName": "yIJ0Vl4VwYCempMREp4hdsDZD0DeXO4IcSHbKQ+jCIM=",
+            "AgencyName": null,
+            "BusinessType": "Dynamic",
+            "Demographic": "W25-54",
+            "RevenueBudget": 0,
+            "TargetRatings": 1837344,
+            "ActualRatings": 1830913,
+            "IsPercentage": false,
+            "IncludeOptimisation": true,
+            "InefficientSpotRemoval": true,
+            "IncludeRightSizer": "CampaignLevel",
+            "DefaultCampaignPassPriority": 3,
+            "ClashCode": "P274",
+            "ClashDescription": "Cleaning Agents"
+          },
+          "PassPriorities": [
+            {
+              "PassId": 4225,
+              "PassName": "XGGT-3627 - asdffdsa",
+              "Priority": 3
+            }
+          ]
+        },
+        {
+          "Campaign": {
+            "Uid": "af842796-8760-4b6b-8d3a-b787e43a91d7",
+            "CustomId": 9422,
+            "Status": "Active",
+            "Name": "/bc8oNp07QS4nSQnyIF1/Q==",
+            "ExternalId": "15G1555738",
+            "CampaignGroup": null,
+            "StartDateTime": "2019-05-29T00:00:00.0000000Z",
+            "EndDateTime": "2019-06-11T00:00:00.0000000Z",
+            "ProductExternalRef": "3723",
+            "ProductName": "/bc8oNp07QS4nSQnyIF1/Q==",
+            "AdvertiserName": "yIJ0Vl4VwYCempMREp4hdsDZD0DeXO4IcSHbKQ+jCIM=",
+            "AgencyName": null,
+            "BusinessType": "Dynamic",
+            "Demographic": "W25-54",
+            "RevenueBudget": 0,
+            "TargetRatings": 1837344,
+            "ActualRatings": 1830913,
+            "IsPercentage": false,
+            "IncludeOptimisation": true,
+            "InefficientSpotRemoval": true,
+            "IncludeRightSizer": "CampaignLevel",
+            "DefaultCampaignPassPriority": 3,
+            "ClashCode": "P274",
+            "ClashDescription": "Cleaning Agents"
+          },
+          "PassPriorities": [
+            {
+              "PassId": 4226,
+              "PassName": "XGGT-3627 - asdffdsa",
+              "Priority": 3
+            }
+          ]
+        }
+      ],
+      "Name": "XGGT-3627 Scenario",
+      "CustomId": 2497,
+      "DateCreated": "2019-06-07T13:11:30.9649471Z",
+      "DateModified": "2019-06-07T13:11:30.9649471Z",
+      "IsLibraried": true
+    }
+  ],
+  "TenantSettings": [
+    {
+      "Id": "8d3c076a-ddaf-4724-a12e-e74ae3747d29",
+      "RunEventSettings": [
+        {
+          "EventType": "RunCompleted",
+          "Email": {
+            "Enabled": false,
+            "SenderAddress": "nextgen@imaginecommunications.com",
+            "RecipientAddresses": [
+              "nextgen@imaginecommunications.com"
+            ],
+            "CCAddresses": []
+          },
+          "HTTP": {
+            "SucccessStatusCodes": [
+              200
+            ],
+            "Enabled": false,
+            "MethodSettings": {
+              "Headers": {
+                "Content-Type": "application/json"
+              },
+              "Method": "POST",
+              "URL": "http://yourdomain.com/Runs/{runId}",
+              "ContentTemplate": "{json}"
+            }
+          }
+        },
+        {
+          "EventType": "RunScenarioCompleted",
+          "Email": {
+            "Enabled": false,
+            "SenderAddress": "nextgen@imaginecommunications.com",
+            "RecipientAddresses": [
+              "nextgen@imaginecommunications.com"
+            ],
+            "CCAddresses": []
+          },
+          "HTTP": {
+            "SucccessStatusCodes": [
+              200
+            ],
+            "Enabled": false,
+            "MethodSettings": {
+              "Headers": {
+                "Content-Type": "application/json"
+              },
+              "Method": "GET",
+              "URL": "http://yourdomain.com/Runs/{runId}/scenario/{scenarioId}",
+              "ContentTemplate": ""
+            }
+          }
+        }
+      ],
+      "WebhookSettings": [],
+      "Features": [
+        {
+          "Settings": {},
+          "Id": "InventoryLock",
+          "Enabled": true
+        }
+      ],
+      "DefaultScenarioId": "8d3c076a-ddaf-4724-a12e-e74ae3747d29",
+      "DefaultSalesAreaPassPriorityId": "502d22c2-1707-4d1d-b038-38daf027eeee",
+      "PeakStartTime": "180000",
+      "PeakEndTime": "220000",
+      "MidnightStartTime": "240000",
+      "MidnightEndTime": "995959",
+      "StartDayOfWeek": "Monday",
+      "NoOfRatingsPerSalesDayDemo": 96,
+      "Debug": false,
+      "RunRestrictions": {
+        "MinRunSizeDocRestriction": {
+          "Breaks": 1,
+          "Spots": 1,
+          "Programmes": 1
+        },
+        "MinDocRestriction": {
+          "Campaigns": 1,
+          "Clashes": 1,
+          "ClearanceCodes": 1,
+          "Demographics": 1,
+          "Products": 1
+        }
+      }
+    }
+  ]
+}

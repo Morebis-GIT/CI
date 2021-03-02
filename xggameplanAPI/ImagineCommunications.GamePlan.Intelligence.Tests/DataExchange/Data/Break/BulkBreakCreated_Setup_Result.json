@@ -1,0 +1,176 @@
+{
+  "Breaks": [
+    {
+      "CustomId": 1,
+      "ScheduledDate": "2019-09-20T10:46:52.5760000",
+      "SalesArea": "TST1",
+      "BreakType": "BASE",
+      "Duration": "02:00:00",
+      "Optimize": true,
+      "ExternalBreakRef": "ref_1",
+      "Description": "ref_1 desc",
+      "ExternalProgRef": ""
+    },
+    {
+      "CustomId": 2,
+      "ScheduledDate": "2019-09-21T10:46:52.5760000",
+      "SalesArea": "TST2",
+      "BreakType": "BASE",
+      "Duration": "03:00:00",
+      "Optimize": true,
+      "ExternalBreakRef": "ref_2",
+      "Description": "ref_2 desc",
+      "ExternalProgRef": ""
+    },
+    {
+      "CustomId": 3,
+      "ScheduledDate": "2019-09-22T10:46:52.5760000",
+      "SalesArea": "TST3",
+      "BreakType": "BASE",
+      "Duration": "03:00:00",
+      "Optimize": true,
+      "ExternalBreakRef": "ref_3",
+      "Description": "ref_3 desc",
+      "ExternalProgRef": ""
+    },
+    {
+      "CustomId": 4,
+      "ScheduledDate": "2019-09-22T10:46:52.5760000",
+      "SalesArea": "TST4",
+      "BreakType": "BASE",
+      "Duration": "03:00:00",
+      "Optimize": true,
+      "ExternalBreakRef": "ref_4",
+      "Description": "ref_4 desc",
+      "ExternalProgRef": ""
+    },
+    {
+      "CustomId": 5,
+      "ScheduledDate": "2019-09-27T10:46:52.5760000",
+      "SalesArea": "TST2",
+      "BreakType": "BASE",
+      "Duration": "03:00:00",
+      "Optimize": true,
+      "ExternalBreakRef": "ref_5",
+      "Description": "ref_5 desc",
+      "ExternalProgRef": ""
+    },
+    {
+      "CustomId": 6,
+      "ScheduledDate": "2019-09-20T10:46:52.5760000",
+      "SalesArea": "TST1",
+      "BreakType": "BASE",
+      "Duration": "02:00:00",
+      "Optimize": true,
+      "ExternalBreakRef": "ref_11-21-19092010",
+      "Description": "ref_11 desc",
+      "ExternalProgRef": ""
+    },
+    {
+      "CustomId": 7,
+      "ScheduledDate": "2019-09-21T10:46:52.5760000",
+      "SalesArea": "TST2",
+      "BreakType": "BASE",
+      "Duration": "03:00:00",
+      "Optimize": true,
+      "ExternalBreakRef": "ref_12-22-19092110",
+      "Description": "ref_12 desc",
+      "ExternalProgRef": ""
+    },
+    {
+      "CustomId": 8,
+      "ScheduledDate": "2019-09-22T10:46:52.5760000",
+      "SalesArea": "TST3",
+      "BreakType": "PREMIUM",
+      "Duration": "03:00:00",
+      "Optimize": true,
+      "ExternalBreakRef": "ref_13-23-19092210",
+      "Description": "ref_13 desc",
+      "ExternalProgRef": ""
+    },
+    {
+      "CustomId": 9,
+      "ScheduledDate": "2019-09-22T10:46:52.5760000",
+      "SalesArea": "TST3",
+      "BreakType": "PREMIUM",
+      "Duration": "03:00:00",
+      "Optimize": true,
+      "ExternalBreakRef": "ref_14-23-19092210",
+      "Description": "ref_14 desc",
+      "ExternalProgRef": ""
+    },
+    {
+      "CustomId": 10,
+      "ScheduledDate": "2019-09-27T10:46:52.5760000",
+      "SalesArea": "TST2",
+      "BreakType": "BASE",
+      "Duration": "03:00:00",
+      "Optimize": true,
+      "ExternalBreakRef": "ref_15-22-19092710",
+      "Description": "ref_15 desc",
+      "ExternalProgRef": ""
+    },
+    {
+      "CustomId": 11,
+      "ScheduledDate": "2019-09-27T10:46:52.5760000",
+      "SalesArea": "TST4",
+      "BreakType": "BASE",
+      "Duration": "03:00:00",
+      "Optimize": true,
+      "ExternalBreakRef": "ref_16-24-19092710",
+      "Description": "ref_16 desc",
+      "ExternalProgRef": ""
+    }
+  ],
+  "Schedules": [
+    {
+      "Date": "2019-09-20T00:00:00.0000000",
+      "SalesArea": "TST1",
+      "Breaks": [
+        {
+          "ExternalBreakRef": "ref_11-21-19092010"
+        }
+      ]
+    },
+    {
+      "Date": "2019-09-21T00:00:00.0000000",
+      "SalesArea": "TST2",
+      "Breaks": [
+        {
+          "ExternalBreakRef": "ref_12-22-19092110"
+        }
+      ]
+    },
+    {
+      "Date": "2019-09-27T00:00:00.0000000",
+      "SalesArea": "TST2",
+      "Breaks": [
+        {
+          "ExternalBreakRef": "ref_15-22-19092710"
+        }
+      ]
+    },
+    {
+      "Date": "2019-09-22T00:00:00.0000000",
+      "SalesArea": "TST3",
+      "Breaks": [
+        {
+          "ExternalBreakRef": "ref_13-23-19092210"
+        },
+        {
+          "ExternalBreakRef": "ref_14-23-19092210"
+        }
+      ]
+    },
+    {
+      "Date": "2019-09-27T00:00:00.0000000",
+      "SalesArea": "TST4",
+      "Breaks": [
+        {
+          "ExternalBreakRef": "ref_16-24-19092710"
+        }
+      ]
+    }
+  ],
+  "Spots": [] 
+}

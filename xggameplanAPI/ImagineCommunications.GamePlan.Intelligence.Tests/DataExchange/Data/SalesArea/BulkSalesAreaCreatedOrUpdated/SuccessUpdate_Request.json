@@ -1,0 +1,30 @@
+﻿{
+  "Data": [
+    {
+      "ChannelGroup": [
+        "GTV91"
+      ],
+      "CustomId": 1,
+      "Name": "NM1",
+      "ShortName": "GTV 10",
+      "CurrencyCode": "GE",
+      "BaseDemographic1": "BD2",
+      "BaseDemographic2": "BD1",
+      "TargetAreaName": "GTV_Edited",
+      "StartOffset": "00:00:00.0000015",
+      "DayDuration": "00:00:00.0000015",
+      "Demographics": [
+        {
+          "ExternalRef": "BD1",
+          "Exclude": true,
+          "SupplierCode": "AT"
+        },
+        {
+          "ExternalRef": "BD2",
+          "Exclude": false,
+          "SupplierCode": "AT"
+        }
+      ]
+    }
+  ]
+}

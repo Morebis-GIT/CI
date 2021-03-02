@@ -1,0 +1,13 @@
+{
+  "Data": [
+    {
+      "InventoryCode": "Code5",
+      "Description": "Description5",
+      "System": "S",
+      "LockTypes": [
+        1,
+        5
+      ]
+    }
+  ]
+}

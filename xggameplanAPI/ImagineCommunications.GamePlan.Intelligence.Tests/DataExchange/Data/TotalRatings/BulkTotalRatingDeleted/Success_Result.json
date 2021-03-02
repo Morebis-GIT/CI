@@ -1,0 +1,22 @@
+{
+  "TotalRatings": [
+    {
+      "id": 1,
+      "SalesArea": "QTQ93",
+      "Demograph": "BD1",
+      "Date": "2019-11-25T00:00:00.0000000Z",
+      "DaypartGroup": 3,
+      "Daypart": 1,
+      "TotalRatings": 3.75
+    },
+    {
+      "id": 2,
+      "SalesArea": "QTQ932",
+      "Demograph": "BD2",
+      "Date": "2019-11-19T00:00:00.0000000Z",
+      "DaypartGroup": 34,
+      "Daypart": 13,
+      "TotalRatings": 8.8
+    }
+  ]
+}

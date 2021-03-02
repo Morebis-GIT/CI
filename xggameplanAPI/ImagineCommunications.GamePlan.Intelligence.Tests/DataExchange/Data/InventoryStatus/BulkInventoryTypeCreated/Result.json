@@ -1,0 +1,46 @@
+{
+  "InventoryTypes": [
+    {
+      "Id" : 1,
+      "InventoryCode": "Code1",
+      "Description": "Description1",
+      "System": "S",
+      "LockTypes": [
+        1,
+        2
+      ]
+    },
+    {
+      "Id": 2,
+      "InventoryCode": "Code2",
+      "Description": "Description2",
+      "System": "S",
+      "LockTypes": [
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "Id": 3,
+      "InventoryCode": "Code3",
+      "Description": "Description3",
+      "System": "S",
+      "LockTypes": [
+        1,
+        3
+      ]
+    },
+    {
+      "Id": 4,
+      "InventoryCode": "Code4",
+      "Description": "Description4",
+      "System": "S",
+      "LockTypes": [
+        1,
+        2,
+        3
+      ]
+    }
+  ]
+}

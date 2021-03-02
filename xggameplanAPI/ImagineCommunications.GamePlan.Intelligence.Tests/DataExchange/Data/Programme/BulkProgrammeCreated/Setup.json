@@ -1,0 +1,68 @@
+{
+  "Programmes": [
+    {
+      "PrgtNo": 0,
+      "SalesArea": "salesArea1",
+      "StartDateTime": "2019-09-23T11:48:06.6450000Z",
+      "Duration": "00:30:00",
+      "ExternalReference": "externalReference1",
+      "ProgrammeName": "programmeName1",
+      "Description": "description1",
+      "ProgrammeCategories": [
+        "Dude"
+      ],
+      "Classification": "classification1",
+      "LiveBroadcast": true
+    },
+    {
+      "PrgtNo": 0,
+      "SalesArea": "salesArea2",
+      "StartDateTime": "2019-09-23T11:48:06.6450000Z",
+      "Duration": "00:30:00",
+      "ExternalReference": "externalReference2",
+      "ProgrammeName": "programmeName2",
+      "Description": "description2",
+      "ProgrammeCategories": [
+        "Dude"
+      ],
+      "Classification": "classification2",
+      "LiveBroadcast": false
+    }
+  ],
+  "ProgrammeCategoryHierarchies": [
+    {
+      "Id": 1,
+      "Name": "category1",
+      "ExternalRef": "",
+      "ParentExternalRef": ""
+    },
+    {
+      "Id": 2,
+      "Name": "category2",
+      "ExternalRef": "",
+      "ParentExternalRef": ""
+    },
+    {
+      "Id": 3,
+      "Name": "category3",
+      "ExternalRef": "",
+      "ParentExternalRef": ""
+    },
+    {
+      "Id": 4,
+      "Name": "category4",
+      "ExternalRef": "",
+      "ParentExternalRef": ""
+    }
+  ],
+  "Schedules": [
+    {
+      "Date": "2019-09-06T00:00:00.0000000Z",
+      "SalesArea": "salesArea1"
+    },
+    {
+      "Date": "2019-09-06T00:00:00.0000000Z",
+      "SalesArea": "salesArea2"
+    }
+  ]
+}

@@ -1,0 +1,44 @@
+{
+  "TotalRatings": [
+    {
+      "SalesArea": "QTQ93",
+      "Demograph": "BD1",
+      "Date": "2019-11-25T00:00:00.0000000Z",
+      "DaypartGroup": 3,
+      "Daypart": 1,
+      "TotalRatings": 3.75
+    },
+    {
+      "SalesArea": "QTQ932",
+      "Demograph": "BD2",
+      "Date": "2019-11-19T00:00:00.0000000Z",
+      "DaypartGroup": 34,
+      "Daypart": 13,
+      "TotalRatings": 8.8
+    },
+    {
+      "SalesArea": "QTQ93",
+      "Demograph": "BD1",
+      "Date": "2019-11-18T00:00:00.0000000Z",
+      "DaypartGroup": 34,
+      "Daypart": 13,
+      "TotalRatings": 5.54
+    }
+  ],
+  "Demographics": [
+    {
+      "ExternalRef": "BD1",
+      "Name": "SHOPPER 25-54",
+      "ShortName": "S25-54",
+      "DisplayOrder": 178,
+      "Gameplan": true
+    },
+    {
+      "ExternalRef": "BD2",
+      "Name": "SHOPPER 25-54",
+      "ShortName": "S25-54",
+      "DisplayOrder": 179,
+      "Gameplan": true
+    }
+  ]
+}

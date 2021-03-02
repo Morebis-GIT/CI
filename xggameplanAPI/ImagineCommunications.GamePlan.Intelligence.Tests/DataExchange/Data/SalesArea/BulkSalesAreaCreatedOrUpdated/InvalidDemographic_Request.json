@@ -1,0 +1,28 @@
+﻿{
+  "Data": [
+    {
+      "ChannelGroup": [
+        "GTV91"
+      ],
+      "Name": "NM1",
+      "ShortName": "GTV 9",
+      "CurrencyCode": "GE",
+      "BaseDemographic1": "BD1",
+      "BaseDemographic2": "BD2",
+      "StartOffset": "00:30:00",
+      "DayDuration": "00:30:00",
+      "Demographics": [
+        {
+          "ExternalRef": "BD1",
+          "Exclude": true,
+          "SupplierCode": "AT"
+        },
+        {
+          "ExternalRef": "BasdfasfD2",
+          "Exclude": false,
+          "SupplierCode": "AT"
+        }
+      ]
+    }
+  ]
+}

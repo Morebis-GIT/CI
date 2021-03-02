@@ -1,0 +1,14 @@
+{
+  "Data": [
+    {
+      "Uid": 1,
+      "Code": "code1",
+      "Description": "description1"
+    },
+    {
+      "Uid": 2,
+      "Code": "code2",
+      "Description": "description2"
+    }
+  ]
+}

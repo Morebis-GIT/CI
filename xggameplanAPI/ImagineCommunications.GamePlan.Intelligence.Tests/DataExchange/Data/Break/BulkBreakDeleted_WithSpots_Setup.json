@@ -1,0 +1,204 @@
+{
+  "Breaks": [
+    {
+      "CustomId": 1,
+      "ScheduledDate": "2019-09-20T10:46:52.5760000",
+      "BroadcastDate": "2019-09-20T00:00:00.0000000",
+      "ClockHour": 10,
+      "SalesArea": "TST1",
+      "BreakType": "BASE",
+      "Duration": "02:00:00",
+      "Optimize": true,
+      "ExternalBreakRef": "ref_1",
+      "Description": "ref_1 desc",
+      "ExternalProgRef": ""
+    },
+    {
+      "Id": "2e87acec-c415-4786-829d-ca5d129384b1",
+      "CustomId": 2,
+      "ScheduledDate": "2019-09-21T10:46:52.5760000",
+      "BroadcastDate": "2019-09-21T00:00:00.0000000",
+      "ClockHour": 10,
+      "SalesArea": "TST2",
+      "BreakType": "BASE",
+      "Duration": "03:00:00",
+      "Optimize": true,
+      "ExternalBreakRef": "ref_2",
+      "Description": "ref_2 desc",
+      "ExternalProgRef": ""
+    },
+    {
+      "CustomId": 3,
+      "ScheduledDate": "2019-09-22T10:46:52.5760000",
+      "BroadcastDate": "2019-09-22T00:00:00.0000000",
+      "ClockHour": 10,
+      "SalesArea": "TST3",
+      "BreakType": "BASE",
+      "Duration": "03:00:00",
+      "Optimize": true,
+      "ExternalBreakRef": "ref_3",
+      "Description": "ref_3 desc",
+      "ExternalProgRef": ""
+    },
+    {
+      "CustomId": 4,
+      "ScheduledDate": "2019-09-22T10:46:52.5760000",
+      "BroadcastDate": "2019-09-22T00:00:00.0000000",
+      "ClockHour": 10,
+      "SalesArea": "TST4",
+      "BreakType": "BASE",
+      "Duration": "03:00:00",
+      "Optimize": true,
+      "ExternalBreakRef": "ref_4",
+      "Description": "ref_4 desc",
+      "ExternalProgRef": ""
+    },
+    {
+      "CustomId": 5,
+      "ScheduledDate": "2019-09-27T10:46:52.5760000",
+      "BroadcastDate": "2019-09-27T00:00:00.0000000",
+      "ClockHour": 10,
+      "SalesArea": "TST2",
+      "BreakType": "BASE",
+      "Duration": "03:00:00",
+      "Optimize": true,
+      "ExternalBreakRef": "ref_5",
+      "Description": "ref_5 desc",
+      "ExternalProgRef": ""
+    }
+  ],
+  "Schedules": [
+    {
+      "Date": "2019-09-20T00:00:00.0000000",
+      "SalesArea": "TST1",
+      "Breaks": [
+        {
+          "ExternalBreakRef": "ref_1",
+          "SalesArea": "TST1" 
+        }
+      ]
+    },
+    {
+      "Date": "2019-09-21T00:00:00.0000000",
+      "SalesArea": "TST2",
+      "Breaks": [
+        {
+          "Id": "2e87acec-c415-4786-829d-ca5d129384b1",
+          "ExternalBreakRef": "ref_2",
+          "SalesArea": "TST2"
+        }
+      ]
+    },
+    {
+      "Date": "2019-09-27T00:00:00.0000000",
+      "SalesArea": "TST2",
+      "Breaks": [
+        {
+          "ExternalBreakRef": "ref_5",
+          "SalesArea": "TST2"
+        }
+      ]
+    },
+    {
+      "Date": "2019-09-22T00:00:00.0000000",
+      "SalesArea": "TST3",
+      "Breaks": [
+        {
+          "ExternalBreakRef": "ref_3",
+          "SalesArea": "TST3"
+        },
+        {
+          "ExternalBreakRef": "ref_4",
+          "SalesArea": "TST4"
+        }
+      ]
+    }
+  ],
+  "Spots": [
+    {
+      "Uid": "84c12f5b-b39c-4515-96c5-03e6d0a9b0fd",
+      "ExternalCampaignNumber": "ExternalCampaignNumber",
+      "SalesArea": "SalesArea",
+      "GroupCode": "GroupCode",
+      "ExternalSpotRef": "test",
+      "StartDateTime": "2019-09-17T00:00:00.0000000",
+      "EndDateTime": "2019-09-17T00:00:00.0000000",
+      "SpotLength": "02:00:00",
+      "BreakType": "BASE",
+      "Product": "Product",
+      "Demographic": "Demographic",
+      "ClientPicked": false,
+      "MultipartSpot": "MultipartSpot",
+      "MultipartSpotPosition": "MultipartSpotPosition",
+      "MultipartSpotRef": "MultipartSpotRef",
+      "RequestedPositioninBreak": "RequestedPositioninBreak",
+      "ActualPositioninBreak": "ActualPositioninBreak",
+      "BreakRequest": "BreakRequest",
+      "ExternalBreakNo": "ref_2",
+      "Sponsored": false,
+      "Preemptable": false,
+      "Preemptlevel": 0,
+      "IndustryCode": "IndustryCode",
+      "ClearanceCode": "ClearanceCode"
+    },
+    {
+      "Uid": "84c12f5b-b39c-4515-96c5-03e6d0a9b0fc",
+      "ExternalCampaignNumber": "ExternalCampaignNumber",
+      "SalesArea": "SalesArea",
+      "GroupCode": "GroupCode",
+      "ExternalSpotRef": "test",
+      "StartDateTime": "2019-09-17T00:00:00.0000000",
+      "EndDateTime": "2019-09-17T00:00:00.0000000",
+      "SpotLength": "02:00:00",
+      "BreakType": "BASE",
+      "Product": "Product",
+      "Demographic": "Demographic",
+      "ClientPicked": false,
+      "MultipartSpot": "MultipartSpot",
+      "MultipartSpotPosition": "MultipartSpotPosition",
+      "MultipartSpotRef": "MultipartSpotRef",
+      "RequestedPositioninBreak": "RequestedPositioninBreak",
+      "ActualPositioninBreak": "ActualPositioninBreak",
+      "BreakRequest": "BreakRequest",
+      "ExternalBreakNo": "ref_3",
+      "Sponsored": false,
+      "Preemptable": false,
+      "Preemptlevel": 0,
+      "IndustryCode": "IndustryCode",
+      "ClearanceCode": "ClearanceCode"
+    }
+  ],
+  "Metadatas": [
+    {
+      "Dictionary": {
+        "BreakTypes": "[{\"Id\":1,\"Value\":\"BASE\"},{\"Id\":2,\"Value\":\"PREMIUM\"}]"
+      }
+    }
+  ],
+  "ProgrammeCategoryHierarchies": [
+    {
+      "Id": 1,
+      "Name": "SPORTS",
+      "ExternalRef": "",
+      "ParentExternalRef": ""
+    },
+    {
+      "Id": 2,
+      "Name": "CHILDREN",
+      "ExternalRef": "",
+      "ParentExternalRef": ""
+    },
+    {
+      "Id": 3,
+      "Name": "NEWS",
+      "ExternalRef": "",
+      "ParentExternalRef": ""
+    },
+    {
+      "Id": 4,
+      "Name": "OTHER",
+      "ExternalRef": "",
+      "ParentExternalRef": ""
+    }
+  ]
+}

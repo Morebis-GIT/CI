@@ -1,0 +1,38 @@
+﻿{
+  "Data": [
+    {
+      "StartDate": "9999-09-11T00:00:00.000Z",
+      "EndDate": "9999-09-22T00:00:00.000Z",
+      "FromType": 0,
+      "ToType": 2,
+      "IncludeOrExclude": 0,
+      "FromValue": "invalid",
+      "ToValue": "invalid",
+      "ExternalRef": "Ref1",
+      "TimeAndDows": [
+        {
+          "StartTime": "1.00:00:00",
+          "EndTime": "1.00:00:00",
+          "DaysOfWeek": "1111111"
+        }
+      ]
+    },
+    {
+      "StartDate": "9999-09-11T00:00:00.000Z",
+      "EndDate": "9999-09-22T00:00:00.000Z",
+      "FromType": 1,
+      "ToType": 0,
+      "IncludeOrExclude": 0,
+      "FromValue": "invalid",
+      "ToValue": "invalid",
+      "ExternalRef": "Ref2",
+      "TimeAndDows": [
+        {
+          "StartTime": "1.00:00:00",
+          "EndTime": "1.00:00:00",
+          "DaysOfWeek": "1111111"
+        }
+      ]
+    }
+  ]
+}

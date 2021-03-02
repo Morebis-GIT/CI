@@ -1,0 +1,145 @@
+﻿{
+  "Data": [
+    {
+      "CustomId": 9701,
+      "ExternalId": "15G1558624",
+      "Name": "UpdatedName",
+      "DemoGraphic": "634",
+      "StartDateTime": "2019-01-30T00:00:00.0000000Z",
+      "EndDateTime": "2019-05-25T00:00:00.0000000Z",
+      "Product": "125567",
+      "RevenueBudget": 15,
+      "TargetRatings": 831326,
+      "ActualRatings": 1662652,
+      "CampaignGroup": "123",
+      "IsPercentage": false,
+      "Status": "A",
+      "BusinessType": "Dynamic",
+      "DeliveryType": "Rating",
+      "IncludeOptimisation": false,
+      "TargetZeroRatedBreaks": false,
+      "InefficientSpotRemoval": true,
+      "IncludeRightSizer": "Campaign Level",
+      "ExpectedClearanceCode": null,
+      "CampaignPassPriority": 0,
+      "StopBooking": true,
+      "TargetXP": 1560,
+      "RevenueBooked": 22.5,
+      "CreationDate": "2020-05-25T09:18:07.564Z",
+      "AutomatedBooked": true,
+      "TopTail": "Multipart",
+      "Spots": 0,
+      "BookingPositionGroups": [],
+      "BreakType": [
+        "BASE"
+      ],
+      "TimeRestrictions": [
+        {
+          "SalesAreas": [
+            "GTV91"
+          ],
+          "DowPattern": [
+            "Sun"
+          ],
+          "StartDateTime": "2019-01-30T15:00:00.0000000Z",
+          "EndDateTime": "2019-02-28T17:00:00.0000000Z",
+          "IsIncludeOrExclude": "E"
+        }
+      ],
+      "ProgrammeRestrictions": [
+        {
+          "SalesAreas": null,
+          "CategoryOrProgramme": [
+            "OTHER"
+          ],
+          "IsCategoryOrProgramme": "C",
+          "IsIncludeOrExclude": "E"
+        }
+      ],
+      "SalesAreaCampaignTarget": [
+        {
+          "SalesArea": "GTV91",
+          "StopBooking": true,
+          "SalesAreaGroup": {
+            "GroupName": "groupName1",
+            "SalesAreas": [
+              "GTV91"
+            ]
+          },
+          "Multiparts": [
+            {
+              "MultipartNumber": 0,
+              "Lengths": [
+                {
+                  "Length": "01:00:00",
+                  "BookingPosition": 0,
+                  "Sequencing": 0
+                }
+              ],
+              "DesiredPercentageSplit": 10,
+              "CurrentPercentageSplit": 10
+            }
+          ],
+          "CampaignTargets": [
+            {
+              "StrikeWeights": [
+                {
+                  "StartDate": "2019-01-30T00:00:00.0000000Z",
+                  "EndDate": "2019-05-25T00:00:00.0000000Z",
+                  "DesiredPercentageSplit": 10,
+                  "CurrentPercentageSplit": 10,
+                  "Payback": 5,
+                  "Lengths": [
+                    {
+                      "MultipartNumber": 0,
+                      "length": "01:01:01",
+                      "DesiredPercentageSplit": 10,
+                      "CurrentPercentageSplit": 10
+                    }
+                  ],
+                  "DayParts": [
+                    {
+                      "DesiredPercentageSplit": 10,
+                      "CurrentPercentageSplit": 10,
+                      "Timeslices": [
+                        {
+                          "FromTime": "10:30",
+                          "ToTime": "11:30",
+                          "DowPattern": [
+                            "Sun",
+                            "Mon",
+                            "Tue",
+                            "Wed",
+                            "Thu",
+                            "Fri",
+                            "Sat"
+                          ]
+                        }
+                      ],
+                      "Lengths": [
+                        {
+                          "MultipartNumber": 0,
+                          "length": "01:00:00",
+                          "DesiredPercentageSplit": 10,
+                          "CurrentPercentageSplit": 10
+                        }
+                      ],
+                      "SpotMaxRatings": 1
+                    }
+                  ],
+                  "SpotMaxRatings": 1
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "CampaignPaybacks": [
+        {
+          "Name": "Test1",
+          "Amount": 5
+        }
+      ],
+      "CampaignSpotMaxRatings": 1
+    }
+  ]}

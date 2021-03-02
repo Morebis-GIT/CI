@@ -1,0 +1,88 @@
+{
+  "Restrictions": [
+    {
+      "Uid": "bc59a7c2-ba13-4131-afec-b392ddbf76e8",
+      "SalesAreas": [
+        "QTQ93"
+      ],
+      "StartDate": "2019-02-15T00:00:00.0000000Z",
+      "EndDate": "2019-04-24T00:00:00.0000000Z",
+      "StartTime": "21:45:00",
+      "EndTime": "02:30:00",
+      "RestrictionDays": "1111111",
+      "SchoolHolidayIndicator": "X",
+      "PublicHolidayIndicator": "X",
+      "LiveProgrammeIndicator": "I",
+      "RestrictionType": "ProgrammeCategory",
+      "RestrictionBasis": "ClearanceCode",
+      "ExternalProgRef": null,
+      "ProgrammeCategory": "SPORTS",
+      "ProgrammeClassification": null,
+      "ProgrammeClassificationIndicator": "I",
+      "TimeToleranceMinsBefore": 0,
+      "TimeToleranceMinsAfter": 0,
+      "IndexType": 0,
+      "IndexThreshold": 0,
+      "ProductCode": 0,
+      "ClashCode": null,
+      "ClearanceCode": "B",
+      "ClockNumber": "",
+      "ExternalIdentifier": "space21"
+    }
+  ],
+  "SalesAreas": [
+    {
+      "ChannelGroup": [
+        "QTQ93"
+      ],
+      "PublicHolidays": [],
+      "SchoolHolidays": [
+        {
+          "Start": "2019-06-03T00:00:00.0000000Z",
+          "End": "2019-06-07T00:00:00.0000000Z"
+        }
+      ],
+      "CustomId": 1,
+      "Name": "QTQ93",
+      "ShortName": "QTQ 93",
+      "CurrencyCode": "AUD",
+      "BaseDemographic1": "2",
+      "BaseDemographic2": "509",
+      "UniverseId": 0,
+      "StartOffset": "00:30:00",
+      "DayDuration": "00:30:00"
+    }
+  ],
+  "ProgrammeCategoryHierarchies": [
+    {
+      "Id": 1,
+      "Name": "SPORTS",
+      "ExternalRef": "",
+      "ParentExternalRef": ""
+    },
+    {
+      "Id": 2,
+      "Name": "CHILDREN",
+      "ExternalRef": "",
+      "ParentExternalRef": ""
+    },
+    {
+      "Id": 3,
+      "Name": "NEWS",
+      "ExternalRef": "",
+      "ParentExternalRef": ""
+    },
+    {
+      "Id": 4,
+      "Name": "OTHER",
+      "ExternalRef": "",
+      "ParentExternalRef": ""
+    }
+  ],
+  "ClearanceCodes": [
+    {
+      "Code": "B",
+      "Description": "Betting & Gambling"
+    }
+  ]
+}

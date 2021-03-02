@@ -1,0 +1,64 @@
+﻿{
+  "Data": [
+    {
+      "ChannelGroup": [
+        "GTV91"
+      ],
+      "CustomId": 1,
+      "Name": "NM1",
+      "ShortName": "shrt1",
+      "CurrencyCode": "GE",
+      "BaseDemographic1": "BD1",
+      "BaseDemographic2": "BD2",
+      "TargetAreaName": "GTV",
+      "StartOffset": "00:30:00",
+      "DayDuration": "00:30:00",
+      "Demographics": [
+        {
+          "ExternalRef": "BD1",
+          "Exclude": true,
+          "SupplierCode": "AT"
+        },
+        {
+          "ExternalRef": "BD2",
+          "Exclude": false,
+          "SupplierCode": "AT"
+        }
+      ]
+    },
+    {
+      "ChannelGroup": [
+        "GTV91"
+      ],
+      "PublicHolidays": [],
+      "SchoolHolidays": [
+        {
+          "Start": "2019-06-03T00:00:00.0000000Z",
+          "End": "2019-06-07T00:00:00.0000000Z"
+        }
+      ],
+      "CustomId": 2,
+      "Name": "GTV91",
+      "ShortName": "GTV 9",
+      "CurrencyCode": "AUD",
+      "TargetAreaName": "GTVSecond",
+      "BaseDemographic1": "2",
+      "BaseDemographic2": "509",
+      "UniverseId": 0,
+      "StartOffset": "00:31:00",
+      "DayDuration": "00:31:00",
+      "Demographics": [
+        {
+          "ExternalRef": "2",
+          "Exclude": true,
+          "SupplierCode": "AT"
+        },
+        {
+          "ExternalRef": "509",
+          "Exclude": false,
+          "SupplierCode": "AT"
+        }
+      ]
+    }
+  ]
+}

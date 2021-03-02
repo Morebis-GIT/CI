@@ -1,0 +1,20 @@
+﻿{
+  "Data": [
+    {
+      "StartDate": "5019-03-10T00:00:00.0000000Z",
+      "EndDate": "5020-03-20T00:00:00.0000000Z",
+      "FromType": 0,
+      "ToType": 0,
+      "IncludeOrExclude": 0,
+      "FromValue": "exRef1",
+      "ToValue": "exRef3",
+      "TimeAndDows": [
+        {
+          "StartTime": "18:30:00",
+          "EndTime": "23:00:00",
+          "DaysOfWeek": "0000011"
+        }
+      ]
+    }
+  ]
+}

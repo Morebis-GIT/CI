@@ -1,0 +1,14 @@
+{
+  "SpotBookingRules": [
+    {
+      "SalesAreas": [
+        "TST2"
+      ],
+      "SpotLength": "00:30:00",
+      "MinBreakLength": "00:30:00",
+      "MaxBreakLength": "00:40:00",
+      "MaxSpots": 1,
+      "BreakType": "BASE"
+    }
+  ]
+}

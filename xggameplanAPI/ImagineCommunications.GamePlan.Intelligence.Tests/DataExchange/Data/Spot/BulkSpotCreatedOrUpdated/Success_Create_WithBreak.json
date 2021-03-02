@@ -1,0 +1,30 @@
+﻿{
+  "Data": [
+    {
+      "ExternalCampaignNumber": "ExternalCampaignNumber",
+      "SalesArea": "TST1",
+      "GroupCode": "GroupCode",
+      "ExternalSpotRef": "spotRefWithoutBreak",
+      "StartDateTime": "2019-09-15T00:00:00.000",
+      "EndDateTime": "2019-09-17T00:00:00.000",
+      "SpotLength": "00:00:00.0000015",
+      "BreakType": "BreakType",
+      "Product": "Product",
+      "Demographic": "Demographic",
+      "ClientPicked": false,
+      "MultipartSpot": "MultipartSpot",
+      "MultipartSpotPosition": "MultipartSpotPosition",
+      "MultipartSpotRef": "MultipartSpotRef",
+      "RequestedPositioninBreak": "RequestedPositioninBreak",
+      "ActualPositioninBreak": "ActualPositioninBreak",
+      "BreakRequest": "BreakRequest",
+      "ExternalBreakNo": "2091180",
+      "Sponsored": false,
+      "Preemptable": false,
+      "Preemptlevel": 0,
+      "BookingPosition": -1,
+      "IndustryCode": "IndustryCode",
+      "ClearanceCode": "ClearanceCode"
+    }
+  ]
+}

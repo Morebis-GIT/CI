@@ -1,0 +1,62 @@
+{
+  "Restrictions": [
+    {
+      "Uid": "bc59a7c2-ba13-4131-afec-b392ddbf76e8",
+      "SalesAreas": [
+        "QTQ93"
+      ],
+      "StartDate": "2019-02-15T00:00:00.0000000Z",
+      "EndDate": "2019-04-24T00:00:00.0000000Z",
+      "StartTime": "21:45:00",
+      "EndTime": "02:30:00",
+      "RestrictionDays": "1111111",
+      "SchoolHolidayIndicator": "X",
+      "PublicHolidayIndicator": "X",
+      "LiveProgrammeIndicator": "I",
+      "RestrictionType": "ProgrammeCategory",
+      "RestrictionBasis": "ClearanceCode",
+      "ExternalProgRef": null,
+      "ProgrammeCategory": "SPORTS",
+      "ProgrammeClassification": null,
+      "ProgrammeClassificationIndicator": "I",
+      "TimeToleranceMinsBefore": 0,
+      "TimeToleranceMinsAfter": 0,
+      "IndexType": 0,
+      "IndexThreshold": 0,
+      "ProductCode": 0,
+      "ClashCode": null,
+      "ClearanceCode": "B",
+      "ClockNumber": "",
+      "ExternalIdentifier": "space21"
+    },
+    {
+      "Uid": "bc59a7c2-ba13-4131-afec-b392ddbf7666",
+      "SalesAreas": [
+        "QTQ93"
+      ],
+      "StartDate": "2019-02-15T00:00:00.0000000Z",
+      "EndDate": "2019-04-24T00:00:00.0000000Z",
+      "StartTime": "21:45:00",
+      "EndTime": "02:30:00",
+      "RestrictionDays": "1111111",
+      "SchoolHolidayIndicator": "X",
+      "PublicHolidayIndicator": "X",
+      "LiveProgrammeIndicator": "I",
+      "RestrictionType": "ProgrammeCategory",
+      "RestrictionBasis": "ClearanceCode",
+      "ExternalProgRef": null,
+      "ProgrammeCategory": "SPORTS",
+      "ProgrammeClassification": null,
+      "ProgrammeClassificationIndicator": "I",
+      "TimeToleranceMinsBefore": 0,
+      "TimeToleranceMinsAfter": 0,
+      "IndexType": 0,
+      "IndexThreshold": 0,
+      "ProductCode": 0,
+      "ClashCode": null,
+      "ClearanceCode": "B",
+      "ClockNumber": "",
+      "ExternalIdentifier": "space66"
+    }
+  ]
+}

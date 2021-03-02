@@ -1,0 +1,18 @@
+{
+  "Data": [
+    {
+      "GroupId": 1,
+      "SalesArea": "QTQ93",
+      "Demographic": "bad demo",
+      "Optimizer": true,
+      "Policy": true,
+      "RatingReplacement": true,
+      "Splits": [
+        {
+          "DayPartId": 2,
+          "Split": 28.5
+        }
+      ]
+    }
+  ]
+}

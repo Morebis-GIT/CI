@@ -1,0 +1,54 @@
+﻿{
+  "Scenarios": [
+    {
+      "Id": "8d3c076a-ddaf-4724-a12e-e74ae3747d29",
+      "Passes": [
+        {
+          "Id": 4162
+        }
+      ],
+      "CampaignPassPriorities": [
+        {
+          "Campaign": {
+            "Uid": "af842796-8760-4b6b-8d3a-b787e43a91d7",
+            "CustomId": 9422,
+            "Status": "Active",
+            "Name": "/bc8oNp07QS4nSQnyIF1/Q==",
+            "ExternalId": "15G1555738",
+            "CampaignGroup": null,
+            "StartDateTime": "2019-05-29T00:00:00.0000000Z",
+            "EndDateTime": "2019-06-11T00:00:00.0000000Z",
+            "ProductExternalRef": "3723",
+            "ProductName": "/bc8oNp07QS4nSQnyIF1/Q==",
+            "AdvertiserName": "yIJ0Vl4VwYCempMREp4hdsDZD0DeXO4IcSHbKQ+jCIM=",
+            "AgencyName": null,
+            "BusinessType": "Dynamic",
+            "Demographic": "W25-54",
+            "RevenueBudget": 0,
+            "TargetRatings": 1837344,
+            "ActualRatings": 1830913,
+            "IsPercentage": false,
+            "IncludeOptimisation": true,
+            "InefficientSpotRemoval": true,
+            "IncludeRightSizer": "CampaignLevel",
+            "DefaultCampaignPassPriority": 3,
+            "ClashCode": "P274",
+            "ClashDescription": "Cleaning Agents"
+          },
+          "PassPriorities": [
+            {
+              "PassId": 4226,
+              "PassName": "XGGT-3627 - asdffdsa",
+              "Priority": 3
+            }
+          ]
+        }
+      ],
+      "Name": "XGGT-3627 Scenario",
+      "CustomId": 2497,
+      "DateCreated": "2019-06-07T13:11:30.9649471Z",
+      "DateModified": "2019-06-07T13:11:30.9649471Z",
+      "IsLibraried": true
+    }
+  ]
+}

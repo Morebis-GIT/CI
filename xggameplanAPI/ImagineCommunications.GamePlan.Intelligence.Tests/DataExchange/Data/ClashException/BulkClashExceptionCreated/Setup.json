@@ -1,0 +1,119 @@
+﻿{
+  "Clashes": [
+    {
+      "Uid": "7418db11-6fa8-46d5-8971-024657584471",
+      "Externalref": "exRef1",
+      "ParentExternalidentifier": "",
+      "Description": "",
+      "ExposureCount": 1
+    },
+    {
+      "Uid": "7418db11-6fa8-46d5-8971-024657584472",
+      "Externalref": "exRef2",
+      "ParentExternalidentifier": "exRef1",
+      "Description": "",
+      "ExposureCount": 2
+    },
+    {
+      "Uid": "7418db11-6fa8-46d5-8971-024657584473",
+      "Externalref": "exRef3",
+      "ParentExternalidentifier": "",
+      "Description": "",
+      "ExposureCount": 3
+    }
+  ],
+  "Products": [
+    {
+      "Uid": "c4961451-888b-4c4e-a6a6-6a233a261fe2",
+      "Externalidentifier": "exRef1",
+      "ParentExternalidentifier": null,
+      "Name": "9ZQZFDk383B5BJKAwP5cSw==",
+      "EffectiveStartDate": "2000-10-31T00:01:00.0000000Z",
+      "EffectiveEndDate": "2100-10-31T23:59:00.0000000Z",
+      "ClashCode": "exRef1",
+      "ReportingCategory": "cat",
+      "Agencies": [
+        {
+          "Name": "Test Agency",
+          "ShortName": "TAG",
+          "AgencyIdentifier": "extRef",
+          "StartDate": "2020-05-25T09:18:07.829Z",
+          "EndDate": "2020-06-25T09:18:07.829Z",
+          "AgencyGroupShortName": "string",
+          "AgencyGroupCode": "string"
+        }
+      ],
+      "Advertisers": [
+        {
+          "Name": "Test Advertiser",
+          "ShortName": "TAD",
+          "AdvertiserIdentifier": "extRef",
+          "StartDate": "2020-05-25T09:18:07.829Z",
+          "EndDate": "2020-06-25T09:18:07.829Z"
+        }
+      ],
+      "Persons": [
+        {
+          "Name": "Test Person",
+          "StartDate": "2020-05-25T09:18:07.829Z",
+          "EndDate": "2020-06-25T09:18:07.829Z"
+        }
+      ]
+    },
+    {
+      "Uid": "339a8e90-5396-4559-aac9-0a753f65fb6d",
+      "Externalidentifier": "exRef2",
+      "ParentExternalidentifier": null,
+      "Name": "OEqC52xEHV4p4LBdimSEWQ==",
+      "EffectiveStartDate": "2000-10-31T00:01:00.0000000Z",
+      "EffectiveEndDate": "2100-10-31T23:59:00.0000000Z",
+      "ClashCode": "exRef2",
+      "ReportingCategory": "cat",
+      "Agencies": [
+        {
+          "Name": "Test Agency",
+          "ShortName": "TAG",
+          "AgencyIdentifier": "extRef",
+          "StartDate": "2020-05-25T09:18:07.829Z",
+          "EndDate": "2020-06-25T09:18:07.829Z",
+          "AgencyGroupShortName": "string",
+          "AgencyGroupCode": "string"
+        }
+      ],
+      "Advertisers": [
+        {
+          "Name": "Test Advertiser",
+          "ShortName": "TAD",
+          "AdvertiserIdentifier": "extRef",
+          "StartDate": "2020-05-25T09:18:07.829Z",
+          "EndDate": "2020-06-25T09:18:07.829Z"
+        }
+      ],
+      "Persons": [
+        {
+          "Name": "Test Person",
+          "StartDate": "2020-05-25T09:18:07.829Z",
+          "EndDate": "2020-06-25T09:18:07.829Z"
+        }
+      ]
+    }
+  ],
+  "ClashExceptions": [
+    {
+      "StartDate": "5019-03-10T00:00:00.0000000Z",
+      "EndDate": "5020-03-20T00:00:00.0000000Z",
+      "FromType": "Clash",
+      "ToType": "Clash",
+      "IncludeOrExclude": "E",
+      "FromValue": "exRef1",
+      "ToValue": "exRef3",
+      "TimeAndDows": [
+        {
+          "StartTime": "19:30:00",
+          "EndTime": "00:00:00",
+          "DaysOfWeek": "0000010"
+        }
+      ]
+    }
+  ] 
+}

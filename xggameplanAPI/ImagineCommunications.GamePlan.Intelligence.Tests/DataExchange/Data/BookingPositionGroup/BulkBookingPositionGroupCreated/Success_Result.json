@@ -1,0 +1,17 @@
+﻿{
+  "BookingPositionGroups": [
+    {
+      "GroupId": 5,
+      "Code": "code",
+      "Description": "description",
+      "DisplayOrder": 3,
+      "UserDefined": true,
+      "PositionGroupAssociations": [
+        {
+          "BookingPosition": 41,
+          "BookingOrder": 4
+        }
+      ]
+    }
+  ]
+}

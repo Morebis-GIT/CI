@@ -1,0 +1,16 @@
+{
+  "Data": [
+    {
+      "SalesArea": "",
+      "ExternalReference": "",
+      "ProgrammeName": "",
+      "Description": "description1",
+      "Classification": "classification1",
+      "LiveBroadcast": true,
+      "ProgrammeCategories": [
+        "category1",
+        "category2"
+      ]
+    }
+  ]
+}

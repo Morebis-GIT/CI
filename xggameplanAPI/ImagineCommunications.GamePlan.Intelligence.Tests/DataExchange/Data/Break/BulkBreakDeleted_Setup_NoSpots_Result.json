@@ -1,0 +1,168 @@
+{
+  "Breaks": [
+    {
+      "CustomId": 1,
+      "ScheduledDate": "2019-09-20T10:46:52.5760000",
+      "BroadcastDate": "2019-09-20T00:00:00.0000000",
+      "ClockHour": 10,
+      "SalesArea": "TST1",
+      "BreakType": "BASE",
+      "Duration": "02:00:00",
+      "Optimize": true,
+      "ExternalBreakRef": "ref_1",
+      "Description": "ref_1 desc",
+      "ExternalProgRef": ""
+    },
+    {
+      "CustomId": 3,
+      "ScheduledDate": "2019-09-22T10:46:52.5760000",
+      "BroadcastDate": "2019-09-22T00:00:00.0000000",
+      "ClockHour": 10,
+      "SalesArea": "TST3",
+      "BreakType": "BASE",
+      "Duration": "03:00:00",
+      "Optimize": true,
+      "ExternalBreakRef": "ref_3",
+      "Description": "ref_3 desc",
+      "ExternalProgRef": ""
+    },
+    {
+      "CustomId": 4,
+      "ScheduledDate": "2019-09-22T10:46:52.5760000",
+      "BroadcastDate": "2019-09-22T00:00:00.0000000",
+      "ClockHour": 10,
+      "SalesArea": "TST4",
+      "BreakType": "BASE",
+      "Duration": "03:00:00",
+      "Optimize": true,
+      "ExternalBreakRef": "ref_4",
+      "Description": "ref_4 desc",
+      "ExternalProgRef": ""
+    },
+    {
+      "CustomId": 5,
+      "ScheduledDate": "2019-09-27T10:46:52.5760000",
+      "BroadcastDate": "2019-09-27T00:00:00.0000000",
+      "ClockHour": 10,
+      "SalesArea": "TST2",
+      "BreakType": "BASE",
+      "Duration": "03:00:00",
+      "Optimize": true,
+      "ExternalBreakRef": "ref_5",
+      "Description": "ref_5 desc",
+      "ExternalProgRef": ""
+    }
+  ],
+  "Schedules": [
+    {
+      "Date": "2019-09-20T00:00:00.0000000",
+      "SalesArea": "TST1",
+      "Breaks": [
+        {
+          "ExternalBreakRef": "ref_1"
+        }
+      ]
+    },
+    {
+      "Date": "2019-09-21T00:00:00.0000000",
+      "SalesArea": "TST2",
+      "Breaks": []
+    },
+    {
+      "Date": "2019-09-27T00:00:00.0000000",
+      "SalesArea": "TST2",
+      "Breaks": [
+        {
+          "ExternalBreakRef": "ref_5"
+        }
+      ]
+    },
+    {
+      "Date": "2019-09-22T00:00:00.0000000",
+      "SalesArea": "TST3",
+      "Breaks": [
+        {
+          "ExternalBreakRef": "ref_3"
+        },
+        {
+          "ExternalBreakRef": "ref_4"
+        }
+      ]
+    }
+  ],
+  "SalesAreas": [
+    {
+      "ChannelGroup": [
+        "string"
+      ],
+      "PublicHolidays": [],
+      "SchoolHolidays": [],
+      "CustomId": 21,
+      "Name": "TST1",
+      "ShortName": "TST1",
+      "CurrencyCode": "string",
+      "BaseDemographic1": "5",
+      "BaseDemographic2": "12",
+      "UniverseId": 0,
+      "StartOffset": "02:00:00",
+      "DayDuration": "02:00:00"
+    },
+    {
+      "ChannelGroup": [
+        "string"
+      ],
+      "PublicHolidays": [],
+      "SchoolHolidays": [],
+      "CustomId": 22,
+      "Name": "TST2",
+      "ShortName": "string",
+      "CurrencyCode": "string",
+      "BaseDemographic1": "5",
+      "BaseDemographic2": "12",
+      "UniverseId": 0,
+      "StartOffset": "02:00:00",
+      "DayDuration": "02:00:00"
+    },
+    {
+      "ChannelGroup": [
+        "string"
+      ],
+      "PublicHolidays": [],
+      "SchoolHolidays": [],
+      "CustomId": 23,
+      "Name": "TST3",
+      "ShortName": "string",
+      "CurrencyCode": "string",
+      "BaseDemographic1": "5",
+      "BaseDemographic2": "12",
+      "UniverseId": 0,
+      "StartOffset": "02:00:00",
+      "DayDuration": "02:00:00"
+    },
+    {
+      "ChannelGroup": [
+        "string"
+      ],
+      "PublicHolidays": [],
+      "SchoolHolidays": [],
+      "CustomId": 24,
+      "Name": "TST4",
+      "ShortName": "string",
+      "CurrencyCode": "string",
+      "BaseDemographic1": "5",
+      "BaseDemographic2": "12",
+      "UniverseId": 0,
+      "StartOffset": "02:00:00",
+      "DayDuration": "02:00:00"
+    }
+  ],
+  "Metadatas": [
+    {
+      "Dictionary": {
+        "ProgramCategories": "[{\"Id\":1,\"value\":\"SPORTS\"},{\"Id\":2,\"value\":\"CHILDREN\"},{\"Id\":3,\"value\":\"NEWS\"}]",
+        "BreakTypes": "[{\"Id\":1,\"Value\":\"BASE\"},{\"Id\":2,\"Value\":\"PREMIUM\"}]"
+      }
+    }
+  ],
+  "Spots": []
+}

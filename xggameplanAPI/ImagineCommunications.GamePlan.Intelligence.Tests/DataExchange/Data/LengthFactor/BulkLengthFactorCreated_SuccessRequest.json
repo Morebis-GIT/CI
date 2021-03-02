@@ -1,0 +1,14 @@
+{
+  "Data": [
+    {
+      "SalesArea": "TCN91",
+      "Duration": "1:00:00",
+      "Factor": "0.23"
+    },
+    {
+      "SalesArea": "TCN94",
+      "Duration": "1:40:00",
+      "Factor": "0.66"
+    }
+  ]
+}

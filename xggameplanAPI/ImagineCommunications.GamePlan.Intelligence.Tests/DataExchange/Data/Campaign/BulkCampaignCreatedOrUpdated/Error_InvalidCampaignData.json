@@ -1,0 +1,40 @@
+﻿{
+  "Data": [
+    {
+      "ExternalId": "",
+      "Name": "",
+      "DemoGraphic": "",
+      "StartDateTime": "0001-01-01T00:00:00.0000000Z",
+      "EndDateTime": "0001-01-01T00:00:00.0000000Z",
+      "Product": "",
+      "RevenueBudget": 0,
+      "TargetRatings": 1.0,
+      "ActualRatings": 1,
+      "CampaignGroup": "123456789987654321123",
+      "IsPercentage": false,
+      "Status": "A",
+      "BusinessType": "Dynamic",
+      "DeliveryType": "Rating",
+      "IncludeOptimisation": true,
+      "TargetZeroRatedBreaks": false,
+      "InefficientSpotRemoval": true,
+      "IncludeRightSizer": "",
+      "ExpectedClearanceCode": null,
+      "CampaignPassPriority": 3,
+      "StopBooking": true,
+      "TargetXP": 33,
+      "RevenueBooked": 22.5,
+      "CreationDate": "2020-05-25T09:18:07.564Z",
+      "AutomatedBooked": true,
+      "TopTail": "Multipart",
+      "Spots": 0,
+      "BreakType": [],
+      "TimeRestrictions": [],
+      "ProgrammeRestrictions": [],
+      "SalesAreaCampaignTarget": [],
+      "BookingPositionGroups": [],
+      "CampaignPaybacks": [],
+      "CampaignSpotMaxRatings": -1
+    }
+  ]
+}

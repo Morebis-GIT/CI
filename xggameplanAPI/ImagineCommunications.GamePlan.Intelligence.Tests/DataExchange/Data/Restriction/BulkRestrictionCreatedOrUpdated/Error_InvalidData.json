@@ -1,0 +1,33 @@
+{
+  "Data": [
+    {
+      "ExternalIdentifier": "ExternalIdentifier",
+      "SalesAreas": [
+        "salesArea1",
+        "salesArea2"
+      ],
+      "StartDate": "0001-01-01T00:00:00.000Z",
+      "EndDate": "0001-01-01T00:00:00.000Z",
+      "StartTime": "1.00:00:00",
+      "EndTime": "1.00:00:00",
+      "RestrictionDays": "0110584",
+      "SchoolHolidayIndicator": 0,
+      "PublicHolidayIndicator": 0,
+      "LiveProgrammeIndicator": 0,
+      "RestrictionType": 1,
+      "RestrictionBasis": 1,
+      "ExternalProgRef": "ExternalProgRef",
+      "ProgrammeCategory": "ProgrammeCategory",
+      "ProgrammeClassification": "ProgrammeClassification",
+      "ProgrammeClassificationIndicator": 0,
+      "TimeToleranceMinsBefore": 0,
+      "TimeToleranceMinsAfter": 0,
+      "IndexType": 0,
+      "IndexThreshold": 0,
+      "ProductCode": 1234,
+      "ClashCode": "ClashCode",
+      "ClearanceCode": "ClearanceCode",
+      "ClockNumber": ""
+    }
+  ]
+}

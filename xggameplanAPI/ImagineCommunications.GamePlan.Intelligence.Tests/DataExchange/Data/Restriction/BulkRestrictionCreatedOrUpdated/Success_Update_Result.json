@@ -1,0 +1,33 @@
+{
+  "Restrictions": [
+    {
+      "Uid": "bc59a7c2-ba13-4131-afec-b392ddbf76e8",
+      "SalesAreas": [
+        "QTQ93"
+      ],
+      "StartDate": "2019-09-20T10:37:04.177Z",
+      "EndDate": "2019-09-20T10:37:04.177Z",
+      "StartTime": "1.00:00:00",
+      "EndTime": "1.00:00:00",
+      "RestrictionDays": "0110111",
+      "SchoolHolidayIndicator": "I",
+      "PublicHolidayIndicator": "I",
+      "LiveProgrammeIndicator": "I",
+      "RestrictionType": "ProgrammeCategory",
+      "RestrictionBasis": "ClearanceCode",
+      "ExternalProgRef": null,
+      "ProgrammeCategory": "SPORTS",
+      "ProgrammeClassification": null,
+      "ProgrammeClassificationIndicator": "I",
+      "TimeToleranceMinsBefore": 5,
+      "TimeToleranceMinsAfter": 5,
+      "IndexType": 0,
+      "IndexThreshold": 0,
+      "ProductCode": 0,
+      "ClashCode": null,
+      "ClearanceCode": "B",
+      "ClockNumber": "0",
+      "ExternalIdentifier": "space21"
+    }
+  ]
+}

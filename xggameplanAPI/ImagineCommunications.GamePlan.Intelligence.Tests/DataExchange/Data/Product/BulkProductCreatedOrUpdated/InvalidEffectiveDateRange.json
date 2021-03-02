@@ -1,0 +1,40 @@
+{
+  "Data": [
+    {
+      "Externalidentifier": "ext",
+      "ParentExternalidentifier": "",
+      "Name": "Test",
+      "EffectiveStartDate": "2020-06-25T09:18:07.829Z",
+      "EffectiveEndDate": "2020-05-25T09:18:07.829Z",
+      "ClashCode": "cl",
+      "ReportingCategory": "cat",
+      "Agencies": [
+        {
+          "Name": "Test Agency",
+          "ShortName": "TAG",
+          "AgencyIdentifier": "extRef",
+          "StartDate": "2020-05-25T09:18:07.829Z",
+          "EndDate": "2020-06-25T09:18:07.829Z",
+          "AgencyGroupShortName": "string",
+          "AgencyGroupCode": "string"
+        }
+      ],
+      "Advertisers": [
+        {
+          "Name": "Test Advertiser",
+          "ShortName": "TAD",
+          "AdvertiserIdentifier": "extRef",
+          "StartDate": "2020-05-25T09:18:07.829Z",
+          "EndDate": "2020-06-25T09:18:07.829Z"
+        }
+      ],
+      "Persons": [
+        {
+          "Name": "Test Person",
+          "StartDate": "2020-05-25T09:18:07.829Z",
+          "EndDate": "2020-06-25T09:18:07.829Z"
+        }
+      ]
+    }
+  ]
+}

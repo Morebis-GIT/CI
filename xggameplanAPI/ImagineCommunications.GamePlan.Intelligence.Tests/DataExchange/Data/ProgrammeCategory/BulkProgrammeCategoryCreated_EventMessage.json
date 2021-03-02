@@ -1,0 +1,14 @@
+{
+  "Data": [
+    {
+      "Name": "ALL",
+      "ExternalRef": "PARENT",
+      "ParentExternalRef": ""
+    },
+    {
+      "Name": "CHILDREN",
+      "ExternalRef": "CHD",
+      "ParentExternalRef": "PARENT"
+    }
+  ]
+}

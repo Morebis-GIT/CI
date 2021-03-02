@@ -1,0 +1,63 @@
+{
+  "Programmes": [
+    {
+      "Id": "6942de2b-4e62-4bb0-baf1-65102c346866",
+      "SalesArea": "salesArea1",
+      "ExternalReference": "externalReference1",
+      "ProgrammeName": "programmeName1",
+      "Description": "description1",
+      "Classification": "classification1",
+      "LiveBroadcast": true,
+      "StartDateTime": "2019-09-06T00:00:00.0000000Z",
+      "Duration": "01:00:00",
+      "ProgrammeCategories": [
+        "category1",
+        "category2"
+      ]
+    },
+    {
+      "Id": "6942de2b-4e62-4bb0-baf1-65102c346865",
+      "SalesArea": "salesArea2",
+      "ExternalReference": "externalReference2",
+      "ProgrammeName": "programmeName2",
+      "Description": "description2",
+      "Classification": "classification2",
+      "LiveBroadcast": false,
+      "StartDateTime": "2019-09-06T00:00:00.0000000Z",
+      "Duration": "00:01:00",
+      "ProgrammeCategories": [
+        "category2",
+        "category3"
+      ]
+    },
+    {
+      "Id": "6942de2b-4e62-4bb0-baf1-65102c346867",
+      "SalesArea": "salesArea3",
+      "ExternalReference": "externalReference3",
+      "ProgrammeName": "programmeName1",
+      "Description": "description1",
+      "Classification": "classification1",
+      "LiveBroadcast": true,
+      "StartDateTime": "2019-09-06T00:00:00.0000000Z",
+      "Duration": "01:00:00",
+      "ProgrammeCategories": [
+        "category1",
+        "category2"
+      ]
+    }
+  ],
+  "Schedules": [
+    {
+      "Date": "2019-09-06T00:00:00.0000000Z",
+      "SalesArea": "salesArea1"
+    },
+    {
+      "Date": "2019-09-06T00:00:00.0000000Z",
+      "SalesArea": "salesArea2"
+    },
+    {
+      "Date": "2019-09-06T00:00:00.0000000Z",
+      "SalesArea": "salesArea3"
+    }
+  ]
+}

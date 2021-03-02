@@ -1,0 +1,67 @@
+{
+  "SalesAreas": [
+    {
+      "ChannelGroup": [
+        "TCN91"
+      ],
+      "PublicHolidays": [],
+      "SchoolHolidays": [
+        {
+          "Start": "2019-06-03T00:00:00.0000000Z",
+          "End": "2019-06-07T00:00:00.0000000Z"
+        }
+      ],
+      "CustomId": 1,
+      "Name": "TCN91",
+      "ShortName": "TCN 91",
+      "CurrencyCode": "AUD",
+      "BaseDemographic1": "2",
+      "BaseDemographic2": "509",
+      "UniverseId": 0,
+      "StartOffset": "00:30:00",
+      "DayDuration": "00:30:00"
+    },
+    {
+      "ChannelGroup": [
+        "TCN94"
+      ],
+      "PublicHolidays": [],
+      "SchoolHolidays": [
+        {
+          "Start": "2019-06-03T00:00:00.0000000Z",
+          "End": "2019-06-07T00:00:00.0000000Z"
+        }
+      ],
+      "CustomId": 1,
+      "Name": "TCN94",
+      "ShortName": "TCN 94",
+      "CurrencyCode": "AUD",
+      "BaseDemographic1": "2",
+      "BaseDemographic2": "509",
+      "UniverseId": 0,
+      "StartOffset": "00:30:00",
+      "DayDuration": "00:30:00"
+    },
+    {
+      "ChannelGroup": [
+        "QTQ93"
+      ],
+      "PublicHolidays": [],
+      "SchoolHolidays": [
+        {
+          "Start": "2019-06-03T00:00:00.0000000Z",
+          "End": "2019-06-07T00:00:00.0000000Z"
+        }
+      ],
+      "CustomId": 1,
+      "Name": "QTQ93",
+      "ShortName": "QTQ GO",
+      "CurrencyCode": "AUD",
+      "BaseDemographic1": "2",
+      "BaseDemographic2": "509",
+      "UniverseId": 0,
+      "StartOffset": "00:30:00",
+      "DayDuration": "00:30:00"
+    }
+  ],
+}

@@ -1,0 +1,79 @@
+{
+  "SalesAreas": [
+    {
+      "Id": "4E46009C-82DF-4E2A-98BE-3FADB9163245",
+      "ChannelGroup": [
+        "string"
+      ],
+      "PublicHolidays": [],
+      "SchoolHolidays": [],
+      "CustomId": 21,
+      "Name": "TST1",
+      "ShortName": "TST1",
+      "CurrencyCode": "string",
+      "BaseDemographic1": "5",
+      "BaseDemographic2": "12",
+      "UniverseId": 0,
+      "StartOffset": "02:00:00",
+      "DayDuration": "02:00:00"
+    },
+    {
+      "Id": "47D8B9EA-95D2-4310-9212-0F88755CA89D",
+      "ChannelGroup": [
+        "string"
+      ],
+      "PublicHolidays": [],
+      "SchoolHolidays": [],
+      "CustomId": 22,
+      "Name": "TST2",
+      "ShortName": "string",
+      "CurrencyCode": "string",
+      "BaseDemographic1": "5",
+      "BaseDemographic2": "12",
+      "UniverseId": 0,
+      "StartOffset": "02:00:00",
+      "DayDuration": "02:00:00"
+    },
+    {
+      "Id": "3A5B6D48-BA81-46E0-9A7B-08E4D37AC978",
+      "ChannelGroup": [
+        "string"
+      ],
+      "PublicHolidays": [],
+      "SchoolHolidays": [],
+      "CustomId": 23,
+      "Name": "TST3",
+      "ShortName": "string",
+      "CurrencyCode": "string",
+      "BaseDemographic1": "5",
+      "BaseDemographic2": "12",
+      "UniverseId": 0,
+      "StartOffset": "02:00:00",
+      "DayDuration": "02:00:00"
+    },
+    {
+      "Id": "ACFA3B01-3D60-4CC9-9112-C3A545E600D7",
+      "ChannelGroup": [
+        "string"
+      ],
+      "PublicHolidays": [],
+      "SchoolHolidays": [],
+      "CustomId": 24,
+      "Name": "TST4",
+      "ShortName": "string",
+      "CurrencyCode": "string",
+      "BaseDemographic1": "5",
+      "BaseDemographic2": "12",
+      "UniverseId": 0,
+      "StartOffset": "02:00:00",
+      "DayDuration": "02:00:00"
+    }
+  ],
+  "Metadatas": [
+    {
+      "Dictionary": {
+        "BreakTypes": "[{\"Id\":1,\"Value\":\"BASE\"},{\"Id\":2,\"Value\":\"PREMIUM\"}]"
+      }
+    }
+  ]
+}

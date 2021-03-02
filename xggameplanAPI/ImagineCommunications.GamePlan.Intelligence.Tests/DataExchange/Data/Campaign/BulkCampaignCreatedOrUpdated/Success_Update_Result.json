@@ -1,0 +1,304 @@
+﻿{
+  "Campaigns": [
+    {
+      "CustomId": 9701,
+      "ExternalId": "15G1558624",
+      "Name": "UpdatedName",
+      "DemoGraphic": "3",
+      "StartDateTime": "2019-04-10T00:00:00.0000000Z",
+      "EndDateTime": "2019-05-21T00:00:00.0000000Z",
+      "Product": "131404",
+      "RevenueBudget": 15,
+      "TargetRatings": 831326,
+      "ActualRatings": 1662652,
+      "CampaignGroup": null,
+      "IsPercentage": false,
+      "Status": "A",
+      "BusinessType": "Dynamic",
+      "DeliveryType": "Rating",
+      "IncludeOptimisation": true,
+      "TargetZeroRatedBreaks": false,
+      "InefficientSpotRemoval": true,
+      "IncludeRightSizer": true,
+      "RightSizerLevel": "CampaignLevel",
+      "ExpectedClearanceCode": null,
+      "CampaignPassPriority": 3,
+      "StopBooking": true,
+      "TargetXP": 1560,
+      "RevenueBooked": 22.5,
+      "CreationDate": "2020-05-25T09:18:07.564Z",
+      "AutomatedBooked": true,
+      "TopTail": "Multipart",
+      "Spots": 0,
+      "ActiveLength": "3600/3661",
+      "RatingsDifferenceExcludingPayback": 1661092,
+      "ValueDifference": 7.5,
+      "ValueDifferenceExcludingPayback": 2.5,
+      "AchievedPercentageTargetRatings": 200,
+      "AchievedPercentageRevenueBudget": 150,
+      "BreakType": [
+        "Base"
+      ],
+      "searchfields": null,
+      "TimeRestrictions": [],
+      "BookingPositionGroups": [],
+      "ProgrammeRestrictions": [
+        {
+          "SalesAreas": null,
+          "CategoryOrProgramme": [
+            "AUHU"
+          ],
+          "IsCategoryOrProgramme": "P",
+          "IsIncludeOrExclude": "E"
+        }
+      ],
+      "SalesAreaCampaignTarget": [
+        {
+          "SalesArea": null,
+          "StopBooking": true,
+          "SalesAreaGroup": {
+            "GroupName": "GTV93",
+            "SalesAreas": [
+              "GTV93"
+            ]
+          },
+          "Multiparts": [
+            {
+              "MultipartNumber": 0,
+              "Lengths": [
+                {
+                  "Length": "01:00:00",
+                  "BookingPosition": 0,
+                  "Sequencing": 0
+                }
+              ],
+              "DesiredPercentageSplit": 469302,
+              "CurrentPercentageSplit": 655302
+            }
+          ],
+          "CampaignTargets": [
+            {
+              "StrikeWeights": [
+                {
+                  "StartDate": "2019-04-17T00:00:00.0000000Z",
+                  "EndDate": "2019-04-23T00:00:00.0000000Z",
+                  "DesiredPercentageSplit": 61055,
+                  "CurrentPercentageSplit": 30200,
+                  "Payback": 0,
+                  "Lengths": [
+                    {
+                      "MultipartNumber": 0,
+                      "length": "01:01:01",
+                      "DesiredPercentageSplit": 61055,
+                      "CurrentPercentageSplit": 30200
+                    }
+                  ],
+                  "DayParts": [
+                    {
+                      "DesiredPercentageSplit": 61055,
+                      "CurrentPercentageSplit": 30200,
+                      "Timeslices": [
+                        {
+                          "FromTime": "06:00",
+                          "ToTime": "17:59",
+                          "DowPattern": [
+                            "Sun",
+                            "Mon",
+                            "Tue",
+                            "Wed",
+                            "Thu",
+                            "Fri",
+                            "Sat"
+                          ]
+                        },
+                        {
+                          "FromTime": "22:30",
+                          "ToTime": "23:59",
+                          "DowPattern": [
+                            "Sun",
+                            "Mon",
+                            "Tue",
+                            "Wed",
+                            "Thu",
+                            "Fri",
+                            "Sat"
+                          ]
+                        }
+                      ],
+                      "Lengths": null,
+                      "SpotMaxRatings": 0
+                    }
+                  ],
+                  "SpotMaxRatings": 0
+                },
+                {
+                  "StartDate": "2019-04-24T00:00:00.0000000Z",
+                  "EndDate": "2019-04-30T00:00:00.0000000Z",
+                  "DesiredPercentageSplit": 50879,
+                  "CurrentPercentageSplit": 67500,
+                  "Payback": 0,
+                  "Lengths": [
+                    {
+                      "MultipartNumber": 0,
+                      "length": "01:00:00",
+                      "DesiredPercentageSplit": 50879,
+                      "CurrentPercentageSplit": 67500
+                    }
+                  ],
+                  "DayParts": [
+                    {
+                      "DesiredPercentageSplit": 50879,
+                      "CurrentPercentageSplit": 67500,
+                      "Timeslices": [
+                        {
+                          "FromTime": "06:00",
+                          "ToTime": "17:59",
+                          "DowPattern": [
+                            "Sun",
+                            "Mon",
+                            "Tue",
+                            "Wed",
+                            "Thu",
+                            "Fri",
+                            "Sat"
+                          ]
+                        },
+                        {
+                          "FromTime": "22:30",
+                          "ToTime": "23:59",
+                          "DowPattern": [
+                            "Sun",
+                            "Mon",
+                            "Tue",
+                            "Wed",
+                            "Thu",
+                            "Fri",
+                            "Sat"
+                          ]
+                        }
+                      ],
+                      "Lengths": null,
+                      "SpotMaxRatings": 0
+                    }
+                  ],
+                  "SpotMaxRatings": 0
+                },
+                {
+                  "StartDate": "2019-05-08T00:00:00.0000000Z",
+                  "EndDate": "2019-05-14T00:00:00.0000000Z",
+                  "DesiredPercentageSplit": 109435,
+                  "CurrentPercentageSplit": 298996,
+                  "Payback": 0,
+                  "Lengths": [
+                    {
+                      "MultipartNumber": 0,
+                      "length": "01:00:00",
+                      "DesiredPercentageSplit": 109435,
+                      "CurrentPercentageSplit": 298996
+                    }
+                  ],
+                  "DayParts": [
+                    {
+                      "DesiredPercentageSplit": 109435,
+                      "CurrentPercentageSplit": 298996,
+                      "Timeslices": [
+                        {
+                          "FromTime": "06:00",
+                          "ToTime": "17:59",
+                          "DowPattern": [
+                            "Sun",
+                            "Mon",
+                            "Tue",
+                            "Wed",
+                            "Thu",
+                            "Fri",
+                            "Sat"
+                          ]
+                        },
+                        {
+                          "FromTime": "22:30",
+                          "ToTime": "23:59",
+                          "DowPattern": [
+                            "Sun",
+                            "Mon",
+                            "Tue",
+                            "Wed",
+                            "Thu",
+                            "Fri",
+                            "Sat"
+                          ]
+                        }
+                      ],
+                      "Lengths": null,
+                      "SpotMaxRatings": 0
+                    }
+                  ],
+                  "SpotMaxRatings": 0
+                },
+                {
+                  "StartDate": "2019-05-15T00:00:00.0000000Z",
+                  "EndDate": "2019-05-21T00:00:00.0000000Z",
+                  "DesiredPercentageSplit": 247933,
+                  "CurrentPercentageSplit": 258606,
+                  "Payback": 5,
+                  "Lengths": [
+                    {
+                      "MultipartNumber": 0,
+                      "length": "01:00:00",
+                      "DesiredPercentageSplit": 247933,
+                      "CurrentPercentageSplit": 258606
+                    }
+                  ],
+                  "DayParts": [
+                    {
+                      "DesiredPercentageSplit": 247933,
+                      "CurrentPercentageSplit": 258606,
+                      "Timeslices": [
+                        {
+                          "FromTime": "06:00",
+                          "ToTime": "17:59",
+                          "DowPattern": [
+                            "Sun",
+                            "Mon",
+                            "Tue",
+                            "Wed",
+                            "Thu",
+                            "Fri",
+                            "Sat"
+                          ]
+                        },
+                        {
+                          "FromTime": "22:30",
+                          "ToTime": "23:59",
+                          "DowPattern": [
+                            "Sun",
+                            "Mon",
+                            "Tue",
+                            "Wed",
+                            "Thu",
+                            "Fri",
+                            "Sat"
+                          ]
+                        }
+                      ],
+                      "Lengths": null,
+                      "SpotMaxRatings": 0
+                    }
+                  ],
+                  "SpotMaxRatings": 0
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "CampaignPaybacks": [
+        {
+          "Name": "Test1",
+          "Amount": 5
+        }
+      ],
+      "CampaignSpotMaxRatings": 0
+    }
+  ]
+}

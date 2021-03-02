@@ -1,0 +1,15 @@
+﻿{
+  "Data": [
+    {
+      "StartDate": "2019-09-22T00:00:00.000Z",
+      "EndDate": "2019-09-11T00:00:00.000Z",
+      "FromType": 2,
+      "ToType": 1,
+      "IncludeOrExclude": 0,
+      "FromValue": "",
+      "ToValue": "",
+      "ExternalRef": "Ref1",
+      "TimeAndDows": []
+    }
+  ]
+}

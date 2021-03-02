@@ -1,0 +1,32 @@
+﻿{
+  "Programmes": [
+    {
+      "PrgtNo": 0,
+      "SalesArea": "salesArea1",
+      "StartDateTime": "2019-09-23T11:48:06.6450000Z",
+      "Duration": "00:30:00",
+      "ExternalReference": "externalReference1",
+      "ProgrammeName": "pgrmnm",
+      "Description": "description",
+      "ProgrammeCategories": [
+        "Dude"
+      ],
+      "Classification": "string",
+      "LiveBroadcast": false
+    },
+    {
+      "PrgtNo": 0,
+      "SalesArea": "salesArea1",
+      "StartDateTime": "2019-09-26T11:48:06.6450000Z",
+      "Duration": "00:30:00",
+      "ExternalReference": "externalReference2",
+      "ProgrammeName": "pgrmnm",
+      "Description": "description",
+      "ProgrammeCategories": [
+        "Dude"
+      ],
+      "Classification": "string",
+      "LiveBroadcast": false
+    }
+  ]
+}

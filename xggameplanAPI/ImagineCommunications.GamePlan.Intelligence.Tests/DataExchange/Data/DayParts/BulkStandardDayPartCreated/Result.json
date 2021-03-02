@@ -1,0 +1,18 @@
+{
+  "StandardDayParts": [
+    {
+      "DayPartId": 2,
+      "SalesArea": "QTQ93",
+      "Name": "Test",
+      "Order": 1,
+      "Timeslices": [
+        {
+          "StartDay": 0,
+          "EndDay": 0,
+          "StartTime": "1.00:00:00",
+          "EndTime": "2.00:00:00"
+        }
+      ]
+    }
+  ]
+}

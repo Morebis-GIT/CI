@@ -1,0 +1,37 @@
+{
+  "InventoryTypes": [
+    {
+      "InventoryCode": "Code1",
+      "Description": "Description1",
+      "System": "S",
+      "LockTypes": [
+        1,
+        2
+      ]
+    },
+    {
+      "InventoryCode": "Code2",
+      "Description": "Description2",
+      "System": "S",
+      "LockTypes": [
+        1,
+        2,
+        3
+      ]
+    }
+  ],
+  "LockTypes": [
+    {
+      "LockType": 1,
+      "Name": "Breaks"
+    },
+    {
+      "LockType": 2,
+      "Name": "Programmes"
+    },
+    {
+      "LockType": 3,
+      "Name": "Clashes"
+    }
+  ]
+}

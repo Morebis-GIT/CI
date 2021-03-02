@@ -1,0 +1,34 @@
+{
+  "Demographics": [
+    {
+      "ExternalRef": "demographic1",
+      "Name": "demographic1",
+      "ShortName": "demo1",
+      "DisplayOrder": 1,
+      "Gameplan": true
+    },
+    {
+      "ExternalRef": "demographic2",
+      "Name": "demographic2",
+      "ShortName": "demo2",
+      "DisplayOrder": 2,
+      "Gameplan": true
+    },
+    {
+      "ExternalRef": "demographic3",
+      "Name": "demographic3",
+      "ShortName": "demo3",
+      "DisplayOrder": 3,
+      "Gameplan": true
+    }
+  ],
+  "Universes": [
+    {
+      "SalesArea": "salesArea1",
+      "Demographic": "demographic1",
+      "StartDate": "2019-05-27T00:00:00.0000000Z",
+      "EndDate": "2019-06-27T00:00:00.0000000Z",
+      "UniverseValue": 4
+    }
+  ]
+}

@@ -1,0 +1,56 @@
+﻿{
+  "SalesAreas": [
+    {
+      "ChannelGroup": [
+        "GTV91"
+      ],
+      "PublicHolidays": [],
+      "SchoolHolidays": [
+        {
+          "Start": "2019-06-03T00:00:00.0000000Z",
+          "End": "2019-06-07T00:00:00.0000000Z"
+        }
+      ],
+      "CustomId": 1,
+      "Name": "GTV91",
+      "ShortName": "GTV 9",
+      "CurrencyCode": "AUD",
+      "TargetAreaName": "GTV",
+      "BaseDemographic1": "2",
+      "BaseDemographic2": "509",
+      "UniverseId": 0,
+      "StartOffset": "00:30:00",
+      "DayDuration": "00:30:00"
+    }
+  ],
+  "Demographics": [
+    {
+      "ExternalRef": "BD1",
+      "Name": "SHOPPER 25-54",
+      "ShortName": "S25-54",
+      "DisplayOrder": 178,
+      "Gameplan": true
+    },
+    {
+      "ExternalRef": "BD2",
+      "Name": "SHOPPER 25-54",
+      "ShortName": "S25-54",
+      "DisplayOrder": 179,
+      "Gameplan": true
+    },
+    {
+      "ExternalRef": "2",
+      "Name": "TestDemo2",
+      "ShortName": "td2",
+      "DisplayOrder": 180,
+      "Gameplan": true
+    },
+    {
+      "ExternalRef": "509",
+      "Name": "TestDemo509",
+      "ShortName": "td509",
+      "DisplayOrder": 181,
+      "Gameplan": true
+    }
+  ] 
+}

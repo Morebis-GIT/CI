@@ -1,0 +1,29 @@
+﻿{
+  "Data": [
+    {
+      "ExternalIdentifier": "ExternalIdentifier",
+      "SalesAreas": [
+        "QTQ93"
+      ],
+      "StartDate": "2019-09-20T10:37:04.177Z",
+      "EndDate": "2019-09-20T10:37:04.177Z",
+      "StartTime": "1.00:00:00",
+      "EndTime": "1.00:00:00",
+      "RestrictionDays": "0110111",
+      "SchoolHolidayIndicator": 0,
+      "PublicHolidayIndicator": 0,
+      "LiveProgrammeIndicator": 0,
+      "RestrictionType": 3,
+      "RestrictionBasis": 0,
+      "ExternalProgRef": "",
+      "ProgrammeCategory": "CHILDREN",
+      "ProgrammeClassification": "",
+      "ProgrammeClassificationIndicator": 0,
+      "TimeToleranceMinsBefore": 0,
+      "TimeToleranceMinsAfter": 0,
+      "ClashCode": "",
+      "ClearanceCode": "B",
+      "ClockNumber": ""
+    }
+  ]
+}

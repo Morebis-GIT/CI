@@ -1,0 +1,47 @@
+{
+  "SalesAreas": [
+    {
+      "Id": "eded1f7c-da69-43aa-9f0c-9dec05eb3c92",
+      "ChannelGroup": [
+        "string"
+      ],
+      "PublicHolidays": [
+        {
+          "Start": "2012-04-23T18:25:43.511Z",
+          "End": "2013-04-23T18:25:43.511Z"
+        },
+        {
+          "Start": "2012-05-23T18:25:43.511Z",
+          "End": "2013-03-23T18:25:43.511Z"
+        },
+        {
+          "Start": "2012-04-23T18:25:43.511Z",
+          "End": "2013-04-23T18:25:43.511Z"
+        },
+        {
+          "Start": "2012-05-23T18:25:43.511Z",
+          "End": "2013-03-23T18:25:43.511Z"
+        }
+      ],
+      "SchoolHolidays": [
+        {
+          "Start": "2020-02-05T18:25:43.511Z",
+          "End": "2020-02-10T18:25:43.511Z"
+        },
+        {
+          "Start": "2020-02-15T18:25:43.511Z",
+          "End": "2020-02-23T18:25:43.511Z"
+        }
+      ],
+      "CustomId": 22,
+      "Name": "13",
+      "ShortName": "13",
+      "CurrencyCode": "string",
+      "BaseDemographic1": "656",
+      "BaseDemographic2": "628",
+      "UniverseId": 0,
+      "StartOffset": "06:27:15",
+      "DayDuration": "06:27:15"
+    }
+  ]
+}

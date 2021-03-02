@@ -1,0 +1,36 @@
+﻿{
+  "ClashExceptions": [
+    {
+      "StartDate": "5019-03-10T00:00:00.0000000Z",
+      "EndDate": "5020-03-20T00:00:00.0000000Z",
+      "FromType": "Clash",
+      "ToType": "Clash",
+      "IncludeOrExclude": "E",
+      "FromValue": "exRef1",
+      "ToValue": "exRef3",
+      "TimeAndDows": [
+        {
+          "StartTime": "19:30:00",
+          "EndTime": "00:00:00",
+          "DaysOfWeek": "0000010"
+        }
+      ]
+    },
+    {
+      "StartDate": "5019-03-10T00:00:00.0000000Z",
+      "EndDate": "5020-03-20T00:00:00.0000000Z",
+      "FromType": "Clash",
+      "ToType": "Clash",
+      "IncludeOrExclude": "E",
+      "FromValue": "exRef1",
+      "ToValue": "exRef2",
+      "TimeAndDows": [
+        {
+          "StartTime": "18:30:00",
+          "EndTime": "23:00:00",
+          "DaysOfWeek": "1100000"
+        }
+      ]
+    }
+  ]
+}

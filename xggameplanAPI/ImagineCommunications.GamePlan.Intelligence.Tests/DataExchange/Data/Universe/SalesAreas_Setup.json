@@ -1,0 +1,70 @@
+{
+  "SalesAreas": [
+    {
+      "Id": "4E46009C-82DF-4E2A-98BE-3FADB9163245",
+      "ChannelGroup": [
+        "salesArea1"
+      ],
+      "PublicHolidays": [],
+      "SchoolHolidays": [
+        {
+          "Start": "2019-06-03T00:00:00.0000000Z",
+          "End": "2019-06-07T00:00:00.0000000Z"
+        }
+      ],
+      "CustomId": 1,
+      "Name": "salesArea1",
+      "ShortName": "GTV 9",
+      "CurrencyCode": "AUD",
+      "BaseDemographic1": "2",
+      "BaseDemographic2": "509",
+      "UniverseId": 0,
+      "StartOffset": "00:30:00",
+      "DayDuration": "00:30:00"
+    },
+    {
+      "Id": "47D8B9EA-95D2-4310-9212-0F88755CA89D",
+      "ChannelGroup": [
+        "salesArea2"
+      ],
+      "PublicHolidays": [],
+      "SchoolHolidays": [
+        {
+          "Start": "2019-06-03T00:00:00.0000000Z",
+          "End": "2019-06-07T00:00:00.0000000Z"
+        }
+      ],
+      "CustomId": 1,
+      "Name": "salesArea2",
+      "ShortName": "GTV 9",
+      "CurrencyCode": "AUD",
+      "BaseDemographic1": "2",
+      "BaseDemographic2": "509",
+      "UniverseId": 0,
+      "StartOffset": "00:30:00",
+      "DayDuration": "00:30:00"
+    },
+    {
+      "Id": "3A5B6D48-BA81-46E0-9A7B-08E4D37AC978",
+      "ChannelGroup": [
+        "salesArea3"
+      ],
+      "PublicHolidays": [],
+      "SchoolHolidays": [
+        {
+          "Start": "2019-06-03T00:00:00.0000000Z",
+          "End": "2019-06-07T00:00:00.0000000Z"
+        }
+      ],
+      "CustomId": 1,
+      "Name": "salesArea3",
+      "ShortName": "GTV 9",
+      "CurrencyCode": "AUD",
+      "BaseDemographic1": "2",
+      "BaseDemographic2": "509",
+      "UniverseId": 0,
+      "StartOffset": "00:30:00",
+      "DayDuration": "00:30:00"
+    }
+  ]
+}

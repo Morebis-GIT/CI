@@ -1,0 +1,12 @@
+{
+  "LockTypes": [
+    {
+      "LockType": 1,
+      "Name": "Breaks"
+    },
+    {
+      "LockType": 2,
+      "Name": "Programmes"
+    }
+  ]
+}

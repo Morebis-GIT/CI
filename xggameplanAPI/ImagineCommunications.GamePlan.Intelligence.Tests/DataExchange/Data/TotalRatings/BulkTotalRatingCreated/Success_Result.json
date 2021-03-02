@@ -1,0 +1,36 @@
+{
+  "TotalRatings": [
+    {
+      "SalesArea": "QTQ93",
+      "Demograph": "BD1",
+      "Date": "2019-11-25T00:00:00.0000000Z",
+      "DaypartGroup": 3,
+      "Daypart": 1,
+      "TotalRatings": 3.75
+    },
+    {
+      "SalesArea": "QTQ932",
+      "Demograph": "BD2",
+      "Date": "2019-11-19T00:00:00.0000000Z",
+      "DaypartGroup": 34,
+      "Daypart": 13,
+      "TotalRatings": 8.8
+    },
+    {
+      "SalesArea": "QTQ93",
+      "Demograph": "BD1",
+      "Date": "2019-11-18T00:00:00.0000000Z",
+      "DaypartGroup": 34,
+      "Daypart": 13,
+      "TotalRatings": 5.54
+    },
+    {
+      "SalesArea": "QTQ93",
+      "Demograph": "BD1",
+      "Date": "2019-09-06T00:00:00.0000000Z",
+      "DaypartGroup": 3,
+      "Daypart": 1,
+      "TotalRatings": 8.899
+    }
+  ]
+}

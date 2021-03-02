@@ -1,0 +1,14 @@
+{
+  "ProgrammeCategoryHierarchies": [
+    {
+      "Name": "SPORTS",
+      "ExternalRef": "",
+      "ParentExternalRef": ""
+    },
+    {
+      "Name": "CHILDREN",
+      "ExternalRef": "",
+      "ParentExternalRef": ""
+    }
+  ]
+}

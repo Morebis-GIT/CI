@@ -1,0 +1,12 @@
+{
+  "Data": [
+    {
+      "GroupId": 0,
+      "SalesArea": "",
+      "Demographic": "",
+      "Optimizer": true,
+      "Policy": true,
+      "RatingReplacement": true
+    }
+  ]
+}

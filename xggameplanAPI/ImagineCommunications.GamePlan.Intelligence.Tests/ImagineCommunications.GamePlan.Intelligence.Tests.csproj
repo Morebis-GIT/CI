@@ -1,0 +1,550 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{5D91E072-9495-4A37-A747-BEE5B9FE6C83}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>ImagineCommunications.GamePlan.Intelligence.Tests</RootNamespace>
+    <AssemblyName>ImagineCommunications.GamePlan.Intelligence.Tests</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="DataExchange\Infrastructure\MappingOverride.cs" />
+    <Compile Include="DataExchange\Infrastructure\SqlServer\DomainModelHandlers\UniverseDomainModelHandler.cs" />
+    <Compile Include="DataExchange\Infrastructure\SqlServer\DomainModelHandlers\SmoothDiagnosticConfigurationDomainModelHandler.cs" />
+    <Compile Include="DataExchange\Infrastructure\SqlServer\DomainModelHandlers\SponsorshipItemDomainModelHandler.cs" />
+    <Compile Include="DataExchange\Infrastructure\SqlServer\DomainModelHandlers\SpotBookingRuleDomainModelHandler.cs" />
+    <Compile Include="DataExchange\Infrastructure\SqlServer\DomainModelHandlers\BreakDomainModelHandler.cs" />
+    <Compile Include="DataExchange\Infrastructure\SqlServer\DomainModelHandlers\CampaignDomainModelHandler.cs" />
+    <Compile Include="DataExchange\Infrastructure\SqlServer\DomainModelHandlers\RestrictionDomainModelHandler.cs" />
+    <Compile Include="DataExchange\Infrastructure\SqlServer\DomainModelHandlers\InventoryLockDomainModelHandler.cs" />
+    <Compile Include="DataExchange\Infrastructure\SqlServer\DomainModelHandlers\ProgrammeDomainModelHandler.cs" />
+    <Compile Include="DataExchange\Infrastructure\SqlServer\DomainModelHandlers\RatingsPredictionScheduleDomainModelHandler.cs" />
+    <Compile Include="DataExchange\Infrastructure\SqlServer\DomainModelHandlers\SpotDomainModelHandler.cs" />
+    <Compile Include="DataExchange\Infrastructure\SqlServer\DomainModelHandlers\StandardDayPartDomainModelHandler.cs" />
+    <Compile Include="DataExchange\Infrastructure\SqlServer\DomainModelHandlers\StandardDayPartGroupDomainModelHandler.cs" />
+    <Compile Include="DataExchange\Infrastructure\SqlServer\DomainModelHandlers\TotalRatingDomainModelHandler.cs" />
+    <Compile Include="DataExchange\Infrastructure\SqlServer\Interception\FtsContainsMethodDescriptor.cs" />
+    <Compile Include="DataExchange\Infrastructure\SqlServer\Interception\FtsEntityReferenceVisitor.cs" />
+    <Compile Include="DataExchange\Infrastructure\SqlServer\Interception\FtsInjectionDescriptor.cs" />
+    <Compile Include="DataExchange\Infrastructure\SqlServer\Interception\FtsRegistrationBuilder.cs" />
+    <Compile Include="DataExchange\Infrastructure\SqlServer\PropertyCopier.cs" />
+    <Compile Include="DataExchange\Infrastructure\SqlServer\SalesAreaTestCacheAccessor.cs" />
+    <Compile Include="DataExchange\Infrastructure\SqlServer\SqlServerTenantIdentifierTestSequence.cs" />
+    <Compile Include="DataExchange\Infrastructure\SqlServer\SqlServerTestDbContextFactory.cs" />
+    <Compile Include="DataExchange\Infrastructure\SqlServer\SqlServerTestTruncateHandler.cs" />
+    <Compile Include="DataExchange\ResultCheckerServices\Campaign\CampaignEqualityComparer.cs" />
+    <Compile Include="DataExchange\ResultCheckerServices\SpotBookingRuleResultChecker.cs" />
+    <Compile Include="DataExchange\ResultCheckerServices\LengthFactorResultChecker.cs" />
+    <Compile Include="DataExchange\ResultCheckerServices\StandardDayPartGroupResultChecker.cs" />
+    <Compile Include="DataExchange\ResultCheckerServices\StandardDayPartResultChecker.cs" />
+    <Compile Include="GroupTransaction\Infrastructure\Dependencies\GroupTransactionConsumerDependency.cs" />
+    <Compile Include="GroupTransaction\Infrastructure\Dependencies\GroupTransactionDbDependency.cs" />
+    <Compile Include="GroupTransaction\Infrastructure\EventTypes\Interfaces\IMockEventBase.cs" />
+    <Compile Include="GroupTransaction\Infrastructure\EventTypes\Interfaces\IMockEventFour.cs" />
+    <Compile Include="GroupTransaction\Infrastructure\EventTypes\Interfaces\IMockEventOne.cs" />
+    <Compile Include="GroupTransaction\Infrastructure\EventTypes\Interfaces\IMockEventThree.cs" />
+    <Compile Include="GroupTransaction\Infrastructure\EventTypes\Interfaces\IMockEventTwo.cs" />
+    <Compile Include="GroupTransaction\Infrastructure\EventTypes\MockEventBase.cs" />
+    <Compile Include="GroupTransaction\GroupTransactionGlobalHook.cs" />
+    <Compile Include="GroupTransaction\Infrastructure\Handlers\MockEventHandler.cs" />
+    <Compile Include="GroupTransaction\Infrastructure\MockContractValidatorService.cs" />
+    <Compile Include="GroupTransaction\Infrastructure\Validators\MockEventValidator.cs" />
+    <Compile Include="Infrastructure\Assist\BufferValueComparer.cs" />
+    <Compile Include="Infrastructure\Assist\BufferValueRetriever.cs" />
+    <Compile Include="Infrastructure\Assist\DateRangeValueComparer.cs" />
+    <Compile Include="Infrastructure\Assist\DateRangeValueRetriever.cs" />
+    <Compile Include="Infrastructure\Assist\DurationValueComparer.cs" />
+    <Compile Include="Infrastructure\Assist\DurationValueRetriever.cs" />
+    <Compile Include="Infrastructure\Assist\TimeAndDowValueRetriever.cs" />
+    <Compile Include="Infrastructure\Dependencies\SynchronizationScenarioDependency.cs" />
+    <Compile Include="DataExchange\Infrastructure\SqlServer\DomainModelHandlers\FailureDomainModelHandler.cs" />
+    <Compile Include="DataExchange\Infrastructure\SqlServer\DomainModelHandlers\ScheduleDomainModelHandler.cs" />
+    <Compile Include="Infrastructure\GlobalHook.cs" />
+    <Compile Include="DataExchange\ResultCheckerServices\MetadataResultChecker.cs" />
+    <Compile Include="Steps\GroupTransaction\GroupTransactionSteps.cs" />
+    <EmbeddedResource Include="DataExchange\Data\Campaign\BulkCampaignCreatedOrUpdated\Error_InvalidCampaignData.json" />
+    <Compile Include="DataExchange\EventScenarioServices\Common\EventScenarioService.cs" />
+    <Compile Include="Infrastructure\CommonExtensions.cs" />
+    <Compile Include="Infrastructure\Common\DataProvider.cs" />
+    <Compile Include="Infrastructure\Common\TestDataResultOperationType.cs" />
+    <Compile Include="DataExchange\Infrastructure\Dependencies\ConsumerScenarioDependency.cs" />
+    <Compile Include="DataExchange\Infrastructure\Dependencies\EventServiceScenarioDependency.cs" />
+    <Compile Include="DataExchange\Infrastructure\Dependencies\ImportModelFeatureDependency.cs" />
+    <Compile Include="DataExchange\Infrastructure\Dependencies\ResultCheckerScenarioDependency.cs" />
+    <Compile Include="Infrastructure\Extensions\ReflectionExtensions.cs" />
+    <Compile Include="DataExchange\DataExchangeGlobalHook.cs" />
+    <Compile Include="Infrastructure\ImportedModel.cs" />
+    <Compile Include="DataExchange\Infrastructure\Interfaces\IEventScenarioService.cs" />
+    <Compile Include="Infrastructure\Interfaces\IFeatureDependency.cs" />
+    <Compile Include="Infrastructure\Interfaces\IImportedModel.cs" />
+    <Compile Include="DataExchange\Infrastructure\Interfaces\IResultCheckerService.cs" />
+    <Compile Include="Infrastructure\Interfaces\IScenarioDependency.cs" />
+    <Compile Include="Infrastructure\Interfaces\ISqlServerTestDbContext.cs" />
+    <Compile Include="Infrastructure\Interfaces\ITestDataImporter.cs" />
+    <Compile Include="Infrastructure\Json\JsonTestDataImporter.cs" />
+    <Compile Include="Infrastructure\Extensions\ObjectContainerExtensions.cs" />
+    <Compile Include="DataExchange\Infrastructure\RavenDB\EmbeddableDocumentStoreIndexes.cs" />
+    <Compile Include="DataExchange\Infrastructure\RavenDB\EmbeddableDocumentTransformers.cs" />
+    <Compile Include="Infrastructure\Interfaces\IRavenTestDbContext.cs" />
+    <Compile Include="Infrastructure\Interfaces\IScenarioDbContext.cs" />
+    <Compile Include="DataExchange\Infrastructure\RavenDB\RavenDbDataStore.cs" />
+    <Compile Include="DataExchange\Infrastructure\RavenDB\RavenDbFeatureDependency.cs" />
+    <Compile Include="DataExchange\Infrastructure\RavenDB\RavenDbJsonTestDataImporter.cs" />
+    <Compile Include="DataExchange\Infrastructure\RavenDB\RavenDbScenarioDependency.cs" />
+    <Compile Include="DataExchange\Infrastructure\RavenDB\RavenScenarioDbContext.cs" />
+    <Compile Include="DataExchange\Infrastructure\RavenDB\RavenTestDbContext.cs" />
+    <Compile Include="DataExchange\Infrastructure\SqlServer\DomainModelHandlers\MetadataCategoryDomainModelHandler.cs" />
+    <Compile Include="DataExchange\Infrastructure\SqlServer\DomainModelHandlers\SimpleDomainModelMappingHandler.cs" />
+    <Compile Include="DataExchange\Infrastructure\SqlServer\Fts\RegexSearchBlockItem.cs" />
+    <Compile Include="DataExchange\Infrastructure\SqlServer\Fts\RegexSearchConditionBuilder.cs" />
+    <Compile Include="DataExchange\Infrastructure\SqlServer\Fts\RegexSearchConditionBuilderContext.cs" />
+    <Compile Include="DataExchange\Infrastructure\SqlServer\Fts\RegexSearchContainsItem.cs" />
+    <Compile Include="DataExchange\Infrastructure\SqlServer\Fts\RegexSearchItemBase.cs" />
+    <Compile Include="DataExchange\Infrastructure\SqlServer\Fts\RegexSearchStartWithItem.cs" />
+    <Compile Include="DataExchange\Infrastructure\SqlServer\SqlServerFeatureDependency.cs" />
+    <Compile Include="DataExchange\Infrastructure\SqlServer\Interception\DbInterceptedFunctions.cs" />
+    <Compile Include="DataExchange\Infrastructure\SqlServer\Interception\FtsPropertyReferenceVisitor.cs" />
+    <Compile Include="DataExchange\Infrastructure\SqlServer\Interception\FtsInterceptionFactory.cs" />
+    <Compile Include="DataExchange\Infrastructure\SqlServer\Interception\FtsInterceptionHelpers.cs" />
+    <Compile Include="DataExchange\Infrastructure\SqlServer\Interception\IFtsInterceptionProvider.cs" />
+    <Compile Include="DataExchange\Infrastructure\SqlServer\Interception\QueryExpressionVisitor.cs" />
+    <Compile Include="DataExchange\Infrastructure\SqlServer\Interception\TestQueryModelGenerator.cs" />
+    <Compile Include="DataExchange\Infrastructure\SqlServer\SqlServerJsonTestDataImporter.cs" />
+    <Compile Include="DataExchange\Infrastructure\SqlServer\SqlServerScenarioDbContext.cs" />
+    <Compile Include="DataExchange\Infrastructure\SqlServer\SqlServerScenarioDependency.cs" />
+    <Compile Include="DataExchange\Infrastructure\SqlServer\SqlServerTestBulkInsertEngine.cs" />
+    <Compile Include="DataExchange\Infrastructure\SqlServer\SqlServerTestDbContext.cs" />
+    <Compile Include="DataExchange\Infrastructure\SqlServer\SqlServerTestDomainModelHandlerResolver.cs" />
+    <Compile Include="DataExchange\Infrastructure\SqlServer\SqlServerTestSpecificDbAdapter.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="DataExchange\ResultCheckerServices\BookingPositionGroup\BookingPositionGroupResultChecker.cs" />
+    <Compile Include="DataExchange\ResultCheckerServices\BreakResultChecker.cs" />
+    <Compile Include="DataExchange\ResultCheckerServices\Campaign\CampaignResultChecker.cs" />
+    <Compile Include="DataExchange\ResultCheckerServices\ScenarioResultChecker.cs" />
+    <Compile Include="DataExchange\ResultCheckerServices\ClashException\ClashExceptionResultChecker.cs" />
+    <Compile Include="DataExchange\ResultCheckerServices\ClashResultChecker.cs" />
+    <Compile Include="DataExchange\ResultCheckerServices\Common\ResultCheckerService.cs" />
+    <Compile Include="DataExchange\ResultCheckerServices\InventoryStatus\InventoryLockResultChecker.cs" />
+    <Compile Include="DataExchange\ResultCheckerServices\InventoryStatus\InventoryTypeResultChecker.cs" />
+    <Compile Include="DataExchange\ResultCheckerServices\InventoryStatus\LockTypeResultChecker.cs" />
+    <Compile Include="DataExchange\ResultCheckerServices\ProductResultChecker.cs" />
+    <Compile Include="DataExchange\ResultCheckerServices\HolidayResultChecker.cs" />
+    <Compile Include="DataExchange\ResultCheckerServices\DemographicResultChecker.cs" />
+    <Compile Include="DataExchange\ResultCheckerServices\ProgrammeCategory\ProgrammeCategoryResultChecker.cs" />
+    <Compile Include="DataExchange\ResultCheckerServices\Programme\ProgrammeResultChecker.cs" />
+    <Compile Include="DataExchange\ResultCheckerServices\Programme\ProgrammeScheduleResultChecker.cs" />
+    <Compile Include="DataExchange\ResultCheckerServices\ProgrammeClassification\ProgrammeClassificationResultChecker.cs" />
+    <Compile Include="DataExchange\ResultCheckerServices\SalesArea\SalesAreaResultChecker.cs" />
+    <Compile Include="DataExchange\ResultCheckerServices\TotalRatingResultChecker.cs" />
+    <Compile Include="DataExchange\ResultCheckerServices\Universe\UniverseResultChecker.cs" />
+    <Compile Include="DataExchange\ResultCheckerServices\Restriction\RestrictionResultChecker.cs" />
+    <Compile Include="DataExchange\ResultCheckerServices\Spot\SpotResultChecker.cs" />
+    <Compile Include="DataExchange\ResultCheckerServices\RatingsPredictionScheduleResultChecker.cs" />
+    <Compile Include="Steps\DataExchange\DataExchangeSteps.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="MassTransit">
+      <Version>7.0.4</Version>
+    </PackageReference>
+    <PackageReference Include="Microsoft.CodeAnalysis.FxCopAnalyzers">
+      <Version>2.9.8</Version>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+      <PrivateAssets>all</PrivateAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.EntityFrameworkCore">
+      <Version>2.2.6</Version>
+    </PackageReference>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.InMemory">
+      <Version>2.2.6</Version>
+    </PackageReference>
+    <PackageReference Include="Moq">
+      <Version>4.13.0</Version>
+    </PackageReference>
+    <PackageReference Include="NodaTime">
+      <Version>2.4.7</Version>
+    </PackageReference>
+    <PackageReference Include="RavenDB.Client">
+      <Version>3.5.7</Version>
+    </PackageReference>
+    <PackageReference Include="RavenDB.Client.UniqueConstraints">
+      <Version>3.5.7</Version>
+    </PackageReference>
+    <PackageReference Include="RavenDB.Embedded">
+      <Version>3.5.7</Version>
+    </PackageReference>
+    <PackageReference Include="SpecFlow">
+      <Version>3.0.225</Version>
+    </PackageReference>
+    <PackageReference Include="SpecFlow.Assist.Dynamic">
+      <Version>1.4.1</Version>
+    </PackageReference>
+    <PackageReference Include="SpecFlow.Tools.MsBuild.Generation">
+      <Version>3.0.225</Version>
+    </PackageReference>
+    <PackageReference Include="SpecFlow.xUnit">
+      <Version>3.0.225</Version>
+    </PackageReference>
+    <PackageReference Include="System.Collections.Immutable">
+      <Version>1.7.1</Version>
+    </PackageReference>
+    <PackageReference Include="xunit">
+      <Version>2.4.1</Version>
+    </PackageReference>
+    <PackageReference Include="xunit.runner.visualstudio">
+      <Version>2.4.1</Version>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+      <PrivateAssets>all</PrivateAssets>
+    </PackageReference>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ImagineCommunications.Gameplan.Integration.Data\ImagineCommunications.Gameplan.Integration.Data.csproj">
+      <Project>{8A263084-4933-4CB3-91AF-9A8645EEEE35}</Project>
+      <Name>ImagineCommunications.Gameplan.Integration.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ImagineCommunications.GamePlan.Intelligence\ImagineCommunications.GamePlan.Intelligence.csproj">
+      <Project>{7CD09424-C9E5-4404-8896-D443D37775A3}</Project>
+      <Name>ImagineCommunications.GamePlan.Intelligence</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\src\domain\ImagineCommunications.GamePlan.Domain.Generic\ImagineCommunications.GamePlan.Domain.Generic.csproj">
+      <Project>{E4E13375-E595-4DF3-81D4-C14314BACDFB}</Project>
+      <Name>ImagineCommunications.GamePlan.Domain.Generic</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\src\domain\ImagineCommunications.GamePlan.Domain\ImagineCommunications.GamePlan.Domain.csproj">
+      <Project>{3099D7DC-BC6E-4D9F-9668-C5798BD7F37C}</Project>
+      <Name>ImagineCommunications.GamePlan.Domain</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\src\infrastructure\ImagineCommunications.GamePlan.Infrastructure.Json.Core\ImagineCommunications.GamePlan.Infrastructure.Json.Core.csproj">
+      <Project>{05EC5153-1DCC-4B7A-A46D-0781F6CAC94F}</Project>
+      <Name>ImagineCommunications.GamePlan.Infrastructure.Json.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\src\infrastructure\ImagineCommunications.GamePlan.Persistence.RavenDb.Core\ImagineCommunications.GamePlan.Persistence.RavenDb.Core.csproj">
+      <Project>{75E54B40-26AA-4A07-9E6F-4CE9BA0AB753}</Project>
+      <Name>ImagineCommunications.GamePlan.Persistence.RavenDb.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\src\infrastructure\ImagineCommunications.GamePlan.Persistence.RavenDb\ImagineCommunications.GamePlan.Persistence.RavenDb.csproj">
+      <Project>{196aeb89-0078-4f0d-9a86-354b0ae02625}</Project>
+      <Name>ImagineCommunications.GamePlan.Persistence.RavenDb</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\src\infrastructure\ImagineCommunications.GamePlan.Persistence.SqlServer.Core\ImagineCommunications.GamePlan.Persistence.SqlServer.Core.csproj">
+      <Project>{dde95361-0663-41b3-bfbe-85f91a8769f3}</Project>
+      <Name>ImagineCommunications.GamePlan.Persistence.SqlServer.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\src\infrastructure\ImagineCommunications.GamePlan.Persistence.SqlServer\ImagineCommunications.GamePlan.Persistence.SqlServer.csproj">
+      <Project>{d11f0978-3e0e-4739-ab1f-5eab7bc83df2}</Project>
+      <Name>ImagineCommunications.GamePlan.Persistence.SqlServer</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\src\integration\ImagineCommunications.BusClient.Abstraction\ImagineCommunications.BusClient.Abstraction.csproj">
+      <Project>{3ddfac06-c86b-43d4-b982-506192b20331}</Project>
+      <Name>ImagineCommunications.BusClient.Abstraction</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\src\integration\ImagineCommunications.BusClient.Domain\ImagineCommunications.BusClient.Domain.csproj">
+      <Project>{429C5248-CD64-4D3E-8A3D-8819BA2C5E3D}</Project>
+      <Name>ImagineCommunications.BusClient.Domain</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\src\integration\ImagineCommunications.BusClient.MassTransit\ImagineCommunications.BusClient.Implementation.csproj">
+      <Project>{f965b36c-5388-4403-98e2-e37f62c4efd7}</Project>
+      <Name>ImagineCommunications.BusClient.Implementation</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\src\integration\ImagineCommunications.Gameplan.Integration.Handlers\ImagineCommunications.Gameplan.Integration.Handlers.csproj">
+      <Project>{8FE59411-8F31-4292-9E84-61E40700F872}</Project>
+      <Name>ImagineCommunications.Gameplan.Integration.Handlers</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\src\integration\ImagineCommunications.Gameplan.Synchronization.SqlServer\ImagineCommunications.Gameplan.Synchronization.SqlServer.csproj">
+      <Project>{6ac8ed8a-4e31-47c9-ba57-5abdda169f44}</Project>
+      <Name>ImagineCommunications.Gameplan.Synchronization.SqlServer</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\src\integration\ImagineCommunications.Gameplan.Synchronization\ImagineCommunications.Gameplan.Synchronization.csproj">
+      <Project>{92bc7817-af28-423b-bba0-a305dbc4133b}</Project>
+      <Name>ImagineCommunications.Gameplan.Synchronization</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\src\integration\ImagineCommunications.Intelligence.Contracts\ImagineCommunications.Gameplan.Integration.Contracts.csproj">
+      <Project>{8FCCD18B-E829-4CE8-B79E-7EE13BD61851}</Project>
+      <Name>ImagineCommunications.Gameplan.Integration.Contracts</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\xgcore.auditevents\xgcore.auditevents.csproj">
+      <Project>{EA7D70F9-A8D0-4FBB-A3B9-A00C177F6904}</Project>
+      <Name>xgcore.auditevents</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\xggameplan.common\xggameplan.common.csproj">
+      <Project>{efc37031-75bd-4c4b-b760-e1d3aba0a734}</Project>
+      <Name>xggameplan.common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\xggameplan.core\xggameplan.core.csproj">
+      <Project>{24373E36-C0E4-4550-B1E9-B59EF7094C1F}</Project>
+      <Name>xggameplan.core</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="DataExchange\Data\Holiday\BulkHolidayCreated_ValidData.json" />
+    <EmbeddedResource Include="DataExchange\Data\Holiday\BulkHolidayCreated_InvalidModel.json" />
+    <EmbeddedResource Include="DataExchange\Data\Holiday\SalesArea_Deleted.json" />
+    <EmbeddedResource Include="DataExchange\Data\Holiday\SalesArea_Setup.json" />
+    <EmbeddedResource Include="DataExchange\Data\Holiday\SalesArea_Updated.json" />
+    <EmbeddedResource Include="DataExchange\Data\Holiday\BulkHolidayCreated_WithNonExistingSalesArea.json" />
+    <EmbeddedResource Include="DataExchange\Data\Programme\BulkProgrammeCreated\ErrorPath.json" />
+    <EmbeddedResource Include="DataExchange\Data\Programme\BulkProgrammeCreated\Error_InvalidProgramCategories.json" />
+    <EmbeddedResource Include="DataExchange\Data\Programme\BulkProgrammeCreated\Error_InvalidSalesArea.json" />
+    <EmbeddedResource Include="DataExchange\Data\Programme\BulkProgrammeCreated\Result.json" />
+    <EmbeddedResource Include="DataExchange\Data\Programme\BulkProgrammeCreated\Setup.json" />
+    <EmbeddedResource Include="DataExchange\Data\Programme\BulkProgrammeCreated\SuccessPath.json" />
+    <EmbeddedResource Include="DataExchange\Data\Programme\BulkProgrammeUpdated\Error_InvalidData.json" />
+    <EmbeddedResource Include="DataExchange\Data\Programme\BulkProgrammeUpdated\Setup.json" />
+    <EmbeddedResource Include="DataExchange\Data\Programme\BulkProgrammeUpdated\Success_Request.json" />
+    <EmbeddedResource Include="DataExchange\Data\Programme\BulkProgrammeUpdated\Success_Result.json" />
+    <EmbeddedResource Include="DataExchange\Data\Programme\BulkProgrammeDeleted\ErrorPath.json" />
+    <EmbeddedResource Include="DataExchange\Data\Programme\BulkProgrammeDeleted\Result.json" />
+    <EmbeddedResource Include="DataExchange\Data\Programme\BulkProgrammeDeleted\Setup.json" />
+    <EmbeddedResource Include="DataExchange\Data\Programme\BulkProgrammeDeleted\SuccessPath.json" />
+    <EmbeddedResource Include="DataExchange\Data\ProgrammeClassification\BulkProgrammeClassificationCreated_EventMessage.json" />
+    <EmbeddedResource Include="DataExchange\Data\ProgrammeClassification\ProgrammeClassification_Setup.json" />
+    <EmbeddedResource Include="DataExchange\Data\Universe\BulkUniverseCreated\Error_InvalidDateGap.json" />
+    <EmbeddedResource Include="DataExchange\Data\Universe\BulkUniverseCreated\Error_InvalidDates.json" />
+    <EmbeddedResource Include="DataExchange\Data\Universe\BulkUniverseCreated\Error_InvalidStartDate.json" />
+    <EmbeddedResource Include="DataExchange\Data\Universe\BulkUniverseCreated\Result.json" />
+    <EmbeddedResource Include="DataExchange\Data\Universe\BulkUniverseCreated\Result_CreateAndUpdate.json" />
+    <EmbeddedResource Include="DataExchange\Data\Universe\BulkUniverseCreated\Setup.json" />
+    <EmbeddedResource Include="DataExchange\Data\Universe\BulkUniverseCreated\StartDateValidationError.json" />
+    <EmbeddedResource Include="DataExchange\Data\Universe\BulkUniverseCreated\SuccessPath.json" />
+    <EmbeddedResource Include="DataExchange\Data\Universe\BulkUniverseCreated\SuccessPath_CreateAndUpdate.json" />
+    <EmbeddedResource Include="DataExchange\Data\Universe\BulkUniverseCreated\UpdateRequestModel.json" />
+    <EmbeddedResource Include="DataExchange\Data\Universe\BulkUniverseCreated\UpdateResult.json" />
+    <EmbeddedResource Include="DataExchange\Data\Universe\BulkUniverseCreated\ValidationError.json" />
+    <EmbeddedResource Include="DataExchange\Data\Universe\BulkUniverseDeleted\Error_ParametersValidation.json" />
+    <EmbeddedResource Include="DataExchange\Data\Universe\BulkUniverseDeleted\Error_StartDateValidation.json" />
+    <EmbeddedResource Include="DataExchange\Data\Universe\BulkUniverseDeleted\Result.json" />
+    <EmbeddedResource Include="DataExchange\Data\Universe\BulkUniverseDeleted\Setup.json" />
+    <EmbeddedResource Include="DataExchange\Data\Universe\BulkUniverseDeleted\SuccessPath.json" />
+    <EmbeddedResource Include="DataExchange\Data\Universe\BulkUniverseCreated\Error_DemographicNotFound.json" />
+    <EmbeddedResource Include="DataExchange\Data\Universe\BulkUniverseCreated\Error_SalesAreaNotFound.json" />
+    <EmbeddedResource Include="DataExchange\Data\Restriction\BulkRestrictionCreatedOrUpdated\Success_Create_Result.json" />
+    <EmbeddedResource Include="DataExchange\Data\Restriction\BulkRestrictionCreatedOrUpdated\Error_InvalidData.json" />
+    <EmbeddedResource Include="DataExchange\Data\Restriction\BulkRestrictionCreatedOrUpdated\Setup.json" />
+    <EmbeddedResource Include="DataExchange\Data\Restriction\BulkRestrictionCreatedOrUpdated\Error_RestrictionBasis_Product_RestrictionType_Time.json" />
+    <EmbeddedResource Include="DataExchange\Data\Restriction\BulkRestrictionCreatedOrUpdated\Error_RestrictionBasis_Clash_RestrictionType_Programme.json" />
+    <EmbeddedResource Include="DataExchange\Data\Restriction\BulkRestrictionCreatedOrUpdated\Error_RestrictionBasis_ClearanceCode_RestrictionType_ProgrammeCategory.json" />
+    <EmbeddedResource Include="DataExchange\Data\Restriction\BulkRestrictionCreatedOrUpdated\Error_RestrictionBasis_Null_RestrictionType_Index.json" />
+    <EmbeddedResource Include="DataExchange\Data\Restriction\BulkRestrictionCreatedOrUpdated\Error_RestrictionBasis_Null_RestrictionType_ProgrammeClassification.json" />
+    <EmbeddedResource Include="DataExchange\Data\Restriction\BulkRestrictionCreatedOrUpdated\Error_SalesAreaNotFound.json" />
+    <EmbeddedResource Include="DataExchange\Data\Restriction\BulkRestrictionCreatedOrUpdated\Error_ProgrammeCategoryNotFound.json" />
+    <EmbeddedResource Include="DataExchange\Data\Restriction\BulkRestrictionCreatedOrUpdated\Error_ClearanceCodeNotFound.json" />
+    <EmbeddedResource Include="DataExchange\Data\Restriction\BulkRestrictionCreatedOrUpdated\Success_Create.json" />
+    <EmbeddedResource Include="DataExchange\Data\Restriction\BulkRestrictionCreatedOrUpdated\Success_Update.json" />
+    <EmbeddedResource Include="DataExchange\Data\Restriction\BulkRestrictionCreatedOrUpdated\Success_Update_Result.json" />
+    <EmbeddedResource Include="DataExchange\Data\Restriction\BulkRestrictionDeleted\Setup.json" />
+    <EmbeddedResource Include="DataExchange\Data\Restriction\BulkRestrictionDeleted\Result.json" />
+    <EmbeddedResource Include="DataExchange\Data\Spot\BulkSpotCreatedOrUpdated\Setup.json" />
+    <EmbeddedResource Include="DataExchange\Data\Spot\BulkSpotCreatedOrUpdated\Success_Create_WithoutBreak.json" />
+    <EmbeddedResource Include="DataExchange\Data\Spot\BulkSpotCreatedOrUpdated\Success_Create_WithoutBreak_Result.json" />
+    <EmbeddedResource Include="DataExchange\Data\Spot\BulkSpotCreatedOrUpdated\Success_Create_WithBreak_Result.json" />
+    <EmbeddedResource Include="DataExchange\Data\Spot\BulkSpotCreatedOrUpdated\Success_Create_WithBreak.json" />
+    <EmbeddedResource Include="DataExchange\Data\Spot\BulkSpotCreatedOrUpdated\Error_BreakNotFound.json" />
+    <EmbeddedResource Include="DataExchange\Data\Spot\BulkSpotCreatedOrUpdated\Error_SalesAreaMismatch.json" />
+    <EmbeddedResource Include="DataExchange\Data\Spot\BulkSpotCreatedOrUpdated\Error_DatesMismatch.json" />
+    <EmbeddedResource Include="DataExchange\Data\Spot\BulkSpotCreatedOrUpdated\Success_Update.json" />
+    <EmbeddedResource Include="DataExchange\Data\Spot\BulkSpotCreatedOrUpdated\Success_Update_Result.json" />
+    <EmbeddedResource Include="DataExchange\Data\Spot\BulkSpotDeleted\Error_Validation_Data.json" />
+    <EmbeddedResource Include="DataExchange\Data\Spot\BulkSpotDeleted\Error_Validation_Properties.json" />
+    <EmbeddedResource Include="DataExchange\Data\Spot\BulkSpotDeleted\Setup.json" />
+    <EmbeddedResource Include="DataExchange\Data\Spot\BulkSpotDeleted\Success_NonMultipart.json" />
+    <EmbeddedResource Include="DataExchange\Data\Spot\BulkSpotDeleted\Success_NonMultipart_Result.json" />
+    <EmbeddedResource Include="DataExchange\Data\Spot\BulkSpotDeleted\Success_TopTailDelete.json" />
+    <EmbeddedResource Include="DataExchange\Data\Spot\BulkSpotDeleted\Success_TopTailDelete_Result.json" />
+    <EmbeddedResource Include="DataExchange\Data\Spot\BulkSpotDeleted\Success_SameBreakDelete.json" />
+    <EmbeddedResource Include="DataExchange\Data\Spot\BulkSpotDeleted\Success_SameBreakDelete_Result.json" />
+    <EmbeddedResource Include="DataExchange\Data\Break\BulkBreakCreated_Setup.json" />
+    <EmbeddedResource Include="DataExchange\Data\Break\BulkBreakCreated_Setup_SingleBreak_Result.json" />
+    <EmbeddedResource Include="DataExchange\Data\Break\BulkBreakCreated_Setup_Result.json" />
+    <EmbeddedResource Include="DataExchange\Data\Break\BulkBreakDeleted_Setup.json" />
+    <EmbeddedResource Include="DataExchange\Data\Break\BulkBreakDeleted_Setup_NoSpots_Result.json" />
+    <EmbeddedResource Include="DataExchange\Data\Break\BulkBreakDeleted_WithSpots_Setup.json" />
+    <EmbeddedResource Include="DataExchange\Data\Break\BulkBreakDeleted_WithSpots_Result.json" />
+    <EmbeddedResource Include="DataExchange\Data\RatingsPredictionSchedule\BulkRatingsPredictionSchedulesDeleted\Setup.json" />
+    <EmbeddedResource Include="DataExchange\Data\RatingsPredictionSchedule\BulkRatingsPredictionSchedulesDeleted\Result.json" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="DataExchange\Data\SalesArea\Setup.json" />
+    <EmbeddedResource Include="DataExchange\Data\SalesArea\BulkSalesAreaCreatedOrUpdated\SuccessCreate_Result.json" />
+    <EmbeddedResource Include="DataExchange\Data\SalesArea\BulkSalesAreaCreatedOrUpdated\SuccessUpdate_Result.json" />
+    <EmbeddedResource Include="DataExchange\Data\SalesArea\BulkSalesAreaDeleted\Success_Result.json" />
+    <EmbeddedResource Include="DataExchange\Data\ClashException\BulkClashExceptionCreated\Error_InvalidData.json" />
+    <EmbeddedResource Include="DataExchange\Data\ClashException\BulkClashExceptionCreated\Error_InvalidData_TimeAndDow.json" />
+    <EmbeddedResource Include="DataExchange\Data\ClashException\BulkClashExceptionCreated\Error_InvalidClashCode.json" />
+    <EmbeddedResource Include="DataExchange\Data\ClashException\BulkClashExceptionCreated\Setup.json" />
+    <EmbeddedResource Include="DataExchange\Data\ClashException\BulkClashExceptionCreated\Error_InvalidProduct.json" />
+    <EmbeddedResource Include="DataExchange\Data\ClashException\BulkClashExceptionCreated\Error_InvalidProductAdvertiser.json" />
+    <EmbeddedResource Include="DataExchange\Data\ClashException\BulkClashExceptionCreated\Error_StructureRulesViolation.json" />
+    <EmbeddedResource Include="DataExchange\Data\ClashException\BulkClashExceptionCreated\Error_TimeRangesOverlap.json" />
+    <EmbeddedResource Include="DataExchange\Data\ClashException\BulkClashExceptionCreated\Success.json" />
+    <EmbeddedResource Include="DataExchange\Data\ClashException\BulkClashExceptionCreated\Success_Result.json" />
+    <EmbeddedResource Include="DataExchange\Data\ClashException\BulkClashExceptionDeleted\Setup.json" />
+    <EmbeddedResource Include="DataExchange\Data\ClashException\BulkClashExceptionDeleted\Success_NotFound_Result.json" />
+    <EmbeddedResource Include="DataExchange\Data\Campaign\BulkCampaignCreatedOrUpdated\Error_InvalidSalesAreaCampaignTargetData.json" />
+    <EmbeddedResource Include="DataExchange\Data\Campaign\BulkCampaignCreatedOrUpdated\Error_InvalidMultipartAndCampaignTargetStrikeWeightData.json" />
+    <EmbeddedResource Include="DataExchange\Data\Campaign\BulkCampaignCreatedOrUpdated\Error_InvalidLengthDayPartAndTimeslice.json" />
+    <EmbeddedResource Include="DataExchange\Data\Campaign\BulkCampaignCreatedOrUpdated\Error_InvalidSalesAreaGroup.json" />
+    <EmbeddedResource Include="DataExchange\Data\Campaign\BulkCampaignCreatedOrUpdated\Error_InvalidTimeRestrictions.json" />
+    <EmbeddedResource Include="DataExchange\Data\Campaign\BulkCampaignCreatedOrUpdated\Error_InvalidProgrammeRestriction.json" />
+    <EmbeddedResource Include="DataExchange\Data\Campaign\BulkCampaignCreatedOrUpdated\Error_InvalidIncludeRightSizer.json" />
+    <EmbeddedResource Include="DataExchange\Data\Campaign\BulkCampaignCreatedOrUpdated\Error_InvalidCampaignPassPriority.json" />
+    <EmbeddedResource Include="DataExchange\Data\Campaign\BulkCampaignCreatedOrUpdated\Error_DemographicNotFound.json" />
+    <EmbeddedResource Include="DataExchange\Data\Campaign\BulkCampaignCreatedOrUpdated\Error_ProductNotFound.json" />
+    <EmbeddedResource Include="DataExchange\Data\Campaign\BulkCampaignCreatedOrUpdated\Setup.json" />
+    <EmbeddedResource Include="DataExchange\Data\Campaign\BulkCampaignCreatedOrUpdated\Error_InvalidBreakType.json" />
+    <EmbeddedResource Include="DataExchange\Data\Campaign\BulkCampaignCreatedOrUpdated\Error_SalesAreasNotFound.json" />
+    <EmbeddedResource Include="DataExchange\Data\Campaign\BulkCampaignCreatedOrUpdated\Error_ProgrammeCategoryNotFound.json" />
+    <EmbeddedResource Include="DataExchange\Data\Campaign\BulkCampaignCreatedOrUpdated\Success_Create_Request.json" />
+    <EmbeddedResource Include="DataExchange\Data\Campaign\BulkCampaignCreatedOrUpdated\Success_Create_Result.json" />
+    <EmbeddedResource Include="DataExchange\Data\Campaign\BulkCampaignCreatedOrUpdated\Success_Update_Request.json" />
+    <EmbeddedResource Include="DataExchange\Data\Campaign\BulkCampaignCreatedOrUpdated\Success_Update_Result.json" />
+    <EmbeddedResource Include="DataExchange\Data\Campaign\BulkCampaignDeleted\Error_InvalidModel.json" />
+    <EmbeddedResource Include="DataExchange\Data\Campaign\BulkCampaignDeleted\Error_InvalidExternalId.json" />
+    <EmbeddedResource Include="DataExchange\Data\Campaign\BulkCampaignDeleted\Setup.json" />
+    <EmbeddedResource Include="DataExchange\Data\Campaign\BulkCampaignDeleted\Success_Request.json" />
+    <EmbeddedResource Include="DataExchange\Data\Campaign\BulkCampaignDeleted\Success_Result.json" />
+    <EmbeddedResource Include="DataExchange\Data\Campaign\BulkCampaignDeleted\Success_Scenario_Result.json" />
+    <EmbeddedResource Include="DataExchange\Data\Spot\BulkSpotDeleted\Error_InvalidExternalRefs.json" />
+    <EmbeddedResource Include="DataExchange\Data\BookingPositionGroup\BulkBookingPositionGroupCreated\Success_Request.json" />
+    <EmbeddedResource Include="DataExchange\Data\BookingPositionGroup\BulkBookingPositionGroupCreated\Success_Result.json" />
+    <EmbeddedResource Include="DataExchange\Data\BookingPositionGroup\BulkBookingPositionGroupDeleted\Setup.json" />
+    <EmbeddedResource Include="DataExchange\Data\BookingPositionGroup\BulkBookingPositionGroupDeleted\Success_Request.json" />
+    <EmbeddedResource Include="DataExchange\Data\BookingPositionGroup\BulkBookingPositionGroupDeleted\Success_Result.json" />
+    <EmbeddedResource Include="DataExchange\Data\ProgrammeCategory\BulkProgrammeCategoryCreated_EventMessage.json" />
+    <EmbeddedResource Include="DataExchange\Data\ProgrammeCategory\ProgrammeCategory_Setup.json" />
+    <EmbeddedResource Include="DataExchange\Data\InventoryStatus\BulkInventoryLockCreated\Result.json" />
+    <EmbeddedResource Include="DataExchange\Data\InventoryStatus\BulkInventoryLockCreated\Setup.json" />
+    <EmbeddedResource Include="DataExchange\Data\InventoryStatus\BulkInventoryLockCreated\SuccessPath.json" />
+    <EmbeddedResource Include="DataExchange\Data\InventoryStatus\BulkInventoryLockDeleted\Result.json" />
+    <EmbeddedResource Include="DataExchange\Data\InventoryStatus\BulkInventoryLockDeleted\Setup.json" />
+    <EmbeddedResource Include="DataExchange\Data\InventoryStatus\BulkInventoryLockDeleted\SuccessPath.json" />
+    <EmbeddedResource Include="DataExchange\Data\InventoryStatus\BulkInventoryTypeCreated\Error_InvalidData.json" />
+    <EmbeddedResource Include="DataExchange\Data\InventoryStatus\BulkInventoryLockCreated\Error_InvalidData.json" />
+    <EmbeddedResource Include="DataExchange\Data\TotalRatings\BulkTotalRatingCreated\Success_Request.json" />
+    <EmbeddedResource Include="DataExchange\Data\TotalRatings\BulkTotalRatingCreated\Success_Result.json" />
+    <EmbeddedResource Include="DataExchange\Data\TotalRatings\Setup.json" />
+    <EmbeddedResource Include="DataExchange\Data\TotalRatings\BulkTotalRatingDeleted\Success_Result.json" />
+    <EmbeddedResource Include="DataExchange\Data\TotalRatings\BulkTotalRatingDeleted\Success_Request.json" />
+    <EmbeddedResource Include="DataExchange\Data\SalesArea\BulkSalesAreaCreatedOrUpdated\SuccessCreate_Request.json" />
+    <EmbeddedResource Include="DataExchange\Data\SalesArea\BulkSalesAreaCreatedOrUpdated\SuccessUpdate_Request.json" />
+    <EmbeddedResource Include="DataExchange\Data\SalesArea\BulkSalesAreaCreatedOrUpdated\InvalidDemographic_Request.json" />
+    <EmbeddedResource Include="DataExchange\Data\BreakTypes\BulkBreakTypeCreated\Success_Request.json" />
+    <EmbeddedResource Include="DataExchange\Data\BreakTypes\BulkBreakTypeCreated\Success_Result.json" />
+    <EmbeddedResource Include="DataExchange\Data\BreakTypes\BulkBreakTypeCreated\WithExistingBreakTypes_Setup.json" />
+    <EmbeddedResource Include="DataExchange\Data\BreakTypes\BulkBreakTypeCreated\WithExistingBreakTypes_Success_Result.json" />
+    <EmbeddedResource Include="DataExchange\Data\BreakTypes\BulkBreakTypeDeleted\Setup.json" />
+    <EmbeddedResource Include="DataExchange\Data\BreakTypes\BulkBreakTypeDeleted\Success_Result.json" />
+    <EmbeddedResource Include="DataExchange\Data\ClashException\BulkClashExceptionDeleted\Success_Request.json" />
+    <EmbeddedResource Include="DataExchange\Data\ClashException\BulkClashExceptionDeleted\Success_Result.json" />
+    <EmbeddedResource Include="DataExchange\Data\ClashException\BulkClashExceptionDeleted\NotFound_Request.json" />
+    <EmbeddedResource Include="DataExchange\Data\SalesArea\SalesAreaUpdated\Success_Request.json" />
+    <EmbeddedResource Include="DataExchange\Data\SalesArea\SalesAreaUpdated\InvalidDemographic_Request.json" />
+    <EmbeddedResource Include="DataExchange\Data\SalesArea\SalesAreaUpdated\Success_Result.json" />
+    <EmbeddedResource Include="DataExchange\Data\InventoryStatus\BulkInventoryLockCreated\Error_SalesAreaNotFound.json" />
+    <EmbeddedResource Include="DataExchange\Data\TotalRatings\BulkTotalRatingCreated\Error_DemographicNotFound.json" />
+    <EmbeddedResource Include="DataExchange\Data\TotalRatings\BulkTotalRatingCreated\Error_SalesAreaNotFound.json" />
+    <EmbeddedResource Include="DataExchange\Data\DayPartGroups\BulkStandardDayPartGroupCreated\Error_DayPartNotFound.json" />
+    <EmbeddedResource Include="DataExchange\Data\DayPartGroups\BulkStandardDayPartGroupCreated\Error_DemographicNotFound.json" />
+    <EmbeddedResource Include="DataExchange\Data\DayPartGroups\BulkStandardDayPartGroupCreated\Error_SalesAreaNotFound.json" />
+    <EmbeddedResource Include="DataExchange\Data\DayPartGroups\BulkStandardDayPartGroupCreated\Result.json" />
+    <EmbeddedResource Include="DataExchange\Data\DayPartGroups\BulkStandardDayPartGroupCreated\Success_Request.json" />
+    <EmbeddedResource Include="DataExchange\Data\DayPartGroups\Setup.json" />
+    <EmbeddedResource Include="DataExchange\Data\DayParts\BulkStandardDayPartCreated\Error_SalesAreaNotFound.json" />
+    <EmbeddedResource Include="DataExchange\Data\DayParts\BulkStandardDayPartCreated\Result.json" />
+    <EmbeddedResource Include="DataExchange\Data\DayParts\Setup.json" />
+    <EmbeddedResource Include="DataExchange\Data\DayParts\BulkStandardDayPartCreated\Success_Request.json" />
+    <EmbeddedResource Include="DataExchange\Data\DayParts\BulkStandardDayPartCreated\Error_InvalidData.json" />
+    <EmbeddedResource Include="DataExchange\Data\DayPartGroups\BulkStandardDayPartGroupCreated\Error_InvalidData.json" />
+    <EmbeddedResource Include="DataExchange\Data\SpotBookingRules\BulkSpotBookingRuleCreated\Success_Request.json" />
+    <EmbeddedResource Include="DataExchange\Data\SpotBookingRules\BulkSpotBookingRuleCreated\Error_SalesAreaNotFound.json" />
+    <EmbeddedResource Include="DataExchange\Data\SpotBookingRules\Setup.json" />
+    <EmbeddedResource Include="DataExchange\Data\SpotBookingRules\BulkSpotBookingRuleCreated\Success_Result.json" />
+    <EmbeddedResource Include="DataExchange\Data\SpotBookingRules\BulkSpotBookingRuleCreated\Error_BreakTypeNotFound.json" />
+    <EmbeddedResource Include="DataExchange\Data\LengthFactor\BulkLengthFactorCreated_SuccessRequest.json" />
+    <EmbeddedResource Include="DataExchange\Data\LengthFactor\LengthFactor_Setup.json" />
+    <EmbeddedResource Include="DataExchange\Data\LengthFactor\LengthFactor_Data.json" />
+    <EmbeddedResource Include="DataExchange\Data\Product\BulkProductCreatedOrUpdated\InvalidData.json" />
+    <EmbeddedResource Include="DataExchange\Data\Product\BulkProductCreatedOrUpdated\CreateSuccess_Result.json" />
+    <EmbeddedResource Include="DataExchange\Data\Product\BulkProductCreatedOrUpdated\CreateSuccess_Request.json" />
+    <EmbeddedResource Include="DataExchange\Data\Product\BulkProductCreatedOrUpdated\InvalidEffectiveDateRange.json" />
+    <EmbeddedResource Include="DataExchange\Data\Product\BulkProductCreatedOrUpdated\UpdateSuccess_Request.json" />
+    <EmbeddedResource Include="DataExchange\Data\Product\Setup.json" />
+    <EmbeddedResource Include="DataExchange\Data\Product\BulkProductCreatedOrUpdated\UpdateSuccess_Result.json" />
+    <EmbeddedResource Include="DataExchange\Data\Product\BulkProductDeleted\DeletedSuccess_Result.json" />
+    <EmbeddedResource Include="DataExchange\Data\Break\SalesAreas_Setup.json" />
+    <EmbeddedResource Include="DataExchange\Data\Programme\BulkProgrammeCreated\SalesAreas_Setup.json" />
+    <EmbeddedResource Include="DataExchange\Data\Programme\BulkProgrammeDeleted\SalesAreas_Setup.json" />
+    <EmbeddedResource Include="DataExchange\Data\DayPartGroups\SalesAreas_Setup.json" />
+    <EmbeddedResource Include="DataExchange\Data\SalesArea\ExistingSalesAreas.json" />
+    <EmbeddedResource Include="DataExchange\Data\Spot\BulkSpotCreatedOrUpdated\SalesAreas_Setup.json" />
+    <EmbeddedResource Include="DataExchange\Data\Universe\SalesAreas_Setup.json" />
+    <EmbeddedResource Include="DataExchange\Data\TotalRatings\SalesAreas_Setup.json" />
+    <None Include="Features\DataExchange\Campaign.feature" />
+    <None Include="Features\DataExchange\LengthFactor.feature" />
+    <None Include="Features\DataExchange\BookingPositionGroup.feature" />
+    <EmbeddedResource Include="DataExchange\Data\InventoryStatus\BulkInventoryTypeCreated\Setup.json" />
+    <EmbeddedResource Include="DataExchange\Data\InventoryStatus\LockType_Setup.json" />
+    <EmbeddedResource Include="DataExchange\Data\InventoryStatus\BulkInventoryTypeCreated\Result.json" />
+    <EmbeddedResource Include="DataExchange\Data\InventoryStatus\BulkInventoryTypeCreated\SuccessPath.json" />
+    <EmbeddedResource Include="DataExchange\Data\InventoryStatus\BulkInventoryTypeCreated\Error_InvalidLockTypes.json" />
+    <None Include="Features\DataExchange\BreakType.feature" />
+    <None Include="Features\DataExchange\Campaign.feature" />
+    <None Include="Features\DataExchange\ClashException.feature" />
+    <None Include="Features\DataExchange\DayPart.feature" />
+    <None Include="Features\DataExchange\DayPartGroup.feature" />
+    <None Include="Features\DataExchange\SpotBookingRule.feature" />
+    <None Include="Features\GroupTransaction\GroupTransactionFlow.feature" />
+    <None Include="Features\DataExchange\Holiday.feature" />
+    <None Include="Features\DataExchange\Clash.feature" />
+    <None Include="Features\DataExchange\InventoryLock.feature" />
+    <None Include="Features\DataExchange\InventoryType.feature" />
+    <None Include="Features\DataExchange\LockType.feature" />
+    <None Include="Features\DataExchange\Product.feature" />
+    <None Include="Features\DataExchange\Demographic.feature" />
+    <None Include="Features\DataExchange\Programme.feature" />
+    <None Include="Features\DataExchange\ProgrammeCategory.feature" />
+    <None Include="Features\DataExchange\ProgrammeClassification.feature" />
+    <None Include="Features\DataExchange\SalesArea.feature" />
+    <None Include="Features\DataExchange\TotalRating.feature" />
+    <None Include="Features\DataExchange\Universe.feature" />
+    <None Include="Features\DataExchange\Restriction.feature" />
+    <None Include="Features\DataExchange\Spot.feature" />
+    <None Include="Features\DataExchange\Break.feature" />
+    <None Include="Features\DataExchange\RatingsPredictionSchedules.feature" />
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>
