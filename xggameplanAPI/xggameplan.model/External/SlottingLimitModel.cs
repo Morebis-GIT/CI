@@ -1,0 +1,30 @@
+﻿namespace xggameplan.Model
+{
+    /// <summary>
+    /// Slotting Limit by demography
+    /// </summary>
+    public class SlottingLimitModel
+    {
+        /// <summary>
+        /// Demography name
+        /// </summary>
+        public string Demographs { get; set; }
+
+        /// <summary>
+        /// Minimum Efficiency
+        /// </summary>
+        public int MinimumEfficiency { get; set; }
+
+        /// <summary>
+        /// Maximum Efficiency Rank
+        /// </summary>
+        public int MaximumEfficiency { get; set; }
+
+        /// <summary>
+        /// Demography Banding Tolerance
+        /// </summary>
+        public int BandingTolerance { get; set; }
+
+        public object Clone() => MemberwiseClone();
+    }
+}
