@@ -7,7 +7,6 @@ namespace ImagineCommunications.GamePlan.Persistence.SqlServer.Entities.Tenant.P
     public class Product : IUniqueIdentifierPrimaryKey
     {
         public const string SearchFieldName = "TokenizedName";
-
         Guid ISinglePrimaryKey<Guid>.Id
         {
             get => Uid;

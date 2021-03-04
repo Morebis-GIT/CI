@@ -7,7 +7,6 @@ namespace ImagineCommunications.GamePlan.Persistence.SqlServer.Entities.Tenant.S
     public class Scenario : IUniqueIdentifierPrimaryKey, IAuditEntity
     {
         public const string SearchField = "TokenizedName";
-
         DateTime IAuditEntity.DateCreated
         {
             get => DateCreated.HasValue ? DateCreated.Value : default;

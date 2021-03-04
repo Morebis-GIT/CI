@@ -1,4 +1,5 @@
 ﻿using ImagineCommunications.GamePlan.Persistence.SqlServer.Entities.Tenant.Scenarios;
+using ImagineCommunications.GamePlan.Persistence.SqlServer.Extensions;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
@@ -11,10 +12,11 @@ namespace ImagineCommunications.GamePlan.Persistence.SqlServer.EntityConfigurati
             builder.ToTable("Scenarios");
 
             builder.HasKey(e => e.Id);
-            builder.Property(e => e.Id).HasDefaultValueSql("newid()");
+            builder.Property(e => e.Id);
             builder.Property(e => e.Name).HasMaxLength(256);
-            builder.Property<string>(Scenario.SearchField)
-                .HasComputedColumnSql("CONCAT_WS(' ', Id, [Name])");
+
+            _ = builder.HasFtsField(Scenario.SearchField, new string[] { nameof(Scenario.Id), nameof(Scenario.Name) });
+                
 
             builder.HasIndex(e => e.IsLibraried);
 

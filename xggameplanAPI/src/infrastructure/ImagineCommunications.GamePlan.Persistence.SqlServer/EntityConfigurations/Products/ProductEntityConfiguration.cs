@@ -1,4 +1,6 @@
-﻿using ImagineCommunications.GamePlan.Persistence.SqlServer.Entities.Tenant.Products;
+﻿using System.Linq;
+using ImagineCommunications.GamePlan.Persistence.SqlServer.Entities.Tenant.Products;
+using ImagineCommunications.GamePlan.Persistence.SqlServer.Extensions;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
@@ -11,15 +13,15 @@ namespace ImagineCommunications.GamePlan.Persistence.SqlServer.EntityConfigurati
             builder.ToTable("Products");
 
             builder.HasKey(k => k.Uid);
-            builder.Property(e => e.Uid).HasDefaultValueSql("newid()");
+            builder.Property(k => k.Uid).HasColumnName("uid");
 
             builder.Property(p => p.Externalidentifier).HasMaxLength(64);
             builder.Property(p => p.ParentExternalidentifier).HasMaxLength(64);
-            builder.Property(p => p.Name).HasMaxLength(256);
+            builder.Property(p => p.Name).HasMaxLength(255);
             builder.Property(p => p.ClashCode).HasMaxLength(64);
             builder.Property(p => p.ReportingCategory).HasMaxLength(256);
-            builder.Property<string>(Product.SearchFieldName).HasComputedColumnSql("CONCAT_WS(' ', Externalidentifier, Name)");
-            //builder.Property<string>(Product.SearchFieldCampaign).HasComputedColumnSql("CONCAT_WS(' ', AdvertiserName, AgencyName, Name)");
+
+            builder.HasFtsField(Product.SearchFieldName, new string[] { nameof(Product.Externalidentifier), nameof(Product.Name) });
 
             builder.HasIndex(p => p.ParentExternalidentifier);
             builder.HasIndex(p => p.ClashCode);

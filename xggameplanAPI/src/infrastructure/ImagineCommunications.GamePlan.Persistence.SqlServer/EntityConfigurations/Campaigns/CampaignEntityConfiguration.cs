@@ -1,4 +1,5 @@
-﻿using ImagineCommunications.GamePlan.Persistence.SqlServer.Entities.Tenant.Campaigns;
+﻿using System;
+using ImagineCommunications.GamePlan.Persistence.SqlServer.Entities.Tenant.Campaigns;
 using ImagineCommunications.GamePlan.Persistence.SqlServer.Extensions;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
@@ -10,10 +11,10 @@ namespace ImagineCommunications.GamePlan.Persistence.SqlServer.EntityConfigurati
     {
         public void Configure(EntityTypeBuilder<Campaign> builder)
         {
-            builder.ToTable("Campaigns");
+            _ = builder.ToTable("Campaigns");
 
             builder.HasKey(e => e.Id);
-            builder.Property(e => e.Id).HasDefaultValueSql("newid()");
+            builder.Property(e => e.Id);
 
             builder.Property(e => e.CustomId).Metadata.AfterSaveBehavior = PropertySaveBehavior.Ignore;
             builder.Property(e => e.ExternalId).HasMaxLength(64);
@@ -22,22 +23,23 @@ namespace ImagineCommunications.GamePlan.Persistence.SqlServer.EntityConfigurati
             builder.Property(e => e.StartDateTime).AsUtc();
             builder.Property(e => e.EndDateTime).AsUtc();
             builder.Property(e => e.Product).HasMaxLength(64);
-            builder.Property(e => e.ActualRatings).HasColumnType("DECIMAL(28,18)");
-            builder.Property(e => e.TargetRatings).HasColumnType("DECIMAL(28,18)");
-            builder.Property(e => e.AchievedPercentageRevenueBudget).HasColumnType("DECIMAL(28,18)");
-            builder.Property(e => e.AchievedPercentageTargetRatings).HasColumnType("DECIMAL(28,18)");
-            builder.Property(e => e.RatingsDifferenceExcludingPayback).HasColumnType("DECIMAL(28,18)");
-            builder.Property(e => e.ValueDifferenceExcludingPayback).HasColumnType("DECIMAL(28,18)");
-            builder.Property(e => e.ValueDifference).HasColumnType("DECIMAL(28,18)");
+            builder.Property(e => e.ActualRatings).AsDecimal(28, 18);
+            builder.Property(e => e.TargetRatings).AsDecimal(28, 18);
+            builder.Property(e => e.AchievedPercentageRevenueBudget).AsDecimal(28, 18);
+            builder.Property(e => e.AchievedPercentageTargetRatings).AsDecimal(28, 18);
+            builder.Property(e => e.RatingsDifferenceExcludingPayback).AsDecimal(28, 18);
+            builder.Property(e => e.ValueDifferenceExcludingPayback).AsMoney();
+            builder.Property(e => e.ValueDifference).AsMoney();
+            builder.Property(e => e.RevenueBooked).AsMoney();
+            builder.Property(e => e.RevenueBudget).IsRequired().HasDefaultValue(0).AsMoney();
+            builder.HasFtsField(Campaign.SearchTokensFieldName,new string[]{ nameof(Campaign.Name), nameof(CampaignGroup), nameof(ExternalId), nameof(Campaign.BusinessType) });
 
             builder.Property(e => e.CampaignGroup).HasMaxLength(32);
             builder.Property(e => e.BusinessType).HasMaxLength(32);
-            builder.Property(e => e.ActiveLength).HasColumnType("NVARCHAR(MAX)");
+            builder.Property(e => e.ActiveLength).HasMaxLength(Int32.MaxValue); 
             builder.Property(e => e.ExpectedClearanceCode).HasMaxLength(64);
             builder.Property(e => e.CreationDate).AsUtc();
-            builder.Property<string>(Campaign.SearchTokensFieldName)
-                .HasComputedColumnSql("CONCAT_WS(' ',[CampaignGroup],[Name],[ExternalId],[BusinessType])");
-
+            
             builder.HasIndex(e => e.CustomId).IsUnique();
             builder.HasIndex(e => e.ExternalId);
             builder.HasIndex(e => e.Product);

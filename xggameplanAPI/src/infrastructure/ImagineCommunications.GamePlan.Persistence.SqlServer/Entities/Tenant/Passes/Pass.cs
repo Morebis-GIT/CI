@@ -23,5 +23,6 @@ namespace ImagineCommunications.GamePlan.Persistence.SqlServer.Entities.Tenant.P
         public PassSalesAreaPriorityCollection PassSalesAreaPriorities { get; set; }
 
         public const string SearchField = "TokenizedName";
+
     }
 }

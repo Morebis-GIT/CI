@@ -7,6 +7,10 @@ namespace ImagineCommunications.GamePlan.Persistence.SqlServer.Entities.Tenant.R
     public class Run : IUniqueIdentifierPrimaryKey
     {
         public const string SearchField = "TokenizedName";
+        public static readonly IReadOnlyList<string> SearchFieldSources = new List<string>() {
+            nameof(Id),nameof(Description)
+        };
+
 
         public Guid Id { get; set; }
         public int CustomId { get; set; }
